@@ -1,10 +1,9 @@
+import clsx from "clsx";
+import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-
-import clsx from "clsx";
-import { Cormorant, Roboto } from "next/font/google";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
