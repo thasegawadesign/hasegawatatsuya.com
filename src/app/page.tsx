@@ -65,6 +65,12 @@ export default function Home() {
             <Link href={"/"} className={clsx(roboto.className)}>
               More
             </Link>
+            <Image
+              src={"/photo.webp"}
+              width={200}
+              height={300}
+              alt="長谷川達也"
+            />
           </section>
         </section>
         <section id="works">
