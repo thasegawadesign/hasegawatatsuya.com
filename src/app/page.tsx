@@ -23,6 +23,13 @@ export default function Home() {
           <ul>
             <li>
               <Link href={"/"} className={clsx(roboto.className)}>
+                TH
+              </Link>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <Link href={"/"} className={clsx(roboto.className)}>
                 Home
               </Link>
             </li>
@@ -65,6 +72,12 @@ export default function Home() {
             <Link href={"/"} className={clsx(roboto.className)}>
               More
             </Link>
+            <Image
+              src={"/photo.webp"}
+              width={200}
+              height={300}
+              alt="長谷川達也"
+            />
           </section>
         </section>
         <section id="works">
