@@ -2,8 +2,8 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 
-import "./styles/reset.css";
-import { backgroundGradient } from "./styles/styles.css";
+import "@/styles/reset.css";
+import { backgroundGradient } from "@/styles/styles.css";
 
 export const metadata: Metadata = {
   title: "Tatsuya Hasegawa",
