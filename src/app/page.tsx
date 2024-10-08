@@ -23,6 +23,13 @@ export default function Home() {
           <ul>
             <li>
               <Link href={"/"} className={clsx(roboto.className)}>
+                TH
+              </Link>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <Link href={"/"} className={clsx(roboto.className)}>
                 Home
               </Link>
             </li>
