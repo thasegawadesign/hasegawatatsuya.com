@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
-import "./globals.css";
+
+import "./styles/reset.css";
 
 export const metadata: Metadata = {
   title: "Tatsuya Hasegawa",
