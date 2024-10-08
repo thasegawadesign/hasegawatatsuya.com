@@ -1,3 +1,4 @@
+import { logo, navBox, navLink } from "@/styles/styles.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
@@ -22,29 +23,38 @@ export default function Home() {
         <nav>
           <ul>
             <li>
-              <Link href={"/"} className={clsx(roboto.className)}>
+              <Link href={"/"} className={clsx(roboto.className, logo)}>
                 TH
               </Link>
             </li>
           </ul>
-          <ul>
+          <ul className={clsx(navBox)}>
             <li>
-              <Link href={"/"} className={clsx(roboto.className)}>
+              <Link href={"/"} className={clsx(roboto.className, navLink)}>
                 Home
               </Link>
             </li>
             <li>
-              <Link href={"/#about"} className={clsx(roboto.className)}>
+              <Link
+                href={"/#about"}
+                className={clsx(roboto.className, navLink)}
+              >
                 About
               </Link>
             </li>
             <li>
-              <Link href={"/#works"} className={clsx(roboto.className)}>
+              <Link
+                href={"/#works"}
+                className={clsx(roboto.className, navLink)}
+              >
                 Works
               </Link>
             </li>
             <li>
-              <Link href={"/#contact"} className={clsx(roboto.className)}>
+              <Link
+                href={"/#contact"}
+                className={clsx(roboto.className, navLink)}
+              >
                 Contact
               </Link>
             </li>
