@@ -4,5 +4,5 @@
   "semi": true,
   "singleQuote": false,
   "tailwindFunctions": ["clsx"],
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": []
 }
