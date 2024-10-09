@@ -65,6 +65,7 @@ export const glass = style({
     [breakpoints["sm"]]: {
       marginTop: 8,
       marginBottom: 8,
+      backgroundColor: "rgba(255, 255, 255, .16)",
       backdropFilter: "blur(80px)",
       WebkitBackdropFilter: "blur(80px)",
     },
@@ -770,7 +771,7 @@ export const emailLink = style({
     },
     [breakpoints["sm"]]: {
       gap: 16,
-      padding: "60px 20px",
+      padding: "120px 8px",
       fontSize: "1.4rem",
     },
   },
