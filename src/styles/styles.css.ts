@@ -48,7 +48,10 @@ export const header = style({
 export const nav = style({
   position: "fixed",
   top: 160,
-  left: 0,
+  left: "8%",
+  display: "flex",
+  flexDirection: "column",
+  gap: 12,
 });
 export const navLinkBox = style({
   display: "flex",
@@ -79,7 +82,7 @@ export const rotate = keyframes({
   "100%": { transform: "rotate(360deg)" },
 });
 export const circle = style({
-  position: "fixed",
+  position: "absolute",
   top: "-50px",
   right: "-50px",
   width: 130,
