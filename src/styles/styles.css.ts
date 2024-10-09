@@ -84,6 +84,10 @@ export const circleText = style({
   fontWeight: 300,
 });
 
+export const animateObject1 = keyframes({
+  "0%": { transform: "translateY(-4%)" },
+  "100%": { transform: "translateY(4%)" },
+});
 export const object1 = style({
   position: "fixed",
   top: "4%",
@@ -94,6 +98,15 @@ export const object1 = style({
   borderRadius: "100%",
   filter: "blur(4px)",
   zIndex: -50,
+  animationName: animateObject1,
+  animationDuration: "10s",
+  animationTimingFunction: "ease-in-out",
+  animationIterationCount: "infinite",
+  animationDirection: "alternate-reverse",
+});
+export const animateObject2 = keyframes({
+  "0%": { transform: "translateY(-8%)" },
+  "100%": { transform: "translateY(8%)" },
 });
 export const object2 = style({
   position: "fixed",
@@ -105,10 +118,19 @@ export const object2 = style({
   borderRadius: "100%",
   filter: "blur(12px)",
   zIndex: -50,
+  animationName: animateObject2,
+  animationDuration: "16s",
+  animationTimingFunction: "ease-in-out",
+  animationIterationCount: "infinite",
+  animationDirection: "alternate-reverse",
+});
+export const animateObject3 = keyframes({
+  "0%": { transform: "translateY(-16%)" },
+  "100%": { transform: "translateY(16%)" },
 });
 export const object3 = style({
   position: "fixed",
-  bottom: "-16%",
+  bottom: "-24%",
   left: "4%",
   background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
   width: 600,
@@ -116,4 +138,9 @@ export const object3 = style({
   borderRadius: "100%",
   filter: "blur(16px)",
   zIndex: -50,
+  animationName: animateObject3,
+  animationDuration: "20s",
+  animationTimingFunction: "ease-in-out",
+  animationIterationCount: "infinite",
+  animationDirection: "alternate-reverse",
 });
