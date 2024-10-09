@@ -81,8 +81,6 @@ const roboto = Roboto({
 const isOpenHamburgerMenuAtom = atom(false);
 const isPlayingAudioAtom = atom(false);
 
-const audio = new Audio("/houkagonoumibe.mp3");
-
 export default function Home() {
   const mobileNavHomeLinkRef = useRef(null);
   const mobileNavAboutLinkRef = useRef(null);
@@ -272,6 +270,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const audio = new Audio("/houkagonoumibe.mp3");
     const handleAudioButtonClick = () => {
       if (isPlayingAudio) {
         audio.pause();
