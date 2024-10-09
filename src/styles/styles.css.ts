@@ -344,6 +344,7 @@ export const object3 = style({
 
 export const nameMainVisual = style({
   fontSize: "22rem",
+  fontWeight: 500,
   color: "#130059",
   lineHeight: "0.76em",
   textAlign: "center",
