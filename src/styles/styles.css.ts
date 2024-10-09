@@ -8,6 +8,16 @@ export const breakpoints = {
   sm: "screen and (max-width: 639px)",
 } as const;
 
+export const smoothScroll = style({
+  "@media": {
+    "(prefers-reduced-motion: no-preference)": {
+      ":focus-within": {
+        scrollBehavior: "smooth",
+      },
+    },
+  },
+});
+
 export const backgroundGradient = style({
   backgroundColor: "#106",
   backgroundImage: `
