@@ -18,6 +18,20 @@ export const backgroundGradient = style({
   backgroundAttachment: "fixed",
 });
 
+export const glass = style({
+  maxWidth: 1320,
+  backgroundColor: "rgba(255, 255, 255, .1)",
+  marginTop: 100,
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginBottom: 100,
+  borderRadius: 20,
+  border: "solid 1px",
+  borderColor: "rgba(255, 255, 255, .3)",
+  boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
+  backdropFilter: "blur(80px)",
+});
+
 export const logo = style({
   fontSize: "3.6rem",
   fontWeight: 400,
