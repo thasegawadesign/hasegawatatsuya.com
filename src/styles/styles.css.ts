@@ -302,6 +302,9 @@ export const profileImage = style({
   marginLeft: -120,
 });
 
+export const worksSection = style({
+  paddingBottom: 120,
+});
 export const worksBox = style({
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
@@ -344,5 +347,43 @@ export const worksUnderDevelopmentItem = style({
 });
 export const worksUnderDevelopment = style({
   fontSize: "1.6rem",
+  color: "#fff",
+});
+
+export const contactSection = style({
+  paddingBottom: 120,
+});
+export const emailLink = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: 32,
+  margin: "0 auto",
+  padding: "74px 240px",
+  maxWidth: 1060,
+  width: "100%",
+  fontSize: "2.4rem",
+  fontWeight: 300,
+  color: "#130059",
+  letterSpacing: 2,
+  textDecoration: "none",
+  backgroundColor: "#fff",
+  transition: "letter-spacing 0.3s linear",
+  ":hover": {
+    letterSpacing: 2.8,
+  },
+});
+export const emailIcon = style({
+  width: 48,
+  height: 48,
+});
+
+export const footer = style({
+  textAlign: "center",
+  paddingBottom: 24,
+});
+export const copyRight = style({
+  fontWeight: 300,
+  letterSpacing: 2,
   color: "#fff",
 });
