@@ -122,6 +122,31 @@ export const logo = style({
   },
 });
 
+export const hamburgerMenu = style({
+  position: "fixed",
+  display: "none",
+  flexDirection: "column",
+  gap: 1,
+  border: "none",
+  backgroundColor: "transparent",
+  zIndex: 100,
+  ":hover": {
+    cursor: "pointer",
+  },
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "flex",
+      top: 36,
+      right: "clamp(40px, 10%, 240px)",
+    },
+  },
+});
+export const hamburgerMenuLine = style({
+  width: 28,
+  height: 8,
+  backgroundColor: "#fff",
+});
+
 export const rotate = keyframes({
   "0%": { transform: "rotate(0deg)" },
   "100%": { transform: "rotate(360deg)" },

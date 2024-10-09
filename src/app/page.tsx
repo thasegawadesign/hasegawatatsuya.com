@@ -14,6 +14,8 @@ import {
   emailLink,
   footer,
   glass,
+  hamburgerMenu,
+  hamburgerMenuLine,
   header,
   line,
   logo,
@@ -250,6 +252,11 @@ export default function Home() {
               </li>
             </ul>
           </nav>
+          <button className={clsx(hamburgerMenu)}>
+            <div className={clsx(hamburgerMenuLine)}></div>
+            <div className={clsx(hamburgerMenuLine)}></div>
+            <div className={clsx(hamburgerMenuLine)}></div>
+          </button>
           <div className={clsx(circle)}>
             <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
               <path
