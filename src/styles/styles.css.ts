@@ -171,5 +171,29 @@ export const nameMainVisual = style({
   color: "#130059",
   lineHeight: "0.76em",
   textAlign: "center",
-  marginTop: 180,
+  margin: "180px auto 160px",
+});
+
+export const animateLine = keyframes({
+  "0%": { transform: "translateY(-100%)" },
+  "100%": { transform: "translateY(100%)" },
+});
+export const line = style({
+  position: "relative",
+  width: 1,
+  height: 60,
+  margin: "0 auto",
+  backgroundColor: "rgba(19, 0, 89, .3)",
+  overflow: "hidden",
+  ":before": {
+    content: "",
+    position: "absolute",
+    width: 1,
+    height: 60,
+    backgroundColor: "#fff",
+    animationName: animateLine,
+    animationDuration: "1.6s",
+    animationTimingFunction: "ease",
+    animationIterationCount: "infinite",
+  },
 });

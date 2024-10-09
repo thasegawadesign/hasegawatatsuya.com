@@ -5,6 +5,7 @@ import {
   circleText,
   glass,
   header,
+  line,
   logo,
   nameMainVisual,
   nav,
@@ -97,6 +98,7 @@ export default function Home() {
             Tatsuya <br />
             Hasegawa
           </h1>
+          <div className={clsx(line)}></div>
           <section id="about">
             <h2 className={clsx(roboto.className)}>About</h2>
             <p>
