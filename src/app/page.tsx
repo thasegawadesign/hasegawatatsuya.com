@@ -77,6 +77,10 @@ const roboto = Roboto({
 const isOpenHamburgerMenuAtom = atom(false);
 
 export default function Home() {
+  const mobileNavHomeLinkRef = useRef(null);
+  const mobileNavAboutLinkRef = useRef(null);
+  const mobileNavWorksLinkRef = useRef(null);
+  const mobileNavContactLinkRef = useRef(null);
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -88,6 +92,31 @@ export default function Home() {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
     isOpenHamburgerMenuAtom
   );
+
+  useEffect(() => {
+    if (isOpenHamburgerMenu) {
+      gsap.fromTo(
+        mobileNavHomeLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+      gsap.fromTo(
+        mobileNavAboutLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+      gsap.fromTo(
+        mobileNavWorksLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+      gsap.fromTo(
+        mobileNavContactLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+    }
+  }, [isOpenHamburgerMenu]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -285,7 +314,9 @@ export default function Home() {
                 <li>
                   <Link
                     href={"/"}
+                    ref={mobileNavHomeLinkRef}
                     className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
                   >
                     Home
                   </Link>
@@ -293,7 +324,9 @@ export default function Home() {
                 <li>
                   <Link
                     href={"/#about"}
+                    ref={mobileNavAboutLinkRef}
                     className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
                   >
                     About
                   </Link>
@@ -301,7 +334,9 @@ export default function Home() {
                 <li>
                   <Link
                     href={"/#works"}
+                    ref={mobileNavWorksLinkRef}
                     className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
                   >
                     Works
                   </Link>
@@ -309,7 +344,9 @@ export default function Home() {
                 <li>
                   <Link
                     href={"/#contact"}
+                    ref={mobileNavContactLinkRef}
                     className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
                   >
                     Contact
                   </Link>
