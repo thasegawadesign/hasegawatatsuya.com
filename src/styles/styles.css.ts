@@ -210,14 +210,15 @@ export const line = style({
 
 export const sectionHeading = style({
   fontSize: "1.6rem",
-  fontWeight: 400,
+  fontWeight: 300,
   color: "#fff",
+  letterSpacing: 2,
   textAlign: "center",
-  marginBottom: 20,
+  marginBottom: 40,
 });
 
 export const aboutSection = style({
-  paddingTop: 60,
+  paddingTop: 76,
   paddingBottom: 120,
 });
 
@@ -225,7 +226,7 @@ export const description = style({
   fontSize: "2.0rem",
   fontWeight: 300,
   color: "#fff",
-  lineHeight: "1.8em",
+  lineHeight: "2.4em",
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 120,
