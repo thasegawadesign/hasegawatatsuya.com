@@ -207,3 +207,86 @@ export const line = style({
     animationIterationCount: "infinite",
   },
 });
+
+export const sectionHeading = style({
+  fontSize: "1.6rem",
+  fontWeight: 400,
+  color: "#fff",
+  textAlign: "center",
+  marginBottom: 20,
+});
+
+export const aboutSection = style({
+  paddingTop: 60,
+  paddingBottom: 120,
+});
+
+export const description = style({
+  fontSize: "2.0rem",
+  fontWeight: 300,
+  color: "#fff",
+  lineHeight: "1.8em",
+  letterSpacing: 2,
+  textAlign: "center",
+  marginBottom: 120,
+});
+
+export const profileSection = style({
+  display: "flex",
+  flexDirection: "row-reverse",
+  placeItems: "end",
+  justifyContent: "center",
+  gap: 40,
+});
+export const profileTextBox = style({
+  display: "flex",
+  flexDirection: "column-reverse",
+  gap: 8,
+  marginBottom: 32,
+});
+export const profileName = style({
+  fontSize: "2.4rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+});
+export const profileOccupation = style({
+  fontSize: "1.4rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+});
+export const profileLinkBox = style({
+  display: "flex",
+  gap: 16,
+  marginBottom: 52,
+});
+export const profileLinkIcon = style({
+  width: 20,
+  height: 20,
+  color: "#fff",
+});
+export const profileMore = style({
+  position: "relative",
+  fontSize: "1.6rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+  textDecoration: "none",
+  ":before": {
+    content: "",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "1px",
+    backgroundColor: "#fff",
+    transition: "width 0.3s ease",
+  },
+  selectors: {
+    "&:hover:before": {
+      width: 0,
+    },
+  },
+});
