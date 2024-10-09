@@ -94,8 +94,13 @@ export default function Home() {
     isOpenHamburgerMenuAtom
   );
 
+  const noscroll = (event: WheelEvent) => {
+    event.preventDefault();
+  };
+
   useEffect(() => {
     if (isOpenHamburgerMenu) {
+      document.addEventListener("wheel", noscroll, { passive: false });
       gsap.fromTo(
         mobileNavHomeLinkRef.current,
         { opacity: 0, rotation: -20 },
@@ -116,7 +121,13 @@ export default function Home() {
         { opacity: 0, rotation: -20 },
         { opacity: 1, rotation: 0, duration: 1.5 }
       );
+    } else {
+      document.removeEventListener("wheel", noscroll);
     }
+
+    return () => {
+      document.removeEventListener("wheel", noscroll);
+    };
   }, [isOpenHamburgerMenu]);
 
   useEffect(() => {
