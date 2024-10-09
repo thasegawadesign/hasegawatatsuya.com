@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
   "2xl": "screen and (max-width: 1535px)",
@@ -21,15 +21,12 @@ export const backgroundGradient = style({
 export const glass = style({
   maxWidth: 1320,
   backgroundColor: "rgba(255, 255, 255, .1)",
-  marginTop: 100,
-  marginLeft: "auto",
-  marginRight: "auto",
-  marginBottom: 100,
-  borderRadius: 20,
+  margin: "100px auto",
   border: "solid 1px",
   borderColor: "rgba(255, 255, 255, .3)",
+  borderRadius: 20,
   boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
-  backdropFilter: "blur(80px)",
+  backdropFilter: "blur(120px)",
 });
 
 export const logo = style({
@@ -39,12 +36,15 @@ export const logo = style({
   textDecoration: "none",
 });
 
+export const header = style({
+  position: "relative",
+});
+
 export const navBox = style({
   display: "flex",
   flexDirection: "column",
   gap: 8,
 });
-
 export const navLink = style({
   fontSize: "2.0rem",
   fontWeight: 300,
@@ -55,4 +55,65 @@ export const navLink = style({
   ":hover": {
     borderBottomWidth: "1px",
   },
+});
+
+export const rotate = keyframes({
+  "0%": { transform: "rotate(0deg)" },
+  "100%": { transform: "rotate(360deg)" },
+});
+export const circle = style({
+  position: "fixed",
+  top: "-50px",
+  right: "-50px",
+  width: 130,
+  height: 130,
+  fontSize: "12px",
+  animationName: rotate,
+  animationDuration: "20s",
+  animationTimingFunction: "linear",
+  animationIterationCount: "infinite",
+});
+export const circleSvg = style({
+  overflow: "visible",
+});
+export const circlePath = style({
+  fill: "none",
+});
+export const circleText = style({
+  fill: "#fff",
+  fontWeight: 300,
+});
+
+export const object1 = style({
+  position: "fixed",
+  top: "4%",
+  left: "40%",
+  background: `radial-gradient(rgba(83, 158, 227, .5), rgba(234, 234, 234, 1))`,
+  width: 440,
+  height: 440,
+  borderRadius: "100%",
+  filter: "blur(4px)",
+  zIndex: -50,
+});
+export const object2 = style({
+  position: "fixed",
+  top: "36%",
+  right: "2%",
+  background: `radial-gradient(rgba(83, 227, 124, .6), rgba(234, 234, 234, 1))`,
+  width: 500,
+  height: 500,
+  borderRadius: "100%",
+  filter: "blur(12px)",
+  zIndex: -50,
+});
+export const object3 = style({
+  position: "fixed",
+  bottom: "-16%",
+  left: "4%",
+  background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
+  width: 600,
+  height: 600,
+  borderRadius: "100%",
+  filter: "blur(16px)",
+  zIndex: -50,
 });
