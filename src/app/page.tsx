@@ -4,7 +4,12 @@ import {
   circlePath,
   circleSvg,
   circleText,
+  contactSection,
+  copyRight,
   description,
+  emailIcon,
+  emailLink,
+  footer,
   glass,
   header,
   line,
@@ -31,6 +36,7 @@ import {
   worksItem,
   worksLink,
   worksName,
+  worksSection,
   worksTextBox,
   worksUnderDevelopment,
   worksUnderDevelopmentItem,
@@ -168,7 +174,7 @@ export default function Home() {
               />
             </section>
           </section>
-          <section id="works">
+          <section id="works" className={clsx(worksSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
             <div className={clsx(worksBox)}>
               <section className={clsx(worksItem)}>
@@ -214,19 +220,22 @@ export default function Home() {
               </section>
             </div>
           </section>
-          <section id="contact">
+          <section id="contact" className={clsx(contactSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
-            <Link href={"mailto:hasegawatatsuya206@gmail.com"}>
-              <IoMdMail />
+            <Link
+              href={"mailto:hasegawatatsuya206@gmail.com"}
+              className={clsx(emailLink)}
+            >
+              <IoMdMail className={clsx(emailIcon)} />
               <span className={clsx(roboto.className)}>
                 hasegawatatsuya206@gmail.com
               </span>
             </Link>
           </section>
         </main>
-        <footer>
+        <footer className={clsx(footer)}>
           <p>
-            <small className={clsx(roboto.className)}>
+            <small className={clsx(roboto.className, copyRight)}>
               © 2024 Tatsuya Hasegawa
             </small>
           </p>
