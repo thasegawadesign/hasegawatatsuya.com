@@ -26,7 +26,7 @@ export const glass = style({
   borderColor: "rgba(255, 255, 255, .3)",
   borderRadius: 20,
   boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
-  backdropFilter: "blur(80px)",
+  backdropFilter: "blur(120px)",
 });
 
 export const logo = style({
@@ -82,4 +82,38 @@ export const circlePath = style({
 export const circleText = style({
   fill: "#fff",
   fontWeight: 300,
+});
+
+export const object1 = style({
+  position: "fixed",
+  top: "4%",
+  left: "40%",
+  background: `radial-gradient(rgba(83, 158, 227, .5), rgba(234, 234, 234, 1))`,
+  width: 440,
+  height: 440,
+  borderRadius: "100%",
+  filter: "blur(4px)",
+  zIndex: -50,
+});
+export const object2 = style({
+  position: "fixed",
+  top: "36%",
+  right: "2%",
+  background: `radial-gradient(rgba(83, 227, 124, .6), rgba(234, 234, 234, 1))`,
+  width: 500,
+  height: 500,
+  borderRadius: "100%",
+  filter: "blur(12px)",
+  zIndex: -50,
+});
+export const object3 = style({
+  position: "fixed",
+  bottom: "-16%",
+  left: "4%",
+  background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
+  width: 600,
+  height: 600,
+  borderRadius: "100%",
+  filter: "blur(16px)",
+  zIndex: -50,
 });

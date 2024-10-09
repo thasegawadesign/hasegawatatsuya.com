@@ -8,6 +8,9 @@ import {
   logo,
   navBox,
   navLink,
+  object1,
+  object2,
+  object3,
 } from "@/styles/styles.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
@@ -176,6 +179,9 @@ export default function Home() {
           </p>
         </footer>
       </div>
+      <div className={clsx(object1)}></div>
+      <div className={clsx(object2)}></div>
+      <div className={clsx(object3)}></div>
     </>
   );
 }
