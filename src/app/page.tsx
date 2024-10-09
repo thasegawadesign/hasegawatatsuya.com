@@ -6,6 +6,7 @@ import {
   glass,
   header,
   logo,
+  nameMainVisual,
   nav,
   navLink,
   navLinkBox,
@@ -22,7 +23,7 @@ import { IoMdMail } from "react-icons/io";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
-  weight: "600",
+  weight: "500",
 });
 
 const roboto = Roboto({
@@ -92,7 +93,10 @@ export default function Home() {
           </div>
         </header>
         <main>
-          <h1 className={clsx(cormorant.className)}>Tatsuya Hasegawa</h1>
+          <h1 className={clsx(cormorant.className, nameMainVisual)}>
+            Tatsuya <br />
+            Hasegawa
+          </h1>
           <section id="about">
             <h2 className={clsx(roboto.className)}>About</h2>
             <p>

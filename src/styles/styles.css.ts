@@ -21,6 +21,7 @@ export const backgroundGradient = style({
 export const glass = style({
   position: "relative",
   maxWidth: 1400,
+  width: "88%",
   margin: "100px auto",
   backgroundColor: "rgba(255, 255, 255, .1)",
   borderRadius: 20,
@@ -48,7 +49,7 @@ export const header = style({
 export const nav = style({
   position: "fixed",
   top: 160,
-  left: "8%",
+  left: "clamp(40px, 15.2%, 300px)",
   display: "flex",
   flexDirection: "column",
   gap: 12,
@@ -163,4 +164,12 @@ export const object3 = style({
   animationTimingFunction: "ease-in-out",
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
+});
+
+export const nameMainVisual = style({
+  fontSize: "21rem",
+  color: "#130059",
+  lineHeight: "0.76em",
+  textAlign: "center",
+  marginTop: 180,
 });
