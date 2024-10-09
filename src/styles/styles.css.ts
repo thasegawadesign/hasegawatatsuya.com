@@ -66,8 +66,10 @@ export const glass = style({
       marginTop: 8,
       marginBottom: 8,
       backgroundColor: "rgba(255, 255, 255, .16)",
-      backdropFilter: "blur(80px)",
-      WebkitBackdropFilter: "blur(80px)",
+      ":before": {
+        backdropFilter: "blur(80px)",
+        WebkitBackdropFilter: "blur(80px)",
+      },
     },
   },
 });
@@ -150,6 +152,42 @@ export const hamburgerMenuLine = style({
   width: 28,
   height: 8,
   backgroundColor: "#fff",
+});
+
+export const audioInteract = keyframes({
+  "0%": { borderWidth: "2px" },
+  "50%": { borderWidth: "10px" },
+  "100%": { borderWidth: "2px" },
+});
+export const audioButton = style({
+  position: "fixed",
+  bottom: 40,
+  right: "clamp(40px, 15.2%, 300px)",
+  width: "20px",
+  height: "20px",
+  background: "transparent",
+  border: "solid 2px #fff",
+  borderRadius: "100%",
+  zIndex: 100,
+  animationName: audioInteract,
+  animationDuration: "2s",
+  animationTimingFunction: "ease",
+  animationIterationCount: "infinite",
+  animationPlayState: "paused",
+  ":hover": {
+    cursor: "pointer",
+  },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      right: "clamp(40px, 10%, 240px)",
+    },
+  },
+});
+export const animationPaused = style({
+  animationPlayState: "paused",
+});
+export const animationRunning = style({
+  animationPlayState: "running",
 });
 
 export const mobileNav = style({
@@ -746,9 +784,6 @@ export const emailLink = style({
   textDecoration: "none",
   backgroundColor: "#fff",
   transition: "letter-spacing 0.3s linear",
-  ":hover": {
-    letterSpacing: 2.4,
-  },
   "@media": {
     [breakpoints["2xl"]]: {
       maxWidth: 1000,
