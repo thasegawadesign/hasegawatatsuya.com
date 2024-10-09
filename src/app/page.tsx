@@ -72,7 +72,7 @@ export default function Home() {
 
     gsap.fromTo(
       descriptionRef.current,
-      { opacity: 0, rotation: -5 },
+      { opacity: 0, rotation: -3 },
       {
         opacity: 1,
         rotation: 0,

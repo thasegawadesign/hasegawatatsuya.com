@@ -230,6 +230,7 @@ export const description = style({
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 120,
+  transformOrigin: "right bottom",
 });
 
 export const profileSection = style({
