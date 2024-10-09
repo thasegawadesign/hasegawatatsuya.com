@@ -9,6 +9,7 @@ import {
   contactSection,
   copyRight,
   description,
+  desktopBr,
   emailIcon,
   emailLink,
   footer,
@@ -16,6 +17,7 @@ import {
   header,
   line,
   logo,
+  mobileBr,
   nameMainVisual,
   nav,
   navLink,
@@ -276,11 +278,20 @@ export default function Home() {
           <section id="about" className={clsx(aboutSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
             <p className={clsx(description)} ref={descriptionRef}>
-              クリエイティブエンジニア 長谷川 達也のポートフォリオサイトです。
-              <br />
-              実際に触れることのできるフロントエンドを開発することに喜びを感じます。
-              <br />
-              書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
+              クリエイティブエンジニア 長谷川 達也の <br className={mobileBr} />
+              ポートフォリオサイトです。
+              <br className={mobileBr} />
+              <br className={clsx(desktopBr)} />
+              実際に触れることのできる
+              <br className={mobileBr} />
+              フロントエンドを開発することに
+              <br className={mobileBr} />
+              喜びを感じます。
+              <br className={mobileBr} />
+              <br className={clsx(desktopBr)} />
+              書いたコードが画面に反映される感動を
+              <br className={mobileBr} />
+              学習を始めて以来ずっと持ち続けています。
             </p>
             <section className={profileSection} ref={profileRef}>
               <div className={clsx(profileContent)}>
