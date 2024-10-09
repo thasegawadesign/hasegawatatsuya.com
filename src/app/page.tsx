@@ -26,6 +26,14 @@ import {
   profileSection,
   profileTextBox,
   sectionHeading,
+  worksBox,
+  worksCategory,
+  worksItem,
+  worksLink,
+  worksName,
+  worksTextBox,
+  worksUnderDevelopment,
+  worksUnderDevelopmentItem,
 } from "@/styles/styles.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
@@ -162,39 +170,49 @@ export default function Home() {
           </section>
           <section id="works">
             <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
-            <section>
-              <h3>一問一答メーカー</h3>
-              <p>Webアプリ</p>
-              <Link
-                href={"https://question-and-answer.gojiyuuniotorikudasai.com"}
-                target="_blank"
-              >
-                <Image
-                  src={"/icons/question-and-answer-icon.png"}
-                  width={160}
-                  height={160}
-                  alt="一問一答メーカーのアイコン"
-                />
-              </Link>
-            </section>
-            <section>
-              <h3>ステメモ</h3>
-              <p>Webアプリ</p>
-              <Link
-                href={"https://sutememo.gojiyuuniotorikudasai.com"}
-                target="_blank"
-              >
-                <Image
-                  src={"/icons/sutememo-icon.png"}
-                  width={160}
-                  height={160}
-                  alt="ステメモのアイコン"
-                />
-              </Link>
-            </section>
-            <section>
-              <h3 className={clsx(roboto.className)}>under development...</h3>
-            </section>
+            <div className={clsx(worksBox)}>
+              <section className={clsx(worksItem)}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>一問一答メーカー</h3>
+                  <p className={clsx(worksCategory)}>Webアプリ</p>
+                </div>
+                <Link
+                  href={"https://question-and-answer.gojiyuuniotorikudasai.com"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/question-and-answer-icon.png"}
+                    width={160}
+                    height={160}
+                    alt="一問一答メーカーのアイコン"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>ステメモ</h3>
+                  <p className={clsx(worksCategory)}>Webアプリ</p>
+                </div>
+                <Link
+                  href={"https://sutememo.gojiyuuniotorikudasai.com"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/sutememo-icon.png"}
+                    width={160}
+                    height={160}
+                    alt="ステメモのアイコン"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksUnderDevelopmentItem)}>
+                <h3 className={clsx(roboto.className, worksUnderDevelopment)}>
+                  under development...
+                </h3>
+              </section>
+            </div>
           </section>
           <section id="contact">
             <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>

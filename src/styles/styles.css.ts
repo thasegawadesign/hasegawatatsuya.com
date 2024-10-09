@@ -301,3 +301,48 @@ export const profileMore = style({
 export const profileImage = style({
   marginLeft: -120,
 });
+
+export const worksBox = style({
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: 50,
+  margin: "0 auto",
+  maxWidth: 920,
+});
+export const worksItem = style({
+  display: "flex",
+  flexDirection: "column-reverse",
+  alignItems: "center",
+  gap: 32,
+  padding: "120px 0px 80px",
+  backgroundColor: "rgba(255, 255, 255, .12)",
+});
+export const worksTextBox = style({
+  display: "flex",
+  flexDirection: "column-reverse",
+  gap: 10,
+  alignItems: "center",
+});
+export const worksName = style({
+  fontSize: "1.6rem",
+  fontWeight: 300,
+  color: "#fff",
+});
+export const worksCategory = style({
+  fontSize: "1.2rem",
+  fontWeight: 300,
+  color: "#fff",
+});
+export const worksLink = style({
+  width: 160,
+  height: 160,
+});
+export const worksUnderDevelopmentItem = style({
+  display: "grid",
+  placeItems: "center",
+  backgroundColor: "rgba(255, 255, 255, .12)",
+});
+export const worksUnderDevelopment = style({
+  fontSize: "1.6rem",
+  color: "#fff",
+});
