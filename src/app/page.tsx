@@ -35,6 +35,7 @@ import {
   sectionHeading,
   worksBox,
   worksCategory,
+  worksIcon,
   worksItem,
   worksLink,
   worksName,
@@ -338,6 +339,7 @@ export default function Home() {
                     src={"/icons/question-and-answer-icon.png"}
                     width={160}
                     height={160}
+                    className={clsx(worksIcon)}
                     alt="一問一答メーカーのアイコン"
                   />
                 </Link>
@@ -356,6 +358,7 @@ export default function Home() {
                     src={"/icons/sutememo-icon.png"}
                     width={160}
                     height={160}
+                    className={clsx(worksIcon)}
                     alt="ステメモのアイコン"
                   />
                 </Link>

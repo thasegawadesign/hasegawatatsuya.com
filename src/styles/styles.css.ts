@@ -63,6 +63,11 @@ export const nav = style({
   display: "flex",
   flexDirection: "column",
   gap: 12,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      left: "clamp(40px, 10%, 240px)",
+    },
+  },
 });
 export const navLinkBox = style({
   display: "flex",
@@ -182,6 +187,11 @@ export const nameMainVisual = style({
   lineHeight: "0.76em",
   textAlign: "center",
   margin: "180px auto 160px",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "20rem",
+    },
+  },
 });
 
 export const animateLine = keyframes({
@@ -205,6 +215,14 @@ export const line = style({
     animationDuration: "1.6s",
     animationTimingFunction: "ease",
     animationIterationCount: "infinite",
+  },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      height: 40,
+      ":before": {
+        height: 40,
+      },
+    },
   },
 });
 
@@ -231,6 +249,11 @@ export const description = style({
   textAlign: "center",
   marginBottom: 120,
   transformOrigin: "right bottom",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "1.8rem",
+    },
+  },
 });
 
 export const profileSection = style({
@@ -243,6 +266,11 @@ export const profileSection = style({
   margin: "0 auto",
   padding: "70px 160px",
   maxWidth: 920,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      maxWidth: 880,
+    },
+  },
 });
 export const profileContent = style({
   paddingBottom: 12,
@@ -258,12 +286,22 @@ export const profileName = style({
   fontWeight: 300,
   color: "#fff",
   letterSpacing: 2,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "2.2rem",
+    },
+  },
 });
 export const profileOccupation = style({
   fontSize: "1.4rem",
   fontWeight: 300,
   color: "#fff",
   letterSpacing: 2,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "1.2rem",
+    },
+  },
 });
 export const profileLinkBox = style({
   display: "flex",
@@ -274,6 +312,12 @@ export const profileLinkIcon = style({
   width: 20,
   height: 20,
   color: "#fff",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      width: 18,
+      height: 18,
+    },
+  },
 });
 export const profileMore = style({
   position: "relative",
@@ -298,6 +342,11 @@ export const profileMore = style({
       width: 0,
     },
   },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "1.4rem",
+    },
+  },
 });
 export const profileImage = style({
   marginLeft: -120,
@@ -312,6 +361,12 @@ export const worksBox = style({
   gap: 50,
   margin: "0 auto",
   maxWidth: 920,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      gap: 40,
+      maxWidth: 880,
+    },
+  },
 });
 export const worksItem = style({
   display: "flex",
@@ -344,6 +399,16 @@ export const worksLink = style({
   ":hover": {
     scale: 1.02,
   },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      width: 150,
+      height: 150,
+    },
+  },
+});
+export const worksIcon = style({
+  width: "100%",
+  height: "100%",
 });
 export const worksUnderDevelopmentItem = style({
   display: "grid",
@@ -376,6 +441,11 @@ export const emailLink = style({
   transition: "letter-spacing 0.3s linear",
   ":hover": {
     letterSpacing: 2.4,
+  },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      maxWidth: 1000,
+    },
   },
 });
 export const emailIcon = style({
