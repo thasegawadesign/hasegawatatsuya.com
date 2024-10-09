@@ -19,28 +19,38 @@ export const backgroundGradient = style({
 });
 
 export const glass = style({
-  maxWidth: 1440,
-  backgroundColor: "rgba(255, 255, 255, .1)",
+  position: "relative",
+  maxWidth: 1400,
   margin: "100px auto",
+  backgroundColor: "rgba(255, 255, 255, .1)",
+  borderRadius: 20,
   border: "solid 1px",
   borderColor: "rgba(255, 255, 255, .3)",
-  borderRadius: 20,
-  boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
-  backdropFilter: "blur(120px)",
-});
-
-export const logo = style({
-  fontSize: "3.6rem",
-  fontWeight: 400,
-  color: "#fff",
-  textDecoration: "none",
+  ":before": {
+    content: "",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
+    boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
+    backdropFilter: "blur(120px)",
+    zIndex: -1,
+  },
 });
 
 export const header = style({
   position: "relative",
 });
 
-export const navBox = style({
+export const nav = style({
+  position: "fixed",
+  top: 160,
+  left: 0,
+});
+export const navLinkBox = style({
   display: "flex",
   flexDirection: "column",
   gap: 8,
@@ -55,6 +65,13 @@ export const navLink = style({
   ":hover": {
     borderBottomWidth: "1px",
   },
+});
+
+export const logo = style({
+  fontSize: "3.6rem",
+  fontWeight: 400,
+  color: "#fff",
+  textDecoration: "none",
 });
 
 export const rotate = keyframes({

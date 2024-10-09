@@ -6,8 +6,9 @@ import {
   glass,
   header,
   logo,
-  navBox,
+  nav,
   navLink,
+  navLinkBox,
   object1,
   object2,
   object3,
@@ -34,7 +35,7 @@ export default function Home() {
     <>
       <div className={clsx(glass)}>
         <header className={clsx(header)}>
-          <nav>
+          <nav className={clsx(nav)}>
             <ul>
               <li>
                 <Link href={"/"} className={clsx(roboto.className, logo)}>
@@ -42,7 +43,7 @@ export default function Home() {
                 </Link>
               </li>
             </ul>
-            <ul className={clsx(navBox)}>
+            <ul className={clsx(navLinkBox)}>
               <li>
                 <Link href={"/"} className={clsx(roboto.className, navLink)}>
                   Home
