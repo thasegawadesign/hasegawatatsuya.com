@@ -418,7 +418,7 @@ export const line = style({
   position: "relative",
   width: 1,
   height: 60,
-  margin: "0 auto",
+  margin: "0 auto 76px",
   backgroundColor: "rgba(19, 0, 89, .3)",
   overflow: "hidden",
   ":before": {
@@ -458,7 +458,6 @@ export const sectionHeading = style({
 });
 
 export const aboutSection = style({
-  paddingTop: 76,
   paddingBottom: 160,
 });
 
