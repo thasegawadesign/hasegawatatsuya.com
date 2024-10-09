@@ -19,7 +19,7 @@ export const backgroundGradient = style({
 });
 
 export const glass = style({
-  maxWidth: 1320,
+  maxWidth: 1440,
   backgroundColor: "rgba(255, 255, 255, .1)",
   margin: "100px auto",
   border: "solid 1px",
