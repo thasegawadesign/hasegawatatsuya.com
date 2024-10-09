@@ -67,7 +67,7 @@ import { useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
-  weight: "500",
+  weight: ["500", "600"],
 });
 
 const roboto = Roboto({
