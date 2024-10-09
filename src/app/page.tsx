@@ -1,3 +1,5 @@
+"use client";
+
 import {
   aboutSection,
   circle,
@@ -48,6 +50,10 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
 const cormorant = Cormorant({
   subsets: ["latin"],
   weight: "500",
@@ -59,6 +65,144 @@ const roboto = Roboto({
 });
 
 export default function Home() {
+  const nameMainVisualRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const profileRef = useRef(null);
+  const worksItem1Ref = useRef(null);
+  const worksItem2Ref = useRef(null);
+  const worksItem3Ref = useRef(null);
+  const contactRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      nameMainVisualRef.current,
+      {
+        opacity: 0,
+        transformOrigin: "center",
+      },
+      {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: nameMainVisualRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      descriptionRef.current,
+      { opacity: 0, rotation: -2 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: descriptionRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      profileRef.current,
+      { opacity: 0, scale: 0.9, rotation: -2 },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: descriptionRef.current,
+          start: "top 50%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      worksItem1Ref.current,
+      { opacity: 0, scale: 0.9, rotation: -2 },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: worksItem1Ref.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      worksItem2Ref.current,
+      { opacity: 0, scale: 0.9, rotation: -2 },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: worksItem2Ref.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      worksItem3Ref.current,
+      { opacity: 0, scale: 0.9, rotation: -2 },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: worksItem3Ref.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      contactRef.current,
+      { opacity: 0, scale: 0.9 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: contactRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <>
       <div className={clsx(glass)}>
@@ -120,21 +264,24 @@ export default function Home() {
           </div>
         </header>
         <main>
-          <h1 className={clsx(cormorant.className, nameMainVisual)}>
+          <h1
+            className={clsx(cormorant.className, nameMainVisual)}
+            ref={nameMainVisualRef}
+          >
             Tatsuya <br />
             Hasegawa
           </h1>
           <div className={clsx(line)}></div>
           <section id="about" className={clsx(aboutSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
-            <p className={clsx(description)}>
+            <p className={clsx(description)} ref={descriptionRef}>
               クリエイティブエンジニア 長谷川 達也のポートフォリオサイトです。
               <br />
               実際に触れることのできるフロントエンドを開発することに喜びを感じます。
               <br />
               書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
             </p>
-            <section className={profileSection}>
+            <section className={profileSection} ref={profileRef}>
               <div className={clsx(profileContent)}>
                 <div className={clsx(profileTextBox)}>
                   <h3 className={clsx(roboto.className, profileName)}>
@@ -177,7 +324,7 @@ export default function Home() {
           <section id="works" className={clsx(worksSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
             <div className={clsx(worksBox)}>
-              <section className={clsx(worksItem)}>
+              <section className={clsx(worksItem)} ref={worksItem1Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                   <p className={clsx(worksCategory)}>Webアプリ</p>
@@ -195,7 +342,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)}>
+              <section className={clsx(worksItem)} ref={worksItem2Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
                   <p className={clsx(worksCategory)}>Webアプリ</p>
@@ -213,7 +360,10 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksUnderDevelopmentItem)}>
+              <section
+                className={clsx(worksUnderDevelopmentItem)}
+                ref={worksItem3Ref}
+              >
                 <h3 className={clsx(roboto.className, worksUnderDevelopment)}>
                   under development...
                 </h3>
@@ -225,6 +375,7 @@ export default function Home() {
             <Link
               href={"mailto:hasegawatatsuya206@gmail.com"}
               className={clsx(emailLink)}
+              ref={contactRef}
             >
               <IoMdMail className={clsx(emailIcon)} />
               <span className={clsx(roboto.className)}>

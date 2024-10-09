@@ -230,6 +230,7 @@ export const description = style({
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 120,
+  transformOrigin: "right bottom",
 });
 
 export const profileSection = style({
@@ -339,6 +340,10 @@ export const worksCategory = style({
 export const worksLink = style({
   width: 160,
   height: 160,
+  transition: "scale 0.3s ease",
+  ":hover": {
+    scale: 1.02,
+  },
 });
 export const worksUnderDevelopmentItem = style({
   display: "grid",
@@ -360,9 +365,9 @@ export const emailLink = style({
   gap: 32,
   margin: "0 auto",
   padding: "74px 240px",
-  maxWidth: 1060,
+  maxWidth: 1120,
   width: "100%",
-  fontSize: "2.4rem",
+  fontSize: "2.2rem",
   fontWeight: 300,
   color: "#130059",
   letterSpacing: 2,
@@ -370,12 +375,12 @@ export const emailLink = style({
   backgroundColor: "#fff",
   transition: "letter-spacing 0.3s linear",
   ":hover": {
-    letterSpacing: 2.8,
+    letterSpacing: 2.4,
   },
 });
 export const emailIcon = style({
-  width: 48,
-  height: 48,
+  width: 40,
+  height: 40,
 });
 
 export const footer = style({
