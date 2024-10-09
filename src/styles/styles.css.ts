@@ -177,7 +177,7 @@ export const object3 = style({
 });
 
 export const nameMainVisual = style({
-  fontSize: "21rem",
+  fontSize: "22rem",
   color: "#130059",
   lineHeight: "0.76em",
   textAlign: "center",
@@ -206,4 +206,98 @@ export const line = style({
     animationTimingFunction: "ease",
     animationIterationCount: "infinite",
   },
+});
+
+export const sectionHeading = style({
+  fontSize: "1.6rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+  textAlign: "center",
+  marginBottom: 40,
+});
+
+export const aboutSection = style({
+  paddingTop: 76,
+  paddingBottom: 160,
+});
+
+export const description = style({
+  fontSize: "2.0rem",
+  fontWeight: 300,
+  color: "#fff",
+  lineHeight: "2.4em",
+  letterSpacing: 2,
+  textAlign: "center",
+  marginBottom: 120,
+});
+
+export const profileSection = style({
+  display: "flex",
+  flexDirection: "row-reverse",
+  placeItems: "end",
+  justifyContent: "center",
+  gap: 40,
+  backgroundColor: "rgba(255, 255, 255, .12)",
+  margin: "0 auto",
+  padding: "70px 160px",
+  maxWidth: 920,
+});
+export const profileContent = style({
+  paddingBottom: 12,
+});
+export const profileTextBox = style({
+  display: "flex",
+  flexDirection: "column-reverse",
+  gap: 8,
+  marginBottom: 32,
+});
+export const profileName = style({
+  fontSize: "2.4rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+});
+export const profileOccupation = style({
+  fontSize: "1.4rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+});
+export const profileLinkBox = style({
+  display: "flex",
+  gap: 16,
+  marginBottom: 52,
+});
+export const profileLinkIcon = style({
+  width: 20,
+  height: 20,
+  color: "#fff",
+});
+export const profileMore = style({
+  position: "relative",
+  fontSize: "1.6rem",
+  fontWeight: 300,
+  color: "#fff",
+  letterSpacing: 2,
+  textDecoration: "none",
+  ":before": {
+    content: "",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "1px",
+    backgroundColor: "#fff",
+    transition: "width 0.3s ease",
+  },
+  selectors: {
+    "&:hover:before": {
+      width: 0,
+    },
+  },
+});
+export const profileImage = style({
+  marginLeft: -120,
 });

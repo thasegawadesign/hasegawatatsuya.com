@@ -1,8 +1,10 @@
 import {
+  aboutSection,
   circle,
   circlePath,
   circleSvg,
   circleText,
+  description,
   glass,
   header,
   line,
@@ -14,6 +16,16 @@ import {
   object1,
   object2,
   object3,
+  profileContent,
+  profileImage,
+  profileLinkBox,
+  profileLinkIcon,
+  profileMore,
+  profileName,
+  profileOccupation,
+  profileSection,
+  profileTextBox,
+  sectionHeading,
 } from "@/styles/styles.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
@@ -99,41 +111,57 @@ export default function Home() {
             Hasegawa
           </h1>
           <div className={clsx(line)}></div>
-          <section id="about">
-            <h2 className={clsx(roboto.className)}>About</h2>
-            <p>
-              フロントエンドエンジニア 長谷川 達也のポートフォリオサイトです。
+          <section id="about" className={clsx(aboutSection)}>
+            <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
+            <p className={clsx(description)}>
+              クリエイティブエンジニア 長谷川 達也のポートフォリオサイトです。
+              <br />
               実際に触れることのできるフロントエンドを開発することに喜びを感じます。
+              <br />
               書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
             </p>
-            <section>
-              <h3 className={clsx(roboto.className)}>Tatsuya Hasegawa</h3>
-              <p className={clsx(roboto.className)}>Front-end Developer</p>
-              <Link
-                href={"https://github.com/thasegawakaihatsu"}
-                target="_brank"
-              >
-                <FaGithub />
-              </Link>
-              <Link
-                href={"mailto:hasegawatatsuya206@gmail.com"}
-                target="_brank"
-              >
-                <IoMdMail />
-              </Link>
-              <Link href={"/"} className={clsx(roboto.className)}>
-                More
-              </Link>
+            <section className={profileSection}>
+              <div className={clsx(profileContent)}>
+                <div className={clsx(profileTextBox)}>
+                  <h3 className={clsx(roboto.className, profileName)}>
+                    Tatsuya Hasegawa
+                  </h3>
+                  <p className={clsx(roboto.className, profileOccupation)}>
+                    Creative Developer
+                  </p>
+                </div>
+                <div className={clsx(profileLinkBox)}>
+                  <Link
+                    href={"https://github.com/thasegawakaihatsu"}
+                    target="_brank"
+                  >
+                    <FaGithub className={clsx(profileLinkIcon)} />
+                  </Link>
+                  <Link
+                    href={"mailto:hasegawatatsuya206@gmail.com"}
+                    target="_brank"
+                  >
+                    <IoMdMail className={clsx(profileLinkIcon)} />
+                  </Link>
+                </div>
+                <Link
+                  href={"/"}
+                  className={clsx(roboto.className, profileMore)}
+                >
+                  More
+                </Link>
+              </div>
               <Image
                 src={"/photo.webp"}
                 width={200}
                 height={300}
                 alt="長谷川達也"
+                className={profileImage}
               />
             </section>
           </section>
           <section id="works">
-            <h2 className={clsx(roboto.className)}>Works</h2>
+            <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
             <section>
               <h3>一問一答メーカー</h3>
               <p>Webアプリ</p>
@@ -169,7 +197,7 @@ export default function Home() {
             </section>
           </section>
           <section id="contact">
-            <h2 className={clsx(roboto.className)}>Contact</h2>
+            <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
             <Link href={"mailto:hasegawatatsuya206@gmail.com"}>
               <IoMdMail />
               <span className={clsx(roboto.className)}>
