@@ -361,7 +361,7 @@ export const emailLink = style({
   gap: 32,
   margin: "0 auto",
   padding: "74px 240px",
-  maxWidth: 1060,
+  maxWidth: 1120,
   width: "100%",
   fontSize: "2.4rem",
   fontWeight: 300,
