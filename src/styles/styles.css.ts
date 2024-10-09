@@ -66,8 +66,10 @@ export const glass = style({
       marginTop: 8,
       marginBottom: 8,
       backgroundColor: "rgba(255, 255, 255, .16)",
-      backdropFilter: "blur(80px)",
-      WebkitBackdropFilter: "blur(80px)",
+      ":before": {
+        backdropFilter: "blur(80px)",
+        WebkitBackdropFilter: "blur(80px)",
+      },
     },
   },
 });
@@ -782,9 +784,6 @@ export const emailLink = style({
   textDecoration: "none",
   backgroundColor: "#fff",
   transition: "letter-spacing 0.3s linear",
-  ":hover": {
-    letterSpacing: 2.4,
-  },
   "@media": {
     [breakpoints["2xl"]]: {
       maxWidth: 1000,
