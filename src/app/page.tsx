@@ -5,9 +5,12 @@ import {
   circleText,
   glass,
   header,
+  line,
   logo,
-  navBox,
+  nameMainVisual,
+  nav,
   navLink,
+  navLinkBox,
   object1,
   object2,
   object3,
@@ -21,7 +24,7 @@ import { IoMdMail } from "react-icons/io";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
-  weight: "600",
+  weight: "500",
 });
 
 const roboto = Roboto({
@@ -34,7 +37,7 @@ export default function Home() {
     <>
       <div className={clsx(glass)}>
         <header className={clsx(header)}>
-          <nav>
+          <nav className={clsx(nav)}>
             <ul>
               <li>
                 <Link href={"/"} className={clsx(roboto.className, logo)}>
@@ -42,7 +45,7 @@ export default function Home() {
                 </Link>
               </li>
             </ul>
-            <ul className={clsx(navBox)}>
+            <ul className={clsx(navLinkBox)}>
               <li>
                 <Link href={"/"} className={clsx(roboto.className, navLink)}>
                   Home
@@ -91,7 +94,11 @@ export default function Home() {
           </div>
         </header>
         <main>
-          <h1 className={clsx(cormorant.className)}>Tatsuya Hasegawa</h1>
+          <h1 className={clsx(cormorant.className, nameMainVisual)}>
+            Tatsuya <br />
+            Hasegawa
+          </h1>
+          <div className={clsx(line)}></div>
           <section id="about">
             <h2 className={clsx(roboto.className)}>About</h2>
             <p>

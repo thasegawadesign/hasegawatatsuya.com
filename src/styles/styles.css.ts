@@ -8,6 +8,16 @@ export const breakpoints = {
   sm: "screen and (max-width: 639px)",
 } as const;
 
+export const smoothScroll = style({
+  "@media": {
+    "(prefers-reduced-motion: no-preference)": {
+      ":focus-within": {
+        scrollBehavior: "smooth",
+      },
+    },
+  },
+});
+
 export const backgroundGradient = style({
   backgroundColor: "#106",
   backgroundImage: `
@@ -19,28 +29,42 @@ export const backgroundGradient = style({
 });
 
 export const glass = style({
-  maxWidth: 1320,
-  backgroundColor: "rgba(255, 255, 255, .1)",
+  position: "relative",
+  maxWidth: 1400,
+  width: "88%",
   margin: "100px auto",
+  backgroundColor: "rgba(255, 255, 255, .1)",
+  borderRadius: 20,
   border: "solid 1px",
   borderColor: "rgba(255, 255, 255, .3)",
-  borderRadius: 20,
-  boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
-  backdropFilter: "blur(120px)",
-});
-
-export const logo = style({
-  fontSize: "3.6rem",
-  fontWeight: 400,
-  color: "#fff",
-  textDecoration: "none",
+  ":before": {
+    content: "",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "100%",
+    borderRadius: 20,
+    boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
+    backdropFilter: "blur(120px)",
+    zIndex: -1,
+  },
 });
 
 export const header = style({
   position: "relative",
 });
 
-export const navBox = style({
+export const nav = style({
+  position: "fixed",
+  top: 160,
+  left: "clamp(40px, 15.2%, 300px)",
+  display: "flex",
+  flexDirection: "column",
+  gap: 12,
+});
+export const navLinkBox = style({
   display: "flex",
   flexDirection: "column",
   gap: 8,
@@ -57,12 +81,19 @@ export const navLink = style({
   },
 });
 
+export const logo = style({
+  fontSize: "3.6rem",
+  fontWeight: 400,
+  color: "#fff",
+  textDecoration: "none",
+});
+
 export const rotate = keyframes({
   "0%": { transform: "rotate(0deg)" },
   "100%": { transform: "rotate(360deg)" },
 });
 export const circle = style({
-  position: "fixed",
+  position: "absolute",
   top: "-50px",
   right: "-50px",
   width: 130,
@@ -84,6 +115,10 @@ export const circleText = style({
   fontWeight: 300,
 });
 
+export const animateObject1 = keyframes({
+  "0%": { transform: "translateY(-4%)" },
+  "100%": { transform: "translateY(4%)" },
+});
 export const object1 = style({
   position: "fixed",
   top: "4%",
@@ -94,6 +129,15 @@ export const object1 = style({
   borderRadius: "100%",
   filter: "blur(4px)",
   zIndex: -50,
+  animationName: animateObject1,
+  animationDuration: "10s",
+  animationTimingFunction: "ease-in-out",
+  animationIterationCount: "infinite",
+  animationDirection: "alternate-reverse",
+});
+export const animateObject2 = keyframes({
+  "0%": { transform: "translateY(-8%)" },
+  "100%": { transform: "translateY(8%)" },
 });
 export const object2 = style({
   position: "fixed",
@@ -105,10 +149,19 @@ export const object2 = style({
   borderRadius: "100%",
   filter: "blur(12px)",
   zIndex: -50,
+  animationName: animateObject2,
+  animationDuration: "16s",
+  animationTimingFunction: "ease-in-out",
+  animationIterationCount: "infinite",
+  animationDirection: "alternate-reverse",
+});
+export const animateObject3 = keyframes({
+  "0%": { transform: "translateY(-16%)" },
+  "100%": { transform: "translateY(16%)" },
 });
 export const object3 = style({
   position: "fixed",
-  bottom: "-16%",
+  bottom: "-24%",
   left: "4%",
   background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
   width: 600,
@@ -116,4 +169,41 @@ export const object3 = style({
   borderRadius: "100%",
   filter: "blur(16px)",
   zIndex: -50,
+  animationName: animateObject3,
+  animationDuration: "20s",
+  animationTimingFunction: "ease-in-out",
+  animationIterationCount: "infinite",
+  animationDirection: "alternate-reverse",
+});
+
+export const nameMainVisual = style({
+  fontSize: "21rem",
+  color: "#130059",
+  lineHeight: "0.76em",
+  textAlign: "center",
+  margin: "180px auto 160px",
+});
+
+export const animateLine = keyframes({
+  "0%": { transform: "translateY(-100%)" },
+  "100%": { transform: "translateY(100%)" },
+});
+export const line = style({
+  position: "relative",
+  width: 1,
+  height: 60,
+  margin: "0 auto",
+  backgroundColor: "rgba(19, 0, 89, .3)",
+  overflow: "hidden",
+  ":before": {
+    content: "",
+    position: "absolute",
+    width: 1,
+    height: 60,
+    backgroundColor: "#fff",
+    animationName: animateLine,
+    animationDuration: "1.6s",
+    animationTimingFunction: "ease",
+    animationIterationCount: "infinite",
+  },
 });
