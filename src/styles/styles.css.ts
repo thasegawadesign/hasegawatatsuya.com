@@ -8,6 +8,10 @@ export const breakpoints = {
   sm: "screen and (max-width: 639px)",
 } as const;
 
+export const html = style({
+  overflowX: "hidden",
+});
+
 export const smoothScroll = style({
   "@media": {
     "(prefers-reduced-motion: no-preference)": {
@@ -50,6 +54,11 @@ export const glass = style({
     backdropFilter: "blur(120px)",
     zIndex: -1,
   },
+  "@media": {
+    [breakpoints["xl"]]: {
+      width: "92%",
+    },
+  },
 });
 
 export const header = style({
@@ -63,6 +72,7 @@ export const nav = style({
   display: "flex",
   flexDirection: "column",
   gap: 12,
+  zIndex: 100,
   "@media": {
     [breakpoints["2xl"]]: {
       left: "clamp(40px, 10%, 240px)",
@@ -108,6 +118,14 @@ export const circle = style({
   animationDuration: "20s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
+  "@media": {
+    [breakpoints["xl"]]: {
+      top: "-40px",
+      right: "-40px",
+      width: 110,
+      height: 110,
+    },
+  },
 });
 export const circleSvg = style({
   overflow: "visible",
@@ -191,6 +209,9 @@ export const nameMainVisual = style({
     [breakpoints["2xl"]]: {
       fontSize: "20rem",
     },
+    [breakpoints["xl"]]: {
+      fontSize: "18rem",
+    },
   },
 });
 
@@ -248,6 +269,7 @@ export const description = style({
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 120,
+  padding: "0 20px",
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -269,6 +291,9 @@ export const profileSection = style({
   "@media": {
     [breakpoints["2xl"]]: {
       maxWidth: 880,
+    },
+    [breakpoints["xl"]]: {
+      maxWidth: 800,
     },
   },
 });
@@ -350,6 +375,13 @@ export const profileMore = style({
 });
 export const profileImage = style({
   marginLeft: -120,
+  "@media": {
+    [breakpoints["xl"]]: {
+      marginLeft: -100,
+      width: 180,
+      height: 270,
+    },
+  },
 });
 
 export const worksSection = style({
@@ -365,6 +397,10 @@ export const worksBox = style({
     [breakpoints["2xl"]]: {
       gap: 40,
       maxWidth: 880,
+    },
+    [breakpoints["xl"]]: {
+      gap: 32,
+      maxWidth: 800,
     },
   },
 });
@@ -404,6 +440,10 @@ export const worksLink = style({
       width: 150,
       height: 150,
     },
+    [breakpoints["xl"]]: {
+      width: 120,
+      height: 120,
+    },
   },
 });
 export const worksIcon = style({
@@ -417,6 +457,7 @@ export const worksUnderDevelopmentItem = style({
 });
 export const worksUnderDevelopment = style({
   fontSize: "1.6rem",
+  fontWeight: 300,
   color: "#fff",
 });
 
@@ -446,11 +487,23 @@ export const emailLink = style({
     [breakpoints["2xl"]]: {
       maxWidth: 1000,
     },
+    [breakpoints["xl"]]: {
+      gap: 24,
+      maxWidth: 900,
+      padding: "74px 200px",
+      fontSize: "2.0rem",
+    },
   },
 });
 export const emailIcon = style({
   width: 40,
   height: 40,
+  "@media": {
+    [breakpoints["xl"]]: {
+      width: 32,
+      height: 32,
+    },
+  },
 });
 
 export const footer = style({

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 
 import "@/styles/reset.css";
-import { backgroundGradient, smoothScroll } from "@/styles/styles.css";
+import { backgroundGradient, html, smoothScroll } from "@/styles/styles.css";
 
 export const metadata: Metadata = {
   title: "Tatsuya Hasegawa",
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={clsx(smoothScroll)}>
+    <html lang="ja" className={clsx(html, smoothScroll)}>
       <body className={clsx(notoSansJP.className, backgroundGradient)}>
         {children}
       </body>
