@@ -58,6 +58,9 @@ export const glass = style({
     [breakpoints["xl"]]: {
       width: "92%",
     },
+    [breakpoints["md"]]: {
+      width: "96%",
+    },
   },
 });
 
@@ -157,6 +160,12 @@ export const object1 = style({
   animationTimingFunction: "ease-in-out",
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
+  "@media": {
+    [breakpoints["md"]]: {
+      width: 280,
+      height: 280,
+    },
+  },
 });
 export const animateObject2 = keyframes({
   "0%": { transform: "translateY(-8%)" },
@@ -177,6 +186,13 @@ export const object2 = style({
   animationTimingFunction: "ease-in-out",
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
+  "@media": {
+    [breakpoints["md"]]: {
+      right: "-6%",
+      width: 360,
+      height: 360,
+    },
+  },
 });
 export const animateObject3 = keyframes({
   "0%": { transform: "translateY(-16%)" },
@@ -197,6 +213,14 @@ export const object3 = style({
   animationTimingFunction: "ease-in-out",
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
+  "@media": {
+    [breakpoints["md"]]: {
+      bottom: "4%",
+      left: "-4%",
+      width: 400,
+      height: 400,
+    },
+  },
 });
 
 export const nameMainVisual = style({
@@ -214,6 +238,9 @@ export const nameMainVisual = style({
     },
     [breakpoints["lg"]]: {
       fontSize: "15rem",
+    },
+    [breakpoints["md"]]: {
+      fontSize: "13rem",
     },
   },
 });
@@ -257,6 +284,12 @@ export const sectionHeading = style({
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 40,
+  "@media": {
+    [breakpoints["xl"]]: {
+      fontSize: "1.4rem",
+      marginBottom: 32,
+    },
+  },
 });
 
 export const aboutSection = style({
@@ -319,6 +352,10 @@ export const profileSection = style({
     [breakpoints["lg"]]: {
       maxWidth: 600,
       padding: "70px 120px",
+    },
+    [breakpoints["md"]]: {
+      maxWidth: 580,
+      padding: "70px 80px",
     },
   },
 });
@@ -412,6 +449,9 @@ export const profileImage = style({
     [breakpoints["lg"]]: {
       marginLeft: -80,
     },
+    [breakpoints["md"]]: {
+      marginLeft: -60,
+    },
   },
 });
 
@@ -436,6 +476,10 @@ export const worksBox = style({
     [breakpoints["lg"]]: {
       gap: 20,
       maxWidth: 600,
+    },
+    [breakpoints["md"]]: {
+      gap: 16,
+      maxWidth: 580,
     },
   },
 });
@@ -533,6 +577,11 @@ export const emailLink = style({
       padding: "74px 120px",
       fontSize: "1.7rem",
     },
+    [breakpoints["md"]]: {
+      maxWidth: 640,
+      padding: "74px 120px",
+      fontSize: "1.7rem",
+    },
   },
 });
 export const emailIcon = style({
@@ -553,6 +602,11 @@ export const emailIcon = style({
 export const footer = style({
   textAlign: "center",
   paddingBottom: 24,
+  "@media": {
+    [breakpoints["md"]]: {
+      paddingBottom: 12,
+    },
+  },
 });
 export const copyRight = style({
   fontWeight: 300,
