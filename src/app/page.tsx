@@ -22,6 +22,7 @@ import {
   mobileBr,
   mobileNav,
   mobileNavCross,
+  mobileNavCrossBox,
   mobileNavLink,
   mobileNavLinkBox,
   nameMainVisual,
@@ -302,7 +303,7 @@ export default function Home() {
           </button>
           {isOpenHamburgerMenu && (
             <nav className={clsx(mobileNav)}>
-              <ul>
+              <ul className={clsx(mobileNavCrossBox)}>
                 <li>
                   <button
                     className={mobileNavCross}

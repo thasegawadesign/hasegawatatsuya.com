@@ -65,6 +65,8 @@ export const glass = style({
     [breakpoints["sm"]]: {
       marginTop: 8,
       marginBottom: 8,
+      backdropFilter: "blur(80px)",
+      WebkitBackdropFilter: "blur(80px)",
     },
   },
 });
@@ -151,13 +153,17 @@ export const hamburgerMenuLine = style({
 
 export const mobileNav = style({
   position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
+  top: -10,
+  left: -10,
+  width: "100vw",
   height: "100vh",
   backgroundColor: "#130059",
   padding: "32px 48px",
   zIndex: 100,
+});
+export const mobileNavCrossBox = style({
+  display: "flex",
+  justifyContent: "flex-end",
 });
 export const mobileNavCross = style({
   position: "relative",
@@ -192,10 +198,11 @@ export const mobileNavCross = style({
 export const mobileNavLinkBox = style({
   display: "flex",
   flexDirection: "column",
-  gap: 16,
+  alignItems: "flex-end",
+  gap: 24,
 });
 export const mobileNavLink = style({
-  fontSize: "2.0rem",
+  fontSize: "2.8rem",
   fontWeight: 300,
   color: "#fff",
   textDecoration: "none",
@@ -268,6 +275,9 @@ export const object1 = style({
       width: 280,
       height: 280,
     },
+    [breakpoints["sm"]]: {
+      display: "none",
+    },
   },
 });
 export const animateObject2 = keyframes({
@@ -294,6 +304,9 @@ export const object2 = style({
       right: "-6%",
       width: 360,
       height: 360,
+    },
+    [breakpoints["sm"]]: {
+      display: "none",
     },
   },
 });
@@ -322,6 +335,9 @@ export const object3 = style({
       left: "-4%",
       width: 400,
       height: 400,
+    },
+    [breakpoints["sm"]]: {
+      display: "none",
     },
   },
 });
