@@ -2,6 +2,9 @@
 
 import {
   aboutSection,
+  animationPaused,
+  animationRunning,
+  audioButton,
   circle,
   circlePath,
   circleSvg,
@@ -76,12 +79,16 @@ const roboto = Roboto({
 });
 
 const isOpenHamburgerMenuAtom = atom(false);
+const isPlayingAudioAtom = atom(false);
+
+const audio = new Audio("/houkagonoumibe.mp3");
 
 export default function Home() {
   const mobileNavHomeLinkRef = useRef(null);
   const mobileNavAboutLinkRef = useRef(null);
   const mobileNavWorksLinkRef = useRef(null);
   const mobileNavContactLinkRef = useRef(null);
+  const audioButtonRef = useRef(null);
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -93,6 +100,7 @@ export default function Home() {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
     isOpenHamburgerMenuAtom
   );
+  const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
   const noscroll = (event: WheelEvent | TouchEvent) => {
     event.preventDefault();
@@ -263,6 +271,30 @@ export default function Home() {
     );
   }, []);
 
+  useEffect(() => {
+    const handleAudioButtonClick = () => {
+      if (isPlayingAudio) {
+        audio.pause();
+        setIsPlayingAudio(false);
+      } else {
+        audio.play();
+        setIsPlayingAudio(true);
+      }
+    };
+
+    const audioButton = audioButtonRef.current as unknown as HTMLButtonElement;
+
+    if (audioButton) {
+      audioButton.addEventListener("click", handleAudioButtonClick);
+    }
+
+    return () => {
+      if (audioButton) {
+        audioButton.removeEventListener("click", handleAudioButtonClick);
+      }
+    };
+  }, [isPlayingAudio, setIsPlayingAudio]);
+
   return (
     <>
       <div className={clsx(glass)}>
@@ -369,6 +401,13 @@ export default function Home() {
               </ul>
             </nav>
           )}
+          <button
+            className={clsx(
+              audioButton,
+              isPlayingAudio ? animationRunning : animationPaused
+            )}
+            ref={audioButtonRef}
+          ></button>
           <div className={clsx(circle)}>
             <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
               <path
