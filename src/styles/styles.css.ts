@@ -212,6 +212,9 @@ export const nameMainVisual = style({
     [breakpoints["xl"]]: {
       fontSize: "18rem",
     },
+    [breakpoints["lg"]]: {
+      fontSize: "15rem",
+    },
   },
 });
 
@@ -275,6 +278,24 @@ export const description = style({
     [breakpoints["2xl"]]: {
       fontSize: "1.8rem",
     },
+    [breakpoints["lg"]]: {
+      fontSize: "1.7rem",
+    },
+  },
+});
+export const desktopBr = style({
+  "@media": {
+    [breakpoints["lg"]]: {
+      display: "none",
+    },
+  },
+});
+export const mobileBr = style({
+  display: "none",
+  "@media": {
+    [breakpoints["lg"]]: {
+      display: "block",
+    },
   },
 });
 
@@ -295,6 +316,10 @@ export const profileSection = style({
     [breakpoints["xl"]]: {
       maxWidth: 800,
     },
+    [breakpoints["lg"]]: {
+      maxWidth: 600,
+      padding: "70px 120px",
+    },
   },
 });
 export const profileContent = style({
@@ -314,6 +339,9 @@ export const profileName = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
+    },
+    [breakpoints["lg"]]: {
+      fontSize: "1.8rem",
     },
   },
 });
@@ -381,6 +409,9 @@ export const profileImage = style({
       width: 180,
       height: 270,
     },
+    [breakpoints["lg"]]: {
+      marginLeft: -80,
+    },
   },
 });
 
@@ -401,6 +432,10 @@ export const worksBox = style({
     [breakpoints["xl"]]: {
       gap: 32,
       maxWidth: 800,
+    },
+    [breakpoints["lg"]]: {
+      gap: 20,
+      maxWidth: 600,
     },
   },
 });
@@ -493,6 +528,11 @@ export const emailLink = style({
       padding: "74px 200px",
       fontSize: "2.0rem",
     },
+    [breakpoints["lg"]]: {
+      maxWidth: 660,
+      padding: "74px 120px",
+      fontSize: "1.7rem",
+    },
   },
 });
 export const emailIcon = style({
@@ -502,6 +542,10 @@ export const emailIcon = style({
     [breakpoints["xl"]]: {
       width: 32,
       height: 32,
+    },
+    [breakpoints["lg"]]: {
+      width: 28,
+      height: 28,
     },
   },
 });
