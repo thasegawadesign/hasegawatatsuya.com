@@ -147,6 +147,63 @@ export const hamburgerMenuLine = style({
   backgroundColor: "#fff",
 });
 
+export const mobileNav = style({
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100vh",
+  backgroundColor: "#130059",
+  padding: "32px 48px",
+  zIndex: 100,
+});
+export const mobileNavCross = style({
+  position: "relative",
+  display: "block",
+  width: "40px",
+  height: "40px",
+  backgroundColor: "transparent",
+  border: "none",
+  marginBottom: 24,
+  cursor: "pointer",
+  ":before": {
+    content: "",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: 2,
+    height: "40px",
+    backgroundColor: "#fff",
+    transform: "translate(-50%,-50%) rotate(45deg)",
+  },
+  ":after": {
+    content: "",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: 2,
+    height: "40px",
+    backgroundColor: "#fff",
+    transform: "translate(-50%,-50%) rotate(-45deg)",
+  },
+});
+export const mobileNavLinkBox = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+});
+export const mobileNavLink = style({
+  fontSize: "2.0rem",
+  fontWeight: 300,
+  color: "#fff",
+  textDecoration: "none",
+  borderBottom: "solid 12px",
+  transition: "border-bottom 0.3s ease",
+  ":hover": {
+    borderBottomWidth: "1px",
+  },
+});
+
 export const rotate = keyframes({
   "0%": { transform: "rotate(0deg)" },
   "100%": { transform: "rotate(360deg)" },

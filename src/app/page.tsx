@@ -20,6 +20,10 @@ import {
   line,
   logo,
   mobileBr,
+  mobileNav,
+  mobileNavCross,
+  mobileNavLink,
+  mobileNavLinkBox,
   nameMainVisual,
   nav,
   navLink,
@@ -57,6 +61,7 @@ import { IoMdMail } from "react-icons/io";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { atom, useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
@@ -69,6 +74,8 @@ const roboto = Roboto({
   weight: ["300", "400"],
 });
 
+const isOpenHamburgerMenuAtom = atom(false);
+
 export default function Home() {
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -77,6 +84,10 @@ export default function Home() {
   const worksItem2Ref = useRef(null);
   const worksItem3Ref = useRef(null);
   const contactRef = useRef(null);
+
+  const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
+    isOpenHamburgerMenuAtom
+  );
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -252,11 +263,60 @@ export default function Home() {
               </li>
             </ul>
           </nav>
-          <button className={clsx(hamburgerMenu)}>
+          <button
+            className={clsx(hamburgerMenu)}
+            onClick={() => setIsOpenHamburgerMenu(true)}
+          >
             <div className={clsx(hamburgerMenuLine)}></div>
             <div className={clsx(hamburgerMenuLine)}></div>
             <div className={clsx(hamburgerMenuLine)}></div>
           </button>
+          {isOpenHamburgerMenu && (
+            <nav className={clsx(mobileNav)}>
+              <ul>
+                <li>
+                  <button
+                    className={mobileNavCross}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
+                  ></button>
+                </li>
+              </ul>
+              <ul className={clsx(mobileNavLinkBox)}>
+                <li>
+                  <Link
+                    href={"/"}
+                    className={clsx(roboto.className, mobileNavLink)}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/#about"}
+                    className={clsx(roboto.className, mobileNavLink)}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/#works"}
+                    className={clsx(roboto.className, mobileNavLink)}
+                  >
+                    Works
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/#contact"}
+                    className={clsx(roboto.className, mobileNavLink)}
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          )}
           <div className={clsx(circle)}>
             <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
               <path
