@@ -94,13 +94,14 @@ export default function Home() {
     isOpenHamburgerMenuAtom
   );
 
-  const noscroll = (event: WheelEvent) => {
+  const noscroll = (event: WheelEvent | TouchEvent) => {
     event.preventDefault();
   };
 
   useEffect(() => {
     if (isOpenHamburgerMenu) {
       document.addEventListener("wheel", noscroll, { passive: false });
+      document.addEventListener("touchmove", noscroll, { passive: false });
       gsap.fromTo(
         mobileNavHomeLinkRef.current,
         { opacity: 0, rotation: -20 },
@@ -123,10 +124,12 @@ export default function Home() {
       );
     } else {
       document.removeEventListener("wheel", noscroll);
+      document.removeEventListener("touchmove", noscroll);
     }
 
     return () => {
       document.removeEventListener("wheel", noscroll);
+      document.removeEventListener("touchmove", noscroll);
     };
   }, [isOpenHamburgerMenu]);
 
