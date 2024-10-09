@@ -1,4 +1,4 @@
-import { logo, navBox, navLink } from "@/styles/styles.css";
+import { glass, logo, navBox, navLink } from "@/styles/styles.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
@@ -19,130 +19,138 @@ const roboto = Roboto({
 export default function Home() {
   return (
     <>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <Link href={"/"} className={clsx(roboto.className, logo)}>
-                TH
-              </Link>
-            </li>
-          </ul>
-          <ul className={clsx(navBox)}>
-            <li>
-              <Link href={"/"} className={clsx(roboto.className, navLink)}>
-                Home
-              </Link>
-            </li>
-            <li>
+      <div className={clsx(glass)}>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link href={"/"} className={clsx(roboto.className, logo)}>
+                  TH
+                </Link>
+              </li>
+            </ul>
+            <ul className={clsx(navBox)}>
+              <li>
+                <Link href={"/"} className={clsx(roboto.className, navLink)}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={"/#about"}
+                  className={clsx(roboto.className, navLink)}
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={"/#works"}
+                  className={clsx(roboto.className, navLink)}
+                >
+                  Works
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={"/#contact"}
+                  className={clsx(roboto.className, navLink)}
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <main>
+          <h1 className={clsx(cormorant.className)}>Tatsuya Hasegawa</h1>
+          <section id="about">
+            <h2 className={clsx(roboto.className)}>About</h2>
+            <p>
+              フロントエンドエンジニア 長谷川 達也のポートフォリオサイトです。
+              実際に触れることのできるフロントエンドを開発することに喜びを感じます。
+              書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
+            </p>
+            <section>
+              <h3 className={clsx(roboto.className)}>Tatsuya Hasegawa</h3>
+              <p className={clsx(roboto.className)}>Front-end Developer</p>
               <Link
-                href={"/#about"}
-                className={clsx(roboto.className, navLink)}
+                href={"https://github.com/thasegawakaihatsu"}
+                target="_brank"
               >
-                About
+                <FaGithub />
               </Link>
-            </li>
-            <li>
               <Link
-                href={"/#works"}
-                className={clsx(roboto.className, navLink)}
+                href={"mailto:hasegawatatsuya206@gmail.com"}
+                target="_brank"
               >
-                Works
+                <IoMdMail />
               </Link>
-            </li>
-            <li>
+              <Link href={"/"} className={clsx(roboto.className)}>
+                More
+              </Link>
+              <Image
+                src={"/photo.webp"}
+                width={200}
+                height={300}
+                alt="長谷川達也"
+              />
+            </section>
+          </section>
+          <section id="works">
+            <h2 className={clsx(roboto.className)}>Works</h2>
+            <section>
+              <h3>一問一答メーカー</h3>
+              <p>Webアプリ</p>
               <Link
-                href={"/#contact"}
-                className={clsx(roboto.className, navLink)}
+                href={"https://question-and-answer.gojiyuuniotorikudasai.com"}
+                target="_blank"
               >
-                Contact
+                <Image
+                  src={"/icons/question-and-answer-icon.png"}
+                  width={160}
+                  height={160}
+                  alt="一問一答メーカーのアイコン"
+                />
               </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <h1 className={clsx(cormorant.className)}>Tatsuya Hasegawa</h1>
-        <section id="about">
-          <h2 className={clsx(roboto.className)}>About</h2>
-          <p>
-            フロントエンドエンジニア 長谷川 達也のポートフォリオサイトです。
-            実際に触れることのできるフロントエンドを開発することに喜びを感じます。
-            書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
-          </p>
-          <section>
-            <h3 className={clsx(roboto.className)}>Tatsuya Hasegawa</h3>
-            <p className={clsx(roboto.className)}>Front-end Developer</p>
-            <Link href={"https://github.com/thasegawakaihatsu"} target="_brank">
-              <FaGithub />
-            </Link>
-            <Link href={"mailto:hasegawatatsuya206@gmail.com"} target="_brank">
+            </section>
+            <section>
+              <h3>ステメモ</h3>
+              <p>Webアプリ</p>
+              <Link
+                href={"https://sutememo.gojiyuuniotorikudasai.com"}
+                target="_blank"
+              >
+                <Image
+                  src={"/icons/sutememo-icon.png"}
+                  width={160}
+                  height={160}
+                  alt="ステメモのアイコン"
+                />
+              </Link>
+            </section>
+            <section>
+              <h3 className={clsx(roboto.className)}>under development...</h3>
+            </section>
+          </section>
+          <section id="contact">
+            <h2 className={clsx(roboto.className)}>Contact</h2>
+            <Link href={"mailto:hasegawatatsuya206@gmail.com"}>
               <IoMdMail />
-            </Link>
-            <Link href={"/"} className={clsx(roboto.className)}>
-              More
-            </Link>
-            <Image
-              src={"/photo.webp"}
-              width={200}
-              height={300}
-              alt="長谷川達也"
-            />
-          </section>
-        </section>
-        <section id="works">
-          <h2 className={clsx(roboto.className)}>Works</h2>
-          <section>
-            <h3>一問一答メーカー</h3>
-            <p>Webアプリ</p>
-            <Link
-              href={"https://question-and-answer.gojiyuuniotorikudasai.com"}
-              target="_blank"
-            >
-              <Image
-                src={"/icons/question-and-answer-icon.png"}
-                width={160}
-                height={160}
-                alt="一問一答メーカーのアイコン"
-              />
+              <span className={clsx(roboto.className)}>
+                hasegawatatsuya206@gmail.com
+              </span>
             </Link>
           </section>
-          <section>
-            <h3>ステメモ</h3>
-            <p>Webアプリ</p>
-            <Link
-              href={"https://sutememo.gojiyuuniotorikudasai.com"}
-              target="_blank"
-            >
-              <Image
-                src={"/icons/sutememo-icon.png"}
-                width={160}
-                height={160}
-                alt="ステメモのアイコン"
-              />
-            </Link>
-          </section>
-          <section>
-            <h3 className={clsx(roboto.className)}>under development...</h3>
-          </section>
-        </section>
-        <section id="contact">
-          <h2 className={clsx(roboto.className)}>Contact</h2>
-          <Link href={"mailto:hasegawatatsuya206@gmail.com"}>
-            <IoMdMail />
-            <span className={clsx(roboto.className)}>
-              hasegawatatsuya206@gmail.com
-            </span>
-          </Link>
-        </section>
-      </main>
-      <footer>
-        <p>
-          <small className={clsx(roboto.className)}>
-            © 2024 Tatsuya Hasegawa
-          </small>
-        </p>
-      </footer>
+        </main>
+        <footer>
+          <p>
+            <small className={clsx(roboto.className)}>
+              © 2024 Tatsuya Hasegawa
+            </small>
+          </p>
+        </footer>
+      </div>
     </>
   );
 }
