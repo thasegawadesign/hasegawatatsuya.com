@@ -1,4 +1,14 @@
-import { glass, logo, navBox, navLink } from "@/styles/styles.css";
+import {
+  circle,
+  circlePath,
+  circleSvg,
+  circleText,
+  glass,
+  header,
+  logo,
+  navBox,
+  navLink,
+} from "@/styles/styles.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
@@ -20,7 +30,7 @@ export default function Home() {
   return (
     <>
       <div className={clsx(glass)}>
-        <header>
+        <header className={clsx(header)}>
           <nav>
             <ul>
               <li>
@@ -61,6 +71,21 @@ export default function Home() {
               </li>
             </ul>
           </nav>
+          <div className={clsx(circle)}>
+            <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
+              <path
+                d="M 0,50 a 50,50 0 1,1 0,1 z"
+                id="circle"
+                className={clsx(circlePath)}
+              />
+              <text className={clsx(roboto.className, circleText)}>
+                <textPath xlinkHref="#circle">
+                  Thank you for visting. Thank you for visting. Thank you for
+                  visting.
+                </textPath>
+              </text>
+            </svg>
+          </div>
         </header>
         <main>
           <h1 className={clsx(cormorant.className)}>Tatsuya Hasegawa</h1>
