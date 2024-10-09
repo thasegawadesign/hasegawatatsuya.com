@@ -219,7 +219,7 @@ export const sectionHeading = style({
 
 export const aboutSection = style({
   paddingTop: 76,
-  paddingBottom: 120,
+  paddingBottom: 160,
 });
 
 export const description = style({
@@ -238,6 +238,13 @@ export const profileSection = style({
   placeItems: "end",
   justifyContent: "center",
   gap: 40,
+  backgroundColor: "rgba(255, 255, 255, .12)",
+  margin: "0 auto",
+  padding: "70px 160px",
+  maxWidth: 920,
+});
+export const profileContent = style({
+  paddingBottom: 12,
 });
 export const profileTextBox = style({
   display: "flex",
@@ -290,4 +297,7 @@ export const profileMore = style({
       width: 0,
     },
   },
+});
+export const profileImage = style({
+  marginLeft: -120,
 });

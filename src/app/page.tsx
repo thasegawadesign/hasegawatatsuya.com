@@ -16,6 +16,8 @@ import {
   object1,
   object2,
   object3,
+  profileContent,
+  profileImage,
   profileLinkBox,
   profileLinkIcon,
   profileMore,
@@ -119,7 +121,7 @@ export default function Home() {
               書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
             </p>
             <section className={profileSection}>
-              <div>
+              <div className={clsx(profileContent)}>
                 <div className={clsx(profileTextBox)}>
                   <h3 className={clsx(roboto.className, profileName)}>
                     Tatsuya Hasegawa
@@ -154,6 +156,7 @@ export default function Home() {
                 width={200}
                 height={300}
                 alt="長谷川達也"
+                className={profileImage}
               />
             </section>
           </section>
