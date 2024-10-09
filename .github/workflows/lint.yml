@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: StyleLint
+        run: npm run lint:css
+
       - name: ESLint
         run: npm run lint
 
