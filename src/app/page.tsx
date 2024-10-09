@@ -65,6 +65,7 @@ const roboto = Roboto({
 });
 
 export default function Home() {
+  const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const worksItem1Ref = useRef(null);
@@ -76,8 +77,27 @@ export default function Home() {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.fromTo(
+      nameMainVisualRef.current,
+      {
+        opacity: 0,
+        transformOrigin: "center",
+      },
+      {
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: nameMainVisualRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
       descriptionRef.current,
-      { opacity: 0, rotation: -3 },
+      { opacity: 0, rotation: -2 },
       {
         opacity: 1,
         rotation: 0,
@@ -94,10 +114,11 @@ export default function Home() {
     );
     gsap.fromTo(
       profileRef.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.9, rotation: -2 },
       {
         opacity: 1,
         scale: 1,
+        rotation: 0,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
@@ -111,10 +132,11 @@ export default function Home() {
     );
     gsap.fromTo(
       worksItem1Ref.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.9, rotation: -2 },
       {
         opacity: 1,
         scale: 1,
+        rotation: 0,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
@@ -128,10 +150,11 @@ export default function Home() {
     );
     gsap.fromTo(
       worksItem2Ref.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.9, rotation: -2 },
       {
         opacity: 1,
         scale: 1,
+        rotation: 0,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
@@ -145,10 +168,11 @@ export default function Home() {
     );
     gsap.fromTo(
       worksItem3Ref.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.9, rotation: -2 },
       {
         opacity: 1,
         scale: 1,
+        rotation: 0,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
@@ -240,7 +264,10 @@ export default function Home() {
           </div>
         </header>
         <main>
-          <h1 className={clsx(cormorant.className, nameMainVisual)}>
+          <h1
+            className={clsx(cormorant.className, nameMainVisual)}
+            ref={nameMainVisualRef}
+          >
             Tatsuya <br />
             Hasegawa
           </h1>
