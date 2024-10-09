@@ -254,7 +254,7 @@ export default function Home() {
     );
     gsap.fromTo(
       contactRef.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.96 },
       {
         opacity: 1,
         scale: 1,
