@@ -61,6 +61,9 @@ export const glass = style({
     [breakpoints["md"]]: {
       width: "96%",
     },
+    [breakpoints["sm"]]: {
+      marginTop: 8,
+    },
   },
 });
 
@@ -80,12 +83,20 @@ export const nav = style({
     [breakpoints["2xl"]]: {
       left: "clamp(40px, 10%, 240px)",
     },
+    [breakpoints["sm"]]: {
+      top: 36,
+    },
   },
 });
 export const navLinkBox = style({
   display: "flex",
   flexDirection: "column",
   gap: 8,
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "none",
+    },
+  },
 });
 export const navLink = style({
   fontSize: "2.0rem",
@@ -104,6 +115,11 @@ export const logo = style({
   fontWeight: 400,
   color: "#fff",
   textDecoration: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      fontSize: "2.4rem",
+    },
+  },
 });
 
 export const rotate = keyframes({
@@ -127,6 +143,9 @@ export const circle = style({
       right: "-40px",
       width: 110,
       height: 110,
+    },
+    [breakpoints["sm"]]: {
+      display: "none",
     },
   },
 });
@@ -241,6 +260,9 @@ export const nameMainVisual = style({
     },
     [breakpoints["md"]]: {
       fontSize: "13rem",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "7.6rem",
     },
   },
 });
