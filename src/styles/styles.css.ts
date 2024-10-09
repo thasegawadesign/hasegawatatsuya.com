@@ -172,7 +172,7 @@ export const mobileNavCross = style({
   height: "40px",
   backgroundColor: "transparent",
   border: "none",
-  marginBottom: 24,
+  marginBottom: 40,
   cursor: "pointer",
   ":before": {
     content: "",
@@ -362,7 +362,10 @@ export const nameMainVisual = style({
       fontSize: "13rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "7.6rem",
+      fontSize: "8.2rem",
+      fontWeight: 600,
+      lineHeight: "0.8em",
+      marginTop: 280,
     },
   },
 });
@@ -436,6 +439,10 @@ export const description = style({
     [breakpoints["lg"]]: {
       fontSize: "1.7rem",
     },
+    [breakpoints["sm"]]: {
+      fontSize: "1.5rem",
+      letterSpacing: 1.8,
+    },
   },
 });
 export const desktopBr = style({
@@ -479,6 +486,11 @@ export const profileSection = style({
       maxWidth: 580,
       padding: "70px 80px",
     },
+    [breakpoints["sm"]]: {
+      gap: 20,
+      maxWidth: 580,
+      padding: "70px 20px",
+    },
   },
 });
 export const profileContent = style({
@@ -489,6 +501,12 @@ export const profileTextBox = style({
   flexDirection: "column-reverse",
   gap: 8,
   marginBottom: 32,
+  "@media": {
+    [breakpoints["sm"]]: {
+      gap: 2,
+      marginBottom: 20,
+    },
+  },
 });
 export const profileName = style({
   fontSize: "2.4rem",
@@ -502,6 +520,10 @@ export const profileName = style({
     [breakpoints["lg"]]: {
       fontSize: "1.8rem",
     },
+    [breakpoints["sm"]]: {
+      fontSize: "1.6rem",
+      letterSpacing: 1.8,
+    },
   },
 });
 export const profileOccupation = style({
@@ -513,12 +535,20 @@ export const profileOccupation = style({
     [breakpoints["2xl"]]: {
       fontSize: "1.2rem",
     },
+    [breakpoints["sm"]]: {
+      letterSpacing: 1.8,
+    },
   },
 });
 export const profileLinkBox = style({
   display: "flex",
   gap: 16,
   marginBottom: 52,
+  "@media": {
+    [breakpoints["sm"]]: {
+      marginBottom: 36,
+    },
+  },
 });
 export const profileLinkIcon = style({
   width: 20,
@@ -574,6 +604,11 @@ export const profileImage = style({
     [breakpoints["md"]]: {
       marginLeft: -60,
     },
+    [breakpoints["sm"]]: {
+      width: 120,
+      height: 180,
+      marginLeft: -20,
+    },
   },
 });
 
@@ -603,6 +638,10 @@ export const worksBox = style({
       gap: 16,
       maxWidth: 580,
     },
+    [breakpoints["sm"]]: {
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: 1,
+    },
   },
 });
 export const worksItem = style({
@@ -623,11 +662,21 @@ export const worksName = style({
   fontSize: "1.6rem",
   fontWeight: 300,
   color: "#fff",
+  "@media": {
+    [breakpoints["sm"]]: {
+      fontSize: "1.4rem",
+    },
+  },
 });
 export const worksCategory = style({
   fontSize: "1.2rem",
   fontWeight: 300,
   color: "#fff",
+  "@media": {
+    [breakpoints["sm"]]: {
+      fontSize: "1.0rem",
+    },
+  },
 });
 export const worksLink = style({
   width: 160,
@@ -645,6 +694,10 @@ export const worksLink = style({
       width: 120,
       height: 120,
     },
+    [breakpoints["sm"]]: {
+      width: 100,
+      height: 100,
+    },
   },
 });
 export const worksIcon = style({
@@ -655,6 +708,11 @@ export const worksUnderDevelopmentItem = style({
   display: "grid",
   placeItems: "center",
   backgroundColor: "rgba(255, 255, 255, .12)",
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "none",
+    },
+  },
 });
 export const worksUnderDevelopment = style({
   fontSize: "1.6rem",
@@ -664,6 +722,11 @@ export const worksUnderDevelopment = style({
 
 export const contactSection = style({
   paddingBottom: 120,
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingBottom: 60,
+    },
+  },
 });
 export const emailLink = style({
   display: "flex",
@@ -704,6 +767,11 @@ export const emailLink = style({
       padding: "74px 120px",
       fontSize: "1.7rem",
     },
+    [breakpoints["sm"]]: {
+      gap: 16,
+      padding: "60px 20px",
+      fontSize: "1.4rem",
+    },
   },
 });
 export const emailIcon = style({
@@ -717,6 +785,10 @@ export const emailIcon = style({
     [breakpoints["lg"]]: {
       width: 28,
       height: 28,
+    },
+    [breakpoints["sm"]]: {
+      width: 20,
+      height: 20,
     },
   },
 });
