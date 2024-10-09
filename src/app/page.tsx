@@ -66,6 +66,7 @@ const roboto = Roboto({
 
 export default function Home() {
   const descriptionRef = useRef(null);
+  const profileRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -81,6 +82,23 @@ export default function Home() {
         scrollTrigger: {
           trigger: descriptionRef.current,
           start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      profileRef.current,
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: descriptionRef.current,
+          start: "top 50%",
           end: "top 50%",
           scrub: false,
           once: true,
@@ -164,7 +182,7 @@ export default function Home() {
               <br />
               書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。
             </p>
-            <section className={profileSection}>
+            <section className={profileSection} ref={profileRef}>
               <div className={clsx(profileContent)}>
                 <div className={clsx(profileTextBox)}>
                   <h3 className={clsx(roboto.className, profileName)}>
