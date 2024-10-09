@@ -272,7 +272,20 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    audio = new Audio("/houkagonoumibe.mp3");
+    audio = new Audio("/kanatanouchuu.mp3");
+
+    const playAudio = () => {
+      audio.currentTime = 0;
+      audio.play();
+    };
+
+    audio.addEventListener("ended", playAudio);
+
+    return () => {
+      audio.removeEventListener("ended", playAudio);
+      audio.pause();
+      audio.currentTime = 0;
+    };
   }, []);
 
   useEffect(() => {
