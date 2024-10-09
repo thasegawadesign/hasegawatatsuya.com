@@ -52,6 +52,7 @@ export const glass = style({
     borderRadius: 20,
     boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
     backdropFilter: "blur(120px)",
+    WebkitBackdropFilter: "blur(120px)",
     zIndex: -1,
   },
   "@media": {
@@ -63,6 +64,7 @@ export const glass = style({
     },
     [breakpoints["sm"]]: {
       marginTop: 8,
+      marginBottom: 8,
     },
   },
 });
