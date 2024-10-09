@@ -1,3 +1,5 @@
+"use client";
+
 import {
   aboutSection,
   circle,
@@ -48,6 +50,10 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
 const cormorant = Cormorant({
   subsets: ["latin"],
   weight: "500",
@@ -59,6 +65,30 @@ const roboto = Roboto({
 });
 
 export default function Home() {
+  const descriptionRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      descriptionRef.current,
+      { opacity: 0, rotation: -5 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: descriptionRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <>
       <div className={clsx(glass)}>
@@ -127,7 +157,7 @@ export default function Home() {
           <div className={clsx(line)}></div>
           <section id="about" className={clsx(aboutSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
-            <p className={clsx(description)}>
+            <p className={clsx(description)} ref={descriptionRef}>
               クリエイティブエンジニア 長谷川 達也のポートフォリオサイトです。
               <br />
               実際に触れることのできるフロントエンドを開発することに喜びを感じます。
