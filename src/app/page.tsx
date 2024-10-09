@@ -14,10 +14,17 @@ import {
   emailLink,
   footer,
   glass,
+  hamburgerMenu,
+  hamburgerMenuLine,
   header,
   line,
   logo,
   mobileBr,
+  mobileNav,
+  mobileNavCross,
+  mobileNavCrossBox,
+  mobileNavLink,
+  mobileNavLinkBox,
   nameMainVisual,
   nav,
   navLink,
@@ -55,6 +62,7 @@ import { IoMdMail } from "react-icons/io";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { atom, useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
@@ -67,7 +75,13 @@ const roboto = Roboto({
   weight: ["300", "400"],
 });
 
+const isOpenHamburgerMenuAtom = atom(false);
+
 export default function Home() {
+  const mobileNavHomeLinkRef = useRef(null);
+  const mobileNavAboutLinkRef = useRef(null);
+  const mobileNavWorksLinkRef = useRef(null);
+  const mobileNavContactLinkRef = useRef(null);
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -75,6 +89,46 @@ export default function Home() {
   const worksItem2Ref = useRef(null);
   const worksItem3Ref = useRef(null);
   const contactRef = useRef(null);
+
+  const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
+    isOpenHamburgerMenuAtom
+  );
+
+  const noscroll = (event: WheelEvent) => {
+    event.preventDefault();
+  };
+
+  useEffect(() => {
+    if (isOpenHamburgerMenu) {
+      document.addEventListener("wheel", noscroll, { passive: false });
+      gsap.fromTo(
+        mobileNavHomeLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+      gsap.fromTo(
+        mobileNavAboutLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+      gsap.fromTo(
+        mobileNavWorksLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+      gsap.fromTo(
+        mobileNavContactLinkRef.current,
+        { opacity: 0, rotation: -20 },
+        { opacity: 1, rotation: 0, duration: 1.5 }
+      );
+    } else {
+      document.removeEventListener("wheel", noscroll);
+    }
+
+    return () => {
+      document.removeEventListener("wheel", noscroll);
+    };
+  }, [isOpenHamburgerMenu]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -250,6 +304,68 @@ export default function Home() {
               </li>
             </ul>
           </nav>
+          <button
+            className={clsx(hamburgerMenu)}
+            onClick={() => setIsOpenHamburgerMenu(true)}
+          >
+            <div className={clsx(hamburgerMenuLine)}></div>
+            <div className={clsx(hamburgerMenuLine)}></div>
+            <div className={clsx(hamburgerMenuLine)}></div>
+          </button>
+          {isOpenHamburgerMenu && (
+            <nav className={clsx(mobileNav)}>
+              <ul className={clsx(mobileNavCrossBox)}>
+                <li>
+                  <button
+                    className={mobileNavCross}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
+                  ></button>
+                </li>
+              </ul>
+              <ul className={clsx(mobileNavLinkBox)}>
+                <li>
+                  <Link
+                    href={"/"}
+                    ref={mobileNavHomeLinkRef}
+                    className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/#about"}
+                    ref={mobileNavAboutLinkRef}
+                    className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/#works"}
+                    ref={mobileNavWorksLinkRef}
+                    className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
+                  >
+                    Works
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={"/#contact"}
+                    ref={mobileNavContactLinkRef}
+                    className={clsx(roboto.className, mobileNavLink)}
+                    onClick={() => setIsOpenHamburgerMenu(false)}
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          )}
           <div className={clsx(circle)}>
             <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
               <path

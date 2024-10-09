@@ -52,6 +52,7 @@ export const glass = style({
     borderRadius: 20,
     boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
     backdropFilter: "blur(120px)",
+    WebkitBackdropFilter: "blur(120px)",
     zIndex: -1,
   },
   "@media": {
@@ -60,6 +61,12 @@ export const glass = style({
     },
     [breakpoints["md"]]: {
       width: "96%",
+    },
+    [breakpoints["sm"]]: {
+      marginTop: 8,
+      marginBottom: 8,
+      backdropFilter: "blur(80px)",
+      WebkitBackdropFilter: "blur(80px)",
     },
   },
 });
@@ -80,12 +87,20 @@ export const nav = style({
     [breakpoints["2xl"]]: {
       left: "clamp(40px, 10%, 240px)",
     },
+    [breakpoints["sm"]]: {
+      top: 36,
+    },
   },
 });
 export const navLinkBox = style({
   display: "flex",
   flexDirection: "column",
   gap: 8,
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "none",
+    },
+  },
 });
 export const navLink = style({
   fontSize: "2.0rem",
@@ -104,6 +119,98 @@ export const logo = style({
   fontWeight: 400,
   color: "#fff",
   textDecoration: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      fontSize: "2.4rem",
+    },
+  },
+});
+
+export const hamburgerMenu = style({
+  position: "fixed",
+  display: "none",
+  flexDirection: "column",
+  gap: 1,
+  border: "none",
+  backgroundColor: "transparent",
+  zIndex: 100,
+  ":hover": {
+    cursor: "pointer",
+  },
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "flex",
+      top: 36,
+      right: "clamp(40px, 10%, 240px)",
+    },
+  },
+});
+export const hamburgerMenuLine = style({
+  width: 28,
+  height: 8,
+  backgroundColor: "#fff",
+});
+
+export const mobileNav = style({
+  position: "fixed",
+  top: -10,
+  left: -10,
+  width: "100vw",
+  height: "100vh",
+  backgroundColor: "#130059",
+  padding: "32px 48px",
+  zIndex: 100,
+});
+export const mobileNavCrossBox = style({
+  display: "flex",
+  justifyContent: "flex-end",
+});
+export const mobileNavCross = style({
+  position: "relative",
+  display: "block",
+  width: "40px",
+  height: "40px",
+  backgroundColor: "transparent",
+  border: "none",
+  marginBottom: 24,
+  cursor: "pointer",
+  ":before": {
+    content: "",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: 2,
+    height: "40px",
+    backgroundColor: "#fff",
+    transform: "translate(-50%,-50%) rotate(45deg)",
+  },
+  ":after": {
+    content: "",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: 2,
+    height: "40px",
+    backgroundColor: "#fff",
+    transform: "translate(-50%,-50%) rotate(-45deg)",
+  },
+});
+export const mobileNavLinkBox = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-end",
+  gap: 24,
+});
+export const mobileNavLink = style({
+  fontSize: "2.8rem",
+  fontWeight: 300,
+  color: "#fff",
+  textDecoration: "none",
+  borderBottom: "solid 12px",
+  transition: "border-bottom 0.3s ease",
+  ":hover": {
+    borderBottomWidth: "1px",
+  },
 });
 
 export const rotate = keyframes({
@@ -127,6 +234,9 @@ export const circle = style({
       right: "-40px",
       width: 110,
       height: 110,
+    },
+    [breakpoints["sm"]]: {
+      display: "none",
     },
   },
 });
@@ -165,6 +275,9 @@ export const object1 = style({
       width: 280,
       height: 280,
     },
+    [breakpoints["sm"]]: {
+      display: "none",
+    },
   },
 });
 export const animateObject2 = keyframes({
@@ -191,6 +304,9 @@ export const object2 = style({
       right: "-6%",
       width: 360,
       height: 360,
+    },
+    [breakpoints["sm"]]: {
+      display: "none",
     },
   },
 });
@@ -220,6 +336,9 @@ export const object3 = style({
       width: 400,
       height: 400,
     },
+    [breakpoints["sm"]]: {
+      display: "none",
+    },
   },
 });
 
@@ -241,6 +360,9 @@ export const nameMainVisual = style({
     },
     [breakpoints["md"]]: {
       fontSize: "13rem",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "7.6rem",
     },
   },
 });
