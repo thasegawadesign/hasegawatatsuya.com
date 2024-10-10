@@ -7,6 +7,7 @@ import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
 import MobileNav from "@/components/mobileNav/mobileNav";
 import Nav from "@/components/nav/nav";
+import TextCircle from "@/components/textCircle/textCircle";
 import { header } from "@/styles/styles.css";
 import clsx from "clsx";
 import { useAtomValue } from "jotai";
@@ -22,6 +23,7 @@ export default function About() {
         <HamburgerMenu />
         {isOpenHamburgerMenu && <MobileNav />}
         <AudioButton />
+        <TextCircle />
       </header>
       <main>
         <h1>
