@@ -63,10 +63,12 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
+import { debounce } from "lodash";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { atom, useAtom } from "jotai";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -88,6 +90,7 @@ export default function Home() {
   const mobileNavAboutLinkRef = useRef(null);
   const mobileNavWorksLinkRef = useRef(null);
   const mobileNavContactLinkRef = useRef(null);
+  const mainRef = useRef(null);
   const audioButtonRef = useRef(null);
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -102,33 +105,34 @@ export default function Home() {
   );
   const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
-  const noscroll = useCallback((event: WheelEvent | TouchEvent) => {
-    event.preventDefault();
-  }, []);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   useEffect(() => {
+    const noscroll = (event: WheelEvent | TouchEvent) => {
+      event.preventDefault();
+    };
     if (isOpenHamburgerMenu) {
       document.addEventListener("wheel", noscroll, { passive: false });
       document.addEventListener("touchmove", noscroll, { passive: false });
       gsap.fromTo(
         mobileNavHomeLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
       gsap.fromTo(
         mobileNavAboutLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
       gsap.fromTo(
         mobileNavWorksLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
       gsap.fromTo(
         mobileNavContactLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
     } else {
       document.removeEventListener("wheel", noscroll);
@@ -139,7 +143,7 @@ export default function Home() {
       document.removeEventListener("wheel", noscroll);
       document.removeEventListener("touchmove", noscroll);
     };
-  }, [isOpenHamburgerMenu, noscroll]);
+  }, [isOpenHamburgerMenu]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -148,10 +152,12 @@ export default function Home() {
       nameMainVisualRef.current,
       {
         opacity: 0,
+        scale: 0.96,
         transformOrigin: "center",
       },
       {
         opacity: 1,
+        scale: 1,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
@@ -270,6 +276,32 @@ export default function Home() {
       }
     );
   }, []);
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const rotationAmount = scrollTop > lastScrollTop ? 0.4 : -0.2;
+      setLastScrollTop(scrollTop);
+
+      gsap.to(mainRef.current, {
+        rotation: rotationAmount,
+        duration: 0.2,
+        ease: "power2.out",
+      });
+
+      gsap.to(mainRef.current, {
+        rotation: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.2,
+      });
+    }, 10);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
 
   useEffect(() => {
     audio = new Audio("/kanatanouchuu.mp3");
@@ -441,7 +473,7 @@ export default function Home() {
             </svg>
           </div>
         </header>
-        <main>
+        <main ref={mainRef}>
           <h1
             className={clsx(cormorant.className, nameMainVisual)}
             ref={nameMainVisualRef}
