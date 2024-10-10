@@ -65,7 +65,6 @@ export const glass = style({
     [breakpoints["sm"]]: {
       marginTop: 8,
       marginBottom: 8,
-      backgroundColor: "rgba(255, 255, 255, .16)",
       ":before": {
         backdropFilter: "blur(80px)",
         WebkitBackdropFilter: "blur(80px)",
@@ -315,7 +314,8 @@ export const object1 = style({
       height: 280,
     },
     [breakpoints["sm"]]: {
-      display: "none",
+      top: "0%",
+      left: "32%",
     },
   },
 });
@@ -345,7 +345,8 @@ export const object2 = style({
       height: 360,
     },
     [breakpoints["sm"]]: {
-      display: "none",
+      top: "40%",
+      right: "-28%",
     },
   },
 });
@@ -376,7 +377,8 @@ export const object3 = style({
       height: 400,
     },
     [breakpoints["sm"]]: {
-      display: "none",
+      bottom: "-8%",
+      left: "-12%",
     },
   },
 });
