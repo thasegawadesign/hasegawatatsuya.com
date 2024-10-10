@@ -458,7 +458,7 @@ export const sectionHeading = style({
 });
 
 export const aboutSection = style({
-  paddingBottom: 160,
+  paddingBottom: 120,
 });
 
 export const description = style({
