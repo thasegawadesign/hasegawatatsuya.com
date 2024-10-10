@@ -627,6 +627,9 @@ export const profileMore = style({
     [breakpoints["2xl"]]: {
       fontSize: "1.4rem",
     },
+    [breakpoints["sm"]]: {
+      fontSize: "1.2rem",
+    },
   },
 });
 export const profileImage = style({
