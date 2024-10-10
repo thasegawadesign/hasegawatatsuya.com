@@ -112,23 +112,23 @@ export default function Home() {
       document.addEventListener("touchmove", noscroll, { passive: false });
       gsap.fromTo(
         mobileNavHomeLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
       gsap.fromTo(
         mobileNavAboutLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
       gsap.fromTo(
         mobileNavWorksLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
       gsap.fromTo(
         mobileNavContactLinkRef.current,
-        { opacity: 0, rotation: -20 },
-        { opacity: 1, rotation: 0, duration: 1.5 }
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
     } else {
       document.removeEventListener("wheel", noscroll);
