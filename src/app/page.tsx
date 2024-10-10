@@ -280,7 +280,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = debounce(() => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const rotationAmount = scrollTop > lastScrollTop ? 0.4 : -0.2;
+      const rotationAmount = scrollTop > lastScrollTop ? 0.4 : -0.28;
       setLastScrollTop(scrollTop);
 
       gsap.to(mainRef.current, {
