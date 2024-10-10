@@ -148,10 +148,12 @@ export default function Home() {
       nameMainVisualRef.current,
       {
         opacity: 0,
+        scale: 0.96,
         transformOrigin: "center",
       },
       {
         opacity: 1,
+        scale: 1,
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
