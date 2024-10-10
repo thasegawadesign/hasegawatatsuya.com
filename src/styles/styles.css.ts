@@ -458,7 +458,7 @@ export const sectionHeading = style({
 });
 
 export const aboutSection = style({
-  paddingBottom: 160,
+  paddingBottom: 120,
 });
 
 export const description = style({
@@ -468,12 +468,12 @@ export const description = style({
   lineHeight: "2.4em",
   letterSpacing: 2,
   textAlign: "center",
-  marginBottom: 120,
+  marginBottom: 60,
   padding: "0 20px",
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "1.8rem",
+      fontSize: "1.85rem",
     },
     [breakpoints["lg"]]: {
       fontSize: "1.7rem",
