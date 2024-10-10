@@ -805,7 +805,7 @@ export const emailLink = style({
     },
     [breakpoints["sm"]]: {
       gap: 16,
-      padding: "120px 8px",
+      padding: "200px 8px",
       fontSize: "1.4rem",
     },
   },
