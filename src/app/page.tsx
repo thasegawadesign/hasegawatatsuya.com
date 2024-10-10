@@ -66,7 +66,7 @@ import { IoMdMail } from "react-icons/io";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { atom, useAtom } from "jotai";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -102,9 +102,9 @@ export default function Home() {
   );
   const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
-  const noscroll = (event: WheelEvent | TouchEvent) => {
+  const noscroll = useCallback((event: WheelEvent | TouchEvent) => {
     event.preventDefault();
-  };
+  }, []);
 
   useEffect(() => {
     if (isOpenHamburgerMenu) {
@@ -139,7 +139,7 @@ export default function Home() {
       document.removeEventListener("wheel", noscroll);
       document.removeEventListener("touchmove", noscroll);
     };
-  }, [isOpenHamburgerMenu]);
+  }, [isOpenHamburgerMenu, noscroll]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
