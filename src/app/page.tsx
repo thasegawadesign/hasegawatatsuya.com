@@ -353,14 +353,17 @@ export default function Home() {
           <nav className={clsx(nav)}>
             <ul>
               <li>
-                <Link href={"/"} className={clsx(roboto.className, logo)}>
+                <Link href={"/#home"} className={clsx(roboto.className, logo)}>
                   TH
                 </Link>
               </li>
             </ul>
             <ul className={clsx(navLinkBox)}>
               <li>
-                <Link href={"/"} className={clsx(roboto.className, navLink)}>
+                <Link
+                  href={"/#home"}
+                  className={clsx(roboto.className, navLink)}
+                >
                   Home
                 </Link>
               </li>
@@ -411,7 +414,7 @@ export default function Home() {
               <ul className={clsx(mobileNavLinkBox)}>
                 <li>
                   <Link
-                    href={"/"}
+                    href={"/#home"}
                     ref={mobileNavHomeLinkRef}
                     className={clsx(roboto.className, mobileNavLink)}
                     onClick={() => setIsOpenHamburgerMenu(false)}
@@ -527,7 +530,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <Link
-                  href={"/"}
+                  href={"/#home"}
                   className={clsx(roboto.className, profileMore)}
                 >
                   More

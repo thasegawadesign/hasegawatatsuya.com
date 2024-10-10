@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={clsx(html, smoothScroll)}>
+    <html lang="ja" id="home" className={clsx(html, smoothScroll)}>
       <body className={clsx(notoSansJP.className, backgroundGradient)}>
         <Providers>{children}</Providers>
         {isProduction && <GoogleAnalytics gaId="G-KM86JXK42S" />}
