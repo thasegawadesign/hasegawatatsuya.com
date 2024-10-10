@@ -124,7 +124,7 @@ export const logo = style({
   textDecoration: "none",
   "@media": {
     [breakpoints["sm"]]: {
-      fontSize: "2.4rem",
+      fontSize: "3.0rem",
     },
   },
 });
@@ -143,14 +143,14 @@ export const hamburgerMenu = style({
   "@media": {
     [breakpoints["sm"]]: {
       display: "flex",
-      top: 36,
+      top: 40,
       right: "clamp(40px, 10%, 240px)",
     },
   },
 });
 export const hamburgerMenuLine = style({
-  width: 28,
-  height: 8,
+  width: 36,
+  height: 10,
   backgroundColor: "#fff",
 });
 
@@ -197,7 +197,7 @@ export const mobileNav = style({
   width: "calc(100vw + 10px)",
   height: "calc(100vh + 10px)",
   backgroundColor: "#130059",
-  padding: "32px 48px",
+  padding: "40px 48px",
   zIndex: 100,
 });
 export const mobileNavCrossBox = style({
