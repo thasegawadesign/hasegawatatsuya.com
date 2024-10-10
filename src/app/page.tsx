@@ -65,6 +65,7 @@ import { IoMdMail } from "react-icons/io";
 
 import { debounce } from "lodash";
 
+import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { atom, useAtom } from "jotai";
@@ -106,6 +107,7 @@ export default function Home() {
   const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
+  const onlyWidth = useWindowWidth();
 
   useEffect(() => {
     const noscroll = (event: WheelEvent | TouchEvent) => {
@@ -284,7 +286,7 @@ export default function Home() {
       setLastScrollTop(scrollTop);
 
       gsap.to(mainRef.current, {
-        rotation: rotationAmount,
+        rotation: onlyWidth > 640 ? rotationAmount : 0,
         duration: 0.2,
         ease: "power2.out",
       });
@@ -301,7 +303,7 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollTop]);
+  }, [lastScrollTop, onlyWidth]);
 
   useEffect(() => {
     audio = new Audio("/kanatanouchuu.mp3");
