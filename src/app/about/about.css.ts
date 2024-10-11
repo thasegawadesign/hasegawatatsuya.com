@@ -110,7 +110,7 @@ export const description = style({
   letterSpacing: 1,
   lineHeight: 1.6,
   textAlign: "center",
-  marginBottom: 240,
+  marginBottom: 300,
 });
 
 export const backToIndex = style({
