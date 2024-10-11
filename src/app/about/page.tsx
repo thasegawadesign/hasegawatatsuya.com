@@ -30,11 +30,15 @@ import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import { header } from "@/styles/styles.css";
+import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
+import gsap from "gsap";
 import { useAtomValue } from "jotai";
+import { debounce } from "lodash";
 import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import Tilt from "react-parallax-tilt";
@@ -55,7 +59,38 @@ const cormorant = Cormorant({
 });
 
 export default function About() {
+  const mainRef = useRef(null);
+
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
+
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const onlyWidth = useWindowWidth();
+
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const rotationAmount = scrollTop > lastScrollTop ? 0.4 : -0.28;
+      setLastScrollTop(scrollTop);
+
+      gsap.to(mainRef.current, {
+        rotation: onlyWidth > 640 ? rotationAmount : 0,
+        duration: 0.2,
+        ease: "power2.out",
+      });
+
+      gsap.to(mainRef.current, {
+        rotation: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.2,
+      });
+    }, 10);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop, onlyWidth]);
 
   return (
     <>
@@ -68,7 +103,7 @@ export default function About() {
             <AudioButton />
             <TextCircle />
           </header>
-          <main>
+          <main ref={mainRef}>
             <div className={clsx(aboutHero)}>
               <h1 className={nameBox}>
                 <span className={clsx(notoSerifJP.className, nameJa)}>
