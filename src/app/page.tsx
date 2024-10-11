@@ -2,39 +2,15 @@
 
 import {
   aboutSection,
-  animationPaused,
-  animationRunning,
-  audioButton,
-  circle,
-  circlePath,
-  circleSvg,
-  circleText,
   contactSection,
-  copyRight,
   description,
   desktopBr,
   emailIcon,
   emailLink,
-  footer,
-  glass,
-  hamburgerMenu,
-  hamburgerMenuLine,
   header,
   line,
-  logo,
   mobileBr,
-  mobileNav,
-  mobileNavCross,
-  mobileNavCrossBox,
-  mobileNavLink,
-  mobileNavLinkBox,
   nameMainVisual,
-  nav,
-  navLink,
-  navLinkBox,
-  object1,
-  object2,
-  object3,
   profileContent,
   profileImage,
   profileLinkBox,
@@ -65,11 +41,23 @@ import { IoMdMail } from "react-icons/io";
 
 import { debounce } from "lodash";
 
+import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
+import AudioButton from "@/components/audio/audioButton";
+import Footer from "@/components/footer/footer";
+import Glass from "@/components/glass/glass";
+import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
+import MobileNav from "@/components/mobileNav/mobileNav";
+import Nav from "@/components/nav/nav";
+import Object1 from "@/components/object/object1";
+import Object2 from "@/components/object/object2";
+import Object3 from "@/components/object/object3";
+import TextCircle from "@/components/textCircle/textCircle";
 import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { atom, useAtom } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { useAtomValue } from "jotai";
+import { useRouter } from "next/navigation";
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -81,18 +69,8 @@ const roboto = Roboto({
   weight: ["300", "400"],
 });
 
-const isOpenHamburgerMenuAtom = atom(false);
-const isPlayingAudioAtom = atom(false);
-
-let audio: HTMLAudioElement;
-
 export default function Home() {
-  const mobileNavHomeLinkRef = useRef(null);
-  const mobileNavAboutLinkRef = useRef(null);
-  const mobileNavWorksLinkRef = useRef(null);
-  const mobileNavContactLinkRef = useRef(null);
   const mainRef = useRef(null);
-  const audioButtonRef = useRef(null);
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -101,51 +79,26 @@ export default function Home() {
   const worksItem3Ref = useRef(null);
   const contactRef = useRef(null);
 
-  const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
-    isOpenHamburgerMenuAtom
-  );
-  const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
+  const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const onlyWidth = useWindowWidth();
 
-  useEffect(() => {
-    const noscroll = (event: WheelEvent | TouchEvent) => {
-      event.preventDefault();
-    };
-    if (isOpenHamburgerMenu) {
-      document.addEventListener("wheel", noscroll, { passive: false });
-      document.addEventListener("touchmove", noscroll, { passive: false });
-      gsap.fromTo(
-        mobileNavHomeLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-      gsap.fromTo(
-        mobileNavAboutLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-      gsap.fromTo(
-        mobileNavWorksLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-      gsap.fromTo(
-        mobileNavContactLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-    } else {
-      document.removeEventListener("wheel", noscroll);
-      document.removeEventListener("touchmove", noscroll);
-    }
+  const router = useRouter();
 
-    return () => {
-      document.removeEventListener("wheel", noscroll);
-      document.removeEventListener("touchmove", noscroll);
-    };
-  }, [isOpenHamburgerMenu]);
+  const handleTransition = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          router.push("/about");
+        });
+      } else {
+        router.push("/about");
+      }
+    },
+    [router]
+  );
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -305,178 +258,15 @@ export default function Home() {
     };
   }, [lastScrollTop, onlyWidth]);
 
-  useEffect(() => {
-    audio = new Audio("/kanatanouchuu.mp3");
-
-    const playAudio = () => {
-      audio.currentTime = 0;
-      audio.play();
-    };
-
-    audio.addEventListener("ended", playAudio);
-
-    return () => {
-      audio.removeEventListener("ended", playAudio);
-      audio.pause();
-      audio.currentTime = 0;
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleAudioButtonClick = () => {
-      if (isPlayingAudio) {
-        audio.pause();
-        setIsPlayingAudio(false);
-      } else {
-        audio.play();
-        setIsPlayingAudio(true);
-      }
-    };
-
-    const audioButton = audioButtonRef.current as unknown as HTMLButtonElement;
-
-    if (audioButton) {
-      audioButton.addEventListener("click", handleAudioButtonClick);
-    }
-
-    return () => {
-      if (audioButton) {
-        audioButton.removeEventListener("click", handleAudioButtonClick);
-      }
-    };
-  }, [isPlayingAudio, setIsPlayingAudio]);
-
   return (
     <>
-      <div className={clsx(glass)}>
+      <Glass>
         <header className={clsx(header)}>
-          <nav className={clsx(nav)}>
-            <ul>
-              <li>
-                <Link href={"/#home"} className={clsx(roboto.className, logo)}>
-                  TH
-                </Link>
-              </li>
-            </ul>
-            <ul className={clsx(navLinkBox)}>
-              <li>
-                <Link
-                  href={"/#home"}
-                  className={clsx(roboto.className, navLink)}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/#about"}
-                  className={clsx(roboto.className, navLink)}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/#works"}
-                  className={clsx(roboto.className, navLink)}
-                >
-                  Works
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/#contact"}
-                  className={clsx(roboto.className, navLink)}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <button
-            className={clsx(hamburgerMenu)}
-            onClick={() => setIsOpenHamburgerMenu(true)}
-          >
-            <div className={clsx(hamburgerMenuLine)}></div>
-            <div className={clsx(hamburgerMenuLine)}></div>
-            <div className={clsx(hamburgerMenuLine)}></div>
-          </button>
-          {isOpenHamburgerMenu && (
-            <nav className={clsx(mobileNav)}>
-              <ul className={clsx(mobileNavCrossBox)}>
-                <li>
-                  <button
-                    className={mobileNavCross}
-                    onClick={() => setIsOpenHamburgerMenu(false)}
-                  ></button>
-                </li>
-              </ul>
-              <ul className={clsx(mobileNavLinkBox)}>
-                <li>
-                  <Link
-                    href={"/#home"}
-                    ref={mobileNavHomeLinkRef}
-                    className={clsx(roboto.className, mobileNavLink)}
-                    onClick={() => setIsOpenHamburgerMenu(false)}
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/#about"}
-                    ref={mobileNavAboutLinkRef}
-                    className={clsx(roboto.className, mobileNavLink)}
-                    onClick={() => setIsOpenHamburgerMenu(false)}
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/#works"}
-                    ref={mobileNavWorksLinkRef}
-                    className={clsx(roboto.className, mobileNavLink)}
-                    onClick={() => setIsOpenHamburgerMenu(false)}
-                  >
-                    Works
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/#contact"}
-                    ref={mobileNavContactLinkRef}
-                    className={clsx(roboto.className, mobileNavLink)}
-                    onClick={() => setIsOpenHamburgerMenu(false)}
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          )}
-          <button
-            className={clsx(
-              audioButton,
-              isPlayingAudio ? animationRunning : animationPaused
-            )}
-            ref={audioButtonRef}
-          ></button>
-          <div className={clsx(circle)}>
-            <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
-              <path
-                d="M 0,50 a 50,50 0 1,1 0,1 z"
-                id="circle"
-                className={clsx(circlePath)}
-              />
-              <text className={clsx(roboto.className, circleText)}>
-                <textPath xlinkHref="#circle">
-                  Thank you for visting. Thank you for visting. Thank you for
-                  visting.
-                </textPath>
-              </text>
-            </svg>
-          </div>
+          <Nav />
+          <HamburgerMenu />
+          {isOpenHamburgerMenu && <MobileNav />}
+          <AudioButton />
+          <TextCircle />
         </header>
         <main ref={mainRef}>
           <h1
@@ -530,8 +320,9 @@ export default function Home() {
                   </Link>
                 </div>
                 <Link
-                  href={"/#home"}
+                  href={"/about"}
                   className={clsx(roboto.className, profileMore)}
+                  onClick={handleTransition}
                 >
                   More
                 </Link>
@@ -542,6 +333,7 @@ export default function Home() {
                 height={300}
                 alt="長谷川達也"
                 className={profileImage}
+                view-transition-name={"photo"}
               />
             </section>
           </section>
@@ -610,17 +402,11 @@ export default function Home() {
             </Link>
           </section>
         </main>
-        <footer className={clsx(footer)}>
-          <p>
-            <small className={clsx(roboto.className, copyRight)}>
-              © 2024 Tatsuya Hasegawa
-            </small>
-          </p>
-        </footer>
-      </div>
-      <div className={clsx(object1)}></div>
-      <div className={clsx(object2)}></div>
-      <div className={clsx(object3)}></div>
+        <Footer />
+      </Glass>
+      <Object1 />
+      <Object2 />
+      <Object3 />
     </>
   );
 }
