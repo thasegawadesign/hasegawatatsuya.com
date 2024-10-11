@@ -34,6 +34,9 @@ export const nameJa = style({
     [breakpoints["2xl"]]: {
       fontSize: "10.4rem",
     },
+    [breakpoints["xl"]]: {
+      fontSize: "8.4rem",
+    },
   },
 });
 export const nameEn = style({
@@ -43,6 +46,9 @@ export const nameEn = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "12.8rem",
+    },
+    [breakpoints["xl"]]: {
+      fontSize: "10.8rem",
     },
   },
 });
@@ -132,6 +138,9 @@ export const line = style({
         height: 40,
       },
     },
+    [breakpoints["xl"]]: {
+      marginBottom: 80,
+    },
   },
 });
 
@@ -146,12 +155,16 @@ export const occupation = style({
     [breakpoints["2xl"]]: {
       fontSize: "7.4rem",
     },
+    [breakpoints["xl"]]: {
+      fontSize: "6.0rem",
+      marginBottom: 120,
+    },
   },
 });
 
 export const description = style({
   fontSize: "2.4rem",
-  fontWeight: 100,
+  fontWeight: 200,
   color: "#fff",
   letterSpacing: 1,
   lineHeight: 1.6,
@@ -161,6 +174,10 @@ export const description = style({
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
     },
+    [breakpoints["xl"]]: {
+      fontSize: "2.0rem",
+      marginBottom: 120,
+    },
   },
 });
 
@@ -168,10 +185,15 @@ export const history = style({
   display: "flex",
   flexDirection: "column",
   gap: 16,
-  fontWeight: 100,
+  fontWeight: 200,
   color: "#fff",
   textAlign: "center",
   marginBottom: 280,
+  "@media": {
+    [breakpoints["xl"]]: {
+      marginBottom: 200,
+    },
+  },
 });
 export const year = style({
   fontSize: "2.0rem",
@@ -179,6 +201,9 @@ export const year = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "1.9rem",
+    },
+    [breakpoints["xl"]]: {
+      fontSize: "1.8rem",
     },
   },
 });
@@ -188,6 +213,9 @@ export const event = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
+    },
+    [breakpoints["xl"]]: {
+      fontSize: "2.0rem",
     },
   },
 });
