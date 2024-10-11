@@ -1,5 +1,6 @@
 "use client";
 
+import { aboutHero, nameBox, nameEn, nameJa } from "@/app/about/about.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioButton from "@/components/audio/audioButton";
 import Footer from "@/components/footer/footer";
@@ -11,10 +12,21 @@ import TextCircle from "@/components/textCircle/textCircle";
 import { header } from "@/styles/styles.css";
 import clsx from "clsx";
 import { useAtomValue } from "jotai";
+import { Cormorant, Noto_Serif_JP } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
+
+const notoSerifJP = Noto_Serif_JP({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const cormorant = Cormorant({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function About() {
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
@@ -29,17 +41,23 @@ export default function About() {
         <TextCircle />
       </header>
       <main>
-        <h1>
-          <span>ハセガワ タツヤ</span>
-          <span>Tatsuya Hasegawa</span>
-        </h1>
-        <Image
-          src={"/photo.webp"}
-          width={320}
-          height={480}
-          alt="長谷川達也"
-          view-transition-name={"photo"}
-        />
+        <div className={clsx(aboutHero)}>
+          <h1 className={nameBox}>
+            <span className={clsx(notoSerifJP.className, nameJa)}>
+              ハセガワ タツヤ
+            </span>
+            <span className={clsx(cormorant.className, nameEn)}>
+              Tatsuya Hasegawa
+            </span>
+          </h1>
+          <Image
+            src={"/photo.webp"}
+            width={320}
+            height={480}
+            alt="長谷川達也"
+            view-transition-name={"photo"}
+          />
+        </div>
         <Link href={"https://github.com/thasegawakaihatsu"} target="_brank">
           <FaGithub />
         </Link>
