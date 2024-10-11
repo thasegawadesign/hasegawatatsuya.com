@@ -1,6 +1,13 @@
 "use client";
 
-import { aboutHero, nameBox, nameEn, nameJa } from "@/app/about/about.css";
+import {
+  aboutHero,
+  nameBox,
+  nameEn,
+  nameJa,
+  photo,
+  photoBox,
+} from "@/app/about/about.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioButton from "@/components/audio/audioButton";
 import Footer from "@/components/footer/footer";
@@ -17,6 +24,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
+import Tilt from "react-parallax-tilt";
 
 const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
@@ -50,13 +58,18 @@ export default function About() {
               Tatsuya Hasegawa
             </span>
           </h1>
-          <Image
-            src={"/photo.webp"}
-            width={320}
-            height={480}
-            alt="長谷川達也"
-            view-transition-name={"photo"}
-          />
+          <Tilt reset={false}>
+            <div className={clsx(photoBox)}>
+              <Image
+                src={"/photo.webp"}
+                width={320}
+                height={480}
+                alt="長谷川達也"
+                className={photo}
+                view-transition-name={"photo"}
+              />
+            </div>
+          </Tilt>
         </div>
         <Link href={"https://github.com/thasegawakaihatsu"} target="_brank">
           <FaGithub />
