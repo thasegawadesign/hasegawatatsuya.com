@@ -25,6 +25,11 @@ export const nameBox = style({
   flexDirection: "column",
   alignItems: "center",
   pointerEvents: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      top: 160,
+    },
+  },
 });
 export const nameJa = style({
   fontSize: "12.8rem",
@@ -42,6 +47,10 @@ export const nameJa = style({
     },
     [breakpoints["md"]]: {
       fontSize: "6.0rem",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "4.0rem",
+      marginBottom: -16,
     },
   },
 });
@@ -61,6 +70,9 @@ export const nameEn = style({
     },
     [breakpoints["md"]]: {
       fontSize: "7.2rem",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "4.6rem",
     },
   },
 });
@@ -177,6 +189,9 @@ export const occupation = style({
     [breakpoints["md"]]: {
       fontSize: "4.0rem",
     },
+    [breakpoints["sm"]]: {
+      fontSize: "3.0rem",
+    },
   },
 });
 
@@ -202,7 +217,8 @@ export const description = style({
       padding: "0 80px",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.6rem",
+      fontSize: "1.7rem",
+      padding: "0 20px",
     },
   },
 });
