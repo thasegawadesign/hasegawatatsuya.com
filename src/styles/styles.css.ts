@@ -248,6 +248,10 @@ export const profileLinkIcon = style({
   width: 20,
   height: 20,
   color: "#fff",
+  transition: "scale 0.3s ease",
+  ":hover": {
+    scale: 1.2,
+  },
   "@media": {
     [breakpoints["2xl"]]: {
       width: 18,
