@@ -37,6 +37,9 @@ export const nameJa = style({
     [breakpoints["xl"]]: {
       fontSize: "8.4rem",
     },
+    [breakpoints["lg"]]: {
+      fontSize: "6.6rem",
+    },
   },
 });
 export const nameEn = style({
@@ -49,6 +52,9 @@ export const nameEn = style({
     },
     [breakpoints["xl"]]: {
       fontSize: "10.8rem",
+    },
+    [breakpoints["lg"]]: {
+      fontSize: "8.0rem",
     },
   },
 });
@@ -159,6 +165,9 @@ export const occupation = style({
       fontSize: "6.0rem",
       marginBottom: 120,
     },
+    [breakpoints["lg"]]: {
+      fontSize: "4.8rem",
+    },
   },
 });
 
@@ -170,6 +179,7 @@ export const description = style({
   lineHeight: 1.6,
   textAlign: "center",
   marginBottom: 160,
+  padding: "0 100px",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
