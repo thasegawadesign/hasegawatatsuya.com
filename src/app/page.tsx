@@ -56,7 +56,8 @@ import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -82,6 +83,22 @@ export default function Home() {
 
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const onlyWidth = useWindowWidth();
+
+  const router = useRouter();
+
+  const handleTransition = useCallback(
+    (event: MouseEvent) => {
+      event.preventDefault();
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          router.push("/about");
+        });
+      } else {
+        router.push("/about");
+      }
+    },
+    [router]
+  );
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -305,6 +322,7 @@ export default function Home() {
                 <Link
                   href={"/about"}
                   className={clsx(roboto.className, profileMore)}
+                  onClick={handleTransition}
                 >
                   More
                 </Link>
@@ -315,6 +333,7 @@ export default function Home() {
                 height={300}
                 alt="長谷川達也"
                 className={profileImage}
+                view-transition-name={"photo"}
               />
             </section>
           </section>

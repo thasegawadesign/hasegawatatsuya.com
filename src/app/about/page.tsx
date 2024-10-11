@@ -30,7 +30,13 @@ export default function About() {
           <span>ハセガワ タツヤ</span>
           <span>Tatsuya Hasegawa</span>
         </h1>
-        <Image src={"/photo.webp"} width={400} height={600} alt="長谷川達也" />
+        <Image
+          src={"/photo.webp"}
+          width={400}
+          height={600}
+          alt="長谷川達也"
+          view-transition-name={"photo"}
+        />
       </main>
       <Footer />
     </Glass>
