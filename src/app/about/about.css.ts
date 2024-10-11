@@ -96,9 +96,10 @@ export const line = style({
 });
 
 export const occupation = style({
-  fontSize: "6.8rem",
+  fontSize: "7.6rem",
   fontWeight: 300,
   color: "#fff",
+  lineHeight: 1.2,
   textAlign: "center",
   marginBottom: 160,
 });
