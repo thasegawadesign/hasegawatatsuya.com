@@ -40,6 +40,9 @@ export const nameJa = style({
     [breakpoints["lg"]]: {
       fontSize: "6.6rem",
     },
+    [breakpoints["md"]]: {
+      fontSize: "6.0rem",
+    },
   },
 });
 export const nameEn = style({
@@ -55,6 +58,9 @@ export const nameEn = style({
     },
     [breakpoints["lg"]]: {
       fontSize: "8.0rem",
+    },
+    [breakpoints["md"]]: {
+      fontSize: "7.2rem",
     },
   },
 });
@@ -168,6 +174,9 @@ export const occupation = style({
     [breakpoints["lg"]]: {
       fontSize: "4.8rem",
     },
+    [breakpoints["md"]]: {
+      fontSize: "4.0rem",
+    },
   },
 });
 
@@ -187,6 +196,13 @@ export const description = style({
     [breakpoints["xl"]]: {
       fontSize: "2.0rem",
       marginBottom: 120,
+    },
+    [breakpoints["md"]]: {
+      fontSize: "1.8rem",
+      padding: "0 80px",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "1.6rem",
     },
   },
 });
@@ -215,6 +231,9 @@ export const year = style({
     [breakpoints["xl"]]: {
       fontSize: "1.8rem",
     },
+    [breakpoints["md"]]: {
+      fontSize: "1.6rem",
+    },
   },
 });
 export const event = style({
@@ -226,6 +245,12 @@ export const event = style({
     },
     [breakpoints["xl"]]: {
       fontSize: "2.0rem",
+    },
+    [breakpoints["md"]]: {
+      fontSize: "1.8rem",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "1.6rem",
     },
   },
 });
