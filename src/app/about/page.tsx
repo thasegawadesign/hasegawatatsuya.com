@@ -43,7 +43,7 @@ const notoSerifJP = Noto_Serif_JP({
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["100", "300", "400"],
 });
 
 const cormorant = Cormorant({

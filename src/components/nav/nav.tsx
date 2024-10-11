@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["100", "300", "400"],
 });
 
 export default function Nav() {
