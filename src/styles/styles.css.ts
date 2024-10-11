@@ -120,7 +120,7 @@ export const description = style({
   fontSize: "2.0rem",
   fontWeight: 300,
   color: "#fff",
-  lineHeight: "2.4em",
+  lineHeight: 1.8,
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 60,
@@ -131,10 +131,10 @@ export const description = style({
       fontSize: "1.85rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "1.7rem",
+      fontSize: "2.0rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.5rem",
+      fontSize: "1.6rem",
       letterSpacing: 1.8,
     },
   },
