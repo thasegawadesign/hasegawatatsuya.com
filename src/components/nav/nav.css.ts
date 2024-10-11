@@ -21,7 +21,7 @@ export const nav = style({
 export const navLinkBox = style({
   display: "flex",
   flexDirection: "column",
-  gap: 8,
+  gap: 20,
   "@media": {
     [breakpoints["sm"]]: {
       display: "none",
@@ -33,7 +33,7 @@ export const navLink = style({
   fontWeight: 300,
   color: "#fff",
   textDecoration: "none",
-  borderBottom: "solid 12px",
+  borderBottom: "solid 20px",
   transition: "border-bottom 0.3s ease",
   ":hover": {
     borderBottomWidth: "1px",

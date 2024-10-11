@@ -129,7 +129,7 @@ export const backToIndex = style({
       top: 28,
       display: "block",
       width: "100%",
-      height: 12,
+      height: 20,
       backgroundColor: "#fff",
       transition: "height 0.3s ease",
     },
