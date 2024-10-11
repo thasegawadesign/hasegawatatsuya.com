@@ -30,6 +30,8 @@ export const object3 = style({
     [breakpoints["sm"]]: {
       bottom: "-8%",
       left: "-12%",
+      width: 360,
+      height: 360,
     },
   },
 });

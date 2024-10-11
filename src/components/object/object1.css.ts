@@ -28,6 +28,8 @@ export const object1 = style({
     [breakpoints["sm"]]: {
       top: "0%",
       left: "32%",
+      width: 200,
+      height: 200,
     },
   },
 });

@@ -29,6 +29,8 @@ export const object2 = style({
     [breakpoints["sm"]]: {
       top: "40%",
       right: "-28%",
+      width: 280,
+      height: 280,
     },
   },
 });
