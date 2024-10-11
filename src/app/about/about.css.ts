@@ -9,6 +9,11 @@ export const aboutHero = style({
   position: "relative",
   margin: "120px auto 40px",
   height: 480,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      height: 420,
+    },
+  },
 });
 export const nameBox = style({
   position: "absolute",
@@ -25,16 +30,31 @@ export const nameJa = style({
   fontSize: "12.8rem",
   color: "#fff",
   marginBottom: -36,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "10.4rem",
+    },
+  },
 });
 export const nameEn = style({
   fontSize: "14rem",
   fontWeight: 400,
   color: "#fff",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "12.8rem",
+    },
+  },
 });
 export const photoBox = style({
   position: "relative",
   width: "100%",
   height: "480px",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      height: 420,
+    },
+  },
 });
 export const animatePhoto = keyframes({
   "0%": { transform: "rotate(0)" },
@@ -53,6 +73,12 @@ export const photo = style({
   animationDuration: "8s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      width: 280,
+      height: 420,
+    },
+  },
 });
 
 export const profileLinkBox = style({
@@ -68,6 +94,12 @@ export const profileLinkIcon = style({
   transition: "scale 0.3s ease",
   ":hover": {
     scale: 1.3,
+  },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      width: 24,
+      height: 24,
+    },
   },
 });
 
@@ -93,6 +125,14 @@ export const line = style({
     animationTimingFunction: "ease",
     animationIterationCount: "infinite",
   },
+  "@media": {
+    [breakpoints["2xl"]]: {
+      height: 40,
+      ":before": {
+        height: 40,
+      },
+    },
+  },
 });
 
 export const occupation = style({
@@ -102,6 +142,11 @@ export const occupation = style({
   lineHeight: 1.2,
   textAlign: "center",
   marginBottom: 160,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "7.4rem",
+    },
+  },
 });
 
 export const description = style({
@@ -112,6 +157,11 @@ export const description = style({
   lineHeight: 1.6,
   textAlign: "center",
   marginBottom: 160,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "2.2rem",
+    },
+  },
 });
 
 export const history = style({
@@ -126,10 +176,20 @@ export const history = style({
 export const year = style({
   fontSize: "2.0rem",
   letterSpacing: 2,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "1.9rem",
+    },
+  },
 });
 export const event = style({
   fontSize: "2.4rem",
   letterSpacing: 1,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      fontSize: "2.2rem",
+    },
+  },
 });
 
 export const backToIndex = style({
