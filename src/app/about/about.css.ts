@@ -111,7 +111,25 @@ export const description = style({
   letterSpacing: 1,
   lineHeight: 1.6,
   textAlign: "center",
-  marginBottom: 300,
+  marginBottom: 160,
+});
+
+export const history = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+  fontWeight: 100,
+  color: "#fff",
+  textAlign: "center",
+  marginBottom: 280,
+});
+export const year = style({
+  fontSize: "2.0rem",
+  letterSpacing: 2,
+});
+export const event = style({
+  fontSize: "2.4rem",
+  letterSpacing: 1,
 });
 
 export const backToIndex = style({

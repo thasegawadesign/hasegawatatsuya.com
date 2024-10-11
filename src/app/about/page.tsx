@@ -4,7 +4,9 @@ import {
   aboutHero,
   backToIndex,
   description,
+  event,
   glassBox,
+  history,
   line,
   nameBox,
   nameEn,
@@ -14,6 +16,7 @@ import {
   photoBox,
   profileLinkBox,
   profileLinkIcon,
+  year,
 } from "@/app/about/about.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioButton from "@/components/audio/audioButton";
@@ -117,6 +120,16 @@ export default function About() {
               <br />
               Webの豊かな表現を身につけるために 日々学習に取り組んでいます。
             </p>
+            <dl className={clsx(history)}>
+              <div>
+                <dt className={clsx(year)}>2020-2024</dt>
+                <dd className={clsx(event)}>ECCコンピュータ専門学校</dd>
+              </div>
+              <div>
+                <dt className={clsx(year)}>2022-</dt>
+                <dd className={clsx(event)}>株式会社Univearth</dd>
+              </div>
+            </dl>
           </main>
           <Footer />
         </Glass>
