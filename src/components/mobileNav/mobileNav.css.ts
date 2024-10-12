@@ -69,6 +69,9 @@ export const mobileNavLink = style({
       backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
+    "&:hover": {
+      paddingBottom: 20,
+    },
     "&:hover::before": {
       height: 1,
     },
