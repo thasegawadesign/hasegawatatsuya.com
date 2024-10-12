@@ -1,4 +1,4 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 
 export const breakpoints = {
   "2xl": "screen and (max-width: 1535px)",
@@ -12,4 +12,8 @@ export const vars = createGlobalTheme(":root", {
   color: {
     text: "#faf1e8",
   },
+});
+
+globalStyle("::view-transition-group(*)", {
+  animationDuration: "0.8s",
 });

@@ -267,6 +267,7 @@ export const profileMore = style({
 });
 export const profileImage = style({
   marginLeft: -120,
+  contain: "paint",
   "@media": {
     [breakpoints["xl"]]: {
       marginLeft: -100,
