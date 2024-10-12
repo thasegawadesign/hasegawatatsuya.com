@@ -108,6 +108,7 @@ export const photo = style({
   left: 0,
   right: 0,
   margin: "0 auto",
+  contain: "paint",
   animationName: animatePhoto,
   animationDuration: "8s",
   animationTimingFunction: "linear",
