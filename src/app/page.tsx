@@ -108,7 +108,7 @@ export default function Home() {
       nameMainVisualRef.current,
       {
         opacity: 0,
-        scale: 0.96,
+        scale: 0.98,
         transformOrigin: "center",
       },
       {
@@ -116,13 +116,6 @@ export default function Home() {
         scale: 1,
         duration: 1.5,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: nameMainVisualRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
       }
     );
     gsap.fromTo(
