@@ -5,6 +5,11 @@ export const header = style({
   position: "relative",
 });
 
+export const main = style({
+  position: "relative",
+  zIndex: 50,
+});
+
 export const nameMainVisual = style({
   fontSize: "22rem",
   fontWeight: 500,

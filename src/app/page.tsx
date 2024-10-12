@@ -9,6 +9,7 @@ import {
   emailLink,
   header,
   line,
+  main,
   mobileBr,
   nameMainVisual,
   profileContent,
@@ -268,7 +269,7 @@ export default function Home() {
           <AudioButton />
           <TextCircle />
         </header>
-        <main ref={mainRef}>
+        <main ref={mainRef} className={clsx(main)}>
           <h1
             className={clsx(cormorant.className, nameMainVisual)}
             ref={nameMainVisualRef}

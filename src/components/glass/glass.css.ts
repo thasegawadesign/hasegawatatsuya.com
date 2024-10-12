@@ -41,3 +41,13 @@ export const glass = style({
     },
   },
 });
+
+export const noise = style({
+  position: "absolute",
+  top: 0,
+  borderRadius: 20,
+  width: "100%",
+  height: "100%",
+  opacity: 0.3,
+  zIndex: 0,
+});

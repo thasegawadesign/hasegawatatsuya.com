@@ -9,6 +9,11 @@ export const header = style({
   position: "relative",
 });
 
+export const main = style({
+  position: "relative",
+  zIndex: 50,
+});
+
 export const aboutHero = style({
   position: "relative",
   margin: "120px auto 40px",
