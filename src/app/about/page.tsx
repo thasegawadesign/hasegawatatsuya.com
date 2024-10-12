@@ -21,7 +21,7 @@ import {
   year,
 } from "@/app/about/page.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
-import AudioButton from "@/components/audio/audioButton";
+import AudioPlayer from "@/components/audio/audioPlayer";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -161,7 +161,7 @@ export default function About() {
             <Nav />
             <HamburgerMenu />
             {isOpenHamburgerMenu && <MobileNav />}
-            <AudioButton />
+            <AudioPlayer />
             <TextCircle />
           </header>
           <main ref={mainRef} className={clsx(main)}>
