@@ -182,6 +182,7 @@ export default function About() {
                     height={480}
                     alt="長谷川達也"
                     className={photo}
+                    priority
                     view-transition-name={"photo"}
                   />
                 </div>
