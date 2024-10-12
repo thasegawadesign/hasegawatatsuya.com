@@ -1,4 +1,4 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const header = style({
@@ -50,7 +50,7 @@ export const line = style({
     position: "absolute",
     width: 1,
     height: 60,
-    backgroundColor: "#fff",
+    backgroundColor: vars.color.text,
     animationName: animateLine,
     animationDuration: "1.6s",
     animationTimingFunction: "ease",
@@ -69,7 +69,7 @@ export const line = style({
 export const sectionHeading = style({
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 2,
   textAlign: "center",
   marginBottom: 40,
@@ -88,7 +88,7 @@ export const aboutSection = style({
 export const description = style({
   fontSize: "2.0rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   lineHeight: 1.8,
   letterSpacing: 2,
   textAlign: "center",
@@ -174,7 +174,7 @@ export const profileTextBox = style({
 export const profileName = style({
   fontSize: "2.4rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 2,
   "@media": {
     [breakpoints["2xl"]]: {
@@ -192,7 +192,7 @@ export const profileName = style({
 export const profileOccupation = style({
   fontSize: "1.4rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 2,
   "@media": {
     [breakpoints["2xl"]]: {
@@ -216,7 +216,7 @@ export const profileLinkBox = style({
 export const profileLinkIcon = style({
   width: 20,
   height: 20,
-  color: "#fff",
+  color: vars.color.text,
   transition: "scale 0.3s ease",
   ":hover": {
     scale: 1.2,
@@ -232,7 +232,7 @@ export const profileMore = style({
   position: "relative",
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 2,
   textDecoration: "none",
   ":before": {
@@ -243,7 +243,7 @@ export const profileMore = style({
     right: 0,
     width: "100%",
     height: "1px",
-    backgroundColor: "#fff",
+    backgroundColor: vars.color.text,
     transition: "width 0.3s ease",
   },
   selectors: {
@@ -331,7 +331,7 @@ export const worksTextBox = style({
 export const worksName = style({
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   "@media": {
     [breakpoints["sm"]]: {
       fontSize: "1.4rem",
@@ -341,7 +341,7 @@ export const worksName = style({
 export const worksCategory = style({
   fontSize: "1.2rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   "@media": {
     [breakpoints["sm"]]: {
       fontSize: "1.0rem",
@@ -387,7 +387,7 @@ export const worksUnderDevelopmentItem = style({
 export const worksUnderDevelopment = style({
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
 });
 
 export const contactSection = style({
@@ -412,7 +412,7 @@ export const emailLink = style({
   color: "#130059",
   letterSpacing: 2,
   textDecoration: "none",
-  backgroundColor: "#fff",
+  backgroundColor: vars.color.text,
   transition: "letter-spacing 0.3s linear",
   "@media": {
     [breakpoints["2xl"]]: {

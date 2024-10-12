@@ -1,4 +1,4 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const footer = style({
@@ -13,5 +13,5 @@ export const footer = style({
 export const copyRight = style({
   fontWeight: 300,
   letterSpacing: 2,
-  color: "#fff",
+  color: vars.color.text,
 });

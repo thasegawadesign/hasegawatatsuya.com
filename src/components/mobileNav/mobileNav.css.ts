@@ -1,3 +1,4 @@
+import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const mobileNav = style({
@@ -30,7 +31,7 @@ export const mobileNavCross = style({
     left: "50%",
     width: 2,
     height: "40px",
-    backgroundColor: "#fff",
+    backgroundColor: vars.color.text,
     transform: "translate(-50%,-50%) rotate(45deg)",
   },
   ":after": {
@@ -40,7 +41,7 @@ export const mobileNavCross = style({
     left: "50%",
     width: 2,
     height: "40px",
-    backgroundColor: "#fff",
+    backgroundColor: vars.color.text,
     transform: "translate(-50%,-50%) rotate(-45deg)",
   },
 });
@@ -53,7 +54,7 @@ export const mobileNavLinkBox = style({
 export const mobileNavLink = style({
   fontSize: "2.8rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   textDecoration: "none",
   borderBottom: "solid 12px",
   transition: "border-bottom 0.3s ease",
