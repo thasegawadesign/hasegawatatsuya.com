@@ -5,7 +5,7 @@ import {
   animationPaused,
   animationRunning,
   audioButton,
-} from "@/components/audio/audioButton.css";
+} from "@/components/audio/audioPlayer.css";
 import clsx from "clsx";
 import { useAtom } from "jotai";
 import { useCallback, useEffect, useRef, useState } from "react";
