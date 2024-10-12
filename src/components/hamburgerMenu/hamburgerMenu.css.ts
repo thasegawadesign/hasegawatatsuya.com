@@ -1,4 +1,4 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const hamburgerMenu = style({
@@ -23,5 +23,5 @@ export const hamburgerMenu = style({
 export const hamburgerMenuLine = style({
   width: 36,
   height: 10,
-  backgroundColor: "#fff",
+  backgroundColor: vars.color.text,
 });

@@ -1,4 +1,4 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const nav = style({
@@ -32,7 +32,7 @@ export const navLink = style({
   position: "relative",
   fontSize: "2.0rem",
   fontWeight: 100,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 1.2,
   textDecoration: "none",
   transition: "height 0.3s ease",
@@ -44,7 +44,7 @@ export const navLink = style({
       display: "block",
       width: "100%",
       height: 20,
-      backgroundColor: "#fff",
+      backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
     "&:hover::before": {
@@ -56,7 +56,7 @@ export const navLink = style({
 export const logo = style({
   fontSize: "3.6rem",
   fontWeight: 400,
-  color: "#fff",
+  color: vars.color.text,
   textDecoration: "none",
   "@media": {
     [breakpoints["sm"]]: {

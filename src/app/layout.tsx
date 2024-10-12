@@ -3,9 +3,9 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 
+import { backgroundGradient, html, smoothScroll } from "@/app/layout.css";
 import Providers from "@/components/providers";
 import "@/styles/reset.css";
-import { backgroundGradient, html, smoothScroll } from "@/styles/styles.css";
 
 export const metadata: Metadata = {
   title: "Tatsuya Hasegawa",

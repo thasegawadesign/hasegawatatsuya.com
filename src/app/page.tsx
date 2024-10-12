@@ -31,7 +31,7 @@ import {
   worksTextBox,
   worksUnderDevelopment,
   worksUnderDevelopmentItem,
-} from "@/styles/styles.css";
+} from "@/app/page.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";

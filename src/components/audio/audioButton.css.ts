@@ -1,4 +1,4 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const audioInteract = keyframes({
@@ -13,7 +13,7 @@ export const audioButton = style({
   width: "20px",
   height: "20px",
   background: "transparent",
-  border: "solid 2px #fff",
+  border: `solid 2px ${vars.color.text}`,
   borderRadius: "100%",
   zIndex: 100,
   animationName: audioInteract,

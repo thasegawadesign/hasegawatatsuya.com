@@ -1,4 +1,4 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const rotate = keyframes({
@@ -35,6 +35,6 @@ export const circlePath = style({
   fill: "none",
 });
 export const circleText = style({
-  fill: "#fff",
+  fill: vars.color.text,
   fontWeight: 300,
 });

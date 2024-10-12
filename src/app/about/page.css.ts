@@ -1,7 +1,11 @@
-import { breakpoints } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const glassBox = style({
+  position: "relative",
+});
+
+export const header = style({
   position: "relative",
 });
 
@@ -33,7 +37,7 @@ export const nameBox = style({
 });
 export const nameJa = style({
   fontSize: "12.8rem",
-  color: "#fff",
+  color: vars.color.text,
   marginBottom: -36,
   "@media": {
     [breakpoints["2xl"]]: {
@@ -57,7 +61,7 @@ export const nameJa = style({
 export const nameEn = style({
   fontSize: "14rem",
   fontWeight: 400,
-  color: "#fff",
+  color: vars.color.text,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "12.8rem",
@@ -120,7 +124,7 @@ export const profileLinkBox = style({
 export const profileLinkIcon = style({
   width: 28,
   height: 28,
-  color: "#fff",
+  color: vars.color.text,
   transition: "scale 0.3s ease",
   ":hover": {
     scale: 1.3,
@@ -149,7 +153,7 @@ export const line = style({
     position: "absolute",
     width: 1,
     height: 60,
-    backgroundColor: "#fff",
+    backgroundColor: vars.color.text,
     animationName: animateLine,
     animationDuration: "1.6s",
     animationTimingFunction: "ease",
@@ -171,7 +175,7 @@ export const line = style({
 export const occupation = style({
   fontSize: "7.6rem",
   fontWeight: 300,
-  color: "#fff",
+  color: vars.color.text,
   lineHeight: 1.2,
   textAlign: "center",
   marginBottom: 160,
@@ -198,7 +202,7 @@ export const occupation = style({
 export const description = style({
   fontSize: "2.4rem",
   fontWeight: 200,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 1,
   lineHeight: 1.6,
   textAlign: "center",
@@ -228,7 +232,7 @@ export const history = style({
   flexDirection: "column",
   gap: 16,
   fontWeight: 200,
-  color: "#fff",
+  color: vars.color.text,
   textAlign: "center",
   marginBottom: 280,
   "@media": {
@@ -277,7 +281,7 @@ export const backToIndex = style({
   left: "clamp(40px, 15.2%, 300px)",
   fontSize: "1.6rem",
   fontWeight: 100,
-  color: "#fff",
+  color: vars.color.text,
   letterSpacing: 0.8,
   textDecoration: "none",
   selectors: {
@@ -288,7 +292,7 @@ export const backToIndex = style({
       display: "block",
       width: "100%",
       height: 20,
-      backgroundColor: "#fff",
+      backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
     "&:hover::before": {
