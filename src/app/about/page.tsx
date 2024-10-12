@@ -9,6 +9,7 @@ import {
   header,
   history,
   line,
+  main,
   nameBox,
   nameEn,
   nameJa,
@@ -163,7 +164,7 @@ export default function About() {
             <AudioButton />
             <TextCircle />
           </header>
-          <main ref={mainRef}>
+          <main ref={mainRef} className={clsx(main)}>
             <div className={clsx(aboutHero)}>
               <h1 className={nameBox}>
                 <span className={clsx(notoSerifJP.className, nameJa)}>
