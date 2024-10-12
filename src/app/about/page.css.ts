@@ -5,6 +5,10 @@ export const glassBox = style({
   position: "relative",
 });
 
+export const header = style({
+  position: "relative",
+});
+
 export const aboutHero = style({
   position: "relative",
   margin: "120px auto 40px",

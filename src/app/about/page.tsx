@@ -6,6 +6,7 @@ import {
   description,
   event,
   glassBox,
+  header,
   history,
   line,
   nameBox,
@@ -17,7 +18,7 @@ import {
   profileLinkBox,
   profileLinkIcon,
   year,
-} from "@/app/about/about.css";
+} from "@/app/about/page.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioButton from "@/components/audio/audioButton";
 import Footer from "@/components/footer/footer";
@@ -29,7 +30,6 @@ import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
-import { header } from "@/styles/styles.css";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
