@@ -33,6 +33,7 @@ import TextCircle from "@/components/textCircle/textCircle";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
 import { debounce } from "lodash";
 import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
@@ -60,6 +61,9 @@ const cormorant = Cormorant({
 
 export default function About() {
   const mainRef = useRef(null);
+  const occupationRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const historyRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -91,6 +95,62 @@ export default function About() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollTop, onlyWidth]);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      occupationRef.current,
+      { opacity: 0, rotation: -2 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: occupationRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      descriptionRef.current,
+      { opacity: 0, rotation: -2 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: descriptionRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      historyRef.current,
+      { opacity: 0, rotation: -2 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: historyRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+  }, []);
 
   return (
     <>
@@ -141,12 +201,15 @@ export default function About() {
               </Link>
             </div>
             <div className={clsx(line)}></div>
-            <p className={clsx(cormorant.className, occupation)}>
+            <p
+              ref={occupationRef}
+              className={clsx(cormorant.className, occupation)}
+            >
               Web Design,
               <br />
               Frontend Development
             </p>
-            <p className={clsx(description)}>
+            <p ref={descriptionRef} className={clsx(description)}>
               2001年生まれ、ECCコンピュータ専門学校中退。
               <br />
               趣味は散歩とランニング。
@@ -155,7 +218,7 @@ export default function About() {
               <br />
               Webの豊かな表現を身につけるために 日々学習に取り組んでいます。
             </p>
-            <dl className={clsx(history)}>
+            <dl ref={historyRef} className={clsx(history)}>
               <div>
                 <dt className={clsx(year)}>2020-2024</dt>
                 <dd className={clsx(event)}>ECCコンピュータ専門学校</dd>
