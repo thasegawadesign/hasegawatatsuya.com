@@ -17,7 +17,7 @@ import { useEffect, useRef } from "react";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["100", "300", "400"],
 });
 
 export default function MobileNav() {
