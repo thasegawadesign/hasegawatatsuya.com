@@ -49,16 +49,28 @@ export const mobileNavLinkBox = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-end",
-  gap: 24,
+  gap: 16,
 });
 export const mobileNavLink = style({
-  fontSize: "2.8rem",
-  fontWeight: 300,
+  position: "relative",
+  fontSize: "3.6rem",
+  fontWeight: 100,
   color: vars.color.text,
   textDecoration: "none",
-  borderBottom: "solid 12px",
-  transition: "border-bottom 0.3s ease",
-  ":hover": {
-    borderBottomWidth: "1px",
+  transition: "height 0.3s ease",
+  selectors: {
+    "&::before": {
+      content: "",
+      position: "absolute",
+      top: 36,
+      display: "block",
+      width: "100%",
+      height: 20,
+      backgroundColor: vars.color.text,
+      transition: "height 0.3s ease",
+    },
+    "&:hover::before": {
+      height: 1,
+    },
   },
 });
