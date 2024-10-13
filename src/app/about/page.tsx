@@ -3,6 +3,7 @@
 import {
   aboutHero,
   backToIndex,
+  backToIndexBox,
   description,
   event,
   glassBox,
@@ -233,9 +234,11 @@ export default function About() {
           </main>
           <Footer />
         </Glass>
-        <Link href={"/"} className={(roboto.className, backToIndex)}>
-          Back to Index
-        </Link>
+        <div className={clsx(backToIndexBox)}>
+          <Link href={"/"} className={(roboto.className, backToIndex)}>
+            Back to Index
+          </Link>
+        </div>
       </div>
       <Object1 />
       <Object2 />
