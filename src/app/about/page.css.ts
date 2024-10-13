@@ -43,19 +43,24 @@ export const nameBox = style({
 export const nameJa = style({
   fontSize: "12.8rem",
   color: vars.color.text,
-  marginBottom: -36,
+  letterSpacing: -4.8,
+  marginBottom: -48,
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "10.4rem",
+      fontSize: "10.8rem",
+      marginBottom: -40,
     },
     [breakpoints["xl"]]: {
-      fontSize: "8.4rem",
+      fontSize: "8.8rem",
     },
     [breakpoints["lg"]]: {
       fontSize: "6.6rem",
+      letterSpacing: -3,
+      marginBottom: -28,
     },
     [breakpoints["md"]]: {
       fontSize: "6.0rem",
+      marginBottom: -20,
     },
     [breakpoints["sm"]]: {
       fontSize: "4.0rem",
@@ -64,9 +69,10 @@ export const nameJa = style({
   },
 });
 export const nameEn = style({
-  fontSize: "14rem",
+  fontSize: "15rem",
   fontWeight: 400,
   color: vars.color.text,
+  letterSpacing: -2,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "12.8rem",
@@ -81,7 +87,7 @@ export const nameEn = style({
       fontSize: "7.2rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "4.6rem",
+      fontSize: "5.0rem",
     },
   },
 });
@@ -183,6 +189,7 @@ export const occupation = style({
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.2,
+  letterSpacing: -2,
   textAlign: "center",
   marginBottom: 160,
   "@media": {
@@ -191,26 +198,28 @@ export const occupation = style({
     },
     [breakpoints["xl"]]: {
       fontSize: "6.0rem",
+      letterSpacing: -1.2,
       marginBottom: 120,
     },
     [breakpoints["lg"]]: {
-      fontSize: "4.8rem",
+      fontSize: "5.2rem",
     },
     [breakpoints["md"]]: {
-      fontSize: "4.0rem",
+      fontSize: "4.6rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "3.0rem",
+      fontSize: "3.6rem",
+      letterSpacing: -1,
     },
   },
 });
 
 export const description = style({
   fontSize: "2.4rem",
-  fontWeight: 200,
+  fontWeight: 300,
   color: vars.color.text,
   letterSpacing: 1,
-  lineHeight: 1.6,
+  lineHeight: 1.8,
   textAlign: "center",
   marginBottom: 160,
   padding: "0 100px",
@@ -223,7 +232,7 @@ export const description = style({
       marginBottom: 120,
     },
     [breakpoints["md"]]: {
-      fontSize: "1.8rem",
+      fontSize: "1.9rem",
       padding: "0 80px",
     },
     [breakpoints["sm"]]: {
@@ -237,7 +246,7 @@ export const history = style({
   display: "flex",
   flexDirection: "column",
   gap: 16,
-  fontWeight: 200,
+  fontWeight: 300,
   color: vars.color.text,
   textAlign: "center",
   marginBottom: 280,
@@ -273,10 +282,10 @@ export const event = style({
       fontSize: "2.0rem",
     },
     [breakpoints["md"]]: {
-      fontSize: "1.8rem",
+      fontSize: "1.9rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.6rem",
+      fontSize: "1.7rem",
     },
   },
 });
