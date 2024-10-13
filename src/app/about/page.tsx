@@ -219,7 +219,7 @@ export default function About() {
               <br />
               有酸素運動で汗を流すのが日課。
               <br />
-              Webの豊かな表現を身につけるために 日々学習に取り組んでいます。
+              Webの豊かな表現を身につけるために日々学習に取り組んでいます。
             </p>
             <dl ref={historyRef} className={clsx(history)}>
               <div>

@@ -91,25 +91,30 @@ export const aboutSection = style({
 });
 
 export const description = style({
-  fontSize: "2.0rem",
+  fontSize: "2.2rem",
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.8,
-  letterSpacing: 2,
+  letterSpacing: 1.5,
   textAlign: "center",
   marginBottom: 60,
   padding: "0 20px",
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "1.85rem",
+      fontSize: "2.0rem",
+    },
+    [breakpoints["xl"]]: {
+      fontSize: "1.9rem",
     },
     [breakpoints["lg"]]: {
       fontSize: "2.0rem",
     },
+    [breakpoints["md"]]: {
+      fontSize: "1.9rem",
+    },
     [breakpoints["sm"]]: {
-      fontSize: "1.6rem",
-      letterSpacing: 1.8,
+      fontSize: "1.7rem",
     },
   },
 });
@@ -177,20 +182,19 @@ export const profileTextBox = style({
   },
 });
 export const profileName = style({
-  fontSize: "2.4rem",
+  fontSize: "2.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 2,
+  letterSpacing: 1.5,
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "2.2rem",
+      fontSize: "2.4rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "1.8rem",
+      fontSize: "2.0rem",
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
-      letterSpacing: 1.8,
     },
   },
 });
@@ -201,10 +205,11 @@ export const profileOccupation = style({
   letterSpacing: 2,
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "1.2rem",
+      fontSize: "1.3rem",
     },
     [breakpoints["sm"]]: {
-      letterSpacing: 1.8,
+      fontSize: "1.2rem",
+      letterSpacing: 1.6,
     },
   },
 });
@@ -219,8 +224,8 @@ export const profileLinkBox = style({
   },
 });
 export const profileLinkIcon = style({
-  width: 20,
-  height: 20,
+  width: 24,
+  height: 24,
   color: vars.color.text,
   transition: "scale 0.3s ease",
   ":hover": {
@@ -228,8 +233,8 @@ export const profileLinkIcon = style({
   },
   "@media": {
     [breakpoints["2xl"]]: {
-      width: 18,
-      height: 18,
+      width: 20,
+      height: 20,
     },
   },
 });
