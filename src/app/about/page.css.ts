@@ -281,10 +281,18 @@ export const event = style({
   },
 });
 
-export const backToIndex = style({
+export const backToIndexBox = style({
   position: "absolute",
-  bottom: 100,
   left: "clamp(40px, 15.2%, 300px)",
+  bottom: 100,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      left: "clamp(40px, 10%, 240px)",
+    },
+  },
+});
+export const backToIndex = style({
+  position: "relative",
   fontSize: "1.6rem",
   fontWeight: 100,
   color: vars.color.text,
@@ -301,13 +309,11 @@ export const backToIndex = style({
       backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
+    "&:hover": {
+      paddingBottom: 20,
+    },
     "&:hover::before": {
       height: 1,
-    },
-  },
-  "@media": {
-    [breakpoints["2xl"]]: {
-      left: "clamp(40px, 10%, 240px)",
     },
   },
 });
