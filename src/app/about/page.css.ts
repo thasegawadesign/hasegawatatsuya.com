@@ -35,44 +35,54 @@ export const nameBox = style({
   alignItems: "center",
   pointerEvents: "none",
   "@media": {
+    [breakpoints["lg"]]: {
+      top: 140,
+    },
     [breakpoints["sm"]]: {
       top: 160,
     },
   },
 });
 export const nameJa = style({
-  fontSize: "12.8rem",
+  position: "relative",
+  fontSize: "12.4rem",
   color: vars.color.text,
   letterSpacing: -4.8,
-  marginBottom: -48,
+  marginBottom: -68,
+  zIndex: 50,
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "10.8rem",
-      marginBottom: -40,
+      fontSize: "10.6rem",
+      marginBottom: -60,
     },
     [breakpoints["xl"]]: {
-      fontSize: "8.8rem",
+      fontSize: "9.0rem",
+      marginBottom: -48,
     },
     [breakpoints["lg"]]: {
       fontSize: "6.6rem",
       letterSpacing: -3,
-      marginBottom: -28,
+      marginBottom: -40,
     },
     [breakpoints["md"]]: {
       fontSize: "6.0rem",
-      marginBottom: -20,
+      marginBottom: -32,
     },
     [breakpoints["sm"]]: {
       fontSize: "4.0rem",
-      marginBottom: -16,
+      marginBottom: -24,
     },
   },
 });
 export const nameEn = style({
+  position: "relative",
   fontSize: "15rem",
   fontWeight: 400,
-  color: vars.color.text,
-  letterSpacing: -2,
+  letterSpacing: -3.6,
+  background: `linear-gradient(180deg, #34312f 0%, #aea091 38%, ${vars.color.text} 50%)`,
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  zIndex: 0,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "12.8rem",
@@ -88,6 +98,7 @@ export const nameEn = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "5.0rem",
+      letterSpacing: -2.8,
     },
   },
 });
@@ -189,7 +200,7 @@ export const occupation = style({
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.2,
-  letterSpacing: -2,
+  letterSpacing: -2.8,
   textAlign: "center",
   marginBottom: 160,
   "@media": {
@@ -198,7 +209,7 @@ export const occupation = style({
     },
     [breakpoints["xl"]]: {
       fontSize: "6.0rem",
-      letterSpacing: -1.2,
+      letterSpacing: -1.6,
       marginBottom: 120,
     },
     [breakpoints["lg"]]: {
@@ -209,7 +220,7 @@ export const occupation = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "3.6rem",
-      letterSpacing: -1,
+      letterSpacing: -1.2,
     },
   },
 });
