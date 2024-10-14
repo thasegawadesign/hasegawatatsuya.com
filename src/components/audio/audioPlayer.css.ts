@@ -3,7 +3,7 @@ import { keyframes, style } from "@vanilla-extract/css";
 
 export const audioInteract = keyframes({
   "0%": { borderWidth: "2px" },
-  "50%": { borderWidth: "10px" },
+  "50%": { borderWidth: "8px" },
   "100%": { borderWidth: "2px" },
 });
 export const audioButton = style({

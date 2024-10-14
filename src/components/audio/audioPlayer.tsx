@@ -23,10 +23,11 @@ export default function AudioButton() {
       const audio = getAudioInstance();
 
       if (isPlayingAudio) {
-        audio?.pause();
+        audio.pause();
         setIsPlayingAudio(false);
       } else {
-        audio?.play();
+        audio.loop = true;
+        audio.play();
         setIsPlayingAudio(true);
       }
     };
