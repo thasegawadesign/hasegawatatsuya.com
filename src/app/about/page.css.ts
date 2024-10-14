@@ -79,6 +79,7 @@ export const nameEn = style({
   fontSize: "15rem",
   fontWeight: 400,
   letterSpacing: -3.6,
+  height: "1.2em",
   background: `linear-gradient(180deg, #34312f 0%, #aea091 38%, ${vars.color.text} 50%)`,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
