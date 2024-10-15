@@ -19,10 +19,10 @@ export const nameMainVisual = style({
   margin: "180px auto 160px",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "20rem",
+      fontSize: "21.2rem",
     },
     [breakpoints["xl"]]: {
-      fontSize: "18rem",
+      fontSize: "18.8rem",
     },
     [breakpoints["lg"]]: {
       fontSize: "15rem",
