@@ -4,13 +4,11 @@ import {
   aboutSection,
   contactSection,
   description,
-  desktopBr,
   emailIcon,
   emailLink,
   header,
   line,
   main,
-  mobileBr,
   nameMainVisual,
   profileContent,
   profileImage,
@@ -53,6 +51,7 @@ import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
+import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

@@ -118,21 +118,6 @@ export const description = style({
     },
   },
 });
-export const desktopBr = style({
-  "@media": {
-    [breakpoints["lg"]]: {
-      display: "none",
-    },
-  },
-});
-export const mobileBr = style({
-  display: "none",
-  "@media": {
-    [breakpoints["lg"]]: {
-      display: "block",
-    },
-  },
-});
 
 export const profileSection = style({
   display: "flex",
