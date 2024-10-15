@@ -1,4 +1,4 @@
-import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
   "2xl": "screen and (max-width: 1535px)",
@@ -16,4 +16,20 @@ export const vars = createGlobalTheme(":root", {
 
 globalStyle("::view-transition-group(*)", {
   animationDuration: "0.8s",
+});
+
+export const desktopBr = style({
+  "@media": {
+    [breakpoints["lg"]]: {
+      display: "none",
+    },
+  },
+});
+export const mobileBr = style({
+  display: "none",
+  "@media": {
+    [breakpoints["lg"]]: {
+      display: "block",
+    },
+  },
 });

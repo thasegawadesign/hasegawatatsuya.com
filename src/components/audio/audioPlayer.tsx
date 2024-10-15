@@ -46,6 +46,26 @@ export default function AudioButton() {
   useEffect(() => {
     const audio = getAudioInstance();
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        audio.pause();
+      } else {
+        if (isPlayingAudio) {
+          audio.play();
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [isPlayingAudio]);
+
+  useEffect(() => {
+    const audio = getAudioInstance();
+
     const playAudio = () => {
       if (!audio) return;
       audio.currentTime = 0;
@@ -57,7 +77,7 @@ export default function AudioButton() {
     return () => {
       audio.removeEventListener("ended", playAudio);
     };
-  }, []);
+  }, [isPlayingAudio]);
 
   return (
     <button
