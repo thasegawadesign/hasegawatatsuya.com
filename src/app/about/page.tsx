@@ -64,6 +64,7 @@ export default function About() {
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const historyRef = useRef(null);
+  const backToIndexRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -128,6 +129,23 @@ export default function About() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: historyRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      backToIndexRef.current,
+      { opacity: 0, rotation: -2 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: backToIndexRef.current,
           start: "top 80%",
           end: "top 50%",
           scrub: false,
@@ -222,7 +240,11 @@ export default function About() {
           <Footer />
         </Glass>
         <div className={clsx(backToIndexBox)}>
-          <Link href={"/"} className={(roboto.className, backToIndex)}>
+          <Link
+            ref={backToIndexRef}
+            href={"/"}
+            className={(roboto.className, backToIndex)}
+          >
             Back to Index
           </Link>
         </div>
