@@ -1,4 +1,5 @@
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body className={clsx(notoSansJP.className, backgroundGradient)}>
         <Providers>{children}</Providers>
         {isProduction && <GoogleAnalytics gaId="G-KM86JXK42S" />}
+        {isProduction && <VercelAnalytics />}
       </body>
     </html>
   );
