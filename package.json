@@ -13,20 +13,18 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.2.15",
-    "@react-hook/window-size": "^3.1.1",
     "@vanilla-extract/css": "^1.16.0",
     "clsx": "^2.1.1",
     "gsap": "^3.12.5",
     "jotai": "^2.10.0",
-    "lodash": "^4.17.21",
-    "next": "14.2.14",
+    "lenis": "^1.1.14",
+    "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
     "react-parallax-tilt": "^1.7.245"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

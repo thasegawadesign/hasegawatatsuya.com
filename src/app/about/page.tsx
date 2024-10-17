@@ -32,16 +32,15 @@ import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
-import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
-import { debounce } from "lodash";
+import Lenis from "lenis";
 import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import Tilt from "react-parallax-tilt";
@@ -62,41 +61,26 @@ const cormorant = Cormorant({
 });
 
 export default function About() {
-  const mainRef = useRef(null);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const historyRef = useRef(null);
+  const backToIndexRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const onlyWidth = useWindowWidth();
-
   useEffect(() => {
-    const handleScroll = debounce(() => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const rotationAmount = scrollTop > lastScrollTop ? 0.4 : -0.28;
-      setLastScrollTop(scrollTop);
-
-      gsap.to(mainRef.current, {
-        rotation: onlyWidth > 640 ? rotationAmount : 0,
-        duration: 0.2,
-        ease: "power2.out",
-      });
-
-      gsap.to(mainRef.current, {
-        rotation: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: 0.2,
-      });
-    }, 10);
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const lenis = new Lenis();
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     };
-  }, [lastScrollTop, onlyWidth]);
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -152,6 +136,23 @@ export default function About() {
         },
       }
     );
+    gsap.fromTo(
+      backToIndexRef.current,
+      { opacity: 0, rotation: -2 },
+      {
+        opacity: 1,
+        rotation: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: backToIndexRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          scrub: false,
+          once: true,
+        },
+      }
+    );
   }, []);
 
   return (
@@ -165,7 +166,7 @@ export default function About() {
             <AudioPlayer />
             <TextCircle />
           </header>
-          <main ref={mainRef} className={clsx(main)}>
+          <main className={clsx(main)}>
             <div className={clsx(aboutHero)}>
               <h1 className={nameBox}>
                 <span className={clsx(notoSerifJP.className, nameJa)}>
@@ -239,7 +240,11 @@ export default function About() {
           <Footer />
         </Glass>
         <div className={clsx(backToIndexBox)}>
-          <Link href={"/"} className={(roboto.className, backToIndex)}>
+          <Link
+            ref={backToIndexRef}
+            href={"/"}
+            className={(roboto.className, backToIndex)}
+          >
             Back to Index
           </Link>
         </div>

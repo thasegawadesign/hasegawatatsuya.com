@@ -38,8 +38,6 @@ import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
-import { debounce } from "lodash";
-
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
 import Footer from "@/components/footer/footer";
@@ -52,12 +50,12 @@ import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
-import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
+import Lenis from "lenis";
 import { useRouter } from "next/navigation";
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -70,7 +68,6 @@ const roboto = Roboto({
 });
 
 export default function Home() {
-  const mainRef = useRef(null);
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -80,9 +77,6 @@ export default function Home() {
   const contactRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
-
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const onlyWidth = useWindowWidth();
 
   const router = useRouter();
 
@@ -99,6 +93,20 @@ export default function Home() {
     },
     [router]
   );
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -225,32 +233,6 @@ export default function Home() {
     );
   }, []);
 
-  useEffect(() => {
-    const handleScroll = debounce(() => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const rotationAmount = scrollTop > lastScrollTop ? 0.4 : -0.28;
-      setLastScrollTop(scrollTop);
-
-      gsap.to(mainRef.current, {
-        rotation: onlyWidth > 640 ? rotationAmount : 0,
-        duration: 0.2,
-        ease: "power2.out",
-      });
-
-      gsap.to(mainRef.current, {
-        rotation: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        delay: 0.2,
-      });
-    }, 10);
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollTop, onlyWidth]);
-
   return (
     <>
       <Glass>
@@ -261,7 +243,7 @@ export default function Home() {
           <AudioPlayer />
           <TextCircle />
         </header>
-        <main ref={mainRef} className={clsx(main)}>
+        <main className={clsx(main)}>
           <h1
             className={clsx(cormorant.className, nameMainVisual)}
             ref={nameMainVisualRef}
