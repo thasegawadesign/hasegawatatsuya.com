@@ -36,6 +36,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
+import Lenis from "lenis";
 import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,6 +66,20 @@ export default function About() {
   const historyRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);

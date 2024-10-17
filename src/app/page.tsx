@@ -53,6 +53,7 @@ import { desktopBr, mobileBr } from "@/styles/styles.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
+import Lenis from "lenis";
 import { useRouter } from "next/navigation";
 import { MouseEvent, useCallback, useEffect, useRef } from "react";
 
@@ -92,6 +93,20 @@ export default function Home() {
     },
     [router]
   );
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
