@@ -4,7 +4,7 @@ import clsx from "clsx";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 
-import { backgroundGradient, html, smoothScroll } from "@/app/layout.css";
+import { backgroundGradient, html } from "@/app/layout.css";
 import Providers from "@/components/providers";
 import "@/styles/reset.css";
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" id="home" className={clsx(html, smoothScroll)}>
+    <html lang="ja" id="home" className={clsx(html)}>
       <body className={clsx(notoSansJP.className, backgroundGradient)}>
         <Providers>{children}</Providers>
         {isProduction && <GoogleAnalytics gaId="G-KM86JXK42S" />}

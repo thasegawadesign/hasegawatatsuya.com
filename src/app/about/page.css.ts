@@ -264,7 +264,7 @@ export const history = style({
   marginBottom: 280,
   "@media": {
     [breakpoints["xl"]]: {
-      marginBottom: 200,
+      marginBottom: 240,
     },
   },
 });
@@ -314,7 +314,7 @@ export const backToIndexBox = style({
 });
 export const backToIndex = style({
   position: "relative",
-  fontSize: "1.6rem",
+  fontSize: "2.0rem",
   fontWeight: 100,
   color: vars.color.text,
   letterSpacing: 0.8,
@@ -323,15 +323,15 @@ export const backToIndex = style({
     "&::before": {
       content: "",
       position: "absolute",
-      top: 20,
+      top: 24,
       display: "block",
       width: "100%",
-      height: 20,
+      height: 24,
       backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
     "&:hover": {
-      paddingBottom: 20,
+      paddingBottom: 24,
     },
     "&:hover::before": {
       height: 1,
