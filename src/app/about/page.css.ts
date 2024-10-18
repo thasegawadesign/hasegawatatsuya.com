@@ -78,7 +78,7 @@ export const nameEn = style({
   position: "relative",
   fontSize: "15rem",
   fontWeight: 400,
-  letterSpacing: -3.6,
+  letterSpacing: -6.4,
   height: "1.2em",
   background: `linear-gradient(180deg, #34312f 0%, #aea091 38%, ${vars.color.text} 50%)`,
   WebkitBackgroundClip: "text",
@@ -90,12 +90,15 @@ export const nameEn = style({
     },
     [breakpoints["xl"]]: {
       fontSize: "10.8rem",
+      letterSpacing: -5.0,
     },
     [breakpoints["lg"]]: {
       fontSize: "8.0rem",
+      letterSpacing: -3.6,
     },
     [breakpoints["md"]]: {
       fontSize: "7.2rem",
+      letterSpacing: -3.2,
     },
     [breakpoints["sm"]]: {
       fontSize: "5.0rem",
