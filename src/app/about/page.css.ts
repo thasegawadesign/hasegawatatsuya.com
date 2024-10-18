@@ -264,7 +264,7 @@ export const history = style({
   marginBottom: 280,
   "@media": {
     [breakpoints["xl"]]: {
-      marginBottom: 200,
+      marginBottom: 240,
     },
   },
 });
