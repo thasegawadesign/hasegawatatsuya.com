@@ -32,6 +32,7 @@ import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
+import { email, github } from "@/constants/constants";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -191,16 +192,10 @@ export default function About() {
               </Tilt>
             </div>
             <div className={clsx(profileLinkBox)}>
-              <Link
-                href={"https://github.com/thasegawakaihatsu"}
-                target="_brank"
-              >
+              <Link href={github} target="_brank">
                 <FaGithub className={clsx(profileLinkIcon)} />
               </Link>
-              <Link
-                href={"mailto:hasegawatatsuya206@gmail.com"}
-                target="_brank"
-              >
+              <Link href={`mailto:${email}`} target="_brank">
                 <IoMdMail className={clsx(profileLinkIcon)} />
               </Link>
             </div>
