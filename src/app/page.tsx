@@ -117,6 +117,7 @@ export default function Home() {
         .getAttribute("href")
         ?.substring(1);
       scrollToElement(targetId || "");
+      router.push(`/${targetId}`);
     };
 
     const anchorLinks = document.querySelectorAll('a[href^="/#"]');
@@ -132,7 +133,7 @@ export default function Home() {
         (link as HTMLAnchorElement).removeEventListener("click", handleClick);
       });
     };
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
