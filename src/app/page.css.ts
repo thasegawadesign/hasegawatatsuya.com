@@ -409,7 +409,6 @@ export const emailLink = style({
   letterSpacing: 2,
   textDecoration: "none",
   backgroundColor: vars.color.text,
-  transition: "letter-spacing 0.3s linear",
   "@media": {
     [breakpoints["2xl"]]: {
       maxWidth: 1000,
@@ -451,6 +450,44 @@ export const emailIcon = style({
     [breakpoints["sm"]]: {
       width: 20,
       height: 20,
+    },
+  },
+});
+export const emailTextBox = style({
+  position: "relative",
+  width: "37ch",
+  height: 40,
+  overflowY: "hidden",
+  transformStyle: "preserve-3d",
+  backfaceVisibility: "hidden",
+});
+export const emailTextRotateTop = style({
+  position: "absolute",
+  top: 0,
+  bottom: 0,
+  display: "flex",
+  placeItems: "center",
+  transformOrigin: "top",
+  transform: "rotateX(0deg)",
+  transition: "transform 0.3s linear",
+  selectors: {
+    [`${emailLink}:hover &`]: {
+      transform: "rotateX(-90deg) translateZ(-60px)",
+    },
+  },
+});
+export const emailTextRotateFront = style({
+  position: "absolute",
+  top: 0,
+  bottom: 0,
+  display: "flex",
+  placeItems: "center",
+  transformOrigin: "bottom",
+  transform: "rotateX(-90deg)",
+  transition: "transform 0.3s linear",
+  selectors: {
+    [`${emailLink}:hover &`]: {
+      transform: "rotateX(0deg)",
     },
   },
 });

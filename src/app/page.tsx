@@ -6,6 +6,9 @@ import {
   description,
   emailIcon,
   emailLink,
+  emailTextBox,
+  emailTextRotateFront,
+  emailTextRotateTop,
   header,
   line,
   main,
@@ -393,9 +396,14 @@ export default function Home() {
               ref={contactRef}
             >
               <IoMdMail className={clsx(emailIcon)} />
-              <span className={clsx(roboto.className)}>
-                hasegawatatsuya206@gmail.com
-              </span>
+              <div className={clsx(emailTextBox)}>
+                <span className={clsx(roboto.className, emailTextRotateTop)}>
+                  hasegawatatsuya206@gmail.com
+                </span>
+                <span className={clsx(roboto.className, emailTextRotateFront)}>
+                  hasegawatatsuya206@gmail.com
+                </span>
+              </div>
             </Link>
           </section>
         </main>
