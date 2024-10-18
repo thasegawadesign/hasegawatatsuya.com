@@ -349,7 +349,7 @@ export const worksLink = style({
   height: 160,
   transition: "scale 0.3s ease",
   ":hover": {
-    scale: 1.02,
+    scale: 1.05,
   },
   "@media": {
     [breakpoints["2xl"]]: {
