@@ -55,7 +55,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
 import Lenis from "lenis";
 import { useRouter } from "next/navigation";
-import { MouseEvent, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -81,7 +81,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleTransition = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       event.preventDefault();
       if (document.startViewTransition) {
         document.startViewTransition(() => {
@@ -101,10 +101,32 @@ export default function Home() {
       requestAnimationFrame(raf);
     };
 
+    const scrollToElement = (elementId: string) => {
+      const targetElement = document.querySelector(elementId) as HTMLElement;
+      if (targetElement) {
+        lenis.scrollTo(targetElement);
+      }
+    };
+    const handleClick = (event: MouseEvent) => {
+      event.preventDefault();
+      const targetId = (event.currentTarget as HTMLAnchorElement)
+        .getAttribute("href")
+        ?.substring(1);
+      scrollToElement(targetId || "");
+    };
+
+    const anchorLinks = document.querySelectorAll('a[href^="/#"]');
+    anchorLinks.forEach((link) => {
+      (link as HTMLAnchorElement).addEventListener("click", handleClick);
+    });
+
     requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
+      anchorLinks.forEach((link) => {
+        (link as HTMLAnchorElement).removeEventListener("click", handleClick);
+      });
     };
   }, []);
 
