@@ -483,11 +483,11 @@ export const emailTextRotateFront = style({
   display: "flex",
   placeItems: "center",
   transformOrigin: "bottom",
-  transform: "rotateX(-90deg)",
+  transform: "rotateX(-90deg) translateZ(60px)",
   transition: "transform 0.3s linear",
   selectors: {
     [`${emailLink}:hover &`]: {
-      transform: "rotateX(0deg)",
+      transform: "rotateX(0deg) translateZ(0px)",
     },
   },
 });
