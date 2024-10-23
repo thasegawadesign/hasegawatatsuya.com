@@ -204,7 +204,7 @@ export const occupation = style({
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.2,
-  letterSpacing: -2.8,
+  letterSpacing: -4.0,
   textAlign: "center",
   marginBottom: 160,
   "@media": {
@@ -213,7 +213,7 @@ export const occupation = style({
     },
     [breakpoints["xl"]]: {
       fontSize: "6.0rem",
-      letterSpacing: -1.6,
+      letterSpacing: -2.0,
       marginBottom: 120,
     },
     [breakpoints["lg"]]: {
@@ -224,7 +224,7 @@ export const occupation = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "3.6rem",
-      letterSpacing: -1.2,
+      letterSpacing: -1.4,
     },
   },
 });

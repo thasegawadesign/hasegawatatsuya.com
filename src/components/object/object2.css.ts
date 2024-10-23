@@ -21,6 +21,10 @@ export const object2 = style({
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
   "@media": {
+    [breakpoints["lg"]]: {
+      width: 420,
+      height: 420,
+    },
     [breakpoints["md"]]: {
       right: "-6%",
       width: 360,
@@ -29,8 +33,8 @@ export const object2 = style({
     [breakpoints["sm"]]: {
       top: "40%",
       right: "-28%",
-      width: 280,
-      height: 280,
+      width: 240,
+      height: 240,
     },
   },
 });
