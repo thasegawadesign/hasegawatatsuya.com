@@ -33,11 +33,11 @@ import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import { email, github } from "@/constants/constants";
+import useSmoothScroll from "@/hooks/useSmoothScroll";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
-import Lenis from "lenis";
 import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -69,19 +69,7 @@ export default function About() {
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
-  useEffect(() => {
-    const lenis = new Lenis();
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+  useSmoothScroll();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
