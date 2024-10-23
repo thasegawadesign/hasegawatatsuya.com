@@ -41,6 +41,4 @@ export default function useSmoothScroll() {
       });
     };
   }, [router]);
-
-  return null;
 }
