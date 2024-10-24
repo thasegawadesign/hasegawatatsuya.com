@@ -38,4 +38,5 @@ export const circlePath = style({
 export const circleText = style({
   fill: vars.color.text,
   fontWeight: 300,
+  letterSpacing: 1.8,
 });
