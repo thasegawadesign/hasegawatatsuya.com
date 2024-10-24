@@ -253,7 +253,7 @@ export default function Home() {
               <br className={clsx(desktopBr)} />
               実際に触れることのできる
               <br className={mobileBr} />
-              フロントエンドを実装することに
+              UIをデザイン・実装することに
               <br className={mobileBr} />
               喜びを感じます。
               <br className={mobileBr} />

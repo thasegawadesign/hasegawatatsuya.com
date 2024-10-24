@@ -197,15 +197,11 @@ export default function About() {
               Frontend Development
             </p>
             <p ref={descriptionRef} className={clsx(description)}>
-              2001年生まれ、
+              2001年生まれ、 ECCコンピュータ専門学校中退。
               <br />
-              ECCコンピュータ専門学校中退。
+              趣味は散歩とランニング。有酸素運動で汗を流すのが日課。
               <br />
-              趣味は散歩とランニングで
-              <br />
-              有酸素運動で汗を流すのが日課。
-              <br />
-              Webの豊かな表現を身につけるために
+              視覚的に魅力のあるWebユーザーインターフェースを実現するため
               <br />
               日々学習に取り組んでいます。
             </p>
