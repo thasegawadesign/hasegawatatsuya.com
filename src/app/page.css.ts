@@ -370,21 +370,6 @@ export const worksIcon = style({
   width: "100%",
   height: "100%",
 });
-export const worksUnderDevelopmentItem = style({
-  display: "grid",
-  placeItems: "center",
-  backgroundColor: "rgba(255, 255, 255, .12)",
-  "@media": {
-    [breakpoints["sm"]]: {
-      display: "none",
-    },
-  },
-});
-export const worksUnderDevelopment = style({
-  fontSize: "1.6rem",
-  fontWeight: 300,
-  color: vars.color.text,
-});
 
 export const contactSection = style({
   paddingBottom: 120,
