@@ -31,8 +31,6 @@ import {
   worksName,
   worksSection,
   worksTextBox,
-  worksUnderDevelopment,
-  worksUnderDevelopmentItem,
 } from "@/app/page.css";
 import clsx from "clsx";
 import { Cormorant, Roboto } from "next/font/google";
@@ -303,6 +301,25 @@ export default function Home() {
             <div className={clsx(worksBox)}>
               <section className={clsx(worksItem)} ref={worksItem1Ref}>
                 <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>フルール</h3>
+                  <p className={clsx(worksCategory)}>Webサイト</p>
+                </div>
+                <Link
+                  href={"https://fleur-website.vercel.app"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/fleur-icon.png"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="フルール"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem2Ref}>
+                <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                   <p className={clsx(worksCategory)}>Webアプリ</p>
                 </div>
@@ -320,7 +337,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem2Ref}>
+              <section className={clsx(worksItem)} ref={worksItem3Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
                   <p className={clsx(worksCategory)}>Webアプリ</p>
@@ -338,14 +355,6 @@ export default function Home() {
                     alt="ステメモのアイコン"
                   />
                 </Link>
-              </section>
-              <section
-                className={clsx(worksUnderDevelopmentItem)}
-                ref={worksItem3Ref}
-              >
-                <h3 className={clsx(roboto.className, worksUnderDevelopment)}>
-                  under development...
-                </h3>
               </section>
             </div>
           </section>
