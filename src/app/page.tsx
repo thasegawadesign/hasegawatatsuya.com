@@ -321,7 +321,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem2Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
-                  <p className={clsx(worksCategory)}>Webアプリ</p>
+                  <p className={clsx(worksCategory)}>Webアプリケーション</p>
                 </div>
                 <Link
                   href={"https://question-and-answer.gojiyuuniotorikudasai.com"}
@@ -340,7 +340,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem3Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
-                  <p className={clsx(worksCategory)}>Webアプリ</p>
+                  <p className={clsx(worksCategory)}>Webアプリケーション</p>
                 </div>
                 <Link
                   href={"https://sutememo.gojiyuuniotorikudasai.com"}
