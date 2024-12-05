@@ -251,7 +251,7 @@ export default function Home() {
               <br className={clsx(desktopBr)} />
               実際に触れることのできる
               <br className={mobileBr} />
-              Web作品をデザイン・実装することに
+              Web制作物をデザイン・実装することに
               <br className={mobileBr} />
               喜びを感じます。
               <br className={mobileBr} />
