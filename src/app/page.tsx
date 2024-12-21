@@ -267,7 +267,7 @@ export default function Home() {
                     Tatsuya Hasegawa
                   </h3>
                   <p className={clsx(roboto.className, profileOccupation)}>
-                    Creative Developer
+                    Web Designer
                   </p>
                 </div>
                 <div className={clsx(profileLinkBox)}>
