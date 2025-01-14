@@ -12,7 +12,7 @@ export const circle = style({
   width: 130,
   height: 130,
   fontSize: "12px",
-  zIndex: 50,
+  zIndex: 100,
   animationName: rotate,
   animationDuration: "20s",
   animationTimingFunction: "linear",
