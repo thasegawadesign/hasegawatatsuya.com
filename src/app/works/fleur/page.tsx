@@ -219,6 +219,7 @@ export default function Fleur() {
               height={1520}
               alt="架空マカロン専門店フルール"
               className={clsx(fleurImage)}
+              priority
             />
             <hgroup ref={hgroupRef} className={clsx(fleurHeadingHgroup)}>
               <h1 className={clsx(cormorant.className, fleurHeadingEn)}>
