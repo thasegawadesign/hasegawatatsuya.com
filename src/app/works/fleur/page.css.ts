@@ -85,3 +85,28 @@ export const worksRole = style({
     },
   },
 });
+export const worksLink = style({
+  position: "relative",
+  fontWeight: 100,
+  color: vars.color.text,
+  textDecoration: "none",
+  transition: "height 0.3s ease",
+  selectors: {
+    "&::before": {
+      content: "",
+      position: "absolute",
+      top: "clamp(2.2rem, 2.0vw, 3.2rem)",
+      display: "block",
+      width: "100%",
+      height: 20,
+      backgroundColor: vars.color.text,
+      transition: "height 0.3s ease",
+    },
+    "&:hover": {
+      paddingBottom: 20,
+    },
+    "&:hover::before": {
+      height: 1,
+    },
+  },
+});

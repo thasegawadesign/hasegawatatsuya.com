@@ -10,6 +10,7 @@ import {
   worksDl,
   worksDlItem,
   worksDt,
+  worksLink,
   worksRole,
 } from "@/app/works/fleur/page.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
@@ -115,6 +116,7 @@ export default function Fleur() {
                 <Link
                   href={"https://fleur-website.vercel.app/"}
                   target="_blank"
+                  className={clsx(worksLink)}
                 >
                   https://fleur-website.vercel.app/
                 </Link>
