@@ -304,11 +304,7 @@ export default function Home() {
                   <h3 className={clsx(worksName)}>フルール</h3>
                   <p className={clsx(worksCategory)}>Webサイト</p>
                 </div>
-                <Link
-                  href={"https://fleur-website.vercel.app"}
-                  className={clsx(worksLink)}
-                  target="_blank"
-                >
+                <Link href={"/works/fleur"} className={clsx(worksLink)}>
                   <Image
                     src={"/icons/fleur-icon.png"}
                     width={160}
