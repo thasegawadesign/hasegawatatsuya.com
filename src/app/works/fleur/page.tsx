@@ -34,7 +34,7 @@ export default function Fleur() {
           <Image
             src={"/fleur-website-screen-shot.webp"}
             width={2640}
-            height={1500}
+            height={1520}
             alt="架空マカロン専門店フルール"
           />
           <hgroup>
