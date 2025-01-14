@@ -9,6 +9,11 @@ export const fleurImage = style({
 export const fleurHeadingHgroup = style({
   marginTop: "-4vw",
   marginLeft: "6vw",
+  "@media": {
+    [breakpoints["md"]]: {
+      marginTop: "16vw",
+    },
+  },
 });
 export const fleurHeadingEn = style({
   fontSize: "clamp(5.6rem, 12vw, 20rem)",
@@ -26,8 +31,13 @@ export const worksDl = style({
   flexDirection: "column",
   gap: "5.2vw",
   marginTop: "7.6vw",
-  marginBottom: "7.2vw",
+  marginBottom: "16.4vw",
   padding: "0 4.8vw",
+  "@media": {
+    [breakpoints["md"]]: {
+      marginTop: "11.2vw",
+    },
+  },
 });
 export const worksDlItem = style({
   display: "flex",
