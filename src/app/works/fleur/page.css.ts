@@ -1,4 +1,4 @@
-import { vars } from "@/styles/styles.css";
+import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const fleurImage = style({
@@ -27,6 +27,7 @@ export const worksDl = style({
   gap: "5.2vw",
   marginTop: "7.6vw",
   marginBottom: "7.2vw",
+  padding: "0 4.8vw",
 });
 export const worksDlItem = style({
   display: "flex",
@@ -39,16 +40,38 @@ export const worksDt = style({
   color: vars.color.text,
   width: 48,
   textAlign: "right",
+  "@media": {
+    [breakpoints["xl"]]: {
+      width: 36,
+    },
+  },
 });
 export const worksDd = style({
   fontSize: "clamp(1.6rem, 1.4vw, 2.4rem)",
   fontWeight: 300,
   color: vars.color.text,
   width: "48vw",
+  lineHeight: "1.6em",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      width: "60vw",
+    },
+    [breakpoints["xl"]]: {
+      width: "72vw",
+    },
+  },
 });
 export const worksRole = style({
   fontSize: "clamp(2.8rem, 3vw, 4.8rem)",
   color: vars.color.text,
   lineHeight: "1.28em",
   width: "48vw",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      width: "60vw",
+    },
+    [breakpoints["xl"]]: {
+      width: "72vw",
+    },
+  },
 });
