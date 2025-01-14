@@ -34,8 +34,14 @@ export const worksDl = style({
   marginBottom: "16.4vw",
   padding: "0 4.8vw",
   "@media": {
+    [breakpoints["xl"]]: {
+      marginBottom: "20vw",
+    },
     [breakpoints["md"]]: {
       marginTop: "11.2vw",
+    },
+    [breakpoints["sm"]]: {
+      marginBottom: "42.8vw",
     },
   },
 });
@@ -95,7 +101,7 @@ export const worksLink = style({
     "&::before": {
       content: "",
       position: "absolute",
-      top: "clamp(2.2rem, 2.0vw, 3.2rem)",
+      top: "clamp(2.12rem, 1.88vw, 3rem)",
       display: "block",
       width: "100%",
       height: 20,
@@ -104,6 +110,43 @@ export const worksLink = style({
     },
     "&:hover": {
       paddingBottom: 20,
+    },
+    "&:hover::before": {
+      height: 1,
+    },
+  },
+});
+
+export const backToIndexBox = style({
+  position: "absolute",
+  left: "clamp(40px, 15.2%, 300px)",
+  bottom: 100,
+  "@media": {
+    [breakpoints["2xl"]]: {
+      left: "clamp(40px, 10%, 240px)",
+    },
+  },
+});
+export const backToIndex = style({
+  position: "relative",
+  fontSize: "2.0rem",
+  fontWeight: 100,
+  color: vars.color.text,
+  letterSpacing: 0.8,
+  textDecoration: "none",
+  selectors: {
+    "&::before": {
+      content: "",
+      position: "absolute",
+      top: 24,
+      display: "block",
+      width: "100%",
+      height: 24,
+      backgroundColor: vars.color.text,
+      transition: "height 0.3s ease",
+    },
+    "&:hover": {
+      paddingBottom: 24,
     },
     "&:hover::before": {
       height: 1,
