@@ -14,9 +14,20 @@ import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import clsx from "clsx";
 import { useAtomValue } from "jotai";
+import { Cormorant } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { fleurImage } from "./page.css";
+import {
+  fleurHeadingEn,
+  fleurHeadingHgroup,
+  fleurHeadingJa,
+  fleurImage,
+} from "./page.css";
+
+const cormorant = Cormorant({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+});
 
 export default function Fleur() {
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
@@ -39,9 +50,9 @@ export default function Fleur() {
             alt="架空マカロン専門店フルール"
             className={clsx(fleurImage)}
           />
-          <hgroup>
-            <h1>Fleur</h1>
-            <p>
+          <hgroup className={clsx(fleurHeadingHgroup)}>
+            <h1 className={clsx(cormorant.className, fleurHeadingEn)}>Fleur</h1>
+            <p className={clsx(fleurHeadingJa)}>
               架空マカロン専門店
               <br />
               フルール
