@@ -16,6 +16,7 @@ import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
+import { fleurImage } from "./page.css";
 
 export default function Fleur() {
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
@@ -36,6 +37,7 @@ export default function Fleur() {
             width={2640}
             height={1520}
             alt="架空マカロン専門店フルール"
+            className={clsx(fleurImage)}
           />
           <hgroup>
             <h1>Fleur</h1>
