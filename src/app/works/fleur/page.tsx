@@ -1,9 +1,8 @@
 "use client";
 
-import { backToIndex, glassBox } from "@/app/about/page.css";
+import { glassBox } from "@/app/about/page.css";
 import { header, main } from "@/app/page.css";
 import {
-  backToIndexBox,
   fleurHeadingEn,
   fleurHeadingHgroup,
   fleurHeadingJa,
@@ -17,6 +16,7 @@ import {
 } from "@/app/works/fleur/page.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
+import BackToIndex from "@/components/backToIndex/backToIndex";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -54,7 +54,6 @@ export default function Fleur() {
   const worksRoleRef = useRef(null);
   const worksTimeRef = useRef(null);
   const worksURLRef = useRef(null);
-  const backToIndexRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -182,23 +181,6 @@ export default function Fleur() {
         },
       }
     );
-    gsap.fromTo(
-      backToIndexRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: backToIndexRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
   }, []);
 
   return (
@@ -288,15 +270,7 @@ export default function Fleur() {
           </main>
           <Footer />
         </Glass>
-        <div className={clsx(backToIndexBox)}>
-          <Link
-            ref={backToIndexRef}
-            href={"/"}
-            className={(roboto.className, backToIndex)}
-          >
-            Back to Index
-          </Link>
-        </div>
+        <BackToIndex />
       </div>
       <Object1 />
       <Object2 />
