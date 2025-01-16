@@ -33,6 +33,7 @@ import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import { email, github } from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -67,57 +68,9 @@ export default function About() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      occupationRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: occupationRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      descriptionRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      historyRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: historyRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
+    gsapAnimation.inview(occupationRef);
+    gsapAnimation.inview(descriptionRef);
+    gsapAnimation.inview(historyRef);
   }, []);
 
   return (

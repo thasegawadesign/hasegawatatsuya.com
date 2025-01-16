@@ -4,6 +4,7 @@ import {
   backToIndex,
   backToIndexBox,
 } from "@/components/backToIndex/backToIndex.css";
+import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,23 +23,7 @@ export default function BackToIndex() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      backToIndexRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: backToIndexRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
+    gsapAnimation.inview(backToIndexRef);
   }, []);
 
   return (
