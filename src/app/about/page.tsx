@@ -2,8 +2,6 @@
 
 import {
   aboutHero,
-  backToIndex,
-  backToIndexBox,
   description,
   event,
   glassBox,
@@ -23,6 +21,7 @@ import {
 } from "@/app/about/page.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
+import BackToIndex from "@/components/backToIndex/backToIndex";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -34,11 +33,12 @@ import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import { email, github } from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
-import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
+import { Cormorant, Noto_Serif_JP } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -51,11 +51,6 @@ const notoSerifJP = Noto_Serif_JP({
   weight: "400",
 });
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["100", "300", "400"],
-});
-
 const cormorant = Cormorant({
   subsets: ["latin"],
   weight: ["300", "400"],
@@ -65,7 +60,6 @@ export default function About() {
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const historyRef = useRef(null);
-  const backToIndexRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -74,74 +68,9 @@ export default function About() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      occupationRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: occupationRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      descriptionRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      historyRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: historyRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      backToIndexRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: backToIndexRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
+    gsapAnimation.inview(occupationRef);
+    gsapAnimation.inview(descriptionRef);
+    gsapAnimation.inview(historyRef);
   }, []);
 
   return (
@@ -218,15 +147,7 @@ export default function About() {
           </main>
           <Footer />
         </Glass>
-        <div className={clsx(backToIndexBox)}>
-          <Link
-            ref={backToIndexRef}
-            href={"/"}
-            className={(roboto.className, backToIndex)}
-          >
-            Back to Index
-          </Link>
-        </div>
+        <BackToIndex />
       </div>
       <Object1 />
       <Object2 />

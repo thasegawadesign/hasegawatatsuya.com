@@ -1,9 +1,8 @@
 "use client";
 
-import { backToIndex, glassBox } from "@/app/about/page.css";
+import { glassBox } from "@/app/about/page.css";
 import { header, main } from "@/app/page.css";
 import {
-  backToIndexBox,
   fleurHeadingEn,
   fleurHeadingHgroup,
   fleurHeadingJa,
@@ -17,6 +16,7 @@ import {
 } from "@/app/works/fleur/page.css";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
+import BackToIndex from "@/components/backToIndex/backToIndex";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -27,6 +27,7 @@ import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -54,7 +55,6 @@ export default function Fleur() {
   const worksRoleRef = useRef(null);
   const worksTimeRef = useRef(null);
   const worksURLRef = useRef(null);
-  const backToIndexRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -63,142 +63,13 @@ export default function Fleur() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      hgroupRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: hgroupRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksWhatRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksWhatRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksWhyRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksWhyRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksHowRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksHowRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksRoleRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksRoleRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksTimeRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksTimeRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksURLRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksURLRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      backToIndexRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: backToIndexRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
+    gsapAnimation.inview(hgroupRef);
+    gsapAnimation.inview(worksWhatRef);
+    gsapAnimation.inview(worksWhyRef);
+    gsapAnimation.inview(worksHowRef);
+    gsapAnimation.inview(worksRoleRef);
+    gsapAnimation.inview(worksTimeRef);
+    gsapAnimation.inview(worksURLRef);
   }, []);
 
   return (
@@ -288,15 +159,7 @@ export default function Fleur() {
           </main>
           <Footer />
         </Glass>
-        <div className={clsx(backToIndexBox)}>
-          <Link
-            ref={backToIndexRef}
-            href={"/"}
-            className={(roboto.className, backToIndex)}
-          >
-            Back to Index
-          </Link>
-        </div>
+        <BackToIndex />
       </div>
       <Object1 />
       <Object2 />

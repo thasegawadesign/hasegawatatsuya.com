@@ -53,6 +53,7 @@ import TextCircle from "@/components/textCircle/textCircle";
 import { email, github } from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
+import { gsapAnimation } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
@@ -101,126 +102,13 @@ export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      nameMainVisualRef.current,
-      {
-        opacity: 0,
-        scale: 0.98,
-        transformOrigin: "center",
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 1.5,
-        ease: "power2.out",
-      }
-    );
-    gsap.fromTo(
-      descriptionRef.current,
-      { opacity: 0, rotation: -2 },
-      {
-        opacity: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      profileRef.current,
-      { opacity: 0, scale: 0.9, rotation: -2 },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: "top 50%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksItem1Ref.current,
-      { opacity: 0, scale: 0.9, rotation: -2 },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksItem1Ref.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksItem2Ref.current,
-      { opacity: 0, scale: 0.9, rotation: -2 },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksItem2Ref.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      worksItem3Ref.current,
-      { opacity: 0, scale: 0.9, rotation: -2 },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: worksItem3Ref.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
-    gsap.fromTo(
-      contactRef.current,
-      { opacity: 0, scale: 0.96 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 1.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: contactRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          scrub: false,
-          once: true,
-        },
-      }
-    );
+    gsapAnimation.scale(nameMainVisualRef);
+    gsapAnimation.inview(descriptionRef);
+    gsapAnimation.inview(profileRef);
+    gsapAnimation.inview(worksItem1Ref);
+    gsapAnimation.inview(worksItem2Ref);
+    gsapAnimation.inview(worksItem3Ref);
+    gsapAnimation.inview(contactRef);
   }, []);
 
   return (
