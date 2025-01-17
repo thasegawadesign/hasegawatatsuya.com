@@ -106,7 +106,7 @@ export default function Fleur() {
               <div ref={worksWhatRef} className={clsx(worksDlItem)}>
                 <dt className={clsx(roboto.className, worksDt)}>What :</dt>
                 <dd className={clsx(worksDd)}>
-                  見た目が美しいスイーツが好きで、健康志向な人のためのマカロン専門店。
+                  見た目が美しいスイーツが好きで、健康志向な人のための架空マカロン専門店フルールのブランドサイト。
                 </dd>
               </div>
               <div ref={worksWhyRef} className={clsx(worksDlItem)}>
