@@ -63,7 +63,7 @@ export default function PlayList2025() {
                   ポップなイラストを背景に敷くことでリラックス感を表現しました。
                 </>
               }
-              role={<>Visual Design,</>}
+              role="Visual Design"
               time="制作にかかった時間は、素材選定とビジュアルデザイン作業の合計で40分でした。"
             />
           </main>
