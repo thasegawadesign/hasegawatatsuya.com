@@ -5,6 +5,8 @@ export const worksImage = style({
   width: "100%",
   height: "auto",
   borderRadius: "20px 20px 0 0",
+  userSelect: "none",
+  pointerEvents: "none",
 });
 
 export const hgroupHeading = style({
