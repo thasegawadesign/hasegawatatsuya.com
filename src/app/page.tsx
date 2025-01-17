@@ -77,6 +77,7 @@ export default function Home() {
   const worksItem1Ref = useRef(null);
   const worksItem2Ref = useRef(null);
   const worksItem3Ref = useRef(null);
+  const worksItem4Ref = useRef(null);
   const contactRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
@@ -108,6 +109,7 @@ export default function Home() {
     gsapAnimation.inview(worksItem1Ref);
     gsapAnimation.inview(worksItem2Ref);
     gsapAnimation.inview(worksItem3Ref);
+    gsapAnimation.inview(worksItem4Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -237,6 +239,21 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="ステメモのアイコン"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem4Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>プレイリスト2025</h3>
+                  <p className={clsx(worksCategory)}>グラフィック</p>
+                </div>
+                <Link href={"/works/playlist2025"} className={clsx(worksLink)}>
+                  <Image
+                    src={"/icons/playlist2025-icon.png"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="プレイリスト2025"
                   />
                 </Link>
               </section>

@@ -2,6 +2,7 @@ import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const worksImage = style({
+  width: "100%",
   height: "auto",
   borderRadius: "20px 20px 0 0",
 });
@@ -18,11 +19,14 @@ export const hgroupHeading = style({
 export const hgroupHeadingEn = style({
   fontSize: "clamp(5.6rem, 12vw, 20rem)",
   color: vars.color.text,
+  paddingRight: "6vw",
+  lineHeight: "0.8em",
 });
 export const hgroupHeadingJa = style({
   fontSize: "clamp(1.6rem, 1.6vw, 2.8rem)",
   fontWeight: 300,
   color: vars.color.text,
+  marginTop: "5.6vw",
   marginLeft: "3.6vw",
 });
 
@@ -30,20 +34,9 @@ export const worksDl = style({
   display: "flex",
   flexDirection: "column",
   gap: "5.2vw",
-  marginTop: "7.6vw",
-  marginBottom: "16.4vw",
+  marginTop: "clamp(80px, 11.2vw, 180px)",
+  marginBottom: "clamp(240px, 15.6vw, 280px)",
   padding: "0 4.8vw",
-  "@media": {
-    [breakpoints["xl"]]: {
-      marginBottom: "20vw",
-    },
-    [breakpoints["md"]]: {
-      marginTop: "11.2vw",
-    },
-    [breakpoints["sm"]]: {
-      marginBottom: "42.8vw",
-    },
-  },
 });
 export const worksDlItem = style({
   display: "flex",

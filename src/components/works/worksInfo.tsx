@@ -52,6 +52,7 @@ export default function WorksInfo(props: Props) {
     nameJa,
     nameEn,
     nameJaNode,
+    nameEnNode,
     imageSrc,
     imageWidth,
     imageHeight,
@@ -94,7 +95,9 @@ export default function WorksInfo(props: Props) {
         priority
       />
       <hgroup ref={hgroupRef} className={clsx(hgroupHeading)}>
-        <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>{nameEn}</h1>
+        <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>
+          {nameEnNode ? nameEnNode : nameEn}
+        </h1>
         <p className={clsx(hgroupHeadingJa)}>{nameJaNode}</p>
       </hgroup>
       <dl className={clsx(worksDl)}>
@@ -119,14 +122,16 @@ export default function WorksInfo(props: Props) {
           <dd className={clsx(worksDd)}>{time}</dd>
         </div>
         <div ref={worksURLRef} className={clsx(worksDlItem)}>
-          <dt className={clsx(roboto.className, worksDt)}>URL :</dt>
-          <dd className={clsx(worksDd)}>
-            {URL && (
-              <Link href={URL} target="_blank" className={clsx(worksLink)}>
-                {URL}
-              </Link>
-            )}
-          </dd>
+          {URL && (
+            <>
+              <dt className={clsx(roboto.className, worksDt)}>URL :</dt>
+              <dd className={clsx(worksDd)}>
+                <Link href={URL} target="_blank" className={clsx(worksLink)}>
+                  {URL}
+                </Link>
+              </dd>
+            </>
+          )}
         </div>
       </dl>
     </>
