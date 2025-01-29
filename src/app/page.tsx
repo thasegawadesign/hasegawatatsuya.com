@@ -78,6 +78,7 @@ export default function Home() {
   const worksItem2Ref = useRef(null);
   const worksItem3Ref = useRef(null);
   const worksItem4Ref = useRef(null);
+  const worksItem5Ref = useRef(null);
   const contactRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
@@ -110,6 +111,7 @@ export default function Home() {
     gsapAnimation.inview(worksItem2Ref);
     gsapAnimation.inview(worksItem3Ref);
     gsapAnimation.inview(worksItem4Ref);
+    gsapAnimation.inview(worksItem5Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -254,6 +256,21 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="プレイリスト2025"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem5Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>ビジュアル - スポーティー</h3>
+                  <p className={clsx(worksCategory)}>レタッチ</p>
+                </div>
+                <Link href={"/works/sporty"} className={clsx(worksLink)}>
+                  <Image
+                    src={"/icons/sporty-icon.png"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="ビジュアル - スポーティー"
                   />
                 </Link>
               </section>

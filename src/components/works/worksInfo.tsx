@@ -98,7 +98,9 @@ export default function WorksInfo(props: Props) {
         <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>
           {nameEnNode ? nameEnNode : nameEn}
         </h1>
-        <p className={clsx(hgroupHeadingJa)}>{nameJaNode}</p>
+        <p className={clsx(hgroupHeadingJa)}>
+          {nameJaNode ? nameJaNode : nameJa}
+        </p>
       </hgroup>
       <dl className={clsx(worksDl)}>
         <div ref={worksWhatRef} className={clsx(worksDlItem)}>
