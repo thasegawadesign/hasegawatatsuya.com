@@ -77,6 +77,7 @@ export const worksRole = style({
   fontSize: "clamp(2.8rem, 3vw, 4.8rem)",
   color: vars.color.text,
   lineHeight: "1.28em",
+  letterSpacing: "-0.006em",
   width: "48vw",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -100,12 +101,12 @@ export const worksLink = style({
       top: "clamp(2.12rem, 1.88vw, 3rem)",
       display: "block",
       width: "100%",
-      height: 20,
+      height: 24,
       backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
     "&:hover": {
-      paddingBottom: 20,
+      paddingBottom: 24,
     },
     "&:hover::before": {
       height: 1,
