@@ -42,7 +42,7 @@ export default function Sporty() {
               imageSrc="/sporty.webp"
               imageWidth={1920}
               imageHeight={1080}
-              what="力強さのあるスポーティーなビジュアル"
+              what="力強さのあるスポーティなビジュアル"
               why={<>レタッチの練習で制作しました。</>}
               how={
                 <>
