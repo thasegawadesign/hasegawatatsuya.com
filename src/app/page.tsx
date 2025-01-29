@@ -261,7 +261,7 @@ export default function Home() {
               </section>
               <section className={clsx(worksItem)} ref={worksItem5Ref}>
                 <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>ビジュアル - スポーティー</h3>
+                  <h3 className={clsx(worksName)}>ビジュアル - スポーティ</h3>
                   <p className={clsx(worksCategory)}>レタッチ</p>
                 </div>
                 <Link href={"/works/sporty"} className={clsx(worksLink)}>
@@ -270,7 +270,7 @@ export default function Home() {
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
-                    alt="ビジュアル - スポーティー"
+                    alt="ビジュアル - スポーティ"
                   />
                 </Link>
               </section>
