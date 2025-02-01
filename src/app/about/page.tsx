@@ -126,11 +126,11 @@ export default function About() {
               Frontend Development
             </p>
             <p ref={descriptionRef} className={clsx(description)}>
-              2001年生まれ、 ECCコンピュータ専門学校中退。
+              2001年生まれ、ECCコンピュータ専門学校中退。
               <br />
-              趣味は散歩とランニング。有酸素運動で汗を流すのが日課。
+              趣味は読書と散歩とランニング。有酸素運動で汗を流すのが日課。
               <br />
-              デザインとエンジニアリングに精通して、
+              デザインとエンジニアリングに精通し、
               <br />
               完成度の高いものづくりをすることを目標に据えて、
               <br />
@@ -139,11 +139,11 @@ export default function About() {
             <dl ref={historyRef} className={clsx(history)}>
               <div>
                 <dt className={clsx(year)}>2020-2024</dt>
-                <dd className={clsx(event)}>ECCコンピュータ専門学校</dd>
+                <dd className={clsx(event)}>ECCコンピュータ専門学校(中退)</dd>
               </div>
               <div>
                 <dt className={clsx(year)}>2022-</dt>
-                <dd className={clsx(event)}>株式会社Univearth</dd>
+                <dd className={clsx(event)}>株式会社Univearth(業務委託)</dd>
               </div>
             </dl>
           </main>
