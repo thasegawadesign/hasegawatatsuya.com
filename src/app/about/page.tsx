@@ -123,7 +123,9 @@ export default function About() {
             >
               Web Design,
               <br />
-              Frontend Development
+              Frontend Development,
+              <br />
+              Backend Development
             </p>
             <p ref={descriptionRef} className={clsx(description)}>
               2001年生まれ、ECCコンピュータ専門学校中退。
