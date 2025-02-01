@@ -237,7 +237,7 @@ export const description = style({
   lineHeight: 1.8,
   textAlign: "center",
   marginBottom: 160,
-  padding: "0 100px",
+  padding: "0 4.8vw",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
@@ -248,11 +248,9 @@ export const description = style({
     },
     [breakpoints["md"]]: {
       fontSize: "1.9rem",
-      padding: "0 80px",
     },
     [breakpoints["sm"]]: {
       fontSize: "1.7rem",
-      padding: "0 20px",
     },
   },
 });
