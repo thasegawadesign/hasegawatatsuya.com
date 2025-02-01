@@ -43,7 +43,7 @@ type Props = {
   why: string | React.ReactNode;
   how: string | React.ReactNode;
   role: string | React.ReactNode;
-  time: string | React.ReactNode;
+  date: string | React.ReactNode;
   URL?: string;
 };
 
@@ -60,7 +60,7 @@ export default function WorksInfo(props: Props) {
     why,
     how,
     role,
-    time,
+    date,
     URL,
   } = props;
 
@@ -120,8 +120,8 @@ export default function WorksInfo(props: Props) {
           <dd className={clsx(cormorant.className, worksRole)}>{role}</dd>
         </div>
         <div ref={worksTimeRef} className={clsx(worksDlItem)}>
-          <dt className={clsx(roboto.className, worksDt)}>Time :</dt>
-          <dd className={clsx(worksDd)}>{time}</dd>
+          <dt className={clsx(roboto.className, worksDt)}>Date :</dt>
+          <dd className={clsx(worksDd)}>{date}</dd>
         </div>
         <div ref={worksURLRef} className={clsx(worksDlItem)}>
           {URL && (

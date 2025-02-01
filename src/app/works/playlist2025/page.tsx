@@ -64,7 +64,7 @@ export default function PlayList2025() {
                 </>
               }
               role="Visual Design"
-              time="制作にかかった時間は、素材選定とビジュアルデザイン作業の合計で40分でした。"
+              date="2025年1月"
             />
           </main>
           <Footer />

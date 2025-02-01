@@ -75,7 +75,7 @@ export default function Fleur() {
                   Frontend Development
                 </>
               }
-              time="制作にかかった時間はデザイン14時間、コーディング14時間、合計で28時間でした。"
+              date="2024年11月"
               URL="https://fleur-website.vercel.app/"
             />
           </main>

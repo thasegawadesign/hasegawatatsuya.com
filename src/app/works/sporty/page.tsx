@@ -52,7 +52,7 @@ export default function Sporty() {
                 </>
               }
               role="Retouch"
-              time="素材選定、レタッチにかかった時間は合計で1時間でした。"
+              date="2025年1月"
             />
           </main>
           <Footer />
