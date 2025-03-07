@@ -137,7 +137,7 @@ export default function Home() {
           <section id="about" className={clsx(aboutSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
             <p className={clsx(description)} ref={descriptionRef}>
-              Webエンジニア 長谷川 達也の <br className={mobileBr} />
+              Web開発者/デザイナー 長谷川 達也の <br className={mobileBr} />
               ポートフォリオサイトです。
               <br className={mobileBr} />
               <br className={clsx(desktopBr)} />
