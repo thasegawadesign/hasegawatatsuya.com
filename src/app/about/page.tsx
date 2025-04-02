@@ -126,7 +126,7 @@ export default function About() {
               Frontend Development
             </p>
             <p ref={descriptionRef} className={clsx(description)}>
-              2001年生まれ、ECCコンピュータ専門学校中退。
+              2001年生まれ、放送大学在学中。
               <br />
               趣味は読書と散歩とランニング。有酸素運動で汗を流すのが日課。
               <br />
@@ -144,6 +144,10 @@ export default function About() {
               <div>
                 <dt className={clsx(year)}>2022-</dt>
                 <dd className={clsx(event)}>株式会社Univearth(業務委託)</dd>
+              </div>
+              <div>
+                <dt className={clsx(year)}>2025-</dt>
+                <dd className={clsx(event)}>放送大学(在学中)</dd>
               </div>
             </dl>
           </main>
