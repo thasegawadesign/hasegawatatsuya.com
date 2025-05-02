@@ -37,12 +37,12 @@ export default function Sporty() {
           </header>
           <main className={clsx(main)}>
             <WorksInfo
-              nameJa="ビジュアル - スポーティ"
+              nameJa="躍動感のあるビジュアル"
               nameEn="Sporty"
               imageSrc="/sporty.webp"
               imageWidth={1920}
               imageHeight={1080}
-              what="力強さのあるスポーティなビジュアル"
+              what="スポーティで躍動感のあるビジュアル"
               why={<>レタッチの練習で制作しました。</>}
               how={
                 <>
