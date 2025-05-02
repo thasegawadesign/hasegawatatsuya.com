@@ -1,4 +1,10 @@
-import { logo, nav, navLink, navLinkBox } from "@/components/nav/nav.css";
+import {
+  logo,
+  nav,
+  navLink,
+  navLinkBox,
+  navLogoBox,
+} from "@/components/nav/nav.css";
 import clsx from "clsx";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
@@ -11,7 +17,7 @@ const roboto = Roboto({
 export default function Nav() {
   return (
     <nav className={clsx(nav)}>
-      <ul>
+      <ul className={clsx(navLogoBox)}>
         <li>
           <Link href={"/#home"} className={clsx(roboto.className, logo)}>
             TH

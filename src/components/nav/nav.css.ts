@@ -18,10 +18,14 @@ export const nav = style({
     },
   },
 });
+export const navLogoBox = style({
+  listStyleType: "none",
+});
 export const navLinkBox = style({
   display: "flex",
   flexDirection: "column",
   gap: 16,
+  listStyleType: "none",
   "@media": {
     [breakpoints["sm"]]: {
       display: "none",
