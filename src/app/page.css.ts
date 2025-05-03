@@ -440,7 +440,7 @@ export const emailIcon = style({
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "37ch",
+  width: "32ch",
   height: 40,
   overflowY: "hidden",
   transformStyle: "preserve-3d",
