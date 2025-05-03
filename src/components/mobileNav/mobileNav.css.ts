@@ -14,6 +14,7 @@ export const mobileNav = style({
 export const mobileNavCrossBox = style({
   display: "flex",
   justifyContent: "flex-end",
+  listStyleType: "none",
 });
 export const mobileNavCross = style({
   position: "relative",
@@ -50,6 +51,7 @@ export const mobileNavLinkBox = style({
   flexDirection: "column",
   alignItems: "flex-end",
   gap: 16,
+  listStyleType: "none",
 });
 export const mobileNavLink = style({
   position: "relative",
