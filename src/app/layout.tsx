@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import "yakuhanjp";
 
 export const metadata: Metadata = {
-  title: "Tatsuya Hasegawa - Webデザイナー",
+  title: "Tatsuya Hasegawa | Webデザイナー",
   description: "Tatsuya Hasegawa のポートフォリオサイト",
 };
 
