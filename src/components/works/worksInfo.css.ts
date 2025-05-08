@@ -50,7 +50,7 @@ export const worksDt = style({
   fontWeight: 300,
   color: vars.color.text,
   width: 48,
-  marginTop: "clamp(0.6rem, 1.12vw, 1.28rem)",
+  marginTop: "clamp(0.48rem, 0.48vw, 1.2rem)",
   textAlign: "right",
   "@media": {
     [breakpoints["xl"]]: {
