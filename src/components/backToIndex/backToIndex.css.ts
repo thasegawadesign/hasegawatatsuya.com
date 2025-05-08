@@ -21,7 +21,7 @@ export const backToIndex = style({
     "&::before": {
       content: "",
       position: "absolute",
-      top: 24,
+      top: 20,
       display: "block",
       width: "100%",
       height: 24,
