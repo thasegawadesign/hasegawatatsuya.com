@@ -17,6 +17,11 @@ export const circle = style({
   animationDuration: "20s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
+  selectors: {
+    "&:hover": {
+      animationPlayState: "paused",
+    },
+  },
   "@media": {
     [breakpoints["xl"]]: {
       top: "-40px",
