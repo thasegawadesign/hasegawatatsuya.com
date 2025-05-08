@@ -128,7 +128,11 @@ export default function WorksInfo(props: Props) {
             <>
               <dt className={clsx(roboto.className, worksDt)}>URL :</dt>
               <dd className={clsx(worksDd)}>
-                <Link href={URL} target="_blank" className={clsx(worksLink)}>
+                <Link
+                  href={URL}
+                  target="_blank"
+                  className={clsx(roboto.className, worksLink)}
+                >
                   {URL}
                 </Link>
               </dd>
