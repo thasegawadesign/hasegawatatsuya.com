@@ -3,6 +3,7 @@ import { keyframes, style } from "@vanilla-extract/css";
 
 export const header = style({
   position: "relative",
+  height: 0,
 });
 
 export const main = style({
