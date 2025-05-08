@@ -98,7 +98,7 @@ export const worksLink = style({
     "&::before": {
       content: "",
       position: "absolute",
-      top: "clamp(2.12rem, 1.88vw, 3rem)",
+      top: "clamp(2.12rem, 1.28vw, 3rem)",
       display: "block",
       width: "100%",
       height: 24,
