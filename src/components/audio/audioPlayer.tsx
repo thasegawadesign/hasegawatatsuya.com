@@ -7,6 +7,7 @@ import {
   audioButton,
 } from "@/components/audio/audioPlayer.css";
 import { getAudioInstance } from "@/utils/getAudioInstance";
+import { animated, to, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { useAtom } from "jotai";
 import { useEffect, useRef } from "react";
@@ -15,6 +16,30 @@ export default function AudioButton() {
   const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
   const audioButtonRef = useRef(null);
+  const boxRef = useRef<HTMLDivElement>(null);
+
+  const [spring, api] = useSpring(() => ({
+    x: 0,
+    y: 0,
+    scale: 1,
+    config: { tension: 300, friction: 20 },
+  }));
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!boxRef.current) return;
+    const rect = boxRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+
+    api.start({ x: dx * 1.0, y: dy * 1.0, scale: 1.6 });
+  };
+
+  const handleMouseLeave = () => {
+    api.start({ x: 0, y: 0, scale: 1 });
+  };
 
   useEffect(() => {
     const audioButton = audioButtonRef.current as unknown as HTMLButtonElement;
@@ -81,11 +106,23 @@ export default function AudioButton() {
 
   return (
     <button
-      className={clsx(
-        audioButton,
-        isPlayingAudio ? animationRunning : animationPaused
-      )}
       ref={audioButtonRef}
-    ></button>
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <animated.div
+        ref={boxRef}
+        style={{
+          transform: to(
+            [spring.x, spring.y, spring.scale],
+            (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`
+          ),
+        }}
+        className={clsx(
+          audioButton,
+          isPlayingAudio ? animationRunning : animationPaused
+        )}
+      ></animated.div>
+    </button>
   );
 }
