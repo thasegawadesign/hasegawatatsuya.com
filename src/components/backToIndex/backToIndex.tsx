@@ -14,7 +14,7 @@ import { useEffect, useRef } from "react";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["100"],
+  weight: ["200"],
 });
 
 export default function BackToIndex() {
@@ -32,7 +32,7 @@ export default function BackToIndex() {
         <Link
           ref={backToIndexRef}
           href={"/"}
-          className={(roboto.className, backToIndex)}
+          className={clsx(roboto.className, backToIndex)}
         >
           Back to Index
         </Link>
