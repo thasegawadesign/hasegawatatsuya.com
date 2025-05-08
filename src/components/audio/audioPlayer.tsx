@@ -34,7 +34,7 @@ export default function AudioButton() {
     const dx = e.clientX - centerX;
     const dy = e.clientY - centerY;
 
-    api.start({ x: dx * 1.0, y: dy * 1.0, scale: 1.6 });
+    api.start({ x: dx * 0.6, y: dy * 0.6, scale: 1.28 });
   };
 
   const handleMouseLeave = () => {
