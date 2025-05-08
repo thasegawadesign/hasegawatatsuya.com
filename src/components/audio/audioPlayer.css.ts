@@ -6,6 +6,9 @@ export const audioInteract = keyframes({
   "50%": { borderWidth: "8px" },
   "100%": { borderWidth: "2px" },
 });
+export const audioButtonBox = style({
+  border: "none",
+});
 export const audioButton = style({
   position: "fixed",
   bottom: 40,

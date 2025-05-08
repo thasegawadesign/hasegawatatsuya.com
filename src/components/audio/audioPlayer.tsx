@@ -5,6 +5,7 @@ import {
   animationPaused,
   animationRunning,
   audioButton,
+  audioButtonBox,
 } from "@/components/audio/audioPlayer.css";
 import { getAudioInstance } from "@/utils/getAudioInstance";
 import { animated, to, useSpring } from "@react-spring/web";
@@ -107,6 +108,7 @@ export default function AudioButton() {
   return (
     <button
       ref={audioButtonRef}
+      className={clsx(audioButtonBox)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
