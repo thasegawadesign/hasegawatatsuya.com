@@ -49,7 +49,7 @@ export default function Fleur() {
               imageSrc="/fleur-website-screen-shot.webp"
               imageWidth={2640}
               imageHeight={1520}
-              what="健康志向かつビジュアルが美しいスイーツが好きな人のための架空マカロン専門店フルールのブランドサイト"
+              what="健康志向でビジュアルが美しいスイーツが好きな人のための架空マカロン専門店フルールのブランドサイト"
               why={
                 <>
                   トレンドに敏感なターゲット層を想定したWebサイト制作を経験してみたいと思い、制作しました。
@@ -76,7 +76,7 @@ export default function Fleur() {
                 </>
               }
               date="2024年11月"
-              URL="https://fleur-website.vercel.app/"
+              URL="https://www.fleur.vegetworks.com/"
             />
           </main>
           <Footer />
