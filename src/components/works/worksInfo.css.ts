@@ -47,7 +47,6 @@ export const worksDlItem = style({
 });
 export const worksDt = style({
   fontSize: "1.2rem",
-  fontWeight: 300,
   color: vars.color.text,
   width: 48,
   marginTop: "clamp(0.48rem, 0.48vw, 1.2rem)",
@@ -60,15 +59,20 @@ export const worksDt = style({
 });
 export const worksDd = style({
   fontSize: "clamp(1.6rem, 1.4vw, 2.4rem)",
-  fontWeight: 300,
   color: vars.color.text,
-  width: "48vw",
+  width: "46vw",
   lineHeight: "1.8em",
   "@media": {
     [breakpoints["2xl"]]: {
-      width: "60vw",
+      width: "48vw",
     },
     [breakpoints["xl"]]: {
+      width: "52vw",
+    },
+    [breakpoints["lg"]]: {
+      width: "60vw",
+    },
+    [breakpoints["sm"]]: {
       width: "72vw",
     },
   },
@@ -78,12 +82,18 @@ export const worksRole = style({
   color: vars.color.text,
   lineHeight: "1.28em",
   letterSpacing: "-0.006em",
-  width: "48vw",
+  width: "46vw",
   "@media": {
     [breakpoints["2xl"]]: {
-      width: "60vw",
+      width: "48vw",
     },
     [breakpoints["xl"]]: {
+      width: "52vw",
+    },
+    [breakpoints["lg"]]: {
+      width: "60vw",
+    },
+    [breakpoints["sm"]]: {
       width: "72vw",
     },
   },
