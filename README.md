@@ -6,7 +6,7 @@
 
 ポートフォリオサイトのソースコードです。
 
-URL：https://hasegawatatsuya.com
+URL：https://www.hasegawatatsuya.com/
 
 ## 使用技術
 
