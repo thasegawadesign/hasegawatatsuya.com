@@ -93,7 +93,6 @@ export const aboutSection = style({
 
 export const description = style({
   fontSize: "2.2rem",
-  fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.8,
   letterSpacing: 1.5,
