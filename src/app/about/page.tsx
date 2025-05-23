@@ -142,11 +142,11 @@ export default function About() {
                 <dd className={clsx(event)}>ECCコンピュータ専門学校(中退)</dd>
               </div>
               <div>
-                <dt className={clsx(year)}>2022-</dt>
+                <dt className={clsx(year)}>2022-現在</dt>
                 <dd className={clsx(event)}>株式会社Univearth(業務委託)</dd>
               </div>
               <div>
-                <dt className={clsx(year)}>2025-</dt>
+                <dt className={clsx(year)}>2025-現在</dt>
                 <dd className={clsx(event)}>放送大学(在学中)</dd>
               </div>
             </dl>
