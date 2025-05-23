@@ -15,6 +15,7 @@ import {
   nameMainVisual,
   profileContent,
   profileImage,
+  profileImageWrapper,
   profileLinkBox,
   profileLinkIcon,
   profileMore,
@@ -23,6 +24,7 @@ import {
   profileSection,
   profileTextBox,
   sectionHeading,
+  sectionHeadingContact,
   worksBox,
   worksCategory,
   worksIcon,
@@ -79,7 +81,9 @@ export default function Home() {
   const worksItem3Ref = useRef(null);
   const worksItem4Ref = useRef(null);
   const worksItem5Ref = useRef(null);
+  const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
+  const profileImageWrapperRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -113,6 +117,8 @@ export default function Home() {
     gsapAnimation.inview(worksItem4Ref);
     gsapAnimation.inview(worksItem5Ref);
     gsapAnimation.inview(contactRef);
+    gsapAnimation.parallaxDeep(contactWrapperRef);
+    gsapAnimation.parallaxLight(profileImageWrapperRef);
   }, []);
 
   return (
@@ -179,14 +185,18 @@ export default function Home() {
                   More
                 </Link>
               </div>
-              <Image
-                src={"/photo.webp"}
-                width={200}
-                height={300}
-                alt="長谷川達也"
-                className={profileImage}
-                view-transition-name={"photo"}
-              />
+              <div
+                ref={profileImageWrapperRef}
+                className={clsx(profileImageWrapper)}
+              >
+                <Image
+                  src={"/photo.webp"}
+                  alt="長谷川達也"
+                  className={clsx(profileImage)}
+                  view-transition-name={"photo"}
+                  fill
+                />
+              </div>
             </section>
           </section>
           <section id="works" className={clsx(worksSection)}>
@@ -278,22 +288,28 @@ export default function Home() {
             </div>
           </section>
           <section id="contact" className={clsx(contactSection)}>
-            <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
-            <Link
-              href={`mailto:${email}`}
-              className={clsx(emailLink)}
-              ref={contactRef}
-            >
-              <IoMdMail className={clsx(emailIcon)} />
-              <div className={clsx(emailTextBox)}>
-                <span className={clsx(roboto.className, emailTextRotateTop)}>
-                  {email}
-                </span>
-                <span className={clsx(roboto.className, emailTextRotateFront)}>
-                  {email}
-                </span>
-              </div>
-            </Link>
+            <h2 className={clsx(roboto.className, sectionHeadingContact)}>
+              Contact
+            </h2>
+            <div ref={contactWrapperRef}>
+              <Link
+                href={`mailto:${email}`}
+                className={clsx(emailLink)}
+                ref={contactRef}
+              >
+                <IoMdMail className={clsx(emailIcon)} />
+                <div className={clsx(emailTextBox)}>
+                  <span className={clsx(roboto.className, emailTextRotateTop)}>
+                    {email}
+                  </span>
+                  <span
+                    className={clsx(roboto.className, emailTextRotateFront)}
+                  >
+                    {email}
+                  </span>
+                </div>
+              </Link>
+            </div>
           </section>
         </main>
         <Footer />

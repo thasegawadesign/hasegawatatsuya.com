@@ -86,6 +86,20 @@ export const sectionHeading = style({
     },
   },
 });
+export const sectionHeadingContact = style({
+  fontSize: "1.6rem",
+  fontWeight: 300,
+  color: vars.color.text,
+  letterSpacing: 2,
+  textAlign: "center",
+  marginBottom: 96,
+  "@media": {
+    [breakpoints["xl"]]: {
+      fontSize: "1.4rem",
+      marginBottom: 32,
+    },
+  },
+});
 
 export const aboutSection = style({
   paddingBottom: 120,
@@ -152,7 +166,7 @@ export const profileSection = style({
   },
 });
 export const profileContent = style({
-  paddingBottom: 12,
+  paddingBottom: 32,
 });
 export const profileTextBox = style({
   display: "flex",
@@ -255,9 +269,12 @@ export const profileMore = style({
     },
   },
 });
-export const profileImage = style({
-  marginLeft: -120,
-  contain: "paint",
+export const profileImageWrapper = style({
+  position: "relative",
+  width: 200,
+  height: 300,
+  marginLeft: -140,
+  overflow: "hidden",
   "@media": {
     [breakpoints["xl"]]: {
       marginLeft: -100,
@@ -277,9 +294,12 @@ export const profileImage = style({
     },
   },
 });
+export const profileImage = style({
+  objectFit: "cover",
+});
 
 export const worksSection = style({
-  paddingBottom: 120,
+  paddingBottom: 160,
 });
 export const worksBox = style({
   display: "grid",
