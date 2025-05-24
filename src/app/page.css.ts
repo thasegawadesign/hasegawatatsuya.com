@@ -96,7 +96,7 @@ export const sectionHeadingContact = style({
   "@media": {
     [breakpoints["xl"]]: {
       fontSize: "1.4rem",
-      marginBottom: 32,
+      marginBottom: 80,
     },
   },
 });
