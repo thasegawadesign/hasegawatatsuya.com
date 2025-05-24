@@ -19,11 +19,11 @@ export const mobileNavCrossBox = style({
 export const mobileNavCross = style({
   position: "relative",
   display: "block",
-  width: "40px",
-  height: "40px",
+  width: 40,
+  height: 40,
   backgroundColor: "transparent",
   border: "none",
-  marginBottom: 40,
+  marginBottom: 20,
   cursor: "pointer",
   ":before": {
     content: "",
@@ -31,7 +31,7 @@ export const mobileNavCross = style({
     top: "50%",
     left: "50%",
     width: 2,
-    height: "40px",
+    height: 40,
     backgroundColor: vars.color.text,
     transform: "translate(-50%,-50%) rotate(45deg)",
   },
@@ -41,7 +41,7 @@ export const mobileNavCross = style({
     top: "50%",
     left: "50%",
     width: 2,
-    height: "40px",
+    height: 40,
     backgroundColor: vars.color.text,
     transform: "translate(-50%,-50%) rotate(-45deg)",
   },
@@ -55,7 +55,7 @@ export const mobileNavLinkBox = style({
 });
 export const mobileNavLink = style({
   position: "relative",
-  fontSize: "3.6rem",
+  fontSize: "5.6rem",
   fontWeight: 100,
   color: vars.color.text,
   textDecoration: "none",
@@ -64,15 +64,15 @@ export const mobileNavLink = style({
     "&::before": {
       content: "",
       position: "absolute",
-      top: 36,
+      top: "5.4rem",
       display: "block",
       width: "100%",
-      height: 20,
+      height: 32,
       backgroundColor: vars.color.text,
       transition: "height 0.3s ease",
     },
     "&:hover": {
-      paddingBottom: 20,
+      paddingBottom: 32,
     },
     "&:hover::before": {
       height: 1,

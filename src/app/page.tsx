@@ -129,7 +129,7 @@ export default function Home() {
           <HamburgerMenu />
           {isOpenHamburgerMenu && <MobileNav />}
           <AudioPlayer />
-          <TextCircle />
+          {!isOpenHamburgerMenu && <TextCircle />}
         </header>
         <main className={clsx(main)}>
           <h1
