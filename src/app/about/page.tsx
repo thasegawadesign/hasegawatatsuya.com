@@ -82,7 +82,7 @@ export default function About() {
             <HamburgerMenu />
             {isOpenHamburgerMenu && <MobileNav />}
             <AudioPlayer />
-            <TextCircle />
+            {!isOpenHamburgerMenu && <TextCircle />}
           </header>
           <main className={clsx(main)}>
             <div className={clsx(aboutHero)}>
