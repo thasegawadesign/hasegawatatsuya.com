@@ -12,32 +12,12 @@ export const main = style({
 });
 
 export const nameMainVisual = style({
-  fontSize: "22rem",
+  fontSize: "clamp(7.6rem, 10vw + 4.2rem, 22rem)",
   fontWeight: 500,
   color: "#130059",
   lineHeight: "0.76em",
   textAlign: "center",
-  margin: "180px auto 160px",
-  "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "21.2rem",
-    },
-    [breakpoints["xl"]]: {
-      fontSize: "18.8rem",
-    },
-    [breakpoints["lg"]]: {
-      fontSize: "15rem",
-    },
-    [breakpoints["md"]]: {
-      fontSize: "13rem",
-    },
-    [breakpoints["sm"]]: {
-      fontSize: "8.2rem",
-      fontWeight: 600,
-      lineHeight: "0.8em",
-      marginTop: 280,
-    },
-  },
+  margin: "22vh auto",
 });
 
 export const animateLine = keyframes({
