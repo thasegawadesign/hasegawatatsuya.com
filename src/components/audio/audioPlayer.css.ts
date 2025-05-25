@@ -11,8 +11,8 @@ export const audioButtonBox = style({
 });
 export const audioButton = style({
   position: "fixed",
-  bottom: 40,
-  right: "clamp(40px, 15.2%, 300px)",
+  bottom: "2vw",
+  right: "2vw",
   width: "20px",
   height: "20px",
   background: "transparent",
@@ -29,7 +29,12 @@ export const audioButton = style({
   },
   "@media": {
     [breakpoints["2xl"]]: {
-      right: "clamp(40px, 10%, 240px)",
+      bottom: "4vw",
+      right: "4vw",
+    },
+    [breakpoints["xl"]]: {
+      bottom: "6vw",
+      right: "6vw",
     },
   },
 });
