@@ -12,12 +12,17 @@ export const main = style({
 });
 
 export const nameMainVisual = style({
-  fontSize: "clamp(7.6rem, 10vw + 4.2rem, 22rem)",
+  fontSize: "clamp(7.6rem, 10vw + 4.0rem, 22.2rem)",
   fontWeight: 500,
   color: "#130059",
   lineHeight: "0.76em",
   textAlign: "center",
   margin: "22vh auto",
+  "@media": {
+    [breakpoints["sm"]]: {
+      margin: "33.3vh auto",
+    },
+  },
 });
 
 export const animateLine = keyframes({
