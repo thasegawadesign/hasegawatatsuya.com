@@ -91,31 +91,14 @@ export const aboutSection = style({
 });
 
 export const description = style({
-  fontSize: "2.2rem",
+  fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
   color: vars.color.text,
   lineHeight: 1.8,
   letterSpacing: 1.5,
   textAlign: "center",
   marginBottom: 60,
-  padding: "0 20px",
+  padding: "0 2vw",
   transformOrigin: "right bottom",
-  "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "2.0rem",
-    },
-    [breakpoints["xl"]]: {
-      fontSize: "1.9rem",
-    },
-    [breakpoints["lg"]]: {
-      fontSize: "2.0rem",
-    },
-    [breakpoints["md"]]: {
-      fontSize: "1.9rem",
-    },
-    [breakpoints["sm"]]: {
-      fontSize: "1.7rem",
-    },
-  },
 });
 
 export const profileSection = style({
@@ -126,7 +109,7 @@ export const profileSection = style({
   gap: 40,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
-  padding: "70px 160px",
+  padding: "76px 12vw",
   maxWidth: 920,
   "@media": {
     [breakpoints["2xl"]]: {
@@ -137,16 +120,16 @@ export const profileSection = style({
     },
     [breakpoints["lg"]]: {
       maxWidth: 600,
-      padding: "70px 120px",
+      padding: "76px 12vw",
     },
     [breakpoints["md"]]: {
       maxWidth: 580,
-      padding: "70px 80px",
+      padding: "76px 8vw",
     },
     [breakpoints["sm"]]: {
       gap: 20,
       maxWidth: 580,
-      padding: "70px 20px",
+      padding: "76px 2vw",
     },
   },
 });
@@ -319,14 +302,14 @@ export const worksItem = style({
   display: "flex",
   flexDirection: "column-reverse",
   alignItems: "center",
-  gap: 32,
+  gap: 20,
   padding: "120px 2vw 80px",
   backgroundColor: "rgba(255, 255, 255, .12)",
 });
 export const worksTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 10,
+  gap: 8,
   alignItems: "center",
 });
 export const worksName = style({
