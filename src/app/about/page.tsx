@@ -132,9 +132,9 @@ export default function About() {
               <br />
               デザインとエンジニアリングに理解を深め、
               <br />
-              「自由自在」にものづくりができることを目指して、
+              「自由自在」にモノづくりができることを目指して、
               <br />
-              日々学習に励んでいます。
+              日々制作に励んでいます。
             </p>
             <dl ref={historyRef} className={clsx(history)}>
               <div>
