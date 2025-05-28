@@ -303,7 +303,7 @@ export const worksItem = style({
   flexDirection: "column-reverse",
   alignItems: "center",
   gap: 20,
-  padding: "120px 2vw 80px",
+  padding: "120px 2vw 96px",
   backgroundColor: "rgba(255, 255, 255, .12)",
 });
 export const worksTextBox = style({
