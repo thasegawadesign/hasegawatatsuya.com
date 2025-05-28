@@ -200,7 +200,7 @@ export const line = style({
 });
 
 export const occupation = style({
-  fontSize: "7.6rem",
+  fontSize: "clamp(3.6rem, 2.6vw + 3.0rem, 7.6rem)",
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.2,
@@ -208,49 +208,29 @@ export const occupation = style({
   textAlign: "center",
   marginBottom: 160,
   "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "7.4rem",
-    },
     [breakpoints["xl"]]: {
-      fontSize: "6.0rem",
       letterSpacing: -2.0,
       marginBottom: 120,
     },
-    [breakpoints["lg"]]: {
-      fontSize: "5.2rem",
-    },
-    [breakpoints["md"]]: {
-      fontSize: "4.6rem",
-    },
+
     [breakpoints["sm"]]: {
-      fontSize: "3.6rem",
       letterSpacing: -1.4,
     },
   },
 });
 
 export const description = style({
-  fontSize: "2.4rem",
+  fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: 1,
   lineHeight: 1.8,
   textAlign: "center",
   marginBottom: 160,
-  padding: "0 4.8vw",
+  padding: "0 2vw",
   "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "2.2rem",
-    },
     [breakpoints["xl"]]: {
-      fontSize: "2.0rem",
       marginBottom: 120,
-    },
-    [breakpoints["md"]]: {
-      fontSize: "1.9rem",
-    },
-    [breakpoints["sm"]]: {
-      fontSize: "1.7rem",
     },
   },
 });
@@ -270,35 +250,10 @@ export const history = style({
   },
 });
 export const year = style({
-  fontSize: "2.0rem",
+  fontSize: "clamp(1.6rem, 0.72vw + 1.0rem, 2.0rem)",
   letterSpacing: 2,
-  "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "1.9rem",
-    },
-    [breakpoints["xl"]]: {
-      fontSize: "1.8rem",
-    },
-    [breakpoints["md"]]: {
-      fontSize: "1.6rem",
-    },
-  },
 });
 export const event = style({
-  fontSize: "2.4rem",
+  fontSize: "clamp(1.7rem, 0.72vw + 1.2rem, 2.4rem)",
   letterSpacing: 1,
-  "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "2.2rem",
-    },
-    [breakpoints["xl"]]: {
-      fontSize: "2.0rem",
-    },
-    [breakpoints["md"]]: {
-      fontSize: "1.9rem",
-    },
-    [breakpoints["sm"]]: {
-      fontSize: "1.7rem",
-    },
-  },
 });
