@@ -309,7 +309,7 @@ export const worksItem = style({
 export const worksTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 4,
+  gap: 6,
   alignItems: "center",
 });
 export const worksName = style({
