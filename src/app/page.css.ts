@@ -309,7 +309,7 @@ export const worksItem = style({
 export const worksTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 8,
+  gap: 4,
   alignItems: "center",
 });
 export const worksName = style({
@@ -323,12 +323,12 @@ export const worksName = style({
   },
 });
 export const worksCategory = style({
-  fontSize: "1.2rem",
+  fontSize: "1.1rem",
   fontWeight: 300,
   color: vars.color.text,
   "@media": {
     [breakpoints["sm"]]: {
-      fontSize: "1.0rem",
+      fontSize: "0.9rem",
     },
   },
 });
