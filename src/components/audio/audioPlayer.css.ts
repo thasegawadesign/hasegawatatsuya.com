@@ -28,10 +28,6 @@ export const audioButton = style({
     cursor: "pointer",
   },
   "@media": {
-    [breakpoints["2xl"]]: {
-      bottom: "4vw",
-      right: "4vw",
-    },
     [breakpoints["xl"]]: {
       bottom: "6vw",
       right: "6vw",
