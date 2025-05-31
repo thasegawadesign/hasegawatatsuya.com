@@ -11,7 +11,7 @@ export const nav = style({
   zIndex: 100,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "clamp(40px, 10%, 240px)",
+      left: "clamp(40px, 7.6%, 240px)",
     },
     [breakpoints["sm"]]: {
       top: 36,
