@@ -135,6 +135,11 @@ export const profileSection = style({
 });
 export const profileContent = style({
   paddingBottom: 32,
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingBottom: 24,
+    },
+  },
 });
 export const profileTextBox = style({
   display: "flex",
@@ -143,7 +148,7 @@ export const profileTextBox = style({
   marginBottom: 32,
   "@media": {
     [breakpoints["sm"]]: {
-      gap: 2,
+      gap: 6,
       marginBottom: 20,
     },
   },
@@ -161,7 +166,7 @@ export const profileName = style({
       fontSize: "2.0rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.6rem",
+      fontSize: "1.8rem",
     },
   },
 });
@@ -175,7 +180,7 @@ export const profileOccupation = style({
       fontSize: "1.3rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.2rem",
+      fontSize: "1.0rem",
       letterSpacing: 1.6,
     },
   },
@@ -202,6 +207,10 @@ export const profileLinkIcon = style({
     [breakpoints["2xl"]]: {
       width: 22,
       height: 22,
+    },
+    [breakpoints["sm"]]: {
+      width: 20,
+      height: 20,
     },
   },
 });
