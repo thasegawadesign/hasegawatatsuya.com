@@ -128,9 +128,9 @@ export default function About() {
             <p ref={descriptionRef} className={clsx(description)}>
               2001年生まれ、放送大学在学中。
               <br />
-              趣味は読書と散歩とランニング。 有酸素運動で汗を流すのが日課。
+              趣味は散歩。
               <br />
-              デザインとエンジニアリングに理解を深め、
+              デザインと実装の理解を深め、
               <br />
               「自由自在」にモノづくりができることを目指して、
               <br />
