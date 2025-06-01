@@ -81,7 +81,7 @@ export const worksRole = style({
   fontSize: "clamp(2.8rem, 3vw, 4.8rem)",
   color: vars.color.text,
   lineHeight: "1.28em",
-  letterSpacing: "-0.006em",
+  letterSpacing: "-0.036em",
   width: "46vw",
   "@media": {
     [breakpoints["2xl"]]: {
