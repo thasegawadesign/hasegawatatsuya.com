@@ -77,7 +77,7 @@ export default function Works() {
                 </>
               }
               date="2024年11月"
-              URL="https://www.fleur.vegetworks.com/"
+              URL="https://www.fleur.vegetstudio.com/"
             />
           </main>
           <Footer />
