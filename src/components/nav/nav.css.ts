@@ -14,7 +14,7 @@ export const nav = style({
       left: "clamp(40px, 7.6%, 240px)",
     },
     [breakpoints["sm"]]: {
-      top: "9vw",
+      top: "6vw",
       left: "9vw",
     },
   },
@@ -68,7 +68,7 @@ export const logo = style({
   textDecoration: "none",
   "@media": {
     [breakpoints["sm"]]: {
-      fontSize: "3.0rem",
+      fontSize: "3.8rem",
     },
   },
 });
