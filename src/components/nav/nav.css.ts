@@ -14,7 +14,8 @@ export const nav = style({
       left: "clamp(40px, 7.6%, 240px)",
     },
     [breakpoints["sm"]]: {
-      top: 36,
+      top: "9vw",
+      left: "9vw",
     },
   },
 });
