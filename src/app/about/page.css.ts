@@ -200,7 +200,7 @@ export const line = style({
 });
 
 export const occupation = style({
-  fontSize: "clamp(3.6rem, 2.6vw + 3.0rem, 7.6rem)",
+  fontSize: "clamp(3.6rem, 2.0vw + 3.0rem, 7.6rem)",
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.2,
@@ -227,7 +227,7 @@ export const description = style({
   lineHeight: 1.8,
   textAlign: "center",
   marginBottom: 160,
-  padding: "0 2vw",
+  padding: "0 4vw",
   "@media": {
     [breakpoints["xl"]]: {
       marginBottom: 120,

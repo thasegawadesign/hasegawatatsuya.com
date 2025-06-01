@@ -15,8 +15,8 @@ export const hamburgerMenu = style({
   "@media": {
     [breakpoints["sm"]]: {
       display: "flex",
-      top: 40,
-      right: "clamp(40px, 10%, 240px)",
+      top: "9vw",
+      right: "9vw",
     },
   },
 });

@@ -8,7 +8,7 @@ export const mobileNav = style({
   width: "calc(100vw + 10px)",
   height: "calc(100vh + 10px)",
   backgroundColor: "#130059",
-  padding: "40px 48px",
+  padding: "9vw",
   zIndex: 100,
 });
 export const mobileNavCrossBox = style({
