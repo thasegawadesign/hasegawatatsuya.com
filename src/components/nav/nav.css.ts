@@ -66,9 +66,4 @@ export const logo = style({
   fontWeight: 400,
   color: vars.color.text,
   textDecoration: "none",
-  "@media": {
-    [breakpoints["sm"]]: {
-      fontSize: "3.8rem",
-    },
-  },
 });
