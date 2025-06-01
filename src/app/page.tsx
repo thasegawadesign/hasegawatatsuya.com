@@ -223,7 +223,7 @@ export default function Home() {
                   <p className={clsx(worksCategory)}>Webアプリケーション</p>
                 </div>
                 <Link
-                  href={"https://www.question-and-answer.vegetstudio.com"}
+                  href={"https://www.question-and-answer.vegetstudios.com"}
                   className={clsx(worksLink)}
                   target="_blank"
                 >
@@ -242,7 +242,7 @@ export default function Home() {
                   <p className={clsx(worksCategory)}>Webアプリケーション</p>
                 </div>
                 <Link
-                  href={"https://www.sutememo.vegetstudio.com"}
+                  href={"https://www.sutememo.vegetstudios.com"}
                   className={clsx(worksLink)}
                   target="_blank"
                 >
