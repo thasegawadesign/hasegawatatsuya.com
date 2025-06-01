@@ -204,17 +204,12 @@ export const occupation = style({
   fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.2,
-  letterSpacing: -4.0,
+  letterSpacing: "-0.036em",
   textAlign: "center",
   marginBottom: 160,
   "@media": {
     [breakpoints["xl"]]: {
-      letterSpacing: -2.0,
       marginBottom: 120,
-    },
-
-    [breakpoints["sm"]]: {
-      letterSpacing: -1.4,
     },
   },
 });
