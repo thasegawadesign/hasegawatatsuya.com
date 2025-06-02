@@ -7,10 +7,10 @@ export const rotate = keyframes({
 });
 export const circle = style({
   position: "absolute",
-  top: "-50px",
-  right: "-50px",
-  width: 125,
-  height: 125,
+  top: "-52px",
+  right: "-52px",
+  width: 120,
+  height: 120,
   fontSize: "12px",
   zIndex: 100,
   animationName: rotate,
@@ -26,22 +26,16 @@ export const circle = style({
     [breakpoints["2xl"]]: {
       top: "-46px",
       right: "-46px",
-      width: 120,
-      height: 120,
-    },
-    [breakpoints["xl"]]: {
-      top: "-40px",
-      right: "-40px",
       width: 110,
       height: 110,
     },
-    [breakpoints["lg"]]: {
-      top: "-38px",
-      right: "-38px",
-      width: 100,
-      height: 100,
+    [breakpoints["xl"]]: {
+      top: "-45px",
+      right: "-45px",
+      width: 105,
+      height: 105,
     },
-    [breakpoints["sm"]]: {
+    [breakpoints["lg"]]: {
       display: "none",
     },
   },
