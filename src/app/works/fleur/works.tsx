@@ -47,8 +47,8 @@ export default function Works() {
                 </>
               }
               imageSrc="/fleur-website-screen-shot.webp"
-              imageWidth={2640}
-              imageHeight={1520}
+              imageWidth={1920}
+              imageHeight={1080}
               what="健康志向で美しいスイーツを愛する人のための架空マカロン専門店『フルール』のブランドサイト"
               why={
                 <>
