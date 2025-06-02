@@ -63,11 +63,11 @@ export const sectionHeading = style({
   color: vars.color.text,
   letterSpacing: 2,
   textAlign: "center",
-  marginBottom: 40,
+  marginBottom: 16,
   "@media": {
     [breakpoints["xl"]]: {
       fontSize: "1.4rem",
-      marginBottom: 32,
+      marginBottom: 12,
     },
   },
 });
@@ -77,11 +77,11 @@ export const sectionHeadingContact = style({
   color: vars.color.text,
   letterSpacing: 2,
   textAlign: "center",
-  marginBottom: 96,
+  marginBottom: 72,
   "@media": {
     [breakpoints["xl"]]: {
       fontSize: "1.4rem",
-      marginBottom: 80,
+      marginBottom: 68,
     },
   },
 });
