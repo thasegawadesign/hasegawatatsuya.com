@@ -4,8 +4,6 @@
   <img src="https://raw.githubusercontent.com/thasegawadesign/hasegawatatsuya.com/refs/heads/main/src/app/opengraph-image.jpg" alt="ポートフォリオサイトはこちらから">
 </a>
 
-ポートフォリオサイトのソースコードです。
-
 URL：https://www.hasegawatatsuya.com/
 
 ## 使用技術
