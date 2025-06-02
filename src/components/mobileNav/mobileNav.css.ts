@@ -3,8 +3,8 @@ import { style } from "@vanilla-extract/css";
 
 export const mobileNav = style({
   position: "fixed",
-  top: -10,
-  left: -10,
+  top: -5,
+  left: -5,
   width: "calc(100vw + 10px)",
   height: "calc(100vh + 10px)",
   backgroundColor: "#130059",
