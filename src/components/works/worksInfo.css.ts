@@ -105,7 +105,7 @@ export const worksLink = style({
   fontWeight: 100,
   color: vars.color.text,
   textDecoration: "none",
-  transition: "height 0.3s ease",
+  transition: "height 0.2s ease",
   selectors: {
     "&::before": {
       content: "",
@@ -115,7 +115,7 @@ export const worksLink = style({
       width: "100%",
       height: 24,
       backgroundColor: vars.color.text,
-      transition: "height 0.3s ease",
+      transition: "height 0.2s ease",
     },
     "&:hover": {
       paddingBottom: 24,

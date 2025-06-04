@@ -26,7 +26,7 @@ export const backToIndex = style({
       width: "100%",
       height: 24,
       backgroundColor: vars.color.text,
-      transition: "height 0.3s ease",
+      transition: "height 0.2s ease",
     },
     "&:hover": {
       paddingBottom: 24,
