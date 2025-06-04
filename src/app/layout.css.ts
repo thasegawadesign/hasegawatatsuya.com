@@ -17,6 +17,10 @@ export const smoothScroll = style({
 export const body = style({
   fontFamily: "YakuHanJP, Noto Sans JP, sans-serif",
   fontWeight: 200,
+  "::selection": {
+    color: "#130059",
+    backgroundColor: "#ddd",
+  },
 });
 export const backgroundGradient = style({
   backgroundColor: "#106",
