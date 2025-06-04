@@ -199,7 +199,7 @@ export const profileLinkIcon = style({
   width: 24,
   height: 24,
   color: vars.color.text,
-  transition: "scale 0.3s ease",
+  transition: "scale 0.2s ease",
   ":hover": {
     scale: 1.2,
   },
@@ -230,7 +230,7 @@ export const profileMore = style({
     width: "100%",
     height: "1px",
     backgroundColor: vars.color.text,
-    transition: "width 0.3s ease",
+    transition: "width 0.2s ease",
   },
   selectors: {
     "&:hover:before": {
@@ -344,7 +344,7 @@ export const worksCategory = style({
 export const worksLink = style({
   width: 160,
   height: 160,
-  transition: "scale 0.3s ease",
+  transition: "scale 0.2s ease",
   ":hover": {
     scale: 1.05,
   },
@@ -451,7 +451,7 @@ export const emailTextRotateTop = style({
   placeItems: "center",
   transformOrigin: "top",
   transform: "rotateX(0deg)",
-  transition: "transform 0.3s linear",
+  transition: "transform 0.2s linear",
   selectors: {
     [`${emailLink}:hover &`]: {
       transform: "rotateX(-90deg) translateZ(-60px)",
@@ -466,7 +466,7 @@ export const emailTextRotateFront = style({
   placeItems: "center",
   transformOrigin: "bottom",
   transform: "rotateX(-90deg) translateZ(60px)",
-  transition: "transform 0.3s linear",
+  transition: "transform 0.2s linear",
   selectors: {
     [`${emailLink}:hover &`]: {
       transform: "rotateX(0deg) translateZ(0px)",

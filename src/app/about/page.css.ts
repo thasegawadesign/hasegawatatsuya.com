@@ -152,7 +152,7 @@ export const profileLinkIcon = style({
   width: 28,
   height: 28,
   color: vars.color.text,
-  transition: "scale 0.3s ease",
+  transition: "scale 0.2s ease",
   ":hover": {
     scale: 1.3,
   },
