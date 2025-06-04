@@ -45,66 +45,22 @@ export const nameBox = style({
 });
 export const nameJa = style({
   position: "relative",
-  fontSize: "12.4rem",
+  fontSize: "clamp(4.0rem, 5.2vw + 2.6rem, 12.4rem)",
   color: vars.color.text,
-  letterSpacing: -4.8,
-  marginBottom: -68,
+  letterSpacing: "-0.09em",
+  marginBottom: "-0.6em",
   zIndex: 50,
-  "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "10.6rem",
-      marginBottom: -60,
-    },
-    [breakpoints["xl"]]: {
-      fontSize: "9.0rem",
-      marginBottom: -48,
-    },
-    [breakpoints["lg"]]: {
-      fontSize: "6.6rem",
-      letterSpacing: -3,
-      marginBottom: -40,
-    },
-    [breakpoints["md"]]: {
-      fontSize: "6.0rem",
-      marginBottom: -32,
-    },
-    [breakpoints["sm"]]: {
-      fontSize: "4.0rem",
-      marginBottom: -24,
-    },
-  },
 });
 export const nameEn = style({
   position: "relative",
-  fontSize: "15rem",
+  fontSize: "clamp(5.2rem, 6.4vw + 2.8rem, 14.8rem)",
   fontWeight: 400,
-  letterSpacing: -6.4,
+  letterSpacing: "-0.05em",
   height: "1.2em",
   background: `linear-gradient(180deg, #34312f 0%, #aea091 38%, ${vars.color.text} 50%)`,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   zIndex: 0,
-  "@media": {
-    [breakpoints["2xl"]]: {
-      fontSize: "12.8rem",
-    },
-    [breakpoints["xl"]]: {
-      fontSize: "10.8rem",
-      letterSpacing: -5.0,
-    },
-    [breakpoints["lg"]]: {
-      fontSize: "8.0rem",
-      letterSpacing: -3.6,
-    },
-    [breakpoints["md"]]: {
-      fontSize: "7.2rem",
-      letterSpacing: -3.2,
-    },
-    [breakpoints["sm"]]: {
-      fontSize: "5.0rem",
-      letterSpacing: -2.8,
-    },
-  },
 });
 export const photoBox = style({
   position: "relative",
