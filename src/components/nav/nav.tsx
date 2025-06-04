@@ -26,7 +26,7 @@ export default function Nav() {
       </ul>
       <ul className={clsx(navLinkBox)}>
         <li>
-          <Link href={"/#about"} className={clsx(roboto.className, navLink)}>
+          <Link href={"/about"} className={clsx(roboto.className, navLink)}>
             About
           </Link>
         </li>
