@@ -40,7 +40,7 @@ export const navLink = style({
   color: vars.color.text,
   letterSpacing: 1.2,
   textDecoration: "none",
-  transition: "height 0.3s ease",
+  transition: "height 0.2s ease",
   selectors: {
     "&::before": {
       content: "",
@@ -50,7 +50,7 @@ export const navLink = style({
       width: "100%",
       height: 20,
       backgroundColor: vars.color.text,
-      transition: "height 0.3s ease",
+      transition: "height 0.2s ease",
     },
     "&:hover": {
       paddingBottom: 20,
