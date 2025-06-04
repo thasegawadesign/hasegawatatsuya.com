@@ -19,7 +19,7 @@ export const body = style({
   fontWeight: 200,
   "::selection": {
     color: "#130059",
-    backgroundColor: "#ddd",
+    backgroundColor: "#faf1e8",
   },
 });
 export const backgroundGradient = style({
