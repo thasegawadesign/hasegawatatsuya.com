@@ -91,7 +91,7 @@ export default function MobileNav() {
         </li>
         <li>
           <Link
-            href={"/#about"}
+            href={"/about"}
             ref={mobileNavAboutLinkRef}
             className={clsx(roboto.className, mobileNavLink)}
             onClick={() => setIsOpenHamburgerMenu(false)}
