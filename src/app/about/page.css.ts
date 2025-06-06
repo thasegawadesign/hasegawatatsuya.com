@@ -91,6 +91,8 @@ export const photo = style({
   animationDuration: "8s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
+  userSelect: "none",
+  pointerEvents: "none",
   "@media": {
     [breakpoints["2xl"]]: {
       width: 280,
