@@ -120,8 +120,8 @@ export const profileLinkIcon = style({
   },
   "@media": {
     [breakpoints["sm"]]: {
-      width: 24,
-      height: 24,
+      width: 26,
+      height: 26,
     },
   },
 });
