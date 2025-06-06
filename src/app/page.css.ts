@@ -316,15 +316,25 @@ export const worksItem = style({
   display: "flex",
   flexDirection: "column-reverse",
   alignItems: "center",
-  gap: 12,
+  gap: 20,
   padding: "120px 2vw 96px",
   backgroundColor: "rgba(255, 255, 255, .12)",
+  "@media": {
+    [breakpoints["xl"]]: {
+      gap: 12,
+    },
+  },
 });
 export const worksTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 6,
+  gap: 8,
   alignItems: "center",
+  "@media": {
+    [breakpoints["xl"]]: {
+      gap: 6,
+    },
+  },
 });
 export const worksName = style({
   fontSize: "1.6rem",
