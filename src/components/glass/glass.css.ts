@@ -4,7 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const glass = style({
   position: "relative",
   maxWidth: 1400,
-  width: "88%",
+  width: "88vw",
   margin: "100px auto",
   backgroundColor: "rgba(255, 255, 255, .1)",
   borderRadius: 20,
@@ -26,14 +26,15 @@ export const glass = style({
   },
   "@media": {
     [breakpoints["xl"]]: {
-      width: "92%",
+      width: "92vw",
     },
     [breakpoints["md"]]: {
-      width: "96%",
+      width: "96vw",
     },
     [breakpoints["sm"]]: {
-      marginTop: 8,
-      marginBottom: 8,
+      width: "98vw",
+      marginTop: "1vw",
+      marginBottom: "1vw",
       ":before": {
         backdropFilter: "blur(80px)",
         WebkitBackdropFilter: "blur(80px)",

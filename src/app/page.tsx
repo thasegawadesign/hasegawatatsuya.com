@@ -3,6 +3,7 @@
 import {
   aboutSection,
   contactSection,
+  contactWrapper,
   description,
   emailIcon,
   emailLink,
@@ -305,7 +306,7 @@ export default function Home() {
             <h2 className={clsx(roboto.className, sectionHeadingContact)}>
               Contact
             </h2>
-            <div ref={contactWrapperRef}>
+            <div ref={contactWrapperRef} className={clsx(contactWrapper)}>
               <Link
                 href={`mailto:${email}`}
                 className={clsx(emailLink)}
