@@ -85,7 +85,6 @@ export default function Home() {
   const worksItem5Ref = useRef(null);
   const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
-  const profileImageWrapperRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
@@ -120,7 +119,6 @@ export default function Home() {
     gsapAnimation.inview(worksItem5Ref);
     gsapAnimation.inview(contactRef);
     gsapAnimation.parallaxDeep(contactWrapperRef);
-    gsapAnimation.parallaxLight(profileImageWrapperRef);
   }, []);
 
   return (
@@ -200,10 +198,7 @@ export default function Home() {
                   More
                 </Link>
               </div>
-              <div
-                ref={profileImageWrapperRef}
-                className={clsx(profileImageWrapper)}
-              >
+              <div className={clsx(profileImageWrapper)}>
                 <Image
                   src={"/photo.webp"}
                   alt="長谷川達也"
