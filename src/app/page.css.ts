@@ -157,16 +157,21 @@ export const profileName = style({
   fontSize: "2.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 1.5,
+  letterSpacing: 2.0,
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "2.4rem",
+      fontSize: "2.5rem",
+    },
+    [breakpoints["xl"]]: {
+      fontSize: "2.25rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "2.0rem",
+      fontSize: "2.15rem",
+      letterSpacing: 1.5,
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.8rem",
+      fontSize: "1.85rem",
+      letterSpacing: 1.4,
     },
   },
 });
@@ -195,6 +200,10 @@ export const profileLinkBox = style({
     },
   },
 });
+export const profileLink = style({
+  display: "block",
+  lineHeight: "100%",
+});
 export const profileLinkIcon = style({
   width: 24,
   height: 24,
@@ -204,10 +213,6 @@ export const profileLinkIcon = style({
     scale: 1.2,
   },
   "@media": {
-    [breakpoints["2xl"]]: {
-      width: 22,
-      height: 22,
-    },
     [breakpoints["sm"]]: {
       width: 20,
       height: 20,

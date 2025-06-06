@@ -16,6 +16,7 @@ import {
   profileContent,
   profileImage,
   profileImageWrapper,
+  profileLink,
   profileLinkBox,
   profileLinkIcon,
   profileMore,
@@ -170,10 +171,18 @@ export default function Home() {
                   </p>
                 </div>
                 <div className={clsx(profileLinkBox)}>
-                  <Link href={github} target="_brank">
+                  <Link
+                    href={github}
+                    className={clsx(profileLink)}
+                    target="_brank"
+                  >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
-                  <Link href={`mailto:${email}`} target="_brank">
+                  <Link
+                    href={`mailto:${email}`}
+                    className={clsx(profileLink)}
+                    target="_brank"
+                  >
                     <IoMdMail className={clsx(profileLinkIcon)} />
                   </Link>
                 </div>
