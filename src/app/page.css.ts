@@ -106,11 +106,13 @@ export const profileSection = style({
   flexDirection: "row-reverse",
   placeItems: "end",
   justifyContent: "center",
-  gap: 40,
+  gap: 48,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
   padding: "76px 12vw",
   maxWidth: 920,
+  borderRadius: 8,
+  backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["2xl"]]: {
       maxWidth: 880,
@@ -120,16 +122,17 @@ export const profileSection = style({
     },
     [breakpoints["lg"]]: {
       maxWidth: 600,
-      padding: "76px 12vw",
+      gap: 40,
+      padding: "76px 8vw",
     },
     [breakpoints["md"]]: {
       maxWidth: 580,
-      padding: "76px 8vw",
     },
     [breakpoints["sm"]]: {
-      gap: 24,
+      gap: 16,
       maxWidth: 580,
       padding: "76px 2vw",
+      margin: "0 2vw",
     },
   },
 });
@@ -171,7 +174,7 @@ export const profileName = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "1.85rem",
-      letterSpacing: 1.4,
+      letterSpacing: 1.2,
     },
   },
 });
@@ -255,16 +258,15 @@ export const profileImageWrapper = style({
   position: "relative",
   width: 200,
   height: 300,
-  marginLeft: -140,
+  marginLeft: -100,
   overflow: "hidden",
   "@media": {
     [breakpoints["xl"]]: {
-      marginLeft: -100,
       width: 180,
       height: 270,
     },
     [breakpoints["lg"]]: {
-      marginLeft: -80,
+      marginLeft: -60,
     },
     [breakpoints["md"]]: {
       marginLeft: -60,
@@ -272,12 +274,13 @@ export const profileImageWrapper = style({
     [breakpoints["sm"]]: {
       width: 120,
       height: 180,
-      marginLeft: -24,
+      marginLeft: -12,
     },
   },
 });
 export const profileImage = style({
   objectFit: "cover",
+  borderRadius: 4,
 });
 
 export const worksSection = style({
@@ -309,6 +312,7 @@ export const worksBox = style({
     [breakpoints["sm"]]: {
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: 1,
+      margin: "0 2vw",
     },
   },
 });
@@ -317,8 +321,10 @@ export const worksItem = style({
   flexDirection: "column-reverse",
   alignItems: "center",
   gap: 20,
-  padding: "120px 2vw 96px",
+  padding: "120px 2vw 112px",
   backgroundColor: "rgba(255, 255, 255, .12)",
+  borderRadius: 8,
+  backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["xl"]]: {
       gap: 12,
@@ -391,6 +397,13 @@ export const contactSection = style({
     },
   },
 });
+export const contactWrapper = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      margin: "0 2vw",
+    },
+  },
+});
 export const emailLink = style({
   display: "flex",
   justifyContent: "center",
@@ -406,32 +419,33 @@ export const emailLink = style({
   letterSpacing: 2,
   textDecoration: "none",
   backgroundColor: vars.color.text,
+  borderRadius: 8,
   "@media": {
     [breakpoints["2xl"]]: {
-      gap: 36,
       fontSize: "2.2rem",
+      gap: 36,
       maxWidth: 1000,
     },
     [breakpoints["xl"]]: {
+      fontSize: "2.0rem",
+      padding: "140px 200px",
       gap: 28,
       maxWidth: 900,
-      padding: "140px 200px",
-      fontSize: "2.0rem",
     },
     [breakpoints["lg"]]: {
+      fontSize: "1.8rem",
+      padding: "120px 120px",
       gap: 26,
       maxWidth: 700,
-      padding: "120px 120px",
-      fontSize: "1.8rem",
     },
     [breakpoints["md"]]: {
-      maxWidth: 640,
       fontSize: "1.7rem",
+      maxWidth: 640,
     },
     [breakpoints["sm"]]: {
-      gap: 16,
-      padding: "200px 8px",
       fontSize: "1.5rem",
+      padding: "200px 8px",
+      gap: 16,
       letterSpacing: 1,
     },
   },
