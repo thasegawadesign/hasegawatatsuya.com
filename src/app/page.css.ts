@@ -316,7 +316,7 @@ export const worksItem = style({
   display: "flex",
   flexDirection: "column-reverse",
   alignItems: "center",
-  gap: 20,
+  gap: 12,
   padding: "120px 2vw 96px",
   backgroundColor: "rgba(255, 255, 255, .12)",
 });
@@ -337,7 +337,7 @@ export const worksName = style({
   },
 });
 export const worksCategory = style({
-  fontSize: "1.1rem",
+  fontSize: "1.0rem",
   fontWeight: 300,
   color: vars.color.text,
   "@media": {

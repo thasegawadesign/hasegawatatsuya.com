@@ -219,7 +219,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem1Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>フルール</h3>
-                  <p className={clsx(worksCategory)}>Webサイト</p>
+                  <p className={clsx(worksCategory)}>(Webサイト)</p>
                 </div>
                 <Link href={"/works/fleur"} className={clsx(worksLink)}>
                   <Image
@@ -234,7 +234,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem2Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
-                  <p className={clsx(worksCategory)}>Webアプリケーション</p>
+                  <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
                 </div>
                 <Link
                   href={"https://www.question-and-answer.vegetstudios.com"}
@@ -253,7 +253,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem3Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
-                  <p className={clsx(worksCategory)}>Webアプリケーション</p>
+                  <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
                 </div>
                 <Link
                   href={"https://www.sutememo.vegetstudios.com"}
@@ -272,7 +272,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem4Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>プレイリスト2025</h3>
-                  <p className={clsx(worksCategory)}>グラフィック</p>
+                  <p className={clsx(worksCategory)}>(グラフィック)</p>
                 </div>
                 <Link href={"/works/playlist2025"} className={clsx(worksLink)}>
                   <Image
@@ -287,7 +287,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem5Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>躍動感のあるビジュアル</h3>
-                  <p className={clsx(worksCategory)}>レタッチ</p>
+                  <p className={clsx(worksCategory)}>(レタッチ)</p>
                 </div>
                 <Link href={"/works/sporty"} className={clsx(worksLink)}>
                   <Image
