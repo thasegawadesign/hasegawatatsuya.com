@@ -10,8 +10,8 @@ export const object3 = style({
   bottom: "-24%",
   left: "4%",
   background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
-  width: 560,
-  height: 560,
+  width: "28vw",
+  height: "28vw",
   borderRadius: "100%",
   filter: "blur(16px)",
   zIndex: -50,
@@ -21,21 +21,12 @@ export const object3 = style({
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
   "@media": {
-    [breakpoints["lg"]]: {
-      width: 480,
-      height: 480,
-    },
     [breakpoints["md"]]: {
       bottom: "4%",
       left: "-4%",
-      width: 400,
-      height: 400,
     },
     [breakpoints["sm"]]: {
-      bottom: "-8%",
-      left: "-12%",
-      width: 300,
-      height: 300,
+      display: "none",
     },
   },
 });
