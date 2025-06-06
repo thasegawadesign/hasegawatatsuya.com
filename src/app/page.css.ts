@@ -137,7 +137,7 @@ export const profileSection = style({
   },
 });
 export const profileContent = style({
-  paddingBottom: 32,
+  paddingBottom: 40,
   "@media": {
     [breakpoints["sm"]]: {
       paddingBottom: 24,
