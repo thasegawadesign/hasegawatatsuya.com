@@ -27,9 +27,13 @@ export const glass = style({
   "@media": {
     [breakpoints["xl"]]: {
       width: "92vw",
+      marginTop: "4vw",
+      marginBottom: "4vw",
     },
     [breakpoints["md"]]: {
       width: "96vw",
+      marginTop: "2vw",
+      marginBottom: "2vw",
     },
     [breakpoints["sm"]]: {
       width: "98vw",

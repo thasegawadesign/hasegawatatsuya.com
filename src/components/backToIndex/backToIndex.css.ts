@@ -7,7 +7,7 @@ export const backToIndexBox = style({
   bottom: 120,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "clamp(40px, 7.6%, 240px)",
+      left: "clamp(40px, 9%, 240px)",
     },
   },
 });
