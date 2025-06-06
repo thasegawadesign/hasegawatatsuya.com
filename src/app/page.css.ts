@@ -282,6 +282,8 @@ export const profileImageWrapper = style({
 export const profileImage = style({
   objectFit: "cover",
   borderRadius: 12,
+  userSelect: "none",
+  pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
       borderRadius: 2,
@@ -396,6 +398,8 @@ export const worksLink = style({
 export const worksIcon = style({
   width: "100%",
   height: "100%",
+  userSelect: "none",
+  pointerEvents: "none",
 });
 
 export const contactSection = style({
