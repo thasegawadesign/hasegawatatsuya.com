@@ -3,18 +3,17 @@ import { style } from "@vanilla-extract/css";
 
 export const nav = style({
   position: "fixed",
-  top: 160,
-  left: "clamp(40px, 15.2%, 300px)",
+  top: "8vw",
+  left: "clamp(40px, 15.2vw, 300px)",
   display: "flex",
   flexDirection: "column",
   gap: 12,
   zIndex: 100,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "clamp(40px, 9%, 240px)",
+      left: "clamp(40px, 9vw, 240px)",
     },
     [breakpoints["xl"]]: {
-      top: "8vw",
       left: "8vw",
     },
     [breakpoints["sm"]]: {
