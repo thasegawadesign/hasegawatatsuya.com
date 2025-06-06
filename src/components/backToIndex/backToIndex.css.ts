@@ -3,11 +3,11 @@ import { style } from "@vanilla-extract/css";
 
 export const backToIndexBox = style({
   position: "absolute",
-  left: "clamp(40px, 15.2%, 300px)",
+  left: "clamp(40px, 15.2vw, 300px)",
   bottom: 120,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "clamp(40px, 9%, 240px)",
+      left: "clamp(40px, 9vw, 240px)",
     },
   },
 });

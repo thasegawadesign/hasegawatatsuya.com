@@ -5,7 +5,7 @@ export const glass = style({
   position: "relative",
   maxWidth: 1400,
   width: "88vw",
-  margin: "100px auto",
+  margin: "5vw auto",
   backgroundColor: "rgba(255, 255, 255, .1)",
   borderRadius: 20,
   border: "solid 1px",
