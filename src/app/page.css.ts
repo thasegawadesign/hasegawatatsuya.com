@@ -111,7 +111,7 @@ export const profileSection = style({
   margin: "0 auto",
   padding: "76px 12vw",
   maxWidth: 920,
-  borderRadius: 4,
+  borderRadius: 16,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -133,6 +133,7 @@ export const profileSection = style({
       maxWidth: 580,
       padding: "76px 2vw",
       margin: "0 2vw",
+      borderRadius: 4,
     },
   },
 });
@@ -280,7 +281,12 @@ export const profileImageWrapper = style({
 });
 export const profileImage = style({
   objectFit: "cover",
-  borderRadius: 2,
+  borderRadius: 12,
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: 2,
+    },
+  },
 });
 
 export const worksSection = style({
@@ -323,11 +329,14 @@ export const worksItem = style({
   gap: 20,
   padding: "120px 2vw 112px",
   backgroundColor: "rgba(255, 255, 255, .12)",
-  borderRadius: 4,
+  borderRadius: 16,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["xl"]]: {
       gap: 12,
+    },
+    [breakpoints["sm"]]: {
+      borderRadius: 4,
     },
   },
 });
@@ -419,7 +428,7 @@ export const emailLink = style({
   letterSpacing: 2,
   textDecoration: "none",
   backgroundColor: vars.color.text,
-  borderRadius: 4,
+  borderRadius: 16,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
@@ -447,6 +456,7 @@ export const emailLink = style({
       padding: "200px 8px",
       gap: 16,
       letterSpacing: 1,
+      borderRadius: 4,
     },
   },
 });

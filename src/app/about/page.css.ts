@@ -86,7 +86,7 @@ export const photo = style({
   right: 0,
   margin: "0 auto",
   contain: "paint",
-  borderRadius: 8,
+  borderRadius: 12,
   animationName: animatePhoto,
   animationDuration: "8s",
   animationTimingFunction: "linear",
@@ -95,6 +95,9 @@ export const photo = style({
     [breakpoints["2xl"]]: {
       width: 280,
       height: 420,
+    },
+    [breakpoints["sm"]]: {
+      borderRadius: 8,
     },
   },
 });
