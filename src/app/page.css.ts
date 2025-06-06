@@ -111,7 +111,7 @@ export const profileSection = style({
   margin: "0 auto",
   padding: "76px 12vw",
   maxWidth: 920,
-  borderRadius: 8,
+  borderRadius: 4,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -280,7 +280,7 @@ export const profileImageWrapper = style({
 });
 export const profileImage = style({
   objectFit: "cover",
-  borderRadius: 4,
+  borderRadius: 2,
 });
 
 export const worksSection = style({
@@ -323,7 +323,7 @@ export const worksItem = style({
   gap: 20,
   padding: "120px 2vw 112px",
   backgroundColor: "rgba(255, 255, 255, .12)",
-  borderRadius: 8,
+  borderRadius: 4,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["xl"]]: {
@@ -419,7 +419,7 @@ export const emailLink = style({
   letterSpacing: 2,
   textDecoration: "none",
   backgroundColor: vars.color.text,
-  borderRadius: 8,
+  borderRadius: 4,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
