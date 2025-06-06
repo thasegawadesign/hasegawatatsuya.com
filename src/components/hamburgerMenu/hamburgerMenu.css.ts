@@ -24,4 +24,5 @@ export const hamburgerMenuLine = style({
   width: 36,
   height: 10,
   backgroundColor: vars.color.text,
+  borderRadius: "0 0 2px 2px",
 });
