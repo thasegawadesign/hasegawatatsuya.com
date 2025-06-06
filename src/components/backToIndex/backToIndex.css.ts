@@ -4,7 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const backToIndexBox = style({
   position: "absolute",
   left: "clamp(40px, 15.2%, 300px)",
-  bottom: 100,
+  bottom: 120,
   "@media": {
     [breakpoints["2xl"]]: {
       left: "clamp(40px, 7.6%, 240px)",
