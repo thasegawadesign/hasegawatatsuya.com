@@ -86,7 +86,7 @@ export const photo = style({
   right: 0,
   margin: "0 auto",
   contain: "paint",
-  borderRadius: 16,
+  borderRadius: 12,
   animationName: animatePhoto,
   animationDuration: "8s",
   animationTimingFunction: "linear",
