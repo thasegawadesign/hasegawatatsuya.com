@@ -151,14 +151,19 @@ export default function Home() {
               <br className={clsx(desktopBr)} />
               実際に触れることのできる
               <br className={mobileBr} />
-              Web作品をデザイン・実装することに
+              Web作品を
+              <br className={mobileBr} />
+              デザイン・実装することに
               <br className={mobileBr} />
               喜びを感じます。
               <br className={mobileBr} />
               <br className={clsx(desktopBr)} />
-              書いたコードが画面に反映される感動を
+              書いたコードが画面に反映される <br className={mobileBr} />
+              感動を
               <br className={mobileBr} />
-              学習を始めて以来ずっと持ち続けています。
+              学習を始めて以来
+              <br className={mobileBr} />
+              ずっと持ち続けています。
             </p>
             <section className={profileSection} ref={profileRef}>
               <div className={clsx(profileContent)}>

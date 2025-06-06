@@ -127,7 +127,7 @@ export const profileSection = style({
       padding: "76px 8vw",
     },
     [breakpoints["sm"]]: {
-      gap: 20,
+      gap: 24,
       maxWidth: 580,
       padding: "76px 2vw",
     },
@@ -272,7 +272,7 @@ export const profileImageWrapper = style({
     [breakpoints["sm"]]: {
       width: 120,
       height: 180,
-      marginLeft: -20,
+      marginLeft: -24,
     },
   },
 });
@@ -385,12 +385,12 @@ export const emailLink = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: 32,
+  gap: 40,
   margin: "0 auto",
   padding: "160px 240px",
   maxWidth: 1120,
   width: "100%",
-  fontSize: "2.2rem",
+  fontSize: "2.4rem",
   fontWeight: 300,
   color: "#130059",
   letterSpacing: 2,
@@ -398,18 +398,21 @@ export const emailLink = style({
   backgroundColor: vars.color.text,
   "@media": {
     [breakpoints["2xl"]]: {
+      gap: 36,
+      fontSize: "2.2rem",
       maxWidth: 1000,
     },
     [breakpoints["xl"]]: {
-      gap: 24,
+      gap: 28,
       maxWidth: 900,
       padding: "140px 200px",
       fontSize: "2.0rem",
     },
     [breakpoints["lg"]]: {
+      gap: 26,
       maxWidth: 700,
       padding: "120px 120px",
-      fontSize: "1.7rem",
+      fontSize: "1.8rem",
     },
     [breakpoints["md"]]: {
       maxWidth: 640,
@@ -418,7 +421,8 @@ export const emailLink = style({
     [breakpoints["sm"]]: {
       gap: 16,
       padding: "200px 8px",
-      fontSize: "1.4rem",
+      fontSize: "1.5rem",
+      letterSpacing: 1,
     },
   },
 });
@@ -435,18 +439,23 @@ export const emailIcon = style({
       height: 28,
     },
     [breakpoints["sm"]]: {
-      width: 20,
-      height: 20,
+      width: 24,
+      height: 24,
     },
   },
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "32ch",
+  width: "20em",
   height: 40,
   overflowY: "hidden",
   transformStyle: "preserve-3d",
   backfaceVisibility: "hidden",
+  "@media": {
+    [breakpoints["sm"]]: {
+      width: "17em",
+    },
+  },
 });
 export const emailTextRotateTop = style({
   position: "absolute",
