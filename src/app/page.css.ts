@@ -297,29 +297,24 @@ export const worksSection = style({
 export const worksBox = style({
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
-  gap: 50,
+  gap: "1vw",
   margin: "0 auto",
   maxWidth: 920,
   "@media": {
     [breakpoints["2xl"]]: {
-      gap: 40,
       maxWidth: 880,
     },
     [breakpoints["xl"]]: {
-      gap: 32,
       maxWidth: 800,
     },
     [breakpoints["lg"]]: {
-      gap: 20,
       maxWidth: 640,
     },
     [breakpoints["md"]]: {
-      gap: 16,
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
       gridTemplateColumns: "repeat(2, 1fr)",
-      gap: 1,
       margin: "0 2vw",
     },
   },
@@ -329,13 +324,16 @@ export const worksItem = style({
   flexDirection: "column-reverse",
   alignItems: "center",
   gap: 20,
-  padding: "40px 2vw 36px",
+  padding: "52px 2vw",
   backgroundColor: "rgba(255, 255, 255, .12)",
   borderRadius: 36,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["xl"]]: {
       gap: 12,
+    },
+    [breakpoints["sm"]]: {
+      padding: "44px 2vw",
     },
   },
 });
