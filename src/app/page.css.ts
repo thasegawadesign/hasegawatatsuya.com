@@ -214,8 +214,8 @@ export const profileLink = style({
   lineHeight: "100%",
 });
 export const profileLinkIcon = style({
-  width: 24,
-  height: 24,
+  width: 28,
+  height: 28,
   color: vars.color.text,
   transition: "scale 0.2s ease",
   ":hover": {
