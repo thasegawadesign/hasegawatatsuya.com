@@ -108,6 +108,7 @@ export default function AudioButton() {
   return (
     <button
       ref={audioButtonRef}
+      title="Sound ON"
       className={clsx(audioButtonBox)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
