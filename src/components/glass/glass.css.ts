@@ -53,9 +53,7 @@ export const glass = style({
       width: "98vw",
       marginTop: "1vw",
       marginBottom: "1vw",
-      borderRadius: 20,
       ":before": {
-        borderRadius: 20,
         backdropFilter: "blur(80px)",
         WebkitBackdropFilter: "blur(80px)",
       },
@@ -71,9 +69,4 @@ export const noise = style({
   height: "100%",
   opacity: 0.3,
   zIndex: 0,
-  "@media": {
-    [breakpoints["sm"]]: {
-      borderRadius: 20,
-    },
-  },
 });

@@ -98,9 +98,6 @@ export const photo = style({
       width: 280,
       height: 420,
     },
-    [breakpoints["sm"]]: {
-      borderRadius: 8,
-    },
   },
 });
 
