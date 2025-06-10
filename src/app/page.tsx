@@ -203,7 +203,11 @@ export default function Home() {
                   <h3 className={clsx(worksName)}>フルール</h3>
                   <p className={clsx(worksCategory)}>(Webサイト)</p>
                 </div>
-                <Link href={"/works/fleur"} className={clsx(worksLink)}>
+                <Link
+                  href={"/works/fleur"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/fleur")}
+                >
                   <Image
                     src={"/icons/fleur-icon.png"}
                     width={160}
@@ -256,7 +260,11 @@ export default function Home() {
                   <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                   <p className={clsx(worksCategory)}>(グラフィック)</p>
                 </div>
-                <Link href={"/works/playlist2025"} className={clsx(worksLink)}>
+                <Link
+                  href={"/works/playlist2025"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/playlist2025")}
+                >
                   <Image
                     src={"/icons/playlist2025-icon.png"}
                     width={160}
@@ -271,7 +279,11 @@ export default function Home() {
                   <h3 className={clsx(worksName)}>躍動感のあるビジュアル</h3>
                   <p className={clsx(worksCategory)}>(レタッチ)</p>
                 </div>
-                <Link href={"/works/sporty"} className={clsx(worksLink)}>
+                <Link
+                  href={"/works/sporty"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/sporty")}
+                >
                   <Image
                     src={"/icons/sporty-icon.png"}
                     width={160}
