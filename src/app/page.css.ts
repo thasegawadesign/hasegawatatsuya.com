@@ -109,7 +109,7 @@ export const profileSection = style({
   gap: 60,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
-  padding: "76px 12vw",
+  padding: "52px 12vw",
   maxWidth: 920,
   borderRadius: 36,
   backdropFilter: "blur(8px)",
@@ -125,7 +125,7 @@ export const profileSection = style({
     [breakpoints["lg"]]: {
       gap: 48,
       maxWidth: 640,
-      padding: "76px 8vw",
+      padding: "52px 8vw",
     },
     [breakpoints["md"]]: {
       gap: 40,
@@ -134,7 +134,7 @@ export const profileSection = style({
     [breakpoints["sm"]]: {
       gap: 24,
       maxWidth: 580,
-      padding: "76px 2vw",
+      padding: "40px 2vw",
       margin: "0 2vw",
       borderRadius: 4,
     },
@@ -463,7 +463,7 @@ export const emailLink = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
-      padding: "200px 8px",
+      padding: "160px 8px",
       gap: 16,
       letterSpacing: 1,
       borderRadius: 4,
