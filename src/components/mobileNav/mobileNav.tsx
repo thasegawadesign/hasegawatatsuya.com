@@ -13,7 +13,8 @@ import gsap from "gsap";
 import { useAtom } from "jotai";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef } from "react";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -28,6 +29,22 @@ export default function MobileNav() {
 
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
     isOpenHamburgerMenuAtom
+  );
+
+  const router = useRouter();
+
+  const handleTransition = useCallback(
+    (event: React.MouseEvent) => {
+      event.preventDefault();
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          router.push("/about");
+        });
+      } else {
+        router.push("/about");
+      }
+    },
+    [router]
   );
 
   useEffect(() => {
@@ -94,7 +111,10 @@ export default function MobileNav() {
             href={"/about"}
             ref={mobileNavAboutLinkRef}
             className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => setIsOpenHamburgerMenu(false)}
+            onClick={(event) => {
+              setIsOpenHamburgerMenu(false);
+              handleTransition(event);
+            }}
           >
             About
           </Link>
