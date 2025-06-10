@@ -3,7 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const nav = style({
   position: "fixed",
-  top: "8vw",
+  top: "7vw",
   left: "clamp(40px, 15.2vw, 300px)",
   display: "flex",
   flexDirection: "column",

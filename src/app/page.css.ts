@@ -17,7 +17,7 @@ export const nameMainVisual = style({
   color: "#130059",
   lineHeight: "0.76em",
   textAlign: "center",
-  margin: "22vh auto",
+  margin: "24vh auto",
   "@media": {
     [breakpoints["sm"]]: {
       margin: "33.3vh auto",
