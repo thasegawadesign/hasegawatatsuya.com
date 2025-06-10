@@ -26,7 +26,7 @@ export const backToIndex = style({
       width: "100%",
       height: 32,
       backgroundColor: vars.color.text,
-      borderRadius: "0 0 6px 6px",
+      borderRadius: "0 0 8px 8px",
       transition: "height 0.2s ease",
     },
     "&:hover": {

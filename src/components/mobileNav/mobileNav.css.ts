@@ -69,7 +69,7 @@ export const mobileNavLink = style({
       width: "100%",
       height: 32,
       backgroundColor: vars.color.text,
-      borderRadius: "0 0 6px 6px",
+      borderRadius: "0 0 12px 12px",
       transition: "height 0.2s ease",
     },
     "&:hover": {
