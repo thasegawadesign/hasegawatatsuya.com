@@ -418,10 +418,10 @@ export const emailLink = style({
   alignItems: "center",
   gap: 40,
   margin: "0 auto",
-  padding: "180px 240px",
+  padding: "200px 240px",
   maxWidth: 1120,
   width: "100%",
-  fontSize: "2.4rem",
+  fontSize: "2.6rem",
   fontWeight: 300,
   color: "#130059",
   letterSpacing: 2,
@@ -430,12 +430,12 @@ export const emailLink = style({
   borderRadius: 36,
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "2.2rem",
+      fontSize: "2.4rem",
       gap: 36,
       maxWidth: 1000,
     },
     [breakpoints["xl"]]: {
-      fontSize: "2.0rem",
+      fontSize: "2.2rem",
       padding: "160px 200px",
       gap: 28,
       maxWidth: 900,
@@ -478,7 +478,7 @@ export const emailIcon = style({
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "20em",
+  width: "19em",
   height: 40,
   overflowY: "hidden",
   transformStyle: "preserve-3d",
