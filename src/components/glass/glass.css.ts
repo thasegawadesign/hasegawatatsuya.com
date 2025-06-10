@@ -20,10 +20,23 @@ export const glass = style({
     width: "100%",
     height: "100%",
     borderRadius: 40,
-    boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
+    boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , 0.3)",
     backdropFilter: "blur(120px)",
     WebkitBackdropFilter: "blur(120px)",
     zIndex: -1,
+  },
+  ":after": {
+    content: "",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background:
+      "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) 100%)",
+    opacity: 0.3,
+    mixBlendMode: "overlay",
+    borderRadius: "inherit",
   },
   "@media": {
     [breakpoints["xl"]]: {
