@@ -7,8 +7,8 @@ export const rotate = keyframes({
 });
 export const circle = style({
   position: "absolute",
-  top: "-52px",
-  right: "-52px",
+  top: "-48px",
+  right: "-48px",
   width: 120,
   height: 120,
   fontSize: "12px",
@@ -24,14 +24,14 @@ export const circle = style({
   },
   "@media": {
     [breakpoints["2xl"]]: {
-      top: "-46px",
-      right: "-46px",
+      top: "-42px",
+      right: "-42px",
       width: 110,
       height: 110,
     },
     [breakpoints["xl"]]: {
-      top: "-45px",
-      right: "-45px",
+      top: "-36x",
+      right: "-36px",
       width: 105,
       height: 105,
     },
