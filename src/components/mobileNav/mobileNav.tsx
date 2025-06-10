@@ -8,13 +8,13 @@ import {
   mobileNavLink,
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
+import { useViewTransition } from "@/hooks/useViewTransition";
 import clsx from "clsx";
 import gsap from "gsap";
 import { useAtom } from "jotai";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -31,21 +31,7 @@ export default function MobileNav() {
     isOpenHamburgerMenuAtom
   );
 
-  const router = useRouter();
-
-  const handleTransition = useCallback(
-    (event: React.MouseEvent) => {
-      event.preventDefault();
-      if (document.startViewTransition) {
-        document.startViewTransition(() => {
-          router.push("/about");
-        });
-      } else {
-        router.push("/about");
-      }
-    },
-    [router]
-  );
+  const handleTransition = useViewTransition();
 
   useEffect(() => {
     const noscroll = (event: WheelEvent | TouchEvent) => {
@@ -111,9 +97,9 @@ export default function MobileNav() {
             href={"/about"}
             ref={mobileNavAboutLinkRef}
             className={clsx(roboto.className, mobileNavLink)}
-            onClick={(event) => {
+            onClick={() => {
               setIsOpenHamburgerMenu(false);
-              handleTransition(event);
+              handleTransition("/about");
             }}
           >
             About

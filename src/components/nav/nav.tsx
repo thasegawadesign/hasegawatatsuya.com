@@ -7,11 +7,10 @@ import {
   navLinkBox,
   navLogoBox,
 } from "@/components/nav/nav.css";
+import { useViewTransition } from "@/hooks/useViewTransition";
 import clsx from "clsx";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback } from "react";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -19,21 +18,7 @@ const roboto = Roboto({
 });
 
 export default function Nav() {
-  const router = useRouter();
-
-  const handleTransition = useCallback(
-    (event: React.MouseEvent) => {
-      event.preventDefault();
-      if (document.startViewTransition) {
-        document.startViewTransition(() => {
-          router.push("/about");
-        });
-      } else {
-        router.push("/about");
-      }
-    },
-    [router]
-  );
+  const handleTransition = useViewTransition();
 
   return (
     <nav className={clsx(nav)}>
@@ -49,7 +34,7 @@ export default function Nav() {
           <Link
             href={"/about"}
             className={clsx(roboto.className, navLink)}
-            onClick={handleTransition}
+            onClick={handleTransition("/about")}
           >
             About
           </Link>
