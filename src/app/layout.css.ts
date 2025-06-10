@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 
 export const html = style({
   overflowX: "hidden",
@@ -22,6 +22,24 @@ export const body = style({
     backgroundColor: "#faf1e8",
   },
 });
+
+export const gradientMove = keyframes({
+  "0%": {
+    backgroundPosition: "0% 0%",
+  },
+  "25%": {
+    backgroundPosition: "50% 25%",
+  },
+  "50%": {
+    backgroundPosition: "100% 50%",
+  },
+  "75%": {
+    backgroundPosition: "50% 75%",
+  },
+  "100%": {
+    backgroundPosition: "0% 0%",
+  },
+});
 export const backgroundGradient = style({
   backgroundColor: "#106",
   backgroundImage: `
@@ -30,4 +48,6 @@ export const backgroundGradient = style({
   radial-gradient(at 40% 60%, #01f, transparent 80%),
   radial-gradient(at 0 100%, #faa, transparent 50%)`,
   backgroundAttachment: "fixed",
+  backgroundSize: "150% 150%",
+  animation: `${gradientMove} 20s ease-in-out infinite`,
 });

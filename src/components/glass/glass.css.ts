@@ -7,7 +7,7 @@ export const glass = style({
   width: "88vw",
   margin: "5vw auto",
   backgroundColor: "rgba(255, 255, 255, .1)",
-  borderRadius: 20,
+  borderRadius: 36,
   border: "solid 1px",
   borderColor: "rgba(255, 255, 255, .3)",
   ":before": {
@@ -18,7 +18,7 @@ export const glass = style({
     right: 0,
     width: "100%",
     height: "100%",
-    borderRadius: 20,
+    borderRadius: 36,
     boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , .3)",
     backdropFilter: "blur(120px)",
     WebkitBackdropFilter: "blur(120px)",
@@ -39,7 +39,9 @@ export const glass = style({
       width: "98vw",
       marginTop: "1vw",
       marginBottom: "1vw",
+      borderRadius: 20,
       ":before": {
+        borderRadius: 20,
         backdropFilter: "blur(80px)",
         WebkitBackdropFilter: "blur(80px)",
       },
@@ -50,9 +52,14 @@ export const glass = style({
 export const noise = style({
   position: "absolute",
   top: 0,
-  borderRadius: 20,
+  borderRadius: 36,
   width: "100%",
   height: "100%",
   opacity: 0.3,
   zIndex: 0,
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: 20,
+    },
+  },
 });
