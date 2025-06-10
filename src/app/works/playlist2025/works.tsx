@@ -50,7 +50,7 @@ export default function Works() {
               imageSrc="/playlist2025.webp"
               imageWidth={1000}
               imageHeight={1000}
-              what="音楽配信サービス用プレイリストカバー"
+              what="音楽配信サービスプレイリストカバー"
               why={
                 <>
                   普段利用している音楽配信サービスではプレイリストカバーが自動で生成されますが、デザインの練習の一環として、自分の手で作って設定してみたいと思ったことが、制作のきっかけです。
