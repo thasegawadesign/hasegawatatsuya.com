@@ -87,7 +87,10 @@ export default function MobileNav() {
             href={"/#home"}
             ref={mobileNavHomeLinkRef}
             className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => setIsOpenHamburgerMenu(false)}
+            onClick={() => {
+              setIsOpenHamburgerMenu(false);
+              handleTransition("/");
+            }}
           >
             Home
           </Link>
