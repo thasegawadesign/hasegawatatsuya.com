@@ -4,9 +4,14 @@ import { style } from "@vanilla-extract/css";
 export const worksImage = style({
   width: "100%",
   height: "auto",
-  borderRadius: "20px 20px 0 0",
+  borderRadius: "36px 36px 0 0",
   userSelect: "none",
   pointerEvents: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: "20px 20px 0 0",
+    },
+  },
 });
 
 export const hgroupHeading = style({
@@ -61,14 +66,11 @@ export const worksDt = style({
 export const worksDd = style({
   fontSize: "clamp(1.6rem, 1.4vw, 2.4rem)",
   color: vars.color.text,
-  width: "46vw",
+  width: "42vw",
   lineHeight: "1.8em",
   "@media": {
     [breakpoints["2xl"]]: {
       width: "48vw",
-    },
-    [breakpoints["xl"]]: {
-      width: "52vw",
     },
     [breakpoints["lg"]]: {
       width: "60vw",
@@ -84,13 +86,10 @@ export const worksRole = style({
   fontWeight: 300,
   lineHeight: "1.28em",
   letterSpacing: "-0.036em",
-  width: "46vw",
+  width: "42vw",
   "@media": {
     [breakpoints["2xl"]]: {
       width: "48vw",
-    },
-    [breakpoints["xl"]]: {
-      width: "52vw",
     },
     [breakpoints["lg"]]: {
       width: "60vw",
