@@ -24,7 +24,11 @@ export default function Nav() {
     <nav className={clsx(nav)}>
       <ul className={clsx(navLogoBox)}>
         <li>
-          <Link href={"/#home"} className={clsx(roboto.className, logo)}>
+          <Link
+            href={"/#home"}
+            className={clsx(roboto.className, logo)}
+            onClick={handleTransition("/")}
+          >
             TH
           </Link>
         </li>
