@@ -8,8 +8,9 @@ export const glass = style({
   margin: "5vw auto",
   backgroundColor: "rgba(255, 255, 255, .1)",
   borderRadius: 36,
-  border: "solid 1px",
-  borderColor: "rgba(255, 255, 255, .3)",
+  border: "1px solid",
+  borderColor: "rgba(255, 255, 255, 0.1)",
+  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1)",
   ":before": {
     content: "",
     position: "absolute",
