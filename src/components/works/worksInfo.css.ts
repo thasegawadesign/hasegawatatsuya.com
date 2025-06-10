@@ -112,13 +112,13 @@ export const worksLink = style({
       top: "clamp(1.6rem, 1.36vw, 3rem)",
       display: "block",
       width: "100%",
-      height: 24,
+      height: 32,
       backgroundColor: vars.color.text,
       borderRadius: "0 0 6px 6px",
       transition: "height 0.2s ease",
     },
     "&:hover": {
-      paddingBottom: 24,
+      paddingBottom: 32,
     },
     "&:hover::before": {
       height: 1,
