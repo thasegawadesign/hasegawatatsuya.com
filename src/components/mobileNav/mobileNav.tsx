@@ -8,6 +8,7 @@ import {
   mobileNavLink,
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
+import { useViewTransition } from "@/hooks/useViewTransition";
 import clsx from "clsx";
 import gsap from "gsap";
 import { useAtom } from "jotai";
@@ -29,6 +30,8 @@ export default function MobileNav() {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
     isOpenHamburgerMenuAtom
   );
+
+  const handleTransition = useViewTransition();
 
   useEffect(() => {
     const noscroll = (event: WheelEvent | TouchEvent) => {
@@ -94,7 +97,10 @@ export default function MobileNav() {
             href={"/about"}
             ref={mobileNavAboutLinkRef}
             className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => setIsOpenHamburgerMenu(false)}
+            onClick={() => {
+              setIsOpenHamburgerMenu(false);
+              handleTransition("/about");
+            }}
           >
             About
           </Link>

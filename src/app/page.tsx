@@ -56,13 +56,13 @@ import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
 import { email, github } from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { useViewTransition } from "@/hooks/useViewTransition";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -88,23 +88,9 @@ export default function Home() {
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
-  const router = useRouter();
+  const handleTransition = useViewTransition();
 
   useSmoothScroll();
-
-  const handleTransition = useCallback(
-    (event: React.MouseEvent) => {
-      event.preventDefault();
-      if (document.startViewTransition) {
-        document.startViewTransition(() => {
-          router.push("/about");
-        });
-      } else {
-        router.push("/about");
-      }
-    },
-    [router]
-  );
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -193,7 +179,7 @@ export default function Home() {
                 <Link
                   href={"/about"}
                   className={clsx(roboto.className, profileMore)}
-                  onClick={handleTransition}
+                  onClick={handleTransition("/about")}
                 >
                   More
                 </Link>
