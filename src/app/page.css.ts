@@ -109,9 +109,9 @@ export const profileSection = style({
   gap: 60,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
-  padding: "76px 12vw",
+  padding: "52px 12vw",
   maxWidth: 920,
-  borderRadius: 20,
+  borderRadius: 36,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -125,7 +125,7 @@ export const profileSection = style({
     [breakpoints["lg"]]: {
       gap: 48,
       maxWidth: 640,
-      padding: "76px 8vw",
+      padding: "52px 8vw",
     },
     [breakpoints["md"]]: {
       gap: 40,
@@ -134,7 +134,7 @@ export const profileSection = style({
     [breakpoints["sm"]]: {
       gap: 24,
       maxWidth: 580,
-      padding: "76px 2vw",
+      padding: "40px 2vw",
       margin: "0 2vw",
       borderRadius: 4,
     },
@@ -287,7 +287,7 @@ export const profileImageWrapper = style({
 });
 export const profileImage = style({
   objectFit: "cover",
-  borderRadius: 16,
+  borderRadius: 24,
   userSelect: "none",
   pointerEvents: "none",
   "@media": {
@@ -335,9 +335,9 @@ export const worksItem = style({
   flexDirection: "column-reverse",
   alignItems: "center",
   gap: 20,
-  padding: "120px 2vw 112px",
+  padding: "40px 2vw 36px",
   backgroundColor: "rgba(255, 255, 255, .12)",
-  borderRadius: 20,
+  borderRadius: 36,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["xl"]]: {
@@ -438,7 +438,7 @@ export const emailLink = style({
   letterSpacing: 2,
   textDecoration: "none",
   backgroundColor: vars.color.text,
-  borderRadius: 32,
+  borderRadius: 36,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.2rem",
@@ -463,7 +463,7 @@ export const emailLink = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
-      padding: "200px 8px",
+      padding: "160px 8px",
       gap: 16,
       letterSpacing: 1,
       borderRadius: 4,
