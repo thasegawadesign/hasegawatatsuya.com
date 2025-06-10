@@ -136,7 +136,6 @@ export const profileSection = style({
       maxWidth: 580,
       padding: "40px 2vw",
       margin: "0 2vw",
-      borderRadius: 4,
     },
   },
 });
@@ -290,11 +289,6 @@ export const profileImage = style({
   borderRadius: 24,
   userSelect: "none",
   pointerEvents: "none",
-  "@media": {
-    [breakpoints["sm"]]: {
-      borderRadius: 2,
-    },
-  },
 });
 
 export const worksSection = style({
@@ -342,9 +336,6 @@ export const worksItem = style({
   "@media": {
     [breakpoints["xl"]]: {
       gap: 12,
-    },
-    [breakpoints["sm"]]: {
-      borderRadius: 4,
     },
   },
 });
@@ -463,10 +454,9 @@ export const emailLink = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
-      padding: "160px 8px",
+      padding: "180px 8px",
       gap: 16,
       letterSpacing: 1,
-      borderRadius: 4,
     },
   },
 });
