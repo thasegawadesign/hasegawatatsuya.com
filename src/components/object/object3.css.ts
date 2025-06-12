@@ -13,7 +13,7 @@ export const object3 = style({
   width: "28vw",
   height: "28vw",
   borderRadius: "100%",
-  filter: "blur(16px)",
+  filter: "blur(4px)",
   zIndex: -50,
   animationName: animateObject3,
   animationDuration: "20s",
