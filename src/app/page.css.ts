@@ -330,6 +330,11 @@ export const worksBox = style({
     [breakpoints["sm"]]: {
       gridTemplateColumns: "repeat(2, 1fr)",
       margin: "0 2vw",
+      gap: 1,
+      backgroundColor: "rgba(255, 255, 255, .12)",
+      borderRadius: 36,
+      backdropFilter: "blur(8px)",
+      paddingBottom: 48,
     },
   },
 });
@@ -339,7 +344,7 @@ export const worksItem = style({
   alignItems: "center",
   gap: 20,
   padding: "52px 2vw",
-  backgroundColor: "rgba(255, 255, 255, .12)",
+  backgroundColor: "rgba(255, 255, 255, 0.12)",
   borderRadius: 36,
   backdropFilter: "blur(8px)",
   "@media": {
@@ -347,7 +352,9 @@ export const worksItem = style({
       gap: 12,
     },
     [breakpoints["sm"]]: {
-      padding: "44px 2vw",
+      padding: "48px 2vw 0px",
+      backgroundColor: "transparent",
+      backdropFilter: "none",
     },
   },
 });
@@ -476,6 +483,7 @@ export const emailLink = style({
 export const emailIcon = style({
   width: 40,
   height: 40,
+  flexShrink: 0,
   "@media": {
     [breakpoints["xl"]]: {
       width: 32,
@@ -499,6 +507,9 @@ export const emailTextBox = style({
   transformStyle: "preserve-3d",
   backfaceVisibility: "hidden",
   "@media": {
+    [breakpoints["2xl"]]: {
+      width: "19.6em",
+    },
     [breakpoints["sm"]]: {
       width: "17.2em",
     },
