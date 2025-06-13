@@ -21,8 +21,11 @@ export const object1 = style({
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
   "@media": {
+    [breakpoints["2xl"]]: {
+      top: "2%",
+    },
     [breakpoints["md"]]: {
-      top: "-3%",
+      top: "-0%",
     },
     [breakpoints["sm"]]: {
       display: "none",
