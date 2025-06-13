@@ -7,11 +7,11 @@ export const animateObject2 = keyframes({
 });
 export const object2 = style({
   position: "fixed",
-  top: "36%",
-  right: "2%",
+  top: "40%",
+  right: "4%",
   background: `radial-gradient(rgba(83, 227, 124, .6), rgba(234, 234, 234, 1))`,
-  width: "24vw",
-  height: "24vw",
+  width: "clamp(240px,24vw,400px)",
+  height: "clamp(240px,24vw,400px)",
   borderRadius: "100%",
   filter: "blur(3px)",
   zIndex: -50,
@@ -22,7 +22,7 @@ export const object2 = style({
   animationDirection: "alternate-reverse",
   "@media": {
     [breakpoints["md"]]: {
-      right: "-6%",
+      right: "-4%",
     },
     [breakpoints["sm"]]: {
       display: "none",

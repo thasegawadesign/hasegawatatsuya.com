@@ -10,8 +10,8 @@ export const object3 = style({
   bottom: "-24%",
   left: "4%",
   background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
-  width: "28vw",
-  height: "28vw",
+  width: "clamp(300px,28vw,460px)",
+  height: "clamp(300px,28vw,460px)",
   borderRadius: "100%",
   filter: "blur(4px)",
   zIndex: -50,
@@ -22,7 +22,7 @@ export const object3 = style({
   animationDirection: "alternate-reverse",
   "@media": {
     [breakpoints["md"]]: {
-      bottom: "4%",
+      bottom: "0%",
       left: "-4%",
     },
     [breakpoints["sm"]]: {
