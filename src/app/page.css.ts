@@ -284,7 +284,21 @@ export const profileImageWrapper = style({
     },
   },
 });
+export const profileImageContainer = style({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+  borderRadius: 24,
+  aspectRatio: 3 / 2,
+});
+export const motionDiv = style({
+  position: "absolute",
+  inset: 0,
+});
 export const profileImage = style({
+  width: "100%",
+  height: "auto",
   objectFit: "cover",
   borderRadius: 24,
   userSelect: "none",
