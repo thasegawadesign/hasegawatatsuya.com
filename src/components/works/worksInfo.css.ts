@@ -1,10 +1,18 @@
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
+export const container = style({
+  position: "relative",
+  overflow: "hidden",
+  borderRadius: "36px 36px 0 0",
+  aspectRatio: "auto",
+});
+
 export const worksImage = style({
   width: "100%",
   height: "auto",
   borderRadius: "36px 36px 0 0",
+  objectFit: "cover",
   userSelect: "none",
   pointerEvents: "none",
   "@media": {

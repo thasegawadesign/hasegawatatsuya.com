@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  container,
   hgroupHeading,
   hgroupHeadingEn,
   hgroupHeadingJa,
@@ -13,13 +14,15 @@ import {
   worksRole,
 } from "@/components/works/worksInfo.css";
 import { gsapAnimation } from "@/utils/gsap";
+import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -64,6 +67,10 @@ export default function WorksInfo(props: Props) {
     URL,
   } = props;
 
+  const width = useWindowWidth();
+  const isActiveParallaxMin = 1024;
+
+  const containerRef = useRef(null);
   const hgroupRef = useRef(null);
   const worksWhatRef = useRef(null);
   const worksWhyRef = useRef(null);
@@ -71,6 +78,17 @@ export default function WorksInfo(props: Props) {
   const worksRoleRef = useRef(null);
   const worksTimeRef = useRef(null);
   const worksURLRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yRange = useMemo(
+    () => (width <= isActiveParallaxMin ? ["0px", "0px"] : ["-80px", "80px"]),
+    [width]
+  );
+  const y = useTransform(scrollYProgress, [0, 1], yRange);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -86,14 +104,18 @@ export default function WorksInfo(props: Props) {
 
   return (
     <>
-      <Image
-        src={imageSrc}
-        width={imageWidth}
-        height={imageHeight}
-        alt={nameJa}
-        className={clsx(worksImage)}
-        priority
-      />
+      <div ref={containerRef} className={clsx(container)}>
+        <motion.div style={{ y }}>
+          <Image
+            src={imageSrc}
+            width={imageWidth}
+            height={imageHeight}
+            alt={nameJa}
+            className={clsx(worksImage)}
+            priority
+          />
+        </motion.div>
+      </div>
       <hgroup ref={hgroupRef} className={clsx(hgroupHeading)}>
         <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>
           {nameEnNode ? nameEnNode : nameEn}
