@@ -13,6 +13,7 @@ import {
   worksLink,
   worksRole,
 } from "@/components/works/worksInfo.css";
+import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/utils/gsap";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
@@ -68,7 +69,6 @@ export default function WorksInfo(props: Props) {
   } = props;
 
   const width = useWindowWidth();
-  const isActiveParallaxMin = 1024;
 
   const containerRef = useRef(null);
   const hgroupRef = useRef(null);
@@ -85,7 +85,8 @@ export default function WorksInfo(props: Props) {
   });
 
   const yRange = useMemo(
-    () => (width <= isActiveParallaxMin ? ["0px", "0px"] : ["-80px", "80px"]),
+    () =>
+      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-80px", "80px"],
     [width]
   );
   const y = useTransform(scrollYProgress, [0, 1], yRange);

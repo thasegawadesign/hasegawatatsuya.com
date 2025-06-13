@@ -106,7 +106,7 @@ export default function Home() {
 
   const yRange = useMemo(
     () =>
-      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-40px", "40px"],
+      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-20px", "20px"],
     [width]
   );
   const y = useTransform(scrollYProgress, [0, 1], yRange);
