@@ -132,9 +132,9 @@ export const profileSection = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      gap: 24,
+      gap: 20,
       maxWidth: 580,
-      padding: "40px 2vw",
+      padding: "48px 2vw",
       margin: "0 2vw",
     },
   },

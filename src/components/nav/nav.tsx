@@ -25,7 +25,7 @@ export default function Nav() {
       <ul className={clsx(navLogoBox)}>
         <li>
           <Link
-            href={"/#home"}
+            href={"/"}
             className={clsx(roboto.className, logo)}
             onClick={handleTransition("/")}
           >
