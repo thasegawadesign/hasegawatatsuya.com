@@ -16,17 +16,23 @@ export const main = style({
 
 export const aboutHero = style({
   position: "relative",
-  margin: "120px auto 40px",
+  margin: "120px auto 96px",
   height: 480,
   "@media": {
     [breakpoints["2xl"]]: {
       height: 420,
     },
+    [breakpoints["xl"]]: {
+      margin: "96px auto 60px",
+    },
+    [breakpoints["sm"]]: {
+      margin: "96px auto 40px",
+    },
   },
 });
 export const nameBox = style({
   position: "absolute",
-  top: 120,
+  top: 160,
   left: 0,
   right: 0,
   zIndex: 50,
@@ -34,14 +40,6 @@ export const nameBox = style({
   flexDirection: "column",
   alignItems: "center",
   pointerEvents: "none",
-  "@media": {
-    [breakpoints["lg"]]: {
-      top: 140,
-    },
-    [breakpoints["sm"]]: {
-      top: 160,
-    },
-  },
 });
 export const nameJa = style({
   position: "relative",
@@ -79,6 +77,15 @@ export const animatePhoto = keyframes({
   "75%": { transform: "rotate(-6deg)" },
   "100%": { transform: "rotate(0)" },
 });
+export const photoContainer = style({
+  position: "relative",
+  aspectRatio: 2 / 3,
+  borderRadius: 24,
+});
+export const motionDiv = style({
+  position: "absolute",
+  inset: 0,
+});
 export const photo = style({
   position: "absolute",
   top: 0,
@@ -87,6 +94,7 @@ export const photo = style({
   margin: "0 auto",
   contain: "paint",
   borderRadius: 24,
+  objectFit: "cover",
   animationName: animatePhoto,
   animationDuration: "8s",
   animationTimingFunction: "linear",

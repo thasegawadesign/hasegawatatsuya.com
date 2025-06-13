@@ -56,7 +56,11 @@ import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
-import { email, github } from "@/constants/constants";
+import {
+  EMAIL,
+  GITHUB,
+  PARALLAX_ENABLE_MIN_WIDTH,
+} from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useViewTransition } from "@/hooks/useViewTransition";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
@@ -94,7 +98,6 @@ export default function Home() {
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
   const width = useWindowWidth();
-  const isActiveParallaxMin = 1024;
 
   const { scrollYProgress } = useScroll({
     target: profileImageContainerRef,
@@ -102,7 +105,8 @@ export default function Home() {
   });
 
   const yRange = useMemo(
-    () => (width <= isActiveParallaxMin ? ["0px", "0px"] : ["-40px", "40px"]),
+    () =>
+      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-40px", "40px"],
     [width]
   );
   const y = useTransform(scrollYProgress, [0, 1], yRange);
@@ -181,14 +185,14 @@ export default function Home() {
                 </div>
                 <div className={clsx(profileLinkBox)}>
                   <Link
-                    href={github}
+                    href={GITHUB}
                     className={clsx(profileLink)}
                     target="_brank"
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
                   <Link
-                    href={`mailto:${email}`}
+                    href={`mailto:${EMAIL}`}
                     className={clsx(profileLink)}
                     target="_brank"
                   >
@@ -327,19 +331,19 @@ export default function Home() {
             </h2>
             <div ref={contactWrapperRef} className={clsx(contactWrapper)}>
               <Link
-                href={`mailto:${email}`}
+                href={`mailto:${EMAIL}`}
                 className={clsx(emailLink)}
                 ref={contactRef}
               >
                 <IoMdMail className={clsx(emailIcon)} />
                 <div className={clsx(emailTextBox)}>
                   <span className={clsx(roboto.className, emailTextRotateTop)}>
-                    {email}
+                    {EMAIL}
                   </span>
                   <span
                     className={clsx(roboto.className, emailTextRotateFront)}
                   >
-                    {email}
+                    {EMAIL}
                   </span>
                 </div>
               </Link>
