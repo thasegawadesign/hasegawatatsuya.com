@@ -89,7 +89,7 @@ export default function MobileNav() {
             className={clsx(roboto.className, mobileNavLink)}
             onClick={() => {
               setIsOpenHamburgerMenu(false);
-              handleTransition("/");
+              handleTransition("/#home");
             }}
           >
             Home

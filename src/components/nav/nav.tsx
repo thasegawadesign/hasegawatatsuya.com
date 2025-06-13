@@ -27,7 +27,7 @@ export default function Nav() {
           <Link
             href={"/#home"}
             className={clsx(roboto.className, logo)}
-            onClick={handleTransition("/")}
+            onClick={handleTransition("/#home")}
           >
             TH
           </Link>
