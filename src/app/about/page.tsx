@@ -32,6 +32,7 @@ import Nav from "@/components/nav/nav";
 import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
+import Spiral from "@/components/spiral/spiral";
 import TextCircle from "@/components/textCircle/textCircle";
 import {
   EMAIL,
@@ -185,6 +186,7 @@ export default function About() {
       <Object1 />
       <Object2 />
       <Object3 />
+      {width >= PARALLAX_ENABLE_MIN_WIDTH && <Spiral />}
     </>
   );
 }
