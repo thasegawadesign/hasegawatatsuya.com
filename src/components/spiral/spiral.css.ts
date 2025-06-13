@@ -1,0 +1,29 @@
+import { keyframes, style } from "@vanilla-extract/css";
+
+const pulse = keyframes({
+  "0%": { transform: "scale(1) translate(0, 0)", opacity: 0.3 },
+  "50%": { transform: "scale(1.05) translate(5px, 5px)", opacity: 1 },
+  "100%": { transform: "scale(1) translate(0, 0)", opacity: 0.3 },
+});
+
+export const container = style({
+  position: "relative",
+});
+
+export const circleBox = style({
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  zIndex: -100,
+});
+export const circle = style({
+  position: "absolute",
+  top: "-2vw",
+  left: "-2vw",
+  border: "2px solid rgba(233, 129, 255, 0.16)",
+  borderRadius: "50%",
+  animation: `${pulse} 4s ease-in-out infinite`,
+  transformOrigin: "top left",
+});
