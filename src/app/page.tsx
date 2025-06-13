@@ -13,9 +13,11 @@ import {
   header,
   line,
   main,
+  motionDiv,
   nameMainVisual,
   profileContent,
   profileImage,
+  profileImageContainer,
   profileImageWrapper,
   profileLink,
   profileLinkBox,
@@ -54,15 +56,21 @@ import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import TextCircle from "@/components/textCircle/textCircle";
-import { email, github } from "@/constants/constants";
+import {
+  EMAIL,
+  GITHUB,
+  PARALLAX_ENABLE_MIN_WIDTH,
+} from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useViewTransition } from "@/hooks/useViewTransition";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
+import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
-import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useMemo, useRef } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -78,6 +86,7 @@ export default function Home() {
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
+  const profileImageContainerRef = useRef(null);
   const worksItem1Ref = useRef(null);
   const worksItem2Ref = useRef(null);
   const worksItem3Ref = useRef(null);
@@ -87,6 +96,20 @@ export default function Home() {
   const contactRef = useRef(null);
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
+
+  const width = useWindowWidth();
+
+  const { scrollYProgress } = useScroll({
+    target: profileImageContainerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yRange = useMemo(
+    () =>
+      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-20px", "20px"],
+    [width]
+  );
+  const y = useTransform(scrollYProgress, [0, 1], yRange);
 
   const handleTransition = useViewTransition();
 
@@ -162,14 +185,14 @@ export default function Home() {
                 </div>
                 <div className={clsx(profileLinkBox)}>
                   <Link
-                    href={github}
+                    href={GITHUB}
                     className={clsx(profileLink)}
                     target="_brank"
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
                   <Link
-                    href={`mailto:${email}`}
+                    href={`mailto:${EMAIL}`}
                     className={clsx(profileLink)}
                     target="_brank"
                   >
@@ -185,13 +208,20 @@ export default function Home() {
                 </Link>
               </div>
               <div className={clsx(profileImageWrapper)}>
-                <Image
-                  src={"/photo.webp"}
-                  alt="長谷川達也"
-                  className={clsx(profileImage)}
-                  view-transition-name={"photo"}
-                  fill
-                />
+                <div
+                  ref={profileImageContainerRef}
+                  className={clsx(profileImageContainer)}
+                >
+                  <motion.div style={{ y }} className={clsx(motionDiv)}>
+                    <Image
+                      src={"/photo.webp"}
+                      alt="長谷川達也"
+                      className={clsx(profileImage)}
+                      view-transition-name={"photo"}
+                      fill
+                    />
+                  </motion.div>
+                </div>
               </div>
             </section>
           </section>
@@ -301,19 +331,19 @@ export default function Home() {
             </h2>
             <div ref={contactWrapperRef} className={clsx(contactWrapper)}>
               <Link
-                href={`mailto:${email}`}
+                href={`mailto:${EMAIL}`}
                 className={clsx(emailLink)}
                 ref={contactRef}
               >
                 <IoMdMail className={clsx(emailIcon)} />
                 <div className={clsx(emailTextBox)}>
                   <span className={clsx(roboto.className, emailTextRotateTop)}>
-                    {email}
+                    {EMAIL}
                   </span>
                   <span
                     className={clsx(roboto.className, emailTextRotateFront)}
                   >
-                    {email}
+                    {EMAIL}
                   </span>
                 </div>
               </Link>

@@ -284,7 +284,21 @@ export const profileImageWrapper = style({
     },
   },
 });
+export const profileImageContainer = style({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+  borderRadius: 24,
+  aspectRatio: 3 / 2,
+});
+export const motionDiv = style({
+  position: "absolute",
+  inset: 0,
+});
 export const profileImage = style({
+  width: "100%",
+  height: "auto",
   objectFit: "cover",
   borderRadius: 24,
   userSelect: "none",
@@ -433,6 +447,7 @@ export const emailLink = style({
       fontSize: "2.6rem",
       gap: 36,
       maxWidth: 1000,
+      padding: "180px 240px",
     },
     [breakpoints["xl"]]: {
       fontSize: "2.5rem",
@@ -478,14 +493,14 @@ export const emailIcon = style({
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "19em",
+  width: "18.6em",
   height: 40,
   overflowY: "hidden",
   transformStyle: "preserve-3d",
   backfaceVisibility: "hidden",
   "@media": {
     [breakpoints["sm"]]: {
-      width: "17em",
+      width: "17.2em",
     },
   },
 });
