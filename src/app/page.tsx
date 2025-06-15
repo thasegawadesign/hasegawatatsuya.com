@@ -47,6 +47,7 @@ import { IoMdMail } from "react-icons/io";
 
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
+import BlackHole from "@/components/blackHole/blackHole";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -357,6 +358,7 @@ export default function Home() {
       <Object2 />
       <Object3 />
       {width >= PARALLAX_ENABLE_MIN_WIDTH && <Spiral />}
+      <BlackHole />
     </>
   );
 }

@@ -39,6 +39,9 @@ export const glass = style({
     borderRadius: "inherit",
   },
   "@media": {
+    [breakpoints["2xl"]]: {
+      width: "86vw",
+    },
     [breakpoints["xl"]]: {
       width: "92vw",
       marginTop: "4vw",
