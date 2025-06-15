@@ -12,3 +12,4 @@ URL：https://www.hasegawatatsuya.com/
 - TypeScript
 - vanilla-extract
 - GSAP
+- Three.js
