@@ -24,6 +24,7 @@ import {
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
 import BackToIndex from "@/components/backToIndex/backToIndex";
+import BlackHole from "@/components/blackHole/blackHole";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -186,7 +187,8 @@ export default function About() {
       <Object1 />
       <Object2 />
       <Object3 />
-      {width >= PARALLAX_ENABLE_MIN_WIDTH && <Spiral />}
+      <Spiral />
+      <BlackHole />
     </>
   );
 }

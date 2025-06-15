@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 const pulse = keyframes({
@@ -8,6 +9,11 @@ const pulse = keyframes({
 
 export const container = style({
   position: "relative",
+  "@media": {
+    [breakpoints["lg"]]: {
+      display: "none",
+    },
+  },
 });
 
 export const circleBox = style({
