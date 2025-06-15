@@ -47,16 +47,11 @@ import { IoMdMail } from "react-icons/io";
 
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import AudioPlayer from "@/components/audio/audioPlayer";
-import BlackHole from "@/components/blackHole/blackHole";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
 import MobileNav from "@/components/mobileNav/mobileNav";
 import Nav from "@/components/nav/nav";
-import Object1 from "@/components/object/object1";
-import Object2 from "@/components/object/object2";
-import Object3 from "@/components/object/object3";
-import Spiral from "@/components/spiral/spiral";
 import TextCircle from "@/components/textCircle/textCircle";
 import {
   EMAIL,
@@ -354,11 +349,6 @@ export default function Home() {
         </main>
         <Footer />
       </Glass>
-      <Object1 />
-      <Object2 />
-      <Object3 />
-      <Spiral />
-      <BlackHole />
     </>
   );
 }
