@@ -19,6 +19,7 @@ export const audioButtonBox = style({
   },
 });
 export const audioButton = style({
+  display: "block",
   width: "20px",
   height: "20px",
   background: "transparent",
