@@ -11,13 +11,15 @@ import { getAudioInstance } from "@/utils/getAudioInstance";
 import { animated, to, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { useAtom } from "jotai";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 export default function AudioButton() {
   const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
   const audioButtonRef = useRef(null);
   const boxRef = useRef<HTMLDivElement>(null);
+  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isFadingRef = useRef(false);
 
   const [spring, api] = useSpring(() => ({
     x: 0,
@@ -25,6 +27,82 @@ export default function AudioButton() {
     scale: 1,
     config: { tension: 300, friction: 20 },
   }));
+
+  const fadeIn = useCallback(
+    (audio: HTMLAudioElement, duration: number = 500) => {
+      return new Promise<void>((resolve) => {
+        if (isFadingRef.current) return resolve();
+
+        isFadingRef.current = true;
+        const startVolume = 0;
+        const targetVolume = 1;
+        const steps = 50;
+        const stepDuration = duration / steps;
+        const volumeStep = (targetVolume - startVolume) / steps;
+
+        audio.volume = startVolume;
+        let currentStep = 0;
+
+        fadeIntervalRef.current = setInterval(() => {
+          currentStep++;
+          const newVolume = Math.min(
+            startVolume + volumeStep * currentStep,
+            targetVolume
+          );
+          audio.volume = newVolume;
+
+          if (currentStep >= steps || newVolume >= targetVolume) {
+            if (fadeIntervalRef.current) {
+              clearInterval(fadeIntervalRef.current);
+              fadeIntervalRef.current = null;
+            }
+            audio.volume = targetVolume;
+            isFadingRef.current = false;
+            resolve();
+          }
+        }, stepDuration);
+      });
+    },
+    []
+  );
+
+  const fadeOut = useCallback(
+    (audio: HTMLAudioElement, duration: number = 500) => {
+      return new Promise<void>((resolve) => {
+        if (isFadingRef.current) return resolve();
+
+        isFadingRef.current = true;
+        const startVolume = audio.volume;
+        const targetVolume = 0;
+        const steps = 50;
+        const stepDuration = duration / steps;
+        const volumeStep = (startVolume - targetVolume) / steps;
+
+        let currentStep = 0;
+
+        fadeIntervalRef.current = setInterval(() => {
+          currentStep++;
+          const newVolume = Math.max(
+            startVolume - volumeStep * currentStep,
+            targetVolume
+          );
+          audio.volume = newVolume;
+
+          if (currentStep >= steps || newVolume <= targetVolume) {
+            if (fadeIntervalRef.current) {
+              clearInterval(fadeIntervalRef.current);
+              fadeIntervalRef.current = null;
+            }
+            audio.volume = targetVolume;
+            audio.pause();
+            isFadingRef.current = false;
+            resolve();
+          }
+        }, stepDuration);
+      });
+    },
+    []
+  );
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!boxRef.current) return;
@@ -45,16 +123,20 @@ export default function AudioButton() {
   useEffect(() => {
     const audioButton = audioButtonRef.current as unknown as HTMLButtonElement;
 
-    const handleAudioButtonClick = () => {
+    const handleAudioButtonClick = async () => {
+      if (isFadingRef.current) return;
+
       const audio = getAudioInstance();
 
       if (isPlayingAudio) {
-        audio.pause();
         setIsPlayingAudio(false);
+        await fadeOut(audio, 300);
       } else {
         audio.loop = true;
+        audio.volume = 0;
         audio.play();
         setIsPlayingAudio(true);
+        await fadeIn(audio, 300);
       }
     };
 
@@ -67,17 +149,21 @@ export default function AudioButton() {
         audioButton.removeEventListener("click", handleAudioButtonClick);
       }
     };
-  }, [isPlayingAudio, setIsPlayingAudio]);
+  }, [isPlayingAudio, setIsPlayingAudio, fadeIn, fadeOut]);
 
   useEffect(() => {
     const audio = getAudioInstance();
 
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = async () => {
       if (document.hidden) {
-        audio.pause();
+        if (isPlayingAudio && !isFadingRef.current) {
+          await fadeOut(audio, 200);
+        }
       } else {
-        if (isPlayingAudio) {
+        if (isPlayingAudio && !isFadingRef.current) {
+          audio.volume = 0;
           audio.play();
+          await fadeIn(audio, 200);
         }
       }
     };
@@ -87,15 +173,17 @@ export default function AudioButton() {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [isPlayingAudio]);
+  }, [isPlayingAudio, fadeIn, fadeOut]);
 
   useEffect(() => {
     const audio = getAudioInstance();
 
-    const playAudio = () => {
-      if (!audio) return;
+    const playAudio = async () => {
+      if (!audio || !isPlayingAudio) return;
       audio.currentTime = 0;
+      audio.volume = 0;
       audio.play();
+      await fadeIn(audio, 100);
     };
 
     audio.addEventListener("ended", playAudio);
@@ -103,7 +191,17 @@ export default function AudioButton() {
     return () => {
       audio.removeEventListener("ended", playAudio);
     };
-  }, [isPlayingAudio]);
+  }, [isPlayingAudio, fadeIn]);
+
+  useEffect(() => {
+    return () => {
+      if (fadeIntervalRef.current) {
+        clearInterval(fadeIntervalRef.current);
+        fadeIntervalRef.current = null;
+      }
+      isFadingRef.current = false;
+    };
+  }, []);
 
   return (
     <button
