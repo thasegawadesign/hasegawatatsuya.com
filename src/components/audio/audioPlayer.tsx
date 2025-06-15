@@ -204,26 +204,26 @@ export default function AudioButton() {
   }, []);
 
   return (
-    <button
-      ref={audioButtonRef}
-      title={isPlayingAudio ? "Sound OFF" : "Sound ON"}
+    <animated.div
+      ref={boxRef}
       className={clsx(audioButtonBox)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: to(
+          [spring.x, spring.y, spring.scale],
+          (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`
+        ),
+      }}
     >
-      <animated.div
-        ref={boxRef}
-        style={{
-          transform: to(
-            [spring.x, spring.y, spring.scale],
-            (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`
-          ),
-        }}
+      <button
+        ref={audioButtonRef}
+        title={isPlayingAudio ? "Sound OFF" : "Sound ON"}
         className={clsx(
           audioButton,
           isPlayingAudio ? animationRunning : animationPaused
         )}
-      ></animated.div>
-    </button>
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      ></button>
+    </animated.div>
   );
 }
