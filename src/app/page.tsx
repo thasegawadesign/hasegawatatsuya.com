@@ -357,7 +357,7 @@ export default function Home() {
       <Object1 />
       <Object2 />
       <Object3 />
-      {width >= PARALLAX_ENABLE_MIN_WIDTH && <Spiral />}
+      <Spiral />
       <BlackHole />
     </>
   );
