@@ -1,6 +1,5 @@
 import { backgroundGradient, body, html } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
-import BlackHole from "@/components/blackHole/blackHole";
 import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
@@ -36,7 +35,6 @@ export default function RootLayout({
           <Object2 />
           <Object3 />
           <Spiral />
-          <BlackHole />
           <ParticleEffect />
         </Providers>
         {isProduction && <GoogleAnalytics gaId="G-KM86JXK42S" />}
