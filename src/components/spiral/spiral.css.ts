@@ -7,15 +7,6 @@ const pulse = keyframes({
   "100%": { transform: "scale(1) translate(0, 0)", opacity: 0.3 },
 });
 
-export const container = style({
-  position: "relative",
-  "@media": {
-    [breakpoints["lg"]]: {
-      display: "none",
-    },
-  },
-});
-
 export const circleBox = style({
   position: "fixed",
   top: 0,
@@ -23,6 +14,11 @@ export const circleBox = style({
   width: "100%",
   height: "100%",
   zIndex: -100,
+  "@media": {
+    [breakpoints["lg"]]: {
+      display: "none",
+    },
+  },
 });
 export const circle = style({
   position: "absolute",

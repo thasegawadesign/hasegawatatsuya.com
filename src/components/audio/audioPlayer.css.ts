@@ -7,23 +7,11 @@ export const audioInteract = keyframes({
   "100%": { borderWidth: "2px" },
 });
 export const audioButtonBox = style({
-  border: "none",
-});
-export const audioButton = style({
   position: "fixed",
   bottom: "2vw",
   right: "2vw",
-  width: "20px",
-  height: "20px",
   background: "transparent",
-  border: `solid 2px ${vars.color.text}`,
-  borderRadius: "100%",
-  zIndex: 100,
-  animationName: audioInteract,
-  animationDuration: "2s",
-  animationTimingFunction: "ease",
-  animationIterationCount: "infinite",
-  animationPlayState: "paused",
+  border: "none",
   ":hover": {
     cursor: "pointer",
   },
@@ -33,6 +21,18 @@ export const audioButton = style({
       right: "6vw",
     },
   },
+});
+export const audioButton = style({
+  width: "20px",
+  height: "20px",
+  border: `solid 2px ${vars.color.text}`,
+  borderRadius: "100%",
+  zIndex: 100,
+  animationName: audioInteract,
+  animationDuration: "2s",
+  animationTimingFunction: "ease",
+  animationIterationCount: "infinite",
+  animationPlayState: "paused",
 });
 export const animationPaused = style({
   animationPlayState: "paused",
