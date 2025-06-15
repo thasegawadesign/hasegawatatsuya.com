@@ -46,7 +46,6 @@ import { FaGithub } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
-import AudioPlayer from "@/components/audio/audioPlayer";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
@@ -134,7 +133,6 @@ export default function Home() {
           <Nav />
           <HamburgerMenu />
           {isOpenHamburgerMenu && <MobileNav />}
-          <AudioPlayer />
           {!isOpenHamburgerMenu && <TextCircle />}
         </header>
         <main className={clsx(main)}>

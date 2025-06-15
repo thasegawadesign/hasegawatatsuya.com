@@ -1,4 +1,5 @@
 import { backgroundGradient, body, html } from "@/app/layout.css";
+import AudioButton from "@/components/audio/audioPlayer";
 import BlackHole from "@/components/blackHole/blackHole";
 import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className={clsx(body, backgroundGradient)}>
         <Providers>
           {children}
+          <AudioButton />
           <Object1 />
           <Object2 />
           <Object3 />
