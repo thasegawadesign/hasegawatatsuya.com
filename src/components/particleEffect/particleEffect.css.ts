@@ -6,6 +6,7 @@ export const containerStyle = style({
   width: "100vw",
   height: "100vh",
   overflow: "hidden",
+  zIndex: 100,
 });
 
 export const canvasContainerStyle = style({
