@@ -10,11 +10,7 @@ export const audioButtonBox = style({
   position: "fixed",
   bottom: "2vw",
   right: "2vw",
-  background: "transparent",
-  border: "none",
-  ":hover": {
-    cursor: "pointer",
-  },
+  zIndex: 100,
   "@media": {
     [breakpoints["xl"]]: {
       bottom: "6vw",
@@ -25,14 +21,17 @@ export const audioButtonBox = style({
 export const audioButton = style({
   width: "20px",
   height: "20px",
+  background: "transparent",
   border: `solid 2px ${vars.color.text}`,
   borderRadius: "100%",
-  zIndex: 100,
   animationName: audioInteract,
   animationDuration: "2s",
   animationTimingFunction: "ease",
   animationIterationCount: "infinite",
   animationPlayState: "paused",
+  ":hover": {
+    cursor: "pointer",
+  },
 });
 export const animationPaused = style({
   animationPlayState: "paused",
