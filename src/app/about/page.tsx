@@ -154,11 +154,11 @@ export default function About() {
               <br />
               デザインと実装の解像度を高め、
               <br />
-              有用で美しく、
+              有用で美しいものが
               <br />
-              「自在」にモノづくりできることを目指して、
+              「自在」につくれるようになることを目指して、
               <br />
-              日々制作に励んでいます。
+              日々活動しています。
             </p>
             <dl ref={historyRef} className={clsx(history)}>
               <div>
