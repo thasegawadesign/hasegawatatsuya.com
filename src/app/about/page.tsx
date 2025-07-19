@@ -158,7 +158,9 @@ export default function About() {
               <br />
               「自在」につくれるようになることを目指して、
               <br />
-              日々活動しています。
+              Webについて勉強しています。
+              <br />
+              ホームページ制作の達人を目指しています。
             </p>
             <dl ref={historyRef} className={clsx(history)}>
               <div>
