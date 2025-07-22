@@ -16,6 +16,9 @@ import "yakuhanjp";
 export const metadata: Metadata = {
   title: "Tatsuya Hasegawa | Webデザイナー",
   description: "Tatsuya Hasegawa のポートフォリオサイト",
+  verification: {
+    google: "JTf9RfAVU6O4mqwU7bBXJwpFWrnCygv66A1qrGjnJ90",
+  },
 };
 
 const isProduction = process.env.NODE_ENV === "production";
