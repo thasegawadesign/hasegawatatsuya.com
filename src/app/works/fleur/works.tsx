@@ -43,12 +43,12 @@ export default function Works() {
                 <>
                   架空マカロン専門店
                   <br />
-                  『フルール』
+                  『フルール』ブランドサイト
                 </>
               }
-              imageSrc="/fleur-website-screen-shot.webp"
-              imageWidth={1920}
-              imageHeight={1080}
+              imageSrc="/fleur-website-mockup.webp"
+              imageWidth={4000}
+              imageHeight={3000}
               what="健康志向で美しいスイーツを愛する人のための架空マカロン専門店『フルール』のブランドサイト"
               why={
                 <>

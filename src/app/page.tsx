@@ -35,6 +35,7 @@ import {
   worksItem,
   worksLink,
   worksName,
+  worksNameSpan,
   worksSection,
   worksTextBox,
 } from "@/app/page.css";
@@ -225,7 +226,10 @@ export default function Home() {
             <div className={clsx(worksBox)}>
               <section className={clsx(worksItem)} ref={worksItem1Ref}>
                 <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>フルール</h3>
+                  <h3 className={clsx(worksName)}>
+                    <span className={clsx(worksNameSpan)}>『フルール』</span>
+                    <span className={clsx(worksNameSpan)}>ブランドサイト</span>
+                  </h3>
                   <p className={clsx(worksCategory)}>(Webサイト)</p>
                 </div>
                 <Link
