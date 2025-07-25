@@ -39,9 +39,9 @@ export default function Works() {
             <WorksInfo
               nameJa="躍動感のあるビジュアル"
               nameEn="Sporty"
-              imageSrc="/sporty.webp"
-              imageWidth={1920}
-              imageHeight={1080}
+              imageSrc="/sporty-mockup.webp"
+              imageWidth={4000}
+              imageHeight={3000}
               what="スポーティで躍動感のあるビジュアル"
               why={<>レタッチ技術の習得を兼ねて、作品として仕上げました。</>}
               how={
