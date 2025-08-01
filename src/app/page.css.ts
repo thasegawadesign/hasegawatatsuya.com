@@ -361,11 +361,11 @@ export const worksItem = style({
 export const worksTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 8,
+  gap: 4,
   alignItems: "center",
   "@media": {
     [breakpoints["xl"]]: {
-      gap: 6,
+      gap: 2,
     },
   },
 });
