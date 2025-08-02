@@ -228,7 +228,7 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem1Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>
-                    <span className={clsx(worksNameSpan)}>『フルール』</span>
+                    <span className={clsx(worksNameSpan)}>「フルール」</span>
                     <span className={clsx(worksNameSpan)}>ブランドサイト</span>
                   </h3>
                   <p className={clsx(worksCategory)}>(Webサイト)</p>
