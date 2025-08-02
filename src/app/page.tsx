@@ -239,7 +239,7 @@ export default function Home() {
                   onClick={handleTransition("/works/fleur")}
                 >
                   <Image
-                    src={"/icons/fleur-icon.png"}
+                    src={"/icons/fleur-icon.avif"}
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
@@ -258,7 +258,7 @@ export default function Home() {
                   target="_blank"
                 >
                   <Image
-                    src={"/icons/question-and-answer-icon.png"}
+                    src={"/icons/question-and-answer-icon.avif"}
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
@@ -277,7 +277,7 @@ export default function Home() {
                   target="_blank"
                 >
                   <Image
-                    src={"/icons/sutememo-icon.png"}
+                    src={"/icons/sutememo-icon.avif"}
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
@@ -296,7 +296,7 @@ export default function Home() {
                   onClick={handleTransition("/works/playlist2025")}
                 >
                   <Image
-                    src={"/icons/playlist2025-icon.png"}
+                    src={"/icons/playlist2025-icon.avif"}
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
@@ -315,7 +315,7 @@ export default function Home() {
                   onClick={handleTransition("/works/sporty")}
                 >
                   <Image
-                    src={"/icons/sporty-icon.png"}
+                    src={"/icons/sporty-icon.avif"}
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
