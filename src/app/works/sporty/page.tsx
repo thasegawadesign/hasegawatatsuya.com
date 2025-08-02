@@ -2,8 +2,7 @@ import Works from "@/app/works/sporty/works";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "躍動感のあるビジュアル | Tatsuya Hasegawa | Webデザイナー",
-  description: "Tatsuya Hasegawa のポートフォリオサイト",
+  title: "力強さのあるビジュアル | 長谷川 達也のポートフォリオサイト",
 };
 
 export default function Sporty() {

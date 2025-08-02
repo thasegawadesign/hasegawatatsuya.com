@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 import "yakuhanjp";
 
 export const metadata: Metadata = {
-  title: "Tatsuya Hasegawa | Webデザイナー",
+  title: "長谷川 達也 | ポートフォリオサイト",
   description: "Webデザイナー長谷川 達也のポートフォリオサイト",
   verification: {
     google: "JTf9RfAVU6O4mqwU7bBXJwpFWrnCygv66A1qrGjnJ90",
