@@ -148,7 +148,7 @@ export default function About() {
               Frontend Development
             </p>
             <p ref={descriptionRef} className={clsx(description)}>
-              2001年生まれ、放送大学在学中.
+              2001年生まれ, 放送大学在学中.
               <br />
               趣味は散歩.
               <br />
