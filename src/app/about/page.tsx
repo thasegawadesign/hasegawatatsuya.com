@@ -117,7 +117,7 @@ export default function About() {
                   <div ref={photoContainerRef} className={clsx(photoContainer)}>
                     <motion.div style={{ y }} className={clsx(motionDiv)}>
                       <Image
-                        src={"/photo.webp"}
+                        src={"/photo.avif"}
                         width={320}
                         height={480}
                         alt="長谷川達也"

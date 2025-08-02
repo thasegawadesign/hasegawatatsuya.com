@@ -211,7 +211,7 @@ export default function Home() {
                 >
                   <motion.div style={{ y }} className={clsx(motionDiv)}>
                     <Image
-                      src={"/photo.webp"}
+                      src={"/photo.avif"}
                       alt="長谷川達也"
                       className={clsx(profileImage)}
                       view-transition-name={"photo"}
