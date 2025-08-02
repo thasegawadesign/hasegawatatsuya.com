@@ -46,7 +46,7 @@ export default function Works() {
                   『フルール』ブランドサイト
                 </>
               }
-              imageSrc="/fleur-website-mockup.webp"
+              imageSrc="/fleur-website-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
               what="健康志向で美しいスイーツを愛する人のための架空マカロン専門店『フルール』のブランドサイト"
