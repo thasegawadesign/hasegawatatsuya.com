@@ -165,7 +165,7 @@ export const profileName = style({
   fontSize: "2.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 2.0,
+  letterSpacing: 1.8,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.5rem",
@@ -187,14 +187,16 @@ export const profileOccupation = style({
   fontSize: "1.4rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 2,
+  letterSpacing: 1.8,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "1.3rem",
     },
+    [breakpoints["lg"]]: {
+      letterSpacing: 1.6,
+    },
     [breakpoints["sm"]]: {
       fontSize: "1.0rem",
-      letterSpacing: 1.6,
     },
   },
 });
