@@ -43,13 +43,13 @@ export default function Works() {
                 <>
                   架空マカロン専門店
                   <br />
-                  『フルール』ブランドサイト
+                  「フルール」ブランドサイト
                 </>
               }
               imageSrc="/fleur-website-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="健康志向で美しいスイーツを愛する人のための架空マカロン専門店『フルール』のブランドサイト"
+              what="健康志向で美しいスイーツを愛する人のための架空マカロン専門店「フルール」のブランドサイト"
               why={
                 <>
                   食品を扱うWebサイトを制作してみたいと思うようになりました.
