@@ -343,7 +343,7 @@ export const worksItem = style({
   display: "flex",
   flexDirection: "column-reverse",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "start",
   gap: 20,
   padding: "52px 2vw",
   backgroundColor: "rgba(255, 255, 255, 0.12)",
