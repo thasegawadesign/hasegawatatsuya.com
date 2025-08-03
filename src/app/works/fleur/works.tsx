@@ -84,7 +84,7 @@ export default function Works() {
                 </>
               }
               date="2024年11月"
-              URL="https://www.fleur.vegetstudios.com/"
+              URL="https://www.fleur.vegetworks.com/"
             />
           </main>
           <Footer />
