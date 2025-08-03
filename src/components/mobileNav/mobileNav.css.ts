@@ -50,7 +50,7 @@ export const mobileNavLinkBox = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-end",
-  gap: 16,
+  gap: 20,
   listStyleType: "none",
 });
 export const mobileNavLink = style({
@@ -67,13 +67,13 @@ export const mobileNavLink = style({
       top: "5.4rem",
       display: "block",
       width: "100%",
-      height: 32,
+      height: 40,
       backgroundColor: vars.color.text,
       borderRadius: "0 0 12px 12px",
       transition: "height 0.2s ease",
     },
     "&:hover": {
-      paddingBottom: 32,
+      paddingBottom: 40,
     },
     "&:hover::before": {
       height: 1,
