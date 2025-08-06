@@ -150,7 +150,7 @@ export default function Home() {
             <p className={clsx(description)} ref={descriptionRef}>
               Webデザイナー長谷川 達也の
               <br className={mobileBr} />
-              ポートフォリオサイトです.
+              ポートフォリオサイトです。
               <br className={mobileBr} />
               <br className={clsx(desktopBr)} />
               実際に触れることのできる
@@ -159,7 +159,7 @@ export default function Home() {
               <br className={mobileBr} />
               デザイン・実装することに
               <br className={mobileBr} />
-              喜びを感じます.
+              喜びを感じます。
               <br className={mobileBr} />
               <br className={clsx(desktopBr)} />
               書いたコードが画面に反映される
@@ -168,7 +168,7 @@ export default function Home() {
               <br className={mobileBr} />
               学習を始めて以来
               <br className={mobileBr} />
-              ずっと持ち続けています.
+              ずっと持ち続けています。
             </p>
             <section className={profileSection} ref={profileRef}>
               <div className={clsx(profileContent)}>

@@ -148,19 +148,19 @@ export default function About() {
               Frontend Development
             </p>
             <p ref={descriptionRef} className={clsx(description)}>
-              2001年生まれ, 放送大学在学中.
+              2001年生まれ、放送大学在学中。
               <br />
-              趣味は散歩.
+              趣味は散歩。
               <br />
-              デザインと実装の解像度を高め,
+              デザインと実装の解像度を高め、
               <br />
               有用で美しいものが
               <br />
-              「自在」につくれるようになることを目指して,
+              「自在」につくれるようになることを目指して、
               <br />
-              Webについて勉強しています.
+              Webについて勉強しています。
               <br />
-              ホームページ制作の達人を目指しています.
+              ホームページ制作の達人を目指しています。
             </p>
             <dl ref={historyRef} className={clsx(history)}>
               <div>
