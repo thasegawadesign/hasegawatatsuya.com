@@ -2,6 +2,7 @@ import { keyframes, style } from "@vanilla-extract/css";
 
 export const html = style({
   overflowX: "hidden",
+  scrollPaddingTop: 40,
 });
 
 export const smoothScroll = style({
