@@ -58,6 +58,7 @@ export const mobileNavLink = style({
   fontSize: "5.6rem",
   fontWeight: 100,
   color: vars.color.text,
+  letterSpacing: "0.02em",
   textDecoration: "none",
   transition: "height 0.2s ease",
   selectors: {

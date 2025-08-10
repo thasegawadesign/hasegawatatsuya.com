@@ -36,12 +36,14 @@ export const hgroupHeadingEn = style({
   fontWeight: 600,
   color: vars.color.text,
   paddingRight: "6vw",
+  letterSpacing: "-0.02em",
   lineHeight: "0.8em",
 });
 export const hgroupHeadingJa = style({
   fontSize: "clamp(1.6rem, 1.6vw, 2.8rem)",
   fontWeight: 300,
   color: vars.color.text,
+  letterSpacing: "-0.04em",
   marginTop: "5.6vw",
   marginLeft: "3.6vw",
 });
@@ -63,6 +65,7 @@ export const worksDt = style({
   fontSize: "1.2rem",
   color: vars.color.text,
   width: 48,
+  letterSpacing: "-0.04em",
   marginTop: "clamp(0.48rem, 0.48vw, 1.2rem)",
   textAlign: "right",
   "@media": {
@@ -75,6 +78,7 @@ export const worksDd = style({
   fontSize: "clamp(1.6rem, 1.4vw, 2.4rem)",
   color: vars.color.text,
   width: "42vw",
+  letterSpacing: "-0.04em",
   lineHeight: "1.8em",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -93,7 +97,7 @@ export const worksRole = style({
   color: vars.color.text,
   fontWeight: 300,
   lineHeight: "1.28em",
-  letterSpacing: "-0.036em",
+  letterSpacing: "-0.08em",
   width: "42vw",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -111,6 +115,7 @@ export const worksLink = style({
   position: "relative",
   fontWeight: 100,
   color: vars.color.text,
+  letterSpacing: "-0.04em",
   textDecoration: "none",
   transition: "height 0.2s ease",
   selectors: {

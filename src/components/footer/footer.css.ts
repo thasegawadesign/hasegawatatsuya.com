@@ -14,6 +14,6 @@ export const footer = style({
 });
 export const copyRight = style({
   fontWeight: 300,
-  letterSpacing: 0.8,
+  letterSpacing: "-0.02em",
   color: vars.color.text,
 });

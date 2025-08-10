@@ -41,7 +41,7 @@ export const navLink = style({
   fontSize: "2.0rem",
   fontWeight: 100,
   color: vars.color.text,
-  letterSpacing: 1.2,
+  letterSpacing: "0.06em",
   textDecoration: "none",
   transition: "height 0.2s ease",
   selectors: {
