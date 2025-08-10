@@ -75,7 +75,7 @@ export default function Works() {
                   Frontend Development
                 </>
               }
-              date="2024年11月"
+              date="2024.11"
               URL="https://www.fleur.vegetworks.com/"
             />
           </main>

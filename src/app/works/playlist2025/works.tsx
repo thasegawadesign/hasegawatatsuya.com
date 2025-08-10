@@ -39,7 +39,7 @@ export default function Works() {
             <WorksInfo
               nameJa="プレイリスト2025"
               nameEn="PLAYLIST2025"
-              nameJaNode={<>プレイリスト 2025</>}
+              nameJaNode={<>プレイリスト2025</>}
               nameEnNode={
                 <>
                   PLAYLIST
@@ -50,10 +50,10 @@ export default function Works() {
               imageSrc="/playlist2025-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="音楽配信サービスプレイリストカバーアート"
+              what="音楽配信サービスプレイリストカバー画像"
               why={
                 <>
-                  私が利用している音楽配信サービスでは、プレイリストカバーアートは自動で生成されますが、せっかくなら自分でデザインしてみたいと思ったのが、制作のきっかけです。
+                  私が利用している音楽配信サービスでは、プレイリストカバー画像は自動で生成されますが、せっかくなら自分でデザインしてみたいと思ったのが、制作のきっかけです。
                 </>
               }
               how={
@@ -62,7 +62,7 @@ export default function Works() {
                 </>
               }
               role="Visual Design"
-              date="2025年1月"
+              date="2025.1"
             />
           </main>
           <Footer />
