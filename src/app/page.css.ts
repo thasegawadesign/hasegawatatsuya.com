@@ -261,7 +261,7 @@ export const profileImageWrapper = style({
   position: "relative",
   width: 200,
   height: 300,
-  marginLeft: -100,
+  marginLeft: -132,
   overflow: "hidden",
   "@media": {
     [breakpoints["xl"]]: {
@@ -269,15 +269,15 @@ export const profileImageWrapper = style({
       height: 270,
     },
     [breakpoints["lg"]]: {
-      marginLeft: -60,
+      marginLeft: -80,
     },
     [breakpoints["md"]]: {
-      marginLeft: -60,
+      marginLeft: -64,
     },
     [breakpoints["sm"]]: {
       width: 120,
       height: 180,
-      marginLeft: -12,
+      marginLeft: -20,
     },
   },
 });
@@ -442,7 +442,7 @@ export const emailLink = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: 40,
+  gap: 32,
   margin: "0 auto",
   padding: "200px 8vw",
   maxWidth: 1120,
@@ -456,25 +456,26 @@ export const emailLink = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
-      gap: 36,
+      gap: 28,
       maxWidth: 1000,
       padding: "180px 8vw",
     },
     [breakpoints["xl"]]: {
       fontSize: "2.5rem",
       padding: "160px 8vw",
-      gap: 28,
+      gap: 24,
       maxWidth: 900,
     },
     [breakpoints["lg"]]: {
       fontSize: "2.3rem",
       padding: "160px 8vw",
-      gap: 26,
+      gap: 20,
       maxWidth: 700,
     },
     [breakpoints["md"]]: {
       fontSize: "1.8rem",
       maxWidth: 640,
+      gap: 18,
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
