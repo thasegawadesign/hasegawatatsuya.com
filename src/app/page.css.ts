@@ -230,7 +230,7 @@ export const profileMore = style({
   fontSize: "1.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 2,
+  letterSpacing: "0.04em",
   textDecoration: "none",
   ":before": {
     content: "",
@@ -371,7 +371,7 @@ export const worksName = style({
   fontSize: "1.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: "-0.04em",
+  letterSpacing: "-0.06em",
   lineHeight: "1.4em",
   textAlign: "center",
   "@media": {
@@ -387,7 +387,7 @@ export const worksCategory = style({
   fontSize: "1.0rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: "-0.04em",
+  letterSpacing: "-0.06em",
   "@media": {
     [breakpoints["sm"]]: {
       fontSize: "0.9rem",
@@ -506,7 +506,7 @@ export const emailTextBox = style({
   position: "relative",
   width: "16.0em",
   height: 40,
-  letterSpacing: "-0.02em",
+  letterSpacing: "-0.01em",
   overflowY: "hidden",
   transformStyle: "preserve-3d",
   backfaceVisibility: "hidden",

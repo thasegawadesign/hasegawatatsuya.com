@@ -15,7 +15,7 @@ export const backToIndex = style({
   position: "relative",
   fontSize: "2.0rem",
   color: vars.color.text,
-  letterSpacing: 0.8,
+  letterSpacing: "0.04em",
   textDecoration: "none",
   selectors: {
     "&::before": {
