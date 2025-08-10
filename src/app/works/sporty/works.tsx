@@ -50,7 +50,7 @@ export default function Works() {
                 </>
               }
               role="Retouch"
-              date="2025年1月"
+              date="2025.1"
             />
           </main>
           <Footer />
