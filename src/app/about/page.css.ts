@@ -43,17 +43,17 @@ export const nameBox = style({
 });
 export const nameJa = style({
   position: "relative",
-  fontSize: "clamp(4.0rem, 5.2vw + 2.6rem, 12.4rem)",
+  fontSize: "clamp(4.0rem, 5.6vw + 2.4rem, 12.4rem)",
   color: vars.color.text,
-  letterSpacing: "-0.09em",
+  letterSpacing: "-0.16em",
   marginBottom: "-0.6em",
   zIndex: 50,
 });
 export const nameEn = style({
   position: "relative",
-  fontSize: "clamp(5.2rem, 6.4vw + 2.8rem, 14.8rem)",
+  fontSize: "clamp(5.2rem, 6.4vw + 3.2rem, 14.4rem)",
   fontWeight: 400,
-  letterSpacing: "-0.05em",
+  letterSpacing: "-0.08em",
   height: "1.2em",
   background: `linear-gradient(180deg, #34312f 0%, #aea091 38%, ${vars.color.text} 50%)`,
   WebkitBackgroundClip: "text",
@@ -170,8 +170,8 @@ export const occupation = style({
   fontSize: "clamp(3.6rem, 2.0vw + 3.0rem, 7.6rem)",
   fontWeight: 300,
   color: vars.color.text,
+  letterSpacing: "-0.08em",
   lineHeight: 1.2,
-  letterSpacing: "-0.036em",
   textAlign: "center",
   marginBottom: 160,
   "@media": {
@@ -185,7 +185,7 @@ export const description = style({
   fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 1,
+  letterSpacing: "-0.04em",
   lineHeight: 1.8,
   textAlign: "center",
   marginBottom: 160,
@@ -213,9 +213,9 @@ export const history = style({
 });
 export const year = style({
   fontSize: "clamp(1.6rem, 0.72vw + 1.0rem, 2.0rem)",
-  letterSpacing: 2,
+  letterSpacing: "-0.02em",
 });
 export const event = style({
   fontSize: "clamp(1.7rem, 0.72vw + 1.2rem, 2.4rem)",
-  letterSpacing: 1,
+  letterSpacing: "-0.04em",
 });

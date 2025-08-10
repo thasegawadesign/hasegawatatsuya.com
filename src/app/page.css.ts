@@ -15,6 +15,7 @@ export const nameMainVisual = style({
   fontSize: "clamp(7.6rem, 14.4vw + 3.2rem, 26.4rem)",
   fontWeight: 500,
   color: "#130059",
+  letterSpacing: "-0.04em",
   lineHeight: "0.76em",
   textAlign: "center",
   margin: "24vh auto",
@@ -61,7 +62,7 @@ export const sectionHeading = style({
   fontSize: "1.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 2,
+  letterSpacing: "-0.02em",
   textAlign: "center",
   marginBottom: 16,
   "@media": {
@@ -75,7 +76,7 @@ export const sectionHeadingContact = style({
   fontSize: "1.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 2,
+  letterSpacing: "-0.02em",
   textAlign: "center",
   marginBottom: 72,
   "@media": {
@@ -94,7 +95,7 @@ export const description = style({
   fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
   color: vars.color.text,
   lineHeight: 1.8,
-  letterSpacing: 1.5,
+  letterSpacing: "-0.04em",
   textAlign: "center",
   marginBottom: 60,
   padding: "0 4vw",
@@ -165,7 +166,7 @@ export const profileName = style({
   fontSize: "2.6rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 1.8,
+  letterSpacing: "-0.02em",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.5rem",
@@ -175,11 +176,9 @@ export const profileName = style({
     },
     [breakpoints["lg"]]: {
       fontSize: "2.15rem",
-      letterSpacing: 1.5,
     },
     [breakpoints["sm"]]: {
       fontSize: "1.85rem",
-      letterSpacing: 1.2,
     },
   },
 });
@@ -187,13 +186,10 @@ export const profileOccupation = style({
   fontSize: "1.4rem",
   fontWeight: 300,
   color: vars.color.text,
-  letterSpacing: 1.8,
+  letterSpacing: "-0.02em",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "1.3rem",
-    },
-    [breakpoints["lg"]]: {
-      letterSpacing: 1.6,
     },
     [breakpoints["sm"]]: {
       fontSize: "1.0rem",
@@ -375,6 +371,7 @@ export const worksName = style({
   fontSize: "1.6rem",
   fontWeight: 300,
   color: vars.color.text,
+  letterSpacing: "-0.04em",
   lineHeight: "1.4em",
   textAlign: "center",
   "@media": {
@@ -390,6 +387,7 @@ export const worksCategory = style({
   fontSize: "1.0rem",
   fontWeight: 300,
   color: vars.color.text,
+  letterSpacing: "-0.04em",
   "@media": {
     [breakpoints["sm"]]: {
       fontSize: "0.9rem",
@@ -452,7 +450,6 @@ export const emailLink = style({
   fontSize: "2.8rem",
   fontWeight: 300,
   color: "#130059",
-  letterSpacing: 2,
   textDecoration: "none",
   backgroundColor: vars.color.text,
   borderRadius: 36,
@@ -483,7 +480,6 @@ export const emailLink = style({
       fontSize: "1.6rem",
       padding: "180px 2vw",
       gap: 16,
-      letterSpacing: 1,
     },
   },
 });
@@ -508,17 +504,15 @@ export const emailIcon = style({
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "18.6em",
+  width: "16.0em",
   height: 40,
+  letterSpacing: "-0.02em",
   overflowY: "hidden",
   transformStyle: "preserve-3d",
   backfaceVisibility: "hidden",
   "@media": {
-    [breakpoints["2xl"]]: {
-      width: "19.6em",
-    },
     [breakpoints["sm"]]: {
-      width: "17.2em",
+      width: "15.2em",
     },
   },
 });
