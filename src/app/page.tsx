@@ -84,12 +84,12 @@ export default function Home() {
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
-  const worksItem1Ref = useRef(null);
-  const worksItem2Ref = useRef(null);
-  const worksItem3Ref = useRef(null);
-  const worksItem4Ref = useRef(null);
-  const worksItem5Ref = useRef(null);
-  const worksItem6Ref = useRef(null);
+  const worksItem01Ref = useRef(null);
+  const worksItem02Ref = useRef(null);
+  const worksItem03Ref = useRef(null);
+  const worksItem04Ref = useRef(null);
+  const worksItem05Ref = useRef(null);
+  const worksItem06Ref = useRef(null);
   const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -119,12 +119,12 @@ export default function Home() {
     gsapAnimation.scale(nameMainVisualRef);
     gsapAnimation.inview(descriptionRef);
     gsapAnimation.inview(profileRef);
-    gsapAnimation.inview(worksItem1Ref);
-    gsapAnimation.inview(worksItem2Ref);
-    gsapAnimation.inview(worksItem3Ref);
-    gsapAnimation.inview(worksItem4Ref);
-    gsapAnimation.inview(worksItem5Ref);
-    gsapAnimation.inview(worksItem6Ref);
+    gsapAnimation.inview(worksItem01Ref);
+    gsapAnimation.inview(worksItem02Ref);
+    gsapAnimation.inview(worksItem03Ref);
+    gsapAnimation.inview(worksItem04Ref);
+    gsapAnimation.inview(worksItem05Ref);
+    gsapAnimation.inview(worksItem06Ref);
     gsapAnimation.inview(contactRef);
     gsapAnimation.parallaxDeep(contactWrapperRef);
   }, []);
@@ -227,7 +227,7 @@ export default function Home() {
           <section id="works" className={clsx(worksSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
             <div className={clsx(worksBox)}>
-              <section className={clsx(worksItem)} ref={worksItem1Ref}>
+              <section className={clsx(worksItem)} ref={worksItem01Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>
                     <span className={clsx(worksNameSpan)}>「フルール」</span>
@@ -249,7 +249,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem2Ref}>
+              <section className={clsx(worksItem)} ref={worksItem02Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -268,7 +268,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem3Ref}>
+              <section className={clsx(worksItem)} ref={worksItem03Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -287,7 +287,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem4Ref}>
+              <section className={clsx(worksItem)} ref={worksItem04Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                   <p className={clsx(worksCategory)}>(グラフィック)</p>
@@ -306,7 +306,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem5Ref}>
+              <section className={clsx(worksItem)} ref={worksItem05Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
                   <p className={clsx(worksCategory)}>(レタッチ)</p>
@@ -325,7 +325,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem6Ref}>
+              <section className={clsx(worksItem)} ref={worksItem06Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
