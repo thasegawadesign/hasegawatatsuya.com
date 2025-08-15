@@ -62,12 +62,11 @@ import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useViewTransition } from "@/hooks/useViewTransition";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
-import { useWindowWidth } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useAtomValue } from "jotai";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const cormorant = Cormorant({
   subsets: ["latin"],
@@ -80,6 +79,8 @@ const roboto = Roboto({
 });
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
   const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -95,25 +96,27 @@ export default function Home() {
 
   const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
-  const width = useWindowWidth();
-
   const { scrollYProgress } = useScroll({
     target: profileImageContainerRef,
     offset: ["start end", "end start"],
   });
 
-  const yRange = useMemo(
-    () =>
-      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-20px", "20px"],
-    [width]
+  const enableParallax =
+    mounted && window.innerWidth > PARALLAX_ENABLE_MIN_WIDTH;
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    enableParallax ? ["-20px", "20px"] : ["0px", "0px"]
   );
-  const y = useTransform(scrollYProgress, [0, 1], yRange);
 
   const handleTransition = useViewTransition();
 
   useSmoothScroll();
 
   useEffect(() => {
+    setMounted(true);
+
     gsap.registerPlugin(ScrollTrigger);
 
     gsapAnimation.scale(nameMainVisualRef);
