@@ -505,7 +505,7 @@ export const emailIcon = style({
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "16.0em",
+  width: "13.6em",
   height: 40,
   letterSpacing: "-0.01em",
   overflowY: "hidden",
@@ -513,7 +513,7 @@ export const emailTextBox = style({
   backfaceVisibility: "hidden",
   "@media": {
     [breakpoints["sm"]]: {
-      width: "15.2em",
+      width: "12.8em",
     },
   },
 });
