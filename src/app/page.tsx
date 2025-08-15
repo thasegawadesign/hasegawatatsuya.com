@@ -89,6 +89,7 @@ export default function Home() {
   const worksItem3Ref = useRef(null);
   const worksItem4Ref = useRef(null);
   const worksItem5Ref = useRef(null);
+  const worksItem6Ref = useRef(null);
   const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -123,6 +124,7 @@ export default function Home() {
     gsapAnimation.inview(worksItem3Ref);
     gsapAnimation.inview(worksItem4Ref);
     gsapAnimation.inview(worksItem5Ref);
+    gsapAnimation.inview(worksItem6Ref);
     gsapAnimation.inview(contactRef);
     gsapAnimation.parallaxDeep(contactWrapperRef);
   }, []);
@@ -253,7 +255,7 @@ export default function Home() {
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
                 </div>
                 <Link
-                  href={"https://www.question-and-answer.vegetworks.com"}
+                  href={"https://www.question-and-answer.vegetworks.com/"}
                   className={clsx(worksLink)}
                   target="_blank"
                 >
@@ -272,7 +274,7 @@ export default function Home() {
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
                 </div>
                 <Link
-                  href={"https://www.sutememo.vegetworks.com"}
+                  href={"https://www.sutememo.vegetworks.com/"}
                   className={clsx(worksLink)}
                   target="_blank"
                 >
@@ -320,6 +322,25 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="力強さのあるヴィジュアル"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem6Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>JavaScript電卓</h3>
+                  <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+                </div>
+                <Link
+                  href={"https://www.calculator.vegetworks.com/"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/calculator-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="JavaScript電卓のアイコン"
                   />
                 </Link>
               </section>
