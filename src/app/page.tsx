@@ -311,7 +311,7 @@ export default function Home() {
               </section>
               <section className={clsx(worksItem)} ref={worksItem05Ref}>
                 <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
+                  <h3 className={clsx(worksName)}>力強さのあるビジュアル</h3>
                   <p className={clsx(worksCategory)}>(レタッチ)</p>
                 </div>
                 <Link
@@ -324,7 +324,7 @@ export default function Home() {
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
-                    alt="力強さのあるヴィジュアル"
+                    alt="力強さのあるビジュアル"
                   />
                 </Link>
               </section>
