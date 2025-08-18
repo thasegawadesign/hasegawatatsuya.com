@@ -160,7 +160,7 @@ export default function About() {
               <br />
               Webについて勉強しています。
               <br />
-              クリエイティヴワークの達人が目標です。
+              クリエイティブの達人が目標です。
             </p>
             <dl ref={historyRef} className={clsx(history)}>
               <div>
