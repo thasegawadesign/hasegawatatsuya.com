@@ -37,12 +37,12 @@ export default function Works() {
           </header>
           <main className={clsx(main)}>
             <WorksInfo
-              nameJa="力強さのあるビジュアル"
+              nameJa="力強さのあるヴィジュアル"
               nameEn="Sporty"
               imageSrc="/sporty-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="スポーティで力強さのあるビジュアル"
+              what="スポーティで力強さのあるヴィジュアル"
               why={<>レタッチ技術の習得を兼ねて、作品として仕上げました。</>}
               how={
                 <>
