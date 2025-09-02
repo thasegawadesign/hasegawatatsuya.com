@@ -50,6 +50,18 @@ export const line = style({
   },
   "@media": {
     [breakpoints["2xl"]]: {
+      height: 56,
+      ":before": {
+        height: 56,
+      },
+    },
+    [breakpoints["xl"]]: {
+      height: 48,
+      ":before": {
+        height: 48,
+      },
+    },
+    [breakpoints["lg"]]: {
       height: 40,
       ":before": {
         height: 40,
