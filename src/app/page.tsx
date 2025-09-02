@@ -153,7 +153,7 @@ export default function Home() {
           <section id="about" className={clsx(aboutSection)}>
             <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
             <p className={clsx(description)} ref={descriptionRef}>
-              Webデザイナー長谷川 達也の
+              デザイナー/開発者 長谷川 達也の
               <br className={mobileBr} />
               ポートフォリオサイトです。
               <br className={mobileBr} />
@@ -182,7 +182,7 @@ export default function Home() {
                     Tatsuya Hasegawa
                   </h3>
                   <p className={clsx(roboto.className, profileOccupation)}>
-                    Web Designer
+                    Designer / Developer
                   </p>
                 </div>
                 <div className={clsx(profileLinkBox)}>
@@ -311,7 +311,7 @@ export default function Home() {
               </section>
               <section className={clsx(worksItem)} ref={worksItem05Ref}>
                 <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>力強さのあるビジュアル</h3>
+                  <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
                   <p className={clsx(worksCategory)}>(レタッチ)</p>
                 </div>
                 <Link
@@ -324,7 +324,7 @@ export default function Home() {
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
-                    alt="力強さのあるビジュアル"
+                    alt="力強さのあるヴィジュアル"
                   />
                 </Link>
               </section>
