@@ -445,7 +445,7 @@ export const emailLink = style({
   gap: 32,
   margin: "0 auto",
   padding: "200px 8vw",
-  maxWidth: 1120,
+  maxWidth: 920,
   width: "100%",
   fontSize: "2.8rem",
   fontWeight: 300,
@@ -456,26 +456,26 @@ export const emailLink = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
-      gap: 28,
-      maxWidth: 1000,
       padding: "180px 8vw",
+      gap: 28,
+      maxWidth: 880,
     },
     [breakpoints["xl"]]: {
       fontSize: "2.5rem",
       padding: "160px 8vw",
       gap: 24,
-      maxWidth: 900,
+      maxWidth: 800,
     },
     [breakpoints["lg"]]: {
       fontSize: "2.3rem",
       padding: "160px 8vw",
       gap: 20,
-      maxWidth: 700,
+      maxWidth: 640,
     },
     [breakpoints["md"]]: {
       fontSize: "1.8rem",
-      maxWidth: 640,
       gap: 18,
+      maxWidth: 580,
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
