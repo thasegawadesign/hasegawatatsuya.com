@@ -32,7 +32,9 @@ import TextCircle from "@/components/textCircle/textCircle";
 import {
   EMAIL,
   GITHUB,
+  NOTE,
   PARALLAX_ENABLE_MIN_WIDTH,
+  X,
 } from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { gsapAnimation } from "@/utils/gsap";
@@ -47,6 +49,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import Tilt from "react-parallax-tilt";
 
@@ -133,6 +136,18 @@ export default function About() {
             <div className={clsx(profileLinkBox)}>
               <Link href={GITHUB} target="_brank">
                 <FaGithub className={clsx(profileLinkIcon)} />
+              </Link>
+              <Link href={X} target="_brank">
+                <FaXTwitter className={clsx(profileLinkIcon)} />
+              </Link>
+              <Link href={NOTE} target="_brank">
+                <Image
+                  src="/icons/note-icon.svg"
+                  width={28}
+                  height={28}
+                  alt="note"
+                  className={clsx(profileLinkIcon)}
+                />
               </Link>
               <Link href={`mailto:${EMAIL}`} target="_brank">
                 <IoMdMail className={clsx(profileLinkIcon)} />
