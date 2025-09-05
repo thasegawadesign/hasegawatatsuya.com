@@ -237,6 +237,7 @@ export const profileLinkIcon = style({
     },
   },
 });
+
 export const profileMore = style({
   position: "relative",
   fontSize: "1.6rem",

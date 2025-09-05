@@ -44,6 +44,7 @@ import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
@@ -192,6 +193,26 @@ export default function Home() {
                     target="_brank"
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
+                  </Link>
+                  <Link
+                    href={"https://x.com/thasegawa_"}
+                    className={clsx(profileLink)}
+                    target="_brank"
+                  >
+                    <FaXTwitter className={clsx(profileLinkIcon)} />
+                  </Link>
+                  <Link
+                    href={"https://note.com/hasegawatatsuya"}
+                    className={clsx(profileLink)}
+                    target="_brank"
+                  >
+                    <Image
+                      src="/icons/note-icon.svg"
+                      width={28}
+                      height={28}
+                      alt="note"
+                      className={clsx(profileLinkIcon)}
+                    />
                   </Link>
                   <Link
                     href={`mailto:${EMAIL}`}
