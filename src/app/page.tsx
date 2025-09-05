@@ -57,7 +57,9 @@ import TextCircle from "@/components/textCircle/textCircle";
 import {
   EMAIL,
   GITHUB,
+  NOTE,
   PARALLAX_ENABLE_MIN_WIDTH,
+  X,
 } from "@/constants/constants";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useViewTransition } from "@/hooks/useViewTransition";
@@ -194,15 +196,11 @@ export default function Home() {
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
-                  <Link
-                    href={"https://x.com/thasegawa_"}
-                    className={clsx(profileLink)}
-                    target="_brank"
-                  >
+                  <Link href={X} className={clsx(profileLink)} target="_brank">
                     <FaXTwitter className={clsx(profileLinkIcon)} />
                   </Link>
                   <Link
-                    href={"https://note.com/hasegawatatsuya"}
+                    href={NOTE}
                     className={clsx(profileLink)}
                     target="_brank"
                   >
