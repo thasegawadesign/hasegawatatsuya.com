@@ -37,6 +37,18 @@ export const gsapAnimation = {
       }
     );
   },
+  parallaxLight(ref: MutableRefObject<null>) {
+    gsap.to(ref.current, {
+      y: -20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ref.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  },
   parallax(ref: MutableRefObject<null>) {
     gsap.to(ref.current, {
       y: -40,
@@ -51,19 +63,7 @@ export const gsapAnimation = {
   },
   parallaxDeep(ref: MutableRefObject<null>) {
     gsap.to(ref.current, {
-      y: -120,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-  },
-  parallaxLight(ref: MutableRefObject<null>) {
-    gsap.to(ref.current, {
-      y: -20,
+      y: -100,
       ease: "none",
       scrollTrigger: {
         trigger: ref.current,
