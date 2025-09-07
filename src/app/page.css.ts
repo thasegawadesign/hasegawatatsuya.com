@@ -381,13 +381,19 @@ export const worksTextBox = style({
   },
 });
 export const worksName = style({
-  fontSize: "1.6rem",
+  fontSize: "1.7rem",
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.06em",
   lineHeight: "1.4em",
   textAlign: "center",
   "@media": {
+    [breakpoints["lg"]]: {
+      fontSize: "1.6rem",
+    },
+    [breakpoints["md"]]: {
+      fontSize: "1.5rem",
+    },
     [breakpoints["sm"]]: {
       fontSize: "1.4rem",
     },
