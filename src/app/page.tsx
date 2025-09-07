@@ -192,16 +192,23 @@ export default function Home() {
                   <Link
                     href={GITHUB}
                     className={clsx(profileLink)}
+                    aria-label="GitHub"
                     target="_brank"
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
-                  <Link href={X} className={clsx(profileLink)} target="_brank">
+                  <Link
+                    href={X}
+                    className={clsx(profileLink)}
+                    aria-label="X"
+                    target="_brank"
+                  >
                     <FaXTwitter className={clsx(profileLinkIcon)} />
                   </Link>
                   <Link
                     href={NOTE}
                     className={clsx(profileLink)}
+                    aria-label="note"
                     target="_brank"
                   >
                     <Image
@@ -215,6 +222,7 @@ export default function Home() {
                   <Link
                     href={`mailto:${EMAIL}`}
                     className={clsx(profileLink)}
+                    aria-label="Email"
                     target="_brank"
                   >
                     <IoMdMail className={clsx(profileLinkIcon)} />

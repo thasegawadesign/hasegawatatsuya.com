@@ -12,6 +12,8 @@ export default function HamburgerMenu() {
   return (
     <button
       className={clsx(hamburgerMenu)}
+      aria-label="メニューを開く"
+      aria-expanded="false"
       onClick={() => setIsOpenHamburgerMenu(true)}
     >
       <div className={clsx(hamburgerMenuLine)}></div>
