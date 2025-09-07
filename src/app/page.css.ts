@@ -119,20 +119,20 @@ export const profileSection = style({
   flexDirection: "row-reverse",
   placeItems: "end",
   justifyContent: "center",
-  gap: 52,
+  gap: 56,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
-  padding: "52px 12vw",
+  padding: "60px 12vw",
   maxWidth: 920,
   borderRadius: 36,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["2xl"]]: {
-      gap: 48,
+      gap: 52,
       maxWidth: 880,
     },
     [breakpoints["xl"]]: {
-      gap: 46,
+      gap: 48,
       maxWidth: 800,
     },
     [breakpoints["lg"]]: {
@@ -144,7 +144,7 @@ export const profileSection = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      gap: 20,
+      gap: 24,
       maxWidth: 580,
       padding: "48px 2vw",
       margin: "0 2vw",
