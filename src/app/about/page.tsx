@@ -134,13 +134,13 @@ export default function About() {
               </Tilt>
             </div>
             <div className={clsx(profileLinkBox)}>
-              <Link href={GITHUB} target="_brank">
+              <Link href={GITHUB} aria-label="GitHub" target="_brank">
                 <FaGithub className={clsx(profileLinkIcon)} />
               </Link>
-              <Link href={X} target="_brank">
+              <Link href={X} aria-label="X" target="_brank">
                 <FaXTwitter className={clsx(profileLinkIcon)} />
               </Link>
-              <Link href={NOTE} target="_brank">
+              <Link href={NOTE} aria-label="note" target="_brank">
                 <Image
                   src="/icons/note-icon.svg"
                   width={28}
@@ -149,7 +149,7 @@ export default function About() {
                   className={clsx(profileLinkIcon)}
                 />
               </Link>
-              <Link href={`mailto:${EMAIL}`} target="_brank">
+              <Link href={`mailto:${EMAIL}`} aria-label="Email" target="_brank">
                 <IoMdMail className={clsx(profileLinkIcon)} />
               </Link>
             </div>
