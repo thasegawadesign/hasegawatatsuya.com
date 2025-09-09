@@ -1,4 +1,13 @@
-import { keyframes, style } from "@vanilla-extract/css";
+import { globalStyle, keyframes, style } from "@vanilla-extract/css";
+
+globalStyle("::selection", {
+  color: "#130059",
+  backgroundColor: "#faf1e8",
+});
+globalStyle("::-webkit-selection", {
+  color: "#130059",
+  backgroundColor: "#faf1e8",
+});
 
 export const html = style({
   overflowX: "hidden",
