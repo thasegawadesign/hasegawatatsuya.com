@@ -98,7 +98,7 @@ export const photo = style({
   borderRadius: 24,
   objectFit: "cover",
   animationName: animatePhoto,
-  animationDuration: "8s",
+  animationDuration: "20s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
   userSelect: "none",
