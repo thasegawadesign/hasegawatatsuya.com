@@ -101,6 +101,11 @@ export const sectionHeadingContact = style({
 
 export const aboutSection = style({
   paddingBottom: 120,
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingBottom: 80,
+    },
+  },
 });
 
 export const description = style({
@@ -112,6 +117,11 @@ export const description = style({
   marginBottom: 60,
   padding: "0 4vw",
   transformOrigin: "right bottom",
+  "@media": {
+    [breakpoints["sm"]]: {
+      marginBottom: 36,
+    },
+  },
 });
 
 export const profileSection = style({
@@ -122,7 +132,7 @@ export const profileSection = style({
   gap: 56,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
-  padding: "60px 12vw",
+  padding: "64px 12vw",
   maxWidth: 920,
   borderRadius: 36,
   backdropFilter: "blur(8px)",
@@ -146,7 +156,7 @@ export const profileSection = style({
     [breakpoints["sm"]]: {
       gap: 24,
       maxWidth: 580,
-      padding: "48px 2vw",
+      padding: "40px 2vw",
       margin: "0 2vw",
     },
   },
@@ -316,7 +326,12 @@ export const profileImage = style({
 });
 
 export const worksSection = style({
-  paddingBottom: 160,
+  paddingBottom: 120,
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingBottom: 80,
+    },
+  },
 });
 export const worksBox = style({
   display: "grid",
