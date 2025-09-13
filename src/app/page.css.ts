@@ -463,7 +463,7 @@ export const emailLink = style({
   alignItems: "center",
   gap: 32,
   margin: "0 auto",
-  padding: "240px 8vw",
+  padding: "260px 8vw",
   maxWidth: 920,
   width: "100%",
   fontSize: "2.8rem",
@@ -475,6 +475,7 @@ export const emailLink = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
+      padding: "240px 8vw",
       gap: 28,
       maxWidth: 880,
     },
