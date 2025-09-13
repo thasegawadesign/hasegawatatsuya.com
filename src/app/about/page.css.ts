@@ -32,7 +32,7 @@ export const aboutHero = style({
 });
 export const nameBox = style({
   position: "absolute",
-  top: 160,
+  top: 180,
   left: 0,
   right: 0,
   zIndex: 50,
@@ -43,7 +43,7 @@ export const nameBox = style({
 });
 export const nameJa = style({
   position: "relative",
-  fontSize: "clamp(4.0rem, 5.6vw + 2.4rem, 12.4rem)",
+  fontSize: "clamp(4.0rem, 5.8vw + 2.6rem, 12.6rem)",
   color: vars.color.text,
   letterSpacing: "-0.16em",
   marginBottom: "-0.6em",
@@ -51,7 +51,7 @@ export const nameJa = style({
 });
 export const nameEn = style({
   position: "relative",
-  fontSize: "clamp(5.2rem, 6.4vw + 3.2rem, 14.4rem)",
+  fontSize: "clamp(5.2rem, 6.6vw + 3.4rem, 14.8rem)",
   fontWeight: 400,
   letterSpacing: "-0.09em",
   width: "fit-content",
