@@ -113,7 +113,7 @@ export const photo = style({
 
 export const profileLinkBox = style({
   display: "flex",
-  gap: 24,
+  gap: 20,
   justifyContent: "center",
   marginBottom: 80,
 });
@@ -157,13 +157,23 @@ export const line = style({
   },
   "@media": {
     [breakpoints["2xl"]]: {
-      height: 40,
+      height: 56,
       ":before": {
-        height: 40,
+        height: 56,
       },
     },
     [breakpoints["xl"]]: {
       marginBottom: 80,
+      height: 48,
+      ":before": {
+        height: 48,
+      },
+    },
+    [breakpoints["lg"]]: {
+      height: 40,
+      ":before": {
+        height: 40,
+      },
     },
   },
 });
@@ -175,10 +185,10 @@ export const occupation = style({
   letterSpacing: "-0.08em",
   lineHeight: 1.2,
   textAlign: "center",
-  marginBottom: 160,
+  marginBottom: 120,
   "@media": {
     [breakpoints["xl"]]: {
-      marginBottom: 120,
+      marginBottom: 80,
     },
   },
 });
@@ -190,11 +200,11 @@ export const description = style({
   letterSpacing: "-0.04em",
   lineHeight: 1.8,
   textAlign: "center",
-  marginBottom: 160,
+  marginBottom: 120,
   padding: "0 4vw",
   "@media": {
     [breakpoints["xl"]]: {
-      marginBottom: 120,
+      marginBottom: 80,
     },
   },
 });
@@ -218,6 +228,6 @@ export const year = style({
   letterSpacing: "-0.02em",
 });
 export const event = style({
-  fontSize: "clamp(1.7rem, 0.72vw + 1.2rem, 2.4rem)",
+  fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
   letterSpacing: "-0.04em",
 });
