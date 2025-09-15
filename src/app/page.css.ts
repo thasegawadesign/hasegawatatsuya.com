@@ -34,7 +34,7 @@ export const line = style({
   position: "relative",
   width: 1,
   height: 60,
-  margin: "0 auto 76px",
+  margin: "0 auto clamp(60px, 5vw, 80px)",
   backgroundColor: "rgba(19, 0, 89, .3)",
   overflow: "hidden",
   ":before": {
