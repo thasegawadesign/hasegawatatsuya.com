@@ -115,7 +115,7 @@ export const profileLinkBox = style({
   display: "flex",
   gap: 20,
   justifyContent: "center",
-  marginBottom: 80,
+  marginBottom: "clamp(60px, 5vw, 80px)",
 });
 export const profileLinkIcon = style({
   width: 28,
@@ -141,7 +141,7 @@ export const line = style({
   position: "relative",
   width: 1,
   height: 60,
-  margin: "0 auto 120px",
+  margin: "0 auto clamp(60px, 5vw, 80px)",
   backgroundColor: "rgba(19, 0, 89, .3)",
   overflow: "hidden",
   ":before": {
@@ -163,7 +163,6 @@ export const line = style({
       },
     },
     [breakpoints["xl"]]: {
-      marginBottom: 80,
       height: 48,
       ":before": {
         height: 48,
@@ -185,12 +184,7 @@ export const occupation = style({
   letterSpacing: "-0.08em",
   lineHeight: 1.2,
   textAlign: "center",
-  marginBottom: 120,
-  "@media": {
-    [breakpoints["xl"]]: {
-      marginBottom: 80,
-    },
-  },
+  marginBottom: "clamp(60px, 5vw, 80px)",
 });
 
 export const description = style({
@@ -200,13 +194,8 @@ export const description = style({
   letterSpacing: "-0.04em",
   lineHeight: 1.8,
   textAlign: "center",
-  marginBottom: 120,
+  marginBottom: "clamp(60px, 5vw, 80px)",
   padding: "0 4vw",
-  "@media": {
-    [breakpoints["xl"]]: {
-      marginBottom: 80,
-    },
-  },
 });
 
 export const history = style({
@@ -216,12 +205,7 @@ export const history = style({
   fontWeight: 300,
   color: vars.color.text,
   textAlign: "center",
-  marginBottom: 280,
-  "@media": {
-    [breakpoints["xl"]]: {
-      marginBottom: 240,
-    },
-  },
+  marginBottom: "clamp(200px, 15.6vw, 260px)",
 });
 export const year = style({
   fontSize: "clamp(1.6rem, 0.72vw + 1.0rem, 2.0rem)",
