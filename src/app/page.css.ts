@@ -353,13 +353,12 @@ export const worksBox = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      gridTemplateColumns: "repeat(2, 1fr)",
       margin: "0 2vw",
-      gap: 1,
+      gap: 0,
       backgroundColor: "rgba(255, 255, 255, .12)",
       borderRadius: 36,
       backdropFilter: "blur(8px)",
-      paddingBottom: 48,
+      padding: "0 2vw 48px",
     },
   },
 });
@@ -410,7 +409,7 @@ export const worksName = style({
       fontSize: "1.5rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.4rem",
+      fontSize: "1.2rem",
     },
   },
 });
@@ -445,8 +444,8 @@ export const worksLink = style({
       height: 120,
     },
     [breakpoints["sm"]]: {
-      width: 100,
-      height: 100,
+      width: 80,
+      height: 80,
     },
   },
 });
