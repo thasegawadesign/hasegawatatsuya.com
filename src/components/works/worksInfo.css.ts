@@ -44,16 +44,16 @@ export const hgroupHeadingJa = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.04em",
-  marginTop: "5.6vw",
+  marginTop: "4.8vw",
   marginLeft: "3.6vw",
 });
 
 export const worksDl = style({
   display: "flex",
   flexDirection: "column",
-  gap: "5.2vw",
-  marginTop: "clamp(80px, 11.2vw, 180px)",
-  marginBottom: "clamp(240px, 15.6vw, 280px)",
+  gap: "3.6vw",
+  marginTop: "clamp(40px, 9.6vw, 120px)",
+  marginBottom: "clamp(200px, 15.6vw, 260px)",
   padding: "0 4.8vw",
 });
 export const worksDlItem = style({
@@ -66,7 +66,7 @@ export const worksDt = style({
   color: vars.color.text,
   width: 48,
   letterSpacing: "-0.04em",
-  marginTop: "clamp(0.48rem, 0.48vw, 1.2rem)",
+  marginTop: "clamp(0.48rem, 0.5vw, 1.2rem)",
   textAlign: "right",
   "@media": {
     [breakpoints["xl"]]: {
