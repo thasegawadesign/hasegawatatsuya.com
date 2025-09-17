@@ -9,6 +9,7 @@ import {
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
 import { useViewTransition } from "@/hooks/useViewTransition";
+import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { useAtom } from "jotai";
@@ -22,6 +23,8 @@ const roboto = Roboto({
 });
 
 export default function MobileNav() {
+  const width = useWindowWidth();
+
   const mobileNavHomeLinkRef = useRef(null);
   const mobileNavAboutLinkRef = useRef(null);
   const mobileNavWorksLinkRef = useRef(null);
@@ -32,6 +35,12 @@ export default function MobileNav() {
   );
 
   const handleTransition = useViewTransition();
+
+  useEffect(() => {
+    if (width >= 640 && isOpenHamburgerMenu) {
+      setIsOpenHamburgerMenu(false);
+    }
+  }, [isOpenHamburgerMenu, setIsOpenHamburgerMenu, width]);
 
   useEffect(() => {
     const noscroll = (event: WheelEvent | TouchEvent) => {
