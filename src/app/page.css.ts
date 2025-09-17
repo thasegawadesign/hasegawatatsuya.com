@@ -189,6 +189,7 @@ export const profileName = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.02em",
+  whiteSpace: "nowrap",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
@@ -457,12 +458,7 @@ export const worksIcon = style({
 });
 
 export const contactSection = style({
-  paddingBottom: 120,
-  "@media": {
-    [breakpoints["sm"]]: {
-      paddingBottom: 60,
-    },
-  },
+  paddingBottom: "clamp(40px, 8vw, 120px)",
 });
 export const contactWrapper = style({
   "@media": {

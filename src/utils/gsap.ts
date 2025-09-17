@@ -63,7 +63,7 @@ export const gsapAnimation = {
   },
   parallaxDeep(ref: MutableRefObject<null>) {
     gsap.to(ref.current, {
-      y: -100,
+      y: -120,
       ease: "none",
       scrollTrigger: {
         trigger: ref.current,
