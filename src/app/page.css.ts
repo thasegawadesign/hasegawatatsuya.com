@@ -189,6 +189,7 @@ export const profileName = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.02em",
+  whiteSpace: "nowrap",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
