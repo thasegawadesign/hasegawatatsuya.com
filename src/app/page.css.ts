@@ -457,12 +457,7 @@ export const worksIcon = style({
 });
 
 export const contactSection = style({
-  paddingBottom: 120,
-  "@media": {
-    [breakpoints["sm"]]: {
-      paddingBottom: 60,
-    },
-  },
+  paddingBottom: "clamp(40px, 8vw, 120px)",
 });
 export const contactWrapper = style({
   "@media": {
