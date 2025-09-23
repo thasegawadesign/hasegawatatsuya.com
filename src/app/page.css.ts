@@ -458,7 +458,7 @@ export const worksIcon = style({
 });
 
 export const contactSection = style({
-  paddingBottom: "clamp(40px, 8vw, 120px)",
+  paddingBottom: "clamp(40px, 6vw, 120px)",
 });
 export const contactWrapper = style({
   "@media": {
@@ -473,7 +473,7 @@ export const emailLink = style({
   alignItems: "center",
   gap: 32,
   margin: "0 auto",
-  padding: "240px 8vw",
+  padding: "200px 8vw",
   maxWidth: 920,
   width: "100%",
   fontSize: "2.8rem",
@@ -485,13 +485,12 @@ export const emailLink = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
-      padding: "220px 8vw",
       gap: 28,
       maxWidth: 880,
     },
     [breakpoints["xl"]]: {
       fontSize: "2.5rem",
-      padding: "200px 8vw",
+      padding: "180px 8vw",
       gap: 24,
       maxWidth: 800,
     },
