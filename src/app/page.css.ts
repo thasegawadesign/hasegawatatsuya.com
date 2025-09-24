@@ -201,7 +201,7 @@ export const profileName = style({
       fontSize: "2.4rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.9em",
+      fontSize: "1.9rem",
     },
   },
 });
