@@ -103,7 +103,7 @@ export const aboutSection = style({
   paddingBottom: 120,
   "@media": {
     [breakpoints["sm"]]: {
-      paddingBottom: 80,
+      paddingBottom: 60,
     },
   },
 });
@@ -119,7 +119,7 @@ export const description = style({
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["sm"]]: {
-      marginBottom: 36,
+      marginBottom: 28,
     },
   },
 });
@@ -156,7 +156,7 @@ export const profileSection = style({
     [breakpoints["sm"]]: {
       gap: 24,
       maxWidth: 580,
-      padding: "40px 2vw",
+      padding: "30px 2vw",
       margin: "0 2vw",
     },
   },
@@ -330,7 +330,7 @@ export const worksSection = style({
   paddingBottom: 120,
   "@media": {
     [breakpoints["sm"]]: {
-      paddingBottom: 80,
+      paddingBottom: 60,
     },
   },
 });
@@ -377,8 +377,14 @@ export const worksItem = style({
     [breakpoints["xl"]]: {
       gap: 12,
     },
+    [breakpoints["lg"]]: {
+      padding: "40px 2vw",
+    },
+    [breakpoints["md"]]: {
+      padding: "36px 2vw",
+    },
     [breakpoints["sm"]]: {
-      padding: "48px 2vw 0px",
+      padding: "30px 2vw 0px",
       backgroundColor: "transparent",
       backdropFilter: "none",
     },
