@@ -311,6 +311,28 @@ export default function Home() {
                   />
                 </Link>
               </section>
+              <section className={clsx(worksItem)} ref={worksItem05Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>
+                    <span className={clsx(worksNameSpan)}>「フルール」</span>
+                    <span className={clsx(worksNameSpan)}>ブランドサイト</span>
+                  </h3>
+                  <p className={clsx(worksCategory)}>(Webサイト)</p>
+                </div>
+                <Link
+                  href={"/works/fleur"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/fleur")}
+                >
+                  <Image
+                    src={"/icons/fleur-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="フルール"
+                  />
+                </Link>
+              </section>
               <section className={clsx(worksItem)} ref={worksItem03Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>プレイリスト2025</h3>
@@ -346,28 +368,6 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="一問一答メーカーのアイコン"
-                  />
-                </Link>
-              </section>
-              <section className={clsx(worksItem)} ref={worksItem05Ref}>
-                <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>
-                    <span className={clsx(worksNameSpan)}>「フルール」</span>
-                    <span className={clsx(worksNameSpan)}>ブランドサイト</span>
-                  </h3>
-                  <p className={clsx(worksCategory)}>(Webサイト)</p>
-                </div>
-                <Link
-                  href={"/works/fleur"}
-                  className={clsx(worksLink)}
-                  onClick={handleTransition("/works/fleur")}
-                >
-                  <Image
-                    src={"/icons/fleur-icon.avif"}
-                    width={160}
-                    height={160}
-                    className={clsx(worksIcon)}
-                    alt="フルール"
                   />
                 </Link>
               </section>
