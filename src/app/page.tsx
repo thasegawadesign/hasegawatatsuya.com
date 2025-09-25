@@ -313,23 +313,20 @@ export default function Home() {
               </section>
               <section className={clsx(worksItem)} ref={worksItem03Ref}>
                 <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>
-                    <span className={clsx(worksNameSpan)}>「フルール」</span>
-                    <span className={clsx(worksNameSpan)}>ブランドサイト</span>
-                  </h3>
-                  <p className={clsx(worksCategory)}>(Webサイト)</p>
+                  <h3 className={clsx(worksName)}>プレイリスト2025</h3>
+                  <p className={clsx(worksCategory)}>(グラフィック)</p>
                 </div>
                 <Link
-                  href={"/works/fleur"}
+                  href={"/works/playlist2025"}
                   className={clsx(worksLink)}
-                  onClick={handleTransition("/works/fleur")}
+                  onClick={handleTransition("/works/playlist2025")}
                 >
                   <Image
-                    src={"/icons/fleur-icon.avif"}
+                    src={"/icons/playlist2025-icon.avif"}
                     width={160}
                     height={160}
                     className={clsx(worksIcon)}
-                    alt="フルール"
+                    alt="プレイリスト2025"
                   />
                 </Link>
               </section>
@@ -354,6 +351,28 @@ export default function Home() {
               </section>
               <section className={clsx(worksItem)} ref={worksItem05Ref}>
                 <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>
+                    <span className={clsx(worksNameSpan)}>「フルール」</span>
+                    <span className={clsx(worksNameSpan)}>ブランドサイト</span>
+                  </h3>
+                  <p className={clsx(worksCategory)}>(Webサイト)</p>
+                </div>
+                <Link
+                  href={"/works/fleur"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/fleur")}
+                >
+                  <Image
+                    src={"/icons/fleur-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="フルール"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem06Ref}>
+                <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
                 </div>
@@ -371,45 +390,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem06Ref}>
-                <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>プレイリスト2025</h3>
-                  <p className={clsx(worksCategory)}>(グラフィック)</p>
-                </div>
-                <Link
-                  href={"/works/playlist2025"}
-                  className={clsx(worksLink)}
-                  onClick={handleTransition("/works/playlist2025")}
-                >
-                  <Image
-                    src={"/icons/playlist2025-icon.avif"}
-                    width={160}
-                    height={160}
-                    className={clsx(worksIcon)}
-                    alt="プレイリスト2025"
-                  />
-                </Link>
-              </section>
               <section className={clsx(worksItem)} ref={worksItem07Ref}>
-                <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
-                  <p className={clsx(worksCategory)}>(レタッチ)</p>
-                </div>
-                <Link
-                  href={"/works/sporty"}
-                  className={clsx(worksLink)}
-                  onClick={handleTransition("/works/sporty")}
-                >
-                  <Image
-                    src={"/icons/sporty-icon.avif"}
-                    width={160}
-                    height={160}
-                    className={clsx(worksIcon)}
-                    alt="力強さのあるヴィジュアル"
-                  />
-                </Link>
-              </section>
-              <section className={clsx(worksItem)} ref={worksItem08Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -425,6 +406,25 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="JavaScript電卓のアイコン"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem08Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
+                  <p className={clsx(worksCategory)}>(レタッチ)</p>
+                </div>
+                <Link
+                  href={"/works/sporty"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/sporty")}
+                >
+                  <Image
+                    src={"/icons/sporty-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="力強さのあるヴィジュアル"
                   />
                 </Link>
               </section>
