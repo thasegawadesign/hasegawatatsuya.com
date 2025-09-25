@@ -94,6 +94,8 @@ export default function Home() {
   const worksItem04Ref = useRef(null);
   const worksItem05Ref = useRef(null);
   const worksItem06Ref = useRef(null);
+  const worksItem07Ref = useRef(null);
+  const worksItem08Ref = useRef(null);
   const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -260,6 +262,58 @@ export default function Home() {
               <section className={clsx(worksItem)} ref={worksItem01Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>
+                    <span className={clsx(worksNameSpan)}>
+                      「株式会社Univearth」
+                    </span>
+                    <span className={clsx(worksNameSpan)}>
+                      コーポレートサイト
+                    </span>
+                  </h3>
+                  <p className={clsx(worksCategory)}>(Webサイト)</p>
+                </div>
+                <Link
+                  href={"https://www.univearth.co.jp/"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/univearth-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="株式会社Univearthのアイコン"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem02Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>
+                    <span className={clsx(worksNameSpan)}>
+                      「株式会社 智商運輸」
+                    </span>
+                    <span className={clsx(worksNameSpan)}>
+                      コーポレートサイト
+                    </span>
+                  </h3>
+                  <p className={clsx(worksCategory)}>(Webサイト)</p>
+                </div>
+                <Link
+                  href={"https://www.tomosho-unyu.co.jp/"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/tomosho-unyu-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="株式会社 智商運輸のアイコン"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem03Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>
                     <span className={clsx(worksNameSpan)}>「フルール」</span>
                     <span className={clsx(worksNameSpan)}>ブランドサイト</span>
                   </h3>
@@ -279,7 +333,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem02Ref}>
+              <section className={clsx(worksItem)} ref={worksItem04Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -298,7 +352,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem03Ref}>
+              <section className={clsx(worksItem)} ref={worksItem05Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>ステメモ</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -317,7 +371,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem04Ref}>
+              <section className={clsx(worksItem)} ref={worksItem06Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                   <p className={clsx(worksCategory)}>(グラフィック)</p>
@@ -336,7 +390,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem05Ref}>
+              <section className={clsx(worksItem)} ref={worksItem07Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
                   <p className={clsx(worksCategory)}>(レタッチ)</p>
@@ -355,7 +409,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem06Ref}>
+              <section className={clsx(worksItem)} ref={worksItem08Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
