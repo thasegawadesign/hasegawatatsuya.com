@@ -311,7 +311,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem05Ref}>
+              <section className={clsx(worksItem)} ref={worksItem03Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>
                     <span className={clsx(worksNameSpan)}>「フルール」</span>
@@ -333,7 +333,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem03Ref}>
+              <section className={clsx(worksItem)} ref={worksItem04Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                   <p className={clsx(worksCategory)}>(グラフィック)</p>
@@ -352,7 +352,7 @@ export default function Home() {
                   />
                 </Link>
               </section>
-              <section className={clsx(worksItem)} ref={worksItem04Ref}>
+              <section className={clsx(worksItem)} ref={worksItem05Ref}>
                 <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                   <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
