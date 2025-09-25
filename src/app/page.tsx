@@ -313,44 +313,6 @@ export default function Home() {
               </section>
               <section className={clsx(worksItem)} ref={worksItem03Ref}>
                 <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>プレイリスト2025</h3>
-                  <p className={clsx(worksCategory)}>(グラフィック)</p>
-                </div>
-                <Link
-                  href={"/works/playlist2025"}
-                  className={clsx(worksLink)}
-                  onClick={handleTransition("/works/playlist2025")}
-                >
-                  <Image
-                    src={"/icons/playlist2025-icon.avif"}
-                    width={160}
-                    height={160}
-                    className={clsx(worksIcon)}
-                    alt="プレイリスト2025"
-                  />
-                </Link>
-              </section>
-              <section className={clsx(worksItem)} ref={worksItem04Ref}>
-                <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>一問一答メーカー</h3>
-                  <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-                </div>
-                <Link
-                  href={"https://www.question-and-answer.vegetworks.com/"}
-                  className={clsx(worksLink)}
-                  target="_blank"
-                >
-                  <Image
-                    src={"/icons/question-and-answer-icon.avif"}
-                    width={160}
-                    height={160}
-                    className={clsx(worksIcon)}
-                    alt="一問一答メーカーのアイコン"
-                  />
-                </Link>
-              </section>
-              <section className={clsx(worksItem)} ref={worksItem05Ref}>
-                <div className={clsx(worksTextBox)}>
                   <h3 className={clsx(worksName)}>
                     <span className={clsx(worksNameSpan)}>「フルール」</span>
                     <span className={clsx(worksNameSpan)}>ブランドサイト</span>
@@ -368,6 +330,44 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="フルール"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem04Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>プレイリスト2025</h3>
+                  <p className={clsx(worksCategory)}>(グラフィック)</p>
+                </div>
+                <Link
+                  href={"/works/playlist2025"}
+                  className={clsx(worksLink)}
+                  onClick={handleTransition("/works/playlist2025")}
+                >
+                  <Image
+                    src={"/icons/playlist2025-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="プレイリスト2025"
+                  />
+                </Link>
+              </section>
+              <section className={clsx(worksItem)} ref={worksItem05Ref}>
+                <div className={clsx(worksTextBox)}>
+                  <h3 className={clsx(worksName)}>一問一答メーカー</h3>
+                  <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+                </div>
+                <Link
+                  href={"https://www.question-and-answer.vegetworks.com/"}
+                  className={clsx(worksLink)}
+                  target="_blank"
+                >
+                  <Image
+                    src={"/icons/question-and-answer-icon.avif"}
+                    width={160}
+                    height={160}
+                    className={clsx(worksIcon)}
+                    alt="一問一答メーカーのアイコン"
                   />
                 </Link>
               </section>
