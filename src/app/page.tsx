@@ -133,6 +133,8 @@ export default function Home() {
     gsapAnimation.inview(worksItem04Ref);
     gsapAnimation.inview(worksItem05Ref);
     gsapAnimation.inview(worksItem06Ref);
+    gsapAnimation.inview(worksItem07Ref);
+    gsapAnimation.inview(worksItem08Ref);
     gsapAnimation.inview(contactRef);
     gsapAnimation.parallaxDeep(contactWrapperRef);
   }, []);
