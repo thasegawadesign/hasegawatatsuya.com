@@ -95,7 +95,6 @@ export default function Home() {
   const worksItem05Ref = useRef(null);
   const worksItem06Ref = useRef(null);
   const worksItem07Ref = useRef(null);
-  const worksItem08Ref = useRef(null);
   const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
 
@@ -134,7 +133,6 @@ export default function Home() {
     gsapAnimation.inview(worksItem05Ref);
     gsapAnimation.inview(worksItem06Ref);
     gsapAnimation.inview(worksItem07Ref);
-    gsapAnimation.inview(worksItem08Ref);
     gsapAnimation.inview(contactRef);
     gsapAnimation.parallaxDeep(contactWrapperRef);
   }, []);
@@ -408,25 +406,6 @@ export default function Home() {
                     height={160}
                     className={clsx(worksIcon)}
                     alt="JavaScript電卓のアイコン"
-                  />
-                </Link>
-              </section>
-              <section className={clsx(worksItem)} ref={worksItem08Ref}>
-                <div className={clsx(worksTextBox)}>
-                  <h3 className={clsx(worksName)}>力強さのあるヴィジュアル</h3>
-                  <p className={clsx(worksCategory)}>(レタッチ)</p>
-                </div>
-                <Link
-                  href={"/works/sporty"}
-                  className={clsx(worksLink)}
-                  onClick={handleTransition("/works/sporty")}
-                >
-                  <Image
-                    src={"/icons/sporty-icon.avif"}
-                    width={160}
-                    height={160}
-                    className={clsx(worksIcon)}
-                    alt="力強さのあるヴィジュアル"
                   />
                 </Link>
               </section>
