@@ -195,7 +195,8 @@ export default function Home() {
                     href={GITHUB}
                     className={clsx(profileLink)}
                     aria-label="GitHub"
-                    target="_brank"
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
@@ -203,7 +204,8 @@ export default function Home() {
                     href={X}
                     className={clsx(profileLink)}
                     aria-label="X"
-                    target="_brank"
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <FaXTwitter className={clsx(profileLinkIcon)} />
                   </Link>
@@ -211,7 +213,8 @@ export default function Home() {
                     href={NOTE}
                     className={clsx(profileLink)}
                     aria-label="note"
-                    target="_brank"
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <Image
                       src="/icons/note-icon.svg"
@@ -225,7 +228,8 @@ export default function Home() {
                     href={`mailto:${EMAIL}`}
                     className={clsx(profileLink)}
                     aria-label="Email"
-                    target="_brank"
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <IoMdMail className={clsx(profileLinkIcon)} />
                   </Link>
@@ -274,6 +278,7 @@ export default function Home() {
                 <Link
                   href={"https://www.univearth.co.jp/"}
                   className={clsx(worksLink)}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <Image
@@ -300,6 +305,7 @@ export default function Home() {
                 <Link
                   href={"https://www.tomosho-unyu.co.jp/"}
                   className={clsx(worksLink)}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <Image
@@ -360,6 +366,7 @@ export default function Home() {
                 <Link
                   href={"https://www.question-and-answer.vegetworks.com/"}
                   className={clsx(worksLink)}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <Image
@@ -379,6 +386,7 @@ export default function Home() {
                 <Link
                   href={"https://www.sutememo.vegetworks.com/"}
                   className={clsx(worksLink)}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <Image
@@ -398,6 +406,7 @@ export default function Home() {
                 <Link
                   href={"https://www.calculator.vegetworks.com/"}
                   className={clsx(worksLink)}
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <Image
