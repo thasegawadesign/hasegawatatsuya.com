@@ -153,8 +153,9 @@ export default function WorksInfo(props: Props) {
               <dd className={clsx(worksDd)}>
                 <Link
                   href={URL}
-                  target="_blank"
                   className={clsx(roboto.className, worksLink)}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   {URL}
                 </Link>
