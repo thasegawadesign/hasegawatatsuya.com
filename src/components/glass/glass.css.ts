@@ -19,7 +19,7 @@ export const glass = style({
     right: 0,
     width: "100%",
     height: "100%",
-    borderRadius: 40,
+    borderRadius: 38,
     boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , 0.3)",
     backdropFilter: "blur(120px)",
     WebkitBackdropFilter: "blur(120px)",
@@ -67,7 +67,7 @@ export const glass = style({
 export const noise = style({
   position: "absolute",
   top: 0,
-  borderRadius: 40,
+  borderRadius: 38,
   width: "100%",
   height: "100%",
   opacity: 0.3,
