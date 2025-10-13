@@ -123,7 +123,7 @@ export const profileLinkIcon = style({
   color: vars.color.text,
   transition: "scale 0.2s ease",
   ":hover": {
-    scale: 1.26,
+    scale: 1.28,
   },
   "@media": {
     [breakpoints["sm"]]: {
