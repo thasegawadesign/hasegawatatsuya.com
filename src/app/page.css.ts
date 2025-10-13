@@ -12,7 +12,7 @@ export const main = style({
 });
 
 export const nameMainVisual = style({
-  fontSize: "clamp(7.6rem, 14.4vw + 3.2rem, 27.6rem)",
+  fontSize: "clamp(7.6rem, 14.4vw + 3.2rem, 28.4rem)",
   fontWeight: 500,
   color: "#130059",
   letterSpacing: "-0.04em",
