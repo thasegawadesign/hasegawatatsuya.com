@@ -115,7 +115,7 @@ export default function About() {
                   Tatsuya Hasegawa
                 </span>
               </h1>
-              <Tilt reset={false}>
+              <Tilt reset={true}>
                 <div className={clsx(photoBox)}>
                   <div ref={photoContainerRef} className={clsx(photoContainer)}>
                     <motion.div style={{ y }} className={clsx(motionDiv)}>
