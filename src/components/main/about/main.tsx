@@ -1,5 +1,6 @@
 "use client";
 
+import { cormorant, notoSerifJP } from "@/app/fonts";
 import {
   aboutHero,
   description,
@@ -33,7 +34,6 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Cormorant, Noto_Serif_JP } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
@@ -41,16 +41,6 @@ import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import Tilt from "react-parallax-tilt";
-
-const notoSerifJP = Noto_Serif_JP({
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-});
 
 export default function Main() {
   const photoContainerRef = useRef(null);

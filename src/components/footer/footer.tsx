@@ -1,11 +1,6 @@
+import { roboto } from "@/app/fonts";
 import { copyRight, footer } from "@/components/footer/footer.css";
 import clsx from "clsx";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-});
 
 export default function Footer() {
   return (

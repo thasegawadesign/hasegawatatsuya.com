@@ -39,13 +39,13 @@ import {
   worksTextBox,
 } from "@/components/main/home/main.css";
 import clsx from "clsx";
-import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 
+import { cormorant, roboto } from "@/app/fonts";
 import {
   EMAIL,
   GITHUB,
@@ -61,16 +61,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-});
 
 export default function Main() {
   const [mounted, setMounted] = useState(false);

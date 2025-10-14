@@ -1,3 +1,4 @@
+import { roboto } from "@/app/fonts";
 import {
   circle,
   circlePath,
@@ -5,12 +6,6 @@ import {
   circleText,
 } from "@/components/textCircle/textCircle.css";
 import clsx from "clsx";
-import { Roboto } from "next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-});
 
 export default function TextCircle() {
   return (
