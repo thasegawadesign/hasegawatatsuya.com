@@ -35,7 +35,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "長谷川 達也",
-    url: "https://hasegawatatsuya.com",
+    url: "https://www.hasegawatatsuya.com",
     jobTitle: "Webデザイナー",
     sameAs: [GITHUB, X],
   };
