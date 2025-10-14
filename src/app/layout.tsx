@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   verification: {
-    google: "JTf9RfAVU6O4mqwU7bBXJwpFWrnCygv66A1qrGjnJ90",
+    google: process.env.GOOGLE_VERIFICATION || "",
   },
   openGraph: {
     title: TITLE,
@@ -62,7 +62,7 @@ export default function RootLayout({
     <html lang="ja" id="home" className={clsx(html)}>
       <body className={clsx(body, backgroundGradient)}>
         <Script
-          id="json-ld"
+          id="json-ld-person"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -76,7 +76,9 @@ export default function RootLayout({
           <Spiral />
           <ParticleEffect />
         </Providers>
-        {isProduction && <GoogleAnalytics gaId="G-KM86JXK42S" />}
+        {isProduction && (
+          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ""} />
+        )}
         {isProduction && <VercelAnalytics />}
       </body>
     </html>
