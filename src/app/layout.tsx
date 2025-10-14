@@ -15,28 +15,29 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "yakuhanjp";
 
-const title = "Webデザイナー 長谷川 達也 | ポートフォリオ";
-const description =
+const TITLE = "Webデザイナー 長谷川 達也 | ポートフォリオ";
+const DESCRIPTION =
   "Webデザイナー 長谷川 達也のポートフォリオです。実際に触れることのできるWeb作品をデザイン・実装することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。";
+const URL = "https://www.hasegawatatsuya.com";
 
 export const metadata: Metadata = {
-  title: title,
-  description: description,
+  title: TITLE,
+  description: DESCRIPTION,
   verification: {
     google: "JTf9RfAVU6O4mqwU7bBXJwpFWrnCygv66A1qrGjnJ90",
   },
   openGraph: {
-    title: title,
-    description: description,
-    url: "https://www.hasegawatatsuya.com",
-    siteName: "Webデザイナー 長谷川 達也 | ポートフォリオ",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: URL,
+    siteName: TITLE,
     locale: "ja_JP",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: title,
-    description: description,
+    title: TITLE,
+    description: DESCRIPTION,
     site: "@thasegawa_",
     creator: "@thasegawa_",
   },
@@ -53,7 +54,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "長谷川 達也",
-    url: "https://www.hasegawatatsuya.com",
+    url: URL,
     jobTitle: "Webデザイナー",
     sameAs: [GITHUB, X],
   };
