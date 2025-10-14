@@ -10,7 +10,6 @@ import {
   emailTextBox,
   emailTextRotateFront,
   emailTextRotateTop,
-  header,
   line,
   main,
   motionDiv,
@@ -47,13 +46,9 @@ import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 
-import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
-import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
-import MobileNav from "@/components/mobileNav/mobileNav";
-import Nav from "@/components/nav/nav";
-import TextCircle from "@/components/textCircle/textCircle";
+import Header from "@/components/header/header";
 import {
   EMAIL,
   GITHUB,
@@ -67,7 +62,6 @@ import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useAtomValue } from "jotai";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -97,8 +91,6 @@ export default function Home() {
   const worksItem07Ref = useRef(null);
   const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
-
-  const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
   const { scrollYProgress } = useScroll({
     target: profileImageContainerRef,
@@ -140,12 +132,7 @@ export default function Home() {
   return (
     <>
       <Glass>
-        <header className={clsx(header)}>
-          <Nav />
-          <HamburgerMenu />
-          {isOpenHamburgerMenu && <MobileNav />}
-          {!isOpenHamburgerMenu && <TextCircle />}
-        </header>
+        <Header />
         <main className={clsx(main)}>
           <h1
             className={clsx(cormorant.className, nameMainVisual)}

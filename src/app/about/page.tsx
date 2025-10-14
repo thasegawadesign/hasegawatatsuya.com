@@ -5,7 +5,6 @@ import {
   description,
   event,
   glassBox,
-  header,
   history,
   line,
   main,
@@ -21,14 +20,10 @@ import {
   profileLinkIcon,
   year,
 } from "@/app/about/page.css";
-import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import BackToIndex from "@/components/backToIndex/backToIndex";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
-import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
-import MobileNav from "@/components/mobileNav/mobileNav";
-import Nav from "@/components/nav/nav";
-import TextCircle from "@/components/textCircle/textCircle";
+import Header from "@/components/header/header";
 import {
   EMAIL,
   GITHUB,
@@ -42,7 +37,6 @@ import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useAtomValue } from "jotai";
 import { motion, useScroll, useTransform } from "motion/react";
 import { Cormorant, Noto_Serif_JP } from "next/font/google";
 import Image from "next/image";
@@ -68,8 +62,6 @@ export default function About() {
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const historyRef = useRef(null);
-
-  const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
 
   const width = useWindowWidth();
 
@@ -99,12 +91,7 @@ export default function About() {
     <>
       <div className={clsx(glassBox)}>
         <Glass>
-          <header className={clsx(header)}>
-            <Nav />
-            <HamburgerMenu />
-            {isOpenHamburgerMenu && <MobileNav />}
-            {!isOpenHamburgerMenu && <TextCircle />}
-          </header>
+          <Header />
           <main className={clsx(main)}>
             <div className={clsx(aboutHero)}>
               <h1 className={nameBox}>
