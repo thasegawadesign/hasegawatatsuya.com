@@ -6,7 +6,7 @@ import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
 import Spiral from "@/components/spiral/spiral";
-import { GITHUB, X } from "@/constants/constants";
+import { EMAIL, GITHUB, X } from "@/constants/constants";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -56,21 +56,20 @@ export default function RootLayout({
     name: "長谷川 達也",
     alternateName: "Tatsuya Hasegawa",
     jobTitle: "Webデザイナー",
+    description: DESCRIPTION,
     url: URL,
     sameAs: [GITHUB, X],
-    description: DESCRIPTION,
+    email: EMAIL,
   };
   return (
     <html lang="ja" id="home" className={clsx(html)}>
-      <head>
+      <body className={clsx(body, backgroundGradient)}>
         <Script
           id="json-ld-person"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className={clsx(body, backgroundGradient)}>
         <Providers>
           {children}
           <AudioButton />
