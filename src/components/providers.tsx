@@ -1,5 +1,6 @@
 "use client";
 
+import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { Provider } from "jotai";
 
 export default function Providers({
@@ -7,5 +8,6 @@ export default function Providers({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useSmoothScroll();
   return <Provider>{children}</Provider>;
 }
