@@ -53,7 +53,6 @@ import {
   PARALLAX_ENABLE_MIN_WIDTH,
   X,
 } from "@/constants/constants";
-import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useViewTransition } from "@/hooks/useViewTransition";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
@@ -94,8 +93,6 @@ export default function Main() {
   );
 
   const handleTransition = useViewTransition();
-
-  useSmoothScroll();
 
   useEffect(() => {
     setMounted(true);

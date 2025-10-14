@@ -1,40 +1,21 @@
-"use client";
-
 import { glassBox } from "@/app/about/page.css";
-import { header, main } from "@/app/page.css";
-import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
-import AudioPlayer from "@/components/audio/audioPlayer";
+import { main } from "@/app/works/works.css";
 import BackToIndex from "@/components/backToIndex/backToIndex";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
-import HamburgerMenu from "@/components/hamburgerMenu/hamburgerMenu";
-import MobileNav from "@/components/mobileNav/mobileNav";
-import Nav from "@/components/nav/nav";
+import Header from "@/components/header/header";
 import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
-import TextCircle from "@/components/textCircle/textCircle";
 import WorksInfo from "@/components/works/worksInfo";
-import useSmoothScroll from "@/hooks/useSmoothScroll";
 import clsx from "clsx";
-import { useAtomValue } from "jotai";
 
 export default function Works() {
-  const isOpenHamburgerMenu = useAtomValue(isOpenHamburgerMenuAtom);
-
-  useSmoothScroll();
-
   return (
     <>
       <div className={clsx(glassBox)}>
         <Glass>
-          <header className={clsx(header)}>
-            <Nav />
-            <HamburgerMenu />
-            {isOpenHamburgerMenu && <MobileNav />}
-            <AudioPlayer />
-            <TextCircle />
-          </header>
+          <Header />
           <main className={clsx(main)}>
             <WorksInfo
               nameJa="プレイリスト2025"

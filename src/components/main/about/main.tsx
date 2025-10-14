@@ -27,7 +27,6 @@ import {
   PARALLAX_ENABLE_MIN_WIDTH,
   X,
 } from "@/constants/constants";
-import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { gsapAnimation } from "@/utils/gsap";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
@@ -61,8 +60,6 @@ export default function Main() {
     [width]
   );
   const y = useTransform(scrollYProgress, [0, 1], yRange);
-
-  useSmoothScroll();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
