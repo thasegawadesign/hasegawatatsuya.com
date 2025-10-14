@@ -54,19 +54,23 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "長谷川 達也",
-    url: URL,
+    alternateName: "Tatsuya Hasegawa",
     jobTitle: "Webデザイナー",
+    url: URL,
     sameAs: [GITHUB, X],
+    description: DESCRIPTION,
   };
   return (
     <html lang="ja" id="home" className={clsx(html)}>
-      <body className={clsx(body, backgroundGradient)}>
+      <head>
         <Script
           id="json-ld-person"
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body className={clsx(body, backgroundGradient)}>
         <Providers>
           {children}
           <AudioButton />
