@@ -14,8 +14,9 @@ import type { Metadata } from "next";
 import "yakuhanjp";
 
 export const metadata: Metadata = {
-  title: "長谷川 達也 | ポートフォリオサイト",
-  description: "Webデザイナー長谷川 達也のポートフォリオサイト",
+  title: "Webデザイナー 長谷川 達也 | ポートフォリオ",
+  description:
+    "Webデザイナー 長谷川 達也のポートフォリオです。実際に触れることのできるWeb作品をデザイン・実装することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。",
   verification: {
     google: "JTf9RfAVU6O4mqwU7bBXJwpFWrnCygv66A1qrGjnJ90",
   },
