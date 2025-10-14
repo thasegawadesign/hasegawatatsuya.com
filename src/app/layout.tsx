@@ -6,11 +6,13 @@ import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
 import Spiral from "@/components/spiral/spiral";
+import { GITHUB, X } from "@/constants/constants";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import type { Metadata } from "next";
+import Script from "next/script";
 import "yakuhanjp";
 
 export const metadata: Metadata = {
@@ -29,9 +31,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "長谷川 達也",
+    url: "https://hasegawatatsuya.com",
+    jobTitle: "Webデザイナー",
+    sameAs: [GITHUB, X],
+  };
   return (
     <html lang="ja" id="home" className={clsx(html)}>
       <body className={clsx(body, backgroundGradient)}>
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Providers>
           {children}
           <AudioButton />
