@@ -1,5 +1,6 @@
 "use client";
 
+import { roboto } from "@/app/fonts";
 import {
   backToIndex,
   backToIndexBox,
@@ -9,14 +10,8 @@ import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Roboto } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["200"],
-});
 
 export default function BackToIndex() {
   const backToIndexRef = useRef(null);

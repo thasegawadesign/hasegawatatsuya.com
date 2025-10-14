@@ -1,5 +1,6 @@
 "use client";
 
+import { roboto } from "@/app/fonts";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
 import {
   mobileNav,
@@ -13,14 +14,8 @@ import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { useAtom } from "jotai";
-import { Roboto } from "next/font/google";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["100", "300", "400"],
-});
 
 export default function MobileNav() {
   const width = useWindowWidth();

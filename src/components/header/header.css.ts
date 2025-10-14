@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
 
-export const glassBox = style({
+export const header = style({
   position: "relative",
 });

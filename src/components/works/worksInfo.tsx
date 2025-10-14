@@ -1,5 +1,6 @@
 "use client";
 
+import { cormorant, roboto } from "@/app/fonts";
 import {
   container,
   hgroupHeading,
@@ -20,20 +21,9 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Cormorant, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef } from "react";
-
-const cormorant = Cormorant({
-  subsets: ["latin"],
-  weight: ["300", "600"],
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-});
 
 type Props = {
   nameJa: string;

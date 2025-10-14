@@ -1,5 +1,6 @@
 "use client";
 
+import { roboto } from "@/app/fonts";
 import {
   logo,
   nav,
@@ -9,13 +10,7 @@ import {
 } from "@/components/nav/nav.css";
 import { useViewTransition } from "@/hooks/useViewTransition";
 import clsx from "clsx";
-import { Roboto } from "next/font/google";
 import Link from "next/link";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["100", "300", "400"],
-});
 
 export default function Nav() {
   const handleTransition = useViewTransition();

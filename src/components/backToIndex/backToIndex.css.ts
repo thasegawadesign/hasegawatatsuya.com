@@ -14,6 +14,7 @@ export const backToIndexBox = style({
 export const backToIndex = style({
   position: "relative",
   fontSize: "2.0rem",
+  fontWeight: 200,
   color: vars.color.text,
   letterSpacing: "0.04em",
   textDecoration: "none",
