@@ -6,6 +6,7 @@ import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
 import Spiral from "@/components/spiral/spiral";
+import { GITHUB, X } from "@/constants/constants";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -36,7 +37,7 @@ export default function RootLayout({
     name: "長谷川 達也",
     url: "https://hasegawatatsuya.com",
     jobTitle: "Webデザイナー",
-    sameAs: ["https://github.com/thasegawadesign", "https://x.com/thasegawa_"],
+    sameAs: [GITHUB, X],
   };
   return (
     <html lang="ja" id="home" className={clsx(html)}>
