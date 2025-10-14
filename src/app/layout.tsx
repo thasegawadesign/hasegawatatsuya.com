@@ -11,6 +11,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import type { Metadata } from "next";
+import Script from "next/script";
 import "yakuhanjp";
 
 export const metadata: Metadata = {
@@ -29,9 +30,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "長谷川 達也",
+    url: "https://hasegawatatsuya.com",
+    jobTitle: "Webデザイナー",
+    sameAs: ["https://github.com/thasegawadesign", "https://x.com/thasegawa_"],
+  };
   return (
     <html lang="ja" id="home" className={clsx(html)}>
       <body className={clsx(body, backgroundGradient)}>
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Providers>
           {children}
           <AudioButton />
