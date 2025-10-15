@@ -1,5 +1,3 @@
-"use client";
-
 import { roboto } from "@/app/fonts";
 import {
   logo,
@@ -8,33 +6,22 @@ import {
   navLinkBox,
   navLogoBox,
 } from "@/components/nav/nav.css";
-import { useViewTransition } from "@/hooks/useViewTransition";
 import clsx from "clsx";
 import Link from "next/link";
 
 export default function Nav() {
-  const handleTransition = useViewTransition();
-
   return (
     <nav className={clsx(nav)}>
       <ul className={clsx(navLogoBox)}>
         <li>
-          <Link
-            href={"/"}
-            className={clsx(roboto.className, logo)}
-            onClick={handleTransition("/")}
-          >
+          <Link href={"/"} className={clsx(roboto.className, logo)}>
             TH
           </Link>
         </li>
       </ul>
       <ul className={clsx(navLinkBox)}>
         <li>
-          <Link
-            href={"/about"}
-            className={clsx(roboto.className, navLink)}
-            onClick={handleTransition("/about")}
-          >
+          <Link href={"/about"} className={clsx(roboto.className, navLink)}>
             About
           </Link>
         </li>

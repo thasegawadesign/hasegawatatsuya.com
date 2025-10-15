@@ -5,7 +5,6 @@ import {
   backToIndex,
   backToIndexBox,
 } from "@/components/backToIndex/backToIndex.css";
-import { useViewTransition } from "@/hooks/useViewTransition";
 import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -15,7 +14,6 @@ import { useEffect, useRef } from "react";
 
 export default function BackToIndex() {
   const backToIndexRef = useRef(null);
-  const handleTransition = useViewTransition();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -30,7 +28,6 @@ export default function BackToIndex() {
           ref={backToIndexRef}
           href={"/"}
           className={clsx(roboto.className, backToIndex)}
-          onClick={handleTransition("/")}
         >
           Back to Index
         </Link>
