@@ -18,6 +18,7 @@ import {
   photoContainer,
   profileLinkBox,
   profileLinkIcon,
+  tilt,
   year,
 } from "@/components/main/about/main.css";
 import {
@@ -81,7 +82,7 @@ export default function Main() {
               Tatsuya Hasegawa
             </span>
           </h1>
-          <Tilt reset={true}>
+          <Tilt reset={true} className={clsx(tilt)}>
             <div className={clsx(photoBox)}>
               <div ref={photoContainerRef} className={clsx(photoContainer)}>
                 <motion.div style={{ y }} className={clsx(motionDiv)}>
