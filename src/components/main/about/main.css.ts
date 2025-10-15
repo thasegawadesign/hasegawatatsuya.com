@@ -175,7 +175,7 @@ export const line = style({
 });
 
 export const occupation = style({
-  fontSize: "clamp(3.6rem, 2.0vw + 3.0rem, 7.6rem)",
+  fontSize: "clamp(3.6rem, 3.2vw + 3.0rem, 8.0rem)",
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.08em",
