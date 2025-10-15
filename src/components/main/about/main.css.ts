@@ -11,10 +11,8 @@ export const aboutHero = style({
   margin: "120px auto 96px",
   height: 480,
   "@media": {
-    [breakpoints["2xl"]]: {
-      height: 420,
-    },
     [breakpoints["xl"]]: {
+      height: 420,
       margin: "96px auto 60px",
     },
     [breakpoints["sm"]]: {
@@ -63,7 +61,7 @@ export const photoBox = style({
   width: 320,
   height: 480,
   "@media": {
-    [breakpoints["2xl"]]: {
+    [breakpoints["xl"]]: {
       width: 280,
       height: 420,
     },
@@ -101,7 +99,7 @@ export const photo = style({
   userSelect: "none",
   pointerEvents: "none",
   "@media": {
-    [breakpoints["2xl"]]: {
+    [breakpoints["xl"]]: {
       width: 280,
       height: 420,
     },
@@ -110,7 +108,7 @@ export const photo = style({
 
 export const profileLinkBox = style({
   display: "flex",
-  gap: 20,
+  gap: 16,
   justifyContent: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
 });
