@@ -127,7 +127,7 @@ export const profileSection = style({
   gap: 56,
   backgroundColor: "rgba(255, 255, 255, .12)",
   margin: "0 auto",
-  padding: "64px 12vw",
+  padding: "66px 12vw",
   maxWidth: 920,
   borderRadius: 36,
   backdropFilter: "blur(8px)",
