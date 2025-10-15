@@ -54,12 +54,17 @@ export const nameEn = style({
   WebkitTextFillColor: "transparent",
   zIndex: 0,
 });
+export const tilt = style({
+  width: "fit-content",
+  margin: "0 auto",
+});
 export const photoBox = style({
   position: "relative",
-  width: "100%",
-  height: "480px",
+  width: 320,
+  height: 480,
   "@media": {
     [breakpoints["2xl"]]: {
+      width: 280,
       height: 420,
     },
   },
