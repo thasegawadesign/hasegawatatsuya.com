@@ -9,7 +9,6 @@ import {
   mobileNavLink,
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
-import { useViewTransition } from "@/hooks/useViewTransition";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -28,8 +27,6 @@ export default function MobileNav() {
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
     isOpenHamburgerMenuAtom
   );
-
-  const handleTransition = useViewTransition();
 
   useEffect(() => {
     if (width >= 640 && isOpenHamburgerMenu) {
@@ -95,7 +92,6 @@ export default function MobileNav() {
             className={clsx(roboto.className, mobileNavLink)}
             onClick={() => {
               setIsOpenHamburgerMenu(false);
-              handleTransition("/");
             }}
           >
             Home
@@ -108,7 +104,6 @@ export default function MobileNav() {
             className={clsx(roboto.className, mobileNavLink)}
             onClick={() => {
               setIsOpenHamburgerMenu(false);
-              handleTransition("/about");
             }}
           >
             About

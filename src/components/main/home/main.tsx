@@ -53,7 +53,6 @@ import {
   PARALLAX_ENABLE_MIN_WIDTH,
   X,
 } from "@/constants/constants";
-import { useViewTransition } from "@/hooks/useViewTransition";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
 import gsap from "gsap";
@@ -64,7 +63,6 @@ import { useEffect, useRef, useState } from "react";
 export default function Main() {
   const [mounted, setMounted] = useState(false);
 
-  const nameMainVisualRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
@@ -92,14 +90,11 @@ export default function Main() {
     enableParallax ? ["-20px", "20px"] : ["0px", "0px"]
   );
 
-  const handleTransition = useViewTransition();
-
   useEffect(() => {
     setMounted(true);
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsapAnimation.scale(nameMainVisualRef);
     gsapAnimation.inview(descriptionRef);
     gsapAnimation.inview(profileRef);
     gsapAnimation.inview(worksItem01Ref);
@@ -116,10 +111,7 @@ export default function Main() {
   return (
     <>
       <main className={clsx(main)}>
-        <h1
-          className={clsx(cormorant.className, nameMainVisual)}
-          ref={nameMainVisualRef}
-        >
+        <h1 className={clsx(cormorant.className, nameMainVisual)}>
           Tatsuya <br />
           Hasegawa
         </h1>
@@ -206,7 +198,6 @@ export default function Main() {
               <Link
                 href={"/about"}
                 className={clsx(roboto.className, profileMore)}
-                onClick={handleTransition("/about")}
               >
                 More
               </Link>
@@ -294,11 +285,7 @@ export default function Main() {
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
-              <Link
-                href={"/works/fleur"}
-                className={clsx(worksLink)}
-                onClick={handleTransition("/works/fleur")}
-              >
+              <Link href={"/works/fleur"} className={clsx(worksLink)}>
                 <Image
                   src={"/icons/fleur-icon.avif"}
                   width={160}
@@ -313,11 +300,7 @@ export default function Main() {
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
               </div>
-              <Link
-                href={"/works/playlist2025"}
-                className={clsx(worksLink)}
-                onClick={handleTransition("/works/playlist2025")}
-              >
+              <Link href={"/works/playlist2025"} className={clsx(worksLink)}>
                 <Image
                   src={"/icons/playlist2025-icon.avif"}
                   width={160}
