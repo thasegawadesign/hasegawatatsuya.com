@@ -35,7 +35,7 @@ export const nameBox = style({
 });
 export const nameJa = style({
   position: "relative",
-  fontSize: "clamp(4.0rem, 6.2vw + 3.0rem, 14.4rem)",
+  fontSize: "clamp(4.0rem, 7.6vw + 2.6rem, 15.4rem)",
   color: vars.color.text,
   letterSpacing: "-0.16em",
   marginBottom: "-0.6em",
@@ -43,7 +43,7 @@ export const nameJa = style({
 });
 export const nameEn = style({
   position: "relative",
-  fontSize: "clamp(5.2rem, 6.6vw + 3.6rem, 16.8rem)",
+  fontSize: "clamp(5.2rem, 8.8vw + 2.6rem, 17.6rem)",
   fontWeight: 400,
   letterSpacing: "-0.09em",
   width: "fit-content",
