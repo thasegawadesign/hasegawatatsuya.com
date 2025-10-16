@@ -149,15 +149,15 @@ export default function Main() {
         <dl ref={historyRef} className={clsx(history)}>
           <div>
             <dt className={clsx(year)}>2020–2024</dt>
-            <dd className={clsx(event)}>ECCコンピュータ専門学校(中退)</dd>
+            <dd className={clsx(event)}>ECCコンピュータ専門学校（中退）</dd>
           </div>
           <div>
             <dt className={clsx(year)}>2022–現在</dt>
-            <dd className={clsx(event)}>株式会社Univearth(業務委託)</dd>
+            <dd className={clsx(event)}>株式会社Univearth（業務委託）</dd>
           </div>
           <div>
             <dt className={clsx(year)}>2025–現在</dt>
-            <dd className={clsx(event)}>放送大学(在学中)</dd>
+            <dd className={clsx(event)}>放送大学（在学中）</dd>
           </div>
         </dl>
       </main>
