@@ -47,7 +47,7 @@ export const nameEn = style({
   width: "fit-content",
   height: "1.2em",
   padding: "0 16px",
-  background: `linear-gradient(180deg, #34312f 0%, #aea091 38%, ${vars.color.text} 50%)`,
+  background: `linear-gradient(180deg, #111010 0%, #978a7d 38%, ${vars.color.text} 50%)`,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   zIndex: 0,
