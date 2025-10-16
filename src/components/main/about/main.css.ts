@@ -94,7 +94,7 @@ export const photo = style({
   objectFit: "cover",
   animationName: animatePhoto,
   animationDuration: "20s",
-  animationTimingFunction: "linear",
+  animationTimingFunction: "ease",
   animationIterationCount: "infinite",
   userSelect: "none",
   pointerEvents: "none",
