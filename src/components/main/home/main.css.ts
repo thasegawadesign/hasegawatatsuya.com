@@ -508,7 +508,7 @@ export const emailLink = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
-      padding: "180px 2vw",
+      padding: "144px 2vw",
       gap: 16,
     },
   },
