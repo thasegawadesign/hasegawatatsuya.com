@@ -105,6 +105,7 @@ export const aboutSection = style({
 
 export const description = style({
   fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
+  fontWeight: 300,
   color: vars.color.text,
   lineHeight: 1.8,
   letterSpacing: "-0.04em",
