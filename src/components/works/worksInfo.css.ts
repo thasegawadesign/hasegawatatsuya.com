@@ -25,11 +25,6 @@ export const worksImage = style({
 export const hgroupHeading = style({
   marginTop: "-4vw",
   marginLeft: "6vw",
-  "@media": {
-    [breakpoints["md"]]: {
-      marginTop: "16vw",
-    },
-  },
 });
 export const hgroupHeadingEn = style({
   fontSize: "clamp(5.6rem, 12vw, 20rem)",
@@ -79,24 +74,25 @@ export const worksDd = style({
   color: vars.color.text,
   width: "42vw",
   letterSpacing: "-0.04em",
-  lineHeight: "1.8em",
+  lineHeight: 1.8,
   "@media": {
     [breakpoints["2xl"]]: {
-      width: "48vw",
+      width: "52vw",
     },
     [breakpoints["lg"]]: {
       width: "60vw",
     },
     [breakpoints["sm"]]: {
-      width: "72vw",
+      width: "76vw",
+      lineHeight: 1.7,
     },
   },
 });
 export const worksRole = style({
-  fontSize: "clamp(2.8rem, 3vw, 4.8rem)",
+  fontSize: "clamp(2.8rem, 3.2vw, 5.2rem)",
   color: vars.color.text,
   fontWeight: 300,
-  lineHeight: "1.28em",
+  lineHeight: 1.28,
   letterSpacing: "-0.08em",
   width: "42vw",
   "@media": {
@@ -108,6 +104,7 @@ export const worksRole = style({
     },
     [breakpoints["sm"]]: {
       width: "72vw",
+      lineHeight: 1.2,
     },
   },
 });

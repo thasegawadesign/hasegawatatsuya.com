@@ -114,6 +114,7 @@ export const description = style({
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["sm"]]: {
+      lineHeight: 1.7,
       marginBottom: 28,
     },
   },
@@ -163,7 +164,7 @@ export const profileContent = style({
       paddingBottom: 32,
     },
     [breakpoints["sm"]]: {
-      paddingBottom: 16,
+      paddingBottom: 24,
     },
   },
 });
@@ -220,7 +221,7 @@ export const profileLinkBox = style({
   marginBottom: 52,
   "@media": {
     [breakpoints["sm"]]: {
-      marginBottom: 36,
+      marginBottom: 28,
     },
   },
 });

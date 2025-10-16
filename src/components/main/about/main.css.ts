@@ -180,6 +180,11 @@ export const occupation = style({
   lineHeight: 1.2,
   textAlign: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
+  "@media": {
+    [breakpoints["sm"]]: {
+      lineHeight: 1.1,
+    },
+  },
 });
 
 export const description = style({
@@ -191,6 +196,11 @@ export const description = style({
   textAlign: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
   padding: "0 4vw",
+  "@media": {
+    [breakpoints["sm"]]: {
+      lineHeight: 1.7,
+    },
+  },
 });
 
 export const history = style({
@@ -201,6 +211,11 @@ export const history = style({
   color: vars.color.text,
   textAlign: "center",
   marginBottom: "clamp(200px, 15.6vw, 260px)",
+  "@media": {
+    [breakpoints["sm"]]: {
+      gap: 12,
+    },
+  },
 });
 export const year = style({
   fontSize: "clamp(1.6rem, 0.72vw + 1.0rem, 2.0rem)",
