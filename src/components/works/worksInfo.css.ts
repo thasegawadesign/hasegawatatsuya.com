@@ -27,7 +27,7 @@ export const hgroupHeading = style({
   marginLeft: "6vw",
 });
 export const hgroupHeadingEn = style({
-  fontSize: "clamp(6.4rem, 12vw, 20rem)",
+  fontSize: "clamp(5.6rem, 12vw, 19rem)",
   fontWeight: 600,
   color: vars.color.text,
   paddingRight: "6vw",
