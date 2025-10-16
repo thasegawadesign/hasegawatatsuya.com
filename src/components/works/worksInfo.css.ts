@@ -70,14 +70,14 @@ export const worksDt = style({
   },
 });
 export const worksDd = style({
-  fontSize: "clamp(1.6rem, 1.4vw, 2.4rem)",
+  fontSize: "clamp(1.6rem, 1.4vw, 2.3rem)",
   color: vars.color.text,
-  width: "42vw",
+  width: "40vw",
   letterSpacing: "-0.04em",
   lineHeight: 1.8,
   "@media": {
     [breakpoints["2xl"]]: {
-      width: "52vw",
+      width: "48vw",
     },
     [breakpoints["lg"]]: {
       width: "60vw",
