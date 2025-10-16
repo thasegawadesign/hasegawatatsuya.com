@@ -29,9 +29,9 @@ export default function Works() {
               }
               nameEnNode={
                 <>
-                  Tomosho-Unyu
+                  Tomosho-
                   <br />
-                  Website
+                  Unyu
                 </>
               }
               imageSrc="/tomosho-unyu-mockup.avif"
