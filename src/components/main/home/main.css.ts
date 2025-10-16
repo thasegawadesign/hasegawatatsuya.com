@@ -417,7 +417,7 @@ export const worksName = style({
   },
 });
 export const worksNameSpan = style({
-  display: "inline-block",
+  display: "block",
 });
 export const worksCategory = style({
   fontSize: "1.0rem",
