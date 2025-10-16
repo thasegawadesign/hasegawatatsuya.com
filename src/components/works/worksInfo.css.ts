@@ -25,11 +25,6 @@ export const worksImage = style({
 export const hgroupHeading = style({
   marginTop: "-4vw",
   marginLeft: "6vw",
-  "@media": {
-    [breakpoints["md"]]: {
-      marginTop: "16vw",
-    },
-  },
 });
 export const hgroupHeadingEn = style({
   fontSize: "clamp(5.6rem, 12vw, 20rem)",
