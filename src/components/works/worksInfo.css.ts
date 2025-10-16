@@ -77,6 +77,7 @@ export const worksDt = style({
 });
 export const worksDd = style({
   fontSize: "clamp(1.6rem, 1.4vw, 2.3rem)",
+  fontWeight: 300,
   color: vars.color.text,
   width: "40vw",
   letterSpacing: "-0.04em",
