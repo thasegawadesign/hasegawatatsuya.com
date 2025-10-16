@@ -82,13 +82,13 @@ export const worksDd = style({
   lineHeight: 1.8,
   "@media": {
     [breakpoints["2xl"]]: {
-      width: "48vw",
+      width: "52vw",
     },
     [breakpoints["lg"]]: {
       width: "60vw",
     },
     [breakpoints["sm"]]: {
-      width: "72vw",
+      width: "76vw",
       lineHeight: 1.7,
     },
   },
