@@ -57,7 +57,7 @@ export const worksDlItem = style({
   gap: "2.4vw",
 });
 export const worksDt = style({
-  fontSize: "1.2rem",
+  fontSize: "1.4rem",
   color: vars.color.text,
   width: 48,
   letterSpacing: "-0.04em",
@@ -66,6 +66,12 @@ export const worksDt = style({
   "@media": {
     [breakpoints["xl"]]: {
       width: 36,
+    },
+    [breakpoints["md"]]: {
+      fontSize: "1.3rem",
+    },
+    [breakpoints["sm"]]: {
+      fontSize: "1.2rem",
     },
   },
 });
@@ -94,7 +100,7 @@ export const worksRole = style({
   fontWeight: 300,
   lineHeight: 1.28,
   letterSpacing: "-0.08em",
-  width: "42vw",
+  width: "40vw",
   "@media": {
     [breakpoints["2xl"]]: {
       width: "48vw",
