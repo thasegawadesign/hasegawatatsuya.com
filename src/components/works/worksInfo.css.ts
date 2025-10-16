@@ -58,6 +58,7 @@ export const worksDlItem = style({
 });
 export const worksDt = style({
   fontSize: "1.4rem",
+  fontWeight: 300,
   color: vars.color.text,
   width: 48,
   letterSpacing: "-0.04em",
@@ -117,7 +118,7 @@ export const worksRole = style({
 });
 export const worksLink = style({
   position: "relative",
-  fontWeight: 100,
+  fontWeight: 200,
   color: vars.color.text,
   letterSpacing: "-0.04em",
   textDecoration: "none",
