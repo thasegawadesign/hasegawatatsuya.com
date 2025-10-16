@@ -328,7 +328,7 @@ export const profileImage = style({
   pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
-      borderRadius: 12,
+      borderRadius: 20,
     },
   },
 });
