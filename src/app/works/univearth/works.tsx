@@ -40,7 +40,7 @@ export default function Works() {
               what="「株式会社Univearth」コーポレートサイト"
               why={
                 <>
-                  ミッションを「共に届ける」と再定義した「株式会社Univearth」様のコーポレートサイトを制作しました。
+                  ミッションを「共に届ける」と再定義した、株式会社Univearthのコーポレートサイトを制作しました。
                 </>
               }
               how={
