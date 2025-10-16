@@ -109,7 +109,7 @@ export const worksRole = style({
       width: "60vw",
     },
     [breakpoints["sm"]]: {
-      width: "72vw",
+      width: "76vw",
       lineHeight: 1.2,
     },
   },
