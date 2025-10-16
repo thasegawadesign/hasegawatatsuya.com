@@ -25,13 +25,13 @@ export const backToIndex = style({
       top: 20,
       display: "block",
       width: "100%",
-      height: 32,
+      height: 34,
       backgroundColor: vars.color.text,
       borderRadius: "0 0 8px 8px",
       transition: "height 0.2s ease",
     },
     "&:hover": {
-      paddingBottom: 32,
+      paddingBottom: 34,
     },
     "&:hover::before": {
       height: 1,
