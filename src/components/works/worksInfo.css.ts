@@ -39,7 +39,7 @@ export const hgroupHeadingJa = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.04em",
-  marginTop: "4.8vw",
+  marginTop: "4.0vw",
   marginLeft: "3.6vw",
 });
 
