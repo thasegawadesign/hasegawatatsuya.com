@@ -27,7 +27,7 @@ export const hgroupHeading = style({
   marginLeft: "6vw",
 });
 export const hgroupHeadingEn = style({
-  fontSize: "clamp(5.6rem, 12vw, 20rem)",
+  fontSize: "clamp(6.4rem, 12vw, 20rem)",
   fontWeight: 600,
   color: vars.color.text,
   paddingRight: "6vw",
@@ -122,13 +122,13 @@ export const worksLink = style({
       top: "clamp(1.6rem, 1.36vw, 3rem)",
       display: "block",
       width: "100%",
-      height: 32,
+      height: 40,
       backgroundColor: vars.color.text,
       borderRadius: "0 0 8px 8px",
       transition: "height 0.2s ease",
     },
     "&:hover": {
-      paddingBottom: 32,
+      paddingBottom: 40,
     },
     "&:hover::before": {
       height: 1,
