@@ -97,7 +97,7 @@ export const worksDd = style({
   },
 });
 export const worksRole = style({
-  fontSize: "clamp(2.8rem, 3.2vw, 5.2rem)",
+  fontSize: "clamp(3.2rem, 3.2vw, 5.2rem)",
   color: vars.color.text,
   fontWeight: 300,
   lineHeight: 1.28,
