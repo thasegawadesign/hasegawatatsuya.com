@@ -114,6 +114,7 @@ export const description = style({
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["sm"]]: {
+      lineHeight: 1.7,
       marginBottom: 28,
     },
   },
