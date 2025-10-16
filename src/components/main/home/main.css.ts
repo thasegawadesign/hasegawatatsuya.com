@@ -151,7 +151,7 @@ export const profileSection = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      gap: 24,
+      gap: 20,
       maxWidth: 580,
       padding: "30px 2vw",
       margin: "0 2vw",
@@ -309,6 +309,11 @@ export const profileImageContainer = style({
   overflow: "hidden",
   borderRadius: 24,
   aspectRatio: 3 / 2,
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: 20,
+    },
+  },
 });
 export const motionDiv = style({
   position: "absolute",
@@ -321,6 +326,11 @@ export const profileImage = style({
   borderRadius: 24,
   userSelect: "none",
   pointerEvents: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: 12,
+    },
+  },
 });
 
 export const worksSection = style({
