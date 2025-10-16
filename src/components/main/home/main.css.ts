@@ -514,10 +514,14 @@ export const emailLink = style({
   },
 });
 export const emailIcon = style({
-  width: 40,
-  height: 40,
+  width: 36,
+  height: 36,
   flexShrink: 0,
   "@media": {
+    [breakpoints["2xl"]]: {
+      width: 34,
+      height: 34,
+    },
     [breakpoints["xl"]]: {
       width: 32,
       height: 32,
