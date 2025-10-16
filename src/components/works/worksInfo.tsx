@@ -134,7 +134,7 @@ export default function WorksInfo(props: Props) {
         </div>
         <div ref={worksTimeRef} className={clsx(worksDlItem)}>
           <dt className={clsx(roboto.className, worksDt)}>Date :</dt>
-          <dd className={clsx(worksDd)}>{date}</dd>
+          <dd className={clsx(roboto.className, worksDd)}>{date}</dd>
         </div>
         <div ref={worksURLRef} className={clsx(worksDlItem)}>
           {URL && (
