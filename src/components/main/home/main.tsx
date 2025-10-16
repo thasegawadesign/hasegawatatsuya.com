@@ -235,12 +235,7 @@ export default function Main() {
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
-              <Link
-                href={"https://www.univearth.co.jp/"}
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <Link href={"/works/univearth"} className={clsx(worksLink)}>
                 <Image
                   src={"/icons/univearth-icon.avif"}
                   width={160}
