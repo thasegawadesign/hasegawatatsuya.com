@@ -65,8 +65,8 @@ export const tilt = style({
   margin: "-120px auto",
   zIndex: 10,
   "@media": {
-    [breakpoints["xl"]]: {
-      marginTop: -96,
+    [breakpoints["sm"]]: {
+      marginTop: -140,
     },
   },
 });
@@ -84,9 +84,9 @@ export const photoBox = style({
 });
 export const animatePhoto = keyframes({
   "0%": { transform: "rotate(0)" },
-  "25%": { transform: "rotate(6deg)" },
+  "25%": { transform: "rotate(5deg)" },
   "50%": { transform: "rotate(0)" },
-  "75%": { transform: "rotate(-6deg)" },
+  "75%": { transform: "rotate(-5deg)" },
   "100%": { transform: "rotate(0)" },
 });
 export const photoContainer = style({
