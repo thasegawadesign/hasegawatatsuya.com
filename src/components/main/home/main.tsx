@@ -3,7 +3,6 @@
 import {
   aboutSection,
   contactSection,
-  contactWrapper,
   description,
   emailIcon,
   emailLink,
@@ -27,7 +26,6 @@ import {
   profileSection,
   profileTextBox,
   sectionHeading,
-  sectionHeadingContact,
   worksBox,
   worksCategory,
   worksIcon,
@@ -73,7 +71,6 @@ export default function Main() {
   const worksItem05Ref = useRef(null);
   const worksItem06Ref = useRef(null);
   const worksItem07Ref = useRef(null);
-  const contactWrapperRef = useRef(null);
   const contactRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -105,7 +102,6 @@ export default function Main() {
     gsapAnimation.inview(worksItem06Ref);
     gsapAnimation.inview(worksItem07Ref);
     gsapAnimation.inview(contactRef);
-    gsapAnimation.parallaxDeep(contactWrapperRef);
   }, []);
 
   return (
@@ -364,26 +360,22 @@ export default function Main() {
           </div>
         </section>
         <section id="contact" className={clsx(contactSection)}>
-          <h2 className={clsx(roboto.className, sectionHeadingContact)}>
-            Contact
-          </h2>
-          <div ref={contactWrapperRef} className={clsx(contactWrapper)}>
-            <Link
-              href={`mailto:${EMAIL}`}
-              className={clsx(emailLink)}
-              ref={contactRef}
-            >
-              <IoMdMail className={clsx(emailIcon)} />
-              <div className={clsx(emailTextBox)}>
-                <span className={clsx(roboto.className, emailTextRotateTop)}>
-                  {EMAIL}
-                </span>
-                <span className={clsx(roboto.className, emailTextRotateFront)}>
-                  {EMAIL}
-                </span>
-              </div>
-            </Link>
-          </div>
+          <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
+          <Link
+            href={`mailto:${EMAIL}`}
+            className={clsx(emailLink)}
+            ref={contactRef}
+          >
+            <IoMdMail className={clsx(emailIcon)} />
+            <div className={clsx(emailTextBox)}>
+              <span className={clsx(roboto.className, emailTextRotateTop)}>
+                {EMAIL}
+              </span>
+              <span className={clsx(roboto.className, emailTextRotateFront)}>
+                {EMAIL}
+              </span>
+            </div>
+          </Link>
         </section>
       </main>
     </>
