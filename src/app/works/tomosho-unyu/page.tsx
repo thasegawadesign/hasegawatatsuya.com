@@ -1,12 +1,12 @@
 import Works from "@/app/works/tomosho-unyu/works";
+import { SITE_TITLE_BASE } from "@/constants/constants";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "「株式会社 智商運輸」コーポレートサイト | ポートフォリオ Webデザイナー 長谷川 達也 | ポートフォリオ",
+  title: `「株式会社 智商運輸」コーポレートサイト | ${SITE_TITLE_BASE}`,
 };
 
-export default function Univearth() {
+export default function TomoshoUnyu() {
   return (
     <>
       <Works />
