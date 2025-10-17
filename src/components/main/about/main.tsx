@@ -21,22 +21,15 @@ import {
   tilt,
   year,
 } from "@/components/main/about/main.css";
-import {
-  EMAIL,
-  GITHUB,
-  NOTE,
-  PARALLAX_ENABLE_MIN_WIDTH,
-  X,
-} from "@/constants/constants";
+import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { gsapAnimation } from "@/utils/gsap";
-import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
@@ -48,19 +41,12 @@ export default function Main() {
   const descriptionRef = useRef(null);
   const historyRef = useRef(null);
 
-  const width = useWindowWidth();
-
   const { scrollYProgress } = useScroll({
     target: photoContainerRef,
     offset: ["start end", "end start"],
   });
 
-  const yRange = useMemo(
-    () =>
-      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-40px", "40px"],
-    [width]
-  );
-  const y = useTransform(scrollYProgress, [0, 1], yRange);
+  const y = useTransform(scrollYProgress, [0, 1], ["-40px", "40px"]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -88,7 +74,7 @@ export default function Main() {
             perspective={1000}
             scale={1.02}
             transitionSpeed={1000}
-            reset={false}
+            reset={true}
             className={clsx(tilt)}
           >
             <div className={clsx(photoBox)}>
