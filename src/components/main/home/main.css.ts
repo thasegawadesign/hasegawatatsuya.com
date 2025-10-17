@@ -282,15 +282,19 @@ export const profileImageWrapper = style({
   position: "relative",
   width: 200,
   height: 300,
-  marginLeft: -132,
+  marginLeft: -136,
   overflow: "hidden",
   "@media": {
+    [breakpoints["2xl"]]: {
+      marginLeft: -120,
+    },
     [breakpoints["xl"]]: {
       width: 180,
       height: 270,
+      marginLeft: -96,
     },
     [breakpoints["lg"]]: {
-      marginLeft: -80,
+      marginLeft: -72,
     },
     [breakpoints["md"]]: {
       marginLeft: -64,
