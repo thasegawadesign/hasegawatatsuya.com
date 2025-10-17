@@ -112,7 +112,8 @@ export default function Main() {
     <>
       <main className={clsx(main)}>
         <h1 className={clsx(cormorant.className, nameMainVisual)}>
-          Tatsuya <br />
+          Tatsuya
+          <br />
           Hasegawa
         </h1>
         <div className={clsx(line)}></div>
