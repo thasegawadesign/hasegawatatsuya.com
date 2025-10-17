@@ -30,6 +30,11 @@ export const nameBox = style({
   flexDirection: "column",
   alignItems: "center",
   pointerEvents: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      top: 320,
+    },
+  },
 });
 export const nameJa = style({
   position: "relative",
