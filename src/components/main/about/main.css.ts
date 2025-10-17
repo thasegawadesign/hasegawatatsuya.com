@@ -136,9 +136,6 @@ export const profileLinkBox = style({
     [breakpoints["lg"]]: {
       marginTop: 200,
     },
-    [breakpoints["sm"]]: {
-      marginTop: 180,
-    },
   },
 });
 export const profileLinkIcon = style({
