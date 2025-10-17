@@ -79,20 +79,6 @@ export const sectionHeading = style({
     },
   },
 });
-export const sectionHeadingContact = style({
-  fontSize: "1.6rem",
-  fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.02em",
-  textAlign: "center",
-  marginBottom: 72,
-  "@media": {
-    [breakpoints["xl"]]: {
-      fontSize: "1.4rem",
-      marginBottom: 68,
-    },
-  },
-});
 
 export const aboutSection = style({
   paddingBottom: 120,
@@ -475,15 +461,9 @@ export const worksIcon = style({
 });
 
 export const contactSection = style({
-  paddingBottom: "clamp(40px, 6vw, 120px)",
+  paddingBottom: "clamp(60px, 8vw, 160px)",
 });
-export const contactWrapper = style({
-  "@media": {
-    [breakpoints["sm"]]: {
-      margin: "0 2vw",
-    },
-  },
-});
+
 export const emailLink = style({
   display: "flex",
   justifyContent: "center",
