@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "「株式会社 智商運輸」コーポレートサイト | Webデザイナー 長谷川 達也 | ポートフォリオ",
+    "「株式会社 智商運輸」コーポレートサイト | ポートフォリオ Webデザイナー 長谷川 達也 | ポートフォリオ",
 };
 
 export default function Univearth() {
