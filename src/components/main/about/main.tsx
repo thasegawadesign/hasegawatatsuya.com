@@ -82,7 +82,15 @@ export default function Main() {
               Tatsuya Hasegawa
             </span>
           </h1>
-          <Tilt reset={true} className={clsx(tilt)}>
+          <Tilt
+            tiltMaxAngleX={3}
+            tiltMaxAngleY={3}
+            perspective={1000}
+            scale={1.02}
+            transitionSpeed={1000}
+            reset={false}
+            className={clsx(tilt)}
+          >
             <div className={clsx(photoBox)}>
               <div ref={photoContainerRef} className={clsx(photoContainer)}>
                 <motion.div style={{ y }} className={clsx(motionDiv)}>

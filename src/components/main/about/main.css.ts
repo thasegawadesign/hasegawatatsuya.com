@@ -22,7 +22,7 @@ export const aboutHero = style({
 });
 export const nameBox = style({
   position: "absolute",
-  top: 180,
+  top: 300,
   left: 0,
   right: 0,
   zIndex: 50,
@@ -50,16 +50,26 @@ export const nameEn = style({
   background: `linear-gradient(180deg, #111010 0%, #978a7d 38%, ${vars.color.text} 50%)`,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
-  zIndex: 0,
+  zIndex: 30,
 });
 export const tilt = style({
-  width: "fit-content",
-  margin: "0 auto",
+  position: "relative",
+  width: "100%",
+  height: "176vh",
+  paddingTop: 120,
+  margin: "-120px auto",
+  zIndex: 10,
+  "@media": {
+    [breakpoints["xl"]]: {
+      marginTop: -96,
+    },
+  },
 });
 export const photoBox = style({
   position: "relative",
   width: 320,
   height: 480,
+  margin: "0 auto",
   "@media": {
     [breakpoints["xl"]]: {
       width: 280,
@@ -107,10 +117,24 @@ export const photo = style({
 });
 
 export const profileLinkBox = style({
+  position: "relative",
   display: "flex",
   gap: 16,
   justifyContent: "center",
+  width: "fit-content",
+  marginTop: 220,
+  marginLeft: "auto",
+  marginRight: "auto",
   marginBottom: "clamp(60px, 5vw, 80px)",
+  zIndex: 20,
+  "@media": {
+    [breakpoints["lg"]]: {
+      marginTop: 200,
+    },
+    [breakpoints["sm"]]: {
+      marginTop: 180,
+    },
+  },
 });
 export const profileLinkIcon = style({
   width: 28,
@@ -173,6 +197,7 @@ export const line = style({
 });
 
 export const occupation = style({
+  position: "relative",
   fontSize: "clamp(3.6rem, 3.2vw + 3.0rem, 8.0rem)",
   fontWeight: 300,
   color: vars.color.text,
@@ -180,6 +205,7 @@ export const occupation = style({
   lineHeight: 1.2,
   textAlign: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
+  zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
       lineHeight: 1.1,
@@ -188,6 +214,7 @@ export const occupation = style({
 });
 
 export const description = style({
+  position: "relative",
   fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
   fontWeight: 300,
   color: vars.color.text,
@@ -196,6 +223,7 @@ export const description = style({
   textAlign: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
   padding: "0 4vw",
+  zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
       lineHeight: 1.7,
@@ -204,6 +232,7 @@ export const description = style({
 });
 
 export const history = style({
+  position: "relative",
   display: "flex",
   flexDirection: "column",
   gap: 16,
@@ -211,6 +240,7 @@ export const history = style({
   color: vars.color.text,
   textAlign: "center",
   marginBottom: "clamp(200px, 15.6vw, 260px)",
+  zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
