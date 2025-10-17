@@ -71,9 +71,9 @@ export default function Main() {
           <Tilt
             tiltMaxAngleX={3}
             tiltMaxAngleY={3}
-            perspective={1000}
+            perspective={1200}
             scale={1.02}
-            transitionSpeed={1000}
+            transitionSpeed={3000}
             reset={true}
             className={clsx(tilt)}
           >
