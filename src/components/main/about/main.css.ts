@@ -122,12 +122,15 @@ export const profileLinkBox = style({
   gap: 16,
   justifyContent: "center",
   width: "fit-content",
-  marginTop: 200,
+  marginTop: 220,
   marginLeft: "auto",
   marginRight: "auto",
   marginBottom: "clamp(60px, 5vw, 80px)",
   zIndex: 20,
   "@media": {
+    [breakpoints["lg"]]: {
+      marginTop: 200,
+    },
     [breakpoints["sm"]]: {
       marginTop: 180,
     },
