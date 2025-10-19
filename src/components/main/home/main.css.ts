@@ -468,7 +468,7 @@ export const emailLink = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: 32,
+  gap: 24,
   margin: "0 auto",
   padding: "200px 8vw",
   maxWidth: 920,
@@ -482,44 +482,44 @@ export const emailLink = style({
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
-      gap: 28,
+      gap: 20,
       maxWidth: 880,
     },
     [breakpoints["xl"]]: {
       fontSize: "2.5rem",
       padding: "180px 8vw",
-      gap: 24,
+      gap: 18,
       maxWidth: 800,
     },
     [breakpoints["lg"]]: {
       fontSize: "2.3rem",
-      gap: 20,
+      gap: 16,
       maxWidth: 640,
     },
     [breakpoints["md"]]: {
       fontSize: "1.8rem",
-      gap: 18,
+      gap: 14,
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",
       padding: "144px 2vw",
-      gap: 16,
+      gap: 12,
     },
   },
 });
 export const emailIcon = style({
-  width: 36,
-  height: 36,
+  width: 34,
+  height: 34,
   flexShrink: 0,
   "@media": {
     [breakpoints["2xl"]]: {
-      width: 34,
-      height: 34,
-    },
-    [breakpoints["xl"]]: {
       width: 32,
       height: 32,
+    },
+    [breakpoints["xl"]]: {
+      width: 30,
+      height: 30,
     },
     [breakpoints["lg"]]: {
       width: 28,
@@ -533,7 +533,7 @@ export const emailIcon = style({
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "13.6em",
+  width: "13.2em",
   height: 40,
   letterSpacing: "-0.01em",
   overflowY: "hidden",
