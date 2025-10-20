@@ -73,8 +73,9 @@ export default function Main() {
             tiltMaxAngleY={3}
             perspective={1200}
             scale={1.0}
-            transitionSpeed={3000}
-            reset={true}
+            transitionSpeed={2000}
+            trackOnWindow={true}
+            reset={false}
             className={clsx(tilt)}
           >
             <div className={clsx(photoBox)}>
