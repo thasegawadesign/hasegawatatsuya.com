@@ -143,7 +143,7 @@ export const profileLinkIcon = style({
   height: 28,
   color: vars.color.text,
   transition: "scale 0.2s ease",
-  ":focus": {
+  ":focus-visible": {
     scale: 1.28,
   },
   ":hover": {
