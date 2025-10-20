@@ -73,10 +73,10 @@ export const mobileNavLink = style({
       borderRadius: "0 0 12px 12px",
       transition: "height 0.2s ease",
     },
-    "&:focus": {
+    "&:focus-visible": {
       paddingBottom: 40,
     },
-    "&:focus::before": {
+    "&:focus-visible::before": {
       height: 1,
     },
     "&:hover": {

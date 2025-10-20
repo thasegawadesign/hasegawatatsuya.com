@@ -221,7 +221,7 @@ export const profileLinkIcon = style({
   height: 28,
   color: vars.color.text,
   transition: "scale 0.2s ease",
-  ":focus": {
+  ":focus-visible": {
     scale: 1.2,
   },
   ":hover": {
@@ -254,7 +254,7 @@ export const profileMore = style({
     transition: "width 0.2s ease",
   },
   selectors: {
-    "&:focus:before": {
+    "&:focus-visible:before": {
       width: 0,
     },
     "&:hover:before": {
@@ -441,7 +441,7 @@ export const worksLink = style({
   width: 160,
   height: 160,
   transition: "scale 0.2s ease",
-  ":focus": {
+  ":focus-visible": {
     scale: 1.05,
   },
   ":hover": {

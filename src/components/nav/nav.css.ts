@@ -56,10 +56,10 @@ export const navLink = style({
       borderRadius: "0 0 8px 8px",
       transition: "height 0.2s ease",
     },
-    "&:focus": {
+    "&:focus-visible": {
       paddingBottom: 20,
     },
-    "&:focus::before": {
+    "&:focus-visible::before": {
       height: 1,
     },
     "&:hover": {
