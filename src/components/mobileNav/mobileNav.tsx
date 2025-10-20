@@ -73,7 +73,7 @@ export default function MobileNav() {
   }, [isOpenHamburgerMenu]);
 
   return (
-    <nav className={clsx(mobileNav)}>
+    <nav className={clsx(mobileNav)} aria-label="グローバル">
       <ul className={clsx(mobileNavCrossBox)}>
         <li>
           <button
