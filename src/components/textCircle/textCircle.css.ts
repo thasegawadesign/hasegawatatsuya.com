@@ -30,12 +30,6 @@ export const circle = style({
       height: 110,
     },
     [breakpoints["xl"]]: {
-      top: "-36x",
-      right: "-36px",
-      width: 105,
-      height: 105,
-    },
-    [breakpoints["lg"]]: {
       display: "none",
     },
   },
