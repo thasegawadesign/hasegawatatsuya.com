@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Nav() {
   return (
-    <nav className={clsx(nav)}>
+    <nav className={clsx(nav)} aria-label="グローバル">
       <ul className={clsx(navLogoBox)}>
         <li>
           <Link href={"/"} className={clsx(roboto.className, logo)}>
