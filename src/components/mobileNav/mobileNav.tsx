@@ -79,7 +79,6 @@ export default function MobileNav() {
           <button
             className={mobileNavCross}
             aria-label="メニューを閉じる"
-            aria-expanded="true"
             onClick={() => setIsOpenHamburgerMenu(false)}
           ></button>
         </li>
