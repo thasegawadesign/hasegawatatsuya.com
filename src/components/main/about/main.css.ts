@@ -22,7 +22,7 @@ export const aboutHero = style({
 });
 export const nameBox = style({
   position: "absolute",
-  top: 300,
+  top: 280,
   left: 0,
   right: 0,
   zIndex: 50,
@@ -61,12 +61,12 @@ export const tilt = style({
   position: "relative",
   width: "100%",
   height: "176vh",
-  paddingTop: 120,
+  paddingTop: 108,
   margin: "-120px auto",
   zIndex: 10,
   "@media": {
     [breakpoints["sm"]]: {
-      marginTop: -140,
+      marginTop: -120,
     },
   },
 });
@@ -127,16 +127,11 @@ export const profileLinkBox = style({
   gap: 16,
   justifyContent: "center",
   width: "fit-content",
-  marginTop: 220,
+  marginTop: 200,
   marginLeft: "auto",
   marginRight: "auto",
   marginBottom: "clamp(60px, 5vw, 80px)",
   zIndex: 20,
-  "@media": {
-    [breakpoints["lg"]]: {
-      marginTop: 200,
-    },
-  },
 });
 export const profileLinkIcon = style({
   width: 28,
