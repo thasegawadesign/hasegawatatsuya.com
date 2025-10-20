@@ -2,8 +2,8 @@ import { breakpoints } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const animateObject3 = keyframes({
-  "0%": { transform: "translateY(-16%)" },
-  "100%": { transform: "translateY(16%)" },
+  "0%": { transform: "translateY(-12%)" },
+  "100%": { transform: "translateY(12%)" },
 });
 export const object3 = style({
   position: "fixed",
