@@ -8,14 +8,12 @@ import {
   history,
   line,
   main,
-  motionDiv,
   nameBox,
   nameEn,
   nameJa,
   occupation,
   photo,
   photoBox,
-  photoContainer,
   profileLinkBox,
   profileLinkIcon,
   tilt,
@@ -26,7 +24,6 @@ import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -36,17 +33,9 @@ import { IoMdMail } from "react-icons/io";
 import Tilt from "react-parallax-tilt";
 
 export default function Main() {
-  const photoContainerRef = useRef(null);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const historyRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: photoContainerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["-40px", "40px"]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -79,19 +68,15 @@ export default function Main() {
             className={clsx(tilt)}
           >
             <div className={clsx(photoBox)}>
-              <div ref={photoContainerRef} className={clsx(photoContainer)}>
-                <motion.div style={{ y }} className={clsx(motionDiv)}>
-                  <Image
-                    src={"/photo.avif"}
-                    width={320}
-                    height={480}
-                    alt="長谷川達也"
-                    className={photo}
-                    priority
-                    view-transition-name={"photo"}
-                  />
-                </motion.div>
-              </div>
+              <Image
+                src={"/photo.avif"}
+                width={320}
+                height={480}
+                alt="長谷川達也"
+                className={photo}
+                priority
+                view-transition-name={"photo"}
+              />
             </div>
           </Tilt>
         </div>
