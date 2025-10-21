@@ -7,6 +7,8 @@ import Main from "@/components/main/about/main";
 import clsx from "clsx";
 import { Metadata } from "next";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "About | 長谷川 達也",
 };
