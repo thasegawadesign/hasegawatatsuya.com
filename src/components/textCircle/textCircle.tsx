@@ -18,8 +18,7 @@ export default function TextCircle() {
         />
         <text className={clsx(roboto.className, circleText)}>
           <textPath xlinkHref="#circle">
-            Thank you for visiting. Thank you for visiting. Thank you for
-            visiting.
+            Thank you for visiting.Thank you for visiting.
           </textPath>
         </text>
       </svg>
