@@ -3,6 +3,8 @@ import Glass from "@/components/glass/glass";
 import Header from "@/components/header/header";
 import Main from "@/components/main/home/main";
 
+export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <>
