@@ -278,7 +278,7 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="フルール"
+                  alt="フルールのアイコン"
                 />
               </Link>
             </section>
@@ -293,7 +293,7 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="プレイリスト2025"
+                  alt="プレイリスト2025のアイコン"
                 />
               </Link>
             </section>
