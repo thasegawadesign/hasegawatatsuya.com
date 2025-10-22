@@ -1,3 +1,4 @@
+import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -129,7 +130,7 @@ export const profileLinkIcon = style({
   width: 28,
   height: 28,
   color: vars.color.text,
-  transition: "scale 0.2s ease",
+  transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
   ":focus-visible": {
     scale: 1.28,
   },

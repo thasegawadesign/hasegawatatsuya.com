@@ -5,4 +5,8 @@ export const EMAIL = "hello@hasegawatatsuya.com";
 
 export const SITE_TITLE_BASE = "ポートフォリオ | Webデザイナー 長谷川 達也";
 
+export const DURATION_S = 0.16;
+export const DURATION_M = 0.48;
+export const CUBIC_BEZIER = "cubic-bezier(0.15, 0.95, 0.01, 1)";
+
 export const PARALLAX_ENABLE_MIN_WIDTH = 1024;

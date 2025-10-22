@@ -1,3 +1,4 @@
+import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -28,7 +29,7 @@ export const backToIndex = style({
       height: 34,
       backgroundColor: vars.color.text,
       borderRadius: "0 0 8px 8px",
-      transition: "height 0.2s ease",
+      transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
     },
     "&:focus-visible": {
       paddingBottom: 34,

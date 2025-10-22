@@ -62,7 +62,7 @@ export default function Main() {
             tiltMaxAngleY={3}
             perspective={1200}
             scale={1.0}
-            transitionSpeed={2000}
+            transitionSpeed={800}
             trackOnWindow={true}
             reset={false}
             className={clsx(tilt)}
