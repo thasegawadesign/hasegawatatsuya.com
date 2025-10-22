@@ -223,10 +223,10 @@ export const profileLinkIcon = style({
   color: vars.color.text,
   transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
   ":focus-visible": {
-    scale: 1.2,
+    scale: 1.28,
   },
   ":hover": {
-    scale: 1.2,
+    scale: 1.28,
   },
   "@media": {
     [breakpoints["sm"]]: {
