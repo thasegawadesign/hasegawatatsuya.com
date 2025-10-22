@@ -1,3 +1,4 @@
+import { CUBIC_BEZIER, DURATION_M, DURATION_S } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -220,12 +221,12 @@ export const profileLinkIcon = style({
   width: 28,
   height: 28,
   color: vars.color.text,
-  transition: "scale 0.2s ease",
+  transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
   ":focus-visible": {
-    scale: 1.2,
+    scale: 1.28,
   },
   ":hover": {
-    scale: 1.2,
+    scale: 1.28,
   },
   "@media": {
     [breakpoints["sm"]]: {
@@ -251,7 +252,7 @@ export const profileMore = style({
     width: "100%",
     height: "1px",
     backgroundColor: vars.color.text,
-    transition: "width 0.2s ease",
+    transition: `width ${DURATION_M}s ${CUBIC_BEZIER}`,
   },
   selectors: {
     "&:focus-visible:before": {
@@ -440,7 +441,7 @@ export const worksCategory = style({
 export const worksLink = style({
   width: 160,
   height: 160,
-  transition: "scale 0.2s ease",
+  transition: `scale ${DURATION_S}s ease`,
   ":focus-visible": {
     scale: 1.05,
   },
@@ -562,7 +563,7 @@ export const emailTextRotateTop = style({
   placeItems: "center",
   transformOrigin: "top",
   transform: "rotateX(0deg)",
-  transition: "transform 0.2s linear",
+  transition: `transform ${DURATION_S}s linear`,
   selectors: {
     [`${emailLink}:hover &`]: {
       transform: "rotateX(-90deg) translateZ(-60px)",
@@ -577,7 +578,7 @@ export const emailTextRotateFront = style({
   placeItems: "center",
   transformOrigin: "bottom",
   transform: "rotateX(-90deg) translateZ(60px)",
-  transition: "transform 0.2s linear",
+  transition: `transform ${DURATION_S}s linear`,
   selectors: {
     [`${emailLink}:hover &`]: {
       transform: "rotateX(0deg) translateZ(0px)",

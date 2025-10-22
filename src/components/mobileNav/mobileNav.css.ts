@@ -1,3 +1,4 @@
+import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -60,7 +61,7 @@ export const mobileNavLink = style({
   color: vars.color.text,
   letterSpacing: "0.02em",
   textDecoration: "none",
-  transition: "height 0.2s ease",
+  transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
   selectors: {
     "&::before": {
       content: "",
@@ -71,7 +72,7 @@ export const mobileNavLink = style({
       height: 40,
       backgroundColor: vars.color.text,
       borderRadius: "0 0 12px 12px",
-      transition: "height 0.2s ease",
+      transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
     },
     "&:focus-visible": {
       paddingBottom: 40,

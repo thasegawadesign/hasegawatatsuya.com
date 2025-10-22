@@ -26,7 +26,7 @@ export const audioButton = style({
   border: `solid 2px ${vars.color.text}`,
   borderRadius: "100%",
   animationName: audioInteract,
-  animationDuration: "2s",
+  animationDuration: "1.8s",
   animationTimingFunction: "ease",
   animationIterationCount: "infinite",
   animationPlayState: "paused",
