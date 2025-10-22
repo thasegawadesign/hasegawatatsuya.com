@@ -44,7 +44,7 @@ export const navLink = style({
   color: vars.color.text,
   letterSpacing: "0.04em",
   textDecoration: "none",
-  transition: "height 0.2s ease",
+  transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
   selectors: {
     "&::before": {
       content: "",
