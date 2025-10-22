@@ -441,7 +441,7 @@ export const worksCategory = style({
 export const worksLink = style({
   width: 160,
   height: 160,
-  transition: `scale ${DURATION_S}s ease-in-out`,
+  transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
   ":focus-visible": {
     scale: 1.05,
   },
