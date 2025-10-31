@@ -11,6 +11,7 @@ import {
 } from "@/components/mobileNav/mobileNav.css";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
+import { FocusTrap } from "focus-trap-react";
 import gsap from "gsap";
 import { useAtom } from "jotai";
 import Link from "next/link";
@@ -73,62 +74,64 @@ export default function MobileNav() {
   }, [isOpenHamburgerMenu]);
 
   return (
-    <nav className={clsx(mobileNav)} aria-label="グローバル">
-      <ul className={clsx(mobileNavCrossBox)}>
-        <li>
-          <button
-            className={mobileNavCross}
-            aria-label="メニューを閉じる"
-            onClick={() => setIsOpenHamburgerMenu(false)}
-          ></button>
-        </li>
-      </ul>
-      <ul className={clsx(mobileNavLinkBox)}>
-        <li>
-          <Link
-            href={"/"}
-            ref={mobileNavHomeLinkRef}
-            className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => {
-              setIsOpenHamburgerMenu(false);
-            }}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/about"}
-            ref={mobileNavAboutLinkRef}
-            className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => {
-              setIsOpenHamburgerMenu(false);
-            }}
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/#works"}
-            ref={mobileNavWorksLinkRef}
-            className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => setIsOpenHamburgerMenu(false)}
-          >
-            Works
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/#contact"}
-            ref={mobileNavContactLinkRef}
-            className={clsx(roboto.className, mobileNavLink)}
-            onClick={() => setIsOpenHamburgerMenu(false)}
-          >
-            Contact
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <FocusTrap active={isOpenHamburgerMenu}>
+      <nav className={clsx(mobileNav)} aria-label="グローバル">
+        <ul className={clsx(mobileNavCrossBox)}>
+          <li>
+            <button
+              className={mobileNavCross}
+              aria-label="メニューを閉じる"
+              onClick={() => setIsOpenHamburgerMenu(false)}
+            ></button>
+          </li>
+        </ul>
+        <ul className={clsx(mobileNavLinkBox)}>
+          <li>
+            <Link
+              href={"/"}
+              ref={mobileNavHomeLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+              }}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/about"}
+              ref={mobileNavAboutLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+              }}
+            >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/#works"}
+              ref={mobileNavWorksLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => setIsOpenHamburgerMenu(false)}
+            >
+              Works
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/#contact"}
+              ref={mobileNavContactLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => setIsOpenHamburgerMenu(false)}
+            >
+              Contact
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </FocusTrap>
   );
 }
