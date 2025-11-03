@@ -15,9 +15,9 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "yakuhanjp";
 
-const TITLE = "Webデザイナー 長谷川 達也 | ポートフォリオ";
+const TITLE = "長谷川 達也 | ポートフォリオ";
 const DESCRIPTION =
-  "Webデザイナー 長谷川 達也のポートフォリオです。実際に触れることのできるWeb作品をデザイン・実装することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。";
+  "Webデザイナー/フロントエンドエンジニア 長谷川 達也のポートフォリオです。実際に触れることのできるWeb作品をデザイン・実装することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。";
 const URL = "https://www.hasegawatatsuya.com";
 
 export const metadata: Metadata = {
@@ -55,7 +55,12 @@ export default function RootLayout({
     "@type": "Person",
     name: "長谷川 達也",
     alternateName: "Tatsuya Hasegawa",
-    jobTitle: "Webデザイナー",
+    jobTitle: [
+      { "@value": "Webデザイナー", "@language": "ja" },
+      { "@value": "フロントエンドエンジニア", "@language": "ja" },
+      { "@value": "Web Designer", "@language": "en" },
+      { "@value": "Frontend Developer", "@language": "en" },
+    ],
     description: DESCRIPTION,
     url: URL,
     sameAs: [GITHUB, X],
