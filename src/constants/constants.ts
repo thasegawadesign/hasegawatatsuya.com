@@ -3,7 +3,7 @@ export const X = "https://x.com/thasegawa_";
 export const NOTE = "https://note.com/hasegawatatsuya";
 export const EMAIL = "hello@hasegawatatsuya.com";
 
-export const SITE_TITLE_BASE = "ポートフォリオ | Webデザイナー 長谷川 達也";
+export const SITE_TITLE_BASE = "ポートフォリオ | 長谷川 達也";
 
 export const DURATION_S = 0.2;
 export const DURATION_M = 0.8;
