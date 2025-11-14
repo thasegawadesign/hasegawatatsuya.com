@@ -26,19 +26,19 @@ import Link from "next/link";
 import React, { useEffect, useMemo, useRef } from "react";
 
 interface Props {
-  nameJa: string;
-  nameEn: string;
-  nameJaNode?: React.ReactNode;
-  nameEnNode?: React.ReactNode;
-  imageSrc: string;
-  imageWidth: number;
-  imageHeight: number;
-  what: string | React.ReactNode;
-  why: string | React.ReactNode;
-  how: string | React.ReactNode;
-  role: string | React.ReactNode;
-  date: string | React.ReactNode;
-  URL?: string;
+  readonly nameJa: string;
+  readonly nameEn: string;
+  readonly nameJaNode?: React.ReactNode;
+  readonly nameEnNode?: React.ReactNode;
+  readonly imageSrc: string;
+  readonly imageWidth: number;
+  readonly imageHeight: number;
+  readonly what: string | React.ReactNode;
+  readonly why: string | React.ReactNode;
+  readonly how: string | React.ReactNode;
+  readonly role: string | React.ReactNode;
+  readonly date: string | React.ReactNode;
+  readonly URL?: string;
 }
 
 export default function WorksInfo(props: Props) {
