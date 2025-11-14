@@ -25,7 +25,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef } from "react";
 
-type Props = {
+interface Props {
   nameJa: string;
   nameEn: string;
   nameJaNode?: React.ReactNode;
@@ -39,7 +39,7 @@ type Props = {
   role: string | React.ReactNode;
   date: string | React.ReactNode;
   URL?: string;
-};
+}
 
 export default function WorksInfo(props: Props) {
   const {
