@@ -6,10 +6,11 @@
 
 URL：https://www.hasegawatatsuya.com/
 
-## 使用技術
+## テーマ
 
-- Next.js
-- TypeScript
-- vanilla-extract
-- GSAP
-- Three.js
+クリエイティブを刺激する宇宙との調和
+
+## コメント
+
+有用で美しいものが「自在」につくれるようになることを目指して、Webについて勉強しています。
+クリエイティブワーク、モノづくりの達人が目標です。
