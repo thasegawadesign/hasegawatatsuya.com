@@ -61,7 +61,7 @@ export const nameEn = style({
 export const tilt = style({
   position: "relative",
   width: "100%",
-  height: "176vh",
+  height: "100vh",
   paddingTop: 108,
   margin: "-120px auto",
   zIndex: 10,

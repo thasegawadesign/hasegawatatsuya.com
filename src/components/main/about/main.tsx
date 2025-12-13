@@ -58,9 +58,9 @@ export default function Main() {
             </span>
           </h1>
           <Tilt
-            tiltMaxAngleX={3}
-            tiltMaxAngleY={3}
-            perspective={1200}
+            tiltMaxAngleX={6}
+            tiltMaxAngleY={6}
+            perspective={800}
             scale={1.0}
             transitionSpeed={800}
             trackOnWindow={true}
