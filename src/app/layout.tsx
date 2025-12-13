@@ -59,7 +59,7 @@ export default function RootLayout({
       { "@value": "Webデザイナー", "@language": "ja" },
       { "@value": "フロントエンドエンジニア", "@language": "ja" },
       { "@value": "Web Designer", "@language": "en" },
-      { "@value": "Frontend Developer", "@language": "en" },
+      { "@value": "Front-end Developer", "@language": "en" },
     ],
     description: DESCRIPTION,
     url: URL,
