@@ -107,7 +107,7 @@ export default function Main() {
         >
           Web Design,
           <br />
-          Frontend Development
+          Front-end Development
         </p>
         <p ref={descriptionRef} className={clsx(description)}>
           2001年生まれ、放送大学在学中。

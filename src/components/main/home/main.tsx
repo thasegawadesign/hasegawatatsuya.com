@@ -148,7 +148,7 @@ export default function Main() {
                   Tatsuya Hasegawa
                 </h3>
                 <p className={clsx(roboto.className, profileOccupation)}>
-                  Web Designer / Frontend Developer
+                  Web Designer / Front-end Developer
                 </p>
               </div>
               <div className={clsx(profileLinkBox)}>
