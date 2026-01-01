@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className={clsx(footer)}>
       <p>
         <small className={clsx(roboto.className, copyRight)}>
-          © 2025 Tatsuya Hasegawa
+          © 2026 Tatsuya Hasegawa
         </small>
       </p>
     </footer>
