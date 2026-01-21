@@ -35,6 +35,7 @@ import Tilt from "react-parallax-tilt";
 export default function Main() {
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
+  const valueRef = useRef(null);
   const historyRef = useRef(null);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function Main() {
 
     gsapAnimation.inview(occupationRef);
     gsapAnimation.inview(descriptionRef);
+    gsapAnimation.inview(valueRef);
     gsapAnimation.inview(historyRef);
   }, []);
 
@@ -125,6 +127,27 @@ export default function Main() {
           クリエイティブワーク、
           <br />
           モノづくりの達人が目標です。
+        </p>
+        <p ref={valueRef} className={clsx(description)}>
+          ホームページ制作の実務においては、
+          <br />
+          想定される多様な訪問者のニーズに応えることを第一に考えます。
+          <br />
+          情報設計、UX/UIデザイン、コーディングの各段階で
+          <br />
+          アクセシビリティ、審美性、セキュリティ、パフォーマンス、保守性など
+          <br />
+          Webに求められる基本的な性質を多面的に配慮しつつ、
+          <br />
+          商売道具としてのホームページが果たす役割に応えられるような
+          <br />
+          安定した品質の成果物を
+          <br />
+          確実に提供することが私の役割だと考えています。
+          <br />
+          さらに、ホームページ公開、運用開始後も継続的に改善を図り、
+          <br />
+          まさにホームページを「育てる」姿勢で仕事に取り組みます。
         </p>
         <dl ref={historyRef} className={clsx(history)}>
           <div>
