@@ -8,7 +8,7 @@ URL：https://www.hasegawatatsuya.com/
 
 ## テーマ
 
-創造性を刺激する宇宙との「調和」
+創造性を刺激する宇宙と調和する喜び
 
 ## コメント
 
