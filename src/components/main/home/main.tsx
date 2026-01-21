@@ -116,7 +116,7 @@ export default function Main() {
         <section id="about" className={clsx(aboutSection)}>
           <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
           <p className={clsx(description)} ref={descriptionRef}>
-            Webデザイナー/
+            Webデザイナー、
             <br className={mobileBr} />
             フロントエンドエンジニア <br className={mobileBr} />
             長谷川 達也の
@@ -148,7 +148,7 @@ export default function Main() {
                   Tatsuya Hasegawa
                 </h3>
                 <p className={clsx(roboto.className, profileOccupation)}>
-                  Web Designer / Front-end Developer
+                  Web Designer | Front-end Developer
                 </p>
               </div>
               <div className={clsx(profileLinkBox)}>
