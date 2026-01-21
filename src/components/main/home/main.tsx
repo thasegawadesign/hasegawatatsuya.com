@@ -126,7 +126,7 @@ export default function Main() {
             <br className={clsx(desktopBr)} />
             実際に触れることのできる
             <br className={mobileBr} />
-            Web作品を
+            Web制作物を
             <br className={mobileBr} />
             デザイン・実装することに
             <br className={mobileBr} />
