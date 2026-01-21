@@ -7,7 +7,13 @@ import {
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-export default function ParticleEffect() {
+interface ParticleEffectProps {
+  isEnabled?: boolean;
+}
+
+export default function ParticleEffect({
+  isEnabled = true,
+}: ParticleEffectProps) {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -22,7 +28,7 @@ export default function ParticleEffect() {
 
   useEffect(() => {
     const mount = mountRef.current;
-    if (!mount) return;
+    if (!isEnabled || !mount) return;
 
     // シーンの初期化
     const scene = new THREE.Scene();
@@ -32,7 +38,14 @@ export default function ParticleEffect() {
       0.1,
       1000
     );
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (error) {
+      console.error("Failed to create WebGL context", error);
+      return;
+    }
 
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -202,7 +215,9 @@ export default function ParticleEffect() {
       if (material) material.dispose();
       if (renderer) renderer.dispose();
     };
-  }, []);
+  }, [isEnabled]);
+
+  if (!isEnabled) return null;
 
   return (
     <div className={containerStyle}>
