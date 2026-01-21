@@ -116,7 +116,7 @@ export default function Main() {
         <section id="about" className={clsx(aboutSection)}>
           <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
           <p className={clsx(description)} ref={descriptionRef}>
-            Webデザイナー/
+            Webデザイナー、
             <br className={mobileBr} />
             フロントエンドエンジニア <br className={mobileBr} />
             長谷川 達也の
