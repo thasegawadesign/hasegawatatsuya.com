@@ -151,50 +151,58 @@ export default function Main() {
                   Web Designer | Front-end Developer
                 </p>
               </div>
-              <div className={clsx(profileLinkBox)}>
-                <Link
-                  href={GITHUB}
-                  className={clsx(profileLink)}
-                  aria-label="GitHub"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <FaGithub className={clsx(profileLinkIcon)} />
-                </Link>
-                <Link
-                  href={X}
-                  className={clsx(profileLink)}
-                  aria-label="X"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <FaXTwitter className={clsx(profileLinkIcon)} />
-                </Link>
-                <Link
-                  href={NOTE}
-                  className={clsx(profileLink)}
-                  aria-label="note"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Image
-                    src="/icons/note-icon.svg"
-                    width={28}
-                    height={28}
-                    alt="note"
-                    className={clsx(profileLinkIcon)}
-                  />
-                </Link>
-                <Link
-                  href={`mailto:${EMAIL}`}
-                  className={clsx(profileLink)}
-                  aria-label="Email"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <IoMdMail className={clsx(profileLinkIcon)} />
-                </Link>
-              </div>
+              <ul className={clsx(profileLinkBox)}>
+                <li>
+                  <Link
+                    href={GITHUB}
+                    className={clsx(profileLink)}
+                    aria-label="GitHub"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <FaGithub className={clsx(profileLinkIcon)} />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={X}
+                    className={clsx(profileLink)}
+                    aria-label="X"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <FaXTwitter className={clsx(profileLinkIcon)} />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={NOTE}
+                    className={clsx(profileLink)}
+                    aria-label="note"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Image
+                      src="/icons/note-icon.svg"
+                      width={28}
+                      height={28}
+                      alt="note"
+                      className={clsx(profileLinkIcon)}
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={`mailto:${EMAIL}`}
+                    className={clsx(profileLink)}
+                    aria-label="Email"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <IoMdMail className={clsx(profileLinkIcon)} />
+                  </Link>
+                </li>
+              </ul>
               <Link
                 href={"/about"}
                 className={clsx(roboto.className, profileMore)}
