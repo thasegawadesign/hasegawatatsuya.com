@@ -66,6 +66,7 @@ export default async function RootLayout({
     sameAs: [GITHUB, X],
     email: EMAIL,
   };
+
   return (
     <html lang="ja" id="home" className={clsx(html)}>
       <body className={clsx(body, backgroundGradient)}>
