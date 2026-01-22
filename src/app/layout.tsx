@@ -12,6 +12,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Script from "next/script";
 import "yakuhanjp";
 
@@ -45,11 +46,14 @@ export const metadata: Metadata = {
 
 const isProduction = process.env.NODE_ENV === "production";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const nonce = headersList.get("x-nonce") ?? "";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -68,7 +72,7 @@ export default function RootLayout({
   };
   return (
     <html lang="ja" id="home" className={clsx(html)}>
-      <body className={clsx(body, backgroundGradient)}>
+      <body nonce={nonce} className={clsx(body, backgroundGradient)}>
         <Script
           id="json-ld-person"
           type="application/ld+json"
