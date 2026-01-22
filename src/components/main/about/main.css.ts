@@ -232,6 +232,22 @@ export const history = style({
   fontWeight: 300,
   color: vars.color.text,
   textAlign: "center",
+  marginBottom: "clamp(60px, 5vw, 80px)",
+  zIndex: 20,
+  "@media": {
+    [breakpoints["sm"]]: {
+      gap: 12,
+    },
+  },
+});
+export const certifications = style({
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+  fontWeight: 300,
+  color: vars.color.text,
+  textAlign: "center",
   marginBottom: "clamp(200px, 15.6vw, 260px)",
   zIndex: 20,
   "@media": {
