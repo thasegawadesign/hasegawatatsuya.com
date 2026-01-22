@@ -1,11 +1,11 @@
 import Works from "@/app/works/playlist2025/works";
-import { SITE_TITLE_BASE } from "@/constants/constants";
+import { SITE_TITLE_WORKS } from "@/constants/constants";
 import { Metadata } from "next";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: `プレイリスト2025 | ${SITE_TITLE_BASE}`,
+  title: `プレイリスト2025 | ${SITE_TITLE_WORKS}`,
 };
 
 export default function PlayList2025() {
