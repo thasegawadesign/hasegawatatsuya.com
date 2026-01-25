@@ -53,6 +53,7 @@ import {
 } from "@/constants/constants";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
+import { preloadNextPageMainVisual } from "@/utils/preloadNextPageMainVisual";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";
@@ -243,7 +244,31 @@ export default function Main() {
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
-              <Link href={"/works/univearth"} className={clsx(worksLink)}>
+              <Link
+                href={"/works/univearth"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/univearth-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/univearth-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/univearth-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+              >
                 <Image
                   src={"/icons/univearth-icon.avif"}
                   width={160}
@@ -265,7 +290,31 @@ export default function Main() {
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
-              <Link href={"/works/tomosho-unyu"} className={clsx(worksLink)}>
+              <Link
+                href={"/works/tomosho-unyu"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/tomosho-unyu-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/tomosho-unyu-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/tomosho-unyu-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+              >
                 <Image
                   src={"/icons/tomosho-unyu-icon.avif"}
                   width={160}
@@ -283,7 +332,31 @@ export default function Main() {
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
-              <Link href={"/works/fleur"} className={clsx(worksLink)}>
+              <Link
+                href={"/works/fleur"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/fleur-website-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/fleur-website-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/fleur-website-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+              >
                 <Image
                   src={"/icons/fleur-icon.avif"}
                   width={160}
@@ -298,7 +371,31 @@ export default function Main() {
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
               </div>
-              <Link href={"/works/playlist2025"} className={clsx(worksLink)}>
+              <Link
+                href={"/works/playlist2025"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/playlist2025-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/playlist2025-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/playlist2025-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+              >
                 <Image
                   src={"/icons/playlist2025-icon.avif"}
                   width={160}
