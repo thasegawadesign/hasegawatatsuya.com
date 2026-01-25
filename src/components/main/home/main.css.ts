@@ -474,14 +474,33 @@ export const contactSection = style({
   paddingBottom: "clamp(60px, 8vw, 160px)",
 });
 
+export const address = style({
+  maxWidth: 920,
+  margin: "0 auto",
+  "@media": {
+    [breakpoints["2xl"]]: {
+      maxWidth: 880,
+    },
+    [breakpoints["xl"]]: {
+      maxWidth: 800,
+    },
+    [breakpoints["lg"]]: {
+      maxWidth: 640,
+    },
+    [breakpoints["md"]]: {
+      maxWidth: 580,
+    },
+    [breakpoints["sm"]]: {
+      margin: "0 2vw",
+    },
+  },
+});
 export const emailLink = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   gap: 24,
-  margin: "0 auto",
   padding: "200px 8vw",
-  maxWidth: 920,
   width: "100%",
   fontSize: "2.8rem",
   fontWeight: 300,
@@ -493,23 +512,19 @@ export const emailLink = style({
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
       gap: 20,
-      maxWidth: 880,
     },
     [breakpoints["xl"]]: {
       fontSize: "2.5rem",
       padding: "180px 8vw",
       gap: 18,
-      maxWidth: 800,
     },
     [breakpoints["lg"]]: {
       fontSize: "2.3rem",
       gap: 16,
-      maxWidth: 640,
     },
     [breakpoints["md"]]: {
       fontSize: "1.8rem",
       gap: 14,
-      maxWidth: 580,
     },
     [breakpoints["sm"]]: {
       fontSize: "1.6rem",

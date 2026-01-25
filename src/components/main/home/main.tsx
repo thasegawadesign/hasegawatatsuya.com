@@ -2,6 +2,7 @@
 
 import {
   aboutSection,
+  address,
   contactSection,
   description,
   emailIcon,
@@ -469,21 +470,23 @@ export default function Main() {
         </section>
         <section id="contact" className={clsx(contactSection)}>
           <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
-          <Link
-            href={`mailto:${EMAIL}`}
-            className={clsx(emailLink)}
-            ref={contactRef}
-          >
-            <IoMdMail className={clsx(emailIcon)} />
-            <div className={clsx(emailTextBox)}>
-              <span className={clsx(roboto.className, emailTextRotateTop)}>
-                {EMAIL}
-              </span>
-              <span className={clsx(roboto.className, emailTextRotateFront)}>
-                {EMAIL}
-              </span>
-            </div>
-          </Link>
+          <address className={clsx(address)}>
+            <Link
+              href={`mailto:${EMAIL}`}
+              className={clsx(emailLink)}
+              ref={contactRef}
+            >
+              <IoMdMail className={clsx(emailIcon)} />
+              <div className={clsx(emailTextBox)}>
+                <span className={clsx(roboto.className, emailTextRotateTop)}>
+                  {EMAIL}
+                </span>
+                <span className={clsx(roboto.className, emailTextRotateFront)}>
+                  {EMAIL}
+                </span>
+              </div>
+            </Link>
+          </address>
         </section>
       </main>
     </>
