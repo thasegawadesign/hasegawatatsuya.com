@@ -180,6 +180,14 @@ export default function Main() {
             ホームページを
             <br />
             「育てる」姿勢で仕事に取り組みます。
+            <br />
+            加えて、
+            <br />
+            将来的には空間UIや没入型体験など、
+            <br />
+            新しいWeb表現にも応用できる
+            <br />
+            設計思想として発展させていきたいと考えています。
           </p>
           <dl ref={historyRef} className={clsx(history)}>
             <div>
