@@ -185,9 +185,7 @@ export default function Main() {
             <br />
             将来的には空間UIや没入型体験など、
             <br />
-            新しいWeb表現にも応用できる
-            <br />
-            設計思想として発展させていきたいと考えています。
+            新しいWeb表現への応用も視野に入れています。
           </p>
           <dl ref={historyRef} className={clsx(history)}>
             <div>
