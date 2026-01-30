@@ -183,7 +183,9 @@ export default function Main() {
             <br />
             将来的には空間UIや没入型体験など、
             <br />
-            新しいヒューマンインターフェイスへの応用も視野に入れています。
+            新しいヒューマンインターフェイスへの
+            <br />
+            応用も視野に入れています。
           </p>
           <dl ref={historyRef} className={clsx(history)}>
             <div>
