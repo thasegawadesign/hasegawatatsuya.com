@@ -160,7 +160,7 @@ export const profileTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
   gap: 8,
-  marginBottom: 32,
+  marginBottom: 20,
   "@media": {
     [breakpoints["sm"]]: {
       gap: 6,
@@ -206,7 +206,7 @@ export const profileOccupation = style({
 export const profileLinkBox = style({
   display: "flex",
   gap: 16,
-  marginBottom: 52,
+  marginBottom: 56,
   "@media": {
     [breakpoints["sm"]]: {
       marginBottom: 28,
