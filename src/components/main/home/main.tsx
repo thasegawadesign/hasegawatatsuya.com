@@ -73,6 +73,7 @@ export default function Main() {
   const worksItem05Ref = useRef(null);
   const worksItem06Ref = useRef(null);
   const worksItem07Ref = useRef(null);
+  const worksItem08Ref = useRef(null);
   const contactRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -103,6 +104,7 @@ export default function Main() {
     gsapAnimation.inview(worksItem05Ref);
     gsapAnimation.inview(worksItem06Ref);
     gsapAnimation.inview(worksItem07Ref);
+    gsapAnimation.inview(worksItem08Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -237,6 +239,52 @@ export default function Main() {
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>
+                    「福昇運輸株式会社」
+                  </span>
+                  <span className={clsx(worksNameSpan)}>
+                    コーポレートサイト
+                  </span>
+                </h3>
+                <p className={clsx(worksCategory)}>(Webサイト)</p>
+              </div>
+              <Link
+                href={"/works/fukusho-unyu"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/fukusho-unyu-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/fukusho-unyu-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/fukusho-unyu-mockup.avif",
+                    4000,
+                    3000
+                  )
+                }
+              >
+                <Image
+                  src={"/icons/fukusho-unyu-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="福昇運輸株式会社のアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)} ref={worksItem02Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>
                     「株式会社Univearth」
                   </span>
                   <span className={clsx(worksNameSpan)}>
@@ -279,7 +327,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem02Ref}>
+            <section className={clsx(worksItem)} ref={worksItem03Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>
@@ -325,7 +373,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem03Ref}>
+            <section className={clsx(worksItem)} ref={worksItem04Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>「フルール」</span>
@@ -367,7 +415,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem04Ref}>
+            <section className={clsx(worksItem)} ref={worksItem05Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
@@ -406,7 +454,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem05Ref}>
+            <section className={clsx(worksItem)} ref={worksItem06Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -426,7 +474,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem06Ref}>
+            <section className={clsx(worksItem)} ref={worksItem07Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>ステメモ</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -446,7 +494,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem07Ref}>
+            <section className={clsx(worksItem)} ref={worksItem08Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
