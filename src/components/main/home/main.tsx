@@ -42,7 +42,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { IoMdMail } from "react-icons/io";
+import { IoMail } from "react-icons/io5";
 
 import { cormorant, roboto } from "@/app/fonts";
 import {
@@ -203,7 +203,7 @@ export default function Main() {
                     rel="noopener noreferrer"
                     target="_blank"
                   >
-                    <IoMdMail className={clsx(profileLinkIcon)} />
+                    <IoMail className={clsx(profileLinkIcon)} />
                   </Link>
                 </li>
               </ul>
@@ -524,7 +524,7 @@ export default function Main() {
               className={clsx(emailLink)}
               ref={contactRef}
             >
-              <IoMdMail className={clsx(emailIcon)} />
+              <IoMail className={clsx(emailIcon)} />
               <div className={clsx(emailTextBox)}>
                 <span className={clsx(roboto.className, emailTextRotateTop)}>
                   {EMAIL}
