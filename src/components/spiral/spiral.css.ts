@@ -13,6 +13,7 @@ export const circleBox = style({
   left: 0,
   width: "100%",
   height: "100%",
+  contain: "layout style paint",
   zIndex: -100,
   "@media": {
     [breakpoints["lg"]]: {
@@ -28,4 +29,11 @@ export const circle = style({
   borderRadius: "50%",
   animation: `${pulse} 4s ease-in-out infinite`,
   transformOrigin: "top left",
+  willChange: "transform, opacity",
+  contain: "strict",
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: "none",
+    },
+  },
 });
