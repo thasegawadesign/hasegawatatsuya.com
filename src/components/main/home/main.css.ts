@@ -164,7 +164,7 @@ export const profileTextBox = style({
   "@media": {
     [breakpoints["sm"]]: {
       gap: 6,
-      marginBottom: 16,
+      marginBottom: 12,
     },
   },
 });
@@ -209,6 +209,7 @@ export const profileLinkBox = style({
   marginBottom: 56,
   "@media": {
     [breakpoints["sm"]]: {
+      gap: 12,
       marginBottom: 28,
     },
   },

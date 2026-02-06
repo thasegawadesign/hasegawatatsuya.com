@@ -125,6 +125,11 @@ export const profileLinkBox = style({
   marginRight: "auto",
   marginBottom: "clamp(60px, 5vw, 80px)",
   zIndex: 20,
+  "@media": {
+    [breakpoints["sm"]]: {
+      gap: 12,
+    },
+  },
 });
 export const profileLinkIcon = style({
   width: 28,
