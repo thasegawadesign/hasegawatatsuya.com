@@ -30,7 +30,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { IoMdMail } from "react-icons/io";
+import { IoMail } from "react-icons/io5";
 import Tilt from "react-parallax-tilt";
 
 export default function Main() {
@@ -109,7 +109,7 @@ export default function Main() {
           </li>
           <li>
             <Link href={`mailto:${EMAIL}`} aria-label="Email" target="_brank">
-              <IoMdMail className={clsx(profileLinkIcon)} />
+              <IoMail className={clsx(profileLinkIcon)} />
             </Link>
           </li>
         </ul>
