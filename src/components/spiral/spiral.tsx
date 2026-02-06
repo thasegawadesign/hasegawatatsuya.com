@@ -4,7 +4,7 @@ import { useMemo } from "react";
 
 export default function Spiral() {
   const circles = useMemo(() => {
-    return Array.from({ length: 28 }, (_, i) => ({
+    return Array.from({ length: 32 }, (_, i) => ({
       size: 20 + i * 20,
       delay: i * 0.2,
     }));
