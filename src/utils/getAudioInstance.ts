@@ -2,7 +2,7 @@ let audio: HTMLAudioElement;
 
 export const getAudioInstance = () => {
   if (!audio) {
-    audio = new Audio("/journey-log.mp3");
+    audio = new Audio("/sun-dappled-resonance.mp3");
   }
   return audio;
 };
