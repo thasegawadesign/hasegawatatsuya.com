@@ -217,14 +217,14 @@ export const description = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.04em",
-  lineHeight: 1.8,
+  lineHeight: 1.7,
   textAlign: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
   padding: "0 4vw",
   zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
-      lineHeight: 1.7,
+      lineHeight: 1.6,
     },
   },
 });

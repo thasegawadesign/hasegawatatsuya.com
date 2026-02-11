@@ -94,7 +94,7 @@ export const description = style({
   fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
   fontWeight: 300,
   color: vars.color.text,
-  lineHeight: 1.8,
+  lineHeight: 1.7,
   letterSpacing: "-0.04em",
   textAlign: "center",
   marginBottom: 60,
@@ -102,7 +102,7 @@ export const description = style({
   transformOrigin: "right bottom",
   "@media": {
     [breakpoints["sm"]]: {
-      lineHeight: 1.7,
+      lineHeight: 1.6,
       marginBottom: 28,
     },
   },
