@@ -200,15 +200,10 @@ export const occupation = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.08em",
-  lineHeight: 1.2,
+  lineHeight: 1.12,
   textAlign: "center",
   marginBottom: "clamp(60px, 5vw, 80px)",
   zIndex: 20,
-  "@media": {
-    [breakpoints["sm"]]: {
-      lineHeight: 1.1,
-    },
-  },
 });
 
 export const description = style({
