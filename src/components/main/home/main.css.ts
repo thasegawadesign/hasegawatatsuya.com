@@ -579,7 +579,7 @@ export const emailTextRotateTop = style({
   placeItems: "center",
   transformOrigin: "top",
   transform: "rotateX(0deg)",
-  transition: `transform ${DURATION_S}s linear`,
+  transition: `transform ${DURATION_M}s cubic-bezier(0.86, 0.37, 0.97, 0.46)`,
   selectors: {
     [`${emailLink}:hover &`]: {
       transform: "rotateX(-90deg) translateZ(-60px)",
@@ -594,7 +594,7 @@ export const emailTextRotateFront = style({
   placeItems: "center",
   transformOrigin: "bottom",
   transform: "rotateX(-90deg) translateZ(60px)",
-  transition: `transform ${DURATION_S}s linear`,
+  transition: `transform ${DURATION_M}s cubic-bezier(0.86, 0.37, 0.97, 0.46)`,
   selectors: {
     [`${emailLink}:hover &`]: {
       transform: "rotateX(0deg) translateZ(0px)",
