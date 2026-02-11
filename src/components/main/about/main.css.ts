@@ -131,10 +131,8 @@ export const profileLinkBox = style({
     },
   },
 });
-export const profileLinkIcon = style({
-  width: 28,
-  height: 28,
-  color: vars.color.text,
+export const profileLink = style({
+  display: "block",
   transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
   ":focus-visible": {
     scale: 1.28,
@@ -142,6 +140,11 @@ export const profileLinkIcon = style({
   ":hover": {
     scale: 1.28,
   },
+});
+export const profileLinkIcon = style({
+  width: 28,
+  height: 28,
+  color: vars.color.text,
   "@media": {
     [breakpoints["sm"]]: {
       width: 26,
