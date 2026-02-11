@@ -15,6 +15,7 @@ import {
   occupation,
   photo,
   photoBox,
+  profileLink,
   profileLinkBox,
   profileLinkIcon,
   tilt,
@@ -87,17 +88,32 @@ export default function Main() {
         </section>
         <ul className={clsx(profileLinkBox)}>
           <li>
-            <Link href={GITHUB} aria-label="GitHub" target="_brank">
+            <Link
+              href={GITHUB}
+              aria-label="GitHub"
+              target="_brank"
+              className={clsx(profileLink)}
+            >
               <FaGithub className={clsx(profileLinkIcon)} />
             </Link>
           </li>
           <li>
-            <Link href={X} aria-label="X" target="_brank">
+            <Link
+              href={X}
+              aria-label="X"
+              target="_brank"
+              className={clsx(profileLink)}
+            >
               <FaXTwitter className={clsx(profileLinkIcon)} />
             </Link>
           </li>
           <li>
-            <Link href={NOTE} aria-label="note" target="_brank">
+            <Link
+              href={NOTE}
+              aria-label="note"
+              target="_brank"
+              className={clsx(profileLink)}
+            >
               <Image
                 src="/icons/note-icon.svg"
                 width={28}
@@ -108,7 +124,12 @@ export default function Main() {
             </Link>
           </li>
           <li>
-            <Link href={`mailto:${EMAIL}`} aria-label="Email" target="_brank">
+            <Link
+              href={`mailto:${EMAIL}`}
+              aria-label="Email"
+              target="_brank"
+              className={clsx(profileLink)}
+            >
               <IoMail className={clsx(profileLinkIcon)} />
             </Link>
           </li>

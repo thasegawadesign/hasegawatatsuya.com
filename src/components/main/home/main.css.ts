@@ -217,18 +217,18 @@ export const profileLinkBox = style({
 export const profileLink = style({
   display: "block",
   lineHeight: "100%",
+  transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
+  ":hover": {
+    scale: 1.28,
+  },
+  ":focus-visible": {
+    scale: 1.28,
+  },
 });
 export const profileLinkIcon = style({
   width: 28,
   height: 28,
   color: vars.color.text,
-  transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
-  ":focus-visible": {
-    scale: 1.28,
-  },
-  ":hover": {
-    scale: 1.28,
-  },
   "@media": {
     [breakpoints["sm"]]: {
       width: 22,
@@ -443,10 +443,10 @@ export const worksLink = style({
   width: 160,
   height: 160,
   transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
-  ":focus-visible": {
+  ":hover": {
     scale: 1.05,
   },
-  ":hover": {
+  ":focus-visible": {
     scale: 1.05,
   },
   "@media": {
