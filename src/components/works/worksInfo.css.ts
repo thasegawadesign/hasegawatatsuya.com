@@ -83,7 +83,7 @@ export const worksDd = style({
   color: vars.color.text,
   width: "40vw",
   letterSpacing: "-0.04em",
-  lineHeight: 1.8,
+  lineHeight: 1.7,
   "@media": {
     [breakpoints["2xl"]]: {
       width: "48vw",
@@ -93,7 +93,7 @@ export const worksDd = style({
     },
     [breakpoints["sm"]]: {
       width: "76vw",
-      lineHeight: 1.7,
+      lineHeight: 1.6,
     },
   },
 });
@@ -101,7 +101,7 @@ export const worksRole = style({
   fontSize: "clamp(3.2rem, 3.2vw, 5.2rem)",
   color: vars.color.text,
   fontWeight: 300,
-  lineHeight: 1.28,
+  lineHeight: 1.2,
   letterSpacing: "-0.08em",
   width: "40vw",
   "@media": {
@@ -113,7 +113,7 @@ export const worksRole = style({
     },
     [breakpoints["sm"]]: {
       width: "76vw",
-      lineHeight: 1.2,
+      lineHeight: 1.12,
     },
   },
 });
