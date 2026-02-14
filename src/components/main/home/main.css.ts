@@ -10,10 +10,14 @@ export const main = style({
 export const nameMainVisual = style({
   fontSize: "clamp(7.6rem, 16.8vw + 2.4rem, 29.6rem)",
   fontWeight: 500,
-  color: "#130059",
+  background: "linear-gradient(135deg, #504000 0%, #130059 30%, #030010 100%)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+  backgroundClip: "text",
   letterSpacing: "-0.04em",
   lineHeight: "0.76em",
   textAlign: "center",
+  paddingBottom: "0.28em",
   margin: "24vh auto",
   "@media": {
     [breakpoints["sm"]]: {
