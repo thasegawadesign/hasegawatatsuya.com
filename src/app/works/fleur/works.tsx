@@ -4,9 +4,6 @@ import BackToIndex from "@/components/backToIndex/backToIndex";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import Header from "@/components/header/header";
-import Object1 from "@/components/object/object1";
-import Object2 from "@/components/object/object2";
-import Object3 from "@/components/object/object3";
 import WorksInfo from "@/components/works/worksInfo";
 import clsx from "clsx";
 
@@ -64,9 +61,6 @@ export default function Works() {
         </Glass>
         <BackToIndex />
       </div>
-      <Object1 />
-      <Object2 />
-      <Object3 />
     </>
   );
 }
