@@ -17,7 +17,7 @@ export const nameMainVisual = style({
   letterSpacing: "-0.04em",
   lineHeight: "0.76em",
   textAlign: "center",
-  paddingBottom: "0.28em",
+  paddingBottom: "0.24em",
   margin: "24vh auto",
   "@media": {
     [breakpoints["sm"]]: {
