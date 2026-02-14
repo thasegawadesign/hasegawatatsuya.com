@@ -14,6 +14,6 @@ export const roboto = Roboto({
 
 export const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["500"],
   display: "swap",
 });
