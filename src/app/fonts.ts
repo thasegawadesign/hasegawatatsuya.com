@@ -4,16 +4,19 @@ export const cormorant = Cormorant({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
+  preload: true,
 });
 
 export const roboto = Roboto({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400"],
   display: "swap",
+  preload: true,
 });
 
 export const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
   weight: ["500"],
   display: "swap",
+  preload: true,
 });
