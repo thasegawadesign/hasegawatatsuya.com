@@ -8,6 +8,10 @@ globalStyle("::-webkit-selection", {
   color: "#130059",
   backgroundColor: "#faf1e8",
 });
+globalStyle("::-moz-selection", {
+  color: "#130059",
+  backgroundColor: "#faf1e8",
+});
 
 export const html = style({
   overflowX: "hidden",

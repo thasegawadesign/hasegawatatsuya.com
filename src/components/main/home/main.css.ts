@@ -24,6 +24,11 @@ export const nameMainVisual = style({
       margin: "33.3vh auto",
     },
   },
+  selectors: {
+    "&::selection": {
+      WebkitTextFillColor: "#130059",
+    },
+  },
 });
 
 export const animateLine = keyframes({
