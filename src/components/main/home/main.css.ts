@@ -10,7 +10,7 @@ export const main = style({
 export const nameMainVisual = style({
   fontSize: "clamp(7.6rem, 16.8vw + 2.4rem, 29.6rem)",
   fontWeight: 500,
-  background: "linear-gradient(135deg, #430050 0%, #130059 60%, #030010 100%)",
+  background: "linear-gradient(135deg, #2b0033 0%, #130059 60%, #090033 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
