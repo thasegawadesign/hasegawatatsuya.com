@@ -14,7 +14,7 @@ export const circle = style({
   fontSize: "12px",
   zIndex: 100,
   animationName: rotate,
-  animationDuration: "20s",
+  animationDuration: "28s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
   selectors: {
