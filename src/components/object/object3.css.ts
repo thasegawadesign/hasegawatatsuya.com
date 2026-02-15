@@ -2,12 +2,12 @@ import { breakpoints } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const animateObject3 = keyframes({
-  "0%": { transform: "translateY(-12%)" },
-  "100%": { transform: "translateY(12%)" },
+  "0%": { transform: "translateY(-10%)" },
+  "100%": { transform: "translateY(10%)" },
 });
 export const object3 = style({
   position: "fixed",
-  bottom: "-24%",
+  bottom: "-20%",
   left: "4%",
   background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
   width: "clamp(300px,28vw,460px)",
