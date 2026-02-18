@@ -519,10 +519,13 @@ export default function Main() {
         <section id="contact" className={clsx(contactSection)}>
           <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
           <address className={clsx(address)}>
-            <Link
-              href={`mailto:${EMAIL}`}
+            <button
               className={clsx(emailLink)}
               ref={contactRef}
+              onClick={() => {
+                navigator.clipboard.writeText(EMAIL);
+                alert("Email Copied!");
+              }}
             >
               <IoMail className={clsx(emailIcon)} />
               <div className={clsx(emailTextBox)}>
@@ -533,7 +536,7 @@ export default function Main() {
                   {EMAIL}
                 </span>
               </div>
-            </Link>
+            </button>
           </address>
         </section>
       </main>

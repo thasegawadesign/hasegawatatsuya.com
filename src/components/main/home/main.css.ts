@@ -515,9 +515,11 @@ export const emailLink = style({
   fontSize: "2.8rem",
   fontWeight: 300,
   color: "#130059",
+  border: "none",
   textDecoration: "none",
   backgroundColor: vars.color.text,
   borderRadius: 36,
+  cursor: "pointer",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "2.6rem",
