@@ -505,11 +505,12 @@ export const address = style({
     },
   },
 });
-export const emailLink = style({
+export const emailButton = style({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: 24,
+  textAlign: "center",
+  gap: 22,
   padding: "200px 8vw",
   width: "100%",
   fontSize: "2.8rem",
@@ -545,42 +546,37 @@ export const emailLink = style({
     },
   },
 });
-export const emailIcon = style({
-  width: 34,
-  height: 34,
-  flexShrink: 0,
+export const emailButtonHover = style({
+  fontSize: "2.0rem",
   "@media": {
     [breakpoints["2xl"]]: {
-      width: 32,
-      height: 32,
+      fontSize: "1.9rem",
     },
     [breakpoints["xl"]]: {
-      width: 30,
-      height: 30,
+      fontSize: "1.8rem",
     },
     [breakpoints["lg"]]: {
-      width: 28,
-      height: 28,
+      fontSize: "1.7rem",
+    },
+    [breakpoints["md"]]: {
+      fontSize: "1.5rem",
     },
     [breakpoints["sm"]]: {
-      width: 24,
-      height: 24,
+      fontSize: "1.2rem",
     },
   },
 });
 export const emailTextBox = style({
   position: "relative",
-  width: "13.2em",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "12.8em",
   height: 40,
   letterSpacing: "-0.01em",
   overflowY: "hidden",
   transformStyle: "preserve-3d",
   backfaceVisibility: "hidden",
-  "@media": {
-    [breakpoints["sm"]]: {
-      width: "12.8em",
-    },
-  },
 });
 export const emailTextRotateTop = style({
   position: "absolute",
@@ -592,7 +588,7 @@ export const emailTextRotateTop = style({
   transform: "rotateX(0deg)",
   transition: `transform ${DURATION_M}s cubic-bezier(0.78, 0.13, 0.14, 0.84)`,
   selectors: {
-    [`${emailLink}:hover &`]: {
+    [`${emailButton}:hover &`]: {
       transform: "rotateX(-90deg) translateZ(-60px)",
     },
   },
@@ -607,7 +603,7 @@ export const emailTextRotateFront = style({
   transform: "rotateX(-90deg) translateZ(60px)",
   transition: `transform ${DURATION_M}s cubic-bezier(0.78, 0.13, 0.14, 0.84)`,
   selectors: {
-    [`${emailLink}:hover &`]: {
+    [`${emailButton}:hover &`]: {
       transform: "rotateX(0deg) translateZ(0px)",
     },
   },
