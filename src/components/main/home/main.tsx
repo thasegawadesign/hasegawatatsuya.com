@@ -94,7 +94,7 @@ export default function Main() {
   const handleEmailHover = async () => {
     setTimeout(() => {
       setEmailHovered(true);
-    }, 360);
+    }, 320);
   };
 
   const handleEmailLeave = async () => {
@@ -102,7 +102,7 @@ export default function Main() {
 
     setTimeout(() => {
       setEmailHovered(false);
-    }, 360);
+    }, 320);
   };
 
   const getLabel = () => {
