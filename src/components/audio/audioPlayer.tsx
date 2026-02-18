@@ -218,6 +218,7 @@ export default function AudioButton() {
       <Tooltip content={isPlayingAudio ? "Sound OFF" : "Sound ON"} side="top">
         <button
           ref={audioButtonRef}
+          aria-label={isPlayingAudio ? "Sound OFF" : "Sound ON"}
           className={clsx(
             audioButton,
             isPlayingAudio ? animationRunning : animationPaused

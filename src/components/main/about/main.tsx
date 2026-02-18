@@ -134,9 +134,9 @@ export default function Main() {
           <li>
             <Tooltip content="Copy Email" side="bottom">
               <button
-                onClick={handleEmailClick}
-                className={clsx(profileLink)}
                 aria-label="Copy Email"
+                className={clsx(profileLink)}
+                onClick={handleEmailClick}
               >
                 <IoMail className={clsx(profileLinkIcon)} />
               </button>
