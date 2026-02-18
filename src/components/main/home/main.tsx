@@ -45,6 +45,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 
 import { cormorant, roboto } from "@/app/fonts";
+import Tooltip from "@/components/tooltip/tooltip";
 import {
   EMAIL,
   GITHUB,
@@ -230,14 +231,15 @@ export default function Main() {
                   </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={handleEmailClick}
-                    className={clsx(profileLink)}
-                    aria-label="Copy Email"
-                    title="Copy Email"
-                  >
-                    <IoMail className={clsx(profileLinkIcon)} />
-                  </button>
+                  <Tooltip content="Copy Email" side="bottom">
+                    <button
+                      onClick={handleEmailClick}
+                      className={clsx(profileLink)}
+                      aria-label="Copy Email"
+                    >
+                      <IoMail className={clsx(profileLinkIcon)} />
+                    </button>
+                  </Tooltip>
                 </li>
               </ul>
               <Link

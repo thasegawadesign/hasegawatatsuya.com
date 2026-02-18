@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^16",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@react-hook/window-size": "^3.1.1",
     "@react-spring/web": "^10.0.3",
     "@vanilla-extract/css": "^1.16.0",
@@ -25,6 +26,7 @@
     "lenis": "^1.1.14",
     "motion": "^12.18.1",
     "next": "^16.1.6",
+    "radix-ui": "^1.4.3",
     "react": "^19",
     "react-dom": "^19",
     "react-icons": "^5.3.0",
