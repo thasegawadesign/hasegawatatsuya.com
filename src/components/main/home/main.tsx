@@ -556,6 +556,8 @@ export default function Main() {
               onClick={handleEmailClick}
               onMouseEnter={handleEmailHover}
               onMouseLeave={handleEmailLeave}
+              onTouchStart={handleEmailHover}
+              onTouchEnd={handleEmailLeave}
               aria-label="Copy email address"
             >
               <div className={clsx(emailTextBox)}>
