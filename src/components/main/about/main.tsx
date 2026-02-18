@@ -21,6 +21,7 @@ import {
   tilt,
   year,
 } from "@/components/main/about/main.css";
+import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { gsapAnimation } from "@/utils/gsap";
@@ -131,14 +132,15 @@ export default function Main() {
             </Link>
           </li>
           <li>
-            <button
-              onClick={handleEmailClick}
-              className={clsx(profileLink)}
-              aria-label="Copy Email"
-              title="Copy Email"
-            >
-              <IoMail className={clsx(profileLinkIcon)} />
-            </button>
+            <Tooltip content="Copy Email" side="bottom">
+              <button
+                onClick={handleEmailClick}
+                className={clsx(profileLink)}
+                aria-label="Copy Email"
+              >
+                <IoMail className={clsx(profileLinkIcon)} />
+              </button>
+            </Tooltip>
           </li>
         </ul>
         <div className={clsx(line)}></div>

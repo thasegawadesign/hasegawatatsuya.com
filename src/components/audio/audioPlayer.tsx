@@ -7,6 +7,7 @@ import {
   audioButton,
   audioButtonBox,
 } from "@/components/audio/audioPlayer.css";
+import Tooltip from "@/components/tooltip/tooltip";
 import { getAudioInstance } from "@/utils/getAudioInstance";
 import { animated, to, useSpring } from "@react-spring/web";
 import clsx from "clsx";
@@ -214,16 +215,17 @@ export default function AudioButton() {
         ),
       }}
     >
-      <button
-        ref={audioButtonRef}
-        title={isPlayingAudio ? "Sound OFF" : "Sound ON"}
-        className={clsx(
-          audioButton,
-          isPlayingAudio ? animationRunning : animationPaused
-        )}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      ></button>
+      <Tooltip content={isPlayingAudio ? "Sound OFF" : "Sound ON"} side="top">
+        <button
+          ref={audioButtonRef}
+          className={clsx(
+            audioButton,
+            isPlayingAudio ? animationRunning : animationPaused
+          )}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        ></button>
+      </Tooltip>
     </animated.div>
   );
 }
