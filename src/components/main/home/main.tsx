@@ -5,8 +5,8 @@ import {
   address,
   contactSection,
   description,
-  emailIcon,
-  emailLink,
+  emailButton,
+  emailButtonHover,
   emailTextBox,
   emailTextRotateFront,
   emailTextRotateTop,
@@ -62,6 +62,8 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Main() {
   const [mounted, setMounted] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const [emailHovered, setEmailHovered] = useState(false);
 
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -75,6 +77,35 @@ export default function Main() {
   const worksItem07Ref = useRef(null);
   const worksItem08Ref = useRef(null);
   const contactRef = useRef(null);
+
+  const handleEmailClick = async () => {
+    await navigator.clipboard.writeText(EMAIL);
+    setEmailCopied(true);
+
+    setTimeout(() => {
+      setEmailCopied(false);
+    }, 2000);
+  };
+
+  const handleEmailHover = async () => {
+    setTimeout(() => {
+      setEmailHovered(true);
+    }, 360);
+  };
+
+  const handleEmailLeave = async () => {
+    setEmailCopied(false);
+
+    setTimeout(() => {
+      setEmailHovered(false);
+    }, 360);
+  };
+
+  const getLabel = () => {
+    if (emailCopied) return "Email Copied!";
+    if (emailHovered) return "Copy Email";
+    return EMAIL;
+  };
 
   const { scrollYProgress } = useScroll({
     target: profileImageContainerRef,
@@ -519,21 +550,31 @@ export default function Main() {
         <section id="contact" className={clsx(contactSection)}>
           <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
           <address className={clsx(address)}>
-            <Link
-              href={`mailto:${EMAIL}`}
-              className={clsx(emailLink)}
+            <button
+              className={clsx(emailButton)}
               ref={contactRef}
+              onClick={handleEmailClick}
+              onMouseEnter={handleEmailHover}
+              onMouseLeave={handleEmailLeave}
+              aria-label="Copy email address"
             >
-              <IoMail className={clsx(emailIcon)} />
               <div className={clsx(emailTextBox)}>
-                <span className={clsx(roboto.className, emailTextRotateTop)}>
-                  {EMAIL}
+                <span
+                  className={clsx(roboto.className, emailTextRotateTop, {
+                    [emailButtonHover]: emailCopied || emailHovered,
+                  })}
+                >
+                  {getLabel()}
                 </span>
-                <span className={clsx(roboto.className, emailTextRotateFront)}>
-                  {EMAIL}
+                <span
+                  className={clsx(roboto.className, emailTextRotateFront, {
+                    [emailButtonHover]: emailCopied || emailHovered,
+                  })}
+                >
+                  {getLabel()}
                 </span>
               </div>
-            </Link>
+            </button>
           </address>
         </section>
       </main>
