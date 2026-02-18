@@ -134,7 +134,10 @@ export const profileLinkBox = style({
 });
 export const profileLink = style({
   display: "block",
+  backgroundColor: "transparent",
+  border: "none",
   transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
+  cursor: "pointer",
   ":focus-visible": {
     scale: 1.28,
   },

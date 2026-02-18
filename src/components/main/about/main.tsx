@@ -22,6 +22,7 @@ import {
   year,
 } from "@/components/main/about/main.css";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
+import { useClipboard } from "@/hooks/useClipboard";
 import { gsapAnimation } from "@/utils/gsap";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -40,6 +41,12 @@ export default function Main() {
   const valueRef = useRef(null);
   const historyRef = useRef(null);
   const certificationsRef = useRef(null);
+
+  const { copy } = useClipboard();
+
+  const handleEmailClick = async () => {
+    await copy(EMAIL);
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -124,14 +131,14 @@ export default function Main() {
             </Link>
           </li>
           <li>
-            <Link
-              href={`mailto:${EMAIL}`}
-              aria-label="Email"
-              target="_brank"
+            <button
+              onClick={handleEmailClick}
               className={clsx(profileLink)}
+              aria-label="Copy Email"
+              title="Copy Email"
             >
               <IoMail className={clsx(profileLinkIcon)} />
-            </Link>
+            </button>
           </li>
         </ul>
         <div className={clsx(line)}></div>
