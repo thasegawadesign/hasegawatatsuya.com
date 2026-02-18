@@ -52,6 +52,7 @@ import {
   PARALLAX_ENABLE_MIN_WIDTH,
   X,
 } from "@/constants/constants";
+import { useClipboard } from "@/hooks/useClipboard";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
 import { preloadNextPageMainVisual } from "@/utils/preloadNextPageMainVisual";
@@ -78,8 +79,10 @@ export default function Main() {
   const worksItem08Ref = useRef(null);
   const contactRef = useRef(null);
 
+  const { copy } = useClipboard();
+
   const handleEmailClick = async () => {
-    await navigator.clipboard.writeText(EMAIL);
+    await copy(EMAIL);
     setEmailCopied(true);
 
     setTimeout(() => {
@@ -227,15 +230,14 @@ export default function Main() {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href={`mailto:${EMAIL}`}
+                  <button
+                    onClick={handleEmailClick}
                     className={clsx(profileLink)}
-                    aria-label="Email"
-                    rel="noopener noreferrer"
-                    target="_blank"
+                    aria-label="Copy Email"
+                    title="Copy Email"
                   >
                     <IoMail className={clsx(profileLinkIcon)} />
-                  </Link>
+                  </button>
                 </li>
               </ul>
               <Link
@@ -558,7 +560,7 @@ export default function Main() {
               onMouseLeave={handleEmailLeave}
               onTouchStart={handleEmailHover}
               onTouchEnd={handleEmailLeave}
-              aria-label="Copy email address"
+              aria-label="Copy Email"
             >
               <div className={clsx(emailTextBox)}>
                 <span
