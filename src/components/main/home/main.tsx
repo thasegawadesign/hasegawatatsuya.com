@@ -66,6 +66,7 @@ export default function Main() {
   const [mounted, setMounted] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [emailHovered, setEmailHovered] = useState(false);
+  const [emailFocused, setEmailFocused] = useState(false);
 
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
@@ -97,17 +98,25 @@ export default function Main() {
     }, 300);
   };
 
+  const handleEmailFocus = async () => {
+    setTimeout(() => {
+      setEmailFocused(true);
+    }, 300);
+  };
+
   const handleEmailLeave = async () => {
     setEmailCopied(false);
 
     setTimeout(() => {
       setEmailHovered(false);
+      setEmailFocused(false);
     }, 300);
   };
 
   const getLabel = () => {
     if (emailCopied) return "Email Copied!";
     if (emailHovered) return "Copy Email";
+    if (emailFocused) return "Copy Email";
     return EMAIL;
   };
 
@@ -558,23 +567,25 @@ export default function Main() {
               className={clsx(emailButton)}
               ref={contactRef}
               onClick={handleEmailClick}
+              onFocus={handleEmailFocus}
               onMouseEnter={handleEmailHover}
               onMouseLeave={handleEmailLeave}
               onTouchStart={handleEmailHover}
               onTouchEnd={handleEmailLeave}
-              aria-label="Copy Email"
             >
               <div className={clsx(emailTextBox)}>
                 <span
                   className={clsx(roboto.className, emailTextRotateTop, {
-                    [emailButtonHover]: emailCopied || emailHovered,
+                    [emailButtonHover]:
+                      emailCopied || emailHovered || emailFocused,
                   })}
                 >
                   {getLabel()}
                 </span>
                 <span
                   className={clsx(roboto.className, emailTextRotateFront, {
-                    [emailButtonHover]: emailCopied || emailHovered,
+                    [emailButtonHover]:
+                      emailCopied || emailHovered || emailFocused,
                   })}
                 >
                   {getLabel()}
