@@ -27,7 +27,7 @@ export const circle = style({
   left: "-2vw",
   border: "2px solid rgba(233, 129, 255, 0.08)",
   borderRadius: "50%",
-  animation: `${pulse} 4s ease-in-out infinite`,
+  animation: `${pulse} 8s ease-in-out infinite`,
   transformOrigin: "top left",
   willChange: "transform, opacity",
   contain: "strict",

@@ -1,14 +1,29 @@
+"use client";
+
 import { circle, circleBox } from "@/components/spiral/spiral.css";
+import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import { useMemo } from "react";
 
 export default function Spiral() {
+  const width = useWindowWidth();
+
   const circles = useMemo(() => {
-    return Array.from({ length: 32 }, (_, i) => ({
-      size: 20 + i * 64,
+    const length =
+      width <= 767
+        ? 12
+        : width <= 1023
+          ? 16
+          : width <= 1535
+            ? 20
+            : width >= 1920
+              ? 28
+              : 24;
+    return Array.from({ length: length }, (_, i) => ({
+      size: 20 + i * 96,
       delay: i * 0.2,
     }));
-  }, []);
+  }, [width]);
 
   return (
     <div className={clsx(circleBox)}>
