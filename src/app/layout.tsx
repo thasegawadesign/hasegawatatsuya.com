@@ -78,11 +78,11 @@ export default async function RootLayout({
         />
         <Providers>
           {children}
-          <AudioButton />
+          <Spiral />
           <Object1 />
           <Object2 />
           <Object3 />
-          <Spiral />
+          <AudioButton />
           <ParticleEffect />
         </Providers>
         {isProduction && (
