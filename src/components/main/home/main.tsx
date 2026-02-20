@@ -104,6 +104,12 @@ export default function Main() {
     }, 300);
   };
 
+  const handleEmailBlur = async () => {
+    setTimeout(() => {
+      setEmailFocused(false);
+    }, 300);
+  };
+
   const handleEmailLeave = async () => {
     setEmailCopied(false);
 
@@ -568,6 +574,7 @@ export default function Main() {
               ref={contactRef}
               onClick={handleEmailClick}
               onFocus={handleEmailFocus}
+              onBlur={handleEmailBlur}
               onMouseEnter={handleEmailHover}
               onMouseLeave={handleEmailLeave}
               onTouchStart={handleEmailHover}
