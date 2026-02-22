@@ -13,7 +13,7 @@ import {
   line,
   main,
   motionDiv,
-  nameMainVisual,
+  name,
   profileContent,
   profileImage,
   profileImageContainer,
@@ -161,7 +161,7 @@ export default function Main() {
   return (
     <>
       <main className={clsx(main)}>
-        <h1 className={clsx(cormorant.className, nameMainVisual)}>
+        <h1 className={clsx(cormorant.className, name)}>
           Tatsuya
           <br />
           Hasegawa
