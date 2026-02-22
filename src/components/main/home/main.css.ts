@@ -7,10 +7,10 @@ export const main = style({
   zIndex: 50,
 });
 
-export const nameMainVisual = style({
+export const name = style({
   fontSize: "clamp(7.6rem, 16.8vw + 2.4rem, 29.6rem)",
-  fontWeight: 500,
-  background: "linear-gradient(135deg, #2b0033 0%, #130059 60%, #090033 100%)",
+  fontWeight: 600,
+  background: "linear-gradient(135deg, #130059 0%, #26003f 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
