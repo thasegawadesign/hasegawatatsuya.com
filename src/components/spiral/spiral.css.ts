@@ -14,6 +14,7 @@ export const circleBox = style({
   width: "100%",
   height: "100%",
   contain: "layout style paint",
+  pointerEvents: "none",
   zIndex: -100,
   "@media": {
     [breakpoints["lg"]]: {
