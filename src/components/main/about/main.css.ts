@@ -33,7 +33,7 @@ export const nameBox = style({
   pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
-      top: 288,
+      top: 280,
     },
   },
 });
