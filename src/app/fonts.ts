@@ -2,7 +2,7 @@ import { Cormorant, Noto_Serif_JP, Roboto } from "next/font/google";
 
 export const cormorant = Cormorant({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["500", "600", "700"],
   display: "swap",
   preload: true,
 });
@@ -16,7 +16,7 @@ export const roboto = Roboto({
 
 export const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
-  weight: ["500"],
+  weight: ["600"],
   display: "swap",
   preload: true,
 });

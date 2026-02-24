@@ -29,7 +29,7 @@ export const hgroupHeading = style({
 });
 export const hgroupHeadingEn = style({
   fontSize: "clamp(5.6rem, 12vw, 19rem)",
-  fontWeight: 600,
+  fontWeight: 700,
   color: vars.color.text,
   paddingRight: "6vw",
   letterSpacing: "-0.02em",
@@ -100,7 +100,7 @@ export const worksDd = style({
 export const worksRole = style({
   fontSize: "clamp(3.2rem, 3.2vw, 5.2rem)",
   color: vars.color.text,
-  fontWeight: 300,
+  fontWeight: 500,
   lineHeight: 1.2,
   letterSpacing: "-0.08em",
   width: "40vw",
