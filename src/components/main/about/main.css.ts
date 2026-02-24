@@ -203,7 +203,7 @@ export const line = style({
 
 export const occupation = style({
   position: "relative",
-  fontSize: "clamp(3.6rem, 3.2vw + 3.0rem, 8.0rem)",
+  fontSize: "clamp(3.6rem, 3.2vw + 2.8rem, 8.0rem)",
   fontWeight: 500,
   color: vars.color.text,
   letterSpacing: "-0.08em",
