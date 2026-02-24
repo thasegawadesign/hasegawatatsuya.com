@@ -379,7 +379,7 @@ export const worksBox = style({
       backgroundColor: "rgba(255, 255, 255, .12)",
       borderRadius: 36,
       backdropFilter: "blur(8px)",
-      padding: "0 2vw 48px",
+      padding: "0 2vw 28px",
     },
   },
 });
@@ -389,22 +389,23 @@ export const worksItem = style({
   alignItems: "center",
   justifyContent: "start",
   gap: 20,
-  padding: "52px 2vw",
+  padding: "44px 2vw",
   backgroundColor: "rgba(255, 255, 255, 0.12)",
   borderRadius: 36,
   backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["xl"]]: {
+      padding: "40px 2vw",
       gap: 12,
     },
     [breakpoints["lg"]]: {
-      padding: "40px 2vw",
+      padding: "38px 2vw",
     },
     [breakpoints["md"]]: {
       padding: "36px 2vw",
     },
     [breakpoints["sm"]]: {
-      padding: "30px 2vw 0px",
+      padding: "24px 2vw 0px",
       backgroundColor: "transparent",
       backdropFilter: "none",
     },
