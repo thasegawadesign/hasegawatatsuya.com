@@ -2,8 +2,8 @@ import { breakpoints } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const animateObject3 = keyframes({
-  "0%": { transform: "translateY(-8%)" },
-  "100%": { transform: "translateY(8%)" },
+  "0%": { transform: "translateY(-5%)" },
+  "100%": { transform: "translateY(5%)" },
 });
 export const object3 = style({
   position: "fixed",
@@ -16,7 +16,7 @@ export const object3 = style({
   filter: "blur(4px)",
   zIndex: -50,
   animationName: animateObject3,
-  animationDuration: "20s",
+  animationDuration: "24s",
   animationTimingFunction: "ease-in-out",
   animationIterationCount: "infinite",
   animationDirection: "alternate-reverse",
