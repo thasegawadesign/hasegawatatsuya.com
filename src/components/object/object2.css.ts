@@ -7,7 +7,7 @@ export const animateObject2 = keyframes({
 });
 export const object2 = style({
   position: "fixed",
-  top: "40%",
+  top: "43%",
   right: "4%",
   background: `radial-gradient(rgba(83, 227, 124, .6), rgba(234, 234, 234, 1))`,
   width: "clamp(240px,24vw,400px)",
