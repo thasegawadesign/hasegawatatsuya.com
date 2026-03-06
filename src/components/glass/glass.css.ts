@@ -21,8 +21,8 @@ export const glass = style({
     height: "100%",
     borderRadius: 38,
     boxShadow: "inset 0px 0px 80px rgba(255, 255 , 255 , 0.3)",
-    backdropFilter: "blur(120px)",
-    WebkitBackdropFilter: "blur(120px)",
+    backdropFilter: "blur(96px)",
+    WebkitBackdropFilter: "blur(96px)",
     zIndex: -1,
   },
   ":after": {
@@ -57,8 +57,8 @@ export const glass = style({
       marginTop: "1vw",
       marginBottom: "1vw",
       ":before": {
-        backdropFilter: "blur(80px)",
-        WebkitBackdropFilter: "blur(80px)",
+        backdropFilter: "blur(48px)",
+        WebkitBackdropFilter: "blur(48px)",
       },
     },
   },
