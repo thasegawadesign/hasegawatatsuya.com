@@ -11,16 +11,16 @@ export default function Spiral() {
   const circles = useMemo(() => {
     const length =
       width <= 767
-        ? 12
+        ? 6
         : width <= 1023
-          ? 16
+          ? 12
           : width <= 1535
-            ? 20
+            ? 14
             : width >= 1920
-              ? 28
-              : 24;
+              ? 22
+              : 18;
     return Array.from({ length: length }, (_, i) => ({
-      size: 20 + i * 96,
+      size: 20 + i * 144,
       delay: i * 0.2,
     }));
   }, [width]);
