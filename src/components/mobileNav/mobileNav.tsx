@@ -9,9 +9,10 @@ import {
   mobileNavLink,
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
+import { haptic } from "@/utils/haptic";
+import { FocusScope } from "@react-aria/focus";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
-import { FocusTrap } from "focus-trap-react";
 import gsap from "gsap";
 import { useAtom } from "jotai";
 import Link from "next/link";
@@ -74,14 +75,17 @@ export default function MobileNav() {
   }, [isOpenHamburgerMenu]);
 
   return (
-    <FocusTrap active={isOpenHamburgerMenu}>
+    <FocusScope contain restoreFocus autoFocus>
       <nav className={clsx(mobileNav)} aria-label="グローバル">
         <ul className={clsx(mobileNavCrossBox)}>
           <li>
             <button
               className={mobileNavCross}
               aria-label="メニューを閉じる"
-              onClick={() => setIsOpenHamburgerMenu(false)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+                haptic();
+              }}
             ></button>
           </li>
         </ul>
@@ -93,6 +97,7 @@ export default function MobileNav() {
               className={clsx(roboto.className, mobileNavLink)}
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                haptic();
               }}
             >
               Home
@@ -105,6 +110,7 @@ export default function MobileNav() {
               className={clsx(roboto.className, mobileNavLink)}
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                haptic();
               }}
             >
               About
@@ -115,7 +121,10 @@ export default function MobileNav() {
               href={"/#works"}
               ref={mobileNavWorksLinkRef}
               className={clsx(roboto.className, mobileNavLink)}
-              onClick={() => setIsOpenHamburgerMenu(false)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+                haptic();
+              }}
             >
               Works
             </Link>
@@ -125,13 +134,16 @@ export default function MobileNav() {
               href={"/#contact"}
               ref={mobileNavContactLinkRef}
               className={clsx(roboto.className, mobileNavLink)}
-              onClick={() => setIsOpenHamburgerMenu(false)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+                haptic();
+              }}
             >
               Contact
             </Link>
           </li>
         </ul>
       </nav>
-    </FocusTrap>
+    </FocusScope>
   );
 }
