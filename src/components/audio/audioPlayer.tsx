@@ -8,8 +8,8 @@ import {
   audioButtonBox,
 } from "@/components/audio/audioPlayer.css";
 import Tooltip from "@/components/tooltip/tooltip";
-import { getAudioInstance } from "@/utils/getAudioInstance";
-import { haptic } from "@/utils/haptic";
+import { getAudioInstance } from "@/lib/getAudioInstance";
+import { haptic } from "@/lib/haptic";
 import { animated, to, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { useAtom } from "jotai";

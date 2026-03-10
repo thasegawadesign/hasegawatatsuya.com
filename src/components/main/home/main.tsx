@@ -58,10 +58,10 @@ import {
   X,
 } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
+import { gsapAnimation } from "@/lib/gsap";
+import { haptic } from "@/lib/haptic";
+import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
-import { gsapAnimation } from "@/utils/gsap";
-import { haptic } from "@/utils/haptic";
-import { preloadNextPageMainVisual } from "@/utils/preloadNextPageMainVisual";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useScroll, useTransform } from "motion/react";

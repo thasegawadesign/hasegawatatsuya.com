@@ -6,7 +6,7 @@ import {
   navLinkBox,
   navLogoBox,
 } from "@/components/nav/nav.css";
-import { haptic } from "@/utils/haptic";
+import { haptic } from "@/lib/haptic";
 import clsx from "clsx";
 import Link from "next/link";
 
