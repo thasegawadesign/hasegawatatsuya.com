@@ -60,6 +60,7 @@ import {
 import { useClipboard } from "@/hooks/useClipboard";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import { gsapAnimation } from "@/utils/gsap";
+import { haptic } from "@/utils/haptic";
 import { preloadNextPageMainVisual } from "@/utils/preloadNextPageMainVisual";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -221,6 +222,7 @@ export default function Main() {
                     aria-label="GitHub"
                     rel="noopener noreferrer"
                     target="_blank"
+                    onClick={() => haptic()}
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
@@ -232,6 +234,7 @@ export default function Main() {
                     aria-label="X"
                     rel="noopener noreferrer"
                     target="_blank"
+                    onClick={() => haptic()}
                   >
                     <FaXTwitter className={clsx(profileLinkIcon)} />
                   </Link>
@@ -243,6 +246,7 @@ export default function Main() {
                     aria-label="note"
                     rel="noopener noreferrer"
                     target="_blank"
+                    onClick={() => haptic()}
                   >
                     <Image
                       src="/icons/note-icon.svg"
@@ -258,7 +262,10 @@ export default function Main() {
                     <button
                       aria-label="Copy Email"
                       className={clsx(profileLink)}
-                      onClick={handleEmailClick}
+                      onClick={() => {
+                        handleEmailClick();
+                        haptic();
+                      }}
                     >
                       <IoMail className={clsx(profileLinkIcon)} />
                     </button>
@@ -268,6 +275,7 @@ export default function Main() {
               <Link
                 href={"/about"}
                 className={clsx(roboto.className, profileMore)}
+                onClick={() => haptic()}
               >
                 More
               </Link>
@@ -329,6 +337,7 @@ export default function Main() {
                     3000
                   )
                 }
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/fukusho-unyu-icon.avif"}
@@ -375,6 +384,7 @@ export default function Main() {
                     3000
                   )
                 }
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/univearth-icon.avif"}
@@ -421,6 +431,7 @@ export default function Main() {
                     3000
                   )
                 }
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/tomosho-unyu-icon.avif"}
@@ -463,6 +474,7 @@ export default function Main() {
                     3000
                   )
                 }
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/fleur-icon.avif"}
@@ -502,6 +514,7 @@ export default function Main() {
                     3000
                   )
                 }
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/playlist2025-icon.avif"}
@@ -522,6 +535,7 @@ export default function Main() {
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/question-and-answer-icon.avif"}
@@ -542,6 +556,7 @@ export default function Main() {
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/sutememo-icon.avif"}
@@ -562,6 +577,7 @@ export default function Main() {
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
+                onClick={() => haptic()}
               >
                 <Image
                   src={"/icons/calculator-icon.avif"}
@@ -580,7 +596,10 @@ export default function Main() {
             <button
               className={clsx(emailButton)}
               ref={contactRef}
-              onClick={handleEmailClick}
+              onClick={() => {
+                handleEmailClick();
+                haptic();
+              }}
               onFocus={handleEmailFocus}
               onBlur={handleEmailBlur}
               onMouseEnter={handleEmailHover}

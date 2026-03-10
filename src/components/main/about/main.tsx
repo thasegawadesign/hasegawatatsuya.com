@@ -25,6 +25,7 @@ import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { gsapAnimation } from "@/utils/gsap";
+import { haptic } from "@/utils/haptic";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -101,6 +102,7 @@ export default function Main() {
               aria-label="GitHub"
               target="_brank"
               className={clsx(profileLink)}
+              onClick={() => haptic()}
             >
               <FaGithub className={clsx(profileLinkIcon)} />
             </Link>
@@ -111,6 +113,7 @@ export default function Main() {
               aria-label="X"
               target="_brank"
               className={clsx(profileLink)}
+              onClick={() => haptic()}
             >
               <FaXTwitter className={clsx(profileLinkIcon)} />
             </Link>
@@ -121,6 +124,7 @@ export default function Main() {
               aria-label="note"
               target="_brank"
               className={clsx(profileLink)}
+              onClick={() => haptic()}
             >
               <Image
                 src="/icons/note-icon.svg"
@@ -136,7 +140,10 @@ export default function Main() {
               <button
                 aria-label="Copy Email"
                 className={clsx(profileLink)}
-                onClick={handleEmailClick}
+                onClick={() => {
+                  handleEmailClick();
+                  haptic();
+                }}
               >
                 <IoMail className={clsx(profileLinkIcon)} />
               </button>

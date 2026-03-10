@@ -9,6 +9,7 @@ import {
 } from "@/components/audio/audioPlayer.css";
 import Tooltip from "@/components/tooltip/tooltip";
 import { getAudioInstance } from "@/utils/getAudioInstance";
+import { haptic } from "@/utils/haptic";
 import { animated, to, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { useAtom } from "jotai";
@@ -214,6 +215,7 @@ export default function AudioButton() {
           (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`
         ),
       }}
+      onClick={() => haptic()}
     >
       <Tooltip content={isPlayingAudio ? "Sound OFF" : "Sound ON"} side="top">
         <button

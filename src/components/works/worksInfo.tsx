@@ -16,6 +16,7 @@ import {
 } from "@/components/works/worksInfo.css";
 import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/utils/gsap";
+import { haptic } from "@/utils/haptic";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -146,6 +147,7 @@ export default function WorksInfo(props: Props) {
                   className={clsx(roboto.className, worksLink)}
                   rel="noopener noreferrer"
                   target="_blank"
+                  onClick={() => haptic()}
                 >
                   {URL}
                 </Link>
