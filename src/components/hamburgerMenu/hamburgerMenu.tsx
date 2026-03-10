@@ -3,7 +3,7 @@ import {
   hamburgerMenu,
   hamburgerMenuLine,
 } from "@/components/hamburgerMenu/hamburgerMenu.css";
-import { haptic } from "@/utils/haptic";
+import { haptic } from "@/lib/haptic";
 import clsx from "clsx";
 import { useAtom } from "jotai";
 

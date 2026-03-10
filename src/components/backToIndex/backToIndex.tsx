@@ -5,8 +5,8 @@ import {
   backToIndex,
   backToIndexBox,
 } from "@/components/backToIndex/backToIndex.css";
-import { gsapAnimation } from "@/utils/gsap";
-import { haptic } from "@/utils/haptic";
+import { gsapAnimation } from "@/lib/gsap";
+import { haptic } from "@/lib/haptic";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

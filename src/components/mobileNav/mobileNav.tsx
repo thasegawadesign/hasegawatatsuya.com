@@ -9,7 +9,7 @@ import {
   mobileNavLink,
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
-import { haptic } from "@/utils/haptic";
+import { haptic } from "@/lib/haptic";
 import { FocusScope } from "@react-aria/focus";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
