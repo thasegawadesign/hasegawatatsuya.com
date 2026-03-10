@@ -30,8 +30,17 @@ export const name = style({
     },
   },
 });
-export const nameInner = style({
-  letterSpacing: "-0.024em",
+export const nameTightLeft = style({
+  marginLeft: "-0.024em",
+});
+export const nameTight = style({
+  letterSpacing: "-0.044em",
+});
+export const nameWide = style({
+  letterSpacing: "-0.028em",
+});
+export const nameWider = style({
+  letterSpacing: "-0.016em",
 });
 
 export const animateLine = keyframes({
