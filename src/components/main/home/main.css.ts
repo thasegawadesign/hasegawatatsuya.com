@@ -30,6 +30,9 @@ export const name = style({
     },
   },
 });
+export const nameInner = style({
+  letterSpacing: "-0.024em",
+});
 
 export const animateLine = keyframes({
   "0%": { transform: "translateY(-100%)" },

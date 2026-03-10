@@ -14,6 +14,7 @@ import {
   main,
   motionDiv,
   name,
+  nameInner,
   profileContent,
   profileImage,
   profileImageContainer,
@@ -163,8 +164,7 @@ export default function Main() {
       <main className={clsx(main)}>
         <h1 className={clsx(cormorant.className, name)}>
           Tatsuya
-          <br />
-          Hasegawa
+          <br />H<span className={clsx(nameInner)}>as</span>egawa
         </h1>
         <div className={clsx(line)}></div>
         <section id="about" className={clsx(aboutSection)}>
