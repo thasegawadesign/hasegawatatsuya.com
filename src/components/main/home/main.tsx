@@ -84,6 +84,7 @@ export default function Main() {
   const worksItem06Ref = useRef(null);
   const worksItem07Ref = useRef(null);
   const worksItem08Ref = useRef(null);
+  const worksItem09Ref = useRef(null);
   const contactRef = useRef(null);
 
   const { copy } = useClipboard();
@@ -160,6 +161,7 @@ export default function Main() {
     gsapAnimation.inview(worksItem06Ref);
     gsapAnimation.inview(worksItem07Ref);
     gsapAnimation.inview(worksItem08Ref);
+    gsapAnimation.inview(worksItem09Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -585,6 +587,39 @@ export default function Main() {
                   height={160}
                   className={clsx(worksIcon)}
                   alt="JavaScript電卓のアイコン"
+                />
+              </Link>
+            </section>
+          </div>
+        </section>
+        <section id="experimental" className={clsx(worksSection)}>
+          <h2 className={clsx(roboto.className, sectionHeading)}>
+            Experimental
+          </h2>
+          <div className={clsx(worksBox)}>
+            <section className={clsx(worksItem)} ref={worksItem09Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>
+                    斜めレイアウトエネルギッシュ
+                  </span>
+                  <span className={clsx(worksNameSpan)}>Aboutセクション</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"https://about-section-diagonal-energy.vegetworks.com/"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                target="_blank"
+                onClick={() => haptic()}
+              >
+                <Image
+                  src={"/icons/about-section-diagonal-energy-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt=" 斜めレイアウトエネルギッシュAboutセクションのアイコン"
                 />
               </Link>
             </section>
