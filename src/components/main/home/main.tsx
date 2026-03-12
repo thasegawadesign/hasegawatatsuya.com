@@ -600,18 +600,36 @@ export default function Main() {
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>
-                    斜めレイアウトエネルギッシュ
-                  </span>
+                  <span className={clsx(worksNameSpan)}>斜めが刺さる</span>
                   <span className={clsx(worksNameSpan)}>Aboutセクション</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"https://about-section-diagonal-energy.vegetworks.com/"}
+                href={"/experimental/about-section-diagonal-energy"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
-                target="_blank"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/about-section-diagonal-energy-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/about-section-diagonal-energy-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/about-section-diagonal-energy-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
                 onClick={() => haptic()}
               >
                 <Image
@@ -619,7 +637,7 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt=" 斜めレイアウトエネルギッシュAboutセクションのアイコン"
+                  alt="斜めが刺さるAboutセクションのアイコン"
                 />
               </Link>
             </section>

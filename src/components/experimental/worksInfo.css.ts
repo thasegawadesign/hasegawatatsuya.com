@@ -124,11 +124,12 @@ export const worksLink = style({
   letterSpacing: "-0.04em",
   textDecoration: "none",
   transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
+  overflow: "hidden",
   selectors: {
     "&::before": {
       content: "",
       position: "absolute",
-      top: "clamp(1.6rem, 1.36vw, 3rem)",
+      top: "var(--link-underline-top, clamp(1.6rem, 1.36vw, 3rem))",
       display: "block",
       width: "100%",
       height: 40,
