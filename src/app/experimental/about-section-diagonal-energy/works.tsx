@@ -27,8 +27,8 @@ export default function Works() {
               imageSrc="/about-section-diagonal-energy-mockup.avif"
               imageWidth={6000}
               imageHeight={4500}
-              what="日本の運送会社らしい、大胆な斜めレイアウトのAboutセクション"
-              why="現場仕事の力強さを斜めのレイアウトと力強いタイポグラフィで表現できるのではと思い制作しました。"
+              what="日本の運送会社らしい力強さを、斜めレイアウトとタイポグラフィで魅せるAboutセクション"
+              why="現場仕事の力強さを、ダイナミックな斜めレイアウトと力強いタイポグラフィで表現したいと思い制作したAboutセクションです。テキストとロゴ、写真を差し替えるだけで、運送・物流業のコーポレートサイトや採用サイトにすぐに使える構成になっています。自社サイトの印象を一段引き上げたい方は、ぜひご購入をご検討ください。"
               how="Next.js / Tailwind CSS"
               role={
                 <>

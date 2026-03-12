@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: `斜めが刺さるAboutセクション | ${SITE_TITLE_WORKS}`,
+  title: `斜めが刺さるAboutセクション（運送・物流サイト向け） | ${SITE_TITLE_WORKS}`,
 };
 
 export default function AboutSectionDiagonalEnergy() {
