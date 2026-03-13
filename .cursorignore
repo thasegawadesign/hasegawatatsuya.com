@@ -1,0 +1,25 @@
+# 依存
+node_modules/
+.pnpm-store/
+
+# Next.js ビルド成果物
+.next/
+out/
+
+# ログ・カバレッジ
+coverage/
+*.log
+
+# エディタ/OS
+.vscode/
+.idea/
+.DS_Store
+
+# 環境変数などの秘密情報
+.env
+.env.*
+!.env.example
+
+# その他ツール系
+.vercel/
+.turbo/
