@@ -159,7 +159,7 @@ export const profileSection = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      gap: 20,
+      gap: 24,
       maxWidth: 580,
       padding: "30px 2vw",
       margin: "0 2vw",
@@ -167,24 +167,24 @@ export const profileSection = style({
   },
 });
 export const profileContent = style({
-  paddingBottom: 48,
+  paddingBottom: 44,
   "@media": {
     [breakpoints["xl"]]: {
-      paddingBottom: 32,
+      paddingBottom: 36,
     },
     [breakpoints["sm"]]: {
-      paddingBottom: 24,
+      paddingBottom: 20,
     },
   },
 });
 export const profileTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 8,
+  gap: 10,
   marginBottom: 20,
   "@media": {
     [breakpoints["sm"]]: {
-      gap: 6,
+      gap: 8,
       marginBottom: 12,
     },
   },
@@ -206,7 +206,7 @@ export const profileName = style({
       fontSize: "2.7rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "2.1rem",
+      fontSize: "2.2rem",
     },
   },
 });
@@ -215,6 +215,7 @@ export const profileOccupation = style({
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.02em",
+  lineHeight: 1.2,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "1.4rem",
@@ -224,6 +225,7 @@ export const profileOccupation = style({
     },
     [breakpoints["sm"]]: {
       fontSize: "1.0rem",
+      lineHeight: 1.25,
     },
   },
 });
