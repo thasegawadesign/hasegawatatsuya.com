@@ -38,7 +38,7 @@ export default function Works() {
                 </>
               }
               date="2026.3"
-              DemoURL="https://vision-scroll-snap.vegetworks.com/"
+              DemoURL="https://www.vision-scroll-snap.vegetworks.com/"
             />
           </main>
           <Footer />

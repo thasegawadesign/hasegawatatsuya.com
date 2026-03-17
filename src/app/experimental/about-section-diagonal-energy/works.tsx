@@ -38,7 +38,7 @@ export default function Works() {
                 </>
               }
               date="2026.3"
-              DemoURL="https://about-section-diagonal-energy-demo.vegetworks.com/"
+              DemoURL="https://www.about-section-diagonal-energy-demo.vegetworks.com/"
               BuyURL="https://vegetworks.lemonsqueezy.com/checkout/buy/5fa86ece-aaf6-4bb3-b46d-c028610b8a42"
             />
           </main>
