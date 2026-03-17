@@ -85,6 +85,7 @@ export default function Main() {
   const worksItem07Ref = useRef(null);
   const worksItem08Ref = useRef(null);
   const worksItem09Ref = useRef(null);
+  const worksItem10Ref = useRef(null);
   const contactRef = useRef(null);
 
   const { copy } = useClipboard();
@@ -162,6 +163,7 @@ export default function Main() {
     gsapAnimation.inview(worksItem07Ref);
     gsapAnimation.inview(worksItem08Ref);
     gsapAnimation.inview(worksItem09Ref);
+    gsapAnimation.inview(worksItem10Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -598,6 +600,52 @@ export default function Main() {
           </h2>
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>Vision</span>
+                  <span className={clsx(worksNameSpan)}>
+                    スクロールスナップ
+                  </span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"/experimental/vision-scroll-snap"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/vision-scroll-snap-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/vision-scroll-snap-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/vision-scroll-snap-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onClick={() => haptic()}
+              >
+                <Image
+                  src={"/icons/vision-scroll-snap-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="Visionスクロールスナップのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)} ref={worksItem10Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>斜めが刺さる</span>
