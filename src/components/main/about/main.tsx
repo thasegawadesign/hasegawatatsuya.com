@@ -180,7 +180,7 @@ export default function Main() {
           <p ref={valueRef} className={clsx(description)}>
             ホームページ制作の実務においては、
             <br />
-            想定する訪問者・ユーザーの
+            想定する訪問者・ユーザの
             <br />
             ニーズを起点に考えます。
             <br />
