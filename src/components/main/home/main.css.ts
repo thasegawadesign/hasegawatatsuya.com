@@ -9,7 +9,7 @@ export const main = style({
 
 export const name = style({
   fontSize: "clamp(7.6rem, 16.8vw + 2.4rem, 29.6rem)",
-  fontWeight: 600,
+  fontWeight: 700,
   background: "linear-gradient(135deg, #130059 0%, #26003f 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
