@@ -211,16 +211,16 @@ export const profileName = style({
   },
 });
 export const profileOccupation = style({
-  fontSize: "1.4rem",
+  fontSize: "1.5rem",
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.02em",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "1.3rem",
+      fontSize: "1.4rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "1.2rem",
+      fontSize: "1.3rem",
     },
     [breakpoints["sm"]]: {
       fontSize: "1.0rem",
