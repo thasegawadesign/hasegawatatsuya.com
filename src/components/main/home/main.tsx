@@ -86,6 +86,7 @@ export default function Main() {
   const worksItem08Ref = useRef(null);
   const worksItem09Ref = useRef(null);
   const worksItem10Ref = useRef(null);
+  const worksItem11Ref = useRef(null);
   const contactRef = useRef(null);
 
   const { copy } = useClipboard();
@@ -164,6 +165,7 @@ export default function Main() {
     gsapAnimation.inview(worksItem08Ref);
     gsapAnimation.inview(worksItem09Ref);
     gsapAnimation.inview(worksItem10Ref);
+    gsapAnimation.inview(worksItem11Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -600,6 +602,50 @@ export default function Main() {
           </h2>
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>お客様の声</span>
+                  <span className={clsx(worksNameSpan)}>カルーセル</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"/experimental/customer-voice-carousel-prototype"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/customer-voice-carousel-prototype-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/customer-voice-carousel-prototype-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/customer-voice-carousel-prototype-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onClick={() => haptic()}
+              >
+                <Image
+                  src={"/icons/customer-voice-carousel-prototype-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="お客様の声カルーセルのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)} ref={worksItem11Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>Vision</span>
