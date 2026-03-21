@@ -101,6 +101,7 @@ export const photo = style({
   contain: "paint",
   borderRadius: 24,
   objectFit: "cover",
+  boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.3)",
   animationName: animatePhoto,
   animationDuration: "20s",
   animationTimingFunction: "ease",
