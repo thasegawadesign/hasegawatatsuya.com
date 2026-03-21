@@ -203,7 +203,7 @@ export const line = style({
 
 export const occupation = style({
   position: "relative",
-  fontSize: "clamp(3.6rem, 3.2vw + 2.8rem, 8.0rem)",
+  fontSize: "clamp(3.6rem, 3.2vw + 2.8rem, 7.2rem)",
   fontWeight: 500,
   color: vars.color.text,
   letterSpacing: "-0.08em",
@@ -231,6 +231,21 @@ export const description = style({
   },
 });
 
+export const sectionHeading = style({
+  fontSize: "1.6rem",
+  fontWeight: 300,
+  color: vars.color.text,
+  letterSpacing: "-0.02em",
+  textAlign: "center",
+  marginBottom: 16,
+  "@media": {
+    [breakpoints["xl"]]: {
+      fontSize: "1.4rem",
+      marginBottom: 12,
+    },
+  },
+});
+
 export const history = style({
   position: "relative",
   display: "flex",
@@ -248,6 +263,23 @@ export const history = style({
   },
 });
 export const certifications = style({
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+  fontWeight: 300,
+  color: vars.color.text,
+  textAlign: "center",
+  marginBottom: "clamp(60px, 5vw, 80px)",
+  zIndex: 20,
+  "@media": {
+    [breakpoints["sm"]]: {
+      gap: 12,
+    },
+  },
+});
+
+export const contributions = style({
   position: "relative",
   display: "flex",
   flexDirection: "column",

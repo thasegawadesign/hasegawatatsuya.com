@@ -4,6 +4,7 @@ import { cormorant, notoSerifJP } from "@/app/fonts";
 import {
   aboutHero,
   certifications,
+  contributions,
   description,
   event,
   history,
@@ -18,6 +19,7 @@ import {
   profileLink,
   profileLinkBox,
   profileLinkIcon,
+  sectionHeading,
   tilt,
   year,
 } from "@/components/main/about/main.css";
@@ -43,6 +45,7 @@ export default function Main() {
   const valueRef = useRef(null);
   const historyRef = useRef(null);
   const certificationsRef = useRef(null);
+  const contributionsRef = useRef(null);
 
   const { copy } = useClipboard();
 
@@ -58,6 +61,7 @@ export default function Main() {
     gsapAnimation.inview(valueRef);
     gsapAnimation.inview(historyRef);
     gsapAnimation.inview(certificationsRef);
+    gsapAnimation.inview(contributionsRef);
   }, []);
 
   return (
@@ -232,34 +236,53 @@ export default function Main() {
             <br />
             応用も視野に入れています。
           </p>
-          <dl ref={historyRef} className={clsx(history)}>
-            <div>
-              <dt className={clsx(year)}>2020–2024</dt>
-              <dd className={clsx(event)}>ECCコンピュータ専門学校（中退）</dd>
-            </div>
-            <div>
-              <dt className={clsx(year)}>2022–現在</dt>
-              <dd className={clsx(event)}>株式会社Univearth（業務委託）</dd>
-            </div>
-            <div>
-              <dt className={clsx(year)}>2025–現在</dt>
-              <dd className={clsx(event)}>放送大学（在学中）</dd>
-            </div>
-          </dl>
-          <dl ref={certificationsRef} className={clsx(certifications)}>
-            <div>
-              <dt className={clsx(year)}>2021.08</dt>
-              <dd className={clsx(event)}>色彩検定2級 合格</dd>
-            </div>
-            <div>
-              <dt className={clsx(year)}>2024.01</dt>
-              <dd className={clsx(event)}>基本情報技術者試験 合格</dd>
-            </div>
-            <div>
-              <dt className={clsx(year)}>2025.04</dt>
-              <dd className={clsx(event)}>応用情報技術者試験 合格</dd>
-            </div>
-          </dl>
+          <section>
+            <h3 className={clsx(sectionHeading)}>Experience</h3>
+            <dl ref={historyRef} className={clsx(history)}>
+              <div>
+                <dt className={clsx(year)}>2020–2024</dt>
+                <dd className={clsx(event)}>ECCコンピュータ専門学校（中退）</dd>
+              </div>
+              <div>
+                <dt className={clsx(year)}>2022–現在</dt>
+                <dd className={clsx(event)}>株式会社Univearth（業務委託）</dd>
+              </div>
+              <div>
+                <dt className={clsx(year)}>2025–現在</dt>
+                <dd className={clsx(event)}>放送大学（在学中）</dd>
+              </div>
+            </dl>
+          </section>
+          <section>
+            <h3 className={clsx(sectionHeading)}>Certifications</h3>
+            <dl ref={certificationsRef} className={clsx(certifications)}>
+              <div>
+                <dt className={clsx(year)}>2021.08</dt>
+                <dd className={clsx(event)}>色彩検定2級 合格</dd>
+              </div>
+              <div>
+                <dt className={clsx(year)}>2024.01</dt>
+                <dd className={clsx(event)}>基本情報技術者試験 合格</dd>
+              </div>
+              <div>
+                <dt className={clsx(year)}>2025.04</dt>
+                <dd className={clsx(event)}>応用情報技術者試験 合格</dd>
+              </div>
+            </dl>
+          </section>
+          <section>
+            <h3 className={clsx(sectionHeading)}>OSS Contributions</h3>
+            <dl ref={contributionsRef} className={clsx(contributions)}>
+              <div>
+                <dt className={clsx(year)}>2026.03</dt>
+                <dd className={clsx(event)}>
+                  OJPP（Open Japan Politech Platform）
+                  <br />
+                  ファビコンを追加
+                </dd>
+              </div>
+            </dl>
+          </section>
         </section>
       </main>
     </>
