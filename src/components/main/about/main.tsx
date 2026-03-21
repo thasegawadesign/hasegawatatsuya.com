@@ -4,10 +4,13 @@ import { cormorant, notoSerifJP } from "@/app/fonts";
 import {
   aboutHero,
   certifications,
+  certificationsSection,
   contributions,
+  contributionsSection,
   description,
   event,
   history,
+  historySection,
   line,
   main,
   nameBox,
@@ -19,6 +22,7 @@ import {
   profileLink,
   profileLinkBox,
   profileLinkIcon,
+  section,
   sectionHeading,
   tilt,
   year,
@@ -236,9 +240,9 @@ export default function Main() {
             <br />
             応用も視野に入れています。
           </p>
-          <section>
+          <section ref={historyRef} className={clsx(section, historySection)}>
             <h3 className={clsx(sectionHeading)}>Experience</h3>
-            <dl ref={historyRef} className={clsx(history)}>
+            <dl className={clsx(history)}>
               <div>
                 <dt className={clsx(year)}>2020–2024</dt>
                 <dd className={clsx(event)}>ECCコンピュータ専門学校（中退）</dd>
@@ -253,9 +257,12 @@ export default function Main() {
               </div>
             </dl>
           </section>
-          <section>
+          <section
+            ref={certificationsRef}
+            className={clsx(section, certificationsSection)}
+          >
             <h3 className={clsx(sectionHeading)}>Certifications</h3>
-            <dl ref={certificationsRef} className={clsx(certifications)}>
+            <dl className={clsx(certifications)}>
               <div>
                 <dt className={clsx(year)}>2021.08</dt>
                 <dd className={clsx(event)}>色彩検定2級 合格</dd>
@@ -270,9 +277,12 @@ export default function Main() {
               </div>
             </dl>
           </section>
-          <section>
+          <section
+            ref={contributionsRef}
+            className={clsx(section, contributionsSection)}
+          >
             <h3 className={clsx(sectionHeading)}>OSS Contributions</h3>
-            <dl ref={contributionsRef} className={clsx(contributions)}>
+            <dl className={clsx(contributions)}>
               <div>
                 <dt className={clsx(year)}>2026.03</dt>
                 <dd className={clsx(event)}>
