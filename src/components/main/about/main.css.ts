@@ -231,6 +231,9 @@ export const description = style({
   },
 });
 
+export const section = style({
+  padding: "0 4vw",
+});
 export const sectionHeading = style({
   fontSize: "1.6rem",
   fontWeight: 300,
@@ -246,6 +249,9 @@ export const sectionHeading = style({
   },
 });
 
+export const historySection = style({
+  marginBottom: "clamp(60px, 5vw, 80px)",
+});
 export const history = style({
   position: "relative",
   display: "flex",
@@ -254,13 +260,16 @@ export const history = style({
   fontWeight: 300,
   color: vars.color.text,
   textAlign: "center",
-  marginBottom: "clamp(60px, 5vw, 80px)",
   zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
     },
   },
+});
+
+export const certificationsSection = style({
+  marginBottom: "clamp(60px, 5vw, 80px)",
 });
 export const certifications = style({
   position: "relative",
@@ -270,7 +279,6 @@ export const certifications = style({
   fontWeight: 300,
   color: vars.color.text,
   textAlign: "center",
-  marginBottom: "clamp(60px, 5vw, 80px)",
   zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
@@ -279,6 +287,9 @@ export const certifications = style({
   },
 });
 
+export const contributionsSection = style({
+  marginBottom: "clamp(200px, 15.6vw, 260px)",
+});
 export const contributions = style({
   position: "relative",
   display: "flex",
@@ -287,7 +298,6 @@ export const contributions = style({
   fontWeight: 300,
   color: vars.color.text,
   textAlign: "center",
-  marginBottom: "clamp(200px, 15.6vw, 260px)",
   zIndex: 20,
   "@media": {
     [breakpoints["sm"]]: {
@@ -298,8 +308,11 @@ export const contributions = style({
 export const year = style({
   fontSize: "clamp(1.6rem, 0.72vw + 1.0rem, 2.0rem)",
   letterSpacing: "-0.02em",
+  lineHeight: 1.2,
+  marginBottom: 4,
 });
 export const event = style({
   fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
   letterSpacing: "-0.04em",
+  lineHeight: 1.3,
 });
