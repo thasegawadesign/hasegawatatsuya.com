@@ -264,15 +264,15 @@ export default function Main() {
             <h3 className={clsx(sectionHeading)}>Certifications</h3>
             <dl className={clsx(certifications)}>
               <div>
-                <dt className={clsx(year)}>2021.08</dt>
+                <dt className={clsx(year)}>2021.8</dt>
                 <dd className={clsx(event)}>色彩検定2級 合格</dd>
               </div>
               <div>
-                <dt className={clsx(year)}>2024.01</dt>
+                <dt className={clsx(year)}>2024.1</dt>
                 <dd className={clsx(event)}>基本情報技術者試験 合格</dd>
               </div>
               <div>
-                <dt className={clsx(year)}>2025.04</dt>
+                <dt className={clsx(year)}>2025.4</dt>
                 <dd className={clsx(event)}>応用情報技術者試験 合格</dd>
               </div>
             </dl>
@@ -284,7 +284,7 @@ export default function Main() {
             <h3 className={clsx(sectionHeading)}>OSS Contributions</h3>
             <dl className={clsx(contributions)}>
               <div>
-                <dt className={clsx(year)}>2026.03</dt>
+                <dt className={clsx(year)}>2026.3</dt>
                 <dd className={clsx(event)}>
                   OJPP（Open Japan Politech Platform）
                   <br />
