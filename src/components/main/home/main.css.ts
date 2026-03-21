@@ -159,7 +159,7 @@ export const profileSection = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      gap: 24,
+      gap: 16,
       maxWidth: 580,
       padding: "30px 2vw",
       margin: "0 2vw",
@@ -190,23 +190,23 @@ export const profileTextBox = style({
   },
 });
 export const profileName = style({
-  fontSize: "3.2rem",
+  fontSize: "3.4rem",
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.02em",
   whiteSpace: "nowrap",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "3.1rem",
+      fontSize: "3.3rem",
     },
     [breakpoints["xl"]]: {
-      fontSize: "2.9rem",
+      fontSize: "3.2rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "2.7rem",
+      fontSize: "3.0rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "2.2rem",
+      fontSize: "2.3rem",
     },
   },
 });
@@ -317,15 +317,15 @@ export const profileImageWrapper = style({
       marginLeft: -96,
     },
     [breakpoints["lg"]]: {
-      marginLeft: -72,
+      marginLeft: -40,
     },
     [breakpoints["md"]]: {
-      marginLeft: -64,
+      marginLeft: -32,
     },
     [breakpoints["sm"]]: {
       width: 120,
       height: 180,
-      marginLeft: -20,
+      marginLeft: -8,
     },
   },
 });
