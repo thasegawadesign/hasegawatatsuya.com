@@ -190,17 +190,17 @@ export const profileTextBox = style({
   },
 });
 export const profileName = style({
-  fontSize: "3.4rem",
+  fontSize: "3.7rem",
   fontWeight: 300,
   color: vars.color.text,
   letterSpacing: "-0.02em",
   whiteSpace: "nowrap",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "3.3rem",
+      fontSize: "3.6rem",
     },
     [breakpoints["xl"]]: {
-      fontSize: "3.2rem",
+      fontSize: "3.4rem",
     },
     [breakpoints["lg"]]: {
       fontSize: "3.0rem",
@@ -217,7 +217,7 @@ export const profileOccupation = style({
   letterSpacing: "-0.02em",
   lineHeight: 1.2,
   "@media": {
-    [breakpoints["2xl"]]: {
+    [breakpoints["xl"]]: {
       fontSize: "1.4rem",
     },
     [breakpoints["lg"]]: {
