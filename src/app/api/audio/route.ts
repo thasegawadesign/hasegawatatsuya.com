@@ -13,7 +13,7 @@ export async function GET() {
     return new Response(result.stream, {
       headers: {
         "Content-Type": result.blob.contentType || "audio/mp3",
-        "Cache-Control": "public, max-age=3600",
+        "Cache-Control": "public, max-age=86400",
         "Content-Disposition":
           result.blob.contentDisposition ||
           'inline; filename="creative-idea.mp3"',
