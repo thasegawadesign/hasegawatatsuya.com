@@ -31,7 +31,7 @@ export default function Works() {
                   Unyu
                 </>
               }
-              imageSrc="/fukusho-unyu-mockup.avif"
+              imageSrc="/images/mockups/fukusho-unyu-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
               what="「福昇運輸株式会社」コーポレートサイト"

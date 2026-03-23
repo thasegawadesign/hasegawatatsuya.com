@@ -18,7 +18,7 @@ export default function Works() {
               nameJa="お客様の声カルーセルのプロトタイプ"
               nameEn="Customer Voice Carousel"
               nameJaNode={<>お客様の声カルーセル</>}
-              imageSrc="/customer-voice-carousel-prototype-mockup.avif"
+              imageSrc="/images/mockups/customer-voice-carousel-prototype-mockup.avif"
               imageWidth={6000}
               imageHeight={4500}
               what="お客様の声をカルーセルで表示するプロトタイプ"

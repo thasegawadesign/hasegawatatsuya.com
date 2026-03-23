@@ -25,7 +25,7 @@ export default function Works() {
                   2025
                 </>
               }
-              imageSrc="/playlist2025-mockup.avif"
+              imageSrc="/images/mockups/playlist2025-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
               what="音楽配信サービスプレイリストカバー画像"

@@ -25,7 +25,7 @@ export default function Works() {
                 </>
               }
               nameEnNode={<>Univearth Inc.</>}
-              imageSrc="/univearth-mockup.avif"
+              imageSrc="/images/mockups/univearth-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
               what="「株式会社Univearth」コーポレートサイト"

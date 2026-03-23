@@ -24,7 +24,7 @@ export default function Works() {
                   Aboutセクション
                 </>
               }
-              imageSrc="/about-section-diagonal-energy-mockup.avif"
+              imageSrc="/images/mockups/about-section-diagonal-energy-mockup.avif"
               imageWidth={6000}
               imageHeight={4500}
               what="日本の運送会社らしい力強さを、斜めレイアウトとタイポグラフィで魅せるAboutセクション"

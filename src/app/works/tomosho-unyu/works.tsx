@@ -31,7 +31,7 @@ export default function Works() {
                   Unyu
                 </>
               }
-              imageSrc="/tomosho-unyu-mockup.avif"
+              imageSrc="/images/mockups/tomosho-unyu-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
               what="「株式会社 智商運輸」コーポレートサイト"

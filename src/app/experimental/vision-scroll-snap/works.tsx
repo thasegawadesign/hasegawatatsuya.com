@@ -24,7 +24,7 @@ export default function Works() {
                   スクロールスナップ
                 </>
               }
-              imageSrc="/vision-scroll-snap-mockup.avif"
+              imageSrc="/images/mockups/vision-scroll-snap-mockup.avif"
               imageWidth={6000}
               imageHeight={4500}
               what="創作・アート系画像を全画面表示し、スクロールスナップで切り替えるサンプル"
