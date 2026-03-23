@@ -17,6 +17,7 @@ import {
 import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
+import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -60,34 +61,6 @@ export default function WorksInfo(props: Props) {
     DemoURL,
     BuyURL,
   } = props;
-
-  const getUrlFontSize = (url: string) => {
-    const length = url.length;
-
-    if (length > 80) return "clamp(0.7rem, 1.0vw, 1.7rem)";
-    if (length > 60) return "clamp(0.8rem, 1.16vw, 1.8rem)";
-    if (length > 40) return "clamp(0.9rem, 1.2vw, 2.0rem)";
-
-    return "clamp(1.6rem, 1.4vw, 2.3rem)";
-  };
-
-  type LinkStyle = React.CSSProperties & {
-    "--link-underline-top"?: string;
-  };
-  const getUrlLinkStyle = (url: string): LinkStyle => ({
-    fontSize: getUrlFontSize(url),
-    "--link-underline-top": getUrlUnderlineTop(url),
-  });
-
-  const getUrlUnderlineTop = (url: string) => {
-    const length = url.length;
-
-    if (length > 80) return "clamp(0.8rem, 0.96vw, 1.6rem)";
-    if (length > 60) return "clamp(1.0rem, 1.0vw, 1.8rem)";
-    if (length > 40) return "clamp(1.2rem, 1.2vw, 2.0rem)";
-
-    return "clamp(1.6rem, 1.36vw, 3rem)";
-  };
 
   const width = useWindowWidth();
 
@@ -176,44 +149,42 @@ export default function WorksInfo(props: Props) {
             gap: "clamp(48px, 6.0vw, 72px)",
           }}
         >
-          <div ref={worksDemoURLRef} className={clsx(worksDlItem)}>
-            {DemoURL && (
-              <>
-                <dt className={clsx(roboto.className, worksDt)}>Demo :</dt>
-                <dd className={clsx(worksDd)}>
-                  <Link
-                    href={DemoURL}
-                    className={clsx(roboto.className, worksLink)}
-                    style={getUrlLinkStyle(DemoURL)}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    onClick={() => haptic()}
-                  >
-                    {DemoURL}
-                  </Link>
-                </dd>
-              </>
-            )}
-          </div>
-          <div ref={worksBuyURLRef} className={clsx(worksDlItem)}>
-            {BuyURL && (
-              <>
-                <dt className={clsx(roboto.className, worksDt)}>Buy :</dt>
-                <dd className={clsx(worksDd)}>
-                  <Link
-                    href={BuyURL}
-                    className={clsx(roboto.className, worksLink)}
-                    style={getUrlLinkStyle(BuyURL)}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    onClick={() => haptic()}
-                  >
-                    {BuyURL}
-                  </Link>
-                </dd>
-              </>
-            )}
-          </div>
+          {DemoURL && (
+            <div ref={worksDemoURLRef} className={clsx(worksDlItem)}>
+              <dt
+                className={clsx(roboto.className, worksDt)}
+              >{`${BuyURL ? "Demo" : "URL"} :`}</dt>
+              <dd className={clsx(worksDd)}>
+                <Link
+                  href={DemoURL}
+                  className={clsx(roboto.className, worksLink)}
+                  style={getUrlLinkStyle(DemoURL)}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  onClick={() => haptic()}
+                >
+                  {DemoURL}
+                </Link>
+              </dd>
+            </div>
+          )}
+          {BuyURL && (
+            <div ref={worksBuyURLRef} className={clsx(worksDlItem)}>
+              <dt className={clsx(roboto.className, worksDt)}>Buy :</dt>
+              <dd className={clsx(worksDd)}>
+                <Link
+                  href={BuyURL}
+                  className={clsx(roboto.className, worksLink)}
+                  style={getUrlLinkStyle(BuyURL)}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  onClick={() => haptic()}
+                >
+                  {BuyURL}
+                </Link>
+              </dd>
+            </div>
+          )}
         </div>
       </dl>
     </>

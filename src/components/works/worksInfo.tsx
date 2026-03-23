@@ -17,6 +17,7 @@ import {
 import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
+import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -137,14 +138,15 @@ export default function WorksInfo(props: Props) {
           <dt className={clsx(roboto.className, worksDt)}>Date :</dt>
           <dd className={clsx(roboto.className, worksDd)}>{date}</dd>
         </div>
-        <div ref={worksURLRef} className={clsx(worksDlItem)}>
-          {URL && (
+        {URL && (
+          <div ref={worksURLRef} className={clsx(worksDlItem)}>
             <>
               <dt className={clsx(roboto.className, worksDt)}>URL :</dt>
               <dd className={clsx(worksDd)}>
                 <Link
                   href={URL}
                   className={clsx(roboto.className, worksLink)}
+                  style={getUrlLinkStyle(URL)}
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={() => haptic()}
@@ -153,8 +155,8 @@ export default function WorksInfo(props: Props) {
                 </Link>
               </dd>
             </>
-          )}
-        </div>
+          </div>
+        )}
       </dl>
     </>
   );
