@@ -255,7 +255,7 @@ export default function Main() {
                     onClick={() => haptic()}
                   >
                     <Image
-                      src="/icons/note-icon.svg"
+                      src="/images/icons/note-icon.svg"
                       width={28}
                       height={28}
                       alt="note"
@@ -293,7 +293,7 @@ export default function Main() {
               >
                 <motion.div style={{ y }} className={clsx(motionDiv)}>
                   <Image
-                    src={"/photo.avif"}
+                    src={"/images/photo.avif"}
                     alt="長谷川達也"
                     className={clsx(profileImage)}
                     view-transition-name={"photo"}
@@ -324,21 +324,21 @@ export default function Main() {
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/fukusho-unyu-mockup.avif",
+                    "/images/mockups/fukusho-unyu-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/fukusho-unyu-mockup.avif",
+                    "/images/mockups/fukusho-unyu-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/fukusho-unyu-mockup.avif",
+                    "/images/mockups/fukusho-unyu-mockup.avif",
                     4000,
                     3000
                   )
@@ -346,7 +346,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/fukusho-unyu-icon.avif"}
+                  src={"/images/icons/fukusho-unyu-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -371,21 +371,21 @@ export default function Main() {
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/univearth-mockup.avif",
+                    "/images/mockups/univearth-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/univearth-mockup.avif",
+                    "/images/mockups/univearth-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/univearth-mockup.avif",
+                    "/images/mockups/univearth-mockup.avif",
                     4000,
                     3000
                   )
@@ -393,7 +393,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/univearth-icon.avif"}
+                  src={"/images/icons/univearth-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -418,21 +418,21 @@ export default function Main() {
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/tomosho-unyu-mockup.avif",
+                    "/images/mockups/tomosho-unyu-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/tomosho-unyu-mockup.avif",
+                    "/images/mockups/tomosho-unyu-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/tomosho-unyu-mockup.avif",
+                    "/images/mockups/tomosho-unyu-mockup.avif",
                     4000,
                     3000
                   )
@@ -440,7 +440,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/tomosho-unyu-icon.avif"}
+                  src={"/images/icons/tomosho-unyu-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -461,21 +461,21 @@ export default function Main() {
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/fleur-website-mockup.avif",
+                    "/images/mockups/fleur-website-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/fleur-website-mockup.avif",
+                    "/images/mockups/fleur-website-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/fleur-website-mockup.avif",
+                    "/images/mockups/fleur-website-mockup.avif",
                     4000,
                     3000
                   )
@@ -483,7 +483,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/fleur-icon.avif"}
+                  src={"/images/icons/fleur-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -501,21 +501,21 @@ export default function Main() {
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/playlist2025-mockup.avif",
+                    "/images/mockups/playlist2025-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/playlist2025-mockup.avif",
+                    "/images/mockups/playlist2025-mockup.avif",
                     4000,
                     3000
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/playlist2025-mockup.avif",
+                    "/images/mockups/playlist2025-mockup.avif",
                     4000,
                     3000
                   )
@@ -523,7 +523,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/playlist2025-icon.avif"}
+                  src={"/images/icons/playlist2025-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -544,7 +544,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/question-and-answer-icon.avif"}
+                  src={"/images/icons/question-and-answer-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -565,7 +565,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/sutememo-icon.avif"}
+                  src={"/images/icons/sutememo-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -586,7 +586,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/calculator-icon.avif"}
+                  src={"/images/icons/calculator-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -615,21 +615,21 @@ export default function Main() {
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/customer-voice-carousel-prototype-mockup.avif",
+                    "/images/mockups/customer-voice-carousel-prototype-mockup.avif",
                     6000,
                     4500
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/customer-voice-carousel-prototype-mockup.avif",
+                    "/images/mockups/customer-voice-carousel-prototype-mockup.avif",
                     6000,
                     4500
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/customer-voice-carousel-prototype-mockup.avif",
+                    "/images/mockups/customer-voice-carousel-prototype-mockup.avif",
                     6000,
                     4500
                   )
@@ -637,7 +637,9 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/customer-voice-carousel-prototype-icon.avif"}
+                  src={
+                    "/images/icons/customer-voice-carousel-prototype-icon.avif"
+                  }
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -661,21 +663,21 @@ export default function Main() {
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/vision-scroll-snap-mockup.avif",
+                    "/images/mockups/vision-scroll-snap-mockup.avif",
                     6000,
                     4500
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/vision-scroll-snap-mockup.avif",
+                    "/images/mockups/vision-scroll-snap-mockup.avif",
                     6000,
                     4500
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/vision-scroll-snap-mockup.avif",
+                    "/images/mockups/vision-scroll-snap-mockup.avif",
                     6000,
                     4500
                   )
@@ -683,7 +685,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/vision-scroll-snap-icon.avif"}
+                  src={"/images/icons/vision-scroll-snap-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -705,21 +707,21 @@ export default function Main() {
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
-                    "/about-section-diagonal-energy-mockup.avif",
+                    "/images/mockups/about-section-diagonal-energy-mockup.avif",
                     6000,
                     4500
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
-                    "/about-section-diagonal-energy-mockup.avif",
+                    "/images/mockups/about-section-diagonal-energy-mockup.avif",
                     6000,
                     4500
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
-                    "/about-section-diagonal-energy-mockup.avif",
+                    "/images/mockups/about-section-diagonal-energy-mockup.avif",
                     6000,
                     4500
                   )
@@ -727,7 +729,7 @@ export default function Main() {
                 onClick={() => haptic()}
               >
                 <Image
-                  src={"/icons/about-section-diagonal-energy-icon.avif"}
+                  src={"/images/icons/about-section-diagonal-energy-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}

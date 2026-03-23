@@ -92,7 +92,7 @@ export default function Main() {
           >
             <div className={clsx(photoBox)}>
               <Image
-                src={"/photo.avif"}
+                src={"/images/photo.avif"}
                 width={320}
                 height={480}
                 alt="長谷川達也"
@@ -135,7 +135,7 @@ export default function Main() {
               onClick={() => haptic()}
             >
               <Image
-                src="/icons/note-icon.svg"
+                src="/images/icons/note-icon.svg"
                 width={28}
                 height={28}
                 alt="note"
