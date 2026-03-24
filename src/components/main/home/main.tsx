@@ -88,6 +88,7 @@ export default function Main() {
   const worksItem10Ref = useRef(null);
   const worksItem11Ref = useRef(null);
   const worksItem12Ref = useRef(null);
+  const worksItem13Ref = useRef(null);
   const contactRef = useRef(null);
 
   const { copy } = useClipboard();
@@ -168,6 +169,7 @@ export default function Main() {
     gsapAnimation.inview(worksItem10Ref);
     gsapAnimation.inview(worksItem11Ref);
     gsapAnimation.inview(worksItem12Ref);
+    gsapAnimation.inview(worksItem13Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -780,6 +782,50 @@ export default function Main() {
                   height={160}
                   className={clsx(worksIcon)}
                   alt="斜めが刺さるAboutセクションのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)} ref={worksItem13Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>アクセシブルな</span>
+                  <span className={clsx(worksNameSpan)}>Splideカルーセル</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"/experimental/nextjs-splide-carousel"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/nextjs-splide-carousel-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/nextjs-splide-carousel-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/nextjs-splide-carousel-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onClick={() => haptic()}
+              >
+                <Image
+                  src={"/images/icons/nextjs-splide-carousel-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="Splideカルーセルのアイコン"
                 />
               </Link>
             </section>
