@@ -10,6 +10,7 @@ import {
   mobileNavLinkBox,
 } from "@/components/mobileNav/mobileNav.css";
 import { haptic } from "@/lib/haptic";
+import { playSfxClick } from "@/lib/playSfx";
 import { FocusScope } from "@react-aria/focus";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
@@ -84,6 +85,7 @@ export default function MobileNav() {
               aria-label="メニューを閉じる"
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                playSfxClick();
                 haptic();
               }}
             ></button>
@@ -97,6 +99,7 @@ export default function MobileNav() {
               className={clsx(roboto.className, mobileNavLink)}
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                playSfxClick();
                 haptic();
               }}
             >
@@ -110,6 +113,7 @@ export default function MobileNav() {
               className={clsx(roboto.className, mobileNavLink)}
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                playSfxClick();
                 haptic();
               }}
             >
@@ -123,6 +127,7 @@ export default function MobileNav() {
               className={clsx(roboto.className, mobileNavLink)}
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                playSfxClick();
                 haptic();
               }}
             >
@@ -136,6 +141,7 @@ export default function MobileNav() {
               className={clsx(roboto.className, mobileNavLink)}
               onClick={() => {
                 setIsOpenHamburgerMenu(false);
+                playSfxClick();
                 haptic();
               }}
             >

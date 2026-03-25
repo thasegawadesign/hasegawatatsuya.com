@@ -18,6 +18,14 @@ import { useCallback, useEffect, useRef } from "react";
 export default function AudioButton() {
   const [isPlayingAudio, setIsPlayingAudio] = useAtom(isPlayingAudioAtom);
 
+  const bgmAudioRef = useRef<HTMLAudioElement | null>(null);
+  const getBgmAudio = () => {
+    if (!bgmAudioRef.current) {
+      bgmAudioRef.current = getAudioInstance("audio");
+    }
+    return bgmAudioRef.current;
+  };
+
   const audioButtonRef = useRef(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -128,7 +136,7 @@ export default function AudioButton() {
     const handleAudioButtonClick = async () => {
       if (isFadingRef.current) return;
 
-      const audio = getAudioInstance();
+      const audio = getBgmAudio();
 
       if (isPlayingAudio) {
         setIsPlayingAudio(false);
@@ -154,7 +162,7 @@ export default function AudioButton() {
   }, [isPlayingAudio, setIsPlayingAudio, fadeIn, fadeOut]);
 
   useEffect(() => {
-    const audio = getAudioInstance();
+    const audio = getBgmAudio();
 
     const handleVisibilityChange = async () => {
       if (document.hidden) {
@@ -178,7 +186,7 @@ export default function AudioButton() {
   }, [isPlayingAudio, fadeIn, fadeOut]);
 
   useEffect(() => {
-    const audio = getAudioInstance();
+    const audio = getBgmAudio();
 
     const playAudio = async () => {
       if (!audio || !isPlayingAudio) return;

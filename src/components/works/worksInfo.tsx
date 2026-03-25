@@ -17,6 +17,7 @@ import {
 import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
+import { playSfxClick } from "@/lib/playSfx";
 import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
@@ -149,7 +150,10 @@ export default function WorksInfo(props: Props) {
                   style={getUrlLinkStyle(URL)}
                   rel="noopener noreferrer"
                   target="_blank"
-                  onClick={() => haptic()}
+                  onClick={() => {
+                    playSfxClick();
+                    haptic();
+                  }}
                 >
                   {URL}
                 </Link>

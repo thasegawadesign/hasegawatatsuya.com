@@ -7,6 +7,7 @@ import {
 } from "@/components/backToIndex/backToIndex.css";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
+import { playSfxClick } from "@/lib/playSfx";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,7 +30,10 @@ export default function BackToIndex() {
           ref={backToIndexRef}
           href={"/"}
           className={clsx(roboto.className, backToIndex)}
-          onClick={() => haptic()}
+          onClick={() => {
+            playSfxClick();
+            haptic();
+          }}
         >
           Back to Index
         </Link>
