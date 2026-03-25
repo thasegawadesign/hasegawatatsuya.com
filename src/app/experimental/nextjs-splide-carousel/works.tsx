@@ -27,6 +27,7 @@ export default function Works() {
               imageSrc="/images/mockups/nextjs-splide-carousel-mockup.avif"
               imageWidth={6000}
               imageHeight={4500}
+              videoSrc="/videos/mockups/nextjs-splide-carousel-mockup.mp4"
               what="アクセシビリティを配慮したSplideカルーセルのプロトタイプ"
               why="アクセシビリティを配慮したSplideカルーセルのプロトタイプを制作しました。スクリーンリーダーでの操作性を確保するため、キーボード操作でもスライドが可能なように実装しました。"
               how="Next.js / TypeScript / Tailwind CSS"
