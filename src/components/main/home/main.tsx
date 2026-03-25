@@ -71,6 +71,10 @@ import { useEffect, useRef, useState } from "react";
 export default function Main() {
   const [mounted, setMounted] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const emailCopyLockRef = useRef(false);
+  const emailCopiedResetTimeoutRef = useRef<ReturnType<
+    typeof setTimeout
+  > | null>(null);
   const [emailHovered, setEmailHovered] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
 
@@ -95,12 +99,22 @@ export default function Main() {
   const { copy } = useClipboard();
 
   const handleEmailClick = async () => {
+    if (emailCopyLockRef.current) return;
+    emailCopyLockRef.current = true;
     await copy(EMAIL);
     setEmailCopied(true);
 
-    setTimeout(() => {
+    if (emailCopiedResetTimeoutRef.current) {
+      clearTimeout(emailCopiedResetTimeoutRef.current);
+    }
+    emailCopiedResetTimeoutRef.current = setTimeout(() => {
       setEmailCopied(false);
+      emailCopyLockRef.current = false;
+      emailCopiedResetTimeoutRef.current = null;
     }, 2000);
+
+    playSfxSuccess();
+    haptic();
   };
 
   const handleEmailHover = async () => {
@@ -122,6 +136,11 @@ export default function Main() {
   };
 
   const handleEmailLeave = async () => {
+    if (emailCopiedResetTimeoutRef.current) {
+      clearTimeout(emailCopiedResetTimeoutRef.current);
+      emailCopiedResetTimeoutRef.current = null;
+    }
+    emailCopyLockRef.current = false;
     setEmailCopied(false);
 
     setTimeout(() => {
@@ -284,8 +303,6 @@ export default function Main() {
                       className={clsx(profileLink)}
                       onClick={() => {
                         handleEmailClick();
-                        playSfxSuccess();
-                        haptic();
                       }}
                     >
                       <IoMail className={clsx(profileLinkIcon)} />
@@ -892,8 +909,6 @@ export default function Main() {
               ref={contactRef}
               onClick={() => {
                 handleEmailClick();
-                playSfxSuccess();
-                haptic();
               }}
               onFocus={handleEmailFocus}
               onBlur={handleEmailBlur}
