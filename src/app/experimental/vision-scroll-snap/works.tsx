@@ -29,8 +29,8 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/vision-scroll-snap-mockup.mp4"
               what="創作・アート系画像を全画面表示し、スクロールスナップで切り替えるサンプル"
-              why="scroll-snap-typeの挙動を試すフロントエンド練習として制作しました。ビジュアル訴求のセクションへの応用を想定しています。スクロールホイール操作時のスナップ速度に課題があり、改善を模索中です。"
-              how="Next.js / Tailwind CSS"
+              why="scroll-snap-typeの挙動を試すフロントエンド練習として制作しました。ビジュアル訴求のセクションへの応用を想定しています。マウスホイール操作時のスナップ速度に課題があり、改善を模索中です。JavaScriptで挙動を制御しようと試しましたが、現時点ではCSSのみの方が安定しています。"
+              how="Next.js / TypeScript / Tailwind CSS"
               role={
                 <>
                   Web Design,
