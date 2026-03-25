@@ -8,17 +8,17 @@ export const main = style({
 });
 
 export const name = style({
+  margin: "24vh auto",
+  background: "linear-gradient(135deg, #130059 0%, #26003f 100%)",
+  backgroundClip: "text",
+  paddingBottom: "0.24em",
+  textAlign: "center",
+  lineHeight: "0.76em",
+  letterSpacing: "-0.04em",
   fontSize: "clamp(7.6rem, 16.8vw + 2.4rem, 29.6rem)",
   fontWeight: 700,
-  background: "linear-gradient(135deg, #130059 0%, #26003f 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-  letterSpacing: "-0.04em",
-  lineHeight: "0.76em",
-  textAlign: "center",
-  paddingBottom: "0.24em",
-  margin: "24vh auto",
   "@media": {
     [breakpoints["sm"]]: {
       margin: "33.3vh auto",
@@ -49,21 +49,21 @@ export const animateLine = keyframes({
 });
 export const line = style({
   position: "relative",
-  width: 1,
-  height: 60,
   margin: "0 auto clamp(60px, 5vw, 80px)",
   backgroundColor: "rgba(19, 0, 89, .3)",
+  width: 1,
+  height: 60,
   overflow: "hidden",
   ":before": {
-    content: "",
     position: "absolute",
+    backgroundColor: vars.color.text,
     width: 1,
     height: 60,
-    backgroundColor: vars.color.text,
     animationName: animateLine,
     animationDuration: "1.6s",
     animationTimingFunction: "ease",
     animationIterationCount: "infinite",
+    content: "",
   },
   "@media": {
     [breakpoints["2xl"]]: {
@@ -88,16 +88,16 @@ export const line = style({
 });
 
 export const sectionHeading = style({
+  marginBottom: 16,
+  textAlign: "center",
+  letterSpacing: "-0.02em",
+  color: vars.color.text,
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.02em",
-  textAlign: "center",
-  marginBottom: 16,
   "@media": {
     [breakpoints["xl"]]: {
-      fontSize: "1.4rem",
       marginBottom: 12,
+      fontSize: "1.4rem",
     },
   },
 });
@@ -112,19 +112,19 @@ export const aboutSection = style({
 });
 
 export const description = style({
-  fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
-  fontWeight: 300,
-  color: vars.color.text,
-  lineHeight: 1.7,
-  letterSpacing: "-0.04em",
-  textAlign: "center",
+  transformOrigin: "right bottom",
   marginBottom: 60,
   padding: "0 4vw",
-  transformOrigin: "right bottom",
+  textAlign: "center",
+  lineHeight: 1.7,
+  letterSpacing: "-0.04em",
+  color: vars.color.text,
+  fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
+  fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
-      lineHeight: 1.6,
       marginBottom: 28,
+      lineHeight: 1.6,
     },
   },
 });
@@ -132,15 +132,15 @@ export const description = style({
 export const profileSection = style({
   display: "flex",
   flexDirection: "row-reverse",
-  placeItems: "end",
   justifyContent: "center",
+  placeItems: "end",
   gap: 56,
-  backgroundColor: "rgba(255, 255, 255, .12)",
+  backdropFilter: "blur(8px)",
   margin: "0 auto",
+  borderRadius: 36,
+  backgroundColor: "rgba(255, 255, 255, .12)",
   padding: "66px 12vw",
   maxWidth: 920,
-  borderRadius: 36,
-  backdropFilter: "blur(8px)",
   "@media": {
     [breakpoints["2xl"]]: {
       gap: 52,
@@ -160,9 +160,9 @@ export const profileSection = style({
     },
     [breakpoints["sm"]]: {
       gap: 16,
-      maxWidth: 580,
-      padding: "30px 2vw",
       margin: "0 2vw",
+      padding: "30px 2vw",
+      maxWidth: 580,
     },
   },
 });
@@ -190,11 +190,11 @@ export const profileTextBox = style({
   },
 });
 export const profileName = style({
-  fontSize: "3.7rem",
-  fontWeight: 300,
-  color: vars.color.text,
   letterSpacing: "-0.02em",
   whiteSpace: "nowrap",
+  color: vars.color.text,
+  fontSize: "3.7rem",
+  fontWeight: 300,
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "3.6rem",
@@ -203,7 +203,7 @@ export const profileName = style({
       fontSize: "3.4rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "3.0rem",
+      fontSize: "3rem",
     },
     [breakpoints["sm"]]: {
       fontSize: "2.3rem",
@@ -211,11 +211,11 @@ export const profileName = style({
   },
 });
 export const profileOccupation = style({
+  lineHeight: 1.2,
+  letterSpacing: "-0.02em",
+  color: vars.color.text,
   fontSize: "1.5rem",
   fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.02em",
-  lineHeight: 1.2,
   "@media": {
     [breakpoints["xl"]]: {
       fontSize: "1.4rem",
@@ -224,8 +224,8 @@ export const profileOccupation = style({
       fontSize: "1.3rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.0rem",
       lineHeight: 1.25,
+      fontSize: "1rem",
     },
   },
 });
@@ -242,11 +242,11 @@ export const profileLinkBox = style({
 });
 export const profileLink = style({
   display: "block",
-  backgroundColor: "transparent",
-  border: "none",
-  lineHeight: "100%",
   transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
+  border: "none",
+  backgroundColor: "transparent",
   cursor: "pointer",
+  lineHeight: "100%",
   ":hover": {
     scale: 1.28,
   },
@@ -268,21 +268,21 @@ export const profileLinkIcon = style({
 
 export const profileMore = style({
   position: "relative",
+  textDecoration: "none",
+  letterSpacing: "0.04em",
+  color: vars.color.text,
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "0.04em",
-  textDecoration: "none",
   ":before": {
-    content: "",
     position: "absolute",
+    right: 0,
     bottom: 0,
     left: 0,
-    right: 0,
+    transition: `width ${DURATION_M}s ${CUBIC_BEZIER}`,
+    backgroundColor: vars.color.text,
     width: "100%",
     height: "1px",
-    backgroundColor: vars.color.text,
-    transition: `width ${DURATION_M}s ${CUBIC_BEZIER}`,
+    content: "",
   },
   selectors: {
     "&:focus-visible:before": {
@@ -303,18 +303,18 @@ export const profileMore = style({
 });
 export const profileImageWrapper = style({
   position: "relative",
+  marginLeft: -140,
   width: 200,
   height: 300,
-  marginLeft: -140,
   overflow: "hidden",
   "@media": {
     [breakpoints["2xl"]]: {
       marginLeft: -120,
     },
     [breakpoints["xl"]]: {
+      marginLeft: -96,
       width: 180,
       height: 270,
-      marginLeft: -96,
     },
     [breakpoints["lg"]]: {
       marginLeft: -40,
@@ -323,19 +323,19 @@ export const profileImageWrapper = style({
       marginLeft: -32,
     },
     [breakpoints["sm"]]: {
+      marginLeft: -8,
       width: 120,
       height: 180,
-      marginLeft: -8,
     },
   },
 });
 export const profileImageContainer = style({
+  aspectRatio: 3 / 2,
   position: "relative",
+  borderRadius: 24,
   width: "100%",
   height: "100%",
   overflow: "hidden",
-  borderRadius: 24,
-  aspectRatio: 3 / 2,
   "@media": {
     [breakpoints["sm"]]: {
       borderRadius: 20,
@@ -347,12 +347,12 @@ export const motionDiv = style({
   inset: 0,
 });
 export const profileImage = style({
+  borderRadius: 24,
+  objectFit: "cover",
+  pointerEvents: "none",
   width: "100%",
   height: "auto",
-  objectFit: "cover",
-  borderRadius: 24,
   userSelect: "none",
-  pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
       borderRadius: 20,
@@ -388,11 +388,11 @@ export const worksBox = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
-      margin: "0 2vw",
       gap: 0,
-      backgroundColor: "rgba(255, 255, 255, .12)",
-      borderRadius: 36,
       backdropFilter: "blur(8px)",
+      margin: "0 2vw",
+      borderRadius: 36,
+      backgroundColor: "rgba(255, 255, 255, .12)",
       padding: "0 2vw 28px",
     },
   },
@@ -403,14 +403,14 @@ export const worksItem = style({
   alignItems: "center",
   justifyContent: "start",
   gap: 20,
-  padding: "44px 2vw",
-  backgroundColor: "rgba(255, 255, 255, 0.12)",
-  borderRadius: 36,
   backdropFilter: "blur(8px)",
+  borderRadius: 36,
+  backgroundColor: "rgba(255, 255, 255, 0.12)",
+  padding: "44px 2vw",
   "@media": {
     [breakpoints["xl"]]: {
-      padding: "40px 2vw",
       gap: 12,
+      padding: "40px 2vw",
     },
     [breakpoints["lg"]]: {
       padding: "38px 2vw",
@@ -419,17 +419,17 @@ export const worksItem = style({
       padding: "36px 2vw",
     },
     [breakpoints["sm"]]: {
-      padding: "24px 2vw 0px",
-      backgroundColor: "transparent",
       backdropFilter: "none",
+      backgroundColor: "transparent",
+      padding: "24px 2vw 0px",
     },
   },
 });
 export const worksTextBox = style({
   display: "flex",
   flexDirection: "column-reverse",
-  gap: 4,
   alignItems: "center",
+  gap: 4,
   "@media": {
     [breakpoints["xl"]]: {
       gap: 2,
@@ -437,12 +437,12 @@ export const worksTextBox = style({
   },
 });
 export const worksName = style({
+  textAlign: "center",
+  lineHeight: "1.4em",
+  letterSpacing: "-0.06em",
+  color: vars.color.text,
   fontSize: "1.7rem",
   fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.06em",
-  lineHeight: "1.4em",
-  textAlign: "center",
   "@media": {
     [breakpoints["lg"]]: {
       fontSize: "1.6rem",
@@ -459,10 +459,10 @@ export const worksNameSpan = style({
   display: "block",
 });
 export const worksCategory = style({
-  fontSize: "1.0rem",
-  fontWeight: 300,
-  color: vars.color.text,
   letterSpacing: "-0.06em",
+  color: vars.color.text,
+  fontSize: "1rem",
+  fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
       fontSize: "0.9rem",
@@ -470,9 +470,9 @@ export const worksCategory = style({
   },
 });
 export const worksLink = style({
+  transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
   width: 160,
   height: 160,
-  transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
   ":hover": {
     scale: 1.05,
   },
@@ -495,10 +495,10 @@ export const worksLink = style({
   },
 });
 export const worksIcon = style({
+  pointerEvents: "none",
   width: "100%",
   height: "100%",
   userSelect: "none",
-  pointerEvents: "none",
 });
 
 export const contactSection = style({
@@ -506,8 +506,8 @@ export const contactSection = style({
 });
 
 export const address = style({
-  maxWidth: 920,
   margin: "0 auto",
+  maxWidth: 920,
   "@media": {
     [breakpoints["2xl"]]: {
       maxWidth: 880,
@@ -528,47 +528,47 @@ export const address = style({
 });
 export const emailButton = style({
   display: "flex",
-  justifyContent: "center",
   alignItems: "center",
-  textAlign: "center",
+  justifyContent: "center",
   gap: 22,
+  border: "none",
+  borderRadius: 36,
+  backgroundColor: vars.color.text,
+  cursor: "pointer",
   padding: "200px 8vw",
   width: "100%",
+  textAlign: "center",
+  textDecoration: "none",
+  color: "#130059",
   fontSize: "2.8rem",
   fontWeight: 300,
-  color: "#130059",
-  border: "none",
-  textDecoration: "none",
-  backgroundColor: vars.color.text,
-  borderRadius: 36,
-  cursor: "pointer",
   "@media": {
     [breakpoints["2xl"]]: {
-      fontSize: "2.6rem",
       gap: 20,
+      fontSize: "2.6rem",
     },
     [breakpoints["xl"]]: {
-      fontSize: "2.5rem",
-      padding: "180px 8vw",
       gap: 18,
+      padding: "180px 8vw",
+      fontSize: "2.5rem",
     },
     [breakpoints["lg"]]: {
-      fontSize: "2.3rem",
       gap: 16,
+      fontSize: "2.3rem",
     },
     [breakpoints["md"]]: {
-      fontSize: "1.8rem",
       gap: 14,
+      fontSize: "1.8rem",
     },
     [breakpoints["sm"]]: {
-      fontSize: "1.6rem",
-      padding: "144px 2vw",
       gap: 12,
+      padding: "144px 2vw",
+      fontSize: "1.6rem",
     },
   },
 });
 export const emailButtonHover = style({
-  fontSize: "2.0rem",
+  fontSize: "2rem",
   "@media": {
     [breakpoints["2xl"]]: {
       fontSize: "1.9rem",
@@ -590,14 +590,14 @@ export const emailButtonHover = style({
 export const emailTextBox = style({
   position: "relative",
   display: "flex",
-  justifyContent: "center",
   alignItems: "center",
+  justifyContent: "center",
+  backfaceVisibility: "hidden",
+  transformStyle: "preserve-3d",
   width: "12.8em",
   height: 40,
-  letterSpacing: "-0.01em",
   overflowY: "hidden",
-  transformStyle: "preserve-3d",
-  backfaceVisibility: "hidden",
+  letterSpacing: "-0.01em",
 });
 export const emailTextRotateTop = style({
   position: "absolute",
@@ -605,8 +605,8 @@ export const emailTextRotateTop = style({
   bottom: 0,
   display: "flex",
   placeItems: "center",
-  transformOrigin: "top",
   transform: "rotateX(0deg)",
+  transformOrigin: "top",
   transition: `transform ${DURATION_M}s cubic-bezier(0.78, 0.13, 0.14, 0.84)`,
   selectors: {
     [`${emailButton}:hover &`]: {
@@ -620,8 +620,8 @@ export const emailTextRotateFront = style({
   bottom: 0,
   display: "flex",
   placeItems: "center",
-  transformOrigin: "bottom",
   transform: "rotateX(-90deg) translateZ(60px)",
+  transformOrigin: "bottom",
   transition: `transform ${DURATION_M}s cubic-bezier(0.78, 0.13, 0.14, 0.84)`,
   selectors: {
     [`${emailButton}:hover &`]: {

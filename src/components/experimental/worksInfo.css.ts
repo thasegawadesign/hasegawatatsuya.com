@@ -3,20 +3,20 @@ import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const container = style({
-  position: "relative",
-  overflow: "hidden",
-  borderRadius: "36px 36px 0 0",
   aspectRatio: "auto",
+  position: "relative",
+  borderRadius: "36px 36px 0 0",
+  overflow: "hidden",
 });
 
 export const worksImage = style({
   display: "block",
+  borderRadius: "36px 36px 0 0",
+  objectFit: "cover",
+  pointerEvents: "none",
   width: "100%",
   height: "100%",
-  objectFit: "cover",
-  borderRadius: "36px 36px 0 0",
   userSelect: "none",
-  pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
       borderRadius: "20px 20px 0 0",
@@ -26,12 +26,12 @@ export const worksImage = style({
 
 export const worksVideo = style({
   display: "block",
+  borderRadius: "36px 36px 0 0",
+  objectFit: "cover",
+  pointerEvents: "none",
   width: "100%",
   height: "100%",
-  objectFit: "cover",
-  borderRadius: "36px 36px 0 0",
   userSelect: "none",
-  pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
       borderRadius: "20px 20px 0 0",
@@ -44,20 +44,20 @@ export const hgroupHeading = style({
   marginLeft: "6vw",
 });
 export const hgroupHeadingEn = style({
+  paddingRight: "6vw",
+  lineHeight: "0.8em",
+  letterSpacing: "-0.02em",
+  color: vars.color.text,
   fontSize: "clamp(5.6rem, 12vw, 19rem)",
   fontWeight: 700,
-  color: vars.color.text,
-  paddingRight: "6vw",
-  letterSpacing: "-0.02em",
-  lineHeight: "0.8em",
 });
 export const hgroupHeadingJa = style({
+  marginTop: "4vw",
+  marginLeft: "3.6vw",
+  letterSpacing: "-0.04em",
+  color: vars.color.text,
   fontSize: "clamp(1.6rem, 1.6vw, 2.8rem)",
   fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.04em",
-  marginTop: "4.0vw",
-  marginLeft: "3.6vw",
 });
 
 export const worksDl = style({
@@ -74,13 +74,13 @@ export const worksDlItem = style({
   gap: "2.4vw",
 });
 export const worksDt = style({
+  marginTop: "clamp(0.48rem, 0.5vw, 1.2rem)",
+  width: 48,
+  textAlign: "right",
+  letterSpacing: "-0.04em",
+  color: vars.color.text,
   fontSize: "1.4rem",
   fontWeight: 300,
-  color: vars.color.text,
-  width: 48,
-  letterSpacing: "-0.04em",
-  marginTop: "clamp(0.48rem, 0.5vw, 1.2rem)",
-  textAlign: "right",
   "@media": {
     [breakpoints["xl"]]: {
       width: 40,
@@ -94,12 +94,12 @@ export const worksDt = style({
   },
 });
 export const worksDd = style({
+  width: "40vw",
+  lineHeight: 1.7,
+  letterSpacing: "-0.04em",
+  color: vars.color.text,
   fontSize: "clamp(1.6rem, 1.4vw, 2.3rem)",
   fontWeight: 300,
-  color: vars.color.text,
-  width: "40vw",
-  letterSpacing: "-0.04em",
-  lineHeight: 1.7,
   "@media": {
     [breakpoints["2xl"]]: {
       width: "48vw",
@@ -114,12 +114,12 @@ export const worksDd = style({
   },
 });
 export const worksRole = style({
-  fontSize: "clamp(3.2rem, 3.2vw, 5.2rem)",
-  color: vars.color.text,
-  fontWeight: 500,
+  width: "40vw",
   lineHeight: 1.2,
   letterSpacing: "-0.08em",
-  width: "40vw",
+  color: vars.color.text,
+  fontSize: "clamp(3.2rem, 3.2vw, 5.2rem)",
+  fontWeight: 500,
   "@media": {
     [breakpoints["2xl"]]: {
       width: "48vw",
@@ -135,23 +135,23 @@ export const worksRole = style({
 });
 export const worksLink = style({
   position: "relative",
-  fontWeight: 200,
-  color: vars.color.text,
-  letterSpacing: "-0.04em",
-  textDecoration: "none",
   transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
   overflow: "hidden",
+  textDecoration: "none",
+  letterSpacing: "-0.04em",
+  color: vars.color.text,
+  fontWeight: 200,
   selectors: {
     "&::before": {
-      content: "",
       position: "absolute",
       top: "var(--link-underline-top, clamp(1.6rem, 1.36vw, 3rem))",
       display: "block",
+      transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
+      borderRadius: "0 0 8px 8px",
+      backgroundColor: vars.color.text,
       width: "100%",
       height: 40,
-      backgroundColor: vars.color.text,
-      borderRadius: "0 0 8px 8px",
-      transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
+      content: "",
     },
     "&:focus-visible": {
       paddingBottom: 40,

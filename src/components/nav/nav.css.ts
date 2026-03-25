@@ -4,12 +4,12 @@ import { style } from "@vanilla-extract/css";
 
 export const nav = style({
   position: "fixed",
+  zIndex: 100,
   top: "7vw",
   left: "clamp(40px, 15.2vw, 300px)",
   display: "flex",
   flexDirection: "column",
   gap: 12,
-  zIndex: 100,
   "@media": {
     [breakpoints["2xl"]]: {
       left: "clamp(40px, 9vw, 240px)",
@@ -39,23 +39,23 @@ export const navLinkBox = style({
 });
 export const navLink = style({
   position: "relative",
-  fontSize: "2.0rem",
-  fontWeight: 100,
-  color: vars.color.text,
-  letterSpacing: "0.04em",
-  textDecoration: "none",
   transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
+  textDecoration: "none",
+  letterSpacing: "0.04em",
+  color: vars.color.text,
+  fontSize: "2rem",
+  fontWeight: 100,
   selectors: {
     "&::before": {
-      content: "",
       position: "absolute",
       top: 20,
       display: "block",
+      transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
+      borderRadius: "0 0 8px 8px",
+      backgroundColor: vars.color.text,
       width: "100%",
       height: 20,
-      backgroundColor: vars.color.text,
-      borderRadius: "0 0 8px 8px",
-      transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
+      content: "",
     },
     "&:focus-visible": {
       paddingBottom: 20,
@@ -73,8 +73,8 @@ export const navLink = style({
 });
 
 export const logo = style({
+  textDecoration: "none",
+  color: vars.color.text,
   fontSize: "3.6rem",
   fontWeight: 400,
-  color: vars.color.text,
-  textDecoration: "none",
 });

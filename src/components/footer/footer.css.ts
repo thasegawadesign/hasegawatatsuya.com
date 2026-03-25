@@ -3,9 +3,9 @@ import { style } from "@vanilla-extract/css";
 
 export const footer = style({
   position: "relative",
-  textAlign: "center",
-  paddingBottom: 24,
   zIndex: 50,
+  paddingBottom: 24,
+  textAlign: "center",
   "@media": {
     [breakpoints["md"]]: {
       paddingBottom: 12,
@@ -13,7 +13,7 @@ export const footer = style({
   },
 });
 export const copyRight = style({
-  fontWeight: 300,
   letterSpacing: "-0.02em",
   color: vars.color.text,
+  fontWeight: 300,
 });

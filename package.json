@@ -9,7 +9,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "lint:css": "stylelint --fix **/*.{css,scss,sass}",
+    "lint:css": "stylelint \"**/*.{css,scss,sass}\"",
+    "lint:css:fix": "stylelint --fix \"**/*.{css,scss,sass}\"",
     "typecheck": "tsc -p tsconfig.json",
     "prepare": "husky"
   },
@@ -37,6 +38,8 @@
     "yakuhanjp": "^4.1.1"
   },
   "devDependencies": {
+    "@antebudimir/eslint-plugin-vanilla-extract": "^1.16.0",
+    "@eslint/eslintrc": "^3.3.5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

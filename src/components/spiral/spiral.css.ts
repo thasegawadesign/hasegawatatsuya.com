@@ -8,14 +8,14 @@ const pulse = keyframes({
 });
 
 export const circleBox = style({
+  contain: "layout style paint",
   position: "fixed",
+  zIndex: -100,
   top: 0,
   left: 0,
+  pointerEvents: "none",
   width: "100%",
   height: "100%",
-  contain: "layout style paint",
-  pointerEvents: "none",
-  zIndex: -100,
   "@media": {
     [breakpoints["lg"]]: {
       display: "none",
@@ -23,15 +23,15 @@ export const circleBox = style({
   },
 });
 export const circle = style({
+  contain: "strict",
   position: "absolute",
   top: "-2vw",
   left: "-2vw",
+  transformOrigin: "top left",
+  willChange: "transform, opacity",
   border: "2px solid rgba(233, 129, 255, 0.08)",
   borderRadius: "50%",
   animation: `${pulse} 8s ease-in-out infinite`,
-  transformOrigin: "top left",
-  willChange: "transform, opacity",
-  contain: "strict",
   "@media": {
     "(prefers-reduced-motion: reduce)": {
       animation: "none",

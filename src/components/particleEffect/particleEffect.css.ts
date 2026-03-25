@@ -2,12 +2,12 @@ import { style } from "@vanilla-extract/css";
 
 export const containerStyle = style({
   position: "fixed",
+  zIndex: 100,
   inset: 0,
+  pointerEvents: "none",
   width: "100vw",
   height: "100vh",
   overflow: "hidden",
-  pointerEvents: "none",
-  zIndex: 100,
 });
 
 export const canvasContainerStyle = style({
