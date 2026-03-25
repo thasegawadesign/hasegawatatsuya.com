@@ -113,10 +113,10 @@ export default function WorksInfo(props: Props) {
               aria-label={`${nameJa}の動画`}
               autoPlay
               muted
+              playsInline
               loop
               poster={imageSrc}
               preload="auto"
-              playsInline
             />
           ) : (
             <Image
