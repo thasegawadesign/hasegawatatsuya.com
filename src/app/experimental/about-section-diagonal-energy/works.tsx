@@ -29,7 +29,7 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/about-section-diagonal-energy-mockup.mp4"
               what="日本の運送会社らしい力強さを、斜めレイアウトとタイポグラフィで魅せるAboutセクション"
-              why="現場仕事の力強さを、ダイナミックな斜めレイアウトと力強いタイポグラフィで表現したいと思い制作したAboutセクションです。テキストとロゴ、写真を差し替えるだけで、運送・物流業のコーポレートサイトや採用サイトにすぐに使える構成になっています。自社サイトの印象を一段引き上げたい方は、ぜひご購入をご検討ください。"
+              why="現場仕事の力強さを、ダイナミックな斜めレイアウトと力強いタイポグラフィで表現したいと思い制作したAboutセクションです。テキストとロゴ、写真を差し替えるだけで、運送・物流業のコーポレートサイトや採用サイトにすぐに使える構成になっています。自社サイトの印象を一段引き上げたい方は、ぜひご活用をご検討ください。"
               how="Next.js / Tailwind CSS"
               role={
                 <>
@@ -40,7 +40,7 @@ export default function Works() {
               }
               date="2026.3"
               DemoURL="https://www.about-section-diagonal-energy-demo.vegetworks.com/"
-              BuyURL="https://vegetworks.lemonsqueezy.com/checkout/buy/5fa86ece-aaf6-4bb3-b46d-c028610b8a42"
+              StoreURL="https://vegetworks.gumroad.com/l/about-section-diagonal-energy"
             />
           </main>
           <Footer />

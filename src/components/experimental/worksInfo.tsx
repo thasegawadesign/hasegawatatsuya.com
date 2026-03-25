@@ -43,7 +43,7 @@ interface Props {
   readonly role: string | React.ReactNode;
   readonly date: string | React.ReactNode;
   readonly DemoURL?: string;
-  readonly BuyURL?: string;
+  readonly StoreURL?: string;
 }
 
 export default function WorksInfo(props: Props) {
@@ -62,7 +62,7 @@ export default function WorksInfo(props: Props) {
     role,
     date,
     DemoURL,
-    BuyURL,
+    StoreURL,
   } = props;
 
   const width = useWindowWidth();
@@ -175,7 +175,7 @@ export default function WorksInfo(props: Props) {
             <div ref={worksDemoURLRef} className={clsx(worksDlItem)}>
               <dt
                 className={clsx(roboto.className, worksDt)}
-              >{`${BuyURL ? "Demo" : "URL"} :`}</dt>
+              >{`${StoreURL ? "Demo" : "URL"} :`}</dt>
               <dd className={clsx(worksDd)}>
                 <Link
                   href={DemoURL}
@@ -190,19 +190,19 @@ export default function WorksInfo(props: Props) {
               </dd>
             </div>
           )}
-          {BuyURL && (
+          {StoreURL && (
             <div ref={worksBuyURLRef} className={clsx(worksDlItem)}>
-              <dt className={clsx(roboto.className, worksDt)}>Buy :</dt>
+              <dt className={clsx(roboto.className, worksDt)}>Store :</dt>
               <dd className={clsx(worksDd)}>
                 <Link
-                  href={BuyURL}
+                  href={StoreURL}
                   className={clsx(roboto.className, worksLink)}
-                  style={getUrlLinkStyle(BuyURL)}
+                  style={getUrlLinkStyle(StoreURL)}
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={() => haptic()}
                 >
-                  {BuyURL}
+                  {StoreURL}
                 </Link>
               </dd>
             </div>
