@@ -3,13 +3,13 @@ import { style } from "@vanilla-extract/css";
 
 export const blackHoleContainer = style({
   position: "fixed",
-  bottom: "-2vw",
+  zIndex: -100,
   right: "2vw",
-  justifyContent: "center",
+  bottom: "-2vw",
   alignItems: "center",
+  justifyContent: "center",
   background: "transparent",
   overflow: "hidden",
-  zIndex: -100,
   "@media": {
     [breakpoints["2xl"]]: {
       bottom: 0,

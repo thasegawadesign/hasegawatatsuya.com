@@ -13,8 +13,8 @@ export const aboutHero = style({
   height: 480,
   "@media": {
     [breakpoints["xl"]]: {
-      height: 420,
       margin: "120px auto 60px",
+      height: 420,
     },
     [breakpoints["sm"]]: {
       margin: "108px auto 40px",
@@ -23,10 +23,10 @@ export const aboutHero = style({
 });
 export const nameBox = style({
   position: "absolute",
-  top: 260,
-  left: 0,
-  right: 0,
   zIndex: 50,
+  top: 260,
+  right: 0,
+  left: 0,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -39,33 +39,33 @@ export const nameBox = style({
 });
 export const nameJa = style({
   position: "relative",
-  fontSize: "clamp(4.0rem, 7.5vw + 2.5rem, 15.4rem)",
-  fontWeight: 700,
-  color: vars.color.text,
-  letterSpacing: "-0.16em",
-  marginBottom: "-0.6em",
   zIndex: 50,
+  marginBottom: "-0.6em",
+  letterSpacing: "-0.16em",
+  color: vars.color.text,
+  fontSize: "clamp(4rem, 7.5vw + 2.5rem, 15.4rem)",
+  fontWeight: 700,
 });
 export const nameEn = style({
   position: "relative",
-  fontSize: "clamp(5.2rem, 8.6vw + 2.6rem, 17.6rem)",
-  fontWeight: 700,
-  letterSpacing: "-0.09em",
+  zIndex: 30,
+  background: `linear-gradient(180deg, #111010 0%, #978a7d 38%, ${vars.color.text} 50%)`,
+  padding: "0 16px",
   width: "fit-content",
   height: "1.2em",
-  padding: "0 16px",
-  background: `linear-gradient(180deg, #111010 0%, #978a7d 38%, ${vars.color.text} 50%)`,
+  letterSpacing: "-0.09em",
+  fontSize: "clamp(5.2rem, 8.6vw + 2.6rem, 17.6rem)",
+  fontWeight: 700,
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
-  zIndex: 30,
 });
 export const tilt = style({
   position: "relative",
+  zIndex: 10,
+  margin: "-120px auto",
+  paddingTop: 108,
   width: "100%",
   height: "100vh",
-  paddingTop: 108,
-  margin: "-120px auto",
-  zIndex: 10,
   "@media": {
     [breakpoints["sm"]]: {
       marginTop: -120,
@@ -74,9 +74,9 @@ export const tilt = style({
 });
 export const photoBox = style({
   position: "relative",
+  margin: "0 auto",
   width: 320,
   height: 480,
-  margin: "0 auto",
   "@media": {
     [breakpoints["xl"]]: {
       width: 280,
@@ -93,21 +93,21 @@ export const animatePhoto = keyframes({
 });
 
 export const photo = style({
+  contain: "paint",
   position: "absolute",
   top: 0,
-  left: 0,
   right: 0,
+  left: 0,
   margin: "0 auto",
-  contain: "paint",
   borderRadius: 24,
-  objectFit: "cover",
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
+  objectFit: "cover",
+  pointerEvents: "none",
   animationName: animatePhoto,
   animationDuration: "20s",
   animationTimingFunction: "ease",
   animationIterationCount: "infinite",
   userSelect: "none",
-  pointerEvents: "none",
   "@media": {
     [breakpoints["xl"]]: {
       width: 280,
@@ -118,15 +118,15 @@ export const photo = style({
 
 export const profileLinkBox = style({
   position: "relative",
+  zIndex: 20,
   display: "flex",
-  gap: 16,
   justifyContent: "center",
-  width: "fit-content",
+  gap: 16,
   marginTop: 160,
-  marginLeft: "auto",
   marginRight: "auto",
   marginBottom: "clamp(60px, 5vw, 80px)",
-  zIndex: 20,
+  marginLeft: "auto",
+  width: "fit-content",
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
@@ -135,9 +135,9 @@ export const profileLinkBox = style({
 });
 export const profileLink = style({
   display: "block",
-  backgroundColor: "transparent",
-  border: "none",
   transition: `scale ${DURATION_M}s ${CUBIC_BEZIER}`,
+  border: "none",
+  backgroundColor: "transparent",
   cursor: "pointer",
   ":focus-visible": {
     scale: 1.28,
@@ -164,21 +164,21 @@ export const animateLine = keyframes({
 });
 export const line = style({
   position: "relative",
-  width: 1,
-  height: 60,
   margin: "0 auto clamp(60px, 5vw, 80px)",
   backgroundColor: "rgba(19, 0, 89, .3)",
+  width: 1,
+  height: 60,
   overflow: "hidden",
   ":before": {
-    content: "",
     position: "absolute",
+    backgroundColor: vars.color.text,
     width: 1,
     height: 60,
-    backgroundColor: vars.color.text,
     animationName: animateLine,
     animationDuration: "1.6s",
     animationTimingFunction: "ease",
     animationIterationCount: "infinite",
+    content: "",
   },
   "@media": {
     [breakpoints["2xl"]]: {
@@ -204,27 +204,27 @@ export const line = style({
 
 export const occupation = style({
   position: "relative",
+  zIndex: 20,
+  marginBottom: "clamp(60px, 5vw, 80px)",
+  textAlign: "center",
+  lineHeight: 1.2,
+  letterSpacing: "-0.08em",
+  color: vars.color.text,
   fontSize: "clamp(3.6rem, 3.2vw + 2.8rem, 7.2rem)",
   fontWeight: 500,
-  color: vars.color.text,
-  letterSpacing: "-0.08em",
-  lineHeight: 1.2,
-  textAlign: "center",
-  marginBottom: "clamp(60px, 5vw, 80px)",
-  zIndex: 20,
 });
 
 export const description = style({
   position: "relative",
-  fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
-  fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.04em",
-  lineHeight: 1.7,
-  textAlign: "center",
+  zIndex: 20,
   marginBottom: "clamp(60px, 5vw, 80px)",
   padding: "0 4vw",
-  zIndex: 20,
+  textAlign: "center",
+  lineHeight: 1.7,
+  letterSpacing: "-0.04em",
+  color: vars.color.text,
+  fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
+  fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
       lineHeight: 1.6,
@@ -236,16 +236,16 @@ export const section = style({
   padding: "0 4vw",
 });
 export const sectionHeading = style({
+  marginBottom: 16,
+  textAlign: "center",
+  letterSpacing: "-0.02em",
+  color: vars.color.text,
   fontSize: "1.6rem",
   fontWeight: 300,
-  color: vars.color.text,
-  letterSpacing: "-0.02em",
-  textAlign: "center",
-  marginBottom: 16,
   "@media": {
     [breakpoints["xl"]]: {
-      fontSize: "1.4rem",
       marginBottom: 12,
+      fontSize: "1.4rem",
     },
   },
 });
@@ -255,13 +255,13 @@ export const historySection = style({
 });
 export const history = style({
   position: "relative",
+  zIndex: 20,
   display: "flex",
   flexDirection: "column",
   gap: 16,
-  fontWeight: 300,
-  color: vars.color.text,
   textAlign: "center",
-  zIndex: 20,
+  color: vars.color.text,
+  fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
@@ -274,13 +274,13 @@ export const certificationsSection = style({
 });
 export const certifications = style({
   position: "relative",
+  zIndex: 20,
   display: "flex",
   flexDirection: "column",
   gap: 16,
-  fontWeight: 300,
-  color: vars.color.text,
   textAlign: "center",
-  zIndex: 20,
+  color: vars.color.text,
+  fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
@@ -293,13 +293,13 @@ export const contributionsSection = style({
 });
 export const contributions = style({
   position: "relative",
+  zIndex: 20,
   display: "flex",
   flexDirection: "column",
   gap: 16,
-  fontWeight: 300,
-  color: vars.color.text,
   textAlign: "center",
-  zIndex: 20,
+  color: vars.color.text,
+  fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
@@ -307,13 +307,13 @@ export const contributions = style({
   },
 });
 export const year = style({
-  fontSize: "clamp(1.6rem, 0.72vw + 1.0rem, 2.0rem)",
-  letterSpacing: "-0.02em",
-  lineHeight: 1.2,
   marginBottom: 4,
+  lineHeight: 1.2,
+  letterSpacing: "-0.02em",
+  fontSize: "clamp(1.6rem, 0.72vw + 1rem, 2rem)",
 });
 export const event = style({
-  fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
-  letterSpacing: "-0.04em",
   lineHeight: 1.3,
+  letterSpacing: "-0.04em",
+  fontSize: "clamp(1.8rem, 0.72vw + 1.2rem, 2.4rem)",
 });

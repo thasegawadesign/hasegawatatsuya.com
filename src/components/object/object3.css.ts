@@ -7,14 +7,14 @@ export const animateObject3 = keyframes({
 });
 export const object3 = style({
   position: "fixed",
+  zIndex: -50,
   bottom: "-20%",
   left: "4%",
+  filter: "blur(4px)",
+  borderRadius: "100%",
   background: `radial-gradient(rgba(185, 79, 202, 1), rgba(234, 234, 234, 1))`,
   width: "clamp(300px,28vw,460px)",
   height: "clamp(300px,28vw,460px)",
-  borderRadius: "100%",
-  filter: "blur(4px)",
-  zIndex: -50,
   animationName: animateObject3,
   animationDuration: "24s",
   animationTimingFunction: "ease-in-out",
@@ -25,8 +25,8 @@ export const object3 = style({
       left: "2%",
     },
     [breakpoints["md"]]: {
-      bottom: "0%",
-      left: "-0%",
+      bottom: "0",
+      left: "0",
     },
     [breakpoints["sm"]]: {
       display: "none",

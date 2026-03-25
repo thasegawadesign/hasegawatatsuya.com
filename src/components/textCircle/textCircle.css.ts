@@ -7,16 +7,16 @@ export const rotate = keyframes({
 });
 export const circle = style({
   position: "absolute",
+  zIndex: 100,
   top: "-48px",
   right: "-48px",
   width: 120,
   height: 120,
-  fontSize: "12px",
-  zIndex: 100,
   animationName: rotate,
   animationDuration: "28s",
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
+  fontSize: "12px",
   selectors: {
     "&:hover": {
       animationPlayState: "paused",
@@ -41,7 +41,7 @@ export const circlePath = style({
   fill: "none",
 });
 export const circleText = style({
-  fill: vars.color.text,
-  fontWeight: 300,
   letterSpacing: 1.8,
+  fontWeight: 300,
+  fill: vars.color.text,
 });

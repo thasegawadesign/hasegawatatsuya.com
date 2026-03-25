@@ -1,16 +1,16 @@
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 globalStyle("::selection", {
-  color: "#130059",
   backgroundColor: "#faf1e8",
+  color: "#130059",
 });
 globalStyle("::-webkit-selection", {
-  color: "#130059",
   backgroundColor: "#faf1e8",
+  color: "#130059",
 });
 globalStyle("::-moz-selection", {
-  color: "#130059",
   backgroundColor: "#faf1e8",
+  color: "#130059",
 });
 
 export const html = style({
@@ -32,8 +32,8 @@ export const body = style({
   fontFamily: "YakuHanJP, Noto Sans JP, sans-serif",
   fontWeight: 200,
   "::selection": {
-    color: "#130059",
     backgroundColor: "#faf1e8",
+    color: "#130059",
   },
 });
 
@@ -55,13 +55,13 @@ export const gradientMove = keyframes({
   },
 });
 export const backgroundGradient = style({
+  backgroundAttachment: "fixed",
   backgroundColor: "#106",
   backgroundImage: `
   radial-gradient(at 0 0, #f70, transparent 40%),
   radial-gradient(at 0 40%, #0df, transparent 40%),
   radial-gradient(at 40% 60%, #01f, transparent 80%),
   radial-gradient(at 0 100%, #faa, transparent 50%)`,
-  backgroundAttachment: "fixed",
   backgroundSize: "150% 150%",
   animation: `${gradientMove} 20s ease-in-out infinite`,
 });

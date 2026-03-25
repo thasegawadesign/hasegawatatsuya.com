@@ -8,23 +8,23 @@ export const audioInteract = keyframes({
 });
 export const audioButtonBox = style({
   position: "fixed",
-  bottom: "2vw",
-  right: "2vw",
   zIndex: 100,
+  right: "2vw",
+  bottom: "2vw",
   "@media": {
     [breakpoints["xl"]]: {
-      bottom: "6vw",
       right: "6vw",
+      bottom: "6vw",
     },
   },
 });
 export const audioButton = style({
   display: "block",
-  width: "20px",
-  height: "20px",
-  background: "transparent",
   border: `solid 2px ${vars.color.text}`,
   borderRadius: "100%",
+  background: "transparent",
+  width: "20px",
+  height: "20px",
   animationName: audioInteract,
   animationDuration: "2s",
   animationTimingFunction: "ease",
