@@ -15,13 +15,13 @@ export default function Works() {
           <Header />
           <main className={clsx(main)}>
             <WorksInfo
-              nameJa="非対称ヒーロー"
+              nameJa="大小2枚の非対称ヒーロー"
               nameEn="Editorial Hero Prototype"
               nameJaNode={
                 <>
-                  非対称ヒーロー
+                  大小2枚の
                   <br />
-                  プロトタイプ
+                  非対称ヒーロー
                 </>
               }
               imageSrc="/images/mockups/editorial-hero-prototype-mockup.avif"
