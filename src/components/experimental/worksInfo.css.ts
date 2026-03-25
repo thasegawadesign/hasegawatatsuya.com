@@ -10,10 +10,11 @@ export const container = style({
 });
 
 export const worksImage = style({
+  display: "block",
   width: "100%",
-  height: "auto",
-  borderRadius: "36px 36px 0 0",
+  height: "100%",
   objectFit: "cover",
+  borderRadius: "36px 36px 0 0",
   userSelect: "none",
   pointerEvents: "none",
   "@media": {
@@ -24,10 +25,11 @@ export const worksImage = style({
 });
 
 export const worksVideo = style({
+  display: "block",
   width: "100%",
-  height: "auto",
-  borderRadius: "36px 36px 0 0",
+  height: "100%",
   objectFit: "cover",
+  borderRadius: "36px 36px 0 0",
   userSelect: "none",
   pointerEvents: "none",
   "@media": {

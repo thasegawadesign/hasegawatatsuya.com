@@ -104,8 +104,13 @@ export default function WorksInfo(props: Props) {
 
   return (
     <>
-      <div ref={containerRef} className={clsx(container)}>
-        <motion.div style={{ y }}>
+      <div
+        ref={containerRef}
+        className={clsx(container)}
+        // video/image の高さが確定するようアスペクト比を先に固定する
+        style={{ aspectRatio: `${imageWidth}/${imageHeight}` }}
+      >
+        <motion.div style={{ y, height: "100%" }}>
           {videoSrc ? (
             <video
               src={videoSrc}
