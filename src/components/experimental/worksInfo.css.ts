@@ -23,6 +23,20 @@ export const worksImage = style({
   },
 });
 
+export const worksVideo = style({
+  width: "100%",
+  height: "auto",
+  borderRadius: "36px 36px 0 0",
+  objectFit: "cover",
+  userSelect: "none",
+  pointerEvents: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: "20px 20px 0 0",
+    },
+  },
+});
+
 export const hgroupHeading = style({
   marginTop: "-4vw",
   marginLeft: "6vw",
