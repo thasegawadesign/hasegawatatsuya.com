@@ -7,6 +7,7 @@ import {
   navLogoBox,
 } from "@/components/nav/nav.css";
 import { haptic } from "@/lib/haptic";
+import { playSfxClick } from "@/lib/playSfx";
 import clsx from "clsx";
 import Link from "next/link";
 
@@ -18,7 +19,10 @@ export default function Nav() {
           <Link
             href={"/"}
             className={clsx(roboto.className, logo)}
-            onClick={() => haptic()}
+            onClick={() => {
+              playSfxClick();
+              haptic();
+            }}
           >
             TH
           </Link>
@@ -29,7 +33,10 @@ export default function Nav() {
           <Link
             href={"/about"}
             className={clsx(roboto.className, navLink)}
-            onClick={() => haptic()}
+            onClick={() => {
+              playSfxClick();
+              haptic();
+            }}
           >
             About
           </Link>
@@ -38,7 +45,10 @@ export default function Nav() {
           <Link
             href={"/#works"}
             className={clsx(roboto.className, navLink)}
-            onClick={() => haptic()}
+            onClick={() => {
+              playSfxClick();
+              haptic();
+            }}
           >
             Works
           </Link>
@@ -47,7 +57,10 @@ export default function Nav() {
           <Link
             href={"/#contact"}
             className={clsx(roboto.className, navLink)}
-            onClick={() => haptic()}
+            onClick={() => {
+              playSfxClick();
+              haptic();
+            }}
           >
             Contact
           </Link>

@@ -1,8 +1,3 @@
-let audio: HTMLAudioElement;
-
-export const getAudioInstance = () => {
-  if (!audio) {
-    audio = new Audio("/api/audio");
-  }
-  return audio;
+export const getAudioInstance = (path: string): HTMLAudioElement => {
+  return new Audio(`/api/${path}`);
 };

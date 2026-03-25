@@ -4,6 +4,7 @@ import {
   hamburgerMenuLine,
 } from "@/components/hamburgerMenu/hamburgerMenu.css";
 import { haptic } from "@/lib/haptic";
+import { playSfxClick } from "@/lib/playSfx";
 import clsx from "clsx";
 import { useAtom } from "jotai";
 
@@ -16,6 +17,7 @@ export default function HamburgerMenu() {
       aria-label="メニューを開く"
       onClick={() => {
         setIsOpenHamburgerMenu(true);
+        playSfxClick();
         haptic();
       }}
     >

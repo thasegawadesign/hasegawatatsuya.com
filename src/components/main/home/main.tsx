@@ -60,6 +60,7 @@ import {
 import { useClipboard } from "@/hooks/useClipboard";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
+import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
 import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import gsap from "gsap";
@@ -232,7 +233,10 @@ export default function Main() {
                     aria-label="GitHub"
                     rel="noopener noreferrer"
                     target="_blank"
-                    onClick={() => haptic()}
+                    onClick={() => {
+                      playSfxClick();
+                      haptic();
+                    }}
                   >
                     <FaGithub className={clsx(profileLinkIcon)} />
                   </Link>
@@ -244,7 +248,10 @@ export default function Main() {
                     aria-label="X"
                     rel="noopener noreferrer"
                     target="_blank"
-                    onClick={() => haptic()}
+                    onClick={() => {
+                      playSfxClick();
+                      haptic();
+                    }}
                   >
                     <FaXTwitter className={clsx(profileLinkIcon)} />
                   </Link>
@@ -256,7 +263,10 @@ export default function Main() {
                     aria-label="note"
                     rel="noopener noreferrer"
                     target="_blank"
-                    onClick={() => haptic()}
+                    onClick={() => {
+                      playSfxClick();
+                      haptic();
+                    }}
                   >
                     <Image
                       src="/images/icons/note-icon.svg"
@@ -274,6 +284,7 @@ export default function Main() {
                       className={clsx(profileLink)}
                       onClick={() => {
                         handleEmailClick();
+                        playSfxSuccess();
                         haptic();
                       }}
                     >
@@ -285,7 +296,10 @@ export default function Main() {
               <Link
                 href={"/about"}
                 className={clsx(roboto.className, profileMore)}
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 More
               </Link>
@@ -347,7 +361,10 @@ export default function Main() {
                     3000
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/fukusho-unyu-icon.avif"}
@@ -394,7 +411,10 @@ export default function Main() {
                     3000
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/univearth-icon.avif"}
@@ -441,7 +461,10 @@ export default function Main() {
                     3000
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/tomosho-unyu-icon.avif"}
@@ -484,7 +507,10 @@ export default function Main() {
                     3000
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/fleur-icon.avif"}
@@ -524,7 +550,10 @@ export default function Main() {
                     3000
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/playlist2025-icon.avif"}
@@ -545,7 +574,10 @@ export default function Main() {
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/question-and-answer-icon.avif"}
@@ -566,7 +598,10 @@ export default function Main() {
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/sutememo-icon.avif"}
@@ -587,7 +622,10 @@ export default function Main() {
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/calculator-icon.avif"}
@@ -638,7 +676,10 @@ export default function Main() {
                     4500
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/editorial-hero-prototype-icon.avif"}
@@ -682,7 +723,10 @@ export default function Main() {
                     4500
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={
@@ -730,7 +774,10 @@ export default function Main() {
                     4500
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/vision-scroll-snap-icon.avif"}
@@ -774,7 +821,10 @@ export default function Main() {
                     4500
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/about-section-diagonal-energy-icon.avif"}
@@ -818,7 +868,10 @@ export default function Main() {
                     4500
                   )
                 }
-                onClick={() => haptic()}
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
               >
                 <Image
                   src={"/images/icons/nextjs-splide-carousel-icon.avif"}
@@ -839,6 +892,7 @@ export default function Main() {
               ref={contactRef}
               onClick={() => {
                 handleEmailClick();
+                playSfxSuccess();
                 haptic();
               }}
               onFocus={handleEmailFocus}
