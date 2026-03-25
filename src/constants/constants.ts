@@ -5,6 +5,7 @@ export const EMAIL = "hello@hasegawatatsuya.com";
 
 export const SITE_TITLE_BASE = "ポートフォリオ | 長谷川 達也";
 export const SITE_TITLE_WORKS = "制作実績 | 長谷川 達也";
+export const SITE_TITLE_EXPERIMENTAL = "実験的作品 | 長谷川 達也";
 
 export const DURATION_S = 0.2;
 export const DURATION_M = 0.8;
