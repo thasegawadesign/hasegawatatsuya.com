@@ -1,17 +1,25 @@
 import { getAudioInstance } from "@/lib/getAudioInstance";
 
-let sfxAudio: HTMLAudioElement | null = null;
+const audioByPath: Record<string, HTMLAudioElement | null> = {
+  "sfx/click": null,
+  "sfx/success": null,
+};
+
+function playSfx(path: string) {
+  if (typeof window === "undefined") return;
+
+  if (!audioByPath[path]) audioByPath[path] = getAudioInstance(path);
+  const audio = audioByPath[path]!;
+
+  // 連打でも毎回先頭から鳴らす
+  audio.currentTime = 0;
+  void audio.play().catch(() => {});
+}
 
 export function playSfxClick() {
-  if (typeof window === "undefined") return;
-  if (!sfxAudio) sfxAudio = getAudioInstance("sfx/click");
-  sfxAudio.currentTime = 0;
-  void sfxAudio.play().catch(() => {});
+  playSfx("sfx/click");
 }
 
 export function playSfxSuccess() {
-  if (typeof window === "undefined") return;
-  if (!sfxAudio) sfxAudio = getAudioInstance("sfx/success");
-  sfxAudio.currentTime = 0;
-  void sfxAudio.play().catch(() => {});
+  playSfx("sfx/success");
 }

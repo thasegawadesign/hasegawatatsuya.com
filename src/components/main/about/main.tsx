@@ -38,24 +38,44 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import Tilt from "react-parallax-tilt";
 
 export default function Main() {
+  const [emailCopied, setEmailCopied] = useState(false);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const valueRef = useRef(null);
   const historyRef = useRef(null);
   const certificationsRef = useRef(null);
   const contributionsRef = useRef(null);
+  const emailCopyLockRef = useRef(false);
+  const emailCopiedResetTimeoutRef = useRef<ReturnType<
+    typeof setTimeout
+  > | null>(null);
 
   const { copy } = useClipboard();
 
   const handleEmailClick = async () => {
+    if (emailCopyLockRef.current || emailCopied) return;
+    emailCopyLockRef.current = true;
     await copy(EMAIL);
+    setEmailCopied(true);
+
+    if (emailCopiedResetTimeoutRef.current) {
+      clearTimeout(emailCopiedResetTimeoutRef.current);
+    }
+    emailCopiedResetTimeoutRef.current = setTimeout(() => {
+      setEmailCopied(false);
+      emailCopyLockRef.current = false;
+      emailCopiedResetTimeoutRef.current = null;
+    }, 2000);
+
+    playSfxSuccess();
+    haptic();
   };
 
   useEffect(() => {
@@ -160,8 +180,6 @@ export default function Main() {
                 className={clsx(profileLink)}
                 onClick={() => {
                   handleEmailClick();
-                  playSfxSuccess();
-                  haptic();
                 }}
               >
                 <IoMail className={clsx(profileLinkIcon)} />
