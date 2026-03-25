@@ -13,6 +13,7 @@ import {
   worksImage,
   worksLink,
   worksRole,
+  worksVideo,
 } from "@/components/experimental/worksInfo.css";
 import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/lib/gsap";
@@ -35,6 +36,7 @@ interface Props {
   readonly imageSrc: string;
   readonly imageWidth: number;
   readonly imageHeight: number;
+  readonly videoSrc?: string;
   readonly what: string | React.ReactNode;
   readonly why: string | React.ReactNode;
   readonly how: string | React.ReactNode;
@@ -53,6 +55,7 @@ export default function WorksInfo(props: Props) {
     imageSrc,
     imageWidth,
     imageHeight,
+    videoSrc,
     what,
     why,
     how,
@@ -103,14 +106,28 @@ export default function WorksInfo(props: Props) {
     <>
       <div ref={containerRef} className={clsx(container)}>
         <motion.div style={{ y }}>
-          <Image
-            src={imageSrc}
-            width={imageWidth}
-            height={imageHeight}
-            alt={nameJa}
-            className={clsx(worksImage)}
-            priority
-          />
+          {videoSrc ? (
+            <video
+              src={videoSrc}
+              className={clsx(worksVideo)}
+              aria-label={`${nameJa}の動画`}
+              autoPlay
+              muted
+              loop
+              poster={imageSrc}
+              preload="auto"
+              playsInline
+            />
+          ) : (
+            <Image
+              src={imageSrc}
+              width={imageWidth}
+              height={imageHeight}
+              alt={nameJa}
+              className={clsx(worksImage)}
+              priority
+            />
+          )}
         </motion.div>
       </div>
       <hgroup ref={hgroupRef} className={clsx(hgroupHeading)}>
