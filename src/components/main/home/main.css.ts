@@ -200,9 +200,10 @@ export const profileSection = style({
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
+      justifyContent: "space-between",
       gap: 16,
       margin: "0 2vw",
-      padding: "30px 2vw",
+      padding: "30px 6vw",
       maxWidth: 580,
     },
   },
@@ -214,7 +215,7 @@ export const profileContent = style({
       paddingBottom: 36,
     },
     [breakpoints["sm"]]: {
-      paddingBottom: 12,
+      paddingBottom: 4,
     },
   },
 });
@@ -280,7 +281,7 @@ export const profileLinkBox = style({
     [breakpoints["sm"]]: {
       justifyContent: "flex-end",
       gap: 12,
-      marginBottom: 40,
+      marginBottom: 74,
     },
   },
 });
