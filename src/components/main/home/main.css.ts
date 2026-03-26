@@ -84,6 +84,9 @@ export const line = style({
         height: 40,
       },
     },
+    [breakpoints["sm"]]: {
+      marginLeft: "8vw",
+    },
   },
 });
 
@@ -98,6 +101,42 @@ export const sectionHeading = style({
     [breakpoints["xl"]]: {
       marginBottom: 12,
       fontSize: "1.4rem",
+    },
+  },
+});
+
+export const sectionHeadingAbout = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingLeft: "8vw",
+      textAlign: "left",
+    },
+  },
+});
+
+export const sectionHeadingWorks = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingLeft: "8vw",
+      textAlign: "left",
+    },
+  },
+});
+
+export const sectionHeadingExperimental = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingLeft: "8vw",
+      textAlign: "left",
+    },
+  },
+});
+
+export const sectionHeadingContact = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingLeft: "8vw",
+      textAlign: "left",
     },
   },
 });
@@ -124,6 +163,8 @@ export const description = style({
   "@media": {
     [breakpoints["sm"]]: {
       marginBottom: 28,
+      paddingLeft: "8vw",
+      textAlign: "left",
       lineHeight: 1.6,
     },
   },
@@ -173,7 +214,7 @@ export const profileContent = style({
       paddingBottom: 36,
     },
     [breakpoints["sm"]]: {
-      paddingBottom: 20,
+      paddingBottom: 12,
     },
   },
 });
@@ -206,6 +247,7 @@ export const profileName = style({
       fontSize: "3rem",
     },
     [breakpoints["sm"]]: {
+      textAlign: "right",
       fontSize: "2.3rem",
     },
   },
@@ -224,6 +266,7 @@ export const profileOccupation = style({
       fontSize: "1.3rem",
     },
     [breakpoints["sm"]]: {
+      textAlign: "right",
       lineHeight: 1.25,
       fontSize: "1rem",
     },
@@ -235,8 +278,9 @@ export const profileLinkBox = style({
   marginBottom: 56,
   "@media": {
     [breakpoints["sm"]]: {
+      justifyContent: "flex-end",
       gap: 12,
-      marginBottom: 28,
+      marginBottom: 40,
     },
   },
 });
@@ -268,6 +312,7 @@ export const profileLinkIcon = style({
 
 export const profileMore = style({
   position: "relative",
+  display: "inline-block",
   textDecoration: "none",
   letterSpacing: "0.04em",
   color: vars.color.text,
@@ -297,6 +342,9 @@ export const profileMore = style({
       fontSize: "1.5rem",
     },
     [breakpoints["sm"]]: {
+      display: "block",
+      marginLeft: "auto",
+      width: "fit-content",
       fontSize: "1.2rem",
     },
   },
