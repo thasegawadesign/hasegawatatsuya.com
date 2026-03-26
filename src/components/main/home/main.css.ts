@@ -215,7 +215,7 @@ export const profileContent = style({
       paddingBottom: 36,
     },
     [breakpoints["sm"]]: {
-      paddingBottom: 4,
+      paddingBottom: 6,
     },
   },
 });
@@ -372,7 +372,7 @@ export const profileImageWrapper = style({
       marginLeft: -32,
     },
     [breakpoints["sm"]]: {
-      marginLeft: -8,
+      marginLeft: 0,
       width: 120,
       height: 180,
     },
