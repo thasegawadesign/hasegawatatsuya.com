@@ -213,8 +213,8 @@ export const occupation = style({
   lineHeight: 1.2,
   letterSpacing: "-0.08em",
   color: vars.color.text,
-  fontSize: "clamp(3.6rem, 3.2vw + 2.8rem, 7.2rem)",
-  fontWeight: 500,
+  fontSize: "clamp(3.2rem, 3.6vw + 2.4rem, 7.2rem)",
+  fontWeight: 600,
   "@media": {
     [breakpoints["sm"]]: {
       marginLeft: "8vw",
