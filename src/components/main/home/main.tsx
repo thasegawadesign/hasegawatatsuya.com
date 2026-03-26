@@ -31,6 +31,10 @@ import {
   profileSection,
   profileTextBox,
   sectionHeading,
+  sectionHeadingAbout,
+  sectionHeadingContact,
+  sectionHeadingExperimental,
+  sectionHeadingWorks,
   worksBox,
   worksCategory,
   worksIcon,
@@ -207,8 +211,16 @@ export default function Main() {
         </h1>
         <div className={clsx(line)}></div>
         <section id="about" className={clsx(aboutSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
-          <p className={clsx(description)} ref={descriptionRef}>
+          <h2
+            className={clsx(
+              roboto.className,
+              sectionHeading,
+              sectionHeadingAbout
+            )}
+          >
+            About
+          </h2>
+          <p ref={descriptionRef} className={clsx(description)}>
             Webデザイナー、
             <br className={mobileBr} />
             フロントエンドエンジニア <br className={mobileBr} />
@@ -340,7 +352,15 @@ export default function Main() {
           </section>
         </section>
         <section id="works" className={clsx(worksSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
+          <h2
+            className={clsx(
+              roboto.className,
+              sectionHeading,
+              sectionHeadingWorks
+            )}
+          >
+            Works
+          </h2>
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem01Ref}>
               <div className={clsx(worksTextBox)}>
@@ -656,7 +676,13 @@ export default function Main() {
           </div>
         </section>
         <section id="experimental" className={clsx(worksSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading)}>
+          <h2
+            className={clsx(
+              roboto.className,
+              sectionHeading,
+              sectionHeadingExperimental
+            )}
+          >
             Experimental
           </h2>
           <div className={clsx(worksBox)}>
@@ -902,7 +928,15 @@ export default function Main() {
           </div>
         </section>
         <section id="contact" className={clsx(contactSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
+          <h2
+            className={clsx(
+              roboto.className,
+              sectionHeading,
+              sectionHeadingContact
+            )}
+          >
+            Contact
+          </h2>
           <address className={clsx(address)}>
             <button
               className={clsx(emailButton)}

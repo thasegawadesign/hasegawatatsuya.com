@@ -199,6 +199,9 @@ export const line = style({
         height: 40,
       },
     },
+    [breakpoints["sm"]]: {
+      marginLeft: "8vw",
+    },
   },
 });
 
@@ -212,6 +215,12 @@ export const occupation = style({
   color: vars.color.text,
   fontSize: "clamp(3.6rem, 3.2vw + 2.8rem, 7.2rem)",
   fontWeight: 500,
+  "@media": {
+    [breakpoints["sm"]]: {
+      marginLeft: "8vw",
+      textAlign: "left",
+    },
+  },
 });
 
 export const description = style({
@@ -227,6 +236,8 @@ export const description = style({
   fontWeight: 300,
   "@media": {
     [breakpoints["sm"]]: {
+      padding: "0 8vw",
+      textAlign: "left",
       lineHeight: 1.6,
     },
   },
@@ -234,6 +245,11 @@ export const description = style({
 
 export const section = style({
   padding: "0 4vw",
+  "@media": {
+    [breakpoints["sm"]]: {
+      padding: "0 8vw",
+    },
+  },
 });
 export const sectionHeading = style({
   marginBottom: 16,
@@ -246,6 +262,9 @@ export const sectionHeading = style({
     [breakpoints["xl"]]: {
       marginBottom: 12,
       fontSize: "1.4rem",
+    },
+    [breakpoints["sm"]]: {
+      textAlign: "left",
     },
   },
 });
@@ -265,6 +284,7 @@ export const history = style({
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
+      textAlign: "left",
     },
   },
 });
@@ -284,6 +304,7 @@ export const certifications = style({
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
+      textAlign: "left",
     },
   },
 });
@@ -303,6 +324,7 @@ export const contributions = style({
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
+      textAlign: "left",
     },
   },
 });
