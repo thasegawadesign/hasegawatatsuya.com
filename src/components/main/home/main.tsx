@@ -343,8 +343,8 @@ export default function Main() {
                     src={"/images/photo.avif"}
                     alt="長谷川達也"
                     className={clsx(profileImage)}
-                    view-transition-name={"photo"}
                     fill
+                    sizes="(max-width: 640px) 120px, (max-width: 1280px) 180px, 200px"
                   />
                 </motion.div>
               </div>
