@@ -1,0 +1,14 @@
+@property --photo-rotate {
+  inherits: false;
+  initial-value: 132deg;
+  syntax: "<angle>";
+}
+
+@keyframes photoMagicSpin {
+  from {
+    --photo-rotate: 0deg;
+  }
+  to {
+    --photo-rotate: 360deg;
+  }
+}

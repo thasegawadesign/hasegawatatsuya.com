@@ -84,36 +84,70 @@ export const photoBox = style({
     },
   },
 });
-export const animatePhoto = keyframes({
-  "0%": { transform: "rotate(0)" },
-  "25%": { transform: "rotate(5deg)" },
-  "50%": { transform: "rotate(0)" },
-  "75%": { transform: "rotate(-5deg)" },
-  "100%": { transform: "rotate(0)" },
+export const photoMagic = style({
+  boxSizing: "border-box",
+  position: "relative",
+  isolation: "isolate",
+  borderRadius: 24,
+  padding: 3,
+  width: "100%",
+  height: "100%",
+  selectors: {
+    "&::before": {
+      position: "absolute",
+      zIndex: -1,
+      inset: "-4px",
+      borderRadius: 30,
+      background:
+        "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
+      animation: "photoMagicSpin 12s linear infinite",
+      content: '""',
+    },
+    "&::after": {
+      position: "absolute",
+      zIndex: -2,
+      inset: "-4px",
+      transform: "scale(0.96)",
+      opacity: 0.75,
+      filter: "blur(36px)",
+      borderRadius: 30,
+      background:
+        "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
+      animation: "photoMagicSpin 12s linear infinite",
+      content: '""',
+    },
+  },
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      selectors: {
+        "&::before, &::after": {
+          animation: "none",
+        },
+      },
+    },
+  },
+});
+
+export const photoMagicInner = style({
+  position: "relative",
+  zIndex: 1,
+  borderRadius: 24,
+  backgroundColor: "#121010",
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
 });
 
 export const photo = style({
   contain: "paint",
-  position: "absolute",
-  top: 0,
-  right: 0,
-  left: 0,
-  margin: "0 auto",
+  display: "block",
   borderRadius: 24,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
   pointerEvents: "none",
-  animationName: animatePhoto,
-  animationDuration: "20s",
-  animationTimingFunction: "ease",
-  animationIterationCount: "infinite",
+  width: "100%",
+  height: "100%",
   userSelect: "none",
-  "@media": {
-    [breakpoints["xl"]]: {
-      width: 280,
-      height: 420,
-    },
-  },
 });
 
 export const profileLinkBox = style({
