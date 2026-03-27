@@ -60,7 +60,7 @@ export const nameJa = style({
 export const nameEn = style({
   position: "relative",
   zIndex: 30,
-  background: `linear-gradient(180deg, #111010 0%, #978a7d 38%, ${vars.color.text} 50%)`,
+  background: `linear-gradient(180deg, #1f255f 0%, #6a748a 40%, ${vars.color.text} 50%)`,
   padding: "0 16px",
   width: "fit-content",
   height: "1.2em",
@@ -98,16 +98,19 @@ export const photoBox = style({
 export const photoMagic = style({
   boxSizing: "border-box",
   position: "relative",
-  isolation: "isolate",
+  backfaceVisibility: "hidden",
   borderRadius: 24,
-  padding: 3,
+  padding: 6,
   width: "100%",
   height: "100%",
+  overflow: "hidden",
+  WebkitBackfaceVisibility: "hidden",
   selectors: {
     "&::before": {
       position: "absolute",
-      zIndex: -1,
+      zIndex: 1,
       inset: "-4px",
+      transform: "translateZ(0)",
       borderRadius: 30,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
@@ -116,9 +119,9 @@ export const photoMagic = style({
     },
     "&::after": {
       position: "absolute",
-      zIndex: -2,
+      zIndex: 0,
       inset: "-4px",
-      transform: "scale(0.96)",
+      transform: "translateZ(0) scale(0.96)",
       opacity: 0.75,
       filter: "blur(36px)",
       borderRadius: 30,
@@ -128,7 +131,17 @@ export const photoMagic = style({
       content: '""',
     },
   },
+
   "@media": {
+    [breakpoints["sm"]]: {
+      padding: 4,
+      ":before": {
+        borderRadius: 28,
+      },
+      ":after": {
+        borderRadius: 28,
+      },
+    },
     "(prefers-reduced-motion: reduce)": {
       selectors: {
         "&::before, &::after": {
@@ -141,18 +154,19 @@ export const photoMagic = style({
 
 export const photoMagicInner = style({
   position: "relative",
-  zIndex: 1,
-  borderRadius: 24,
+  zIndex: 2,
+  backfaceVisibility: "hidden",
+  borderRadius: 21,
   backgroundColor: "#121010",
   width: "100%",
   height: "100%",
   overflow: "hidden",
+  WebkitBackfaceVisibility: "hidden",
 });
 
 export const photo = style({
-  contain: "paint",
   display: "block",
-  borderRadius: 24,
+  borderRadius: 21,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
   pointerEvents: "none",
