@@ -19,6 +19,8 @@ import {
   occupation,
   photo,
   photoBox,
+  photoMagic,
+  photoMagicInner,
   profileLink,
   profileLinkBox,
   profileLinkIcon,
@@ -27,6 +29,7 @@ import {
   tilt,
   year,
 } from "@/components/main/about/main.css";
+import "@/components/main/about/photo-magic.css";
 import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
@@ -112,14 +115,18 @@ export default function Main() {
             className={clsx(tilt)}
           >
             <div className={clsx(photoBox)}>
-              <Image
-                src={"/images/photo.avif"}
-                width={320}
-                height={480}
-                alt="長谷川達也"
-                className={photo}
-                priority
-              />
+              <div className={clsx(photoMagic)}>
+                <div className={clsx(photoMagicInner)}>
+                  <Image
+                    src={"/images/photo.avif"}
+                    width={320}
+                    height={480}
+                    alt="長谷川達也"
+                    className={photo}
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </Tilt>
         </section>
