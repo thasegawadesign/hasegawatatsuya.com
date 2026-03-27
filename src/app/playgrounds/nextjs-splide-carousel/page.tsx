@@ -1,14 +1,14 @@
-import Works from "@/app/experimental/vision-scroll-snap/works";
+import Works from "@/app/playgrounds/nextjs-splide-carousel/works";
 import { SITE_TITLE_EXPERIMENTAL } from "@/constants/constants";
 import { Metadata } from "next";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: `Visionスクロールスナップ | ${SITE_TITLE_EXPERIMENTAL}`,
+  title: `アクセシブルなSplideカルーセル | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function VisionScrollSnapPage() {
+export default function NextjsSplideCarouselPage() {
   return (
     <>
       <Works />

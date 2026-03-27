@@ -55,6 +55,18 @@ export default function Nav() {
         </li>
         <li>
           <Link
+            href={"/#playgrounds"}
+            className={clsx(roboto.className, navLink)}
+            onClick={() => {
+              playSfxClick();
+              haptic();
+            }}
+          >
+            Playgrounds
+          </Link>
+        </li>
+        <li>
+          <Link
             href={"/#contact"}
             className={clsx(roboto.className, navLink)}
             onClick={() => {

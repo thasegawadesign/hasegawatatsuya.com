@@ -25,6 +25,7 @@ export default function MobileNav() {
   const mobileNavHomeLinkRef = useRef(null);
   const mobileNavAboutLinkRef = useRef(null);
   const mobileNavWorksLinkRef = useRef(null);
+  const mobileNavPlaygroundsLinkRef = useRef(null);
   const mobileNavContactLinkRef = useRef(null);
 
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
@@ -56,6 +57,11 @@ export default function MobileNav() {
       );
       gsap.fromTo(
         mobileNavWorksLinkRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out" }
+      );
+      gsap.fromTo(
+        mobileNavPlaygroundsLinkRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 1.5, ease: "power2.out" }
       );
@@ -132,6 +138,20 @@ export default function MobileNav() {
               }}
             >
               Works
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/#playgrounds"}
+              ref={mobileNavPlaygroundsLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+                playSfxClick();
+                haptic();
+              }}
+            >
+              Playgrounds
             </Link>
           </li>
           <li>
