@@ -131,7 +131,17 @@ export const photoMagic = style({
       content: '""',
     },
   },
+
   "@media": {
+    [breakpoints["sm"]]: {
+      padding: 4,
+      ":before": {
+        borderRadius: 28,
+      },
+      ":after": {
+        borderRadius: 28,
+      },
+    },
     "(prefers-reduced-motion: reduce)": {
       selectors: {
         "&::before, &::after": {
