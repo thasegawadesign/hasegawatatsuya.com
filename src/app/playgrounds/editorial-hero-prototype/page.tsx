@@ -1,14 +1,14 @@
-import Works from "@/app/experimental/customer-voice-carousel-prototype/works";
+import Works from "@/app/playgrounds/editorial-hero-prototype/works";
 import { SITE_TITLE_EXPERIMENTAL } from "@/constants/constants";
 import { Metadata } from "next";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: `お客様の声カルーセル | ${SITE_TITLE_EXPERIMENTAL}`,
+  title: `大小2枚の非対称ヒーロー | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function CustomerVoiceCarouselPrototypePage() {
+export default function EditorialHeroPage() {
   return (
     <>
       <Works />

@@ -25,6 +25,7 @@ export default function MobileNav() {
   const mobileNavHomeLinkRef = useRef(null);
   const mobileNavAboutLinkRef = useRef(null);
   const mobileNavWorksLinkRef = useRef(null);
+  const mobileNavPlaygroundsLinkRef = useRef(null);
   const mobileNavContactLinkRef = useRef(null);
 
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
@@ -44,26 +45,19 @@ export default function MobileNav() {
     if (isOpenHamburgerMenu) {
       document.addEventListener("wheel", noscroll, { passive: false });
       document.addEventListener("touchmove", noscroll, { passive: false });
-      gsap.fromTo(
-        mobileNavHomeLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-      gsap.fromTo(
-        mobileNavAboutLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-      gsap.fromTo(
-        mobileNavWorksLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
-      gsap.fromTo(
-        mobileNavContactLinkRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.out" }
-      );
+
+      const navLinkRefs = [
+        mobileNavHomeLinkRef,
+        mobileNavAboutLinkRef,
+        mobileNavWorksLinkRef,
+        mobileNavPlaygroundsLinkRef,
+        mobileNavContactLinkRef,
+      ];
+      const linkAnimation = { opacity: 1, duration: 1.5, ease: "power2.out" };
+
+      navLinkRefs.forEach((linkRef) => {
+        gsap.fromTo(linkRef.current, { opacity: 0 }, linkAnimation);
+      });
     } else {
       document.removeEventListener("wheel", noscroll);
       document.removeEventListener("touchmove", noscroll);
@@ -132,6 +126,20 @@ export default function MobileNav() {
               }}
             >
               Works
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/#playgrounds"}
+              ref={mobileNavPlaygroundsLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+                playSfxClick();
+                haptic();
+              }}
+            >
+              Playgrounds
             </Link>
           </li>
           <li>

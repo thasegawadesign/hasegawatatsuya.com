@@ -1,4 +1,4 @@
-import Works from "@/app/experimental/about-section-diagonal-energy/works";
+import Works from "@/app/playgrounds/about-section-diagonal-energy/works";
 import { SITE_TITLE_EXPERIMENTAL } from "@/constants/constants";
 import { Metadata } from "next";
 

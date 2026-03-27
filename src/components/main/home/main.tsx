@@ -675,7 +675,7 @@ export default function Main() {
             </section>
           </div>
         </section>
-        <section id="experimental" className={clsx(worksSection)}>
+        <section id="playgrounds" className={clsx(worksSection)}>
           <h2
             className={clsx(
               roboto.className,
@@ -683,7 +683,7 @@ export default function Main() {
               sectionHeadingExperimental
             )}
           >
-            Experimental
+            Playgrounds
           </h2>
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
