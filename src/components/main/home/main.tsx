@@ -696,17 +696,37 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"https://www.moire-playground.vegetworks.com"}
+                href={"/playgrounds/moire-playground"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
-                target="_blank"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/moire-playground-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/moire-playground-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/moire-playground-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
                 }}
               >
                 <Image
-                  src={"/images/icons/moire-playground-icon.avif"}
+                  src={"/images/icons/moire-playground-icon.svg"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
