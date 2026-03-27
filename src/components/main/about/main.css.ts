@@ -60,7 +60,7 @@ export const nameJa = style({
 export const nameEn = style({
   position: "relative",
   zIndex: 30,
-  background: `linear-gradient(180deg, #111010 0%, #978a7d 38%, ${vars.color.text} 50%)`,
+  background: `linear-gradient(180deg, #1f255f 0%, #6a748a 40%, ${vars.color.text} 50%)`,
   padding: "0 16px",
   width: "fit-content",
   height: "1.2em",
