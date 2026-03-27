@@ -1,12 +1,18 @@
 "use client";
 
 import { circle, circleBox } from "@/components/spiral/spiral.css";
-import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function Spiral() {
-  const width = useWindowWidth();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const update = () => setWidth(window.innerWidth);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const circles = useMemo(() => {
     const length =
