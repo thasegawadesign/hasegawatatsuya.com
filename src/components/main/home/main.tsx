@@ -695,7 +695,7 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"/experimental/editorial-hero-prototype"}
+                href={"/playgrounds/editorial-hero-prototype"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -742,7 +742,7 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"/experimental/customer-voice-carousel-prototype"}
+                href={"/playgrounds/customer-voice-carousel-prototype"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -793,7 +793,7 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"/experimental/vision-scroll-snap"}
+                href={"/playgrounds/vision-scroll-snap"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -840,7 +840,7 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"/experimental/about-section-diagonal-energy"}
+                href={"/playgrounds/about-section-diagonal-energy"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -887,7 +887,7 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"/experimental/nextjs-splide-carousel"}
+                href={"/playgrounds/nextjs-splide-carousel"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
