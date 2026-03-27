@@ -98,12 +98,13 @@ export const photoBox = style({
 export const photoMagic = style({
   boxSizing: "border-box",
   position: "relative",
+  isolation: "isolate",
   backfaceVisibility: "hidden",
   borderRadius: 24,
-  padding: 5,
+  padding: 4,
   width: "100%",
   height: "100%",
-  overflow: "hidden",
+  overflow: "visible",
   WebkitBackfaceVisibility: "hidden",
   selectors: {
     "&::before": {
@@ -111,7 +112,7 @@ export const photoMagic = style({
       zIndex: 1,
       inset: "-4px",
       transform: "translateZ(0)",
-      borderRadius: 29,
+      borderRadius: 28,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
       animation: `${photoMagicSpin} 12s linear infinite`,
@@ -120,13 +121,14 @@ export const photoMagic = style({
     "&::after": {
       position: "absolute",
       zIndex: 0,
-      inset: "-4px",
+      inset: "-20px",
       transform: "translateZ(0) scale(0.96)",
-      opacity: 0.75,
-      filter: "blur(36px)",
-      borderRadius: 29,
+      opacity: 0.82,
+      filter: "blur(60px)",
+      borderRadius: 32,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
+      pointerEvents: "none",
       animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
     },
