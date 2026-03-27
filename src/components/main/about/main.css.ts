@@ -100,7 +100,7 @@ export const photoMagic = style({
   position: "relative",
   backfaceVisibility: "hidden",
   borderRadius: 24,
-  padding: 6,
+  padding: 5,
   width: "100%",
   height: "100%",
   overflow: "hidden",
@@ -111,7 +111,7 @@ export const photoMagic = style({
       zIndex: 1,
       inset: "-4px",
       transform: "translateZ(0)",
-      borderRadius: 30,
+      borderRadius: 29,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
       animation: `${photoMagicSpin} 12s linear infinite`,
@@ -124,24 +124,14 @@ export const photoMagic = style({
       transform: "translateZ(0) scale(0.96)",
       opacity: 0.75,
       filter: "blur(36px)",
-      borderRadius: 30,
+      borderRadius: 29,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
       animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
     },
   },
-
   "@media": {
-    [breakpoints["sm"]]: {
-      padding: 4,
-      ":before": {
-        borderRadius: 28,
-      },
-      ":after": {
-        borderRadius: 28,
-      },
-    },
     "(prefers-reduced-motion: reduce)": {
       selectors: {
         "&::before, &::after": {
