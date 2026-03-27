@@ -1,6 +1,17 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
-import { keyframes, style } from "@vanilla-extract/css";
+import { globalStyle, keyframes, style } from "@vanilla-extract/css";
+
+globalStyle("@property --photo-rotate", {
+  syntax: '"<angle>"',
+  initialValue: "132deg",
+  inherits: false,
+} as Parameters<typeof globalStyle>[1]);
+
+const photoMagicSpin = keyframes({
+  from: { ["--photo-rotate"]: "0deg" } as Record<string, string>,
+  to: { ["--photo-rotate"]: "360deg" } as Record<string, string>,
+});
 
 export const main = style({
   position: "relative",
@@ -100,7 +111,7 @@ export const photoMagic = style({
       borderRadius: 30,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
-      animation: "photoMagicSpin 12s linear infinite",
+      animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
     },
     "&::after": {
@@ -113,7 +124,7 @@ export const photoMagic = style({
       borderRadius: 30,
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
-      animation: "photoMagicSpin 12s linear infinite",
+      animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
     },
   },

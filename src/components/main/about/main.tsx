@@ -29,7 +29,6 @@ import {
   tilt,
   year,
 } from "@/components/main/about/main.css";
-import "@/components/main/about/photo-magic.css";
 import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
