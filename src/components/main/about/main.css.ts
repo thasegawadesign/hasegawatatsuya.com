@@ -19,8 +19,8 @@ const photoMagicSpin = keyframes({
 });
 
 const photoBrighten = keyframes({
-  from: { filter: "brightness(0.88)" },
-  to: { filter: "brightness(1.16)" },
+  from: { filter: "brightness(1)" },
+  to: { filter: "brightness(1.12)" },
 });
 
 export const main = style({
@@ -179,21 +179,21 @@ export const photo = style({
   userSelect: "none",
 });
 
-/** 初回フルロードで /about を開いたとき、シェーダー表示前 */
-export const photoDim = style({
-  filter: "brightness(0.88)",
+/** 初回フルロードで /about を開いたとき、リビール同期・明るさアニメの開始前 */
+export const photoPreReveal = style({
+  filter: "brightness(1)",
 });
 
 /** / などからクライアント遷移で /about に来たとき（読み込み時の同期アニメなし） */
 export const photoStaticBright = style({
-  filter: "brightness(1.16)",
+  filter: "brightness(1.12)",
 });
 
 export const photoRevealActive = style({
   animation: `${photoBrighten} ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING} forwards`,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
-      filter: "brightness(1.16)",
+      filter: "brightness(1.12)",
       animation: "none",
     },
   },
