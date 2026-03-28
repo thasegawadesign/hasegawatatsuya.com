@@ -385,17 +385,6 @@ export const profileImageContainer = style({
   width: "100%",
   height: "100%",
   overflow: "hidden",
-  selectors: {
-    "&::after": {
-      position: "absolute",
-      zIndex: 1,
-      inset: 0,
-      borderRadius: "inherit",
-      backgroundColor: "rgba(255, 255, 255, 0.08)",
-      pointerEvents: "none",
-      content: '""',
-    },
-  },
   "@media": {
     [breakpoints["sm"]]: {
       borderRadius: 20,
@@ -408,6 +397,7 @@ export const motionDiv = style({
   inset: 0,
 });
 export const profileImage = style({
+  filter: "brightness(1.1)",
   borderRadius: 24,
   objectFit: "cover",
   pointerEvents: "none",

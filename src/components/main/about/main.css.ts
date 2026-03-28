@@ -154,23 +154,13 @@ export const photoMagicInner = style({
   height: "100%",
   overflow: "hidden",
   WebkitBackfaceVisibility: "hidden",
-  selectors: {
-    "&::after": {
-      position: "absolute",
-      zIndex: 1,
-      inset: 0,
-      borderRadius: 20,
-      backgroundColor: "rgba(255, 255, 255, 0.08)",
-      pointerEvents: "none",
-      content: '""',
-    },
-  },
 });
 
 export const photo = style({
   position: "relative",
   zIndex: 0,
   display: "block",
+  filter: "brightness(1.1)",
   borderRadius: 20,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
