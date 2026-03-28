@@ -20,7 +20,7 @@ const photoMagicSpin = keyframes({
 
 const photoBrighten = keyframes({
   from: { filter: "brightness(1)" },
-  to: { filter: "brightness(1.12)" },
+  to: { filter: "brightness(1.16)" },
 });
 
 export const main = style({
@@ -186,14 +186,14 @@ export const photoPreReveal = style({
 
 /** / などからクライアント遷移で /about に来たとき（読み込み時の同期アニメなし） */
 export const photoStaticBright = style({
-  filter: "brightness(1.12)",
+  filter: "brightness(1.16)",
 });
 
 export const photoRevealActive = style({
   animation: `${photoBrighten} ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING} forwards`,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
-      filter: "brightness(1.12)",
+      filter: "brightness(1.16)",
       animation: "none",
     },
   },
