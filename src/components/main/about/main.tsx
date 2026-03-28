@@ -19,7 +19,7 @@ import {
   occupation,
   photo,
   photoBox,
-  photoDim,
+  photoPreReveal,
   photoMagic,
   photoMagicInner,
   photoRevealActive,
@@ -149,7 +149,9 @@ export default function Main() {
                     className={clsx(
                       photo,
                       skipPhotoRevealAnimation && photoStaticBright,
-                      !skipPhotoRevealAnimation && !photoRevealSync && photoDim,
+                      !skipPhotoRevealAnimation &&
+                        !photoRevealSync &&
+                        photoPreReveal,
                       !skipPhotoRevealAnimation &&
                         photoRevealSync &&
                         photoRevealActive
