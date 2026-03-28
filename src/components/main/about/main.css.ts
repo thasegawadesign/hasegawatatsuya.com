@@ -1,4 +1,9 @@
-import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
+import {
+  CUBIC_BEZIER,
+  DURATION_M,
+  LIQUID_REVEAL_DURATION_S,
+  LIQUID_REVEAL_EASING,
+} from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
@@ -11,6 +16,11 @@ globalStyle("@property --photo-rotate", {
 const photoMagicSpin = keyframes({
   from: { ["--photo-rotate"]: "0deg" } as Record<string, string>,
   to: { ["--photo-rotate"]: "360deg" } as Record<string, string>,
+});
+
+const photoBrighten = keyframes({
+  from: { filter: "brightness(0.88)" },
+  to: { filter: "brightness(1.16)" },
 });
 
 export const main = style({
@@ -160,7 +170,6 @@ export const photo = style({
   position: "relative",
   zIndex: 0,
   display: "block",
-  filter: "brightness(1.16)",
   borderRadius: 20,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
@@ -168,6 +177,26 @@ export const photo = style({
   width: "100%",
   height: "100%",
   userSelect: "none",
+});
+
+/** 初回フルロードで /about を開いたとき、シェーダー表示前 */
+export const photoDim = style({
+  filter: "brightness(0.88)",
+});
+
+/** / などからクライアント遷移で /about に来たとき（読み込み時の同期アニメなし） */
+export const photoStaticBright = style({
+  filter: "brightness(1.16)",
+});
+
+export const photoRevealActive = style({
+  animation: `${photoBrighten} ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING} forwards`,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      filter: "brightness(1.16)",
+      animation: "none",
+    },
+  },
 });
 
 export const profileLinkBox = style({

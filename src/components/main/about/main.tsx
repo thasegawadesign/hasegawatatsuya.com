@@ -19,8 +19,11 @@ import {
   occupation,
   photo,
   photoBox,
+  photoDim,
   photoMagic,
   photoMagicInner,
+  photoRevealActive,
+  photoStaticBright,
   profileLink,
   profileLinkBox,
   profileLinkIcon,
@@ -32,22 +35,32 @@ import {
 import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
+import { getClientNavigationCount } from "@/lib/clientNavigationCount";
 import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
+import { subscribeLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type MouseEvent,
+} from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import Tilt from "react-parallax-tilt";
 
 export default function Main() {
+  const skipPhotoRevealAnimation = getClientNavigationCount() > 0;
+  const [photoRevealSync, setPhotoRevealSync] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -81,6 +94,13 @@ export default function Main() {
     haptic();
     playFireworksAt(ev.clientX, ev.clientY);
   };
+
+  useLayoutEffect(() => {
+    if (skipPhotoRevealAnimation) return;
+    return subscribeLiquidBackgroundReveal(() => {
+      setPhotoRevealSync(true);
+    });
+  }, [skipPhotoRevealAnimation]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -126,7 +146,14 @@ export default function Main() {
                     width={320}
                     height={480}
                     alt="長谷川達也"
-                    className={photo}
+                    className={clsx(
+                      photo,
+                      skipPhotoRevealAnimation && photoStaticBright,
+                      !skipPhotoRevealAnimation && !photoRevealSync && photoDim,
+                      !skipPhotoRevealAnimation &&
+                        photoRevealSync &&
+                        photoRevealActive
+                    )}
                     priority
                   />
                 </div>

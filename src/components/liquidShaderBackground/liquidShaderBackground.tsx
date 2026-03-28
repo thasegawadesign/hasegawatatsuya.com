@@ -8,6 +8,7 @@ import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
+import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import {
   LIQUID_WGSL_DOMAIN_WARP,
   LIQUID_WGSL_FBM,
@@ -137,7 +138,10 @@ export default function LiquidShaderBackground() {
       mount.appendChild(renderer.domElement);
       setSize();
       scheduleRevealAfterNextFrame(
-        () => setCanvasReady(true),
+        () => {
+          notifyLiquidBackgroundReveal();
+          setCanvasReady(true);
+        },
         () => disposed
       );
 
@@ -275,7 +279,10 @@ export default function LiquidShaderBackground() {
         mount.appendChild(r.domElement);
         setSize();
         scheduleRevealAfterNextFrame(
-          () => setCanvasReady(true),
+          () => {
+            notifyLiquidBackgroundReveal();
+            setCanvasReady(true);
+          },
           () => disposed
         );
 
