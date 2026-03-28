@@ -120,12 +120,14 @@ void main() {
   float fres = pow(1.0 - max(0.0, dot(N, viewDir)), 3.5);
 
   vec3 baseBlue = vec3(0.023529, 0.074510, 0.819608);
+  /** #8F2C71 */
+  vec3 brandPlum = vec3(0.560784, 0.172549, 0.443137);
   vec3 abyss = mix(vec3(0.0, 0.02, 0.08), baseBlue, 0.38);
   vec3 navy = mix(vec3(0.02, 0.08, 0.22), baseBlue, 0.62);
   vec3 deepBlue = mix(baseBlue, vec3(0.2, 0.55, 1.0), 0.35);
   vec3 electricCyan = vec3(0.3, 0.88, 1.0);
-  vec3 magenta = vec3(0.98, 0.22, 0.62);
-  vec3 hotPink = vec3(1.0, 0.45, 0.78);
+  vec3 magenta = mix(vec3(0.98, 0.22, 0.62), brandPlum, 0.45);
+  vec3 hotPink = mix(vec3(1.0, 0.45, 0.78), brandPlum, 0.38);
   vec3 sunTint = vec3(1.0, 0.92, 0.58);
 
   float heightMix = smoothstep(0.15, 0.9, h0);
@@ -137,6 +139,7 @@ void main() {
   col = mix(col, electricCyan, smoothstep(0.32, 0.85, h0 + ridge * 0.28) * (0.58 + 0.42 * ndl));
   col = mix(col, mix(magenta, hotPink, h1), swirlAccent * 0.82);
   col = mix(col, hotPink, magMask * 0.62);
+  col = mix(col, brandPlum, magMask * 0.22 + swirlAccent * 0.14);
 
   col += vec3(0.05, 0.2, 0.48) * (0.35 + 0.65 * ndl);
   col += vec3(0.88, 0.96, 1.0) * spec * 1.75;

@@ -126,12 +126,14 @@ fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32)
   let fres = pow(1.0 - max(0.0, dot(N, viewDir)), 3.5);
 
   let baseBlue = vec3<f32>(0.023529, 0.074510, 0.819608);
+  /* #8F2C71 */
+  let brandPlum = vec3<f32>(0.560784, 0.172549, 0.443137);
   let abyss = mix(vec3<f32>(0.0, 0.02, 0.08), baseBlue, 0.38);
   let navy = mix(vec3<f32>(0.02, 0.08, 0.22), baseBlue, 0.62);
   let deepBlue = mix(baseBlue, vec3<f32>(0.2, 0.55, 1.0), 0.35);
   let electricCyan = vec3<f32>(0.3, 0.88, 1.0);
-  let magenta = vec3<f32>(0.98, 0.22, 0.62);
-  let hotPink = vec3<f32>(1.0, 0.45, 0.78);
+  let magenta = mix(vec3<f32>(0.98, 0.22, 0.62), brandPlum, 0.45);
+  let hotPink = mix(vec3<f32>(1.0, 0.45, 0.78), brandPlum, 0.38);
   let sunTint = vec3<f32>(1.0, 0.92, 0.58);
 
   let heightMix = smoothstep(0.15, 0.9, h0);
@@ -143,6 +145,7 @@ fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32)
   col = mix(col, electricCyan, smoothstep(0.32, 0.85, h0 + ridge * 0.28) * (0.58 + 0.42 * ndl));
   col = mix(col, mix(magenta, hotPink, h1), swirlAccent * 0.82);
   col = mix(col, hotPink, magMask * 0.62);
+  col = mix(col, brandPlum, magMask * 0.22 + swirlAccent * 0.14);
 
   col = col + vec3<f32>(0.05, 0.2, 0.48) * (0.35 + 0.65 * ndl);
   col = col + vec3<f32>(0.88, 0.96, 1.0) * spec * 1.75;
