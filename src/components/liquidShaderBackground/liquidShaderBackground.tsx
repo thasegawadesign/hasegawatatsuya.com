@@ -28,11 +28,11 @@ function bindLiquidPointer(
   pointerTarget: THREE.Vector2,
   uPointerStrength: { value: number }
 ) {
-  const syncFromEvent = (e: PointerEvent) => {
+  const syncFromEvent = (ev: PointerEvent) => {
     const rect = mount.getBoundingClientRect();
     if (rect.width < 1 || rect.height < 1) return;
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = 1 - (e.clientY - rect.top) / rect.height;
+    const x = (ev.clientX - rect.left) / rect.width;
+    const y = 1 - (ev.clientY - rect.top) / rect.height;
     pointerTarget.set(
       THREE.MathUtils.clamp(x, 0, 1),
       THREE.MathUtils.clamp(y, 0, 1)
