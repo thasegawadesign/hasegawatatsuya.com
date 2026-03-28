@@ -95,7 +95,14 @@ fn heightAt(p: vec2<f32>) -> f32 {
 
 /** メイン（TSL から呼ぶのはこの 1 本だけ） */
 export const LIQUID_WGSL_LIQUID_COLOR = /* wgsl */ `
-fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32) -> vec3<f32> {
+fn liquidColor(
+  vUv: vec2<f32>,
+  uTime: f32,
+  uResolution: vec2<f32>,
+  uMotion: f32,
+  uPointer: vec2<f32>,
+  uPointerStrength: f32
+) -> vec3<f32> {
   let uv = vUv;
   let aspect = max(uResolution.x / uResolution.y, 0.5);
   var p = (uv - vec2<f32>(0.5, 0.5)) * vec2<f32>(aspect * 2.0, 2.0);
@@ -104,6 +111,9 @@ fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32)
 
   let vc = vec2<f32>(-aspect * 0.52, 0.42);
   p = vortexTwist(p, vc, t, 0.85);
+
+  let pPointer = (uPointer - vec2<f32>(0.5, 0.5)) * vec2<f32>(aspect * 2.0, 2.0);
+  p = vortexTwist(p, pPointer, t * 0.82, 0.17 * uPointerStrength);
 
   var w = domainWarp(p * 0.95 + vec2<f32>(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
   w = w + vec2<f32>(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * 0.12;

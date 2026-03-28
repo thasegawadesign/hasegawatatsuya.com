@@ -23,7 +23,48 @@ import { MeshBasicNodeMaterial, WebGPURenderer } from "three/webgpu";
 
 const CLEAR = 0x0613d1;
 
-/** `wgslFn` の戻り値に実行時は `functionNode` があるが型定義に無いため、includes 用に寄せる */
+function bindLiquidPointer(
+  mount: HTMLElement,
+  pointerTarget: THREE.Vector2,
+  uPointerStrength: { value: number }
+) {
+  const syncFromEvent = (e: PointerEvent) => {
+    const rect = mount.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return;
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = 1 - (e.clientY - rect.top) / rect.height;
+    pointerTarget.set(
+      THREE.MathUtils.clamp(x, 0, 1),
+      THREE.MathUtils.clamp(y, 0, 1)
+    );
+    uPointerStrength.value = Math.min(0.33, uPointerStrength.value + 0.052);
+  };
+
+  window.addEventListener("pointermove", syncFromEvent, { passive: true });
+  window.addEventListener("pointerdown", syncFromEvent, { passive: true });
+
+  return () => {
+    window.removeEventListener("pointermove", syncFromEvent);
+    window.removeEventListener("pointerdown", syncFromEvent);
+  };
+}
+
+function smoothPointerToward(
+  current: THREE.Vector2,
+  target: THREE.Vector2,
+  delta: number
+) {
+  const k = 1 - Math.exp(-delta * 3.0);
+  current.lerp(target, k);
+}
+
+function decayPointerStrength(
+  uPointerStrength: { value: number },
+  delta: number
+) {
+  uPointerStrength.value *= Math.exp(-delta * 2.05);
+}
+
 type WgslFnInclude = NonNullable<Parameters<typeof wgslFn>[1]>[number];
 
 export default function LiquidShaderBackground() {
@@ -55,11 +96,14 @@ export default function LiquidShaderBackground() {
       const uTime = { value: 0 };
       const uResolution = { value: new THREE.Vector2(1, 1) };
       const uMotion = { value: 1 };
+      const uPointer = { value: new THREE.Vector2(0.5, 0.5) };
+      const pointerTarget = new THREE.Vector2(0.5, 0.5);
+      const uPointerStrength = { value: 0 };
 
       const material = new THREE.RawShaderMaterial({
         vertexShader: LIQUID_VERTEX_SHADER,
         fragmentShader: LIQUID_FRAGMENT_SHADER,
-        uniforms: { uTime, uResolution, uMotion },
+        uniforms: { uTime, uResolution, uMotion, uPointer, uPointerStrength },
         depthTest: false,
         depthWrite: false,
       });
@@ -86,11 +130,20 @@ export default function LiquidShaderBackground() {
       syncMotion();
       mqReduce.addEventListener("change", syncMotion);
 
+      const removePointer = bindLiquidPointer(
+        mount,
+        pointerTarget,
+        uPointerStrength
+      );
+
       let frame = 0;
       const clock = new THREE.Clock();
       const loop = () => {
         frame = requestAnimationFrame(loop);
-        uTime.value += clock.getDelta() * (mqReduce.matches ? 0 : 1);
+        const delta = clock.getDelta();
+        uTime.value += delta * (mqReduce.matches ? 0 : 1);
+        smoothPointerToward(uPointer.value, pointerTarget, delta);
+        decayPointerStrength(uPointerStrength, delta);
         renderer.render(scene, camera);
       };
       loop();
@@ -100,6 +153,7 @@ export default function LiquidShaderBackground() {
 
       teardown = () => {
         cancelAnimationFrame(frame);
+        removePointer();
         mqReduce.removeEventListener("change", syncMotion);
         window.removeEventListener("resize", onResize);
         geometry.dispose();
@@ -133,6 +187,9 @@ export default function LiquidShaderBackground() {
         const uTime = uniform(0);
         const uResolution = uniform(new THREE.Vector2(1, 1));
         const uMotion = uniform(1);
+        const uPointer = uniform(new THREE.Vector2(0.5, 0.5));
+        const pointerTarget = new THREE.Vector2(0.5, 0.5);
+        const uPointerStrength = uniform(0);
 
         const hashFn = wgslFn(LIQUID_WGSL_HASH);
         const hash3Fn = wgslFn(LIQUID_WGSL_HASH3);
@@ -167,6 +224,8 @@ export default function LiquidShaderBackground() {
           uTime,
           uResolution,
           uMotion,
+          uPointer,
+          uPointerStrength,
         });
 
         const material = new MeshBasicNodeMaterial({ colorNode });
@@ -205,10 +264,19 @@ export default function LiquidShaderBackground() {
         syncMotion();
         mqReduce.addEventListener("change", syncMotion);
 
+        const removePointer = bindLiquidPointer(
+          mount,
+          pointerTarget,
+          uPointerStrength
+        );
+
         const clock = new THREE.Clock();
 
         r.setAnimationLoop(() => {
-          uTime.value += clock.getDelta() * (mqReduce.matches ? 0 : 1);
+          const delta = clock.getDelta();
+          uTime.value += delta * (mqReduce.matches ? 0 : 1);
+          smoothPointerToward(uPointer.value, pointerTarget, delta);
+          decayPointerStrength(uPointerStrength, delta);
           r.render(scene, camera);
         });
 
@@ -216,6 +284,7 @@ export default function LiquidShaderBackground() {
         window.addEventListener("resize", onResize);
 
         teardown = () => {
+          removePointer();
           mqReduce.removeEventListener("change", syncMotion);
           window.removeEventListener("resize", onResize);
           r.setAnimationLoop(null);
