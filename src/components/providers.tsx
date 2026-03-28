@@ -1,5 +1,6 @@
 "use client";
 
+import ClientNavigationTracker from "@/components/clientNavigationTracker";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { Provider } from "jotai";
 
@@ -9,5 +10,10 @@ export default function Providers({
   children: React.ReactNode;
 }>) {
   useSmoothScroll();
-  return <Provider>{children}</Provider>;
+  return (
+    <Provider>
+      <ClientNavigationTracker />
+      {children}
+    </Provider>
+  );
 }

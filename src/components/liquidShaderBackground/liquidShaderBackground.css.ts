@@ -1,10 +1,14 @@
+import {
+  LIQUID_REVEAL_DURATION_S,
+  LIQUID_REVEAL_EASING,
+} from "@/constants/constants";
 import { style } from "@vanilla-extract/css";
 
 export const canvasRoot = style({
   position: "fixed",
   zIndex: -200,
   inset: 0,
-  transition: "opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1)",
+  transition: `opacity ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING}`,
   opacity: 0,
   pointerEvents: "none",
   width: "100vw",
