@@ -114,7 +114,7 @@ export const photoMagic = style({
       transform: "translateZ(0)",
       borderRadius: 28,
       background:
-        "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
+        "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #1747d6 92%, #cb2ed6 100%)",
       animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
     },
@@ -122,12 +122,12 @@ export const photoMagic = style({
       position: "absolute",
       zIndex: 0,
       inset: "-20px",
-      transform: "translateZ(0) scale(0.96)",
+      transform: "translateZ(0) scale(0.8)",
       opacity: 0.82,
       filter: "blur(60px)",
       borderRadius: 32,
       background:
-        "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #3d17d6 88%, #cb2ed6 100%)",
+        "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #1747d6 92%, #cb2ed6 100%)",
       pointerEvents: "none",
       animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
