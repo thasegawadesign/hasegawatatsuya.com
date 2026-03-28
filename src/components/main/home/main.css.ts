@@ -397,7 +397,7 @@ export const motionDiv = style({
   inset: 0,
 });
 export const profileImage = style({
-  filter: "brightness(1.1)",
+  filter: "brightness(1.16)",
   borderRadius: 24,
   objectFit: "cover",
   pointerEvents: "none",

@@ -160,7 +160,7 @@ export const photo = style({
   position: "relative",
   zIndex: 0,
   display: "block",
-  filter: "brightness(1.1)",
+  filter: "brightness(1.16)",
   borderRadius: 20,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
