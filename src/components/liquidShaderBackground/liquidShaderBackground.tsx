@@ -1,6 +1,9 @@
 "use client";
 
-import { canvasRoot } from "@/components/liquidShaderBackground/liquidShaderBackground.css";
+import {
+  canvasRoot,
+  canvasRootReady,
+} from "@/components/liquidShaderBackground/liquidShaderBackground.css";
 import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
@@ -16,7 +19,8 @@ import {
   LIQUID_WGSL_NOISE,
   LIQUID_WGSL_VORTEX_TWIST,
 } from "@/components/liquidShaderBackground/liquidShaderWgsl";
-import { useEffect, useRef } from "react";
+import clsx from "clsx";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { uniform, uv, wgslFn } from "three/tsl";
 import { MeshBasicNodeMaterial, WebGPURenderer } from "three/webgpu";
@@ -67,8 +71,18 @@ function decayPointerStrength(
 
 type WgslFnInclude = NonNullable<Parameters<typeof wgslFn>[1]>[number];
 
+function scheduleRevealAfterNextFrame(
+  onReveal: () => void,
+  getDisposed: () => boolean
+) {
+  requestAnimationFrame(() => {
+    if (!getDisposed()) onReveal();
+  });
+}
+
 export default function LiquidShaderBackground() {
   const mountRef = useRef<HTMLDivElement | null>(null);
+  const [canvasReady, setCanvasReady] = useState(false);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -122,6 +136,10 @@ export default function LiquidShaderBackground() {
       renderer.setClearColor(CLEAR, 1);
       mount.appendChild(renderer.domElement);
       setSize();
+      scheduleRevealAfterNextFrame(
+        () => setCanvasReady(true),
+        () => disposed
+      );
 
       const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
       const syncMotion = () => {
@@ -256,6 +274,10 @@ export default function LiquidShaderBackground() {
         }
         mount.appendChild(r.domElement);
         setSize();
+        scheduleRevealAfterNextFrame(
+          () => setCanvasReady(true),
+          () => disposed
+        );
 
         const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
         const syncMotion = () => {
@@ -303,9 +325,16 @@ export default function LiquidShaderBackground() {
 
     return () => {
       disposed = true;
+      setCanvasReady(false);
       teardown?.();
     };
   }, []);
 
-  return <div ref={mountRef} className={canvasRoot} aria-hidden />;
+  return (
+    <div
+      ref={mountRef}
+      className={clsx(canvasRoot, canvasReady && canvasRootReady)}
+      aria-hidden
+    />
+  );
 }
