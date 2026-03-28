@@ -171,6 +171,14 @@ fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32)
   let lum = dot(col, vec3<f32>(0.299, 0.587, 0.114));
   col = mix(vec3<f32>(lum, lum, lum), col, 1.12);
 
+  let lumAfter = dot(col, vec3<f32>(0.299, 0.587, 0.114));
+  let shadowCrush = mix(0.56, 1.0, smoothstep(0.0, 0.48, lumAfter));
+  col = col * shadowCrush;
+
+  let shadowWine = vec3<f32>(150.0 / 255.0, 4.0 / 255.0, 59.0 / 255.0);
+  let darkForWine = 1.0 - smoothstep(0.0, 0.48, lumAfter);
+  col = mix(col, shadowWine, 0.1 * darkForWine);
+
   let vig = 1.0 - dot(p * 0.28, p * 0.28);
   col = col * clamp(vig * 0.9 + 0.24, 0.0, 1.0);
 
