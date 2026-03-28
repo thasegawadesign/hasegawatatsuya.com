@@ -159,7 +159,7 @@ export const photoMagicInner = style({
   zIndex: 2,
   backfaceVisibility: "hidden",
   borderRadius: 20,
-  backgroundColor: "#a9d6ff",
+  backgroundColor: "#9bc4f8",
   width: "100%",
   height: "100%",
   overflow: "hidden",
