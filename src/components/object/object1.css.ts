@@ -12,7 +12,7 @@ export const object1 = style({
   left: "42%",
   filter: "blur(2px)",
   borderRadius: "100%",
-  background: `radial-gradient(rgba(83, 158, 227, .5), rgba(234, 234, 234, 1))`,
+  background: `radial-gradient(rgba(83, 158, 227, .9), rgba(234, 234, 234, 1))`,
   width: "clamp(200px,20vw,360px)",
   height: "clamp(200px,20vw,360px)",
   animationName: animateObject1,
