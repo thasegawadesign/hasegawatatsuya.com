@@ -62,7 +62,7 @@ export default function Main() {
 
   const { copy } = useClipboard();
 
-  const handleEmailClick = async (e: MouseEvent<HTMLButtonElement>) => {
+  const handleEmailClick = async (ev: MouseEvent<HTMLButtonElement>) => {
     if (emailCopyLockRef.current || emailCopied) return;
     emailCopyLockRef.current = true;
     await copy(EMAIL);
@@ -79,7 +79,7 @@ export default function Main() {
 
     playSfxSuccess();
     haptic();
-    playFireworksAt(e.clientX, e.clientY);
+    playFireworksAt(ev.clientX, ev.clientY);
   };
 
   useEffect(() => {
@@ -188,8 +188,8 @@ export default function Main() {
               <button
                 aria-label="Copy Email"
                 className={clsx(profileLink)}
-                onClick={(e) => {
-                  void handleEmailClick(e);
+                onClick={(ev) => {
+                  void handleEmailClick(ev);
                 }}
               >
                 <IoMail className={clsx(profileLinkIcon)} />
