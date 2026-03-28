@@ -10,11 +10,11 @@ export const object3 = style({
   zIndex: -150,
   bottom: "-20%",
   left: "4%",
-  filter: "blur(4px)",
+  isolation: "isolate",
   borderRadius: "100%",
-  background: `radial-gradient(rgba(182, 53, 202, 0.9), rgba(234, 234, 234, 1))`,
   width: "clamp(300px,28vw,460px)",
   height: "clamp(300px,28vw,460px)",
+  overflow: "hidden",
   animationName: animateObject3,
   animationDuration: "24s",
   animationTimingFunction: "ease-in-out",
@@ -32,4 +32,11 @@ export const object3 = style({
       display: "none",
     },
   },
+});
+export const object3Orb = style({
+  position: "absolute",
+  inset: 0,
+  filter: "blur(4px)",
+  borderRadius: "inherit",
+  background: `radial-gradient(rgba(182, 53, 202, 0.9), rgba(234, 234, 234, 1))`,
 });

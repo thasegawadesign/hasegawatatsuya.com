@@ -1,0 +1,3 @@
+export const noiseTextureDataUrl = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><filter id="n" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="turbulence" baseFrequency="0.36 0.4" numOctaves="3" stitchTiles="stitch" result="t"/><feComponentTransfer in="t" result="c"><feFuncR type="linear" slope="3.2" intercept="-0.42"/><feFuncG type="linear" slope="3.2" intercept="-0.42"/><feFuncB type="linear" slope="3.2" intercept="-0.42"/></feComponentTransfer></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`
+)}`;
