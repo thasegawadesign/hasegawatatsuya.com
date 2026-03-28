@@ -129,6 +129,8 @@ void main() {
   vec3 magenta = mix(vec3(0.98, 0.22, 0.62), brandPlum, 0.45);
   vec3 hotPink = mix(vec3(1.0, 0.45, 0.78), brandPlum, 0.38);
   vec3 sunTint = vec3(1.0, 0.92, 0.58);
+  /** #f70 */
+  vec3 brandF70 = vec3(1.0, 0.4666667, 0.0);
 
   float heightMix = smoothstep(0.15, 0.9, h0);
   float swirlAccent = smoothstep(0.4, 0.95, h1) * smoothstep(0.12, 0.88, ridge);
@@ -145,6 +147,13 @@ void main() {
   col += vec3(0.88, 0.96, 1.0) * spec * 1.75;
   col += sunTint * spec * 0.62;
   col += vec3(0.25, 0.55, 1.0) * fres * 0.48 * (0.45 + h0);
+
+  float f70Mask =
+    smoothstep(0.26, 0.86, h0 + ridge * 0.12) *
+    (0.32 + 0.68 * ndl) *
+    (0.65 + 0.35 * swirlAccent);
+  col = mix(col, mix(col, brandF70, 0.5), f70Mask * 0.4);
+  col += brandF70 * spec * 0.4;
 
   float edgeChroma = (abs(hx) + abs(hy)) * 3.0;
   col.r += edgeChroma * 0.04;
