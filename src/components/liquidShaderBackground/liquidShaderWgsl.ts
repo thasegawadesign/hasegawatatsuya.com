@@ -135,6 +135,8 @@ fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32)
   let magenta = mix(vec3<f32>(0.98, 0.22, 0.62), brandPlum, 0.45);
   let hotPink = mix(vec3<f32>(1.0, 0.45, 0.78), brandPlum, 0.38);
   let sunTint = vec3<f32>(1.0, 0.92, 0.58);
+  /* #f70 */
+  let brandF70 = vec3<f32>(1.0, 0.4666667, 0.0);
 
   let heightMix = smoothstep(0.15, 0.9, h0);
   let swirlAccent = smoothstep(0.4, 0.95, h1) * smoothstep(0.12, 0.88, ridge);
@@ -151,6 +153,13 @@ fn liquidColor(vUv: vec2<f32>, uTime: f32, uResolution: vec2<f32>, uMotion: f32)
   col = col + vec3<f32>(0.88, 0.96, 1.0) * spec * 1.75;
   col = col + sunTint * spec * 0.62;
   col = col + vec3<f32>(0.25, 0.55, 1.0) * fres * 0.48 * (0.45 + h0);
+
+  let f70Mask =
+    smoothstep(0.26, 0.86, h0 + ridge * 0.12) *
+    (0.32 + 0.68 * ndl) *
+    (0.65 + 0.35 * swirlAccent);
+  col = mix(col, mix(col, brandF70, 0.5), f70Mask * 0.4);
+  col = col + brandF70 * spec * 0.4;
 
   let edgeChroma = (abs(hx) + abs(hy)) * 3.0;
   col = vec3<f32>(col.x + edgeChroma * 0.04, col.y, col.z - edgeChroma * 0.03);
