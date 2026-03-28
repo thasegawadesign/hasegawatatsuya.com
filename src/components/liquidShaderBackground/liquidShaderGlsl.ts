@@ -17,6 +17,8 @@ precision highp float;
 uniform float uTime;
 uniform vec2 uResolution;
 uniform float uMotion;
+uniform vec2 uPointer;
+uniform float uPointerStrength;
 
 varying vec2 vUv;
 
@@ -98,6 +100,9 @@ void main() {
 
   vec2 vc = vec2(-aspect * 0.52, 0.42);
   p = vortexTwist(p, vc, t, 0.85);
+
+  vec2 pPointer = (uPointer - 0.5) * vec2(aspect * 2.0, 2.0);
+  p = vortexTwist(p, pPointer, t * 0.82, 0.17 * uPointerStrength);
 
   vec2 w = domainWarp(p * 0.95 + vec2(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
   w += vec2(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * 0.12;
