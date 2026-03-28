@@ -1,11 +1,11 @@
 import { backgroundGradient, body, html } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
+import LiquidShaderBackground from "@/components/liquidShaderBackground/liquidShaderBackground";
 import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
-import Spiral from "@/components/spiral/spiral";
 import { EMAIL, GITHUB, X } from "@/constants/constants";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -77,8 +77,8 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Providers>
+          <LiquidShaderBackground />
           {children}
-          <Spiral />
           <Object1 />
           <Object2 />
           <Object3 />

@@ -7,7 +7,7 @@ export const animateObject2 = keyframes({
 });
 export const object2 = style({
   position: "fixed",
-  zIndex: -50,
+  zIndex: -150,
   top: "43%",
   right: "4%",
   filter: "blur(3px)",
