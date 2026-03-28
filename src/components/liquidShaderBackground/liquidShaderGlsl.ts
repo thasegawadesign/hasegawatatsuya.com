@@ -165,6 +165,14 @@ void main() {
   col = pow(col, vec3(0.97));
   col = mix(vec3(dot(col, vec3(0.299, 0.587, 0.114))), col, 1.12);
 
+  float lumAfter = dot(col, vec3(0.299, 0.587, 0.114));
+  float shadowCrush = mix(0.56, 1.0, smoothstep(0.0, 0.48, lumAfter));
+  col *= shadowCrush;
+
+  vec3 shadowWine = vec3(150.0 / 255.0, 4.0 / 255.0, 59.0 / 255.0);
+  float darkForWine = 1.0 - smoothstep(0.0, 0.48, lumAfter);
+  col = mix(col, shadowWine, 0.1 * darkForWine);
+
   float vig = 1.0 - dot(p * 0.28, p * 0.28);
   col *= clamp(vig * 0.9 + 0.24, 0.0, 1.0);
 
