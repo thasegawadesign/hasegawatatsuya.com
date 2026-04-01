@@ -59,7 +59,11 @@ import { IoMail } from "react-icons/io5";
 import Tilt from "react-parallax-tilt";
 
 export default function Main() {
-  const skipPhotoRevealAnimation = getClientNavigationCount() > 0;
+  const [skipPhotoRevealAnimation, setSkipPhotoRevealAnimation] = useState(
+    () => {
+      return getClientNavigationCount() > 0;
+    }
+  );
   const [photoRevealSync, setPhotoRevealSync] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const occupationRef = useRef(null);
@@ -74,6 +78,16 @@ export default function Main() {
   > | null>(null);
 
   const { copy } = useClipboard();
+
+  useLayoutEffect(() => {
+    const navigationEntry = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+
+    if (navigationEntry?.type === "reload") {
+      setSkipPhotoRevealAnimation(true);
+    }
+  }, []);
 
   const handleEmailClick = async (ev: MouseEvent<HTMLButtonElement>) => {
     if (emailCopyLockRef.current || emailCopied) return;
