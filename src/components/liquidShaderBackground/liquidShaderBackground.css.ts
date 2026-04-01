@@ -20,10 +20,6 @@ export const fallbackImage = style({
   transition: `opacity ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING}`,
   opacity: 1,
   backgroundColor: "#0613d1",
-  backgroundImage: 'url("/images/bg.avif")',
-  backgroundPosition: "center center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
   "@media": {
     "(prefers-reduced-motion: reduce)": {
       transitionDuration: "0.01s",
@@ -33,6 +29,11 @@ export const fallbackImage = style({
 
 export const fallbackImageHidden = style({
   opacity: 0,
+});
+
+export const fallbackImageAsset = style({
+  objectFit: "cover",
+  objectPosition: "center center",
 });
 
 export const canvasRoot = style({

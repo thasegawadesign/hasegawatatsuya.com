@@ -5,6 +5,7 @@ import {
   canvasRoot,
   canvasRootReady,
   fallbackImage,
+  fallbackImageAsset,
   fallbackImageHidden,
 } from "@/components/liquidShaderBackground/liquidShaderBackground.css";
 import {
@@ -24,6 +25,7 @@ import {
 } from "@/components/liquidShaderBackground/liquidShaderWgsl";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import clsx from "clsx";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { uniform, uv, wgslFn } from "three/tsl";
@@ -342,9 +344,16 @@ export default function LiquidShaderBackground() {
 
   return (
     <div className={backgroundRoot} aria-hidden>
-      <div
-        className={clsx(fallbackImage, canvasReady && fallbackImageHidden)}
-      />
+      <div className={clsx(fallbackImage, canvasReady && fallbackImageHidden)}>
+        <Image
+          src="/images/bg.avif"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={fallbackImageAsset}
+        />
+      </div>
       <div
         ref={mountRef}
         className={clsx(canvasRoot, canvasReady && canvasRootReady)}

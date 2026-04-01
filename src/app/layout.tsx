@@ -69,15 +69,6 @@ export default async function RootLayout({
 
   return (
     <html lang="ja" id="home" className={clsx(html)}>
-      <head>
-        <link
-          rel="preload"
-          href="/images/bg.avif"
-          as="image"
-          type="image/avif"
-          fetchPriority="high"
-        />
-      </head>
       <body className={clsx(body, backgroundGradient)}>
         <Script
           id="json-ld-person"
