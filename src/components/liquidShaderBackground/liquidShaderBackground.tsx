@@ -1,14 +1,16 @@
 "use client";
 
 import {
+  backgroundRoot,
   canvasRoot,
   canvasRootReady,
+  fallbackImage,
+  fallbackImageHidden,
 } from "@/components/liquidShaderBackground/liquidShaderBackground.css";
 import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
-import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import {
   LIQUID_WGSL_DOMAIN_WARP,
   LIQUID_WGSL_FBM,
@@ -20,6 +22,7 @@ import {
   LIQUID_WGSL_NOISE,
   LIQUID_WGSL_VORTEX_TWIST,
 } from "@/components/liquidShaderBackground/liquidShaderWgsl";
+import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -338,10 +341,14 @@ export default function LiquidShaderBackground() {
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      className={clsx(canvasRoot, canvasReady && canvasRootReady)}
-      aria-hidden
-    />
+    <div className={backgroundRoot} aria-hidden>
+      <div
+        className={clsx(fallbackImage, canvasReady && fallbackImageHidden)}
+      />
+      <div
+        ref={mountRef}
+        className={clsx(canvasRoot, canvasReady && canvasRootReady)}
+      />
+    </div>
   );
 }
