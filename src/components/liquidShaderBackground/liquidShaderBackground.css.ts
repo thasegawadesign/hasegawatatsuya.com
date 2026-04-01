@@ -1,4 +1,5 @@
 import {
+  LIQUID_BACKGROUND_FALLBACK_COLOR,
   LIQUID_REVEAL_DURATION_S,
   LIQUID_REVEAL_EASING,
 } from "@/constants/constants";
@@ -19,7 +20,7 @@ export const fallbackImage = style({
   inset: 0,
   transition: `opacity ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING}`,
   opacity: 1,
-  backgroundColor: "#0613d1",
+  backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
       transitionDuration: "0.01s",
