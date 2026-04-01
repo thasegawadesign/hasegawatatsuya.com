@@ -13,5 +13,6 @@ export const CUBIC_BEZIER = "cubic-bezier(0.15, 0.95, 0.01, 1)";
 
 export const LIQUID_REVEAL_DURATION_S = 0.4;
 export const LIQUID_REVEAL_EASING = "cubic-bezier(0.33, 1, 0.68, 1)";
+export const LIQUID_BACKGROUND_FALLBACK_COLOR = "#7fc7fb";
 
 export const PARALLAX_ENABLE_MIN_WIDTH = 1024;
