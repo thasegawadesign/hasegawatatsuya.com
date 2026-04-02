@@ -2,7 +2,7 @@ import {
   CUBIC_BEZIER,
   DURATION_M,
   PROFILE_IMAGE_BRIGHTNESS,
-  PROFILE_IMAGE_GRAYSCALE,
+  PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
@@ -154,7 +154,7 @@ export const photoMagicInner = style({
   zIndex: 2,
   backfaceVisibility: "hidden",
   borderRadius: 20,
-  backgroundColor: "#b1cff6",
+  backgroundColor: "#a7d8ff",
   width: "100%",
   height: "100%",
   overflow: "hidden",
@@ -165,7 +165,7 @@ export const photo = style({
   position: "relative",
   zIndex: 0,
   display: "block",
-  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
+  filter: `saturate(${PROFILE_IMAGE_SATURATION}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
   borderRadius: 20,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",

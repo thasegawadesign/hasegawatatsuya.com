@@ -3,7 +3,7 @@ import {
   DURATION_M,
   DURATION_S,
   PROFILE_IMAGE_BRIGHTNESS,
-  PROFILE_IMAGE_GRAYSCALE,
+  PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
@@ -403,7 +403,7 @@ export const motionDiv = style({
   inset: 0,
 });
 export const profileImage = style({
-  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
+  filter: `saturate(${PROFILE_IMAGE_SATURATION}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
   borderRadius: 24,
   objectFit: "cover",
   pointerEvents: "none",
