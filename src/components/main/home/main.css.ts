@@ -2,7 +2,7 @@ import {
   CUBIC_BEZIER,
   DURATION_M,
   DURATION_S,
-  PROFILE_IMAGE_BRIGHTNESS,
+  PROFILE_IMAGE_GRAYSCALE,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
@@ -402,7 +402,7 @@ export const motionDiv = style({
   inset: 0,
 });
 export const profileImage = style({
-  filter: `brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
+  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
   borderRadius: 24,
   objectFit: "cover",
   pointerEvents: "none",
