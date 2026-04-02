@@ -1,6 +1,7 @@
 import {
   CUBIC_BEZIER,
   DURATION_M,
+  PROFILE_IMAGE_BRIGHTNESS,
   PROFILE_IMAGE_GRAYSCALE,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
@@ -64,7 +65,7 @@ export const nameJa = style({
 export const nameEn = style({
   position: "relative",
   zIndex: 30,
-  background: `linear-gradient(180deg, #1f255f 0%, #6a748a 40%, ${vars.color.text} 50%)`,
+  background: `linear-gradient(180deg, #476bc7 0%, #7996b3 40%, ${vars.color.text} 50%)`,
   padding: "0 16px",
   width: "fit-content",
   height: "1.2em",
@@ -153,7 +154,7 @@ export const photoMagicInner = style({
   zIndex: 2,
   backfaceVisibility: "hidden",
   borderRadius: 20,
-  backgroundColor: "#a2c3ed",
+  backgroundColor: "#b1cff6",
   width: "100%",
   height: "100%",
   overflow: "hidden",
@@ -164,7 +165,7 @@ export const photo = style({
   position: "relative",
   zIndex: 0,
   display: "block",
-  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
+  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
   borderRadius: 20,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
