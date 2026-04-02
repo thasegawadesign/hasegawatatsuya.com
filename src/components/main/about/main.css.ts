@@ -3,7 +3,7 @@ import {
   DURATION_M,
   LIQUID_REVEAL_DURATION_S,
   LIQUID_REVEAL_EASING,
-  PROFILE_IMAGE_BRIGHTNESS,
+  PROFILE_IMAGE_GRAYSCALE,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
@@ -19,9 +19,9 @@ const photoMagicSpin = keyframes({
   to: { ["--photo-rotate"]: "360deg" } as Record<string, string>,
 });
 
-const photoBrighten = keyframes({
-  from: { filter: "brightness(1)" },
-  to: { filter: `brightness(${PROFILE_IMAGE_BRIGHTNESS})` },
+const photoGrayscaleReveal = keyframes({
+  from: { filter: "grayscale(0)" },
+  to: { filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})` },
 });
 
 export const main = style({
@@ -180,21 +180,21 @@ export const photo = style({
   userSelect: "none",
 });
 
-/** 初回フルロードで /about を開いたとき、リビール同期・明るさアニメの開始前 */
+/** 初回フルロードで /about を開いたとき、リビール同期・グレースケールアニメの開始前 */
 export const photoPreReveal = style({
-  filter: "brightness(1)",
+  filter: "grayscale(0)",
 });
 
 /** / などからクライアント遷移で /about に来たとき（読み込み時の同期アニメなし） */
-export const photoStaticBright = style({
-  filter: `brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
+export const photoStaticGrayscale = style({
+  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
 });
 
-export const photoRevealActive = style({
-  animation: `${photoBrighten} ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING} forwards`,
+export const photoGrayscaleRevealActive = style({
+  animation: `${photoGrayscaleReveal} ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING} forwards`,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
-      filter: `brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
+      filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
       animation: "none",
     },
   },

@@ -15,5 +15,6 @@ export const LIQUID_REVEAL_DURATION_S = 0.4;
 export const LIQUID_REVEAL_EASING = "cubic-bezier(0.33, 1, 0.68, 1)";
 export const LIQUID_BACKGROUND_FALLBACK_COLOR = "#7fc7fb";
 export const PROFILE_IMAGE_BRIGHTNESS = 1.08;
+export const PROFILE_IMAGE_GRAYSCALE = 0.3;
 
 export const PARALLAX_ENABLE_MIN_WIDTH = 1024;

@@ -19,11 +19,11 @@ import {
   occupation,
   photo,
   photoBox,
-  photoPreReveal,
+  photoGrayscaleRevealActive,
   photoMagic,
   photoMagicInner,
-  photoRevealActive,
-  photoStaticBright,
+  photoPreReveal,
+  photoStaticGrayscale,
   profileLink,
   profileLinkBox,
   profileLinkIcon,
@@ -162,13 +162,13 @@ export default function Main() {
                     alt="長谷川達也"
                     className={clsx(
                       photo,
-                      skipPhotoRevealAnimation && photoStaticBright,
+                      skipPhotoRevealAnimation && photoStaticGrayscale,
                       !skipPhotoRevealAnimation &&
                         !photoRevealSync &&
                         photoPreReveal,
                       !skipPhotoRevealAnimation &&
                         photoRevealSync &&
-                        photoRevealActive
+                        photoGrayscaleRevealActive
                     )}
                     priority
                   />
