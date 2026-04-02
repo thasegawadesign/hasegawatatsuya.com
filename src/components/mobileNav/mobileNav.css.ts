@@ -7,7 +7,7 @@ export const mobileNav = style({
   zIndex: 100,
   top: -5,
   left: -5,
-  backgroundColor: "#0a405b",
+  backgroundColor: "#002859",
   padding: "9vw",
   width: "calc(100vw + 10px)",
   height: "calc(100vh + 10px)",
