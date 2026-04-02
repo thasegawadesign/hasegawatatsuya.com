@@ -19,11 +19,8 @@ import {
   occupation,
   photo,
   photoBox,
-  photoGrayscaleRevealActive,
   photoMagic,
   photoMagicInner,
-  photoPreReveal,
-  photoStaticGrayscale,
   profileLink,
   profileLinkBox,
   profileLinkIcon,
@@ -35,36 +32,22 @@ import {
 import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
-import { getClientNavigationCount } from "@/lib/clientNavigationCount";
 import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
-import { subscribeLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type MouseEvent,
-} from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import Tilt from "react-parallax-tilt";
 
 export default function Main() {
-  const [skipPhotoRevealAnimation, setSkipPhotoRevealAnimation] = useState(
-    () => {
-      return getClientNavigationCount() > 0;
-    }
-  );
-  const [photoRevealSync, setPhotoRevealSync] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -78,16 +61,6 @@ export default function Main() {
   > | null>(null);
 
   const { copy } = useClipboard();
-
-  useLayoutEffect(() => {
-    const navigationEntry = performance.getEntriesByType("navigation")[0] as
-      | PerformanceNavigationTiming
-      | undefined;
-
-    if (navigationEntry?.type === "reload") {
-      setSkipPhotoRevealAnimation(true);
-    }
-  }, []);
 
   const handleEmailClick = async (ev: MouseEvent<HTMLButtonElement>) => {
     if (emailCopyLockRef.current || emailCopied) return;
@@ -108,13 +81,6 @@ export default function Main() {
     haptic();
     playFireworksAt(ev.clientX, ev.clientY);
   };
-
-  useLayoutEffect(() => {
-    if (skipPhotoRevealAnimation) return;
-    return subscribeLiquidBackgroundReveal(() => {
-      setPhotoRevealSync(true);
-    });
-  }, [skipPhotoRevealAnimation]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -160,16 +126,7 @@ export default function Main() {
                     width={320}
                     height={480}
                     alt="長谷川達也"
-                    className={clsx(
-                      photo,
-                      skipPhotoRevealAnimation && photoStaticGrayscale,
-                      !skipPhotoRevealAnimation &&
-                        !photoRevealSync &&
-                        photoPreReveal,
-                      !skipPhotoRevealAnimation &&
-                        photoRevealSync &&
-                        photoGrayscaleRevealActive
-                    )}
+                    className={clsx(photo)}
                     priority
                   />
                 </div>

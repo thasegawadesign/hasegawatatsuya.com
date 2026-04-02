@@ -1,8 +1,6 @@
 import {
   CUBIC_BEZIER,
   DURATION_M,
-  LIQUID_REVEAL_DURATION_S,
-  LIQUID_REVEAL_EASING,
   PROFILE_IMAGE_GRAYSCALE,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
@@ -17,11 +15,6 @@ globalStyle("@property --photo-rotate", {
 const photoMagicSpin = keyframes({
   from: { ["--photo-rotate"]: "0deg" } as Record<string, string>,
   to: { ["--photo-rotate"]: "360deg" } as Record<string, string>,
-});
-
-const photoGrayscaleReveal = keyframes({
-  from: { filter: "grayscale(0)" },
-  to: { filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})` },
 });
 
 export const main = style({
@@ -160,7 +153,7 @@ export const photoMagicInner = style({
   zIndex: 2,
   backfaceVisibility: "hidden",
   borderRadius: 20,
-  backgroundColor: "#9bc4f8",
+  backgroundColor: "#a7c4e8",
   width: "100%",
   height: "100%",
   overflow: "hidden",
@@ -171,6 +164,7 @@ export const photo = style({
   position: "relative",
   zIndex: 0,
   display: "block",
+  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
   borderRadius: 20,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
@@ -178,26 +172,6 @@ export const photo = style({
   width: "100%",
   height: "100%",
   userSelect: "none",
-});
-
-/** 初回フルロードで /about を開いたとき、リビール同期・グレースケールアニメの開始前 */
-export const photoPreReveal = style({
-  filter: "grayscale(0)",
-});
-
-/** / などからクライアント遷移で /about に来たとき（読み込み時の同期アニメなし） */
-export const photoStaticGrayscale = style({
-  filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
-});
-
-export const photoGrayscaleRevealActive = style({
-  animation: `${photoGrayscaleReveal} ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING} forwards`,
-  "@media": {
-    "(prefers-reduced-motion: reduce)": {
-      filter: `grayscale(${PROFILE_IMAGE_GRAYSCALE})`,
-      animation: "none",
-    },
-  },
 });
 
 export const profileLinkBox = style({
