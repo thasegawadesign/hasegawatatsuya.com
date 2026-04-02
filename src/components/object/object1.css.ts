@@ -37,5 +37,5 @@ export const object1Orb = style({
   inset: 0,
   filter: "blur(2px)",
   borderRadius: "inherit",
-  background: `radial-gradient(rgba(60, 130, 228, 0.9), rgba(234, 234, 234, 1))`,
+  background: `radial-gradient(rgba(48, 130, 244, 0.9), rgba(234, 234, 234, 1))`,
 });
