@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `大小2枚の非対称ヒーロー | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function EditorialHeroPage() {
+export default function EditorialHero() {
   return (
     <>
       <Works />

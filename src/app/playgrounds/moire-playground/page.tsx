@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `モアレパターン | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function MoirePlaygroundPage() {
+export default function MoirePlayground() {
   return (
     <>
       <Works />

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `お客様の声カルーセル | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function CustomerVoiceCarouselPrototypePage() {
+export default function CustomerVoiceCarouselPrototype() {
   return (
     <>
       <Works />

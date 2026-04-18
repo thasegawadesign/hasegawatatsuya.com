@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `アクセシブルなSplideカルーセル | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function NextjsSplideCarouselPage() {
+export default function NextjsSplideCarousel() {
   return (
     <>
       <Works />
