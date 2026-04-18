@@ -100,6 +100,7 @@ export default function Main() {
   const worksItem12Ref = useRef(null);
   const worksItem13Ref = useRef(null);
   const worksItem14Ref = useRef(null);
+  const worksItem15Ref = useRef(null);
   const contactRef = useRef(null);
 
   const { copy } = useClipboard();
@@ -198,6 +199,7 @@ export default function Main() {
     gsapAnimation.inview(worksItem12Ref);
     gsapAnimation.inview(worksItem13Ref);
     gsapAnimation.inview(worksItem14Ref);
+    gsapAnimation.inview(worksItem15Ref);
     gsapAnimation.inview(contactRef);
   }, []);
 
@@ -607,30 +609,6 @@ export default function Main() {
             </section>
             <section className={clsx(worksItem)} ref={worksItem06Ref}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>一問一答メーカー</h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-              </div>
-              <Link
-                href={"https://www.question-and-answer.vegetworks.com/"}
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/question-and-answer-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="一問一答メーカーのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)} ref={worksItem07Ref}>
-              <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>ステメモ</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
               </div>
@@ -653,7 +631,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem08Ref}>
+            <section className={clsx(worksItem)} ref={worksItem07Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -690,6 +668,32 @@ export default function Main() {
             Playgrounds
           </h2>
           <div className={clsx(worksBox)}>
+            <section className={clsx(worksItem)} ref={worksItem08Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>Cursor Dashboard</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"https://www.cursor-dashboard.vegetworks.com/"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                target="_blank"
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/cursor-dashboard-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="カーソルダッシュボードのアイコン"
+                />
+              </Link>
+            </section>
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
@@ -972,6 +976,30 @@ export default function Main() {
                   height={160}
                   className={clsx(worksIcon)}
                   alt="Splideカルーセルのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)} ref={worksItem15Ref}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>一問一答メーカー</h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"https://www.question-and-answer.vegetworks.com/"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                target="_blank"
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/question-and-answer-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="一問一答メーカーのアイコン"
                 />
               </Link>
             </section>
