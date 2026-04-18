@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `Cursor Dashboard | ${SITE_TITLE_WORKS}`,
 };
 
-export default function CursorDashboardPage() {
+export default function CursorDashboard() {
   return (
     <>
       <Works />
