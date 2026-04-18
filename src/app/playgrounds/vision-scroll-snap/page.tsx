@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `Visionスクロールスナップ | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
-export default function VisionScrollSnapPage() {
+export default function VisionScrollSnap() {
   return (
     <>
       <Works />
