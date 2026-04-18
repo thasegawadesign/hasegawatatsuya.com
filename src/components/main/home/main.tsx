@@ -676,10 +676,30 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"https://www.cursor-dashboard.vegetworks.com/"}
+                href={"/playgrounds/cursor-dashboard"}
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
-                target="_blank"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
