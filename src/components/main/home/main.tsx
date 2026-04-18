@@ -370,6 +370,49 @@ export default function Main() {
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem01Ref}>
               <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>Cursor Dashboard</h3>
+                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+              </div>
+              <Link
+                href={"/works/cursor-dashboard"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500
+                  )
+                }
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/cursor-dashboard-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="カーソルダッシュボードのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)} ref={worksItem02Ref}>
+              <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>
                     「福昇運輸株式会社」
@@ -418,7 +461,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem02Ref}>
+            <section className={clsx(worksItem)} ref={worksItem03Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>
@@ -468,7 +511,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem03Ref}>
+            <section className={clsx(worksItem)} ref={worksItem04Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>
@@ -518,7 +561,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem04Ref}>
+            <section className={clsx(worksItem)} ref={worksItem05Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>「フルール」</span>
@@ -564,7 +607,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem05Ref}>
+            <section className={clsx(worksItem)} ref={worksItem06Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
@@ -607,7 +650,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem06Ref}>
+            <section className={clsx(worksItem)} ref={worksItem07Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>ステメモ</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -631,7 +674,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={worksItem07Ref}>
+            <section className={clsx(worksItem)} ref={worksItem08Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -668,52 +711,6 @@ export default function Main() {
             Playgrounds
           </h2>
           <div className={clsx(worksBox)}>
-            <section className={clsx(worksItem)} ref={worksItem08Ref}>
-              <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>Cursor Dashboard</span>
-                </h3>
-                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
-              </div>
-              <Link
-                href={"/playgrounds/cursor-dashboard"}
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500
-                  )
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500
-                  )
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500
-                  )
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/cursor-dashboard-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="カーソルダッシュボードのアイコン"
-                />
-              </Link>
-            </section>
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
