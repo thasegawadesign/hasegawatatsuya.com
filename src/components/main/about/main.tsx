@@ -225,7 +225,7 @@ export default function Main() {
             モノづくりの達人になることが目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            ホームページ制作の実務においては、
+            ウェブサイト制作の実務においては、
             <br />
             想定する訪問者・ユーザの
             <br />
@@ -249,7 +249,7 @@ export default function Main() {
             <br />
             設計・実装しています。
             <br />
-            商売道具としてのホームページが
+            商売道具としてのウェブサイトが
             <br />
             持続的に役割を果たし、
             <br />
