@@ -15,7 +15,7 @@ export const gsapAnimation = {
         scale: 1,
         duration: 1.5,
         ease: "power2.out",
-      }
+      },
     );
   },
   inview(ref: MutableRefObject<null>) {
@@ -34,7 +34,7 @@ export const gsapAnimation = {
           scrub: false,
           once: true,
         },
-      }
+      },
     );
   },
   parallaxLight(ref: MutableRefObject<null>) {

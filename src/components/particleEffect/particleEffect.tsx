@@ -11,9 +11,7 @@ interface ParticleEffectProps {
   isEnabled?: boolean;
 }
 
-export default function ParticleEffect({
-  isEnabled = true,
-}: ParticleEffectProps) {
+export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps) {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -36,7 +34,7 @@ export default function ParticleEffect({
       75,
       mount.clientWidth / mount.clientHeight,
       0.1,
-      1000
+      1000,
     );
 
     let renderer: THREE.WebGLRenderer;

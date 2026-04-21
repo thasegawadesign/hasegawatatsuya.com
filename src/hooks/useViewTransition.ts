@@ -15,7 +15,7 @@ export function useViewTransition() {
         router.push(targetPath);
       }
     },
-    [router]
+    [router],
   );
 
   return handleTransition;

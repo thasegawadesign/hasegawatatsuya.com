@@ -85,9 +85,7 @@ export default async function RootLayout({
           <AudioButton />
           <ParticleEffect />
         </Providers>
-        {isProduction && (
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ""} />
-        )}
+        {isProduction && <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ""} />}
         {isProduction && <VercelAnalytics />}
       </body>
     </html>

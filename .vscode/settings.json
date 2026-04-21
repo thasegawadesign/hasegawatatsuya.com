@@ -1,9 +1,9 @@
 {
-  "files.exclude": {
-    "**/node_modules": false,
-    "**/.next": true
-  },
-  "editor.tabSize": 2,
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxlint": true
+  },
+  "eslint.enable": false,
+  "stylelint.validate": ["css", "scss"]
 }

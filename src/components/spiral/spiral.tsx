@@ -16,15 +16,7 @@ export default function Spiral() {
 
   const circles = useMemo(() => {
     const length =
-      width <= 767
-        ? 6
-        : width <= 1023
-          ? 12
-          : width <= 1535
-            ? 14
-            : width >= 1920
-              ? 22
-              : 18;
+      width <= 767 ? 6 : width <= 1023 ? 12 : width <= 1535 ? 14 : width >= 1920 ? 22 : 18;
     return Array.from({ length: length }, (_, i) => ({
       size: 20 + i * 144,
       delay: i * 0.2,

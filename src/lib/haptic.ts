@@ -1,7 +1,5 @@
 const isTouchDevice =
-  typeof window !== "undefined"
-    ? window.matchMedia("(pointer: coarse)").matches
-    : false;
+  typeof window !== "undefined" ? window.matchMedia("(pointer: coarse)").matches : false;
 
 export function haptic(pattern: number | number[] = 50) {
   try {

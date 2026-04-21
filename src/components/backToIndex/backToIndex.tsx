@@ -1,10 +1,7 @@
 "use client";
 
 import { roboto } from "@/app/fonts";
-import {
-  backToIndex,
-  backToIndexBox,
-} from "@/components/backToIndex/backToIndex.css";
+import { backToIndex, backToIndexBox } from "@/components/backToIndex/backToIndex.css";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";

@@ -54,13 +54,7 @@ import { IoMail } from "react-icons/io5";
 
 import { cormorant, roboto } from "@/app/fonts";
 import Tooltip from "@/components/tooltip/tooltip";
-import {
-  EMAIL,
-  GITHUB,
-  NOTE,
-  PARALLAX_ENABLE_MIN_WIDTH,
-  X,
-} from "@/constants/constants";
+import { EMAIL, GITHUB, NOTE, PARALLAX_ENABLE_MIN_WIDTH, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
@@ -77,9 +71,7 @@ export default function Main() {
   const [mounted, setMounted] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const emailCopyLockRef = useRef(false);
-  const emailCopiedResetTimeoutRef = useRef<ReturnType<
-    typeof setTimeout
-  > | null>(null);
+  const emailCopiedResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [emailHovered, setEmailHovered] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
 
@@ -170,13 +162,12 @@ export default function Main() {
     offset: ["start end", "end start"],
   });
 
-  const enableParallax =
-    mounted && window.innerWidth > PARALLAX_ENABLE_MIN_WIDTH;
+  const enableParallax = mounted && window.innerWidth > PARALLAX_ENABLE_MIN_WIDTH;
 
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    enableParallax ? ["-20px", "20px"] : ["0px", "0px"]
+    enableParallax ? ["-20px", "20px"] : ["0px", "0px"],
   );
 
   useEffect(() => {
@@ -219,15 +210,7 @@ export default function Main() {
         </h1>
         <div className={clsx(line)}></div>
         <section id="about" className={clsx(aboutSection)}>
-          <h2
-            className={clsx(
-              roboto.className,
-              sectionHeading,
-              sectionHeadingAbout
-            )}
-          >
-            About
-          </h2>
+          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingAbout)}>About</h2>
           <p ref={descriptionRef} className={clsx(description)}>
             Webデザイナー、
             <br className={mobileBr} />
@@ -257,9 +240,7 @@ export default function Main() {
           <section className={profileSection} ref={profileRef}>
             <div className={clsx(profileContent)}>
               <div className={clsx(profileTextBox)}>
-                <h3 className={clsx(roboto.className, profileName)}>
-                  Tatsuya Hasegawa
-                </h3>
+                <h3 className={clsx(roboto.className, profileName)}>Tatsuya Hasegawa</h3>
                 <p className={clsx(roboto.className, profileOccupation)}>
                   Web Designer | Front-end Developer
                 </p>
@@ -342,10 +323,7 @@ export default function Main() {
               </Link>
             </div>
             <div className={clsx(profileImageWrapper)}>
-              <div
-                ref={profileImageContainerRef}
-                className={clsx(profileImageContainer)}
-              >
+              <div ref={profileImageContainerRef} className={clsx(profileImageContainer)}>
                 <motion.div style={{ y }} className={clsx(motionDiv)}>
                   <Image
                     src={"/images/photo.avif"}
@@ -360,15 +338,7 @@ export default function Main() {
           </section>
         </section>
         <section id="works" className={clsx(worksSection)}>
-          <h2
-            className={clsx(
-              roboto.className,
-              sectionHeading,
-              sectionHeadingWorks
-            )}
-          >
-            Works
-          </h2>
+          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingWorks)}>Works</h2>
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem01Ref}>
               <div className={clsx(worksTextBox)}>
@@ -382,21 +352,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/cursor-dashboard-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/cursor-dashboard-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/cursor-dashboard-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -416,12 +386,8 @@ export default function Main() {
             <section className={clsx(worksItem)} ref={worksItem02Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>
-                    「福昇運輸株式会社」
-                  </span>
-                  <span className={clsx(worksNameSpan)}>
-                    コーポレートサイト
-                  </span>
+                  <span className={clsx(worksNameSpan)}>「福昇運輸株式会社」</span>
+                  <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
@@ -429,25 +395,13 @@ export default function Main() {
                 href={"/works/fukusho-unyu"}
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/fukusho-unyu-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/fukusho-unyu-mockup.avif", 4000, 3000)
                 }
                 onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/fukusho-unyu-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/fukusho-unyu-mockup.avif", 4000, 3000)
                 }
                 onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/fukusho-unyu-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/fukusho-unyu-mockup.avif", 4000, 3000)
                 }
                 onClick={() => {
                   playSfxClick();
@@ -466,12 +420,8 @@ export default function Main() {
             <section className={clsx(worksItem)} ref={worksItem03Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>
-                    「株式会社Univearth」
-                  </span>
-                  <span className={clsx(worksNameSpan)}>
-                    コーポレートサイト
-                  </span>
+                  <span className={clsx(worksNameSpan)}>「株式会社Univearth」</span>
+                  <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
@@ -479,25 +429,13 @@ export default function Main() {
                 href={"/works/univearth"}
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/univearth-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
                 }
                 onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/univearth-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
                 }
                 onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/univearth-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
                 }
                 onClick={() => {
                   playSfxClick();
@@ -516,12 +454,8 @@ export default function Main() {
             <section className={clsx(worksItem)} ref={worksItem04Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>
-                    「株式会社 智商運輸」
-                  </span>
-                  <span className={clsx(worksNameSpan)}>
-                    コーポレートサイト
-                  </span>
+                  <span className={clsx(worksNameSpan)}>「株式会社 智商運輸」</span>
+                  <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
@@ -529,25 +463,13 @@ export default function Main() {
                 href={"/works/tomosho-unyu"}
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/tomosho-unyu-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/tomosho-unyu-mockup.avif", 4000, 3000)
                 }
                 onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/tomosho-unyu-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/tomosho-unyu-mockup.avif", 4000, 3000)
                 }
                 onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/tomosho-unyu-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/tomosho-unyu-mockup.avif", 4000, 3000)
                 }
                 onClick={() => {
                   playSfxClick();
@@ -575,25 +497,13 @@ export default function Main() {
                 href={"/works/fleur"}
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/fleur-website-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
                 }
                 onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/fleur-website-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
                 }
                 onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/fleur-website-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
                 }
                 onClick={() => {
                   playSfxClick();
@@ -618,25 +528,13 @@ export default function Main() {
                 href={"/works/playlist2025"}
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/playlist2025-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
                 }
                 onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/playlist2025-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
                 }
                 onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/playlist2025-mockup.avif",
-                    4000,
-                    3000
-                  )
+                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
                 }
                 onClick={() => {
                   playSfxClick();
@@ -703,25 +601,15 @@ export default function Main() {
           </div>
         </section>
         <section id="playgrounds" className={clsx(worksSection)}>
-          <h2
-            className={clsx(
-              roboto.className,
-              sectionHeading,
-              sectionHeadingExperimental
-            )}
-          >
+          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingExperimental)}>
             Playgrounds
           </h2>
           <div className={clsx(worksBox)}>
             <section className={clsx(worksItem)} ref={worksItem09Ref}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>
-                    NOVA FREIGHT STUDIO
-                  </span>
-                  <span className={clsx(worksNameSpan)}>
-                    架空の物流企業サイト
-                  </span>
+                  <span className={clsx(worksNameSpan)}>NOVA FREIGHT STUDIO</span>
+                  <span className={clsx(worksNameSpan)}>架空の物流企業サイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
@@ -759,21 +647,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/moire-playground-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/moire-playground-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/moire-playground-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -806,21 +694,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/editorial-hero-prototype-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/editorial-hero-prototype-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/editorial-hero-prototype-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -853,21 +741,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/customer-voice-carousel-prototype-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/customer-voice-carousel-prototype-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/customer-voice-carousel-prototype-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -876,9 +764,7 @@ export default function Main() {
                 }}
               >
                 <Image
-                  src={
-                    "/images/icons/customer-voice-carousel-prototype-icon.avif"
-                  }
+                  src={"/images/icons/customer-voice-carousel-prototype-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
@@ -890,9 +776,7 @@ export default function Main() {
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>Vision</span>
-                  <span className={clsx(worksNameSpan)}>
-                    スクロールスナップ
-                  </span>
+                  <span className={clsx(worksNameSpan)}>スクロールスナップ</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
@@ -904,21 +788,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/vision-scroll-snap-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/vision-scroll-snap-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/vision-scroll-snap-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -951,21 +835,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/about-section-diagonal-energy-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/about-section-diagonal-energy-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/about-section-diagonal-energy-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -998,21 +882,21 @@ export default function Main() {
                   preloadNextPageMainVisual(
                     "/images/mockups/nextjs-splide-carousel-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onTouchStart={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/nextjs-splide-carousel-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onFocus={() =>
                   preloadNextPageMainVisual(
                     "/images/mockups/nextjs-splide-carousel-mockup.avif",
                     6000,
-                    4500
+                    4500,
                   )
                 }
                 onClick={() => {
@@ -1056,15 +940,7 @@ export default function Main() {
           </div>
         </section>
         <section id="contact" className={clsx(contactSection)}>
-          <h2
-            className={clsx(
-              roboto.className,
-              sectionHeading,
-              sectionHeadingContact
-            )}
-          >
-            Contact
-          </h2>
+          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingContact)}>Contact</h2>
           <address className={clsx(address)}>
             <button
               className={clsx(emailButton)}
@@ -1082,16 +958,14 @@ export default function Main() {
               <div className={clsx(emailTextBox)}>
                 <span
                   className={clsx(roboto.className, emailTextRotateTop, {
-                    [emailButtonHover]:
-                      emailCopied || emailHovered || emailFocused,
+                    [emailButtonHover]: emailCopied || emailHovered || emailFocused,
                   })}
                 >
                   {getLabel()}
                 </span>
                 <span
                   className={clsx(roboto.className, emailTextRotateFront, {
-                    [emailButtonHover]:
-                      emailCopied || emailHovered || emailFocused,
+                    [emailButtonHover]: emailCopied || emailHovered || emailFocused,
                   })}
                 >
                   {getLabel()}

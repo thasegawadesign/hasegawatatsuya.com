@@ -6,13 +6,14 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint .",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
     "lint:css": "stylelint \"**/*.{css,scss,sass}\"",
     "lint:css:fix": "stylelint --fix \"**/*.{css,scss,sass}\"",
     "typecheck": "tsc -p tsconfig.json",
-    "prepare": "husky"
+    "check": "pnpm typecheck && pnpm lint && pnpm lint:css && pnpm format:check",
+    "prepare": "lefthook install --reset-hooks-path"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",
@@ -39,28 +40,24 @@
     "yakuhanjp": "^4.1.1"
   },
   "devDependencies": {
-    "@antebudimir/eslint-plugin-vanilla-extract": "^1.16.0",
-    "@eslint/eslintrc": "^3.3.5",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^20.19.39",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.177.0",
     "@vanilla-extract/next-plugin": "^2.5.2",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^15.5.15",
-    "husky": "^9.1.7",
+    "lefthook": "^2.1.6",
     "lint-staged": "^15.5.2",
+    "oxfmt": "^0.46.0",
+    "oxlint": "^1.61.0",
     "postcss": "^8.5.10",
-    "prettier": "^3.8.3",
     "stylelint": "^16.26.1",
     "stylelint-config-recommended": "^14.0.1",
     "stylelint-order": "^6.0.4",
-    "stylelint-prettier": "^5.0.3",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.32.1",
   "engines": {
     "node": "24.13.0"
-  }
+  },
+  "packageManager": "pnpm@10.32.1"
 }

@@ -38,81 +38,69 @@ export default function AudioButton() {
     config: { tension: 300, friction: 20 },
   }));
 
-  const fadeIn = useCallback(
-    (audio: HTMLAudioElement, duration: number = 500) => {
-      return new Promise<void>((resolve) => {
-        if (isFadingRef.current) return resolve();
+  const fadeIn = useCallback((audio: HTMLAudioElement, duration: number = 500) => {
+    return new Promise<void>((resolve) => {
+      if (isFadingRef.current) return resolve();
 
-        isFadingRef.current = true;
-        const startVolume = 0;
-        const targetVolume = 1;
-        const steps = 50;
-        const stepDuration = duration / steps;
-        const volumeStep = (targetVolume - startVolume) / steps;
+      isFadingRef.current = true;
+      const startVolume = 0;
+      const targetVolume = 1;
+      const steps = 50;
+      const stepDuration = duration / steps;
+      const volumeStep = (targetVolume - startVolume) / steps;
 
-        audio.volume = startVolume;
-        let currentStep = 0;
+      audio.volume = startVolume;
+      let currentStep = 0;
 
-        fadeIntervalRef.current = setInterval(() => {
-          currentStep++;
-          const newVolume = Math.min(
-            startVolume + volumeStep * currentStep,
-            targetVolume
-          );
-          audio.volume = newVolume;
+      fadeIntervalRef.current = setInterval(() => {
+        currentStep++;
+        const newVolume = Math.min(startVolume + volumeStep * currentStep, targetVolume);
+        audio.volume = newVolume;
 
-          if (currentStep >= steps || newVolume >= targetVolume) {
-            if (fadeIntervalRef.current) {
-              clearInterval(fadeIntervalRef.current);
-              fadeIntervalRef.current = null;
-            }
-            audio.volume = targetVolume;
-            isFadingRef.current = false;
-            resolve();
+        if (currentStep >= steps || newVolume >= targetVolume) {
+          if (fadeIntervalRef.current) {
+            clearInterval(fadeIntervalRef.current);
+            fadeIntervalRef.current = null;
           }
-        }, stepDuration);
-      });
-    },
-    []
-  );
+          audio.volume = targetVolume;
+          isFadingRef.current = false;
+          resolve();
+        }
+      }, stepDuration);
+    });
+  }, []);
 
-  const fadeOut = useCallback(
-    (audio: HTMLAudioElement, duration: number = 500) => {
-      return new Promise<void>((resolve) => {
-        if (isFadingRef.current) return resolve();
+  const fadeOut = useCallback((audio: HTMLAudioElement, duration: number = 500) => {
+    return new Promise<void>((resolve) => {
+      if (isFadingRef.current) return resolve();
 
-        isFadingRef.current = true;
-        const startVolume = audio.volume;
-        const targetVolume = 0;
-        const steps = 50;
-        const stepDuration = duration / steps;
-        const volumeStep = (startVolume - targetVolume) / steps;
+      isFadingRef.current = true;
+      const startVolume = audio.volume;
+      const targetVolume = 0;
+      const steps = 50;
+      const stepDuration = duration / steps;
+      const volumeStep = (startVolume - targetVolume) / steps;
 
-        let currentStep = 0;
+      let currentStep = 0;
 
-        fadeIntervalRef.current = setInterval(() => {
-          currentStep++;
-          const newVolume = Math.max(
-            startVolume - volumeStep * currentStep,
-            targetVolume
-          );
-          audio.volume = newVolume;
+      fadeIntervalRef.current = setInterval(() => {
+        currentStep++;
+        const newVolume = Math.max(startVolume - volumeStep * currentStep, targetVolume);
+        audio.volume = newVolume;
 
-          if (currentStep >= steps || newVolume <= targetVolume) {
-            if (fadeIntervalRef.current) {
-              clearInterval(fadeIntervalRef.current);
-              fadeIntervalRef.current = null;
-            }
-            audio.volume = targetVolume;
-            audio.pause();
-            isFadingRef.current = false;
-            resolve();
+        if (currentStep >= steps || newVolume <= targetVolume) {
+          if (fadeIntervalRef.current) {
+            clearInterval(fadeIntervalRef.current);
+            fadeIntervalRef.current = null;
           }
-        }, stepDuration);
-      });
-    },
-    []
-  );
+          audio.volume = targetVolume;
+          audio.pause();
+          isFadingRef.current = false;
+          resolve();
+        }
+      }, stepDuration);
+    });
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!boxRef.current) return;
@@ -220,7 +208,7 @@ export default function AudioButton() {
       style={{
         transform: to(
           [spring.x, spring.y, spring.scale],
-          (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`
+          (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`,
         ),
       }}
       onClick={() => haptic()}
@@ -229,10 +217,7 @@ export default function AudioButton() {
         <button
           ref={audioButtonRef}
           aria-label={isPlayingAudio ? "Sound OFF" : "Sound ON"}
-          className={clsx(
-            audioButton,
-            isPlayingAudio ? animationRunning : animationPaused
-          )}
+          className={clsx(audioButton, isPlayingAudio ? animationRunning : animationPaused)}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         ></button>

@@ -5,9 +5,7 @@ export function isLiquidBackgroundRevealed(): boolean {
   return revealed;
 }
 
-export function subscribeLiquidBackgroundReveal(
-  onReveal: () => void
-): () => void {
+export function subscribeLiquidBackgroundReveal(onReveal: () => void): () => void {
   if (revealed) {
     onReveal();
     return () => {};

@@ -56,9 +56,7 @@ export default function Main() {
   const certificationsRef = useRef(null);
   const contributionsRef = useRef(null);
   const emailCopyLockRef = useRef(false);
-  const emailCopiedResetTimeoutRef = useRef<ReturnType<
-    typeof setTimeout
-  > | null>(null);
+  const emailCopiedResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const { copy } = useClipboard();
 
@@ -104,9 +102,7 @@ export default function Main() {
             >
               ハセガワ タツヤ
             </span>
-            <span className={clsx(cormorant.className, nameEn)}>
-              Tatsuya Hasegawa
-            </span>
+            <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
           </h1>
           <Tilt
             tiltMaxAngleX={6}
@@ -199,10 +195,7 @@ export default function Main() {
         </ul>
         <div className={clsx(line)}></div>
         <section>
-          <h2
-            ref={occupationRef}
-            className={clsx(cormorant.className, occupation)}
-          >
+          <h2 ref={occupationRef} className={clsx(cormorant.className, occupation)}>
             Web Design,
             <br />
             Front-end Development
@@ -296,10 +289,7 @@ export default function Main() {
               </div>
             </dl>
           </section>
-          <section
-            ref={certificationsRef}
-            className={clsx(section, certificationsSection)}
-          >
+          <section ref={certificationsRef} className={clsx(section, certificationsSection)}>
             <h3 className={clsx(sectionHeading)}>Certifications</h3>
             <dl className={clsx(certifications)}>
               <div>
@@ -316,10 +306,7 @@ export default function Main() {
               </div>
             </dl>
           </section>
-          <section
-            ref={contributionsRef}
-            className={clsx(section, contributionsSection)}
-          >
+          <section ref={contributionsRef} className={clsx(section, contributionsSection)}>
             <h3 className={clsx(sectionHeading)}>OSS Contributions</h3>
             <dl className={clsx(contributions)}>
               <div>

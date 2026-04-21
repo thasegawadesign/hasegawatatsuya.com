@@ -16,7 +16,7 @@ export const useClipboard = (resetDelay: number = 2000) => {
         console.error("Failed to copy:", error);
       }
     },
-    [resetDelay]
+    [resetDelay],
   );
 
   return { copied, copy };

@@ -1,11 +1,7 @@
 import { getImageProps } from "next/image";
 import { preload } from "react-dom";
 
-export const preloadNextPageMainVisual = (
-  path: string,
-  width: number,
-  height: number
-) => {
+export const preloadNextPageMainVisual = (path: string, width: number, height: number) => {
   const {
     props: { src, srcSet, sizes },
   } = getImageProps({
