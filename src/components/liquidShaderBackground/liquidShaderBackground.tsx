@@ -36,17 +36,14 @@ const CLEAR = 0x0613d1;
 function bindLiquidPointer(
   mount: HTMLElement,
   pointerTarget: THREE.Vector2,
-  uPointerStrength: { value: number }
+  uPointerStrength: { value: number },
 ) {
   const syncFromEvent = (ev: PointerEvent) => {
     const rect = mount.getBoundingClientRect();
     if (rect.width < 1 || rect.height < 1) return;
     const x = (ev.clientX - rect.left) / rect.width;
     const y = 1 - (ev.clientY - rect.top) / rect.height;
-    pointerTarget.set(
-      THREE.MathUtils.clamp(x, 0, 1),
-      THREE.MathUtils.clamp(y, 0, 1)
-    );
+    pointerTarget.set(THREE.MathUtils.clamp(x, 0, 1), THREE.MathUtils.clamp(y, 0, 1));
     uPointerStrength.value = Math.min(0.33, uPointerStrength.value + 0.052);
   };
 
@@ -59,28 +56,18 @@ function bindLiquidPointer(
   };
 }
 
-function smoothPointerToward(
-  current: THREE.Vector2,
-  target: THREE.Vector2,
-  delta: number
-) {
+function smoothPointerToward(current: THREE.Vector2, target: THREE.Vector2, delta: number) {
   const k = 1 - Math.exp(-delta * 3.0);
   current.lerp(target, k);
 }
 
-function decayPointerStrength(
-  uPointerStrength: { value: number },
-  delta: number
-) {
+function decayPointerStrength(uPointerStrength: { value: number }, delta: number) {
   uPointerStrength.value *= Math.exp(-delta * 2.05);
 }
 
 type WgslFnInclude = NonNullable<Parameters<typeof wgslFn>[1]>[number];
 
-function scheduleRevealAfterNextFrame(
-  onReveal: () => void,
-  getDisposed: () => boolean
-) {
+function scheduleRevealAfterNextFrame(onReveal: () => void, getDisposed: () => boolean) {
   requestAnimationFrame(() => {
     if (!getDisposed()) onReveal();
   });
@@ -147,7 +134,7 @@ export default function LiquidShaderBackground() {
           notifyLiquidBackgroundReveal();
           setCanvasReady(true);
         },
-        () => disposed
+        () => disposed,
       );
 
       const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -157,11 +144,7 @@ export default function LiquidShaderBackground() {
       syncMotion();
       mqReduce.addEventListener("change", syncMotion);
 
-      const removePointer = bindLiquidPointer(
-        mount,
-        pointerTarget,
-        uPointerStrength
-      );
+      const removePointer = bindLiquidPointer(mount, pointerTarget, uPointerStrength);
 
       let frame = 0;
       const clock = new THREE.Clock();
@@ -220,18 +203,10 @@ export default function LiquidShaderBackground() {
 
         const hashFn = wgslFn(LIQUID_WGSL_HASH);
         const hash3Fn = wgslFn(LIQUID_WGSL_HASH3);
-        const noiseFn = wgslFn(LIQUID_WGSL_NOISE, [
-          hashFn as unknown as WgslFnInclude,
-        ]);
-        const fbmFn = wgslFn(LIQUID_WGSL_FBM, [
-          noiseFn as unknown as WgslFnInclude,
-        ]);
-        const fbmRidgedFn = wgslFn(LIQUID_WGSL_FBM_RIDGED, [
-          noiseFn as unknown as WgslFnInclude,
-        ]);
-        const domainWarpFn = wgslFn(LIQUID_WGSL_DOMAIN_WARP, [
-          fbmFn as unknown as WgslFnInclude,
-        ]);
+        const noiseFn = wgslFn(LIQUID_WGSL_NOISE, [hashFn as unknown as WgslFnInclude]);
+        const fbmFn = wgslFn(LIQUID_WGSL_FBM, [noiseFn as unknown as WgslFnInclude]);
+        const fbmRidgedFn = wgslFn(LIQUID_WGSL_FBM_RIDGED, [noiseFn as unknown as WgslFnInclude]);
+        const domainWarpFn = wgslFn(LIQUID_WGSL_DOMAIN_WARP, [fbmFn as unknown as WgslFnInclude]);
         const vortexTwistFn = wgslFn(LIQUID_WGSL_VORTEX_TWIST);
         const heightAtFn = wgslFn(LIQUID_WGSL_HEIGHT_AT, [
           fbmFn as unknown as WgslFnInclude,
@@ -288,7 +263,7 @@ export default function LiquidShaderBackground() {
             notifyLiquidBackgroundReveal();
             setCanvasReady(true);
           },
-          () => disposed
+          () => disposed,
         );
 
         const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -298,11 +273,7 @@ export default function LiquidShaderBackground() {
         syncMotion();
         mqReduce.addEventListener("change", syncMotion);
 
-        const removePointer = bindLiquidPointer(
-          mount,
-          pointerTarget,
-          uPointerStrength
-        );
+        const removePointer = bindLiquidPointer(mount, pointerTarget, uPointerStrength);
 
         const clock = new THREE.Clock();
 
@@ -354,10 +325,7 @@ export default function LiquidShaderBackground() {
           className={fallbackImageAsset}
         />
       </div>
-      <div
-        ref={mountRef}
-        className={clsx(canvasRoot, canvasReady && canvasRootReady)}
-      />
+      <div ref={mountRef} className={clsx(canvasRoot, canvasReady && canvasRootReady)} />
     </div>
   );
 }

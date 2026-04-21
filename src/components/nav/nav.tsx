@@ -1,11 +1,5 @@
 import { roboto } from "@/app/fonts";
-import {
-  logo,
-  nav,
-  navLink,
-  navLinkBox,
-  navLogoBox,
-} from "@/components/nav/nav.css";
+import { logo, nav, navLink, navLinkBox, navLogoBox } from "@/components/nav/nav.css";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import clsx from "clsx";

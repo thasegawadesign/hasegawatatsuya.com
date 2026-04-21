@@ -1,16 +1,9 @@
-import {
-  blackHoleContainer,
-  svgStyles,
-} from "@/components/blackHole/blackHole.css";
+import { blackHoleContainer, svgStyles } from "@/components/blackHole/blackHole.css";
 
 export default function BlackHole() {
   return (
     <div className={blackHoleContainer}>
-      <svg
-        viewBox="0 0 800 800"
-        className={svgStyles}
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg viewBox="0 0 800 800" className={svgStyles} xmlns="http://www.w3.org/2000/svg">
         <defs>
           {/* 降着円盤のグラデーション */}
           <radialGradient id="accretionDisk" cx="50%" cy="50%" r="50%">
@@ -73,110 +66,26 @@ export default function BlackHole() {
 
         {/* 背景の星々 */}
         <g>
-          <circle
-            cx="100"
-            cy="150"
-            r="1"
-            fill="#ffffff"
-            filter="url(#starGlow)"
-            opacity="0.8"
-          />
-          <circle
-            cx="700"
-            cy="200"
-            r="0.5"
-            fill="#aaccff"
-            filter="url(#starGlow)"
-            opacity="0.6"
-          />
-          <circle
-            cx="150"
-            cy="600"
-            r="1.5"
-            fill="#ffccaa"
-            filter="url(#starGlow)"
-            opacity="0.7"
-          />
-          <circle
-            cx="650"
-            cy="650"
-            r="0.8"
-            fill="#ccaaff"
-            filter="url(#starGlow)"
-            opacity="0.5"
-          />
-          <circle
-            cx="50"
-            cy="400"
-            r="1.2"
-            fill="#ffffff"
-            filter="url(#starGlow)"
-            opacity="0.9"
-          />
-          <circle
-            cx="750"
-            cy="450"
-            r="0.7"
-            fill="#ffaacc"
-            filter="url(#starGlow)"
-            opacity="0.6"
-          />
-          <circle
-            cx="200"
-            cy="100"
-            r="0.6"
-            fill="#aaffcc"
-            filter="url(#starGlow)"
-            opacity="0.4"
-          />
-          <circle
-            cx="600"
-            cy="100"
-            r="1.1"
-            fill="#ccccff"
-            filter="url(#starGlow)"
-            opacity="0.8"
-          />
+          <circle cx="100" cy="150" r="1" fill="#ffffff" filter="url(#starGlow)" opacity="0.8" />
+          <circle cx="700" cy="200" r="0.5" fill="#aaccff" filter="url(#starGlow)" opacity="0.6" />
+          <circle cx="150" cy="600" r="1.5" fill="#ffccaa" filter="url(#starGlow)" opacity="0.7" />
+          <circle cx="650" cy="650" r="0.8" fill="#ccaaff" filter="url(#starGlow)" opacity="0.5" />
+          <circle cx="50" cy="400" r="1.2" fill="#ffffff" filter="url(#starGlow)" opacity="0.9" />
+          <circle cx="750" cy="450" r="0.7" fill="#ffaacc" filter="url(#starGlow)" opacity="0.6" />
+          <circle cx="200" cy="100" r="0.6" fill="#aaffcc" filter="url(#starGlow)" opacity="0.4" />
+          <circle cx="600" cy="100" r="1.1" fill="#ccccff" filter="url(#starGlow)" opacity="0.8" />
         </g>
 
         {/* 極ジェット（上） */}
         <g>
-          <ellipse
-            cx="400"
-            cy="200"
-            rx="8"
-            ry="180"
-            fill="url(#jetGradient)"
-            opacity="0.7"
-          />
-          <ellipse
-            cx="400"
-            cy="200"
-            rx="4"
-            ry="160"
-            fill="url(#jetGradient)"
-            opacity="0.9"
-          />
+          <ellipse cx="400" cy="200" rx="8" ry="180" fill="url(#jetGradient)" opacity="0.7" />
+          <ellipse cx="400" cy="200" rx="4" ry="160" fill="url(#jetGradient)" opacity="0.9" />
         </g>
 
         {/* 極ジェット（下） */}
         <g>
-          <ellipse
-            cx="400"
-            cy="600"
-            rx="8"
-            ry="180"
-            fill="url(#jetGradient)"
-            opacity="0.7"
-          />
-          <ellipse
-            cx="400"
-            cy="600"
-            rx="4"
-            ry="160"
-            fill="url(#jetGradient)"
-            opacity="0.9"
-          />
+          <ellipse cx="400" cy="600" rx="8" ry="180" fill="url(#jetGradient)" opacity="0.7" />
+          <ellipse cx="400" cy="600" rx="4" ry="160" fill="url(#jetGradient)" opacity="0.9" />
         </g>
 
         {/* 降着円盤（外側） */}
@@ -190,14 +99,7 @@ export default function BlackHole() {
             dur="25s"
             repeatCount="indefinite"
           />
-          <ellipse
-            cx="400"
-            cy="400"
-            rx="280"
-            ry="70"
-            fill="url(#accretionDisk)"
-            opacity="0.8"
-          />
+          <ellipse cx="400" cy="400" rx="280" ry="70" fill="url(#accretionDisk)" opacity="0.8" />
         </g>
 
         {/* 降着円盤（中間） */}
@@ -211,14 +113,7 @@ export default function BlackHole() {
             dur="15s"
             repeatCount="indefinite"
           />
-          <ellipse
-            cx="400"
-            cy="400"
-            rx="200"
-            ry="50"
-            fill="url(#accretionDisk)"
-            opacity="0.9"
-          />
+          <ellipse cx="400" cy="400" rx="200" ry="50" fill="url(#accretionDisk)" opacity="0.9" />
         </g>
 
         {/* 降着円盤（内側・高温） */}
@@ -232,14 +127,7 @@ export default function BlackHole() {
             dur="8s"
             repeatCount="indefinite"
           />
-          <ellipse
-            cx="400"
-            cy="400"
-            rx="120"
-            ry="30"
-            fill="url(#innerDisk)"
-            opacity="1"
-          />
+          <ellipse cx="400" cy="400" rx="120" ry="30" fill="url(#innerDisk)" opacity="1" />
         </g>
 
         {/* 事象の地平線（シュワルツシルト半径） */}

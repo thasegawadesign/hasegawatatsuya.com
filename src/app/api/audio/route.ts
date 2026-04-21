@@ -15,8 +15,7 @@ export async function GET() {
         "Content-Type": result.blob.contentType || "audio/mp3",
         "Cache-Control": "public, max-age=86400",
         "Content-Disposition":
-          result.blob.contentDisposition ||
-          'inline; filename="say-something.mp3"',
+          result.blob.contentDisposition || 'inline; filename="say-something.mp3"',
         "X-Content-Type-Options": "nosniff",
       },
     });

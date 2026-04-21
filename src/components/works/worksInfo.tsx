@@ -78,9 +78,8 @@ export default function WorksInfo(props: Props) {
   });
 
   const yRange = useMemo(
-    () =>
-      width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-80px", "80px"],
-    [width]
+    () => (width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-80px", "80px"]),
+    [width],
   );
   const y = useTransform(scrollYProgress, [0, 1], yRange);
 
@@ -114,9 +113,7 @@ export default function WorksInfo(props: Props) {
         <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>
           {nameEnNode ? nameEnNode : nameEn}
         </h1>
-        <p className={clsx(hgroupHeadingJa)}>
-          {nameJaNode ? nameJaNode : nameJa}
-        </p>
+        <p className={clsx(hgroupHeadingJa)}>{nameJaNode ? nameJaNode : nameJa}</p>
       </hgroup>
       <dl className={clsx(worksDl)}>
         <div ref={worksWhatRef} className={clsx(worksDlItem)}>

@@ -12,10 +12,7 @@ export default function ClientNavigationTracker() {
   const pathname = usePathname();
   const prevPathnameRef = useRef<string | null>(null);
 
-  if (
-    prevPathnameRef.current !== null &&
-    prevPathnameRef.current !== pathname
-  ) {
+  if (prevPathnameRef.current !== null && prevPathnameRef.current !== pathname) {
     incrementClientNavigationCount();
   }
   prevPathnameRef.current = pathname;

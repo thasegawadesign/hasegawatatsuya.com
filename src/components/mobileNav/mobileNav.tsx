@@ -28,9 +28,7 @@ export default function MobileNav() {
   const mobileNavPlaygroundsLinkRef = useRef(null);
   const mobileNavContactLinkRef = useRef(null);
 
-  const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(
-    isOpenHamburgerMenuAtom
-  );
+  const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(isOpenHamburgerMenuAtom);
 
   useEffect(() => {
     if (width >= 640 && isOpenHamburgerMenu) {

@@ -9,21 +9,13 @@ type TooltipProps = {
   side?: "top" | "bottom" | "left" | "right";
 };
 
-export default function Tooltip({
-  content,
-  children,
-  side = "top",
-}: TooltipProps) {
+export default function Tooltip({ content, children, side = "top" }: TooltipProps) {
   return (
     <RadixTooltip.Provider delayDuration={360}>
       <RadixTooltip.Root>
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
-          <RadixTooltip.Content
-            className={clsx(tooltipContent)}
-            side={side}
-            sideOffset={4}
-          >
+          <RadixTooltip.Content className={clsx(tooltipContent)} side={side} sideOffset={4}>
             {content}
             <RadixTooltip.Arrow className={clsx(tooltipArrow)} />
           </RadixTooltip.Content>
