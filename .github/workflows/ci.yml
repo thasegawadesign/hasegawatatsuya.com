@@ -33,8 +33,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run CI checks
-        run: pnpm check
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Format check (oxfmt)
+        run: pnpm format:check
+
+      - name: Lint (oxlint)
+        run: pnpm lint
+
+      - name: Lint CSS (stylelint)
+        run: pnpm lint:css
 
   build-check:
     name: Build Check
