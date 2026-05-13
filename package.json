@@ -12,7 +12,7 @@
     "lint:css": "stylelint \"**/*.{css,scss,sass}\"",
     "lint:css:fix": "stylelint --fix \"**/*.{css,scss,sass}\"",
     "typecheck": "tsc -p tsconfig.json",
-    "check": "pnpm typecheck && pnpm lint && pnpm lint:css && pnpm format:check",
+    "check": "pnpm typecheck && pnpm format:check && pnpm lint && pnpm lint:css",
     "prepare": "lefthook install --reset-hooks-path"
   },
   "dependencies": {
