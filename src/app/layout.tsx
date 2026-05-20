@@ -6,7 +6,7 @@ import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
-import { EMAIL, GITHUB, X } from "@/constants/constants";
+import { EMAIL, GITHUB, SITE_URL, X } from "@/constants/constants";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -18,8 +18,6 @@ import "yakuhanjp";
 const TITLE = "長谷川 達也 | ポートフォリオ";
 const DESCRIPTION =
   "Webデザイナー、フロントエンドエンジニア 長谷川 達也のポートフォリオです。実際に触れることのできるWeb制作物をデザイン・実装することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。";
-const URL = "https://www.hasegawatatsuya.com";
-
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
@@ -29,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: URL,
+    url: SITE_URL,
     siteName: TITLE,
     locale: "ja_JP",
     type: "website",
@@ -62,7 +60,7 @@ export default async function RootLayout({
       { "@value": "Front-end Developer", "@language": "en" },
     ],
     description: DESCRIPTION,
-    url: URL,
+    url: SITE_URL,
     sameAs: [GITHUB, X],
     email: EMAIL,
   };

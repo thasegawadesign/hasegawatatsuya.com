@@ -1,3 +1,5 @@
+export const SITE_URL = "https://www.hasegawatatsuya.com";
+
 export const GITHUB = "https://github.com/thasegawadesign";
 export const X = "https://x.com/thasegawa_";
 export const NOTE = "https://note.com/hasegawatatsuya";
