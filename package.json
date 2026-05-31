@@ -18,7 +18,7 @@
   "dependencies": {
     "@next/third-parties": "^16.2.6",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@react-aria/focus": "^3.22.0",
+    "@react-aria/focus": "^3.22.1",
     "@react-hook/window-size": "^3.1.1",
     "@react-spring/web": "^10.1.0",
     "@vanilla-extract/css": "^1.20.1",
@@ -35,7 +35,7 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-icons": "^5.6.0",
-    "react-parallax-tilt": "^1.7.328",
+    "react-parallax-tilt": "^1.7.329",
     "three": "^0.177.0",
     "yakuhanjp": "^4.1.1"
   },
@@ -46,7 +46,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.177.0",
     "@vanilla-extract/next-plugin": "^2.5.2",
-    "lefthook": "^2.1.8",
+    "lefthook": "^2.1.9",
     "lint-staged": "^15.5.2",
     "oxfmt": "^0.46.0",
     "oxlint": "^1.67.0",
