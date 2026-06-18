@@ -1,8 +1,10 @@
 import gsap from "gsap";
 import { MutableRefObject } from "react";
 
+type GsapRef = MutableRefObject<HTMLElement | null>;
+
 export const gsapAnimation = {
-  scale(ref: MutableRefObject<null>) {
+  scale(ref: GsapRef) {
     gsap.fromTo(
       ref.current,
       {
@@ -18,7 +20,7 @@ export const gsapAnimation = {
       },
     );
   },
-  inview(ref: MutableRefObject<null>) {
+  inview(ref: GsapRef) {
     gsap.fromTo(
       ref.current,
       { opacity: 0, rotation: -2 },
@@ -37,7 +39,7 @@ export const gsapAnimation = {
       },
     );
   },
-  parallaxLight(ref: MutableRefObject<null>) {
+  parallaxLight(ref: GsapRef) {
     gsap.to(ref.current, {
       y: -20,
       ease: "none",
@@ -49,7 +51,7 @@ export const gsapAnimation = {
       },
     });
   },
-  parallax(ref: MutableRefObject<null>) {
+  parallax(ref: GsapRef) {
     gsap.to(ref.current, {
       y: -40,
       ease: "none",
@@ -61,7 +63,7 @@ export const gsapAnimation = {
       },
     });
   },
-  parallaxDeep(ref: MutableRefObject<null>) {
+  parallaxDeep(ref: GsapRef) {
     gsap.to(ref.current, {
       y: -120,
       ease: "none",
