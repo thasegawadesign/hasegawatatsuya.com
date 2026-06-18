@@ -23,7 +23,7 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/moire-playground-mockup.mp4"
               what="モアレパターンのプレイグラウンド"
-              why="Three.js Journeyのコースを受講中に興味を持ったモアレパターンを実装してみました。"
+              why="Three.js Journeyのコースを受講中に興味を持ったモアレパターンを実装してみました。参考：https://threejs-journey.com/"
               how="Three.js"
               role={<>Front-end Development</>}
               date="2026.3"
