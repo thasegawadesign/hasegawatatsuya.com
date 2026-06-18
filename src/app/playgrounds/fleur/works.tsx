@@ -1,10 +1,10 @@
 import { glassBox } from "@/app/about/page.css";
 import { main } from "@/app/works/works.css";
 import BackToIndex from "@/components/backToIndex/backToIndex";
+import WorksInfo from "@/components/experimental/worksInfo";
 import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import Header from "@/components/header/header";
-import WorksInfo from "@/components/works/worksInfo";
 import clsx from "clsx";
 
 export default function Works() {
@@ -48,7 +48,7 @@ export default function Works() {
                 </>
               }
               date="2024.11"
-              URL="https://www.fleur.vegetworks.com/"
+              DemoURL="https://www.fleur.vegetworks.com/"
             />
           </main>
           <Footer />
