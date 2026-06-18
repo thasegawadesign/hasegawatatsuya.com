@@ -12,7 +12,7 @@ const routes: {
   { path: "/works/fukusho-unyu", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/univearth", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/tomosho-unyu", changeFrequency: "yearly", priority: 0.7 },
-  { path: "/works/fleur", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/playgrounds/fleur", changeFrequency: "yearly", priority: 0.5 },
   { path: "/works/playlist2025", changeFrequency: "yearly", priority: 0.7 },
   { path: "/playgrounds/moire-playground", changeFrequency: "yearly", priority: 0.5 },
   { path: "/playgrounds/editorial-hero-prototype", changeFrequency: "yearly", priority: 0.5 },

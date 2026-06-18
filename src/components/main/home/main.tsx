@@ -510,40 +510,6 @@ export default function Main() {
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>「フルール」</span>
-                  <span className={clsx(worksNameSpan)}>ブランドサイト</span>
-                </h3>
-                <p className={clsx(worksCategory)}>(Webサイト)</p>
-              </div>
-              <Link
-                href={"/works/fleur"}
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/fleur-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="フルールのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
               </div>
@@ -937,6 +903,40 @@ export default function Main() {
                   height={160}
                   className={clsx(worksIcon)}
                   alt="一問一答メーカーのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>「フルール」</span>
+                  <span className={clsx(worksNameSpan)}>ブランドサイト</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"/playgrounds/fleur"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
+                }
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/fleur-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="フルールのアイコン"
                 />
               </Link>
             </section>
