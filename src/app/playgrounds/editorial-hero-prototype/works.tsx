@@ -29,7 +29,7 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/editorial-hero-prototype-mockup.mp4"
               what="大小2枚の非対称ヒーロー、プロトタイプ"
-              why="設備や空間を紹介するサイトのファーストビューで活かせそうなヒーローのプロトタイプを制作しました。時間差をつけて幕が上がるように次々と画像を提示する実装を試しました。"
+              why="設備や空間を紹介するサイトのファーストビューで活かせそうなヒーローのプロトタイプを制作しました。時間差をつけて幕が上がるように次々と画像を提示する実装を試しました。参考：https://www.archidomo.fr/"
               how="Next.js / TypeScript / Tailwind CSS"
               role={
                 <>
