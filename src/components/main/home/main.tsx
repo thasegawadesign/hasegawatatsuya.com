@@ -78,10 +78,8 @@ export default function Main() {
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
-  const worksItemRefs = useRef<(HTMLElement | null)[]>([]);
-  const setWorksItemRef = (index: number) => (el: HTMLElement | null) => {
-    worksItemRefs.current[index] = el;
-  };
+  const worksBoxRef = useRef<HTMLDivElement>(null);
+  const playgroundsBoxRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef(null);
 
   const { copy } = useClipboard();
@@ -165,8 +163,10 @@ export default function Main() {
 
     gsapAnimation.inview(descriptionRef);
     gsapAnimation.inview(profileRef);
-    worksItemRefs.current.forEach((el) => {
-      if (el) gsapAnimation.inview({ current: el });
+    [worksBoxRef, playgroundsBoxRef].forEach((boxRef) => {
+      boxRef.current?.querySelectorAll(":scope > section").forEach((el) => {
+        gsapAnimation.inview({ current: el as HTMLElement });
+      });
     });
     gsapAnimation.inview(contactRef);
   }, []);
@@ -314,8 +314,8 @@ export default function Main() {
         </section>
         <section id="works" className={clsx(worksSection)}>
           <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingWorks)}>Works</h2>
-          <div className={clsx(worksBox)}>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(0)}>
+          <div className={clsx(worksBox)} ref={worksBoxRef}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>やさしいWebチェック</h3>
                 <p className={clsx(worksCategory)}>(Webサービス)</p>
@@ -339,7 +339,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(1)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>Cookieメモ</h3>
                 <p className={clsx(worksCategory)}>(Webサービス)</p>
@@ -363,7 +363,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(2)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>Cursor Dashboard</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -406,7 +406,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(3)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>「福昇運輸株式会社」</span>
@@ -440,7 +440,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(4)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>「株式会社Univearth」</span>
@@ -474,7 +474,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(5)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>「株式会社 智商運輸」</span>
@@ -508,7 +508,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(6)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>「フルール」</span>
@@ -542,7 +542,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(7)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
@@ -573,7 +573,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(8)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>ステメモ</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -597,7 +597,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(9)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>JavaScript電卓</h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
@@ -627,8 +627,8 @@ export default function Main() {
           <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingExperimental)}>
             Playgrounds
           </h2>
-          <div className={clsx(worksBox)}>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(10)}>
+          <div className={clsx(worksBox)} ref={playgroundsBoxRef}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>Auto playing carousel</span>
@@ -655,7 +655,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(11)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>NOVA FREIGHT STUDIO</span>
@@ -682,7 +682,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(12)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>モアレパターン</span>
@@ -728,7 +728,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(13)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>大小2枚の</span>
@@ -775,7 +775,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(14)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>お客様の声</span>
@@ -822,7 +822,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(15)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>Vision</span>
@@ -869,54 +869,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(16)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>斜めが刺さる</span>
-                  <span className={clsx(worksNameSpan)}>Aboutセクション</span>
-                </h3>
-                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
-              </div>
-              <Link
-                href={"/playgrounds/about-section-diagonal-energy"}
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/about-section-diagonal-energy-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/about-section-diagonal-energy-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/about-section-diagonal-energy-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/about-section-diagonal-energy-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="斜めが刺さるAboutセクションのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(17)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>アクセシブルな</span>
@@ -963,7 +916,7 @@ export default function Main() {
                 />
               </Link>
             </section>
-            <section className={clsx(worksItem)} ref={setWorksItemRef(18)}>
+            <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>一問一答メーカー</h3>
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
