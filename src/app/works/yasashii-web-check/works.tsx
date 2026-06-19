@@ -23,9 +23,15 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/yasashii-web-check-mockup.mp4"
               what="URLを入力するだけで、読みやすさ・アクセシビリティ・言葉のやさしさなど6つの観点からWebページを診断するWebサービス"
-              why="Webのアクセシビリティや読みやすさは、専門知識がなくても気軽に確認できる仕組みがあるとよいと考えました。WCAG 2.1 AA / JIS X 8341-3 を参考に、誰でも使える診断ツールを作りたかったのが制作のきっかけです。"
+              why="放送大学でユニバーサルデザインを学ぶうちに、Webのアクセシビリティに興味を持ちました。読みやすさやアクセシビリティは、専門知識がなくても気軽に確認できる仕組みがあるとよいと考え、WCAG 2.1 AA / JIS X 8341-3 を参考に、誰でも使える診断ツールを作りたかったのが制作のきっかけです。"
               how="Next.js / TypeScript / Tailwind CSS"
-              role={<>Front-end Development</>}
+              role={
+                <>
+                  Web Design,
+                  <br />
+                  Front-end Development
+                </>
+              }
               date="2026.6"
               DemoURL="https://www.yasashii-web-check.com/"
             />
