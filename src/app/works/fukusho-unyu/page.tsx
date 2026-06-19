@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: `「福昇運輸株式会社」コーポレートサイト | ${SITE_TITLE_WORKS}`,
+  title: `福昇運輸株式会社 コーポレートサイト | ${SITE_TITLE_WORKS}`,
 };
 
 export default function FukushoUnyu() {

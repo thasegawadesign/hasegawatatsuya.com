@@ -15,11 +15,11 @@ export default function Works() {
           <Header />
           <main className={clsx(main)}>
             <WorksInfo
-              nameJa="「株式会社 智商運輸」コーポレートサイト"
+              nameJa="株式会社 智商運輸 コーポレートサイト"
               nameEn="Tomosho-Unyu Website"
               nameJaNode={
                 <>
-                  「株式会社 智商運輸」
+                  株式会社 智商運輸
                   <br />
                   コーポレートサイト
                 </>
@@ -34,7 +34,7 @@ export default function Works() {
               imageSrc="/images/mockups/tomosho-unyu-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="「株式会社 智商運輸」コーポレートサイト"
+              what="株式会社 智商運輸 コーポレートサイト"
               why={
                 <>
                   物流DXプラットフォームを開発する株式会社Univearthとの経営統合を機に、企業イメージの再構築を目的としたコーポレートサイトリニューアルを担当しました。

@@ -435,7 +435,7 @@ export default function Main() {
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>「福昇運輸株式会社」</span>
+                  <span className={clsx(worksNameSpan)}>福昇運輸株式会社</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
@@ -469,7 +469,7 @@ export default function Main() {
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>「株式会社Univearth」</span>
+                  <span className={clsx(worksNameSpan)}>株式会社Univearth</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
@@ -503,7 +503,7 @@ export default function Main() {
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>「株式会社 智商運輸」</span>
+                  <span className={clsx(worksNameSpan)}>株式会社 智商運輸</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(Webサイト)</p>
