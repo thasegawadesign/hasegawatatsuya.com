@@ -1,5 +1,5 @@
 import { glassBox } from "@/app/about/page.css";
-import { main } from "@/app/works/works.css";
+import { main } from "@/app/tools/tools.css";
 import BackToIndex from "@/components/backToIndex/backToIndex";
 import WorksInfo from "@/components/experimental/worksInfo";
 import Footer from "@/components/footer/footer";
