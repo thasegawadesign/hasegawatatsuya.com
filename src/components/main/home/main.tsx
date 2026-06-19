@@ -364,10 +364,17 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(Webサービス)</p>
               </div>
               <Link
-                href={"https://www.cookie-memo.com/"}
+                href={"/works/cookie-memo"}
                 className={clsx(worksLink)}
-                target="_blank"
-                rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
