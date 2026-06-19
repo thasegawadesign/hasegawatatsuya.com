@@ -25,6 +25,7 @@ export default function MobileNav() {
   const mobileNavHomeLinkRef = useRef(null);
   const mobileNavAboutLinkRef = useRef(null);
   const mobileNavWorksLinkRef = useRef(null);
+  const mobileNavToolsLinkRef = useRef(null);
   const mobileNavPlaygroundsLinkRef = useRef(null);
   const mobileNavContactLinkRef = useRef(null);
 
@@ -48,6 +49,7 @@ export default function MobileNav() {
         mobileNavHomeLinkRef,
         mobileNavAboutLinkRef,
         mobileNavWorksLinkRef,
+        mobileNavToolsLinkRef,
         mobileNavPlaygroundsLinkRef,
         mobileNavContactLinkRef,
       ];
@@ -124,6 +126,20 @@ export default function MobileNav() {
               }}
             >
               Works
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/#tools"}
+              ref={mobileNavToolsLinkRef}
+              className={clsx(roboto.className, mobileNavLink)}
+              onClick={() => {
+                setIsOpenHamburgerMenu(false);
+                playSfxClick();
+                haptic();
+              }}
+            >
+              Tools
             </Link>
           </li>
           <li>

@@ -34,6 +34,7 @@ import {
   sectionHeadingAbout,
   sectionHeadingContact,
   sectionHeadingExperimental,
+  sectionHeadingTools,
   sectionHeadingWorks,
   worksBox,
   worksCategory,
@@ -79,6 +80,7 @@ export default function Main() {
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
   const worksBoxRef = useRef<HTMLDivElement>(null);
+  const toolsBoxRef = useRef<HTMLDivElement>(null);
   const playgroundsBoxRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef(null);
 
@@ -163,7 +165,7 @@ export default function Main() {
 
     gsapAnimation.inview(descriptionRef);
     gsapAnimation.inview(profileRef);
-    [worksBoxRef, playgroundsBoxRef].forEach((boxRef) => {
+    [worksBoxRef, toolsBoxRef, playgroundsBoxRef].forEach((boxRef) => {
       boxRef.current?.querySelectorAll(":scope > section").forEach((el) => {
         gsapAnimation.inview({ current: el as HTMLElement });
       });
@@ -317,123 +319,6 @@ export default function Main() {
           <div className={clsx(worksBox)} ref={worksBoxRef}>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>やさしいWebチェック</h3>
-                <p className={clsx(worksCategory)}>(Webサービス)</p>
-              </div>
-              <Link
-                href={"/works/yasashii-web-check"}
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/yasashii-web-check-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/yasashii-web-check-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/yasashii-web-check-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/yasashii-web-check-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="やさしいWebチェックのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>Cookieメモ</h3>
-                <p className={clsx(worksCategory)}>(Webサービス)</p>
-              </div>
-              <Link
-                href={"/works/cookie-memo"}
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/cookie-memo-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="Cookieメモのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>Cursor Dashboard</h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-              </div>
-              <Link
-                href={"/works/cursor-dashboard"}
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/cursor-dashboard-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="カーソルダッシュボードのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>福昇運輸株式会社</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
@@ -534,22 +419,39 @@ export default function Main() {
                 />
               </Link>
             </section>
+          </div>
+        </section>
+        <section id="tools" className={clsx(worksSection)}>
+          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingTools)}>Tools</h2>
+          <div className={clsx(worksBox)} ref={toolsBoxRef}>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>プレイリスト2025</h3>
-                <p className={clsx(worksCategory)}>(グラフィック)</p>
+                <h3 className={clsx(worksName)}>やさしいWebチェック</h3>
+                <p className={clsx(worksCategory)}>(Webサービス)</p>
               </div>
               <Link
-                href={"/works/playlist2025"}
+                href={"/tools/yasashii-web-check"}
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
-                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
+                  preloadNextPageMainVisual(
+                    "/images/mockups/yasashii-web-check-mockup.avif",
+                    6000,
+                    4500,
+                  )
                 }
                 onTouchStart={() =>
-                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
+                  preloadNextPageMainVisual(
+                    "/images/mockups/yasashii-web-check-mockup.avif",
+                    6000,
+                    4500,
+                  )
                 }
                 onFocus={() =>
-                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
+                  preloadNextPageMainVisual(
+                    "/images/mockups/yasashii-web-check-mockup.avif",
+                    6000,
+                    4500,
+                  )
                 }
                 onClick={() => {
                   playSfxClick();
@@ -557,35 +459,85 @@ export default function Main() {
                 }}
               >
                 <Image
-                  src={"/images/icons/playlist2025-icon.avif"}
+                  src={"/images/icons/yasashii-web-check-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="プレイリスト2025のアイコン"
+                  alt="やさしいWebチェックのアイコン"
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>ステメモ</h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+                <h3 className={clsx(worksName)}>Cookieメモ</h3>
+                <p className={clsx(worksCategory)}>(Webサービス)</p>
               </div>
               <Link
-                href={"https://www.sutememo.vegetworks.com/"}
+                href={"/tools/cookie-memo"}
                 className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
                 }}
               >
                 <Image
-                  src={"/images/icons/sutememo-icon.avif"}
+                  src={"/images/icons/cookie-memo-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="ステメモのアイコン"
+                  alt="Cookieメモのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>Cursor Dashboard</h3>
+                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+              </div>
+              <Link
+                href={"/tools/cursor-dashboard"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/cursor-dashboard-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/cursor-dashboard-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="カーソルダッシュボードのアイコン"
                 />
               </Link>
             </section>
@@ -610,6 +562,54 @@ export default function Main() {
                   height={160}
                   className={clsx(worksIcon)}
                   alt="JavaScript電卓のアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>一問一答メーカー</h3>
+                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+              </div>
+              <Link
+                href={"https://www.question-and-answer.vegetworks.com/"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                target="_blank"
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/question-and-answer-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="一問一答メーカーのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>ステメモ</h3>
+                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
+              </div>
+              <Link
+                href={"https://www.sutememo.vegetworks.com/"}
+                className={clsx(worksLink)}
+                rel="noopener noreferrer"
+                target="_blank"
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/sutememo-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="ステメモのアイコン"
                 />
               </Link>
             </section>
@@ -910,25 +910,32 @@ export default function Main() {
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>一問一答メーカー</h3>
-                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+                <h3 className={clsx(worksName)}>プレイリスト2025</h3>
+                <p className={clsx(worksCategory)}>(グラフィック)</p>
               </div>
               <Link
-                href={"https://www.question-and-answer.vegetworks.com/"}
+                href={"/playgrounds/playlist2025"}
                 className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
                 }}
               >
                 <Image
-                  src={"/images/icons/question-and-answer-icon.avif"}
+                  src={"/images/icons/playlist2025-icon.avif"}
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="一問一答メーカーのアイコン"
+                  alt="プレイリスト2025のアイコン"
                 />
               </Link>
             </section>

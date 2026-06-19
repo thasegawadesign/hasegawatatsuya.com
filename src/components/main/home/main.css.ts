@@ -129,6 +129,15 @@ export const sectionHeadingWorks = style({
   },
 });
 
+export const sectionHeadingTools = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      paddingLeft: "8vw",
+      textAlign: "left",
+    },
+  },
+});
+
 export const sectionHeadingExperimental = style({
   "@media": {
     [breakpoints["sm"]]: {
