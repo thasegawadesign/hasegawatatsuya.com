@@ -20,7 +20,7 @@ export const mobileNavCrossBox = style({
 export const mobileNavCross = style({
   position: "relative",
   display: "block",
-  marginBottom: 20,
+  marginBottom: 12,
   border: "none",
   backgroundColor: "transparent",
   cursor: "pointer",
@@ -60,12 +60,12 @@ export const mobileNavLink = style({
   textDecoration: "none",
   letterSpacing: "0.02em",
   color: vars.color.text,
-  fontSize: "4.8rem",
+  fontSize: "4.6rem",
   fontWeight: 100,
   selectors: {
     "&::before": {
       position: "absolute",
-      top: "5.4rem",
+      top: "4.6rem",
       display: "block",
       transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
       borderRadius: "0 0 12px 12px",
