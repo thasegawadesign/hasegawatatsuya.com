@@ -28,7 +28,7 @@ export default function Works() {
               imageSrc="/images/mockups/playlist2025-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="音楽配信サービスプレイリストカバー画像"
+              what="音楽配信サービスプレイリストカバー画像2025"
               why={
                 <>
                   私が利用している音楽配信サービスでは、プレイリストカバー画像が自動で生成されますが、せっかくなら自分でデザインしてみたいと思ったことが制作のきっかけです。
