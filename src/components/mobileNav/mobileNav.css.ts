@@ -60,7 +60,7 @@ export const mobileNavLink = style({
   textDecoration: "none",
   letterSpacing: "0.02em",
   color: vars.color.text,
-  fontSize: "5.0rem",
+  fontSize: "4.8rem",
   fontWeight: 100,
   selectors: {
     "&::before": {
