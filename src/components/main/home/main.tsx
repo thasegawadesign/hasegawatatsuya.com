@@ -354,40 +354,6 @@ export default function Main() {
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>株式会社Univearth</span>
-                  <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
-                </h3>
-                <p className={clsx(worksCategory)}>(Webサイト)</p>
-              </div>
-              <Link
-                href={"/works/univearth"}
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/univearth-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt="株式会社Univearthのアイコン"
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>株式会社 智商運輸</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
@@ -416,6 +382,40 @@ export default function Main() {
                   height={160}
                   className={clsx(worksIcon)}
                   alt="株式会社 智商運輸のアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)}>
+              <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>株式会社Univearth</span>
+                  <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(Webサイト)</p>
+              </div>
+              <Link
+                href={"/works/univearth"}
+                className={clsx(worksLink)}
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
+                }
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/univearth-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="株式会社Univearthのアイコン"
                 />
               </Link>
             </section>
