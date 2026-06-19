@@ -319,7 +319,7 @@ export default function Main() {
           <div className={clsx(worksBox)} ref={worksBoxRef}>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="work-fukusho-unyu" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>福昇運輸株式会社</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
@@ -327,6 +327,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/works/fukusho-unyu"}
+                aria-labelledby="work-fukusho-unyu"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual("/images/mockups/fukusho-unyu-mockup.avif", 4000, 3000)
@@ -347,13 +348,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="福昇運輸株式会社のアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="work-tomosho-unyu" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>株式会社 智商運輸</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
@@ -361,6 +362,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/works/tomosho-unyu"}
+                aria-labelledby="work-tomosho-unyu"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual("/images/mockups/tomosho-unyu-mockup.avif", 4000, 3000)
@@ -381,13 +383,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="株式会社 智商運輸のアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="work-univearth" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>株式会社Univearth</span>
                   <span className={clsx(worksNameSpan)}>コーポレートサイト</span>
                 </h3>
@@ -395,6 +397,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/works/univearth"}
+                aria-labelledby="work-univearth"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual("/images/mockups/univearth-mockup.avif", 4000, 3000)
@@ -415,7 +418,7 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="株式会社Univearthのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
@@ -426,11 +429,14 @@ export default function Main() {
           <div className={clsx(worksBox)} ref={toolsBoxRef}>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>やさしいWebチェック</h3>
+                <h3 id="tool-yasashii-web-check" className={clsx(worksName)}>
+                  やさしいWebチェック
+                </h3>
                 <p className={clsx(worksCategory)}>(Webサービス)</p>
               </div>
               <Link
                 href={"/tools/yasashii-web-check"}
+                aria-labelledby="tool-yasashii-web-check"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
@@ -463,17 +469,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="やさしいWebチェックのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>Cookieメモ</h3>
+                <h3 id="tool-cookie-memo" className={clsx(worksName)}>
+                  Cookieメモ
+                </h3>
                 <p className={clsx(worksCategory)}>(Webサービス)</p>
               </div>
               <Link
                 href={"/tools/cookie-memo"}
+                aria-labelledby="tool-cookie-memo"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
@@ -494,17 +503,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="Cookieメモのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>Cursor Dashboard</h3>
+                <h3 id="tool-cursor-dashboard" className={clsx(worksName)}>
+                  Cursor Dashboard
+                </h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
               </div>
               <Link
                 href={"/tools/cursor-dashboard"}
+                aria-labelledby="tool-cursor-dashboard"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual(
@@ -537,17 +549,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="カーソルダッシュボードのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>JavaScript電卓</h3>
+                <h3 id="tool-calculator" className={clsx(worksName)}>
+                  JavaScript電卓
+                </h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
               </div>
               <Link
                 href={"https://www.calculator.vegetworks.com/"}
+                aria-label="JavaScript電卓（新しいタブで開く）"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -561,17 +576,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="JavaScript電卓のアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>一問一答メーカー</h3>
+                <h3 id="tool-question-and-answer" className={clsx(worksName)}>
+                  一問一答メーカー
+                </h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
               </div>
               <Link
                 href={"https://www.question-and-answer.vegetworks.com/"}
+                aria-label="一問一答メーカー（新しいタブで開く）"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -585,17 +603,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="一問一答メーカーのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>ステメモ</h3>
+                <h3 id="tool-sutememo" className={clsx(worksName)}>
+                  ステメモ
+                </h3>
                 <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
               </div>
               <Link
                 href={"https://www.sutememo.vegetworks.com/"}
+                aria-label="ステメモ（新しいタブで開く）"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -609,7 +630,7 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="ステメモのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
@@ -622,7 +643,7 @@ export default function Main() {
           <div className={clsx(worksBox)} ref={playgroundsBoxRef}>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-auto-playing-carousel" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>Auto playing carousel</span>
                   <span className={clsx(worksNameSpan)}>自動再生カルーセル</span>
                 </h3>
@@ -630,6 +651,7 @@ export default function Main() {
               </div>
               <Link
                 href={"https://auto-playing-carousel.vercel.app/"}
+                aria-label="自動再生カルーセル（新しいタブで開く）"
                 className={clsx(worksLink)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -643,13 +665,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="自動再生カルーセルのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-nova-freight-studio" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>NOVA FREIGHT STUDIO</span>
                   <span className={clsx(worksNameSpan)}>架空の物流企業サイト</span>
                 </h3>
@@ -657,6 +679,7 @@ export default function Main() {
               </div>
               <Link
                 href={"https://www.nova-freight-studio.vegetworks.com/"}
+                aria-label="NOVA FREIGHT STUDIO 架空の物流企業サイト（新しいタブで開く）"
                 className={clsx(worksLink)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -670,19 +693,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="NOVA FREIGHT STUDIOのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-moire-playground" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>モアレパターン</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
                 href={"/playgrounds/moire-playground"}
+                aria-labelledby="playground-moire-playground"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -716,13 +740,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="モアレパターンのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-editorial-hero-prototype" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>大小2枚の</span>
                   <span className={clsx(worksNameSpan)}>非対称ヒーロー</span>
                 </h3>
@@ -730,6 +754,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/playgrounds/editorial-hero-prototype"}
+                aria-labelledby="playground-editorial-hero-prototype"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -763,13 +788,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="非対称ヒーローのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-customer-voice-carousel-prototype" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>お客様の声</span>
                   <span className={clsx(worksNameSpan)}>カルーセル</span>
                 </h3>
@@ -777,6 +802,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/playgrounds/customer-voice-carousel-prototype"}
+                aria-labelledby="playground-customer-voice-carousel-prototype"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -810,13 +836,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="お客様の声カルーセルのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-vision-scroll-snap" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>Vision</span>
                   <span className={clsx(worksNameSpan)}>スクロールスナップ</span>
                 </h3>
@@ -824,6 +850,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/playgrounds/vision-scroll-snap"}
+                aria-labelledby="playground-vision-scroll-snap"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -857,13 +884,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="Visionスクロールスナップのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-nextjs-splide-carousel" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>アクセシブルな</span>
                   <span className={clsx(worksNameSpan)}>Splideカルーセル</span>
                 </h3>
@@ -871,6 +898,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/playgrounds/nextjs-splide-carousel"}
+                aria-labelledby="playground-nextjs-splide-carousel"
                 className={clsx(worksLink)}
                 rel="noopener noreferrer"
                 onMouseEnter={() =>
@@ -904,13 +932,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="Splideカルーセルのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-mega-dropdown-menu-prototype" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>メガドロップダウン</span>
                   <span className={clsx(worksNameSpan)}>メニュー</span>
                 </h3>
@@ -918,6 +946,7 @@ export default function Main() {
               </div>
               <Link
                 href={"https://mega-dropdown-menu-prototype.vercel.app/"}
+                aria-label="メガドロップダウンメニュー（新しいタブで開く）"
                 className={clsx(worksLink)}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -931,17 +960,20 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="メガドロップダウンメニューのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>プレイリスト2025</h3>
+                <h3 id="playground-playlist2025" className={clsx(worksName)}>
+                  プレイリスト2025
+                </h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
               </div>
               <Link
                 href={"/playgrounds/playlist2025"}
+                aria-labelledby="playground-playlist2025"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual("/images/mockups/playlist2025-mockup.avif", 4000, 3000)
@@ -962,13 +994,13 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="プレイリスト2025のアイコン"
+                  alt=""
                 />
               </Link>
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
-                <h3 className={clsx(worksName)}>
+                <h3 id="playground-fleur" className={clsx(worksName)}>
                   <span className={clsx(worksNameSpan)}>フルール</span>
                   <span className={clsx(worksNameSpan)}>ブランドサイト</span>
                 </h3>
@@ -976,6 +1008,7 @@ export default function Main() {
               </div>
               <Link
                 href={"/playgrounds/fleur"}
+                aria-labelledby="playground-fleur"
                 className={clsx(worksLink)}
                 onMouseEnter={() =>
                   preloadNextPageMainVisual("/images/mockups/fleur-website-mockup.avif", 4000, 3000)
@@ -996,7 +1029,7 @@ export default function Main() {
                   width={160}
                   height={160}
                   className={clsx(worksIcon)}
-                  alt="フルールのアイコン"
+                  alt=""
                 />
               </Link>
             </section>
