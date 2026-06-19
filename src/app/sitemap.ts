@@ -10,6 +10,7 @@ const routes: {
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
   { path: "/works/cursor-dashboard", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/yasashii-web-check", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/works/cookie-memo", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/fukusho-unyu", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/univearth", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/tomosho-unyu", changeFrequency: "yearly", priority: 0.7 },
@@ -23,11 +24,6 @@ const routes: {
     priority: 0.5,
   },
   { path: "/playgrounds/vision-scroll-snap", changeFrequency: "yearly", priority: 0.5 },
-  {
-    path: "/playgrounds/about-section-diagonal-energy",
-    changeFrequency: "yearly",
-    priority: 0.5,
-  },
   { path: "/playgrounds/nextjs-splide-carousel", changeFrequency: "yearly", priority: 0.5 },
 ];
 
