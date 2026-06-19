@@ -910,6 +910,33 @@ export default function Main() {
             </section>
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
+                <h3 className={clsx(worksName)}>
+                  <span className={clsx(worksNameSpan)}>メガドロップダウン</span>
+                  <span className={clsx(worksNameSpan)}>メニュー</span>
+                </h3>
+                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+              </div>
+              <Link
+                href={"https://mega-dropdown-menu-prototype.vercel.app/"}
+                className={clsx(worksLink)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  playSfxClick();
+                  haptic();
+                }}
+              >
+                <Image
+                  src={"/images/icons/mega-dropdown-menu-prototype-icon.avif"}
+                  width={160}
+                  height={160}
+                  className={clsx(worksIcon)}
+                  alt="メガドロップダウンメニューのアイコン"
+                />
+              </Link>
+            </section>
+            <section className={clsx(worksItem)}>
+              <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>プレイリスト2025</h3>
                 <p className={clsx(worksCategory)}>(グラフィック)</p>
               </div>
@@ -945,7 +972,7 @@ export default function Main() {
                   <span className={clsx(worksNameSpan)}>フルール</span>
                   <span className={clsx(worksNameSpan)}>ブランドサイト</span>
                 </h3>
-                <p className={clsx(worksCategory)}>(プロトタイプ)</p>
+                <p className={clsx(worksCategory)}>(Webサイト)</p>
               </div>
               <Link
                 href={"/playgrounds/fleur"}
