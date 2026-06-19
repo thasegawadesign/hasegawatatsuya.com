@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: `架空マカロン専門店「フルール」 | ${SITE_TITLE_EXPERIMENTAL}`,
+  title: `架空マカロン専門店フルール | ${SITE_TITLE_EXPERIMENTAL}`,
 };
 
 export default function Fleur() {

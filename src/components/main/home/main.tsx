@@ -935,7 +935,7 @@ export default function Main() {
             <section className={clsx(worksItem)}>
               <div className={clsx(worksTextBox)}>
                 <h3 className={clsx(worksName)}>
-                  <span className={clsx(worksNameSpan)}>「フルール」</span>
+                  <span className={clsx(worksNameSpan)}>フルール</span>
                   <span className={clsx(worksNameSpan)}>ブランドサイト</span>
                 </h3>
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
