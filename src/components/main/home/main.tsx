@@ -321,10 +321,29 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(Webサービス)</p>
               </div>
               <Link
-                href={"https://www.yasashii-web-check.com/"}
+                href={"/works/yasashii-web-check"}
                 className={clsx(worksLink)}
-                target="_blank"
-                rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/yasashii-web-check-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/yasashii-web-check-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/yasashii-web-check-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();

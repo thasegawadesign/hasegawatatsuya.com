@@ -9,6 +9,7 @@ const routes: {
   { path: "", changeFrequency: "monthly", priority: 1 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
   { path: "/works/cursor-dashboard", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/works/yasashii-web-check", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/fukusho-unyu", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/univearth", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/tomosho-unyu", changeFrequency: "yearly", priority: 0.7 },

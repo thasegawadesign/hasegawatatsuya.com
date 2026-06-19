@@ -1,0 +1,17 @@
+import Works from "@/app/works/yasashii-web-check/works";
+import { SITE_TITLE_WORKS } from "@/constants/constants";
+import { Metadata } from "next";
+
+export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: `やさしいWebチェック | ${SITE_TITLE_WORKS}`,
+};
+
+export default function YasashiiWebCheck() {
+  return (
+    <>
+      <Works />
+    </>
+  );
+}
