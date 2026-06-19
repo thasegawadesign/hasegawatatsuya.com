@@ -15,11 +15,11 @@ export default function Works() {
           <Header />
           <main className={clsx(main)}>
             <WorksInfo
-              nameJa="「福昇運輸株式会社」コーポレートサイト"
+              nameJa="福昇運輸株式会社 コーポレートサイト"
               nameEn="Fukusho-Unyu Website"
               nameJaNode={
                 <>
-                  「福昇運輸株式会社」
+                  福昇運輸株式会社
                   <br />
                   コーポレートサイト
                 </>
@@ -34,7 +34,7 @@ export default function Works() {
               imageSrc="/images/mockups/fukusho-unyu-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="「福昇運輸株式会社」コーポレートサイト"
+              what="福昇運輸株式会社 コーポレートサイト"
               why={
                 <>
                   物流DXプラットフォームを開発する株式会社Univearthとの経営統合を機に、企業イメージの再構築を目的としたコーポレートサイトの新規制作を担当しました。

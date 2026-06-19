@@ -15,11 +15,11 @@ export default function Works() {
           <Header />
           <main className={clsx(main)}>
             <WorksInfo
-              nameJa="「株式会社Univearth」コーポレートサイト"
+              nameJa="株式会社Univearth コーポレートサイト"
               nameEn="Univearth Website"
               nameJaNode={
                 <>
-                  「株式会社Univearth」
+                  株式会社Univearth
                   <br />
                   コーポレートサイト
                 </>
@@ -28,7 +28,7 @@ export default function Works() {
               imageSrc="/images/mockups/univearth-mockup.avif"
               imageWidth={4000}
               imageHeight={3000}
-              what="「株式会社Univearth」コーポレートサイト"
+              what="株式会社Univearth コーポレートサイト"
               why={
                 <>
                   「共に届ける」というミッションのもと、その思想をUI・体験設計に落とし込んだ株式会社Univearthのコーポレートサイトを制作しました。
