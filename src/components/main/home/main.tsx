@@ -965,11 +965,31 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"https://mega-dropdown-menu-prototype.vercel.app/"}
-                aria-label="メガドロップダウンメニュー（新しいタブで開く）"
+                href={"/playgrounds/mega-dropdown-menu-prototype"}
+                aria-labelledby="playground-mega-dropdown-menu-prototype"
                 className={clsx(worksLink)}
-                target="_blank"
                 rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/mega-dropdown-menu-prototype-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/mega-dropdown-menu-prototype-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/mega-dropdown-menu-prototype-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
