@@ -24,6 +24,11 @@ const routes: {
   },
   { path: "/playgrounds/vision-scroll-snap", changeFrequency: "yearly", priority: 0.5 },
   { path: "/playgrounds/nextjs-splide-carousel", changeFrequency: "yearly", priority: 0.5 },
+  {
+    path: "/playgrounds/mega-dropdown-menu-prototype",
+    changeFrequency: "yearly",
+    priority: 0.5,
+  },
   { path: "/playgrounds/playlist2025", changeFrequency: "yearly", priority: 0.5 },
   { path: "/playgrounds/fleur", changeFrequency: "yearly", priority: 0.5 },
 ];
