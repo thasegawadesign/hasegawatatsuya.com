@@ -650,11 +650,31 @@ export default function Main() {
                 <p className={clsx(worksCategory)}>(プロトタイプ)</p>
               </div>
               <Link
-                href={"https://auto-playing-carousel.vercel.app/"}
-                aria-label="自動再生カルーセル（新しいタブで開く）"
+                href={"/playgrounds/auto-playing-carousel"}
+                aria-labelledby="playground-auto-playing-carousel"
                 className={clsx(worksLink)}
-                target="_blank"
                 rel="noopener noreferrer"
+                onMouseEnter={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/auto-playing-carousel-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onTouchStart={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/auto-playing-carousel-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
+                onFocus={() =>
+                  preloadNextPageMainVisual(
+                    "/images/mockups/auto-playing-carousel-mockup.avif",
+                    6000,
+                    4500,
+                  )
+                }
                 onClick={() => {
                   playSfxClick();
                   haptic();
