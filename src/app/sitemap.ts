@@ -11,6 +11,7 @@ const routes: {
   { path: "/works/fukusho-unyu", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/tomosho-unyu", changeFrequency: "yearly", priority: 0.7 },
   { path: "/works/univearth", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/tools/shader-mandala", changeFrequency: "yearly", priority: 0.7 },
   { path: "/tools/yasashii-web-check", changeFrequency: "yearly", priority: 0.7 },
   { path: "/tools/cookie-memo", changeFrequency: "yearly", priority: 0.7 },
   { path: "/tools/cursor-dashboard", changeFrequency: "yearly", priority: 0.7 },
