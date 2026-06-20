@@ -14,6 +14,7 @@ const routes: {
   { path: "/tools/yasashii-web-check", changeFrequency: "yearly", priority: 0.7 },
   { path: "/tools/cookie-memo", changeFrequency: "yearly", priority: 0.7 },
   { path: "/tools/cursor-dashboard", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/playgrounds/auto-playing-carousel", changeFrequency: "yearly", priority: 0.5 },
   { path: "/playgrounds/moire-playground", changeFrequency: "yearly", priority: 0.5 },
   { path: "/playgrounds/editorial-hero-prototype", changeFrequency: "yearly", priority: 0.5 },
   {
