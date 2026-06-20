@@ -34,7 +34,7 @@ export const TOOLS: ToolItem[] = [
   {
     id: "tool-cookie-memo",
     name: "Cookieメモ",
-    category: "(Webサービス)",
+    category: "(Webアプリケーション)",
     href: "/tools/cookie-memo",
     iconSrc: "/images/icons/cookie-memo-icon.avif",
     mockupSrc: "/images/mockups/cookie-memo-mockup.avif",
