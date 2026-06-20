@@ -54,6 +54,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 
 import { cormorant, roboto } from "@/app/fonts";
+import ToolsList from "@/components/toolsList/toolsList";
 import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, PARALLAX_ENABLE_MIN_WIDTH, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
@@ -80,7 +81,6 @@ export default function Main() {
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
   const worksBoxRef = useRef<HTMLDivElement>(null);
-  const toolsBoxRef = useRef<HTMLDivElement>(null);
   const playgroundsBoxRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef(null);
 
@@ -165,7 +165,7 @@ export default function Main() {
 
     gsapAnimation.inview(descriptionRef);
     gsapAnimation.inview(profileRef);
-    [worksBoxRef, toolsBoxRef, playgroundsBoxRef].forEach((boxRef) => {
+    [worksBoxRef, playgroundsBoxRef].forEach((boxRef) => {
       boxRef.current?.querySelectorAll(":scope > section").forEach((el) => {
         gsapAnimation.inview({ current: el as HTMLElement });
       });
@@ -426,215 +426,7 @@ export default function Main() {
         </section>
         <section id="tools" className={clsx(worksSection)}>
           <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingTools)}>Tools</h2>
-          <div className={clsx(worksBox)} ref={toolsBoxRef}>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 id="tool-yasashii-web-check" className={clsx(worksName)}>
-                  やさしいWebチェック
-                </h3>
-                <p className={clsx(worksCategory)}>(Webサービス)</p>
-              </div>
-              <Link
-                href={"/tools/yasashii-web-check"}
-                aria-labelledby="tool-yasashii-web-check"
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/yasashii-web-check-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/yasashii-web-check-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/yasashii-web-check-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/yasashii-web-check-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt=""
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 id="tool-cookie-memo" className={clsx(worksName)}>
-                  Cookieメモ
-                </h3>
-                <p className={clsx(worksCategory)}>(Webサービス)</p>
-              </div>
-              <Link
-                href={"/tools/cookie-memo"}
-                aria-labelledby="tool-cookie-memo"
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual("/images/mockups/cookie-memo-mockup.avif", 6000, 4500)
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/cookie-memo-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt=""
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 id="tool-cursor-dashboard" className={clsx(worksName)}>
-                  Cursor Dashboard
-                </h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-              </div>
-              <Link
-                href={"/tools/cursor-dashboard"}
-                aria-labelledby="tool-cursor-dashboard"
-                className={clsx(worksLink)}
-                onMouseEnter={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onTouchStart={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onFocus={() =>
-                  preloadNextPageMainVisual(
-                    "/images/mockups/cursor-dashboard-mockup.avif",
-                    6000,
-                    4500,
-                  )
-                }
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/cursor-dashboard-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt=""
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 id="tool-calculator" className={clsx(worksName)}>
-                  JavaScript電卓
-                </h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-              </div>
-              <Link
-                href={"https://www.calculator.vegetworks.com/"}
-                aria-label="JavaScript電卓（新しいタブで開く）"
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/calculator-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt=""
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 id="tool-question-and-answer" className={clsx(worksName)}>
-                  一問一答メーカー
-                </h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-              </div>
-              <Link
-                href={"https://www.question-and-answer.vegetworks.com/"}
-                aria-label="一問一答メーカー（新しいタブで開く）"
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/question-and-answer-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt=""
-                />
-              </Link>
-            </section>
-            <section className={clsx(worksItem)}>
-              <div className={clsx(worksTextBox)}>
-                <h3 id="tool-sutememo" className={clsx(worksName)}>
-                  ステメモ
-                </h3>
-                <p className={clsx(worksCategory)}>(Webアプリケーション)</p>
-              </div>
-              <Link
-                href={"https://www.sutememo.vegetworks.com/"}
-                aria-label="ステメモ（新しいタブで開く）"
-                className={clsx(worksLink)}
-                rel="noopener noreferrer"
-                target="_blank"
-                onClick={() => {
-                  playSfxClick();
-                  haptic();
-                }}
-              >
-                <Image
-                  src={"/images/icons/sutememo-icon.avif"}
-                  width={160}
-                  height={160}
-                  className={clsx(worksIcon)}
-                  alt=""
-                />
-              </Link>
-            </section>
-          </div>
+          <ToolsList />
         </section>
         <section id="playgrounds" className={clsx(worksSection)}>
           <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingExperimental)}>
