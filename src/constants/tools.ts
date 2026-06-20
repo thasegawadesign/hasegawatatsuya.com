@@ -1,6 +1,7 @@
 export type ToolItem = {
   id: string;
-  name: string;
+  nameLines: string[];
+  useNameSpans?: boolean;
   category: string;
   href: string;
   iconSrc: string;
@@ -13,7 +14,7 @@ export type ToolItem = {
 export const TOOLS: ToolItem[] = [
   {
     id: "tool-shader-mandala",
-    name: "シェーダー曼荼羅 目標達成シート",
+    nameLines: ["シェーダー曼荼羅", "目標達成シート"],
     category: "(Webアプリケーション)",
     href: "/tools/shader-mandala",
     iconSrc: "/images/icons/shader-mandala-icon.avif",
@@ -23,7 +24,7 @@ export const TOOLS: ToolItem[] = [
   },
   {
     id: "tool-yasashii-web-check",
-    name: "やさしいWebチェック",
+    nameLines: ["やさしいWebチェック"],
     category: "(Webサービス)",
     href: "/tools/yasashii-web-check",
     iconSrc: "/images/icons/yasashii-web-check-icon.avif",
@@ -33,7 +34,7 @@ export const TOOLS: ToolItem[] = [
   },
   {
     id: "tool-cookie-memo",
-    name: "Cookieメモ",
+    nameLines: ["Cookieメモ"],
     category: "(Webアプリケーション)",
     href: "/tools/cookie-memo",
     iconSrc: "/images/icons/cookie-memo-icon.avif",
@@ -43,7 +44,7 @@ export const TOOLS: ToolItem[] = [
   },
   {
     id: "tool-cursor-dashboard",
-    name: "Cursor Dashboard",
+    nameLines: ["Cursor Dashboard"],
     category: "(Webアプリケーション)",
     href: "/tools/cursor-dashboard",
     iconSrc: "/images/icons/cursor-dashboard-icon.avif",
@@ -53,7 +54,7 @@ export const TOOLS: ToolItem[] = [
   },
   {
     id: "tool-calculator",
-    name: "JavaScript電卓",
+    nameLines: ["JavaScript電卓"],
     category: "(Webアプリケーション)",
     href: "https://www.calculator.vegetworks.com/",
     iconSrc: "/images/icons/calculator-icon.avif",
@@ -61,7 +62,7 @@ export const TOOLS: ToolItem[] = [
   },
   {
     id: "tool-question-and-answer",
-    name: "一問一答メーカー",
+    nameLines: ["一問一答メーカー"],
     category: "(Webアプリケーション)",
     href: "https://www.question-and-answer.vegetworks.com/",
     iconSrc: "/images/icons/question-and-answer-icon.avif",
@@ -69,7 +70,7 @@ export const TOOLS: ToolItem[] = [
   },
   {
     id: "tool-sutememo",
-    name: "ステメモ",
+    nameLines: ["ステメモ"],
     category: "(Webアプリケーション)",
     href: "https://www.sutememo.vegetworks.com/",
     iconSrc: "/images/icons/sutememo-icon.avif",

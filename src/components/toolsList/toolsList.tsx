@@ -7,6 +7,7 @@ import {
   worksItem,
   worksLink,
   worksName,
+  worksNameSpan,
   worksTextBox,
 } from "@/components/main/home/main.css";
 import { TOOLS } from "@/constants/tools";
@@ -34,60 +35,77 @@ export default function ToolsList() {
 
   return (
     <div className={clsx(worksBox)} ref={boxRef}>
-      {TOOLS.map((tool) => (
-        <section key={tool.id} className={clsx(worksItem)}>
-          <div className={clsx(worksTextBox)}>
-            <h3 id={tool.id} className={clsx(worksName)}>
-              {tool.name}
-            </h3>
-            <p className={clsx(worksCategory)}>{tool.category}</p>
-          </div>
-          <Link
-            href={tool.href}
-            aria-label={tool.external ? `${tool.name}（新しいタブで開く）` : undefined}
-            aria-labelledby={tool.external ? undefined : tool.id}
-            className={clsx(worksLink)}
-            rel={tool.external ? "noopener noreferrer" : undefined}
-            target={tool.external ? "_blank" : undefined}
-            onMouseEnter={
-              tool.mockupSrc
-                ? () =>
-                    preloadNextPageMainVisual(
-                      tool.mockupSrc!,
-                      tool.mockupWidth!,
-                      tool.mockupHeight!,
-                    )
-                : undefined
-            }
-            onTouchStart={
-              tool.mockupSrc
-                ? () =>
-                    preloadNextPageMainVisual(
-                      tool.mockupSrc!,
-                      tool.mockupWidth!,
-                      tool.mockupHeight!,
-                    )
-                : undefined
-            }
-            onFocus={
-              tool.mockupSrc
-                ? () =>
-                    preloadNextPageMainVisual(
-                      tool.mockupSrc!,
-                      tool.mockupWidth!,
-                      tool.mockupHeight!,
-                    )
-                : undefined
-            }
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
-            <Image src={tool.iconSrc} width={160} height={160} className={clsx(worksIcon)} alt="" />
-          </Link>
-        </section>
-      ))}
+      {TOOLS.map((tool) => {
+        const useNameSpans = tool.useNameSpans ?? true;
+        const toolName = tool.nameLines.join(" ");
+
+        return (
+          <section key={tool.id} className={clsx(worksItem)}>
+            <div className={clsx(worksTextBox)}>
+              <h3 id={tool.id} className={clsx(worksName)}>
+                {useNameSpans
+                  ? tool.nameLines.map((line) => (
+                      <span key={line} className={clsx(worksNameSpan)}>
+                        {line}
+                      </span>
+                    ))
+                  : tool.nameLines[0]}
+              </h3>
+              <p className={clsx(worksCategory)}>{tool.category}</p>
+            </div>
+            <Link
+              href={tool.href}
+              aria-label={tool.external ? `${toolName}（新しいタブで開く）` : undefined}
+              aria-labelledby={tool.external ? undefined : tool.id}
+              className={clsx(worksLink)}
+              rel={tool.external ? "noopener noreferrer" : undefined}
+              target={tool.external ? "_blank" : undefined}
+              onMouseEnter={
+                tool.mockupSrc
+                  ? () =>
+                      preloadNextPageMainVisual(
+                        tool.mockupSrc!,
+                        tool.mockupWidth!,
+                        tool.mockupHeight!,
+                      )
+                  : undefined
+              }
+              onTouchStart={
+                tool.mockupSrc
+                  ? () =>
+                      preloadNextPageMainVisual(
+                        tool.mockupSrc!,
+                        tool.mockupWidth!,
+                        tool.mockupHeight!,
+                      )
+                  : undefined
+              }
+              onFocus={
+                tool.mockupSrc
+                  ? () =>
+                      preloadNextPageMainVisual(
+                        tool.mockupSrc!,
+                        tool.mockupWidth!,
+                        tool.mockupHeight!,
+                      )
+                  : undefined
+              }
+              onClick={() => {
+                playSfxClick();
+                haptic();
+              }}
+            >
+              <Image
+                src={tool.iconSrc}
+                width={160}
+                height={160}
+                className={clsx(worksIcon)}
+                alt=""
+              />
+            </Link>
+          </section>
+        );
+      })}
     </div>
   );
 }
