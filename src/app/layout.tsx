@@ -57,7 +57,7 @@ export default async function RootLayout({
       { "@value": "Webデザイナー", "@language": "ja" },
       { "@value": "フロントエンドエンジニア", "@language": "ja" },
       { "@value": "Web Designer", "@language": "en" },
-      { "@value": "Front-end Developer", "@language": "en" },
+      { "@value": "Frontend Developer", "@language": "en" },
     ],
     description: DESCRIPTION,
     url: SITE_URL,

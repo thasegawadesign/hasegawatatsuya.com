@@ -198,7 +198,7 @@ export default function Main() {
           <h2 ref={occupationRef} className={clsx(cormorant.className, occupation)}>
             Web Design,
             <br />
-            Front-end Development
+            Frontend Development
           </h2>
           <p ref={descriptionRef} className={clsx(description)}>
             2001年生まれ、放送大学在学中。
