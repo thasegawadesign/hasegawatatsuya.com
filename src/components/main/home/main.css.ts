@@ -42,6 +42,9 @@ export const nameTightLeft = style({
 export const nameTight = style({
   letterSpacing: "-0.044em",
 });
+export const nameTighter = style({
+  letterSpacing: "-0.032em",
+});
 export const nameWide = style({
   letterSpacing: "-0.020em",
 });
