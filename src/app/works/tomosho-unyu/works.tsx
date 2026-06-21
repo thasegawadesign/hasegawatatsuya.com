@@ -51,7 +51,7 @@ export default function Works() {
                 <>
                   Web Design,
                   <br />
-                  Front-end Development
+                  Frontend Development
                 </>
               }
               date="2025.8"

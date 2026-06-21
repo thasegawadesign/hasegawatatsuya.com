@@ -28,7 +28,9 @@ export default function Works() {
                 <>
                   Web Design,
                   <br />
-                  Front-end Development
+                  Frontend Development,
+                  <br />
+                  Backend Development
                 </>
               }
               date="2026.6"

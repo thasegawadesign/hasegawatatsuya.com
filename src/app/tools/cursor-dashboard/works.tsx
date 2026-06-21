@@ -25,7 +25,7 @@ export default function Works() {
               what="ブラウザ上でマウス／ポインタの動きをリアルタイムに集計し、トレイル・速度波形・ヒートマップなどで可視化するダッシュボード"
               why="ダッシュボードUIをちゃんと作ってみたかったのが制作のきっかけです。マウスを動かすたびに表示がガラッと変わっていくのが楽しくて、フロントエンドやっててよかったなと感じられるものを作りたかったので、カーソルの動きをリアルタイムで可視化するテーマにしました。"
               how="Next.js / TypeScript / Tailwind CSS"
-              role={<>Front-end Development</>}
+              role={<>Frontend Development</>}
               date="2026.4"
               DemoURL="https://www.cursor-dashboard.vegetworks.com/"
             />
