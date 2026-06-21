@@ -17,7 +17,6 @@ import {
   nameTight,
   nameTightLeft,
   nameWide,
-  nameWider,
   profileContent,
   profileImage,
   profileImageContainer,
@@ -48,8 +47,8 @@ import { IoMail } from "react-icons/io5";
 import { cormorant, roboto } from "@/app/fonts";
 import PlaygroundsList from "@/components/playgroundsList/playgroundsList";
 import ToolsList from "@/components/toolsList/toolsList";
-import WorksList from "@/components/worksList/worksList";
 import Tooltip from "@/components/tooltip/tooltip";
+import WorksList from "@/components/worksList/worksList";
 import { EMAIL, GITHUB, NOTE, PARALLAX_ENABLE_MIN_WIDTH, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { playFireworksAt } from "@/lib/fireworksConfetti";
@@ -166,7 +165,7 @@ export default function Main() {
           Ta
           <span className={clsx(nameWide)}>tsu</span>
           ya
-          <br />H<span className={clsx(nameWider)}>as</span>
+          <br />H<span className={clsx(nameWide)}>as</span>
           <span className={clsx(nameTight, nameTightLeft)}>e</span>
           <span className={clsx(nameWide)}>ga</span>
           <span className={clsx(nameTightLeft)}>w</span>a
