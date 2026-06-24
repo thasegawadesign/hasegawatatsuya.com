@@ -23,14 +23,6 @@ export const PLAYGROUNDS: PlaygroundItem[] = [
     mockupHeight: 4500,
   },
   {
-    id: "playground-nova-freight-studio",
-    nameLines: ["NOVA FREIGHT STUDIO", "架空の物流企業サイト"],
-    category: "(プロトタイプ)",
-    href: "https://www.nova-freight-studio.vegetworks.com/",
-    iconSrc: "/images/icons/nova-freight-studio-icon.avif",
-    external: true,
-  },
-  {
     id: "playground-moire-playground",
     nameLines: ["モアレパターン"],
     category: "(プロトタイプ)",
