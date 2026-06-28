@@ -37,13 +37,7 @@ export default function Works() {
                   技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
-              role={
-                <>
-                  Web Design,
-                  <br />
-                  Frontend Development
-                </>
-              }
+              role={<>Frontend Development</>}
               date="2026.3"
               DemoURL="https://www.vision-scroll-snap.vegetworks.com/"
             />
