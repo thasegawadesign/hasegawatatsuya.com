@@ -213,14 +213,14 @@ export default function Main() {
             <br />
             「自在」に創れる状態を目指して、
             <br />
-            Webについて勉強しています。
+            Webについて探求しています。
             <br />
             クリエイティブワーク、
             <br />
             モノづくりの達人になることが目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            ウェブサイト制作の実務においては、
+            Webサイト制作の実務においては、
             <br />
             想定する訪問者・ユーザの
             <br />
@@ -244,7 +244,7 @@ export default function Main() {
             <br />
             設計・実装しています。
             <br />
-            ウェブサイトは、
+            Webサイトは、
             <br />
             日々のお仕事を支える
             <br />
