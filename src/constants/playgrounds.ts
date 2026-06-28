@@ -13,14 +13,6 @@ export type PlaygroundItem = {
 
 export const PLAYGROUNDS: PlaygroundItem[] = [
   {
-    id: "playground-social-flux",
-    nameLines: ["社会の流転"],
-    category: "(Webアプリケーション)",
-    href: "https://www.social-flux.vegetworks.com/",
-    iconSrc: "/images/icons/social-flux-icon.avif",
-    external: true,
-  },
-  {
     id: "playground-auto-playing-carousel",
     nameLines: ["Auto playing carousel", "自動再生カルーセル"],
     category: "(プロトタイプ)",

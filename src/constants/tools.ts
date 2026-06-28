@@ -13,6 +13,14 @@ export type ToolItem = {
 
 export const TOOLS: ToolItem[] = [
   {
+    id: "tool-social-flux",
+    nameLines: ["社会の流転"],
+    category: "(Webアプリケーション)",
+    href: "https://www.social-flux.vegetworks.com/",
+    iconSrc: "/images/icons/social-flux-icon.avif",
+    external: true,
+  },
+  {
     id: "tool-shader-mandala",
     nameLines: ["シェーダー曼荼羅", "目標達成シート"],
     category: "(Webアプリケーション)",
