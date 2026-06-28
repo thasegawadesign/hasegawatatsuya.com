@@ -24,7 +24,13 @@ export default function Works() {
               videoSrc="/videos/mockups/auto-playing-carousel-mockup.mp4"
               what="ファーストビューで自動再生するカルーセルのプロトタイプ"
               why="整備・メンテナンス企業のサイトを想定し、ヒーロー画像を自動再生するカルーセルのプロトタイプを制作しました。スライドの切り替えと再生状態をスクリーンリーダーでも把握できるよう、アクセシビリティにも配慮しています。"
-              how="Next.js / TypeScript / Tailwind CSS"
+              how={
+                <>
+                  ヒーロー画像を自動再生するカルーセルを実装し、再生・停止状態と現在のスライドがスクリーンリーダーでも把握できるようARIA属性を付与しました。視覚訴求とアクセシビリティの両立を設計の起点としています。
+                  <br />
+                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                </>
+              }
               role={
                 <>
                   Web Design,

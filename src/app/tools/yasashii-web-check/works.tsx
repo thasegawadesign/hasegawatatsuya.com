@@ -24,7 +24,15 @@ export default function Works() {
               videoSrc="/videos/mockups/yasashii-web-check-mockup.mp4"
               what="URLを入力するだけで、読みやすさ・アクセシビリティ・言葉のやさしさなど6つの観点からWebページを診断するWebサービス"
               why="放送大学でユニバーサルデザインを学ぶうちに、Webのアクセシビリティに興味を持ちました。読みやすさやアクセシビリティは、専門知識がなくても気軽に確認できる仕組みがあるとよいと考え、WCAG 2.1 AA / JIS X 8341-3 を参考に診断ツールを制作しました。"
-              how="Next.js / TypeScript / Tailwind CSS"
+              how={
+                <>
+                  入力されたURLを取得し、読みやすさ・アクセシビリティ・言葉のやさしさなど6つの観点から自動診断する仕組みを構築しました。WCAG
+                  2.1 AA / JIS X 8341-3
+                  を参照し、専門知識がなくても結果を直感的に把握できるUIにしています。
+                  <br />
+                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                </>
+              }
               role={
                 <>
                   Web Design,

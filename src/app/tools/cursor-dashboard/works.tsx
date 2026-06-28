@@ -23,8 +23,14 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/cursor-dashboard-mockup.mp4"
               what="ブラウザ上でマウス／ポインタの動きをリアルタイムに集計し、トレイル・速度波形・ヒートマップなどで可視化するダッシュボード"
-              why="インタラクティブなダッシュボードUIの制作をきっかけに、マウスやポインタの動きをリアルタイムで可視化するテーマにしました。トレイルや速度波形、ヒートマップなど、操作のたびに表示が変わる体験を通じて、フロントエンドの表現力を試しています。"
-              how="Next.js / TypeScript / Tailwind CSS"
+              why="リアルタイムで更新されるダッシュボードUIの表現を試したくて制作しました。マウスやポインタの動きをそのまま計測・集計する題材にすることで、操作に直接連動して表示が変わる体験を通じて、操作そのものがデータになる仕組みを実装しています。"
+              how={
+                <>
+                  ポインタイベントを都度集計し、トレイル・速度波形・ヒートマップの各ビューへ即座に反映する構成にしました。操作のたびに表示が更新されるダッシュボード体験を実現しています。
+                  <br />
+                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                </>
+              }
               role={<>Frontend Development</>}
               date="2026.4"
               DemoURL="https://www.cursor-dashboard.vegetworks.com/"
