@@ -16,9 +16,11 @@ export const TOOLS: ToolItem[] = [
     id: "tool-social-flux",
     nameLines: ["社会の流転"],
     category: "(Webアプリケーション)",
-    href: "https://www.social-flux.vegetworks.com/",
+    href: "/tools/social-flux",
     iconSrc: "/images/icons/social-flux-icon.avif",
-    external: true,
+    mockupSrc: "/images/mockups/social-flux-mockup.avif",
+    mockupWidth: 6000,
+    mockupHeight: 4500,
   },
   {
     id: "tool-shader-mandala",
