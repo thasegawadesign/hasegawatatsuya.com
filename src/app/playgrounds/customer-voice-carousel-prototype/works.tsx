@@ -24,7 +24,14 @@ export default function Works() {
               videoSrc="/videos/mockups/customer-voice-carousel-prototype-mockup.mp4"
               what="お客様の声をカルーセルで表示するプロトタイプ"
               why="ライブラリ（Embla Carousel）の挙動を試すフロントエンド練習として制作しました。お客様の声を2枚同時に見せつつ、操作で次の声へ切り替えるカルーセルを実装しています。"
-              how="Next.js / TypeScript / Tailwind CSS"
+              how={
+                <>
+                  Embla
+                  Carouselを用い、2枚の声を同時に見せつつ操作で次へ切り替える構成にしました。スライドの移動に、期待感を高める応答性の高いインタラクションを組み合わせています。
+                  <br />
+                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                </>
+              }
               role={
                 <>
                   Web Design,

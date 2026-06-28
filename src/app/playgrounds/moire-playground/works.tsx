@@ -24,7 +24,13 @@ export default function Works() {
               videoSrc="/videos/mockups/moire-playground-mockup.mp4"
               what="モアレパターンのプレイグラウンド"
               why="Three.js Journeyのコースを受講中に興味を持ったモアレパターンを実装しました。参考：https://threejs-journey.com/"
-              how="Three.js"
+              how={
+                <>
+                  チェッカーボード模様のテクスチャを繰り返し配置し、Three.jsのテクスチャマッピングで幾何学模様を描画しました。OrbitControlsで視点を動かすことで、位相差から生じるモアレ効果の揺らぎをリアルタイムに観察できる構成にしています。
+                  <br />
+                  技術面では Vite / TypeScript / Three.js を採用しています。
+                </>
+              }
               role={<>Frontend Development</>}
               date="2026.3"
               DemoURL="https://www.moire-playground.vegetworks.com/"

@@ -30,7 +30,13 @@ export default function Works() {
               videoSrc="/videos/mockups/mega-dropdown-menu-prototype-mockup.mp4"
               what="メガドロップダウンメニューのインタラクション検証プロトタイプ"
               why="コーポレートサイトを想定し、グローバルナビのメガドロップダウンメニューの開閉インタラクションを検証するプロトタイプを制作しました。ホバー・フォーカス時の表示切り替えや、キーボード操作時のアクセシビリティにも配慮しています。"
-              how="Next.js / TypeScript / Tailwind CSS"
+              how={
+                <>
+                  グローバルナビの各項目にホバー・フォーカスでメガメニューが展開するインタラクションを実装しました。キーボード操作時にもメニュー内を移動できるよう、開閉状態とフォーカスの制御に配慮しています。
+                  <br />
+                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                </>
+              }
               role={
                 <>
                   Web Design,

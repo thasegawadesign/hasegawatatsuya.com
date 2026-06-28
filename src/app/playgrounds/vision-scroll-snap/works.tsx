@@ -29,8 +29,14 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/vision-scroll-snap-mockup.mp4"
               what="創作・アート系画像を全画面表示し、スクロールスナップで切り替えるサンプル"
-              why="scroll-snap-typeの挙動を試すフロントエンド練習として制作しました。創作・アート系の画像を全画面で見せ、スクロールで切り替えるビジュアル訴求のセクションへの応用を想定しています。CSSのscroll-snapを使い、スクロール連動の切り替えを実装しています。"
-              how="Next.js / TypeScript / Tailwind CSS"
+              why="scroll-snap-typeの挙動を試すフロントエンド練習として制作しました。創作・アート系の画像を全画面で見せ、スクロールで切り替えるビジュアル訴求のセクションへの応用を想定しています。"
+              how={
+                <>
+                  CSSのscroll-snap-typeを用い、全画面画像がスクロールに連動して切り替わる構成にしました。JavaScriptに頼らず、ネイティブのスクロール挙動でスナップさせることで、軽量かつ滑らかな切り替えを実現しています。
+                  <br />
+                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                </>
+              }
               role={
                 <>
                   Web Design,
