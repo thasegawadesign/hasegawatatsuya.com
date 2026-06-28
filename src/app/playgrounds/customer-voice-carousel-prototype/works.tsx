@@ -23,7 +23,7 @@ export default function Works() {
               imageHeight={4500}
               videoSrc="/videos/mockups/customer-voice-carousel-prototype-mockup.mp4"
               what="お客様の声をカルーセルで表示するプロトタイプ"
-              why="ライブラリ（Embla Carousel）の挙動を試すフロントエンド練習として制作しました。カード2枚を全体表示して、ボタンを押す毎に1枚ずつめくっていく挙動を実現したかったのですが、2枚一気にスライドする挙動になってしまったので、もう少し工夫が必要そうです。結果的に、ビュンビュン切り替わるスピード感あるカルーセルになりました。"
+              why="ライブラリ（Embla Carousel）の挙動を試すフロントエンド練習として制作しました。お客様の声を2枚同時に見せつつ、操作で次の声へ切り替えるカルーセルを実装しています。"
               how="Next.js / TypeScript / Tailwind CSS"
               role={
                 <>
