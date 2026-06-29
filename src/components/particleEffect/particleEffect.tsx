@@ -71,9 +71,9 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
       velocities[i3 + 2] = (Math.random() - 0.5) * 0.001;
 
       const tint = Math.random();
-      colors[i3] = 0.98 + tint * 0.02;
-      colors[i3 + 1] = 0.97 + tint * 0.03;
-      colors[i3 + 2] = 0.99 + tint * 0.01;
+      colors[i3] = 0.99 + tint * 0.01;
+      colors[i3 + 1] = 0.98 + tint * 0.02;
+      colors[i3 + 2] = 1.0;
 
       sizes[i] = Math.random() * 0.14 + 0.12;
       phases[i] = Math.random() * Math.PI * 2;
@@ -117,14 +117,12 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
         
         float dist = radial * 2.0;
         float falloff = exp(-dist * dist * 1.1);
-        float inner = exp(-dist * dist * 3.2);
         
-        float shimmer = 0.97 + 0.03 * sin(uTime * 1.2 + vPhase);
+        float shimmer = 0.98 + 0.02 * sin(uTime * 1.2 + vPhase);
         
-        vec3 core = vec3(1.0, 1.0, 1.0);
-        vec3 color = mix(vColor, core, inner * 0.45) * falloff * shimmer * mask;
-        
-        float alpha = falloff * mask * 0.28;
+        // 色は中心からフチまで白を保ち、透明度だけでソフトに消える
+        vec3 color = vec3(1.0) * shimmer;
+        float alpha = falloff * mask * 0.32;
         if (alpha < 0.008) discard;
         
         gl_FragColor = vec4(color, alpha);
