@@ -66,6 +66,9 @@ function decayPointerStrength(uPointerStrength: { value: number }, delta: number
 }
 
 type WgslFnInclude = NonNullable<Parameters<typeof wgslFn>[1]>[number];
+type MeshBasicColorNode = NonNullable<
+  ConstructorParameters<typeof MeshBasicNodeMaterial>[0]
+>["colorNode"];
 
 function scheduleRevealAfterNextFrame(onReveal: () => void, getDisposed: () => boolean) {
   requestAnimationFrame(() => {
@@ -230,7 +233,9 @@ export default function LiquidShaderBackground() {
           uPointerStrength,
         });
 
-        const material = new MeshBasicNodeMaterial({ colorNode });
+        const material = new MeshBasicNodeMaterial({
+          colorNode: colorNode as MeshBasicColorNode,
+        });
         material.depthTest = false;
         material.depthWrite = false;
 
