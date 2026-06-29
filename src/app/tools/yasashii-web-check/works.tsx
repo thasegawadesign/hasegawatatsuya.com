@@ -30,6 +30,10 @@ export default function Works() {
                   2.1 AA / JIS X 8341-3
                   を参照し、専門知識がなくても結果を直感的に把握できるUIにしています。
                   <br />
+                  任意のURLにサーバからアクセスする特性上、SSRF（Server-Side Request
+                  Forgery）への対策にも配慮しました。http/https
+                  のみを許可し、localhost・プライベートIP・内部向けホスト名をブロック。取得前にはDNS解決結果も検証し、リダイレクト先でも同様のチェックを行うことで、内部ネットワークへの不正アクセスを防いでいます。
+                  <br />
                   技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
@@ -37,7 +41,9 @@ export default function Works() {
                 <>
                   Web Design,
                   <br />
-                  Frontend Development
+                  Frontend Development,
+                  <br />
+                  Backend Development
                 </>
               }
               date="2026.6"
