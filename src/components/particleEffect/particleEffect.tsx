@@ -51,73 +51,95 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
     mount.appendChild(renderer.domElement);
 
-    // 円形の粒子を作成
-    const particleCount = 128;
+    // オーブ状の粒子を作成
+    const particleCount = 32;
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);
+    const phases = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
 
-      // 位置をランダムに配置
       positions[i3] = (Math.random() - 0.5) * 15;
       positions[i3 + 1] = (Math.random() - 0.5) * 15;
       positions[i3 + 2] = (Math.random() - 0.5) * 15;
 
-      // 速度をランダムに設定
-      velocities[i3] = (Math.random() - 0.5) * 0.003;
-      velocities[i3 + 1] = (Math.random() - 0.5) * 0.003;
-      velocities[i3 + 2] = (Math.random() - 0.5) * 0.003;
+      velocities[i3] = (Math.random() - 0.5) * 0.001;
+      velocities[i3 + 1] = (Math.random() - 0.5) * 0.001;
+      velocities[i3 + 2] = (Math.random() - 0.5) * 0.001;
 
-      // 色をランダムに設定（青から紫のグラデーション）
-      const hue = Math.random() * 0.3 + 0.6; // 青から紫の範囲
-      colors[i3] = hue * 0.8;
-      colors[i3 + 1] = hue * 0.6;
-      colors[i3 + 2] = hue;
+      const tint = Math.random();
+      colors[i3] = 0.98 + tint * 0.02;
+      colors[i3 + 1] = 0.97 + tint * 0.03;
+      colors[i3 + 2] = 0.99 + tint * 0.01;
 
-      // サイズをランダムに設定
-      sizes[i] = Math.random() * 0.1 + 0.05;
+      sizes[i] = Math.random() * 0.14 + 0.12;
+      phases[i] = Math.random() * Math.PI * 2;
     }
 
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
     geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute("phase", new THREE.BufferAttribute(phases, 1));
 
-    // 円形の粒子を作るためのシェーダーマテリアル
     const vertexShader = `
       attribute float size;
+      attribute float phase;
+      uniform float uTime;
       varying vec3 vColor;
+      varying float vPhase;
       
       void main() {
         vColor = color;
+        vPhase = phase;
         vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-        gl_PointSize = size * (300.0 / -mvPosition.z);
+        float pulse = 0.99 + 0.01 * sin(uTime * 0.8 + phase);
+        gl_PointSize = size * pulse * (320.0 / -mvPosition.z);
         gl_Position = projectionMatrix * mvPosition;
       }
     `;
 
     const fragmentShader = `
       varying vec3 vColor;
+      varying float vPhase;
+      uniform float uTime;
       
       void main() {
-        float distance = length(gl_PointCoord - vec2(0.5));
-        if (distance > 0.5) discard;
+        vec2 coord = gl_PointCoord - vec2(0.5);
+        float radial = length(coord);
         
-        float alpha = 1.0 - (distance * 2.0);
-        alpha = pow(alpha, 2.0);
+        // ポイントスプライトの四角い角を円形マスクで消す
+        float mask = 1.0 - smoothstep(0.4, 0.49, radial);
+        if (mask < 0.001) discard;
         
-        gl_FragColor = vec4(vColor, alpha * 0.8);
+        float dist = radial * 2.0;
+        float falloff = exp(-dist * dist * 1.1);
+        float inner = exp(-dist * dist * 3.2);
+        
+        float shimmer = 0.97 + 0.03 * sin(uTime * 1.2 + vPhase);
+        
+        vec3 core = vec3(1.0, 1.0, 1.0);
+        vec3 color = mix(vColor, core, inner * 0.45) * falloff * shimmer * mask;
+        
+        float alpha = falloff * mask * 0.28;
+        if (alpha < 0.008) discard;
+        
+        gl_FragColor = vec4(color, alpha);
       }
     `;
 
     const material = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,
+      uniforms: {
+        uTime: { value: 0 },
+      },
       blending: THREE.AdditiveBlending,
       transparent: true,
+      depthWrite: false,
       vertexColors: true,
     });
 
@@ -165,6 +187,8 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
     const animate = () => {
       requestAnimationFrame(animate);
 
+      material.uniforms.uTime.value = performance.now() * 0.001;
+
       if (particlesRef.current) {
         const { positions, velocities, geometry } = particlesRef.current;
 
@@ -177,7 +201,7 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
           positions[i3 + 2] += velocities[i3 + 2];
 
           // マウスの影響を追加
-          const mouseInfluence = 0.002;
+          const mouseInfluence = 0.001;
           positions[i3] += mouseRef.current.x * mouseInfluence;
           positions[i3 + 1] += mouseRef.current.y * mouseInfluence;
 
