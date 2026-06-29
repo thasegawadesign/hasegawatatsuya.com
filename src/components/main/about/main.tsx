@@ -1,6 +1,6 @@
 "use client";
 
-import { cormorant, notoSerifJP, notoSerifJPJaFontFamily } from "@/app/fonts";
+import { cormorant } from "@/app/fonts";
 import {
   aboutHero,
   certifications,
@@ -96,12 +96,7 @@ export default function Main() {
       <main className={clsx(main)}>
         <section className={clsx(aboutHero)}>
           <h1 className={nameBox}>
-            <span
-              className={clsx(notoSerifJP.className, nameJa)}
-              style={{ fontFamily: notoSerifJPJaFontFamily }}
-            >
-              ハセガワ タツヤ
-            </span>
+            <span className={nameJa}>ハセガワ タツヤ</span>
             <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
           </h1>
           <Tilt

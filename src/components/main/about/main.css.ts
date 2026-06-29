@@ -59,6 +59,8 @@ export const nameJa = style({
   marginBottom: "-0.6em",
   letterSpacing: "-0.16em",
   color: vars.color.text,
+  fontFamily:
+    'var(--font-noto-serif-jp), "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", "Noto Serif JP", serif',
   fontSize: "clamp(4rem, 7.5vw + 2.5rem, 15.4rem)",
   fontWeight: 700,
 });

@@ -30,6 +30,7 @@ export const smoothScroll = style({
 });
 
 export const body = style({
+  fontFamily: "YakuHanJP, var(--font-noto-sans-jp), sans-serif",
   fontWeight: 200,
   "::selection": {
     backgroundColor: "#faf1e8",
