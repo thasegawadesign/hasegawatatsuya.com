@@ -1,3 +1,4 @@
+import { bodyFontFamily, cormorant, notoSansJP, notoSerifJP, roboto } from "@/app/fonts";
 import { backgroundGradient, body, html } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
 import LiquidShaderBackground from "@/components/liquidShaderBackground/liquidShaderBackground";
@@ -66,8 +67,18 @@ export default async function RootLayout({
   };
 
   return (
-    <html lang="ja" id="home" className={clsx(html)}>
-      <body className={clsx(body, backgroundGradient)}>
+    <html
+      lang="ja"
+      id="home"
+      className={clsx(
+        html,
+        roboto.variable,
+        cormorant.variable,
+        notoSerifJP.variable,
+        notoSansJP.variable,
+      )}
+    >
+      <body className={clsx(body, backgroundGradient)} style={{ fontFamily: bodyFontFamily }}>
         <Script
           id="json-ld-person"
           type="application/ld+json"
