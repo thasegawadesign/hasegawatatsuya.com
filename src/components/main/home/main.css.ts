@@ -511,7 +511,7 @@ export const worksName = style({
   letterSpacing: "-0.06em",
   color: vars.color.text,
   fontSize: "1.7rem",
-  fontWeight: 300,
+  fontWeight: 400,
   "@media": {
     [breakpoints["lg"]]: {
       fontSize: "1.6rem",

@@ -41,7 +41,7 @@ export const hgroupHeadingJa = style({
   letterSpacing: "-0.04em",
   color: vars.color.text,
   fontSize: "clamp(1.6rem, 1.6vw, 2.8rem)",
-  fontWeight: 300,
+  fontWeight: 400,
 });
 
 export const worksDl = style({
