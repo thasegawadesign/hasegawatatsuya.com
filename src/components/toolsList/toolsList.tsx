@@ -1,11 +1,10 @@
 "use client";
 
+import WorksIconLink from "@/components/worksIconLink/worksIconLink";
 import {
   worksBox,
   worksCategory,
-  worksIcon,
   worksItem,
-  worksLink,
   worksName,
   worksNameSpan,
   worksTextBox,
@@ -18,8 +17,6 @@ import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function ToolsList() {
@@ -53,11 +50,11 @@ export default function ToolsList() {
               </h3>
               <p className={clsx(worksCategory)}>{tool.category}</p>
             </div>
-            <Link
+            <WorksIconLink
               href={tool.href}
               aria-label={tool.external ? `${toolName}（新しいタブで開く）` : undefined}
               aria-labelledby={tool.external ? undefined : tool.id}
-              className={clsx(worksLink)}
+              iconSrc={tool.iconSrc}
               rel={tool.external ? "noopener noreferrer" : undefined}
               target={tool.external ? "_blank" : undefined}
               onMouseEnter={
@@ -94,15 +91,7 @@ export default function ToolsList() {
                 playSfxClick();
                 haptic();
               }}
-            >
-              <Image
-                src={tool.iconSrc}
-                width={160}
-                height={160}
-                className={clsx(worksIcon)}
-                alt=""
-              />
-            </Link>
+            />
           </section>
         );
       })}
