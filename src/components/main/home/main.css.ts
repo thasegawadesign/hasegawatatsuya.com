@@ -490,7 +490,7 @@ export const worksItem = style({
   },
   "@media": {
     [breakpoints["xl"]]: {
-      gap: 10,
+      gap: 8,
       padding: "40px 2vw",
     },
     [breakpoints["lg"]]: {
