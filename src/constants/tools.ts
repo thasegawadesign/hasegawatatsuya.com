@@ -13,6 +13,16 @@ export type ToolItem = {
 
 export const TOOLS: ToolItem[] = [
   {
+    id: "tool-mujo-words",
+    nameLines: ["無常の言葉"],
+    category: "(Webアプリケーション)",
+    href: "/tools/mujo-words",
+    iconSrc: "/images/icons/mujo-words-icon.avif",
+    mockupSrc: "/images/mockups/mujo-words-mockup.avif",
+    mockupWidth: 6000,
+    mockupHeight: 4500,
+  },
+  {
     id: "tool-social-flux",
     nameLines: ["社会の流転"],
     category: "(Webアプリケーション)",
