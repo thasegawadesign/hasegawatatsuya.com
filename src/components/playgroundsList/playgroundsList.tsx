@@ -1,11 +1,10 @@
 "use client";
 
+import WorksIconLink from "@/components/worksIconLink/worksIconLink";
 import {
   worksBox,
   worksCategory,
-  worksIcon,
   worksItem,
-  worksLink,
   worksName,
   worksNameSpan,
   worksTextBox,
@@ -18,8 +17,6 @@ import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function PlaygroundsList() {
@@ -55,11 +52,11 @@ export default function PlaygroundsList() {
               </h3>
               <p className={clsx(worksCategory)}>{playground.category}</p>
             </div>
-            <Link
+            <WorksIconLink
               href={playground.href}
               aria-label={ariaLabel}
               aria-labelledby={playground.external ? undefined : playground.id}
-              className={clsx(worksLink)}
+              iconSrc={playground.iconSrc}
               rel="noopener noreferrer"
               target={playground.external ? "_blank" : undefined}
               onMouseEnter={
@@ -96,15 +93,7 @@ export default function PlaygroundsList() {
                 playSfxClick();
                 haptic();
               }}
-            >
-              <Image
-                src={playground.iconSrc}
-                width={160}
-                height={160}
-                className={clsx(worksIcon)}
-                alt=""
-              />
-            </Link>
+            />
           </section>
         );
       })}

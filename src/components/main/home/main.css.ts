@@ -6,7 +6,7 @@ import {
   PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
 import { breakpoints, vars } from "@/styles/styles.css";
-import { keyframes, style } from "@vanilla-extract/css";
+import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 export const main = style({
   position: "relative",
@@ -467,15 +467,27 @@ export const worksBox = style({
   },
 });
 export const worksItem = style({
+  position: "relative",
+  isolation: "isolate",
   display: "flex",
   flexDirection: "column-reverse",
   alignItems: "center",
   justifyContent: "start",
   gap: 20,
-  backdropFilter: "blur(8px)",
   borderRadius: 36,
-  backgroundColor: "rgba(255, 255, 255, 0.12)",
   padding: "44px 2vw",
+  selectors: {
+    "&::before": {
+      position: "absolute",
+      zIndex: 0,
+      borderRadius: "inherit",
+      backgroundColor: "rgba(255, 255, 255, 0.12)",
+      backdropFilter: "blur(8px)",
+      pointerEvents: "none",
+      content: '""',
+      inset: 0,
+    },
+  },
   "@media": {
     [breakpoints["xl"]]: {
       gap: 12,
@@ -488,9 +500,13 @@ export const worksItem = style({
       padding: "36px 2vw",
     },
     [breakpoints["sm"]]: {
-      backdropFilter: "none",
-      backgroundColor: "transparent",
       padding: "24px 2vw 0px",
+      selectors: {
+        "&::before": {
+          backgroundColor: "transparent",
+          backdropFilter: "none",
+        },
+      },
     },
   },
 });
@@ -499,6 +515,9 @@ export const worksTextBox = style({
   flexDirection: "column-reverse",
   alignItems: "center",
   gap: 4,
+  position: "relative",
+  zIndex: 0,
+  pointerEvents: "none",
   "@media": {
     [breakpoints["xl"]]: {
       gap: 2,
@@ -538,8 +557,15 @@ export const worksCategory = style({
     },
   },
 });
+const WORKS_ICON_HOVER_SCALE = 1.05;
+
 export const worksLink = style({
-  display: "block",
+  position: "relative",
+  zIndex: 1,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
   width: 160,
   height: 160,
   "@media": {
@@ -557,20 +583,30 @@ export const worksLink = style({
     },
   },
 });
+export const worksLinkHovered = style({});
+export const worksIconFrame = style({
+  display: "block",
+  transformOrigin: "center center",
+  backfaceVisibility: "hidden",
+  pointerEvents: "none",
+  width: `${100 / WORKS_ICON_HOVER_SCALE}%`,
+  height: `${100 / WORKS_ICON_HOVER_SCALE}%`,
+  transition: `transform ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
+  selectors: {
+    [`${worksLinkHovered} &`]: {
+      transform: `scale(${WORKS_ICON_HOVER_SCALE})`,
+    },
+  },
+});
+globalStyle(`${worksIconFrame} *`, {
+  pointerEvents: "none",
+});
 export const worksIcon = style({
+  display: "block",
   pointerEvents: "none",
   width: "100%",
   height: "100%",
   userSelect: "none",
-  transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
-  selectors: {
-    [`${worksLink}:hover &`]: {
-      scale: 1.05,
-    },
-    [`${worksLink}:focus-visible &`]: {
-      scale: 1.05,
-    },
-  },
 });
 
 export const contactSection = style({

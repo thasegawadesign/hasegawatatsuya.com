@@ -1,11 +1,10 @@
 "use client";
 
+import WorksIconLink from "@/components/worksIconLink/worksIconLink";
 import {
   worksBox,
   worksCategory,
-  worksIcon,
   worksItem,
-  worksLink,
   worksName,
   worksNameSpan,
   worksTextBox,
@@ -18,8 +17,6 @@ import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function WorksList() {
@@ -52,10 +49,10 @@ export default function WorksList() {
               </h3>
               <p className={clsx(worksCategory)}>{work.category}</p>
             </div>
-            <Link
+            <WorksIconLink
               href={work.href}
               aria-labelledby={work.id}
-              className={clsx(worksLink)}
+              iconSrc={work.iconSrc}
               onMouseEnter={() =>
                 preloadNextPageMainVisual(work.mockupSrc, work.mockupWidth, work.mockupHeight)
               }
@@ -69,15 +66,7 @@ export default function WorksList() {
                 playSfxClick();
                 haptic();
               }}
-            >
-              <Image
-                src={work.iconSrc}
-                width={160}
-                height={160}
-                className={clsx(worksIcon)}
-                alt=""
-              />
-            </Link>
+            />
           </section>
         );
       })}
