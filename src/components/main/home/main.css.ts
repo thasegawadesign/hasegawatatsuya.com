@@ -473,7 +473,7 @@ export const worksItem = style({
   flexDirection: "column-reverse",
   alignItems: "center",
   justifyContent: "start",
-  gap: 20,
+  gap: 12,
   borderRadius: 36,
   padding: "44px 2vw",
   selectors: {
@@ -490,7 +490,7 @@ export const worksItem = style({
   },
   "@media": {
     [breakpoints["xl"]]: {
-      gap: 12,
+      gap: 10,
       padding: "40px 2vw",
     },
     [breakpoints["lg"]]: {
