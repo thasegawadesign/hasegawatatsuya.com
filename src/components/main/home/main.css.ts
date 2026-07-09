@@ -539,15 +539,9 @@ export const worksCategory = style({
   },
 });
 export const worksLink = style({
-  transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
+  display: "block",
   width: 160,
   height: 160,
-  ":hover": {
-    scale: 1.05,
-  },
-  ":focus-visible": {
-    scale: 1.05,
-  },
   "@media": {
     [breakpoints["2xl"]]: {
       width: 150,
@@ -568,6 +562,15 @@ export const worksIcon = style({
   width: "100%",
   height: "100%",
   userSelect: "none",
+  transition: `scale ${DURATION_S}s cubic-bezier(0.4, 0, 1, 1)`,
+  selectors: {
+    [`${worksLink}:hover &`]: {
+      scale: 1.05,
+    },
+    [`${worksLink}:focus-visible &`]: {
+      scale: 1.05,
+    },
+  },
 });
 
 export const contactSection = style({
