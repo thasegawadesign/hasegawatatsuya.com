@@ -284,6 +284,10 @@ export default function Main() {
                 <dt className={clsx(year)}>2025–現在</dt>
                 <dd className={clsx(event)}>放送大学（在学中）</dd>
               </div>
+              <div>
+                <dt className={clsx(year)}>2026–現在</dt>
+                <dd className={clsx(event)}>株式会社U-ZERO（業務委託）</dd>
+              </div>
             </dl>
           </section>
           <section ref={certificationsRef} className={clsx(section, certificationsSection)}>
