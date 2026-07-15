@@ -321,6 +321,8 @@ export const profileLinkIcon = style({
   width: 28,
   height: 28,
   color: vars.color.text,
+  userSelect: "none",
+  pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
       width: 22,
