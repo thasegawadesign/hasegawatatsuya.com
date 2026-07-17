@@ -6,16 +6,20 @@ export const nav = style({
   position: "fixed",
   zIndex: 100,
   top: "7vw",
-  left: "clamp(40px, 15.2vw, 300px)",
+  // Glass 左端から 40px（幅は glass.css と同期）
+  left: "calc(max(6vw, (100vw - 1400px) / 2) + 40px)",
   display: "flex",
   flexDirection: "column",
   gap: 12,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "clamp(40px, 9vw, 240px)",
+      left: "calc(7vw + 40px)",
     },
     [breakpoints["xl"]]: {
-      left: "8vw",
+      left: "calc(4vw + 40px)",
+    },
+    [breakpoints["md"]]: {
+      left: "calc(2vw + 40px)",
     },
     [breakpoints["sm"]]: {
       top: "6vw",
