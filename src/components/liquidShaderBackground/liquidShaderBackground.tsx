@@ -109,6 +109,7 @@ export default function LiquidShaderBackground() {
     const showStaticFallback = () => {
       if (disposed) return;
       stopLiquidBoot();
+      document.body.style.backgroundColor = "transparent";
       startTransition(() => setUseStaticFallback(true));
       notifyLiquidBackgroundReveal();
     };

@@ -1,4 +1,3 @@
-import { LIQUID_BACKGROUND_FALLBACK_COLOR } from "@/constants/constants";
 import { style } from "@vanilla-extract/css";
 
 export const backgroundRoot = style({
@@ -11,11 +10,10 @@ export const backgroundRoot = style({
   overflow: "hidden",
 });
 
-/** WebGL 不可時のみ。単色＋bg.avif */
+/** WebGL 不可時のみ bg.avif（単色は出さない） */
 export const fallbackLayer = style({
   position: "absolute",
   inset: 0,
-  backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
 });
 
 export const fallbackImageAsset = style({

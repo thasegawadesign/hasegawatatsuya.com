@@ -19,8 +19,17 @@ export function getLiquidBootScript(): string {
   return `(function(){
   var canvas=document.getElementById("liquid-boot-canvas");
   if(!canvas)return;
+
+  function showStaticFallback(){
+    canvas.style.backgroundImage="url(/images/bg.avif)";
+    canvas.style.backgroundSize="cover";
+    canvas.style.backgroundPosition="center";
+    canvas.style.backgroundRepeat="no-repeat";
+    try{document.body.style.backgroundColor="transparent";}catch(e){}
+  }
+
   var gl=canvas.getContext("webgl",{antialias:false,alpha:false,preserveDrawingBuffer:true})||canvas.getContext("experimental-webgl",{antialias:false,alpha:false,preserveDrawingBuffer:true});
-  if(!gl)return;
+  if(!gl){showStaticFallback();return;}
 
   function compile(type,src){
     var s=gl.createShader(type);
@@ -33,13 +42,13 @@ export function getLiquidBootScript(): string {
 
   var vsh=compile(gl.VERTEX_SHADER,${vs});
   var fsh=compile(gl.FRAGMENT_SHADER,${fs});
-  if(!vsh||!fsh)return;
+  if(!vsh||!fsh){showStaticFallback();return;}
   var prog=gl.createProgram();
-  if(!prog)return;
+  if(!prog){showStaticFallback();return;}
   gl.attachShader(prog,vsh);
   gl.attachShader(prog,fsh);
   gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog,gl.LINK_STATUS))return;
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){showStaticFallback();return;}
   gl.useProgram(prog);
 
   var buf=gl.createBuffer();
