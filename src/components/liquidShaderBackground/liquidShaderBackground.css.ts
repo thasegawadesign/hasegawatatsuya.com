@@ -1,8 +1,4 @@
-import {
-  LIQUID_BACKGROUND_FALLBACK_COLOR,
-  LIQUID_REVEAL_DURATION_S,
-  LIQUID_REVEAL_EASING,
-} from "@/constants/constants";
+import { LIQUID_BACKGROUND_FALLBACK_COLOR } from "@/constants/constants";
 import { style } from "@vanilla-extract/css";
 
 export const backgroundRoot = style({
@@ -15,21 +11,11 @@ export const backgroundRoot = style({
   overflow: "hidden",
 });
 
-export const fallbackImage = style({
+/** WebGL 不可時のみ。単色＋bg.avif */
+export const fallbackLayer = style({
   position: "absolute",
   inset: 0,
-  transition: `opacity ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING}`,
-  opacity: 1,
   backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
-  "@media": {
-    "(prefers-reduced-motion: reduce)": {
-      transitionDuration: "0.01s",
-    },
-  },
-});
-
-export const fallbackImageHidden = style({
-  opacity: 0,
 });
 
 export const fallbackImageAsset = style({
@@ -37,21 +23,23 @@ export const fallbackImageAsset = style({
   objectPosition: "center center",
 });
 
-export const canvasRoot = style({
+/**
+ * 最初の Three 描画までは非表示。
+ * その間は layout の #liquid-boot-canvas が見える。
+ */
+export const canvasElement = style({
   position: "absolute",
   inset: 0,
-  transition: `opacity ${LIQUID_REVEAL_DURATION_S}s ${LIQUID_REVEAL_EASING}`,
-  opacity: 0,
+  display: "block",
   width: "100%",
   height: "100%",
-  overflow: "hidden",
-  "@media": {
-    "(prefers-reduced-motion: reduce)": {
-      transitionDuration: "0.01s",
-    },
-  },
+  visibility: "hidden",
 });
 
-export const canvasRootReady = style({
-  opacity: 1,
+export const canvasReady = style({
+  visibility: "visible",
+});
+
+export const canvasHidden = style({
+  visibility: "hidden",
 });
