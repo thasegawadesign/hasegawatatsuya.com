@@ -47,11 +47,6 @@ export const nameBox = style({
   flexDirection: "column",
   alignItems: "center",
   pointerEvents: "none",
-  "@media": {
-    [breakpoints["sm"]]: {
-      top: 280,
-    },
-  },
 });
 export const nameJa = style({
   position: "relative",
@@ -99,6 +94,10 @@ export const photoBox = style({
     [breakpoints["xl"]]: {
       width: 280,
       height: 420,
+    },
+    [breakpoints["sm"]]: {
+      width: 240,
+      height: 360,
     },
   },
 });
@@ -156,7 +155,7 @@ export const photoMagicInner = style({
   zIndex: 2,
   backfaceVisibility: "hidden",
   borderRadius: 20,
-  backgroundColor: "#a7d8ff",
+  backgroundColor: "#93c5ff",
   width: "100%",
   height: "100%",
   overflow: "hidden",
@@ -191,6 +190,7 @@ export const profileLinkBox = style({
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
+      marginTop: 100,
     },
   },
 });
