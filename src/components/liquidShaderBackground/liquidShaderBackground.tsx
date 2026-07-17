@@ -141,7 +141,8 @@ export default function LiquidShaderBackground() {
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const geometry = new THREE.PlaneGeometry(2, 2);
-    const uTime = { value: 0 };
+    // boot と同じ位相を引き継ぐ（無い場合はリロード用にランダム）
+    const uTime = { value: window.__liquidBoot?.time() ?? Math.random() * 60 };
     const uResolution = { value: new THREE.Vector2(1, 1) };
     const uMotion = { value: 1 };
     const uPointer = { value: new THREE.Vector2(0.5, 0.5) };
