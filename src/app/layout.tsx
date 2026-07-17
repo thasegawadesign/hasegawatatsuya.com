@@ -1,5 +1,5 @@
 import { cormorant, notoSansJP, notoSerifJP, roboto } from "@/app/fonts";
-import { backgroundGradient, body, html, liquidBootCanvas } from "@/app/layout.css";
+import { body, html, liquidBootCanvas } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
 import LiquidShaderBackground from "@/components/liquidShaderBackground/liquidShaderBackground";
 import Object1 from "@/components/object/object1";
@@ -79,8 +79,13 @@ export default async function RootLayout({
         notoSansJP.variable,
       )}
     >
-      <body className={clsx(body, backgroundGradient)}>
-        <canvas id={LIQUID_BOOT_CANVAS_ID} className={liquidBootCanvas} aria-hidden />
+      <body className={body}>
+        <canvas
+          id={LIQUID_BOOT_CANVAS_ID}
+          className={liquidBootCanvas}
+          aria-hidden
+          suppressHydrationWarning
+        />
         <script id="liquid-boot" dangerouslySetInnerHTML={{ __html: getLiquidBootScript() }} />
         <Script
           id="json-ld-person"

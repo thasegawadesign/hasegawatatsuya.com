@@ -25,7 +25,8 @@ const MAX_FRAME_DELTA = 1 / 30;
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
   const boot = document.getElementById(LIQUID_BOOT_CANVAS_ID);
-  if (boot) boot.remove();
+  // React 管理ノードは remove せず非表示に留める（再レンダーで空 canvas が復活するのを防ぐ）
+  if (boot instanceof HTMLElement) boot.style.display = "none";
   delete window.__liquidBoot;
 }
 
