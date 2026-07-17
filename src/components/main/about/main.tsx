@@ -82,7 +82,7 @@ export default function Main() {
   };
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 640px)");
     const update = () => setTiltEnabled(mq.matches);
     update();
     mq.addEventListener("change", update);
