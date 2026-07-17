@@ -72,10 +72,16 @@ export function getLiquidBootScript(): string {
   var uPointerStrength=gl.getUniformLocation(prog,"uPointerStrength");
 
   var start=performance.now();
+  // リロードごとに位相を少しずらす（0〜約60秒）
+  var timeOffset=Math.random()*60;
   var reduced=false;
   try{reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
   var raf=0;
   var stopped=false;
+
+  function currentTime(){
+    return timeOffset+(performance.now()-start)/1000;
+  }
 
   function resize(){
     var dpr=Math.min(window.devicePixelRatio||1,2);
@@ -101,16 +107,17 @@ export function getLiquidBootScript(): string {
 
   function frame(){
     if(stopped)return;
-    if(resize())draw((performance.now()-start)/1000);
+    if(resize())draw(currentTime());
     raf=requestAnimationFrame(frame);
   }
 
   gl.clearColor(0.0235,0.0745,0.8196,1);
-  if(resize())draw(1/60);
+  if(resize())draw(timeOffset+1/60);
   raf=requestAnimationFrame(frame);
 
   window.__liquidBoot={
     canvas:canvas,
+    time:currentTime,
     stop:function(){
       stopped=true;
       if(raf)cancelAnimationFrame(raf);
