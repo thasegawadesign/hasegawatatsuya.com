@@ -49,6 +49,7 @@ import Tilt from "react-parallax-tilt";
 
 export default function Main() {
   const [emailCopied, setEmailCopied] = useState(false);
+  const [tiltEnabled, setTiltEnabled] = useState(false);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const valueRef = useRef(null);
@@ -81,6 +82,14 @@ export default function Main() {
   };
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setTiltEnabled(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     gsapAnimation.inview(occupationRef);
@@ -100,6 +109,7 @@ export default function Main() {
             <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
           </h1>
           <Tilt
+            tiltEnable={tiltEnabled}
             tiltMaxAngleX={6}
             tiltMaxAngleY={6}
             perspective={800}
