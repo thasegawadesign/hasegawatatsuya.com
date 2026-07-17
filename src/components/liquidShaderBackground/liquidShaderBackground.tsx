@@ -2,36 +2,33 @@
 
 import {
   backgroundRoot,
-  canvasRoot,
-  canvasRootReady,
-  fallbackImage,
+  canvasElement,
+  canvasHidden,
+  canvasReady,
   fallbackImageAsset,
-  fallbackImageHidden,
+  fallbackLayer,
 } from "@/components/liquidShaderBackground/liquidShaderBackground.css";
 import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
-import {
-  LIQUID_WGSL_DOMAIN_WARP,
-  LIQUID_WGSL_FBM,
-  LIQUID_WGSL_FBM_RIDGED,
-  LIQUID_WGSL_HASH,
-  LIQUID_WGSL_HASH3,
-  LIQUID_WGSL_HEIGHT_AT,
-  LIQUID_WGSL_LIQUID_COLOR,
-  LIQUID_WGSL_NOISE,
-  LIQUID_WGSL_VORTEX_TWIST,
-} from "@/components/liquidShaderBackground/liquidShaderWgsl";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
+import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootScript";
 import clsx from "clsx";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useLayoutEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { uniform, uv, wgslFn } from "three/tsl";
-import { MeshBasicNodeMaterial, WebGPURenderer } from "three/webgpu";
 
 const CLEAR = 0x0613d1;
+const MAX_FRAME_DELTA = 1 / 30;
+
+function stopLiquidBoot() {
+  window.__liquidBoot?.stop();
+  const boot = document.getElementById(LIQUID_BOOT_CANVAS_ID);
+  // React 管理ノードは remove せず非表示に留める（再レンダーで空 canvas が復活するのを防ぐ）
+  if (boot instanceof HTMLElement) boot.style.display = "none";
+  delete window.__liquidBoot;
+}
 
 function bindLiquidPointer(
   mount: HTMLElement,
@@ -65,272 +62,217 @@ function decayPointerStrength(uPointerStrength: { value: number }, delta: number
   uPointerStrength.value *= Math.exp(-delta * 2.05);
 }
 
-type WgslFnInclude = NonNullable<Parameters<typeof wgslFn>[1]>[number];
-type MeshBasicColorNode = NonNullable<
-  ConstructorParameters<typeof MeshBasicNodeMaterial>[0]
->["colorNode"];
-
-function scheduleRevealAfterNextFrame(onReveal: () => void, getDisposed: () => boolean) {
-  requestAnimationFrame(() => {
-    if (!getDisposed()) onReveal();
-  });
+function hasDrawableSize(el: HTMLElement) {
+  return el.clientWidth >= 1 && el.clientHeight >= 1;
 }
 
-export default function LiquidShaderBackground() {
-  const mountRef = useRef<HTMLDivElement | null>(null);
-  const [canvasReady, setCanvasReady] = useState(false);
+function advanceClock(clock: THREE.Clock, uTime: { value: number }, motion: number) {
+  if (!clock.running) {
+    clock.start();
+    const delta = 1 / 60;
+    uTime.value += delta * motion;
+    return delta;
+  }
+  const delta = Math.min(clock.getDelta(), MAX_FRAME_DELTA);
+  uTime.value += delta * motion;
+  return delta;
+}
 
-  useEffect(() => {
-    const mount = mountRef.current;
-    if (!mount) return;
+function canCreateWebGl() {
+  try {
+    const probe = document.createElement("canvas");
+    return !!(probe.getContext("webgl2") || probe.getContext("webgl"));
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 最初の paint は layout の同期 boot スクリプトが担当。
+ * このコンポーネントは takeover 後のループ・ポインタを担う。
+ */
+export default function LiquidShaderBackground() {
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [useStaticFallback, setUseStaticFallback] = useState(false);
+  const [threeReady, setThreeReady] = useState(false);
+
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const canvas = canvasRef.current;
+    if (!root || !canvas) return;
 
     let disposed = false;
-    let teardown: (() => void) | undefined;
+    let frame = 0;
+    let loopStarted = false;
 
-    const runWebGl = () => {
-      let renderer: THREE.WebGLRenderer;
-      try {
-        renderer = new THREE.WebGLRenderer({
-          antialias: false,
-          alpha: false,
-          powerPreference: "high-performance",
-        });
-      } catch {
-        return;
-      }
+    const showStaticFallback = () => {
+      if (disposed) return;
+      stopLiquidBoot();
+      document.body.style.backgroundColor = "transparent";
+      startTransition(() => setUseStaticFallback(true));
+      notifyLiquidBackgroundReveal();
+    };
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    if (!canCreateWebGl()) {
+      showStaticFallback();
+      return;
+    }
 
-      const geometry = new THREE.PlaneGeometry(2, 2);
-      const uTime = { value: 0 };
-      const uResolution = { value: new THREE.Vector2(1, 1) };
-      const uMotion = { value: 1 };
-      const uPointer = { value: new THREE.Vector2(0.5, 0.5) };
-      const pointerTarget = new THREE.Vector2(0.5, 0.5);
-      const uPointerStrength = { value: 0 };
-
-      const material = new THREE.RawShaderMaterial({
-        vertexShader: LIQUID_VERTEX_SHADER,
-        fragmentShader: LIQUID_FRAGMENT_SHADER,
-        uniforms: { uTime, uResolution, uMotion, uPointer, uPointerStrength },
-        depthTest: false,
-        depthWrite: false,
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: false,
+        alpha: false,
+        powerPreference: "high-performance",
+        preserveDrawingBuffer: true,
       });
+    } catch {
+      showStaticFallback();
+      return;
+    }
+    if (!renderer.getContext()) {
+      renderer.dispose();
+      showStaticFallback();
+      return;
+    }
 
-      scene.add(new THREE.Mesh(geometry, material));
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const uTime = { value: 0 };
+    const uResolution = { value: new THREE.Vector2(1, 1) };
+    const uMotion = { value: 1 };
+    const uPointer = { value: new THREE.Vector2(0.5, 0.5) };
+    const pointerTarget = new THREE.Vector2(0.5, 0.5);
+    const uPointerStrength = { value: 0 };
 
-      const setSize = () => {
-        const w = mount.clientWidth;
-        const h = mount.clientHeight;
-        const pr = Math.min(window.devicePixelRatio, 2);
-        uResolution.value.set(w * pr, h * pr);
-        renderer.setPixelRatio(pr);
-        renderer.setSize(w, h, false);
+    const material = new THREE.RawShaderMaterial({
+      vertexShader: LIQUID_VERTEX_SHADER,
+      fragmentShader: LIQUID_FRAGMENT_SHADER,
+      uniforms: { uTime, uResolution, uMotion, uPointer, uPointerStrength },
+      depthTest: false,
+      depthWrite: false,
+    });
+    scene.add(new THREE.Mesh(geometry, material));
+    renderer.setClearColor(CLEAR, 1);
+
+    const setSize = () => {
+      if (!hasDrawableSize(root)) return false;
+      const w = root.clientWidth;
+      const h = root.clientHeight;
+      const pr = Math.min(window.devicePixelRatio, 2);
+      uResolution.value.set(w * pr, h * pr);
+      renderer.setPixelRatio(pr);
+      renderer.setSize(w, h, false);
+      return true;
+    };
+
+    const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotion = () => {
+      uMotion.value = mqReduce.matches ? 0 : 1;
+    };
+    syncMotion();
+    mqReduce.addEventListener("change", syncMotion);
+
+    const removePointer = bindLiquidPointer(root, pointerTarget, uPointerStrength);
+    const clock = new THREE.Clock(false);
+
+    const paint = () => {
+      if (!hasDrawableSize(root)) return false;
+      const motion = mqReduce.matches ? 0 : 1;
+      const delta = advanceClock(clock, uTime, motion);
+      smoothPointerToward(uPointer.value, pointerTarget, delta);
+      decayPointerStrength(uPointerStrength, delta);
+      renderer.render(scene, camera);
+      return true;
+    };
+
+    const startLoop = () => {
+      if (loopStarted || disposed) return;
+      loopStarted = true;
+      const tick = () => {
+        frame = requestAnimationFrame(tick);
+        paint();
       };
+      frame = requestAnimationFrame(tick);
+    };
 
-      renderer.setClearColor(CLEAR, 1);
-      mount.appendChild(renderer.domElement);
-      setSize();
-      scheduleRevealAfterNextFrame(
-        () => {
-          notifyLiquidBackgroundReveal();
-          setCanvasReady(true);
-        },
-        () => disposed,
-      );
+    const takeOver = () => {
+      if (disposed) return false;
+      if (!setSize() || !paint()) return false;
+      // boot を消す前に Three canvas を見せる（間に body 単色が挟まないように）
+      canvas.classList.add(canvasReady);
+      setThreeReady(true);
+      stopLiquidBoot();
+      notifyLiquidBackgroundReveal();
+      startLoop();
+      return true;
+    };
 
-      const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-      const syncMotion = () => {
-        uMotion.value = mqReduce.matches ? 0 : 1;
-      };
-      syncMotion();
-      mqReduce.addEventListener("change", syncMotion);
-
-      const removePointer = bindLiquidPointer(mount, pointerTarget, uPointerStrength);
-
-      let frame = 0;
-      const clock = new THREE.Clock();
-      const loop = () => {
-        frame = requestAnimationFrame(loop);
-        const delta = clock.getDelta();
-        uTime.value += delta * (mqReduce.matches ? 0 : 1);
-        smoothPointerToward(uPointer.value, pointerTarget, delta);
-        decayPointerStrength(uPointerStrength, delta);
-        renderer.render(scene, camera);
-      };
-      loop();
-
-      const onResize = () => setSize();
-      window.addEventListener("resize", onResize);
-
-      teardown = () => {
+    if (!takeOver()) {
+      const bootObserver = new ResizeObserver(() => {
+        if (takeOver()) bootObserver.disconnect();
+      });
+      bootObserver.observe(root);
+      return () => {
+        disposed = true;
+        bootObserver.disconnect();
         cancelAnimationFrame(frame);
         removePointer();
         mqReduce.removeEventListener("change", syncMotion);
-        window.removeEventListener("resize", onResize);
+        setUseStaticFallback(false);
         geometry.dispose();
         material.dispose();
         renderer.dispose();
-        if (renderer.domElement.parentNode === mount) {
-          mount.removeChild(renderer.domElement);
-        }
       };
+    }
+
+    const onResize = () => {
+      setSize();
+      paint();
     };
-
-    void (async () => {
-      let r: WebGPURenderer;
-      try {
-        r = new WebGPURenderer({
-          antialias: false,
-          alpha: false,
-          powerPreference: "high-performance",
-        });
-        await r.init();
-      } catch {
-        if (!disposed) runWebGl();
-        return;
-      }
-      if (disposed) {
-        r.dispose();
-        return;
-      }
-
-      try {
-        const uTime = uniform(0);
-        const uResolution = uniform(new THREE.Vector2(1, 1));
-        const uMotion = uniform(1);
-        const uPointer = uniform(new THREE.Vector2(0.5, 0.5));
-        const pointerTarget = new THREE.Vector2(0.5, 0.5);
-        const uPointerStrength = uniform(0);
-
-        const hashFn = wgslFn(LIQUID_WGSL_HASH);
-        const hash3Fn = wgslFn(LIQUID_WGSL_HASH3);
-        const noiseFn = wgslFn(LIQUID_WGSL_NOISE, [hashFn as unknown as WgslFnInclude]);
-        const fbmFn = wgslFn(LIQUID_WGSL_FBM, [noiseFn as unknown as WgslFnInclude]);
-        const fbmRidgedFn = wgslFn(LIQUID_WGSL_FBM_RIDGED, [noiseFn as unknown as WgslFnInclude]);
-        const domainWarpFn = wgslFn(LIQUID_WGSL_DOMAIN_WARP, [fbmFn as unknown as WgslFnInclude]);
-        const vortexTwistFn = wgslFn(LIQUID_WGSL_VORTEX_TWIST);
-        const heightAtFn = wgslFn(LIQUID_WGSL_HEIGHT_AT, [
-          fbmFn as unknown as WgslFnInclude,
-          fbmRidgedFn as unknown as WgslFnInclude,
-        ]);
-
-        const liquid = wgslFn(LIQUID_WGSL_LIQUID_COLOR, [
-          hash3Fn as unknown as WgslFnInclude,
-          fbmFn as unknown as WgslFnInclude,
-          fbmRidgedFn as unknown as WgslFnInclude,
-          domainWarpFn as unknown as WgslFnInclude,
-          vortexTwistFn as unknown as WgslFnInclude,
-          heightAtFn as unknown as WgslFnInclude,
-        ]);
-        const colorNode = liquid({
-          vUv: uv(),
-          uTime,
-          uResolution,
-          uMotion,
-          uPointer,
-          uPointerStrength,
-        });
-
-        const material = new MeshBasicNodeMaterial({
-          colorNode: colorNode as MeshBasicColorNode,
-        });
-        material.depthTest = false;
-        material.depthWrite = false;
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-        const geometry = new THREE.PlaneGeometry(2, 2);
-        scene.add(new THREE.Mesh(geometry, material));
-
-        const setSize = () => {
-          const w = mount.clientWidth;
-          const h = mount.clientHeight;
-          const pr = Math.min(window.devicePixelRatio, 2);
-          uResolution.value.set(w * pr, h * pr);
-          r.setPixelRatio(pr);
-          r.setSize(w, h, false);
-        };
-
-        r.setClearColor(CLEAR, 1);
-        if (disposed) {
-          r.setAnimationLoop(null);
-          geometry.dispose();
-          material.dispose();
-          r.dispose();
-          return;
-        }
-        mount.appendChild(r.domElement);
-        setSize();
-        scheduleRevealAfterNextFrame(
-          () => {
-            notifyLiquidBackgroundReveal();
-            setCanvasReady(true);
-          },
-          () => disposed,
-        );
-
-        const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const syncMotion = () => {
-          uMotion.value = mqReduce.matches ? 0 : 1;
-        };
-        syncMotion();
-        mqReduce.addEventListener("change", syncMotion);
-
-        const removePointer = bindLiquidPointer(mount, pointerTarget, uPointerStrength);
-
-        const clock = new THREE.Clock();
-
-        r.setAnimationLoop(() => {
-          const delta = clock.getDelta();
-          uTime.value += delta * (mqReduce.matches ? 0 : 1);
-          smoothPointerToward(uPointer.value, pointerTarget, delta);
-          decayPointerStrength(uPointerStrength, delta);
-          r.render(scene, camera);
-        });
-
-        const onResize = () => setSize();
-        window.addEventListener("resize", onResize);
-
-        teardown = () => {
-          removePointer();
-          mqReduce.removeEventListener("change", syncMotion);
-          window.removeEventListener("resize", onResize);
-          r.setAnimationLoop(null);
-          geometry.dispose();
-          material.dispose();
-          r.dispose();
-          if (r.domElement.parentNode === mount) {
-            mount.removeChild(r.domElement);
-          }
-        };
-      } catch {
-        r.dispose();
-        if (!disposed) runWebGl();
-      }
-    })();
+    window.addEventListener("resize", onResize);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(root);
 
     return () => {
       disposed = true;
-      setCanvasReady(false);
-      teardown?.();
+      cancelAnimationFrame(frame);
+      removePointer();
+      mqReduce.removeEventListener("change", syncMotion);
+      window.removeEventListener("resize", onResize);
+      resizeObserver.disconnect();
+      setUseStaticFallback(false);
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
     };
   }, []);
 
   return (
-    <div className={backgroundRoot} aria-hidden>
-      <div className={clsx(fallbackImage, canvasReady && fallbackImageHidden)}>
-        <Image
-          src="/images/bg.avif"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={fallbackImageAsset}
-        />
-      </div>
-      <div ref={mountRef} className={clsx(canvasRoot, canvasReady && canvasRootReady)} />
+    <div ref={rootRef} className={backgroundRoot} aria-hidden>
+      {useStaticFallback && (
+        <div className={fallbackLayer}>
+          <Image
+            src="/images/bg.avif"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className={fallbackImageAsset}
+          />
+        </div>
+      )}
+      <canvas
+        ref={canvasRef}
+        className={clsx(
+          canvasElement,
+          threeReady && canvasReady,
+          useStaticFallback && canvasHidden,
+        )}
+      />
     </div>
   );
 }

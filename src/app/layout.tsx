@@ -1,5 +1,5 @@
 import { cormorant, notoSansJP, notoSerifJP, roboto } from "@/app/fonts";
-import { backgroundGradient, body, html } from "@/app/layout.css";
+import { body, html, liquidBootCanvas } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
 import LiquidShaderBackground from "@/components/liquidShaderBackground/liquidShaderBackground";
 import Object1 from "@/components/object/object1";
@@ -8,6 +8,7 @@ import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
 import { EMAIL, GITHUB, SITE_URL, X } from "@/constants/constants";
+import { getLiquidBootScript, LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootScript";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
@@ -78,7 +79,14 @@ export default async function RootLayout({
         notoSansJP.variable,
       )}
     >
-      <body className={clsx(body, backgroundGradient)}>
+      <body className={body}>
+        <canvas
+          id={LIQUID_BOOT_CANVAS_ID}
+          className={liquidBootCanvas}
+          aria-hidden
+          suppressHydrationWarning
+        />
+        <script id="liquid-boot" dangerouslySetInnerHTML={{ __html: getLiquidBootScript() }} />
         <Script
           id="json-ld-person"
           type="application/ld+json"

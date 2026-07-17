@@ -32,16 +32,21 @@ export const smoothScroll = style({
 export const body = style({
   fontFamily: "YakuHanJP, var(--font-noto-sans-jp), sans-serif",
   fontWeight: 200,
+  /** シェーダー準備前の白フラッシュ防止用の下地 */
+  backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
   "::selection": {
     backgroundColor: "#faf1e8",
     color: "#130059",
   },
 });
 
-export const backgroundGradient = style({
-  backgroundAttachment: "fixed",
-  backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
-  backgroundPosition: "center center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
+/** HTML 最初の paint 前に同期スクリプトが描くcanvas */
+export const liquidBootCanvas = style({
+  position: "fixed",
+  zIndex: -100,
+  inset: 0,
+  display: "block",
+  width: "100vw",
+  height: "100vh",
+  pointerEvents: "none",
 });
