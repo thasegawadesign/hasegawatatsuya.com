@@ -58,6 +58,11 @@ export const nameJa = style({
     'var(--font-noto-serif-jp), "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", "Noto Serif JP", serif',
   fontSize: "clamp(4rem, 7.5vw + 2.5rem, 15.4rem)",
   fontWeight: 700,
+  "@media": {
+    [breakpoints["sm"]]: {
+      marginBottom: "-0.5em",
+    },
+  },
 });
 export const nameEn = style({
   position: "relative",
