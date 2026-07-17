@@ -5,84 +5,37 @@ import { playSfxClick } from "@/lib/playSfx";
 import clsx from "clsx";
 import Link from "next/link";
 
+const NAV_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/#works", label: "Works" },
+  { href: "/#tools", label: "Tools" },
+  { href: "/#playgrounds", label: "Playgrounds" },
+  { href: "/#contact", label: "Contact" },
+] as const;
+
+function handleNavClick() {
+  playSfxClick();
+  haptic();
+}
+
 export default function Nav() {
   return (
     <nav className={clsx(nav)} aria-label="グローバル">
       <ul className={clsx(navLogoBox)}>
         <li>
-          <Link
-            href={"/"}
-            className={clsx(roboto.className, logo)}
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
+          <Link href="/" className={clsx(roboto.className, logo)} onClick={handleNavClick}>
             TH
           </Link>
         </li>
       </ul>
       <ul className={clsx(navLinkBox)}>
-        <li>
-          <Link
-            href={"/about"}
-            className={clsx(roboto.className, navLink)}
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/#works"}
-            className={clsx(roboto.className, navLink)}
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
-            Works
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/#tools"}
-            className={clsx(roboto.className, navLink)}
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
-            Tools
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/#playgrounds"}
-            className={clsx(roboto.className, navLink)}
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
-            Playgrounds
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/#contact"}
-            className={clsx(roboto.className, navLink)}
-            onClick={() => {
-              playSfxClick();
-              haptic();
-            }}
-          >
-            Contact
-          </Link>
-        </li>
+        {NAV_LINKS.map(({ href, label }) => (
+          <li key={href}>
+            <Link href={href} className={clsx(roboto.className, navLink)} onClick={handleNavClick}>
+              {label}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
