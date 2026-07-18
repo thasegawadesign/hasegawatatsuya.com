@@ -5,7 +5,7 @@ import { style } from "@vanilla-extract/css";
 export const nav = style({
   position: "fixed",
   zIndex: 100,
-  top: "6.5vw",
+  top: "6.6vw",
   // Glass 左端から 36px（幅は glass.css と同期）
   left: "calc(max(6vw, (100vw - 1400px) / 2) + 36px)",
   display: "flex",
