@@ -5,21 +5,21 @@ import { style } from "@vanilla-extract/css";
 export const nav = style({
   position: "fixed",
   zIndex: 100,
-  top: "7vw",
+  top: "6.5vw",
   // Glass 左端から 40px（幅は glass.css と同期）
-  left: "calc(max(6vw, (100vw - 1400px) / 2) + 40px)",
+  left: "calc(max(6vw, (100vw - 1400px) / 2) + 32px)",
   display: "flex",
   flexDirection: "column",
   gap: 12,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "calc(7vw + 40px)",
+      left: "calc(7vw + 32px)",
     },
     [breakpoints["xl"]]: {
-      left: "calc(4vw + 40px)",
+      left: "calc(4vw + 32px)",
     },
     [breakpoints["md"]]: {
-      left: "calc(2vw + 40px)",
+      left: "calc(2vw + 32px)",
     },
     [breakpoints["sm"]]: {
       top: "6vw",
