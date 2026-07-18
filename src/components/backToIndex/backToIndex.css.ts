@@ -5,10 +5,20 @@ import { style } from "@vanilla-extract/css";
 export const backToIndexBox = style({
   position: "absolute",
   bottom: 120,
-  left: "clamp(40px, 15.2vw, 300px)",
+  // nav 左端と同期（nav.css の left と同じ）
+  left: "calc(max(6vw, (100vw - 1400px) / 2) + 36px)",
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "clamp(40px, 9vw, 240px)",
+      left: "calc(7vw + 36px)",
+    },
+    [breakpoints["xl"]]: {
+      left: "calc(4vw + 36px)",
+    },
+    [breakpoints["md"]]: {
+      left: "calc(2vw + 36px)",
+    },
+    [breakpoints["sm"]]: {
+      left: "9vw",
     },
   },
 });
