@@ -6,20 +6,20 @@ export const nav = style({
   position: "fixed",
   zIndex: 100,
   top: "6.5vw",
-  // Glass 左端から 40px（幅は glass.css と同期）
-  left: "calc(max(6vw, (100vw - 1400px) / 2) + 32px)",
+  // Glass 左端から 36px（幅は glass.css と同期）
+  left: "calc(max(6vw, (100vw - 1400px) / 2) + 36px)",
   display: "flex",
   flexDirection: "column",
   gap: 12,
   "@media": {
     [breakpoints["2xl"]]: {
-      left: "calc(7vw + 32px)",
+      left: "calc(7vw + 36px)",
     },
     [breakpoints["xl"]]: {
-      left: "calc(4vw + 32px)",
+      left: "calc(4vw + 36px)",
     },
     [breakpoints["md"]]: {
-      left: "calc(2vw + 32px)",
+      left: "calc(2vw + 36px)",
     },
     [breakpoints["sm"]]: {
       top: "6vw",
