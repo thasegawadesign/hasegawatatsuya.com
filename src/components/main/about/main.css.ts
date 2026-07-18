@@ -145,6 +145,14 @@ export const photoMagic = style({
     },
   },
   "@media": {
+    [breakpoints["sm"]]: {
+      selectors: {
+        "&::before": {
+          inset: "-2px",
+          borderRadius: 22,
+        },
+      },
+    },
     "(prefers-reduced-motion: reduce)": {
       selectors: {
         "&::before, &::after": {
