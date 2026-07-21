@@ -18,8 +18,8 @@ export const WORKS: WorkItem[] = [
     href: "/works/fukusho-unyu",
     iconSrc: "/images/icons/fukusho-unyu-icon.avif",
     mockupSrc: "/images/mockups/fukusho-unyu-mockup.avif",
-    mockupWidth: 4000,
-    mockupHeight: 3000,
+    mockupWidth: 6000,
+    mockupHeight: 4500,
   },
   {
     id: "work-tomosho-unyu",

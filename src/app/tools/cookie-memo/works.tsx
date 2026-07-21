@@ -19,8 +19,8 @@ export default function Works() {
               nameEn="Cookie Memo"
               nameJaNode={<>Cookieメモ</>}
               imageSrc="/images/mockups/cookie-memo-mockup.avif"
-              imageWidth={6000}
-              imageHeight={4500}
+              imageWidth={4096}
+              imageHeight={3072}
               what="フォルダで整理できる、保存すると「チン♪」と鳴る、ちょっと楽しいメモ帳Webアプリ"
               why="日常のメモをもっと気軽に、少し楽しく書けるアプリが欲しかったのが制作のきっかけです。パソコンに馴染みがない人にも、書いて保存するだけで小さな達成感が得られる体験を届けたくて制作しました。"
               how={

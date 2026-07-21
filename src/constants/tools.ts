@@ -59,8 +59,8 @@ export const TOOLS: ToolItem[] = [
     href: "/tools/cookie-memo",
     iconSrc: "/images/icons/cookie-memo-icon.avif",
     mockupSrc: "/images/mockups/cookie-memo-mockup.avif",
-    mockupWidth: 6000,
-    mockupHeight: 4500,
+    mockupWidth: 4096,
+    mockupHeight: 3072,
   },
   {
     id: "tool-cursor-dashboard",
