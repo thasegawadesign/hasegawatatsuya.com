@@ -3,11 +3,11 @@ import clsx from "clsx";
 import { Tooltip as RadixTooltip } from "radix-ui";
 import { ReactNode } from "react";
 
-type TooltipProps = {
+interface TooltipProps {
   content: string;
   children: ReactNode;
   side?: "top" | "bottom" | "left" | "right";
-};
+}
 
 export default function Tooltip({ content, children, side = "top" }: TooltipProps) {
   return (

@@ -1,8 +1,8 @@
 import type React from "react";
 
-export type UrlLinkStyle = React.CSSProperties & {
+export interface UrlLinkStyle extends React.CSSProperties {
   "--link-underline-top"?: string;
-};
+}
 
 const getUrlFontSize = (url: string) => {
   const length = url.length;

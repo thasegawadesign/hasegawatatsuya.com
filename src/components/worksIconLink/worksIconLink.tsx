@@ -11,9 +11,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { type ComponentProps, useState } from "react";
 
-type WorksIconLinkProps = ComponentProps<typeof Link> & {
+interface WorksIconLinkProps extends ComponentProps<typeof Link> {
   iconSrc: string;
-};
+}
 
 export default function WorksIconLink({
   iconSrc,
