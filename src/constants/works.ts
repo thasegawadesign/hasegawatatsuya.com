@@ -1,4 +1,4 @@
-export type WorkItem = {
+export interface WorkItem {
   id: string;
   nameLines: string[];
   useNameSpans?: boolean;
@@ -8,7 +8,7 @@ export type WorkItem = {
   mockupSrc: string;
   mockupWidth: number;
   mockupHeight: number;
-};
+}
 
 export const WORKS: WorkItem[] = [
   {

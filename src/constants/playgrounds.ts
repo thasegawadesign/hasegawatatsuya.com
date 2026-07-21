@@ -1,4 +1,4 @@
-export type PlaygroundItem = {
+export interface PlaygroundItem {
   id: string;
   nameLines: string[];
   useNameSpans?: boolean;
@@ -9,7 +9,7 @@ export type PlaygroundItem = {
   mockupWidth?: number;
   mockupHeight?: number;
   external?: boolean;
-};
+}
 
 export const PLAYGROUNDS: PlaygroundItem[] = [
   {

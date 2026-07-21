@@ -1,4 +1,4 @@
-export type ToolItem = {
+export interface ToolItem {
   id: string;
   nameLines: string[];
   useNameSpans?: boolean;
@@ -9,7 +9,7 @@ export type ToolItem = {
   mockupWidth?: number;
   mockupHeight?: number;
   external?: boolean;
-};
+}
 
 export const TOOLS: ToolItem[] = [
   {
