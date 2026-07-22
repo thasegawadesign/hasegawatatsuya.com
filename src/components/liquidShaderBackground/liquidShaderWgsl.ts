@@ -1,23 +1,22 @@
-import { minifyShader } from "@/lib/minifyShader";
-
 /**
  * WebGPU 用 WGSL — `wgslFn` は先頭の 1 関数だけをパースするため、ヘルパーは 1 関数ずつ分割し、
  * メインの `liquidColor` に `includes` で渡す。
+ * brandPlum = #8F2C71 / brandF70 = #f70
  */
 
-export const LIQUID_WGSL_HASH = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_HASH = /* wgsl */ `
 fn hash(p: vec2<f32>) -> f32 {
   return fract(sin(dot(p, vec2<f32>(127.1, 311.7))) * 43758.5453);
 }
-`);
+`;
 
-export const LIQUID_WGSL_HASH3 = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_HASH3 = /* wgsl */ `
 fn hash3(p: vec3<f32>) -> f32 {
   return fract(sin(dot(p, vec3<f32>(127.1, 311.7, 74.7))) * 43758.5453);
 }
-`);
+`;
 
-export const LIQUID_WGSL_NOISE = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_NOISE = /* wgsl */ `
 fn noise(p: vec2<f32>) -> f32 {
   let i = floor(p);
   let f = fract(p);
@@ -28,9 +27,9 @@ fn noise(p: vec2<f32>) -> f32 {
     u.y
   );
 }
-`);
+`;
 
-export const LIQUID_WGSL_FBM = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_FBM = /* wgsl */ `
 fn fbm(p_in: vec2<f32>) -> f32 {
   var p = p_in;
   var v = 0.0;
@@ -42,9 +41,9 @@ fn fbm(p_in: vec2<f32>) -> f32 {
   }
   return v;
 }
-`);
+`;
 
-export const LIQUID_WGSL_FBM_RIDGED = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_FBM_RIDGED = /* wgsl */ `
 fn fbmRidged(p_in: vec2<f32>) -> f32 {
   var p = p_in;
   var v = 0.0;
@@ -58,9 +57,9 @@ fn fbmRidged(p_in: vec2<f32>) -> f32 {
   }
   return v;
 }
-`);
+`;
 
-export const LIQUID_WGSL_DOMAIN_WARP = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_DOMAIN_WARP = /* wgsl */ `
 fn domainWarp(p: vec2<f32>, t: f32) -> vec2<f32> {
   let q = vec2<f32>(
     fbm(p + vec2<f32>(0.0, t * 0.08)),
@@ -76,9 +75,9 @@ fn domainWarp(p: vec2<f32>, t: f32) -> vec2<f32> {
   );
   return p + (s - vec2<f32>(0.5, 0.5)) * 1.15 + (r - vec2<f32>(0.5, 0.5)) * 0.55;
 }
-`);
+`;
 
-export const LIQUID_WGSL_VORTEX_TWIST = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_VORTEX_TWIST = /* wgsl */ `
 fn vortexTwist(p: vec2<f32>, center: vec2<f32>, t: f32, strength: f32) -> vec2<f32> {
   let d = p - center;
   let r = length(d) + 0.0001;
@@ -87,17 +86,16 @@ fn vortexTwist(p: vec2<f32>, center: vec2<f32>, t: f32, strength: f32) -> vec2<f
   a = a + falloff * (2.8 / (r + 0.35) + sin(t * 0.25 + r * 4.0) * 1.4);
   return center + vec2<f32>(cos(a), sin(a)) * r;
 }
-`);
+`;
 
-export const LIQUID_WGSL_HEIGHT_AT = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_HEIGHT_AT = /* wgsl */ `
 fn heightAt(p: vec2<f32>) -> f32 {
   return fbm(p) * 0.55 + fbmRidged(p * 1.4) * 0.45;
 }
-`);
+`;
 
 /** メイン（TSL から呼ぶのはこの 1 本だけ） */
-/** brandPlum = #8F2C71 / brandF70 = #f70 */
-export const LIQUID_WGSL_LIQUID_COLOR = minifyShader(/* wgsl */ `
+export const LIQUID_WGSL_LIQUID_COLOR = /* wgsl */ `
 fn liquidColor(
   vUv: vec2<f32>,
   uTime: f32,
@@ -195,4 +193,4 @@ fn liquidColor(
 
   return col;
 }
-`);
+`;

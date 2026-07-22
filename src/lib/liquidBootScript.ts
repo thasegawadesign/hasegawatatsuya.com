@@ -11,8 +11,10 @@ void main() {
 }
 `;
 
-/** React / Three より前に同期実行し、最初の paint 前にシェーダーを描く */
-/** timeOffset: リロードごとに位相を少しずらす（0〜約60秒） */
+/**
+ * React / Three より前に同期実行し、最初の paint 前にシェーダーを描く。
+ * timeOffset はリロードごとに位相を少しずらす（0〜約60秒）。
+ */
 export function getLiquidBootScript(): string {
   const vs = JSON.stringify(BOOT_VERTEX_SHADER);
   const fs = JSON.stringify(LIQUID_FRAGMENT_SHADER);
