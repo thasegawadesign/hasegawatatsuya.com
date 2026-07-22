@@ -1,6 +1,9 @@
-/** WebGL2 フォールバック用 GLSL（WebGPU 非対応時に RawShaderMaterial で使用） */
+import { minifyShader } from "@/lib/minifyShader";
 
-export const LIQUID_VERTEX_SHADER = `
+/** WebGL2 フォールバック用 GLSL（WebGPU 非対応時に RawShaderMaterial で使用） */
+/** brandPlum = #8F2C71 / brandF70 = #f70 */
+
+export const LIQUID_VERTEX_SHADER = minifyShader(/* glsl */ `
 precision highp float;
 attribute vec3 position;
 attribute vec2 uv;
@@ -9,9 +12,9 @@ void main() {
   vUv = uv;
   gl_Position = vec4(position.xy, 0.0, 1.0);
 }
-`;
+`);
 
-export const LIQUID_FRAGMENT_SHADER = `
+export const LIQUID_FRAGMENT_SHADER = minifyShader(/* glsl */ `
 precision highp float;
 
 uniform float uTime;
@@ -125,7 +128,6 @@ void main() {
   float fres = pow(1.0 - max(0.0, dot(N, viewDir)), 3.5);
 
   vec3 baseBlue = vec3(0.023529, 0.074510, 0.819608);
-  /** #8F2C71 */
   vec3 brandPlum = vec3(0.560784, 0.172549, 0.443137);
   vec3 abyss = mix(vec3(0.0, 0.02, 0.08), baseBlue, 0.38);
   vec3 navy = mix(vec3(0.02, 0.08, 0.22), baseBlue, 0.62);
@@ -134,7 +136,6 @@ void main() {
   vec3 magenta = mix(vec3(0.98, 0.22, 0.62), brandPlum, 0.45);
   vec3 hotPink = mix(vec3(1.0, 0.45, 0.78), brandPlum, 0.38);
   vec3 sunTint = vec3(1.0, 0.92, 0.58);
-  /** #f70 */
   vec3 brandF70 = vec3(1.0, 0.4666667, 0.0);
 
   float heightMix = smoothstep(0.15, 0.9, h0);
@@ -183,4 +184,4 @@ void main() {
 
   gl_FragColor = vec4(col, 1.0);
 }
-`;
+`);

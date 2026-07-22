@@ -12,6 +12,7 @@ void main() {
 `;
 
 /** React / Three より前に同期実行し、最初の paint 前にシェーダーを描く */
+/** timeOffset: リロードごとに位相を少しずらす（0〜約60秒） */
 export function getLiquidBootScript(): string {
   const vs = JSON.stringify(BOOT_VERTEX_SHADER);
   const fs = JSON.stringify(LIQUID_FRAGMENT_SHADER);
@@ -72,7 +73,6 @@ export function getLiquidBootScript(): string {
   var uPointerStrength=gl.getUniformLocation(prog,"uPointerStrength");
 
   var start=performance.now();
-  // リロードごとに位相を少しずらす（0〜約60秒）
   var timeOffset=Math.random()*60;
   var reduced=false;
   try{reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}

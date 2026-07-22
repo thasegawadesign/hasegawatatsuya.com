@@ -4,6 +4,7 @@ import {
   canvasContainerStyle,
   containerStyle,
 } from "@/components/particleEffect/particleEffect.css";
+import { minifyShader } from "@/lib/minifyShader";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -85,13 +86,13 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
     geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
     geometry.setAttribute("phase", new THREE.BufferAttribute(phases, 1));
 
-    const vertexShader = `
+    const vertexShader = minifyShader(/* glsl */ `
       attribute float size;
       attribute float phase;
       uniform float uTime;
       varying vec3 vColor;
       varying float vPhase;
-      
+
       void main() {
         vColor = color;
         vPhase = phase;
@@ -100,34 +101,33 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
         gl_PointSize = size * pulse * (320.0 / -mvPosition.z);
         gl_Position = projectionMatrix * mvPosition;
       }
-    `;
+    `);
 
-    const fragmentShader = `
+    // ポイントスプライト: 四角い角を円形マスクで消し、色は白のまま透明度だけでソフトに消える
+    const fragmentShader = minifyShader(/* glsl */ `
       varying vec3 vColor;
       varying float vPhase;
       uniform float uTime;
-      
+
       void main() {
         vec2 coord = gl_PointCoord - vec2(0.5);
         float radial = length(coord);
-        
-        // ポイントスプライトの四角い角を円形マスクで消す
+
         float mask = 1.0 - smoothstep(0.4, 0.49, radial);
         if (mask < 0.001) discard;
-        
+
         float dist = radial * 2.0;
         float falloff = exp(-dist * dist * 1.1);
-        
+
         float shimmer = 0.98 + 0.02 * sin(uTime * 1.2 + vPhase);
-        
-        // 色は中心からフチまで白を保ち、透明度だけでソフトに消える
+
         vec3 color = vec3(1.0) * shimmer;
         float alpha = falloff * mask * 0.32;
         if (alpha < 0.008) discard;
-        
+
         gl_FragColor = vec4(color, alpha);
       }
-    `;
+    `);
 
     const material = new THREE.ShaderMaterial({
       vertexShader,
