@@ -4,7 +4,6 @@ import {
   canvasContainerStyle,
   containerStyle,
 } from "@/components/particleEffect/particleEffect.css";
-import { minifyShader } from "@/lib/minifyShader";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
@@ -86,13 +85,13 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
     geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
     geometry.setAttribute("phase", new THREE.BufferAttribute(phases, 1));
 
-    const vertexShader = minifyShader(/* glsl */ `
+    const vertexShader = `
       attribute float size;
       attribute float phase;
       uniform float uTime;
       varying vec3 vColor;
       varying float vPhase;
-
+      
       void main() {
         vColor = color;
         vPhase = phase;
@@ -101,10 +100,10 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
         gl_PointSize = size * pulse * (320.0 / -mvPosition.z);
         gl_Position = projectionMatrix * mvPosition;
       }
-    `);
+    `;
 
-    // ポイントスプライト: 四角い角を円形マスクで消し、色は白のまま透明度だけでソフトに消える
-    const fragmentShader = minifyShader(/* glsl */ `
+    // 円形マスクで四角い角を消し、色は白のまま透明度だけでソフトに消える
+    const fragmentShader = `
       varying vec3 vColor;
       varying float vPhase;
       uniform float uTime;
@@ -127,7 +126,7 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
         gl_FragColor = vec4(color, alpha);
       }
-    `);
+    `;
 
     const material = new THREE.ShaderMaterial({
       vertexShader,

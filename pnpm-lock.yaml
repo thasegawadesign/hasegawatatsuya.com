@@ -68,9 +68,6 @@ importers:
       react-parallax-tilt:
         specifier: ^1.7.333
         version: 1.7.333(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      shaderkit:
-        specifier: ^0.8.0
-        version: 0.8.0
       three:
         specifier: ^0.185.1
         version: 0.185.1
@@ -2140,6 +2137,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.10.44:
+    resolution: {integrity: sha512-T3ghW+sl/ZJ8w1v/yQx3qvJ9040DWoLBz8JT/CILbAKcFyG9b2MRe75v6W5uXjv6uH1lumK2Kv46y2zSkcej0Q==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
 
@@ -3079,9 +3081,6 @@ packages:
     resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
     hasBin: true
-
-  shaderkit@0.8.0:
-    resolution: {integrity: sha512-9KXEaxp6h5lORu9efvSoOiD8ZYe6Tthfo+lq6i2Ow/cktRoaNYCuOh6NdVR6SKmhGmCyPN+aHbUS4aFQVdUQhA==}
 
   sharp@0.34.5:
     resolution: {integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==}
@@ -5271,6 +5270,8 @@ snapshots:
 
   baseline-browser-mapping@2.10.43: {}
 
+  baseline-browser-mapping@2.10.44: {}
+
   big.js@5.2.2: {}
 
   braces@3.0.3:
@@ -5817,7 +5818,7 @@ snapshots:
     dependencies:
       '@next/env': 16.2.10
       '@swc/helpers': 0.5.15
-      baseline-browser-mapping: 2.10.43
+      baseline-browser-mapping: 2.10.44
       caniuse-lite: 1.0.30001806
       postcss: 8.4.31
       react: 19.2.7
@@ -6146,8 +6147,6 @@ snapshots:
   semver@6.3.1: {}
 
   semver@7.8.5: {}
-
-  shaderkit@0.8.0: {}
 
   sharp@0.34.5:
     dependencies:

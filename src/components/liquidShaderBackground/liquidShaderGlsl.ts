@@ -1,9 +1,9 @@
-import { minifyShader } from "@/lib/minifyShader";
+/**
+ * WebGL2 フォールバック用 GLSL（WebGPU 非対応時に RawShaderMaterial で使用）。
+ * brandPlum = #8F2C71 / brandF70 = #f70
+ */
 
-/** WebGL2 フォールバック用 GLSL（WebGPU 非対応時に RawShaderMaterial で使用） */
-/** brandPlum = #8F2C71 / brandF70 = #f70 */
-
-export const LIQUID_VERTEX_SHADER = minifyShader(/* glsl */ `
+export const LIQUID_VERTEX_SHADER = `
 precision highp float;
 attribute vec3 position;
 attribute vec2 uv;
@@ -12,9 +12,9 @@ void main() {
   vUv = uv;
   gl_Position = vec4(position.xy, 0.0, 1.0);
 }
-`);
+`;
 
-export const LIQUID_FRAGMENT_SHADER = minifyShader(/* glsl */ `
+export const LIQUID_FRAGMENT_SHADER = `
 precision highp float;
 
 uniform float uTime;
@@ -184,4 +184,4 @@ void main() {
 
   gl_FragColor = vec4(col, 1.0);
 }
-`);
+`;
