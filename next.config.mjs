@@ -1,8 +1,23 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
+
 const withVanillaExtract = createVanillaExtractPlugin();
+const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  serverExternalPackages: ["esbuild"],
+  webpack(config, { dev }) {
+    if (!dev) {
+      config.module.rules.push({
+        test: /(?:liquidShaderGlsl\.ts|liquidBootScript\.ts|particleEffect\.tsx)$/,
+        enforce: "pre",
+        use: [path.join(rootDir, "scripts/minify-shader-loader.cjs")],
+      });
+    }
+    return config;
+  },
   async redirects() {
     return [
       {

@@ -1,6 +1,11 @@
 import { LIQUID_FRAGMENT_SHADER } from "@/components/liquidShaderBackground/liquidShaderGlsl";
+import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
+import { minifyShader } from "@/lib/minifyShader";
+import { transformSync } from "esbuild";
 
-const BOOT_VERTEX_SHADER = `
+export { LIQUID_BOOT_CANVAS_ID };
+
+const BOOT_VERTEX_SHADER = minifyShader(`
 precision highp float;
 attribute vec2 position;
 attribute vec2 uv;
@@ -9,18 +14,32 @@ void main() {
   vUv = uv;
   gl_Position = vec4(position, 0.0, 1.0);
 }
-`;
+`);
+
+function minifyBootScript(code: string): string {
+  if (process.env.NODE_ENV !== "production") {
+    return code;
+  }
+
+  const result = transformSync(code, {
+    loader: "js",
+    minify: true,
+    target: "es2018",
+  });
+  return result.code.trim();
+}
 
 /**
  * React / Three より前に同期実行し、最初の paint 前にシェーダーを描く。
  * timeOffset はリロードごとに位相を少しずらす（0〜約60秒）。
  */
 export function getLiquidBootScript(): string {
+  const canvasId = JSON.stringify(LIQUID_BOOT_CANVAS_ID);
   const vs = JSON.stringify(BOOT_VERTEX_SHADER);
   const fs = JSON.stringify(LIQUID_FRAGMENT_SHADER);
 
-  return `(function(){
-  var canvas=document.getElementById("liquid-boot-canvas");
+  const code = `(function(){
+  var canvas=document.getElementById(${canvasId});
   if(!canvas)return;
 
   function showStaticFallback(){
@@ -126,6 +145,6 @@ export function getLiquidBootScript(): string {
     }
   };
 })();`;
-}
 
-export const LIQUID_BOOT_CANVAS_ID = "liquid-boot-canvas";
+  return minifyBootScript(code);
+}
