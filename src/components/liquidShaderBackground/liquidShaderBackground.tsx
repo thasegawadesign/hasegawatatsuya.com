@@ -13,7 +13,7 @@ import {
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
-import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootScript";
+import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
 import clsx from "clsx";
 import Image from "next/image";
 import { startTransition, useLayoutEffect, useRef, useState } from "react";
