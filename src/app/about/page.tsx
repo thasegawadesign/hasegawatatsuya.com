@@ -4,6 +4,7 @@ import Footer from "@/components/footer/footer";
 import Glass from "@/components/glass/glass";
 import Header from "@/components/header/header";
 import Main from "@/components/main/about/main";
+import { preloadAboutPhoto } from "@/lib/preloadAboutPhoto";
 import clsx from "clsx";
 import { Metadata } from "next";
 
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
+  preloadAboutPhoto();
+
   return (
     <>
       <div className={clsx(glassBox)}>
