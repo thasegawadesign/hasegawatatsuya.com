@@ -11,6 +11,7 @@ import {
 } from "@/components/mobileNav/mobileNav.css";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
+import { preloadAboutPhoto } from "@/lib/preloadAboutPhoto";
 import { FocusScope } from "@react-aria/focus";
 import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
@@ -27,6 +28,10 @@ const NAV_LINKS = [
   { href: "/#playgrounds", label: "Playgrounds" },
   { href: "/#contact", label: "Contact" },
 ] as const;
+
+function maybePreloadAboutPhoto(href: string) {
+  if (href === "/about") preloadAboutPhoto();
+}
 
 export default function MobileNav() {
   const width = useWindowWidth();
@@ -93,6 +98,9 @@ export default function MobileNav() {
                 }}
                 className={clsx(roboto.className, mobileNavLink)}
                 onClick={closeMenu}
+                onMouseEnter={() => maybePreloadAboutPhoto(link.href)}
+                onTouchStart={() => maybePreloadAboutPhoto(link.href)}
+                onFocus={() => maybePreloadAboutPhoto(link.href)}
               >
                 {link.label}
               </Link>

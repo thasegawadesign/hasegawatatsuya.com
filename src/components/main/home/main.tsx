@@ -56,6 +56,7 @@ import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
+import { ABOUT_PHOTO_SRC, preloadAboutPhoto } from "@/lib/preloadAboutPhoto";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -283,6 +284,9 @@ export default function Main() {
                   playSfxClick();
                   haptic();
                 }}
+                onMouseEnter={preloadAboutPhoto}
+                onTouchStart={preloadAboutPhoto}
+                onFocus={preloadAboutPhoto}
               >
                 More
               </Link>
@@ -291,7 +295,7 @@ export default function Main() {
               <div ref={profileImageContainerRef} className={clsx(profileImageContainer)}>
                 <motion.div style={{ y }} className={clsx(motionDiv)}>
                   <Image
-                    src={"/images/photo.avif"}
+                    src={ABOUT_PHOTO_SRC}
                     alt="長谷川達也"
                     className={clsx(profileImage)}
                     fill

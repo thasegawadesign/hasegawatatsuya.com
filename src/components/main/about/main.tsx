@@ -36,6 +36,12 @@ import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
+import {
+  ABOUT_PHOTO_HEIGHT,
+  ABOUT_PHOTO_SIZES,
+  ABOUT_PHOTO_SRC,
+  ABOUT_PHOTO_WIDTH,
+} from "@/lib/preloadAboutPhoto";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -123,9 +129,10 @@ export default function Main() {
               <div className={clsx(photoMagic)}>
                 <div className={clsx(photoMagicInner)}>
                   <Image
-                    src={"/images/photo.avif"}
-                    width={320}
-                    height={480}
+                    src={ABOUT_PHOTO_SRC}
+                    width={ABOUT_PHOTO_WIDTH}
+                    height={ABOUT_PHOTO_HEIGHT}
+                    sizes={ABOUT_PHOTO_SIZES}
                     alt="長谷川達也"
                     className={clsx(photo)}
                     priority
