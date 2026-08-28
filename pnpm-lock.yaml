@@ -71,9 +71,6 @@ importers:
       three:
         specifier: ^0.185.1
         version: 0.185.1
-      yakuhanjp:
-        specifier: ^4.1.1
-        version: 4.1.1
     devDependencies:
       '@types/canvas-confetti':
         specifier: ^1.9.0
@@ -3406,9 +3403,6 @@ packages:
     resolution: {integrity: sha512-sqMMuL1rc0FmMBOzCpd0yuy9trqF2yTTVe+E9ogwCSWQCdDEtQUwrZPT6AxqtsFGRNxycgncbP/xmOOSPw5ZUw==}
     engines: {node: '>= 6.0'}
 
-  yakuhanjp@4.1.1:
-    resolution: {integrity: sha512-ZzTsleRLEbkmuRNFbREG334D5ef36Xr4bcdSONisF9B7q9DCpdNSnBu4TA4JA7TxCWLDF1q51Sg29/PUnVHIhw==}
-
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
@@ -6461,8 +6455,6 @@ snapshots:
   xdg-portable@7.3.0:
     dependencies:
       os-paths: 4.4.0
-
-  yakuhanjp@4.1.1: {}
 
   yallist@3.1.1: {}
 
