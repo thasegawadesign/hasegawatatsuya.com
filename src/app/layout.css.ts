@@ -30,9 +30,8 @@ export const smoothScroll = style({
 });
 
 export const body = style({
-  fontFamily: "YakuHanJP, var(--font-noto-sans-jp), sans-serif",
+  fontFamily: "var(--font-yakuhan-jp), var(--font-noto-sans-jp), sans-serif",
   fontWeight: 200,
-  /** シェーダー準備前の白フラッシュ防止用の下地 */
   backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
   "::selection": {
     backgroundColor: "#faf1e8",
@@ -40,7 +39,6 @@ export const body = style({
   },
 });
 
-/** HTML 最初の paint 前に同期スクリプトが描くcanvas */
 export const liquidBootCanvas = style({
   position: "fixed",
   zIndex: -100,

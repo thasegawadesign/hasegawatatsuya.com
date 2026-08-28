@@ -1,4 +1,4 @@
-import { cormorant, notoSansJP, notoSerifJP, roboto } from "@/app/fonts";
+import { cormorant, notoSansJP, notoSerifJP, roboto, yakuHanJP } from "@/app/fonts";
 import { body, html, liquidBootCanvas } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
 import LiquidShaderBackground from "@/components/liquidShaderBackground/liquidShaderBackground";
@@ -15,7 +15,6 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import Script from "next/script";
-import "yakuhanjp";
 
 const TITLE = "長谷川 達也 | ポートフォリオ";
 const DESCRIPTION =
@@ -73,6 +72,7 @@ export default async function RootLayout({
       id="home"
       className={clsx(
         html,
+        yakuHanJP.variable,
         roboto.variable,
         cormorant.variable,
         notoSerifJP.variable,
