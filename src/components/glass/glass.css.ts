@@ -65,8 +65,7 @@ export const glassRim = style({
   borderRadius: "inherit",
   padding: "1.5px",
   pointerEvents: "none",
-  WebkitMask:
-    "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+  WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
   WebkitMaskComposite: "xor",
   maskComposite: "exclude",
   boxShadow:

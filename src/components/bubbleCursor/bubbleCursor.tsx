@@ -4,8 +4,6 @@ import Bubble from "@/components/canvasui/Bubble";
 import { container } from "@/components/bubbleCursor/bubbleCursor.css";
 import { useSyncExternalStore } from "react";
 
-const emptySubscribe = () => () => {};
-
 function subscribeMediaQuery(query: string, callback: () => void) {
   const mq = window.matchMedia(query);
   mq.addEventListener("change", callback);

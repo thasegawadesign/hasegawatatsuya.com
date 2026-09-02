@@ -1,12 +1,7 @@
 "use client";
 
 import { liquidGlassOptions } from "@/components/glass/glass.constants";
-import {
-  glassBackdrop,
-  glassCard,
-  glassContent,
-  glassRim,
-} from "@/components/glass/glass.css";
+import { glassBackdrop, glassCard, glassContent, glassRim } from "@/components/glass/glass.css";
 import { LiquidGlassFilter } from "@/components/glass/liquidGlassFilter";
 import clsx from "clsx";
 import {
@@ -25,11 +20,7 @@ type LiquidGlassCardProps = {
   containerRef?: RefObject<HTMLElement | null>;
 };
 
-export function LiquidGlassCard({
-  children,
-  className,
-  containerRef,
-}: LiquidGlassCardProps) {
+export function LiquidGlassCard({ children, className, containerRef }: LiquidGlassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const rawFilterId = useId();
   const filterId = `liquid-glass-${rawFilterId.replace(/:/g, "")}`;
@@ -40,8 +31,7 @@ export function LiquidGlassCard({
   const { displacementScale, aberrationIntensity, mode } = liquidGlassOptions;
 
   const isFirefox =
-    typeof navigator !== "undefined" &&
-    navigator.userAgent.toLowerCase().includes("firefox");
+    typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox");
 
   const updateSize = useCallback(() => {
     const element = cardRef.current;
@@ -111,8 +101,7 @@ export function LiquidGlassCard({
     rgba(255, 255, 255, 0) 100%
   )`;
 
-  const displacementFilter =
-    !isFirefox && filterReady ? `url(#${filterId})` : undefined;
+  const displacementFilter = !isFirefox && filterReady ? `url(#${filterId})` : undefined;
 
   return (
     <div ref={cardRef} className={clsx(glassCard, className)}>

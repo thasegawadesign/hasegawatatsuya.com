@@ -10,10 +10,7 @@ type LiquidGlassFilterProps = {
   shaderMapUrl?: string;
 };
 
-function getDisplacementMap(
-  mode: LiquidGlassFilterProps["mode"],
-  shaderMapUrl?: string,
-): string {
+function getDisplacementMap(mode: LiquidGlassFilterProps["mode"], shaderMapUrl?: string): string {
   if (mode === "shader") {
     return shaderMapUrl || GLASS_DISPLACEMENT_MAP_SRC;
   }
@@ -33,16 +30,11 @@ export function LiquidGlassFilter({
   const mapUrl = getDisplacementMap(mode, shaderMapUrl);
   const direction = mode === "shader" ? 1 : -1;
   const redScale = displacementScale * direction;
-  const greenScale =
-    displacementScale * (direction - aberrationIntensity * 0.05);
-  const blueScale =
-    displacementScale * (direction - aberrationIntensity * 0.1);
+  const greenScale = displacementScale * (direction - aberrationIntensity * 0.05);
+  const blueScale = displacementScale * (direction - aberrationIntensity * 0.1);
 
   return (
-    <svg
-      style={{ position: "absolute", width, height }}
-      aria-hidden="true"
-    >
+    <svg style={{ position: "absolute", width, height }} aria-hidden="true">
       <defs>
         <radialGradient id={`${id}-edge-mask`} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="black" stopOpacity="0" />
@@ -80,17 +72,9 @@ export function LiquidGlassFilter({
             result="EDGE_INTENSITY"
           />
           <feComponentTransfer in="EDGE_INTENSITY" result="EDGE_MASK">
-            <feFuncA
-              type="discrete"
-              tableValues={`0 ${aberrationIntensity * 0.05} 1`}
-            />
+            <feFuncA type="discrete" tableValues={`0 ${aberrationIntensity * 0.05} 1`} />
           </feComponentTransfer>
-          <feOffset
-            in="SourceGraphic"
-            dx="0"
-            dy="0"
-            result="CENTER_ORIGINAL"
-          />
+          <feOffset in="SourceGraphic" dx="0" dy="0" result="CENTER_ORIGINAL" />
           <feDisplacementMap
             in="SourceGraphic"
             in2="DISPLACEMENT_MAP"
@@ -142,18 +126,8 @@ export function LiquidGlassFilter({
                  0 0 0 1 0"
             result="BLUE_CHANNEL"
           />
-          <feBlend
-            in="GREEN_CHANNEL"
-            in2="BLUE_CHANNEL"
-            mode="screen"
-            result="GB_COMBINED"
-          />
-          <feBlend
-            in="RED_CHANNEL"
-            in2="GB_COMBINED"
-            mode="screen"
-            result="RGB_COMBINED"
-          />
+          <feBlend in="GREEN_CHANNEL" in2="BLUE_CHANNEL" mode="screen" result="GB_COMBINED" />
+          <feBlend in="RED_CHANNEL" in2="GB_COMBINED" mode="screen" result="RGB_COMBINED" />
           <feGaussianBlur
             in="RGB_COMBINED"
             stdDeviation={Math.max(0.1, 0.5 - aberrationIntensity * 0.1)}
@@ -174,11 +148,7 @@ export function LiquidGlassFilter({
             operator="in"
             result="CENTER_CLEAN"
           />
-          <feComposite
-            in="EDGE_ABERRATION"
-            in2="CENTER_CLEAN"
-            operator="over"
-          />
+          <feComposite in="EDGE_ABERRATION" in2="CENTER_CLEAN" operator="over" />
         </filter>
       </defs>
     </svg>
