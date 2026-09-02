@@ -66,14 +66,14 @@ function hasDrawableSize(el: HTMLElement) {
   return el.clientWidth >= 1 && el.clientHeight >= 1;
 }
 
-function advanceClock(clock: THREE.Clock, uTime: { value: number }, motion: number) {
-  if (!clock.running) {
-    clock.start();
-    const delta = 1 / 60;
-    uTime.value += delta * motion;
-    return delta;
-  }
-  const delta = Math.min(clock.getDelta(), MAX_FRAME_DELTA);
+function advanceTimer(
+  timer: THREE.Timer,
+  uTime: { value: number },
+  motion: number,
+  timestamp?: number,
+) {
+  timer.update(timestamp ?? performance.now());
+  const delta = Math.min(timer.getDelta(), MAX_FRAME_DELTA);
   uTime.value += delta * motion;
   return delta;
 }
@@ -178,12 +178,13 @@ export default function LiquidShaderBackground() {
     mqReduce.addEventListener("change", syncMotion);
 
     const removePointer = bindLiquidPointer(root, pointerTarget, uPointerStrength);
-    const clock = new THREE.Clock(false);
+    const timer = new THREE.Timer();
+    timer.connect(document);
 
-    const paint = () => {
+    const paint = (timestamp?: number) => {
       if (!hasDrawableSize(root)) return false;
       const motion = mqReduce.matches ? 0 : 1;
-      const delta = advanceClock(clock, uTime, motion);
+      const delta = advanceTimer(timer, uTime, motion, timestamp);
       smoothPointerToward(uPointer.value, pointerTarget, delta);
       decayPointerStrength(uPointerStrength, delta);
       renderer.render(scene, camera);
@@ -193,15 +194,16 @@ export default function LiquidShaderBackground() {
     const startLoop = () => {
       if (loopStarted || disposed) return;
       loopStarted = true;
-      const tick = () => {
+      const tick = (timestamp: number) => {
         frame = requestAnimationFrame(tick);
-        paint();
+        paint(timestamp);
       };
       frame = requestAnimationFrame(tick);
     };
 
     const takeOver = () => {
       if (disposed) return false;
+      timer.reset();
       if (!setSize() || !paint()) return false;
       // boot を消す前に Three canvas を見せる（間に body 単色が挟まないように）
       canvas.classList.add(canvasReady);
@@ -223,6 +225,7 @@ export default function LiquidShaderBackground() {
         cancelAnimationFrame(frame);
         removePointer();
         mqReduce.removeEventListener("change", syncMotion);
+        timer.dispose();
         setUseStaticFallback(false);
         geometry.dispose();
         material.dispose();
@@ -245,6 +248,7 @@ export default function LiquidShaderBackground() {
       mqReduce.removeEventListener("change", syncMotion);
       window.removeEventListener("resize", onResize);
       resizeObserver.disconnect();
+      timer.dispose();
       setUseStaticFallback(false);
       geometry.dispose();
       material.dispose();
