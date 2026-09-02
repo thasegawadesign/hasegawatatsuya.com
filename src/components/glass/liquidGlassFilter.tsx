@@ -1,9 +1,8 @@
 import { GLASS_DISPLACEMENT_MAP_SRC } from "@/components/glass/glass.constants";
+import { glassFilter } from "@/components/glass/glass.css";
 
 type LiquidGlassFilterProps = {
   id: string;
-  width: number;
-  height: number;
   displacementScale: number;
   aberrationIntensity: number;
   mode: "standard" | "polar" | "prominent" | "shader";
@@ -20,8 +19,6 @@ function getDisplacementMap(mode: LiquidGlassFilterProps["mode"], shaderMapUrl?:
 
 export function LiquidGlassFilter({
   id,
-  width,
-  height,
   displacementScale,
   aberrationIntensity,
   mode,
@@ -34,7 +31,7 @@ export function LiquidGlassFilter({
   const blueScale = displacementScale * (direction - aberrationIntensity * 0.1);
 
   return (
-    <svg style={{ position: "absolute", width, height }} aria-hidden="true">
+    <svg className={glassFilter} aria-hidden="true">
       <defs>
         <radialGradient id={`${id}-edge-mask`} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="black" stopOpacity="0" />

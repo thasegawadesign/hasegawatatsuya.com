@@ -4,6 +4,7 @@ import { style } from "@vanilla-extract/css";
 
 export const backToIndexBox = style({
   position: "absolute",
+  zIndex: 2,
   bottom: 120,
   // nav 左端と同期（nav.css の left と同じ）
   left: "calc(max(6vw, (100vw - 1400px) / 2) + 36px)",
