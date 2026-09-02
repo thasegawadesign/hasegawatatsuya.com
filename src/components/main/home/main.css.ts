@@ -11,6 +11,7 @@ import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 export const main = style({
   position: "relative",
   zIndex: 50,
+  display: "flow-root",
 });
 
 export const name = style({
