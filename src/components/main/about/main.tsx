@@ -276,7 +276,7 @@ export default function Main() {
             <br />
             仕事に取り組みます。
             <br />
-            加えて、将来的には
+            将来的には
             <br />
             空間コンピューティングや
             <br />
