@@ -1,6 +1,7 @@
 import { cormorant, notoSansJP, notoSerifJP, roboto, yakuHanJP } from "@/app/fonts";
 import { body, html, liquidBootCanvas } from "@/app/layout.css";
 import AudioButton from "@/components/audio/audioPlayer";
+import BubbleCursor from "@/components/bubbleCursor/bubbleCursor";
 import LiquidShaderBackground from "@/components/liquidShaderBackground/liquidShaderBackground";
 import Object1 from "@/components/object/object1";
 import Object2 from "@/components/object/object2";
@@ -101,6 +102,7 @@ export default async function RootLayout({
           <Object3 />
           <AudioButton />
           <ParticleEffect />
+          <BubbleCursor />
         </Providers>
         {isProduction && <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ""} />}
         {isProduction && <VercelAnalytics />}
