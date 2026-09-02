@@ -20,13 +20,21 @@ type LiquidGlassCardProps = {
   containerRef?: RefObject<HTMLElement | null>;
 };
 
+function rimGradient(x: number, y: number) {
+  return `linear-gradient(
+    ${135 + x * 1.2}deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, ${0.12 + Math.abs(x) * 0.008}) ${Math.max(10, 33 + y * 0.3)}%,
+    rgba(255, 255, 255, ${0.4 + Math.abs(x) * 0.012}) ${Math.min(90, 66 + y * 0.4)}%,
+    rgba(255, 255, 255, 0) 100%
+  )`;
+}
+
 export function LiquidGlassCard({ children, className, containerRef }: LiquidGlassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const rawFilterId = useId();
   const filterId = `liquid-glass-${rawFilterId.replace(/:/g, "")}`;
-  const [size, setSize] = useState({ width: 0, height: 0 });
   const [filterReady, setFilterReady] = useState(false);
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
   const { displacementScale, aberrationIntensity, mode } = liquidGlassOptions;
 
@@ -40,11 +48,7 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
     }
 
     const rect = element.getBoundingClientRect();
-    const width = Math.round(rect.width);
-    const height = Math.round(rect.height);
-
-    setSize({ width, height });
-    setFilterReady(width > 0 && height > 0);
+    setFilterReady(rect.width > 0 && rect.height > 0);
   }, []);
 
   useLayoutEffect(() => {
@@ -63,21 +67,31 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
     return () => observer.disconnect();
   }, [updateSize]);
 
+  useLayoutEffect(() => {
+    const element = cardRef.current;
+    if (!element) {
+      return;
+    }
+
+    element.style.setProperty(
+      "--glass-displacement-filter",
+      !isFirefox && filterReady ? `url(#${filterId})` : "none",
+    );
+  }, [filterId, filterReady, isFirefox]);
+
   const handleMouseMove = useCallback(
     (event: MouseEvent) => {
       const container = containerRef?.current ?? cardRef.current;
-      if (!container) {
+      const card = cardRef.current;
+      if (!container || !card) {
         return;
       }
 
       const rect = container.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
+      const x = ((event.clientX - (rect.left + rect.width / 2)) / rect.width) * 100;
+      const y = ((event.clientY - (rect.top + rect.height / 2)) / rect.height) * 100;
 
-      setMouseOffset({
-        x: ((event.clientX - centerX) / rect.width) * 100,
-        y: ((event.clientY - centerY) / rect.height) * 100,
-      });
+      card.style.setProperty("--glass-rim-background", rimGradient(x, y));
     },
     [containerRef],
   );
@@ -93,35 +107,18 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
     return () => container.removeEventListener("mousemove", handleMouseMove);
   }, [containerRef, handleMouseMove]);
 
-  const rimBackground = `linear-gradient(
-    ${135 + mouseOffset.x * 1.2}deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, ${0.12 + Math.abs(mouseOffset.x) * 0.008}) ${Math.max(10, 33 + mouseOffset.y * 0.3)}%,
-    rgba(255, 255, 255, ${0.4 + Math.abs(mouseOffset.x) * 0.012}) ${Math.min(90, 66 + mouseOffset.y * 0.4)}%,
-    rgba(255, 255, 255, 0) 100%
-  )`;
-
-  const displacementFilter = !isFirefox && filterReady ? `url(#${filterId})` : undefined;
-
   return (
     <div ref={cardRef} className={clsx(glassCard, className)}>
       {filterReady ? (
         <LiquidGlassFilter
           id={filterId}
-          width={size.width}
-          height={size.height}
           displacementScale={displacementScale}
           aberrationIntensity={aberrationIntensity}
           mode={mode}
         />
       ) : null}
-      <span
-        className={glassBackdrop}
-        style={{
-          filter: displacementFilter,
-        }}
-      />
-      <span className={glassRim} style={{ background: rimBackground }} />
+      <span className={glassBackdrop} />
+      <span className={glassRim} />
       <div className={glassContent}>{children}</div>
     </div>
   );

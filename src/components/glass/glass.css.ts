@@ -36,6 +36,19 @@ export const glassCard = style({
   width: "100%",
   borderRadius: 40,
   boxShadow: "0px 12px 40px rgba(0, 0, 0, 0.25)",
+  vars: {
+    "--glass-displacement-filter": "none",
+    "--glass-rim-background":
+      "linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 33%, rgba(255, 255, 255, 0.4) 66%, rgba(255, 255, 255, 0) 100%)",
+  },
+});
+
+export const glassFilter = style({
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  pointerEvents: "none",
 });
 
 export const glassBackdrop = style({
@@ -46,6 +59,7 @@ export const glassBackdrop = style({
   borderRadius: "inherit",
   backdropFilter: `blur(${backdropBlurPx}px) saturate(${saturation}%)`,
   WebkitBackdropFilter: `blur(${backdropBlurPx}px) saturate(${saturation}%)`,
+  filter: "var(--glass-displacement-filter)",
   pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
@@ -65,6 +79,7 @@ export const glassRim = style({
   borderRadius: "inherit",
   padding: "1.5px",
   pointerEvents: "none",
+  background: "var(--glass-rim-background)",
   WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
   WebkitMaskComposite: "xor",
   maskComposite: "exclude",
