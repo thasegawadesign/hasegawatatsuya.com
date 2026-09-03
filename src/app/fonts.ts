@@ -35,7 +35,7 @@ export const yakuHanJP = localFont({
 export const cormorant = Cormorant({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-  display: "swap",
+  display: "block",
   preload: true,
   adjustFontFallback: true,
   variable: "--font-cormorant",

@@ -4,6 +4,7 @@ import {
   canvasContainerStyle,
   containerStyle,
 } from "@/components/particleEffect/particleEffect.css";
+import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { minifyShader } from "@/lib/minifyShader";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
@@ -40,14 +41,14 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
     } catch (error) {
       console.error("Failed to create WebGL context", error);
       return;
     }
 
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(getCanvasPixelRatio());
     renderer.setClearColor(0x000000, 0); // 透明背景
 
     mount.appendChild(renderer.domElement);
@@ -176,54 +177,76 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
+      renderer.setPixelRatio(getCanvasPixelRatio());
       renderer.setSize(mount.clientWidth, mount.clientHeight);
     };
 
     window.addEventListener("resize", handleResize);
 
-    // アニメーションループ
-    const animate = () => {
-      requestAnimationFrame(animate);
+    let raf = 0;
+    let running = false;
 
-      material.uniforms.uTime.value = performance.now() * 0.001;
-
-      if (particlesRef.current) {
-        const { positions, velocities, geometry } = particlesRef.current;
-
-        for (let i = 0; i < particleCount; i++) {
-          const i3 = i * 3;
-
-          // 粒子の移動
-          positions[i3] += velocities[i3];
-          positions[i3 + 1] += velocities[i3 + 1];
-          positions[i3 + 2] += velocities[i3 + 2];
-
-          // マウスの影響を追加
-          const mouseInfluence = 0.001;
-          positions[i3] += mouseRef.current.x * mouseInfluence;
-          positions[i3 + 1] += mouseRef.current.y * mouseInfluence;
-
-          // 境界での反射
-          if (Math.abs(positions[i3]) > 8) velocities[i3] *= -1;
-          if (Math.abs(positions[i3 + 1]) > 8) velocities[i3 + 1] *= -1;
-          if (Math.abs(positions[i3 + 2]) > 8) velocities[i3 + 2] *= -1;
-        }
-
-        geometry.attributes.position.needsUpdate = true;
-      }
-
-      // カメラを少し回転
-      camera.position.x = Math.sin(Date.now() * 0.0001) * 0.5;
-      camera.position.y = Math.cos(Date.now() * 0.0001) * 0.5;
-      camera.lookAt(0, 0, 0);
-
-      renderer.render(scene, camera);
+    const stopLoop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+      raf = 0;
     };
 
-    animate();
+    const startLoop = () => {
+      if (running || document.hidden) return;
+      running = true;
+      const animate = (timestamp: number) => {
+        if (!running) return;
+        raf = requestAnimationFrame(animate);
+
+        material.uniforms.uTime.value = timestamp * 0.001;
+
+        if (particlesRef.current) {
+          const { positions, velocities, geometry } = particlesRef.current;
+
+          for (let i = 0; i < particleCount; i++) {
+            const i3 = i * 3;
+
+            // 粒子の移動
+            positions[i3] += velocities[i3];
+            positions[i3 + 1] += velocities[i3 + 1];
+            positions[i3 + 2] += velocities[i3 + 2];
+
+            // マウスの影響を追加
+            const mouseInfluence = 0.001;
+            positions[i3] += mouseRef.current.x * mouseInfluence;
+            positions[i3 + 1] += mouseRef.current.y * mouseInfluence;
+
+            // 境界での反射
+            if (Math.abs(positions[i3]) > 8) velocities[i3] *= -1;
+            if (Math.abs(positions[i3 + 1]) > 8) velocities[i3 + 1] *= -1;
+            if (Math.abs(positions[i3 + 2]) > 8) velocities[i3 + 2] *= -1;
+          }
+
+          geometry.attributes.position.needsUpdate = true;
+        }
+
+        // カメラを少し回転
+        camera.position.x = Math.sin(timestamp * 0.0001) * 0.5;
+        camera.position.y = Math.cos(timestamp * 0.0001) * 0.5;
+        camera.lookAt(0, 0, 0);
+
+        renderer.render(scene, camera);
+      };
+      raf = requestAnimationFrame(animate);
+    };
+
+    const onVisibility = () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    startLoop();
 
     // クリーンアップ
     return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      stopLoop();
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
 

@@ -1,4 +1,5 @@
 import { LIQUID_FRAGMENT_SHADER } from "@/components/liquidShaderBackground/liquidShaderGlsl";
+import { MAX_CANVAS_PIXEL_RATIO } from "@/lib/canvasPixelRatio";
 import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
 import { minifyShader } from "@/lib/minifyShader";
 import { transformSync } from "esbuild";
@@ -105,7 +106,7 @@ export function getLiquidBootScript(): string {
   }
 
   function resize(){
-    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var dpr=Math.min(window.devicePixelRatio||1,${MAX_CANVAS_PIXEL_RATIO});
     var w=window.innerWidth|0;
     var h=window.innerHeight|0;
     if(w<1||h<1)return false;
