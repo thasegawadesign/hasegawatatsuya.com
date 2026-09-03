@@ -153,6 +153,14 @@ export const photoMagic = style({
         },
       },
     },
+    "(min-resolution: 2dppx)": {
+      selectors: {
+        "&::after": {
+          filter: "blur(24px)",
+          animation: "none",
+        },
+      },
+    },
     "(prefers-reduced-motion: reduce)": {
       selectors: {
         "&::before, &::after": {

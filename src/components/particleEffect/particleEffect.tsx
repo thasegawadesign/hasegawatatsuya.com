@@ -4,6 +4,7 @@ import {
   canvasContainerStyle,
   containerStyle,
 } from "@/components/particleEffect/particleEffect.css";
+import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { minifyShader } from "@/lib/minifyShader";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
@@ -40,14 +41,14 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
     } catch (error) {
       console.error("Failed to create WebGL context", error);
       return;
     }
 
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(getCanvasPixelRatio());
     renderer.setClearColor(0x000000, 0); // 透明背景
 
     mount.appendChild(renderer.domElement);
@@ -176,6 +177,7 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
       camera.aspect = mount.clientWidth / mount.clientHeight;
       camera.updateProjectionMatrix();
+      renderer.setPixelRatio(getCanvasPixelRatio());
       renderer.setSize(mount.clientWidth, mount.clientHeight);
     };
 

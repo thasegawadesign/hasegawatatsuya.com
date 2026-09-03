@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 
+import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { createRectCache } from "./rect-cache";
 import {
   content,
@@ -382,7 +383,7 @@ export function createBubble(
   let contentMaxX = 1;
 
   function syncCanvasSize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = getCanvasPixelRatio();
     const width = Math.max(1, Math.round(output.clientWidth * dpr));
     const height = Math.max(1, Math.round(output.clientHeight * dpr));
     if (output.width !== width || output.height !== height) {

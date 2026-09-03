@@ -12,6 +12,7 @@ import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
+import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
 import clsx from "clsx";
@@ -126,7 +127,7 @@ export default function LiquidShaderBackground() {
         antialias: false,
         alpha: false,
         powerPreference: "high-performance",
-        preserveDrawingBuffer: true,
+        preserveDrawingBuffer: false,
       });
     } catch {
       showStaticFallback();
@@ -163,7 +164,7 @@ export default function LiquidShaderBackground() {
       if (!hasDrawableSize(root)) return false;
       const w = root.clientWidth;
       const h = root.clientHeight;
-      const pr = Math.min(window.devicePixelRatio, 2);
+      const pr = getCanvasPixelRatio();
       uResolution.value.set(w * pr, h * pr);
       renderer.setPixelRatio(pr);
       renderer.setSize(w, h, false);
