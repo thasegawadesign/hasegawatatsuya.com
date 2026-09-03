@@ -193,14 +193,27 @@ export default function LiquidShaderBackground() {
     };
 
     const startLoop = () => {
-      if (loopStarted || disposed) return;
+      if (loopStarted || disposed || document.hidden) return;
       loopStarted = true;
       const tick = (timestamp: number) => {
+        if (!loopStarted || disposed) return;
         frame = requestAnimationFrame(tick);
         paint(timestamp);
       };
       frame = requestAnimationFrame(tick);
     };
+
+    const stopLoop = () => {
+      loopStarted = false;
+      cancelAnimationFrame(frame);
+      frame = 0;
+    };
+
+    const onVisibility = () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
 
     const takeOver = () => {
       if (disposed) return false;
@@ -223,7 +236,8 @@ export default function LiquidShaderBackground() {
       return () => {
         disposed = true;
         bootObserver.disconnect();
-        cancelAnimationFrame(frame);
+        document.removeEventListener("visibilitychange", onVisibility);
+        stopLoop();
         removePointer();
         mqReduce.removeEventListener("change", syncMotion);
         timer.dispose();
@@ -244,7 +258,8 @@ export default function LiquidShaderBackground() {
 
     return () => {
       disposed = true;
-      cancelAnimationFrame(frame);
+      document.removeEventListener("visibilitychange", onVisibility);
+      stopLoop();
       removePointer();
       mqReduce.removeEventListener("change", syncMotion);
       window.removeEventListener("resize", onResize);
