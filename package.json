@@ -48,7 +48,7 @@
     "esbuild": "^0.28.2",
     "lefthook": "^2.1.12",
     "lint-staged": "^17.4.1",
-    "oxfmt": "^0.57.0",
+    "oxfmt": "^0.66.0",
     "oxlint": "^1.80.0",
     "postcss": "^8.5.26",
     "stylelint": "^17.14.1",
