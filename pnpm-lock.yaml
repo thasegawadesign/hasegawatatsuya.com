@@ -67,7 +67,7 @@ importers:
         version: 5.7.0(react@19.3.0)
       react-parallax-tilt:
         specifier: ^1.7.342
-        version: 1.7.342(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 1.7.343(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       three:
         specifier: ^0.185.1
         version: 0.185.1
@@ -1923,9 +1923,6 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@24.13.3':
-    resolution: {integrity: sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q==}
-
   '@types/node@24.13.4':
     resolution: {integrity: sha512-YJ7EqCstVTzIr0fMr7qul/977en+pQHrfmuKIo6Zr9i75Be21dr3MovcfvGtyvi2HAUrRerWps5sMO9I7WaxDw==}
 
@@ -2243,11 +2240,6 @@ packages:
 
   async-retry@1.3.3:
     resolution: {integrity: sha512-wfr/jstw9xNi/0teMHrRW7dsz3Lt5ARhYNZ2ewpadnhaIp5mbALhOAP+EAdsC7t4Z6wqsDVv9+W6gm1Dk9mEyw==}
-
-  baseline-browser-mapping@2.11.20:
-    resolution: {integrity: sha512-H0ulySigv6icDJ1F7SjtdCD6PrhTpdYCmP0CactWy1+ekh0AFd0o1Wn5T8b+hnTmdBx19u9yhL6wvCylXMY7zw==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
 
   baseline-browser-mapping@2.11.23:
     resolution: {integrity: sha512-le521dGVfxM7yRX0EikCoSz+rOK+hHzdDt/E7mG1jOJB/6WAAUuwVroLwaB7ApaUsz5Q0kFlDXLSA9MheUIfRQ==}
@@ -3106,8 +3098,8 @@ packages:
     peerDependencies:
       react: '*'
 
-  react-parallax-tilt@1.7.342:
-    resolution: {integrity: sha512-chyKKkAkxQtXpm4L1Zppl5RGEYOXX5Ps4iShtunOPTYOvFbbEeE+qQVGanHIf2gXVorsUZtV6ChxAuTmqP4Tyg==}
+  react-parallax-tilt@1.7.343:
+    resolution: {integrity: sha512-x6WuEKNKmDDxORcvhwgHg7dpI7dSSYnqcuELFZd5nmE8oml52vH55Z8e9W6vndkjqpMpy6i7+JJzWiv2ggbXNA==}
     peerDependencies:
       react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -5060,10 +5052,6 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@24.13.3':
-    dependencies:
-      undici-types: 7.18.2
-
   '@types/node@24.13.4':
     dependencies:
       undici-types: 7.18.2
@@ -5420,8 +5408,6 @@ snapshots:
     dependencies:
       retry: 0.13.1
 
-  baseline-browser-mapping@2.11.20: {}
-
   baseline-browser-mapping@2.11.23: {}
 
   big.js@5.2.2: {}
@@ -5432,7 +5418,7 @@ snapshots:
 
   browserslist@4.28.6:
     dependencies:
-      baseline-browser-mapping: 2.11.20
+      baseline-browser-mapping: 2.11.23
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.392
       node-releases: 2.0.51
@@ -5752,7 +5738,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.13.3
+      '@types/node': 24.13.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -6212,7 +6198,7 @@ snapshots:
     dependencies:
       react: 19.3.0
 
-  react-parallax-tilt@1.7.342(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+  react-parallax-tilt@1.7.343(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
