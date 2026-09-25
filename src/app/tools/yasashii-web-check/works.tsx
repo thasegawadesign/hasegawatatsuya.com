@@ -47,7 +47,7 @@ export default function Works() {
                 </>
               }
               date="2026.6"
-              DemoURL="https://www.yasashii-web-check.vegetsoft.com/"
+              DemoURL="https://www.yasashii-web-check.vegetworks.com/"
             />
           </main>
           <Footer />
