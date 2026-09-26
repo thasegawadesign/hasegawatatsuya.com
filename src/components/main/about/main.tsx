@@ -322,6 +322,10 @@ export default function Main() {
                 <dt className={clsx(year)}>2025.4</dt>
                 <dd className={clsx(event)}>応用情報技術者試験 合格</dd>
               </div>
+              <div>
+                <dt className={clsx(year)}>2026.9</dt>
+                <dd className={clsx(event)}>G検定 #5 合格</dd>
+              </div>
             </dl>
           </section>
           <section ref={contributionsRef} className={clsx(section, contributionsSection)}>
