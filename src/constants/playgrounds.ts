@@ -13,6 +13,16 @@ export interface PlaygroundItem {
 
 export const PLAYGROUNDS: PlaygroundItem[] = [
   {
+    id: "playground-the-rest",
+    nameLines: ["The Rest."],
+    category: "(Webサイト)",
+    href: "/playgrounds/the-rest",
+    iconSrc: "/images/icons/the-rest-icon.avif",
+    mockupSrc: "/images/mockups/the-rest-mockup.avif",
+    mockupWidth: 4096,
+    mockupHeight: 3072,
+  },
+  {
     id: "playground-auto-playing-carousel",
     nameLines: ["Auto playing carousel", "自動再生カルーセル"],
     category: "(プロトタイプ)",
