@@ -8,6 +8,7 @@ import Object2 from "@/components/object/object2";
 import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
+import TextCircle from "@/components/textCircle/textCircle";
 import { EMAIL, GITHUB, SITE_URL, X } from "@/constants/constants";
 import { getLiquidBootScript, LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootScript";
 import "@/styles/reset.css";
@@ -101,6 +102,7 @@ export default async function RootLayout({
           <Object2 />
           <Object3 />
           <AudioButton />
+          <TextCircle />
           <ParticleEffect />
           <BubbleCursor />
         </Providers>
