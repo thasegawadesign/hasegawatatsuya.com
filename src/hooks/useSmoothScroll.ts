@@ -1,44 +1,51 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function useSmoothScroll() {
-  const router = useRouter();
-
   useEffect(() => {
-    const lenis = new Lenis();
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+    gsap.registerPlugin(ScrollTrigger);
+    const lenis = new Lenis({ autoRaf: true });
+    const updateScrollTrigger = () => {
+      ScrollTrigger.update();
     };
+    const removeScrollListener = lenis.on("scroll", updateScrollTrigger);
 
-    const scrollToElement = (elementId: string) => {
-      const targetElement = document.querySelector(elementId) as HTMLElement;
-      if (targetElement) {
-        lenis.scrollTo(targetElement);
+    const onClick = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const link = (event.target as Element | null)?.closest("a[href^='/#']");
+      if (!(link instanceof HTMLAnchorElement)) return;
+
+      const url = new URL(link.href, window.location.href);
+      if (url.pathname !== window.location.pathname || !url.hash) return;
+
+      const target = document.querySelector(url.hash);
+      if (!(target instanceof HTMLElement)) return;
+
+      event.preventDefault();
+      lenis.scrollTo(target);
+      if (window.location.hash !== url.hash) {
+        history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
       }
     };
-    const handleClick = (event: MouseEvent) => {
-      event.preventDefault();
-      const targetId = (event.currentTarget as HTMLAnchorElement)
-        .getAttribute("href")
-        ?.substring(1);
-      scrollToElement(targetId || "");
-      router.push(`/${targetId}`);
-    };
 
-    const anchorLinks = document.querySelectorAll('a[href^="/#"]');
-    anchorLinks.forEach((link) => {
-      (link as HTMLAnchorElement).addEventListener("click", handleClick);
-    });
-
-    requestAnimationFrame(raf);
+    document.addEventListener("click", onClick, true);
 
     return () => {
+      document.removeEventListener("click", onClick, true);
+      removeScrollListener();
       lenis.destroy();
-      anchorLinks.forEach((link) => {
-        (link as HTMLAnchorElement).removeEventListener("click", handleClick);
-      });
     };
-  }, [router]);
+  }, []);
 }

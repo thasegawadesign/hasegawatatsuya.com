@@ -74,7 +74,7 @@ export default function Main() {
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
-  const contactRef = useRef(null);
+  const contactRef = useRef<HTMLButtonElement>(null);
 
   const { copy } = useClipboard();
 
@@ -155,9 +155,42 @@ export default function Main() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsapAnimation.inview(descriptionRef);
-    gsapAnimation.inview(profileRef);
-    gsapAnimation.inview(contactRef);
+    const ctx = gsap.context(() => {
+      gsapAnimation.inview(descriptionRef);
+      gsapAnimation.inview(profileRef);
+      if (contactRef.current) {
+        const contact = contactRef.current;
+        // 回転を残すとボタン内の立体テキストが潰れるので、透明度だけ動かす
+        gsap.fromTo(
+          contact,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: contact,
+              start: "top 80%",
+              end: "top 50%",
+              once: true,
+            },
+          },
+        );
+      }
+    });
+
+    const refresh = () => ScrollTrigger.refresh();
+    const raf = requestAnimationFrame(refresh);
+    let cancelled = false;
+    document.fonts?.ready.then(() => {
+      if (!cancelled) refresh();
+    });
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      ctx.revert();
+    };
   }, []);
 
   return (
