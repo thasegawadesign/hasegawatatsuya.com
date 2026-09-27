@@ -17,7 +17,7 @@ export default function Works() {
             <WorksInfo
               nameJa="The Rest."
               nameEn="The Rest."
-              nameJaNode={<>誰もいない草原</>}
+              nameJaNode={<>僕は休憩するよ。</>}
               imageSrc="/images/mockups/the-rest-mockup.avif"
               imageWidth={4096}
               imageHeight={3072}
