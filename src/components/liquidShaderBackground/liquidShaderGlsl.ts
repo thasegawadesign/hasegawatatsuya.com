@@ -1,7 +1,7 @@
 import { minifyShader } from "@/lib/minifyShader";
 
 /**
- * WebGL2 フォールバック用 GLSL（WebGPU 非対応時に RawShaderMaterial で使用）。
+ * 液体背景の GLSL。boot スクリプトと RawShaderMaterial が同じフラグメントを共有する。
  * brandPlum = #8F2C71 / brandF70 = #f70
  */
 
