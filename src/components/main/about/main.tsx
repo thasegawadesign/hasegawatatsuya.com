@@ -254,7 +254,7 @@ export default function Main() {
             <br />
             設計・実装しています。
             <br />
-            Webサイトは、
+            Webサイトは
             <br />
             日々のお仕事を支える
             <br />
@@ -270,7 +270,7 @@ export default function Main() {
             <br />
             ホームページの公開・運用開始後も
             <br />
-            環境に応答する状態を基準に、
+            環境への応答を基準に
             <br />
             手入れを続けます。
             <br />
