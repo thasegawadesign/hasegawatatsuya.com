@@ -6,10 +6,11 @@ export const rotate = keyframes({
   "100%": { transform: "rotate(-360deg)" },
 });
 export const circle = style({
-  position: "absolute",
+  position: "fixed",
   zIndex: 100,
-  top: "-48px",
-  right: "-48px",
+  // Glass 右上の外側（幅・余白は glass.css と同期）
+  top: "calc(5vw - 48px)",
+  right: "calc(max(6vw, (100vw - 1400px) / 2) - 48px)",
   width: 120,
   height: 120,
   animationName: rotate,
@@ -24,8 +25,8 @@ export const circle = style({
   },
   "@media": {
     [breakpoints["2xl"]]: {
-      top: "-42px",
-      right: "-42px",
+      top: "calc(5vw - 42px)",
+      right: "calc(7vw - 42px)",
       width: 110,
       height: 110,
     },
