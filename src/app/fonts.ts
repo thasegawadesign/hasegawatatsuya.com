@@ -56,7 +56,7 @@ export const notoSerifJP = Noto_Serif_JP({
   display: "block",
   preload: true,
   adjustFontFallback: false,
-  fallback: ['"Hiragino Mincho ProN"', '"Yu Mincho"', "YuMincho", '"MS PMincho"'],
+  fallback: ["'Hiragino Mincho ProN'", "'Yu Mincho'", "YuMincho", "'MS PMincho'"],
   variable: "--font-noto-serif-jp",
 });
 
@@ -66,6 +66,6 @@ export const notoSansJP = Noto_Sans_JP({
   display: "swap",
   preload: true,
   adjustFontFallback: false,
-  fallback: ['"Hiragino Sans"', '"Hiragino Kaku Gothic ProN"', '"Yu Gothic"', "YuGothic", "Meiryo"],
+  fallback: ["'Hiragino Sans'", "'Hiragino Kaku Gothic ProN'", "'Yu Gothic'", "YuGothic", "Meiryo"],
   variable: "--font-noto-sans-jp",
 });

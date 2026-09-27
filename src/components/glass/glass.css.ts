@@ -58,13 +58,11 @@ export const glassBackdrop = style({
   display: "block",
   borderRadius: "inherit",
   backdropFilter: `blur(${backdropBlurPx}px) saturate(${saturation}%)`,
-  WebkitBackdropFilter: `blur(${backdropBlurPx}px) saturate(${saturation}%)`,
   filter: "var(--glass-displacement-filter)",
   pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
       backdropFilter: `blur(${backdropBlurPxSm}px) saturate(${saturation}%)`,
-      WebkitBackdropFilter: `blur(${backdropBlurPxSm}px) saturate(${saturation}%)`,
     },
   },
 });

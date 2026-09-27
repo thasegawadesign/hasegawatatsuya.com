@@ -2,18 +2,35 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
 
-const withVanillaExtract = createVanillaExtractPlugin();
+const withVanillaExtract = createVanillaExtractPlugin({
+  unstable_turbopack: {
+    mode: "auto",
+  },
+});
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
+const shaderMinifyLoader = path.join(rootDir, "scripts/minify-shader-loader.cjs");
+
+const shaderMinifyRule = {
+  condition: "production",
+  loaders: [shaderMinifyLoader],
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   serverExternalPackages: ["esbuild"],
+  turbopack: {
+    rules: {
+      "**/liquidShaderGlsl.ts": shaderMinifyRule,
+      "**/liquidBootScript.ts": shaderMinifyRule,
+      "**/particleEffect.tsx": shaderMinifyRule,
+    },
+  },
   webpack(config, { dev }) {
     if (!dev) {
       config.module.rules.push({
         test: /(?:liquidShaderGlsl\.ts|liquidBootScript\.ts|particleEffect\.tsx)$/,
         enforce: "pre",
-        use: [path.join(rootDir, "scripts/minify-shader-loader.cjs")],
+        use: [shaderMinifyLoader],
       });
     }
     return config;
