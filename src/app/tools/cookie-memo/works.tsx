@@ -27,7 +27,7 @@ export default function Works() {
                 <>
                   メモをフォルダで整理できるよう、シンプルな階層構造を設計しました。保存時に「チン♪」と鳴る音響フィードバックを加えることで、書いて終わりではなく小さな達成感が得られる体験を演出しています。
                   <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
+                  技術面では Next.js / TypeScript / Supabase / Tailwind CSS を採用しています。
                 </>
               }
               role={
