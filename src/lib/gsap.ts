@@ -1,3 +1,4 @@
+import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import gsap from "gsap";
 import { MutableRefObject } from "react";
 
@@ -62,6 +63,26 @@ export const gsapAnimation = {
         scrub: true,
       },
     });
+  },
+  parallaxRange(triggerRef: GsapRef, targetRef: GsapRef, distance: number) {
+    const mm = gsap.matchMedia();
+    mm.add(`(min-width: ${PARALLAX_ENABLE_MIN_WIDTH + 1}px)`, () => {
+      gsap.fromTo(
+        targetRef.current,
+        { y: -distance },
+        {
+          y: distance,
+          ease: "none",
+          scrollTrigger: {
+            trigger: triggerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        },
+      );
+    });
+    return mm;
   },
   parallaxDeep(ref: GsapRef) {
     gsap.to(ref.current, {
