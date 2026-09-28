@@ -50,7 +50,7 @@ import PlaygroundsList from "@/components/playgroundsList/playgroundsList";
 import ToolsList from "@/components/toolsList/toolsList";
 import Tooltip from "@/components/tooltip/tooltip";
 import WorksList from "@/components/worksList/worksList";
-import { EMAIL, GITHUB, NOTE, PARALLAX_ENABLE_MIN_WIDTH, X } from "@/constants/constants";
+import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
@@ -60,11 +60,9 @@ import { ABOUT_PHOTO_SRC, preloadAboutPhoto } from "@/lib/preloadAboutPhoto";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 
 export default function Main() {
-  const [mounted, setMounted] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const emailCopyLockRef = useRef(false);
   const emailCopiedResetTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -74,6 +72,7 @@ export default function Main() {
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const profileImageContainerRef = useRef(null);
+  const profileImageParallaxRef = useRef(null);
   const contactRef = useRef<HTMLButtonElement>(null);
 
   const { copy } = useClipboard();
@@ -137,23 +136,14 @@ export default function Main() {
     return EMAIL;
   };
 
-  const { scrollYProgress } = useScroll({
-    target: profileImageContainerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const enableParallax = mounted && window.innerWidth > PARALLAX_ENABLE_MIN_WIDTH;
-
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    enableParallax ? ["-20px", "20px"] : ["0px", "0px"],
-  );
-
   useEffect(() => {
-    setMounted(true);
-
     gsap.registerPlugin(ScrollTrigger);
+
+    const parallax = gsapAnimation.parallaxRange(
+      profileImageContainerRef,
+      profileImageParallaxRef,
+      20,
+    );
 
     const ctx = gsap.context(() => {
       gsapAnimation.inview(descriptionRef);
@@ -190,6 +180,7 @@ export default function Main() {
       cancelled = true;
       cancelAnimationFrame(raf);
       ctx.revert();
+      parallax.revert();
     };
   }, []);
 
@@ -326,7 +317,7 @@ export default function Main() {
             </div>
             <div className={clsx(profileImageWrapper)}>
               <div ref={profileImageContainerRef} className={clsx(profileImageContainer)}>
-                <motion.div style={{ y }} className={clsx(motionDiv)}>
+                <div ref={profileImageParallaxRef} className={clsx(motionDiv)}>
                   <Image
                     src={ABOUT_PHOTO_SRC}
                     alt="長谷川達也"
@@ -334,7 +325,7 @@ export default function Main() {
                     fill
                     sizes="(max-width: 640px) 120px, (max-width: 1280px) 180px, 200px"
                   />
-                </motion.div>
+                </div>
               </div>
             </div>
           </section>

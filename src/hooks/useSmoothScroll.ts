@@ -6,11 +6,16 @@ import { useEffect } from "react";
 export default function useSmoothScroll() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const lenis = new Lenis({ autoRaf: true });
+    const lenis = new Lenis();
     const updateScrollTrigger = () => {
       ScrollTrigger.update();
     };
     const removeScrollListener = lenis.on("scroll", updateScrollTrigger);
+    const onTick = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(onTick);
+    gsap.ticker.lagSmoothing(0);
 
     const onClick = (event: MouseEvent) => {
       if (
@@ -45,6 +50,8 @@ export default function useSmoothScroll() {
     return () => {
       document.removeEventListener("click", onClick, true);
       removeScrollListener();
+      gsap.ticker.remove(onTick);
+      gsap.ticker.lagSmoothing(500, 33);
       lenis.destroy();
     };
   }, []);

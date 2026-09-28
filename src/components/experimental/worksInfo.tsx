@@ -15,19 +15,16 @@ import {
   worksRole,
   worksVideo,
 } from "@/components/experimental/worksInfo.css";
-import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
-import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useScroll, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface Props {
   readonly nameJa: string;
@@ -66,9 +63,8 @@ export default function WorksInfo(props: Props) {
     StoreURL,
   } = props;
 
-  const width = useWindowWidth();
-
   const containerRef = useRef(null);
+  const parallaxRef = useRef(null);
   const hgroupRef = useRef(null);
   const worksWhatRef = useRef(null);
   const worksWhyRef = useRef(null);
@@ -78,20 +74,10 @@ export default function WorksInfo(props: Props) {
   const worksDemoURLRef = useRef(null);
   const worksBuyURLRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const yRange = useMemo(
-    () => (width <= PARALLAX_ENABLE_MIN_WIDTH ? ["0px", "0px"] : ["-80px", "80px"]),
-    [width],
-  );
-  const y = useTransform(scrollYProgress, [0, 1], yRange);
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const parallax = gsapAnimation.parallaxRange(containerRef, parallaxRef, 80);
     gsapAnimation.inview(hgroupRef);
     gsapAnimation.inview(worksWhatRef);
     gsapAnimation.inview(worksWhyRef);
@@ -100,6 +86,8 @@ export default function WorksInfo(props: Props) {
     gsapAnimation.inview(worksTimeRef);
     gsapAnimation.inview(worksDemoURLRef);
     gsapAnimation.inview(worksBuyURLRef);
+
+    return () => parallax.revert();
   }, []);
 
   return (
@@ -110,7 +98,7 @@ export default function WorksInfo(props: Props) {
         // video/image の高さが確定するようアスペクト比を先に固定する
         style={{ aspectRatio: `${imageWidth}/${imageHeight}` }}
       >
-        <motion.div style={{ y, height: "100%" }}>
+        <div ref={parallaxRef} style={{ height: "100%" }}>
           {videoSrc ? (
             <video
               src={videoSrc}
@@ -133,7 +121,7 @@ export default function WorksInfo(props: Props) {
               priority
             />
           )}
-        </motion.div>
+        </div>
       </div>
       <hgroup ref={hgroupRef} className={clsx(hgroupHeading)}>
         <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>
