@@ -51,11 +51,12 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
-import Tilt from "react-parallax-tilt";
+
+const TILT_MAX_ANGLE = 6;
 
 export default function Main() {
   const [emailCopied, setEmailCopied] = useState(false);
-  const [tiltEnabled, setTiltEnabled] = useState(false);
+  const tiltRef = useRef<HTMLDivElement>(null);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const valueRef = useRef(null);
@@ -88,11 +89,28 @@ export default function Main() {
   };
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 640px)");
-    const update = () => setTiltEnabled(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    const el = tiltRef.current;
+    if (!el) return;
+
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 640px)", () => {
+      gsap.set(el, { transformPerspective: 800 });
+      const vars = { duration: 0.8, ease: "power3.out" };
+      const toRotationX = gsap.quickTo(el, "rotationX", vars);
+      const toRotationY = gsap.quickTo(el, "rotationY", vars);
+
+      const onPointerMove = (e: PointerEvent) => {
+        const ratioX = (e.clientX / window.innerWidth) * 2 - 1;
+        const ratioY = (e.clientY / window.innerHeight) * 2 - 1;
+        toRotationX(ratioY * TILT_MAX_ANGLE);
+        toRotationY(-ratioX * TILT_MAX_ANGLE);
+      };
+
+      window.addEventListener("pointermove", onPointerMove);
+      return () => window.removeEventListener("pointermove", onPointerMove);
+    });
+
+    return () => mm.revert();
   }, []);
 
   useEffect(() => {
@@ -114,17 +132,7 @@ export default function Main() {
             <span className={nameJa}>ハセガワ タツヤ</span>
             <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
           </h1>
-          <Tilt
-            tiltEnable={tiltEnabled}
-            tiltMaxAngleX={6}
-            tiltMaxAngleY={6}
-            perspective={800}
-            scale={1.0}
-            transitionSpeed={800}
-            trackOnWindow={true}
-            reset={false}
-            className={clsx(tilt)}
-          >
+          <div ref={tiltRef} className={clsx(tilt)}>
             <div className={clsx(photoBox)}>
               <div className={clsx(photoMagic)}>
                 <div className={clsx(photoMagicInner)}>
@@ -140,14 +148,15 @@ export default function Main() {
                 </div>
               </div>
             </div>
-          </Tilt>
+          </div>
         </section>
         <ul className={clsx(profileLinkBox)}>
           <li>
             <Link
               href={GITHUB}
               aria-label="GitHub"
-              target="_brank"
+              rel="noopener noreferrer"
+              target="_blank"
               className={clsx(profileLink)}
               onClick={() => {
                 playSfxClick();
@@ -161,7 +170,8 @@ export default function Main() {
             <Link
               href={X}
               aria-label="X"
-              target="_brank"
+              rel="noopener noreferrer"
+              target="_blank"
               className={clsx(profileLink)}
               onClick={() => {
                 playSfxClick();
@@ -175,7 +185,8 @@ export default function Main() {
             <Link
               href={NOTE}
               aria-label="note"
-              target="_brank"
+              rel="noopener noreferrer"
+              target="_blank"
               className={clsx(profileLink)}
               onClick={() => {
                 playSfxClick();
