@@ -8,9 +8,9 @@ import {
   audioButtonBox,
 } from "@/components/audio/audioPlayer.css";
 import Tooltip from "@/components/tooltip/tooltip";
+import { useMagnetic } from "@/hooks/useMagnetic";
 import { getAudioInstance } from "@/lib/getAudioInstance";
 import { haptic } from "@/lib/haptic";
-import { animated, to, useSpring } from "@react-spring/web";
 import clsx from "clsx";
 import { useAtom } from "jotai";
 import { useCallback, useEffect, useRef } from "react";
@@ -27,16 +27,10 @@ export default function AudioButton() {
   };
 
   const audioButtonRef = useRef(null);
-  const boxRef = useRef<HTMLDivElement>(null);
   const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const isFadingRef = useRef(false);
 
-  const [spring, api] = useSpring(() => ({
-    x: 0,
-    y: 0,
-    scale: 1,
-    config: { tension: 300, friction: 20 },
-  }));
+  const magnetic = useMagnetic<HTMLDivElement>();
 
   const fadeIn = useCallback((audio: HTMLAudioElement, duration: number = 500) => {
     return new Promise<void>((resolve) => {
@@ -101,22 +95,6 @@ export default function AudioButton() {
       }, stepDuration);
     });
   }, []);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!boxRef.current) return;
-    const rect = boxRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const dx = e.clientX - centerX;
-    const dy = e.clientY - centerY;
-
-    api.start({ x: dx * 0.6, y: dy * 0.6, scale: 1.28 });
-  };
-
-  const handleMouseLeave = () => {
-    api.start({ x: 0, y: 0, scale: 1 });
-  };
 
   useEffect(() => {
     const audioButton = audioButtonRef.current as unknown as HTMLButtonElement;
@@ -202,26 +180,16 @@ export default function AudioButton() {
   }, []);
 
   return (
-    <animated.div
-      ref={boxRef}
-      className={clsx(audioButtonBox)}
-      style={{
-        transform: to(
-          [spring.x, spring.y, spring.scale],
-          (xVal, yVal, s) => `translate(${xVal}px, ${yVal}px) scale(${s})`,
-        ),
-      }}
-      onClick={() => haptic()}
-    >
+    <div ref={magnetic.ref} className={clsx(audioButtonBox)} onClick={() => haptic()}>
       <Tooltip content={isPlayingAudio ? "Sound OFF" : "Sound ON"} side="top">
         <button
           ref={audioButtonRef}
           aria-label={isPlayingAudio ? "Sound OFF" : "Sound ON"}
           className={clsx(audioButton, isPlayingAudio ? animationRunning : animationPaused)}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          onMouseMove={magnetic.onMouseMove}
+          onMouseLeave={magnetic.onMouseLeave}
         ></button>
       </Tooltip>
-    </animated.div>
+    </div>
   );
 }

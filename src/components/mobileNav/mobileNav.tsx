@@ -13,7 +13,6 @@ import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import { preloadAboutPhoto } from "@/lib/preloadAboutPhoto";
 import { FocusScope } from "@react-aria/focus";
-import { useWindowWidth } from "@react-hook/window-size";
 import clsx from "clsx";
 import gsap from "gsap";
 import { useAtom } from "jotai";
@@ -34,7 +33,6 @@ function maybePreloadAboutPhoto(href: string) {
 }
 
 export default function MobileNav() {
-  const width = useWindowWidth();
   const navLinkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [isOpenHamburgerMenu, setIsOpenHamburgerMenu] = useAtom(isOpenHamburgerMenuAtom);
 
@@ -45,10 +43,15 @@ export default function MobileNav() {
   };
 
   useEffect(() => {
-    if (width >= 640 && isOpenHamburgerMenu) {
-      setIsOpenHamburgerMenu(false);
-    }
-  }, [isOpenHamburgerMenu, setIsOpenHamburgerMenu, width]);
+    if (!isOpenHamburgerMenu) return;
+    const mq = window.matchMedia("(min-width: 640px)");
+    const closeOnDesktop = () => {
+      if (mq.matches) setIsOpenHamburgerMenu(false);
+    };
+    closeOnDesktop();
+    mq.addEventListener("change", closeOnDesktop);
+    return () => mq.removeEventListener("change", closeOnDesktop);
+  }, [isOpenHamburgerMenu, setIsOpenHamburgerMenu]);
 
   useEffect(() => {
     const noscroll = (event: WheelEvent | TouchEvent) => {
