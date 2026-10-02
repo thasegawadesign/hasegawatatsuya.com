@@ -31,11 +31,6 @@ import {
   profileSection,
   profileTextBox,
   sectionHeading,
-  sectionHeadingAbout,
-  sectionHeadingContact,
-  sectionHeadingExperimental,
-  sectionHeadingTools,
-  sectionHeadingWorks,
   worksSection,
 } from "@/components/main/home/main.css";
 import clsx from "clsx";
@@ -204,7 +199,7 @@ export default function Main() {
         </h1>
         <div className={clsx(line)}></div>
         <section id="about" className={clsx(aboutSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingAbout)}>About</h2>
+          <h2 className={clsx(roboto.className, sectionHeading)}>About</h2>
           <p ref={descriptionRef} className={clsx(description)}>
             Webデザイナー、
             <br className={mobileBr} />
@@ -337,21 +332,19 @@ export default function Main() {
           </section>
         </section>
         <section id="works" className={clsx(worksSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingWorks)}>Works</h2>
+          <h2 className={clsx(roboto.className, sectionHeading)}>Works</h2>
           <WorksList />
         </section>
         <section id="tools" className={clsx(worksSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingTools)}>Tools</h2>
+          <h2 className={clsx(roboto.className, sectionHeading)}>Tools</h2>
           <ToolsList />
         </section>
         <section id="playgrounds" className={clsx(worksSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingExperimental)}>
-            Playgrounds
-          </h2>
+          <h2 className={clsx(roboto.className, sectionHeading)}>Playgrounds</h2>
           <PlaygroundsList />
         </section>
         <section id="contact" className={clsx(contactSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading, sectionHeadingContact)}>Contact</h2>
+          <h2 className={clsx(roboto.className, sectionHeading)}>Contact</h2>
           <address className={clsx(address)}>
             <button
               className={clsx(emailButton)}

@@ -57,6 +57,16 @@ export const animateLine = keyframes({
   "0%": { transform: "translateY(-100%)" },
   "100%": { transform: "translateY(100%)" },
 });
+// lg 以下は見出し・本文・縦線の左端を、作品アイコン（3 列グリッドの 1 列目）の左端に揃える
+// 左端 = 中央寄せされた worksBox の左余白 + worksItem の padding + アイコンを中央に置いたときの余白
+const iconLeft = (boxWidth: number) =>
+  `calc((100% - ${boxWidth}px) / 2 + 2vw + ((${boxWidth}px - 2vw) / 3 - 4vw - 120px) / 2)`;
+const CONTENT_LEFT = {
+  lg: iconLeft(640),
+  md: iconLeft(580),
+  sm: "8vw",
+};
+
 export const line = style({
   position: "relative",
   margin: "0 auto clamp(60px, 5vw, 80px)",
@@ -89,13 +99,17 @@ export const line = style({
       },
     },
     [breakpoints["lg"]]: {
+      marginLeft: CONTENT_LEFT.lg,
       height: 40,
       ":before": {
         height: 40,
       },
     },
+    [breakpoints["md"]]: {
+      marginLeft: CONTENT_LEFT.md,
+    },
     [breakpoints["sm"]]: {
-      marginLeft: "8vw",
+      marginLeft: CONTENT_LEFT.sm,
     },
   },
 });
@@ -112,50 +126,15 @@ export const sectionHeading = style({
       marginBottom: 12,
       fontSize: "1.4rem",
     },
-  },
-});
-
-export const sectionHeadingAbout = style({
-  "@media": {
-    [breakpoints["sm"]]: {
-      paddingLeft: "8vw",
+    [breakpoints["lg"]]: {
+      paddingLeft: CONTENT_LEFT.lg,
       textAlign: "left",
     },
-  },
-});
-
-export const sectionHeadingWorks = style({
-  "@media": {
-    [breakpoints["sm"]]: {
-      paddingLeft: "8vw",
-      textAlign: "left",
+    [breakpoints["md"]]: {
+      paddingLeft: CONTENT_LEFT.md,
     },
-  },
-});
-
-export const sectionHeadingTools = style({
-  "@media": {
     [breakpoints["sm"]]: {
-      paddingLeft: "8vw",
-      textAlign: "left",
-    },
-  },
-});
-
-export const sectionHeadingExperimental = style({
-  "@media": {
-    [breakpoints["sm"]]: {
-      paddingLeft: "8vw",
-      textAlign: "left",
-    },
-  },
-});
-
-export const sectionHeadingContact = style({
-  "@media": {
-    [breakpoints["sm"]]: {
-      paddingLeft: "8vw",
-      textAlign: "left",
+      paddingLeft: CONTENT_LEFT.sm,
     },
   },
 });
@@ -180,10 +159,16 @@ export const description = style({
   fontSize: "clamp(1.8rem, 0.72vw + 1.12rem, 2.24rem)",
   fontWeight: 300,
   "@media": {
-    [breakpoints["sm"]]: {
-      marginBottom: 28,
-      paddingLeft: "8vw",
+    [breakpoints["lg"]]: {
+      paddingLeft: CONTENT_LEFT.lg,
       textAlign: "left",
+    },
+    [breakpoints["md"]]: {
+      paddingLeft: CONTENT_LEFT.md,
+    },
+    [breakpoints["sm"]]: {
+      paddingLeft: CONTENT_LEFT.sm,
+      marginBottom: 28,
       lineHeight: 1.6,
     },
   },
