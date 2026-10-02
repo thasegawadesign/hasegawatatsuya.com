@@ -47,6 +47,8 @@ export const nameBox = style({
   flexDirection: "column",
   alignItems: "center",
   pointerEvents: "none",
+  // 遷移中も写真（profile-photo）より手前に描画させる
+  viewTransitionName: "about-name",
 });
 export const nameJa = style({
   position: "relative",

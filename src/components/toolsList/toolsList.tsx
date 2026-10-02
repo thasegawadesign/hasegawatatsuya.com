@@ -14,10 +14,11 @@ import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
+import { getWorkTitleTransitionName } from "@/lib/workTitleTransition";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ViewTransition } from "react";
 
 export default function ToolsList() {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -39,15 +40,21 @@ export default function ToolsList() {
         return (
           <section key={tool.id} className={clsx(worksItem)}>
             <div className={clsx(worksTextBox)}>
-              <h3 id={tool.id} className={clsx(worksName)}>
-                {useNameSpans
-                  ? tool.nameLines.map((line) => (
-                      <span key={line} className={clsx(worksNameSpan)}>
-                        {line}
-                      </span>
-                    ))
-                  : tool.nameLines[0]}
-              </h3>
+              <ViewTransition
+                name={tool.external ? undefined : getWorkTitleTransitionName(tool.href)}
+                share="auto"
+                default="none"
+              >
+                <h3 id={tool.id} className={clsx(worksName)}>
+                  {useNameSpans
+                    ? tool.nameLines.map((line) => (
+                        <span key={line} className={clsx(worksNameSpan)}>
+                          {line}
+                        </span>
+                      ))
+                    : tool.nameLines[0]}
+                </h3>
+              </ViewTransition>
               <p className={clsx(worksCategory)}>{tool.category}</p>
             </div>
             <WorksIconLink

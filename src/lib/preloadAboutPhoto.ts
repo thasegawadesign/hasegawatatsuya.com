@@ -5,7 +5,7 @@ export const ABOUT_PHOTO_SRC = "/images/photo.avif";
 export const ABOUT_PHOTO_WIDTH = 320;
 export const ABOUT_PHOTO_HEIGHT = 480;
 export const ABOUT_PHOTO_SIZES = "(max-width: 639px) 240px, (max-width: 1279px) 280px, 320px";
-
+export const PROFILE_PHOTO_TRANSITION_NAME = "profile-photo";
 const ABOUT_NAME_JA = "ハセガワ タツヤ";
 
 export const preloadAboutPhoto = () => {
