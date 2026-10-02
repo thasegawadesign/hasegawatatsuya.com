@@ -1,5 +1,8 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
-import { WORK_PHOTO_TRANSITION_NAME } from "@/lib/viewTransitionNames";
+import {
+  WORK_HEADING_TRANSITION_NAME,
+  WORK_PHOTO_TRANSITION_NAME,
+} from "@/lib/viewTransitionNames";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -28,6 +31,8 @@ export const worksImage = style({
 export const hgroupHeading = style({
   marginTop: "-4vw",
   marginLeft: "6vw",
+  // 写真に重なる見出しを、遷移中も写真より手前に描画する
+  viewTransitionName: WORK_HEADING_TRANSITION_NAME,
 });
 export const hgroupHeadingEn = style({
   paddingRight: "6vw",

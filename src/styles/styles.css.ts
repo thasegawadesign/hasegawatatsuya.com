@@ -1,6 +1,7 @@
 import {
   SITE_HAMBURGER_TRANSITION_NAME,
   SITE_NAV_TRANSITION_NAME,
+  WORK_HEADING_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
 import { createGlobalTheme, globalStyle, keyframes, style } from "@vanilla-extract/css";
@@ -54,6 +55,24 @@ globalStyle(`::view-transition-old(${WORK_PHOTO_TRANSITION_NAME})`, {
   animationFillMode: "both",
 });
 globalStyle(`::view-transition-new(${WORK_PHOTO_TRANSITION_NAME})`, {
+  animationName: workPhotoFadeIn,
+  animationDuration: "0.7s",
+  animationTimingFunction: "ease-out",
+  animationFillMode: "both",
+});
+// 作品名は写真に重なるデザインなので、遷移中も写真より手前に置く。
+// 出てくるときは写真と、消えるときは旧ページと同じタイミングでフェードさせる
+globalStyle(`::view-transition-group(${WORK_HEADING_TRANSITION_NAME})`, {
+  zIndex: 2,
+  animation: "none",
+});
+globalStyle(`::view-transition-old(${WORK_HEADING_TRANSITION_NAME})`, {
+  animationName: workPhotoFadeOut,
+  animationDuration: "0.4s",
+  animationTimingFunction: "ease-out",
+  animationFillMode: "both",
+});
+globalStyle(`::view-transition-new(${WORK_HEADING_TRANSITION_NAME})`, {
   animationName: workPhotoFadeIn,
   animationDuration: "0.7s",
   animationTimingFunction: "ease-out",
