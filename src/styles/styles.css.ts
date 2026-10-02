@@ -4,7 +4,7 @@ import {
   WORK_HEADING_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
-import { createGlobalTheme, globalStyle, keyframes, style } from "@vanilla-extract/css";
+import { createGlobalTheme, globalStyle, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
   "2xl": "screen and (max-width: 1535px)",
@@ -31,50 +31,26 @@ globalStyle("::view-transition-old(about-name)", {
   animationTimingFunction: "ease-out",
 });
 
-const workPhotoFadeOut = keyframes({
-  from: { opacity: 1 },
-  to: { opacity: 0 },
-});
-const workPhotoFadeIn = keyframes({
-  from: { opacity: 0 },
-  to: { opacity: 1 },
-});
+// 作品写真と作品名はブラウザ標準のフェード（-ua-view-transition-fade-in / fade-out）を使い、長さだけ変える。
+// 自作の @keyframes は iPhone の Safari で効かず、写真と作品名がフェードせずに残ってから消えていたため
 globalStyle(`::view-transition-group(${WORK_PHOTO_TRANSITION_NAME})`, {
   zIndex: 1,
   animation: "none",
 });
-// ページ全体はフェードせず即座に切り替わるため、作品ページを出るときのフェードアウトは短くし、
-// 新しいページの上に写真だけが残って見えないようにする
-globalStyle(`::view-transition-old(${WORK_PHOTO_TRANSITION_NAME})`, {
-  animationName: workPhotoFadeOut,
-  animationDuration: "0.3s",
-  animationTimingFunction: "ease-out",
-  animationFillMode: "both",
-});
-globalStyle(`::view-transition-new(${WORK_PHOTO_TRANSITION_NAME})`, {
-  animationName: workPhotoFadeIn,
-  animationDuration: "0.7s",
-  animationTimingFunction: "ease-out",
-  animationFillMode: "both",
-});
-// 作品名は写真に重なるデザインなので、遷移中も写真より手前に置く。
-// 出てくるときも消えるときも写真と同じタイミングでフェードさせる
+// 作品名は写真に重なるデザインなので、遷移中も写真より手前に置く
 globalStyle(`::view-transition-group(${WORK_HEADING_TRANSITION_NAME})`, {
   zIndex: 2,
   animation: "none",
 });
-globalStyle(`::view-transition-old(${WORK_HEADING_TRANSITION_NAME})`, {
-  animationName: workPhotoFadeOut,
-  animationDuration: "0.3s",
-  animationTimingFunction: "ease-out",
-  animationFillMode: "both",
-});
-globalStyle(`::view-transition-new(${WORK_HEADING_TRANSITION_NAME})`, {
-  animationName: workPhotoFadeIn,
-  animationDuration: "0.7s",
-  animationTimingFunction: "ease-out",
-  animationFillMode: "both",
-});
+globalStyle(
+  `::view-transition-old(${WORK_PHOTO_TRANSITION_NAME}), ::view-transition-new(${WORK_PHOTO_TRANSITION_NAME}), ::view-transition-old(${WORK_HEADING_TRANSITION_NAME}), ::view-transition-new(${WORK_HEADING_TRANSITION_NAME})`,
+  {
+    animationDuration: "0.7s",
+    animationTimingFunction: "ease-out",
+    // group が animation: none なので fill-mode を明示しないと、フェードし終えた写真が遷移の終わりまで一瞬戻る
+    animationFillMode: "both",
+  },
+);
 // ナビ／ハンバーガーは作品写真・ページ本体より手前に固定し、位置は動かさない
 globalStyle(
   `::view-transition-group(${SITE_NAV_TRANSITION_NAME}), ::view-transition-group(${SITE_HAMBURGER_TRANSITION_NAME})`,
