@@ -43,9 +43,11 @@ globalStyle(`::view-transition-group(${WORK_PHOTO_TRANSITION_NAME})`, {
   zIndex: 1,
   animation: "none",
 });
+// ページ全体はフェードせず即座に切り替わるため、作品ページを出るときのフェードアウトは短くし、
+// 新しいページの上に写真だけが残って見えないようにする
 globalStyle(`::view-transition-old(${WORK_PHOTO_TRANSITION_NAME})`, {
   animationName: workPhotoFadeOut,
-  animationDuration: "0.7s",
+  animationDuration: "0.3s",
   animationTimingFunction: "ease-out",
   animationFillMode: "both",
 });
@@ -56,14 +58,14 @@ globalStyle(`::view-transition-new(${WORK_PHOTO_TRANSITION_NAME})`, {
   animationFillMode: "both",
 });
 // 作品名は写真に重なるデザインなので、遷移中も写真より手前に置く。
-// 出てくるときは写真と、消えるときは旧ページと同じタイミングでフェードさせる
+// 出てくるときも消えるときも写真と同じタイミングでフェードさせる
 globalStyle(`::view-transition-group(${WORK_HEADING_TRANSITION_NAME})`, {
   zIndex: 2,
   animation: "none",
 });
 globalStyle(`::view-transition-old(${WORK_HEADING_TRANSITION_NAME})`, {
   animationName: workPhotoFadeOut,
-  animationDuration: "0.4s",
+  animationDuration: "0.3s",
   animationTimingFunction: "ease-out",
   animationFillMode: "both",
 });
