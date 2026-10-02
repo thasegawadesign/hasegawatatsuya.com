@@ -21,6 +21,8 @@ const photoMagicSpin = keyframes({
 export const main = style({
   position: "relative",
   zIndex: 50,
+  // inview の回転でテキストが画面幅をはみ出すと、モバイルで表示領域が広がって View Transition が中断されるため切る
+  overflowX: "clip",
 });
 
 export const aboutHero = style({
