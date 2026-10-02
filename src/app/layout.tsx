@@ -80,6 +80,9 @@ export default async function RootLayout({
         notoSerifJP.variable,
         notoSansJP.variable,
       )}
+      // React は <html> にインラインの view-transition-name がないと root の遷移を消して旧ページを即座に隠すため、
+      // 明示して旧ページもフェードアウトさせる
+      style={{ viewTransitionName: "root" }}
     >
       <body className={body}>
         <canvas
