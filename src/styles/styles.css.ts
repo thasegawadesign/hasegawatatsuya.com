@@ -43,11 +43,10 @@ globalStyle(`::view-transition-group(${WORK_PHOTO_TRANSITION_NAME})`, {
   zIndex: 1,
   animation: "none",
 });
-// ページ全体はフェードせず即座に切り替わるため、作品ページを出るときのフェードアウトは短くし、
-// 新しいページの上に写真だけが残って見えないようにする
+// 作品ページを出るときは、写真と作品名が新しいページの上でふんわり消える
 globalStyle(`::view-transition-old(${WORK_PHOTO_TRANSITION_NAME})`, {
   animationName: workPhotoFadeOut,
-  animationDuration: "0.3s",
+  animationDuration: "0.7s",
   animationTimingFunction: "ease-out",
   animationFillMode: "both",
 });
@@ -65,7 +64,7 @@ globalStyle(`::view-transition-group(${WORK_HEADING_TRANSITION_NAME})`, {
 });
 globalStyle(`::view-transition-old(${WORK_HEADING_TRANSITION_NAME})`, {
   animationName: workPhotoFadeOut,
-  animationDuration: "0.3s",
+  animationDuration: "0.7s",
   animationTimingFunction: "ease-out",
   animationFillMode: "both",
 });
