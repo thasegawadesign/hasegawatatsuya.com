@@ -26,7 +26,7 @@ globalStyle("::view-transition-group(*)", {
 globalStyle("::view-transition-group(profile-photo)", {
   animationTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
 });
-globalStyle("::view-transition-old(root), ::view-transition-old(about-name)", {
+globalStyle("::view-transition-old(about-name)", {
   animationDuration: "0.4s",
   animationTimingFunction: "ease-out",
 });
