@@ -58,9 +58,10 @@ export const animateLine = keyframes({
   "100%": { transform: "translateY(100%)" },
 });
 // lg 以下は見出し・本文・縦線の左端を、作品アイコン（3 列グリッドの 1 列目）の左端に揃える
-// 左端 = 中央寄せされた worksBox の左余白 + worksItem の padding + アイコンを中央に置いたときの余白
-const iconLeft = (boxWidth: number) =>
-  `calc((100% - ${boxWidth}px) / 2 + 2vw + ((${boxWidth}px - 2vw) / 3 - 4vw - 120px) / 2)`;
+// worksBox の左端からアイコンの左端まで = worksItem の padding + アイコンを中央に置いたときの余白
+const iconOffset = (boxWidth: number) => `(2vw + ((${boxWidth}px - 2vw) / 3 - 4vw - 120px) / 2)`;
+// 左端 = 中央寄せされた worksBox の左余白 + アイコンまでの余白
+const iconLeft = (boxWidth: number) => `calc((100% - ${boxWidth}px) / 2 + ${iconOffset(boxWidth)})`;
 const CONTENT_LEFT = {
   lg: iconLeft(640),
   md: iconLeft(580),
@@ -195,12 +196,18 @@ export const profileSection = style({
       gap: 48,
       maxWidth: 800,
     },
+    // 写真（row-reverse なので左側）を 1 列目、テキストを 2 列目のアイコンの左端に揃えて左詰めにする
+    // gap = 列の間隔（列幅 + worksBox の gap）- 写真の幅
     [breakpoints["lg"]]: {
-      gap: 40,
+      justifyContent: "flex-end",
+      gap: "calc((640px - 2vw) / 3 + 1vw - 180px)",
+      paddingLeft: `calc${iconOffset(640)}`,
       maxWidth: 640,
     },
+    // md は列の間隔が狭いので、写真を小さくして lg と同じくらいの gap を保つ
     [breakpoints["md"]]: {
-      gap: 36,
+      gap: "calc((580px - 2vw) / 3 + 1vw - 160px)",
+      paddingLeft: `calc${iconOffset(580)}`,
       maxWidth: 580,
     },
     [breakpoints["sm"]]: {
@@ -282,6 +289,10 @@ export const profileLinkBox = style({
   gap: 16,
   marginBottom: 56,
   "@media": {
+    // md は写真が低くなるので、テキストが写真の上端に寄らないようにアイコンと More の間を詰める
+    [breakpoints["md"]]: {
+      marginBottom: 40,
+    },
     [breakpoints["sm"]]: {
       justifyContent: "flex-end",
       gap: 12,
@@ -372,13 +383,13 @@ export const profileImageWrapper = style({
       height: 270,
     },
     [breakpoints["lg"]]: {
-      marginLeft: -40,
+      marginLeft: 0,
     },
     [breakpoints["md"]]: {
-      marginLeft: -32,
+      width: 160,
+      height: 240,
     },
     [breakpoints["sm"]]: {
-      marginLeft: 0,
       width: 120,
       height: 180,
     },
