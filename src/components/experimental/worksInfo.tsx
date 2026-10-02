@@ -15,18 +15,18 @@ import {
   worksRole,
   worksVideo,
 } from "@/components/experimental/worksInfo.css";
+import WorkTransitionMarker from "@/components/workTransitionMarker/workTransitionMarker";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
-import { getWorkTitleTransitionName } from "@/lib/workTitleTransition";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useRef, ViewTransition } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface Props {
   readonly nameJa: string;
@@ -68,7 +68,7 @@ export default function WorksInfo(props: Props) {
   const containerRef = useRef(null);
   const parallaxRef = useRef(null);
   const pathname = usePathname();
-  const headingEnRef = useRef(null);
+  const hgroupRef = useRef(null);
   const worksWhatRef = useRef(null);
   const worksWhyRef = useRef(null);
   const worksHowRef = useRef(null);
@@ -81,7 +81,7 @@ export default function WorksInfo(props: Props) {
     gsap.registerPlugin(ScrollTrigger);
 
     const parallax = gsapAnimation.parallaxRange(containerRef, parallaxRef, 80);
-    gsapAnimation.inview(headingEnRef);
+    gsapAnimation.inview(hgroupRef);
     gsapAnimation.inview(worksWhatRef);
     gsapAnimation.inview(worksWhyRef);
     gsapAnimation.inview(worksHowRef);
@@ -126,14 +126,12 @@ export default function WorksInfo(props: Props) {
           )}
         </div>
       </div>
-      <hgroup className={clsx(hgroupHeading)}>
-        <h1 ref={headingEnRef} className={clsx(cormorant.className, hgroupHeadingEn)}>
+      <WorkTransitionMarker href={pathname} />
+      <hgroup ref={hgroupRef} className={clsx(hgroupHeading)}>
+        <h1 className={clsx(cormorant.className, hgroupHeadingEn)}>
           {nameEnNode ? nameEnNode : nameEn}
         </h1>
-        {/* 一覧の作品名から移動してくるため、inview のフェードはかけない */}
-        <ViewTransition name={getWorkTitleTransitionName(pathname)} share="auto" default="none">
-          <p className={clsx(hgroupHeadingJa)}>{nameJaNode ? nameJaNode : nameJa}</p>
-        </ViewTransition>
+        <p className={clsx(hgroupHeadingJa)}>{nameJaNode ? nameJaNode : nameJa}</p>
       </hgroup>
       <dl className={clsx(worksDl)}>
         <div ref={worksWhatRef} className={clsx(worksDlItem)}>

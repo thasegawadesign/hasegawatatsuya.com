@@ -369,6 +369,8 @@ export const profileMore = style({
 });
 export const profileImageWrapper = style({
   position: "relative",
+  // About の写真（2:3）と比率をそろえ、View Transition で歪まないように縮ませない
+  flexShrink: 0,
   marginLeft: -140,
   width: 200,
   height: 300,

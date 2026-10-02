@@ -1,4 +1,4 @@
-import { SITE_HAMBURGER_TRANSITION_NAME } from "@/lib/workTitleTransition";
+import { SITE_HAMBURGER_TRANSITION_NAME } from "@/lib/viewTransitionNames";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 

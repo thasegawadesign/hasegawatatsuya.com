@@ -43,6 +43,7 @@ import {
   ABOUT_PHOTO_WIDTH,
   PROFILE_PHOTO_TRANSITION_NAME,
 } from "@/lib/preloadAboutPhoto";
+import { morphProfilePhotoWithTransform } from "@/lib/profilePhotoTransition";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -134,7 +135,12 @@ export default function Main() {
             <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
           </h1>
           <div ref={tiltRef} className={clsx(tilt)}>
-            <ViewTransition name={PROFILE_PHOTO_TRANSITION_NAME} share="auto" default="none">
+            <ViewTransition
+              name={PROFILE_PHOTO_TRANSITION_NAME}
+              share="auto"
+              default="none"
+              onShare={morphProfilePhotoWithTransform}
+            >
               <div className={clsx(photoBox)}>
                 <div className={clsx(photoMagic)}>
                   <div className={clsx(photoMagicInner)}>

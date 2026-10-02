@@ -145,6 +145,10 @@ export const photoMagic = style({
       animation: `${photoMagicSpin} 12s linear infinite`,
       content: '""',
     },
+    // 遷移中は写真のスナップショットが毎フレーム再描画されるので、グラデーションの回転を止める
+    "html:active-view-transition &::before, html:active-view-transition &::after": {
+      animationPlayState: "paused",
+    },
   },
   "@media": {
     [breakpoints["sm"]]: {

@@ -33,6 +33,7 @@ import {
   sectionHeading,
   worksSection,
 } from "@/components/main/home/main.css";
+import { morphProfilePhotoWithTransform } from "@/lib/profilePhotoTransition";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -315,7 +316,12 @@ export default function Main() {
               </Link>
             </div>
             <div className={clsx(profileImageWrapper)}>
-              <ViewTransition name={PROFILE_PHOTO_TRANSITION_NAME} share="auto" default="none">
+              <ViewTransition
+                name={PROFILE_PHOTO_TRANSITION_NAME}
+                share="auto"
+                default="none"
+                onShare={morphProfilePhotoWithTransform}
+              >
                 <div ref={profileImageContainerRef} className={clsx(profileImageContainer)}>
                   <div ref={profileImageParallaxRef} className={clsx(motionDiv)}>
                     <Image

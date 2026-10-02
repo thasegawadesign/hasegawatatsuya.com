@@ -1,5 +1,5 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
-import { SITE_NAV_TRANSITION_NAME } from "@/lib/workTitleTransition";
+import { SITE_NAV_TRANSITION_NAME } from "@/lib/viewTransitionNames";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 

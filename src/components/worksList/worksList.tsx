@@ -9,16 +9,16 @@ import {
   worksNameSpan,
   worksTextBox,
 } from "@/components/main/home/main.css";
+import WorkTransitionMarker from "@/components/workTransitionMarker/workTransitionMarker";
 import { WORKS } from "@/constants/works";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import { preloadNextPageMainVisual } from "@/lib/preloadNextPageMainVisual";
-import { getWorkTitleTransitionName } from "@/lib/workTitleTransition";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, ViewTransition } from "react";
+import { useEffect, useRef } from "react";
 
 export default function WorksList() {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -39,21 +39,16 @@ export default function WorksList() {
         return (
           <section key={work.id} className={clsx(worksItem)}>
             <div className={clsx(worksTextBox)}>
-              <ViewTransition
-                name={getWorkTitleTransitionName(work.href)}
-                share="work-title"
-                default="none"
-              >
-                <h3 id={work.id} className={clsx(worksName)}>
-                  {useNameSpans
-                    ? work.nameLines.map((line) => (
-                        <span key={line} className={clsx(worksNameSpan)}>
-                          {line}
-                        </span>
-                      ))
-                    : work.nameLines[0]}
-                </h3>
-              </ViewTransition>
+              <WorkTransitionMarker href={work.href} />
+              <h3 id={work.id} className={clsx(worksName)}>
+                {useNameSpans
+                  ? work.nameLines.map((line) => (
+                      <span key={line} className={clsx(worksNameSpan)}>
+                        {line}
+                      </span>
+                    ))
+                  : work.nameLines[0]}
+              </h3>
               <p className={clsx(worksCategory)}>{work.category}</p>
             </div>
             <WorksIconLink
