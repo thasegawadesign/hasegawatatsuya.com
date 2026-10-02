@@ -26,11 +26,6 @@ globalStyle("::view-transition-group(*)", {
 globalStyle("::view-transition-group(profile-photo)", {
   animationTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
 });
-// React は root に変化がないと判断すると group(root) を opacity 0 にして旧ページを即座に消すため、
-// 作品写真だけが新しいページの上に残って見える。旧ページもフェードアウトさせるよう打ち消す
-globalStyle("::view-transition-group(root)", {
-  opacity: "1 !important",
-});
 globalStyle("::view-transition-old(root), ::view-transition-old(about-name)", {
   animationDuration: "0.4s",
   animationTimingFunction: "ease-out",
