@@ -41,13 +41,14 @@ import {
   ABOUT_PHOTO_SIZES,
   ABOUT_PHOTO_SRC,
   ABOUT_PHOTO_WIDTH,
+  PROFILE_PHOTO_TRANSITION_NAME,
 } from "@/lib/preloadAboutPhoto";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, ViewTransition, type MouseEvent } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
@@ -133,21 +134,23 @@ export default function Main() {
             <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
           </h1>
           <div ref={tiltRef} className={clsx(tilt)}>
-            <div className={clsx(photoBox)}>
-              <div className={clsx(photoMagic)}>
-                <div className={clsx(photoMagicInner)}>
-                  <Image
-                    src={ABOUT_PHOTO_SRC}
-                    width={ABOUT_PHOTO_WIDTH}
-                    height={ABOUT_PHOTO_HEIGHT}
-                    sizes={ABOUT_PHOTO_SIZES}
-                    alt="長谷川達也"
-                    className={clsx(photo)}
-                    priority
-                  />
+            <ViewTransition name={PROFILE_PHOTO_TRANSITION_NAME} share="auto" default="none">
+              <div className={clsx(photoBox)}>
+                <div className={clsx(photoMagic)}>
+                  <div className={clsx(photoMagicInner)}>
+                    <Image
+                      src={ABOUT_PHOTO_SRC}
+                      width={ABOUT_PHOTO_WIDTH}
+                      height={ABOUT_PHOTO_HEIGHT}
+                      sizes={ABOUT_PHOTO_SIZES}
+                      alt="長谷川達也"
+                      className={clsx(photo)}
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            </ViewTransition>
           </div>
         </section>
         <ul className={clsx(profileLinkBox)}>

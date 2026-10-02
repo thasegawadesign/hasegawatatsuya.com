@@ -17,6 +17,20 @@ export const vars = createGlobalTheme(":root", {
 globalStyle("::view-transition-group(*)", {
   animationDuration: "0.8s",
 });
+globalStyle("::view-transition-group(profile-photo)", {
+  animationTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
+});
+globalStyle("::view-transition-old(root), ::view-transition-old(about-name)", {
+  animationDuration: "0.4s",
+  animationTimingFunction: "ease-out",
+});
+globalStyle("::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*)", {
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: "none",
+    },
+  },
+});
 
 export const desktopBr = style({
   "@media": {

@@ -56,11 +56,15 @@ import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
-import { ABOUT_PHOTO_SRC, preloadAboutPhoto } from "@/lib/preloadAboutPhoto";
+import {
+  ABOUT_PHOTO_SRC,
+  PROFILE_PHOTO_TRANSITION_NAME,
+  preloadAboutPhoto,
+} from "@/lib/preloadAboutPhoto";
 import { desktopBr, mobileBr } from "@/styles/styles.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, ViewTransition, type MouseEvent } from "react";
 
 export default function Main() {
   const [emailCopied, setEmailCopied] = useState(false);
@@ -316,17 +320,19 @@ export default function Main() {
               </Link>
             </div>
             <div className={clsx(profileImageWrapper)}>
-              <div ref={profileImageContainerRef} className={clsx(profileImageContainer)}>
-                <div ref={profileImageParallaxRef} className={clsx(motionDiv)}>
-                  <Image
-                    src={ABOUT_PHOTO_SRC}
-                    alt="長谷川達也"
-                    className={clsx(profileImage)}
-                    fill
-                    sizes="(max-width: 640px) 120px, (max-width: 1280px) 180px, 200px"
-                  />
+              <ViewTransition name={PROFILE_PHOTO_TRANSITION_NAME} share="auto" default="none">
+                <div ref={profileImageContainerRef} className={clsx(profileImageContainer)}>
+                  <div ref={profileImageParallaxRef} className={clsx(motionDiv)}>
+                    <Image
+                      src={ABOUT_PHOTO_SRC}
+                      alt="長谷川達也"
+                      className={clsx(profileImage)}
+                      fill
+                      sizes="(max-width: 640px) 120px, (max-width: 1280px) 180px, 200px"
+                    />
+                  </div>
                 </div>
-              </div>
+              </ViewTransition>
             </div>
           </section>
         </section>
