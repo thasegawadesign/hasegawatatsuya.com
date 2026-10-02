@@ -17,6 +17,9 @@ const shaderMinifyRule = {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // iPhone など同じ LAN の端末から dev サーバーを確認できるようにする
+  // （許可しないと開発用リソースがブロックされ、View Transition などが確認できない）
+  allowedDevOrigins: ["192.168.*.*"],
   serverExternalPackages: ["esbuild"],
   turbopack: {
     rules: {
