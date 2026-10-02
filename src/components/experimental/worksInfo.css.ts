@@ -1,4 +1,5 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
+import { WORK_PHOTO_TRANSITION_NAME } from "@/lib/workTitleTransition";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -7,6 +8,7 @@ export const container = style({
   position: "relative",
   borderRadius: "36px 36px 0 0",
   overflow: "hidden",
+  viewTransitionName: WORK_PHOTO_TRANSITION_NAME,
 });
 
 export const worksImage = style({
