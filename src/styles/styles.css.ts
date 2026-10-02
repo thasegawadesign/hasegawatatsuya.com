@@ -2,7 +2,7 @@ import {
   SITE_HAMBURGER_TRANSITION_NAME,
   SITE_NAV_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
-} from "@/lib/workTitleTransition";
+} from "@/lib/viewTransitionNames";
 import { createGlobalTheme, globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
@@ -22,7 +22,7 @@ export const vars = createGlobalTheme(":root", {
 globalStyle("::view-transition-group(*)", {
   animationDuration: "0.8s",
 });
-globalStyle("::view-transition-group(profile-photo), ::view-transition-group(*.work-title)", {
+globalStyle("::view-transition-group(profile-photo)", {
   animationTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
 });
 globalStyle("::view-transition-old(root), ::view-transition-old(about-name)", {

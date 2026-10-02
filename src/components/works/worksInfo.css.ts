@@ -1,5 +1,5 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
-import { WORK_PHOTO_TRANSITION_NAME } from "@/lib/workTitleTransition";
+import { WORK_PHOTO_TRANSITION_NAME } from "@/lib/viewTransitionNames";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
