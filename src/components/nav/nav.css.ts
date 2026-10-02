@@ -1,4 +1,5 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
+import { SITE_NAV_TRANSITION_NAME } from "@/lib/workTitleTransition";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -11,6 +12,8 @@ export const nav = style({
   display: "flex",
   flexDirection: "column",
   gap: 12,
+  // 遷移中も作品写真より手前に保つ（fixed の実体に名前を付ける）
+  viewTransitionName: SITE_NAV_TRANSITION_NAME,
   "@media": {
     [breakpoints["2xl"]]: {
       left: "calc(7vw + 36px)",

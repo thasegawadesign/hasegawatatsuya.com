@@ -1,3 +1,4 @@
+import { SITE_HAMBURGER_TRANSITION_NAME } from "@/lib/workTitleTransition";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -17,6 +18,8 @@ export const hamburgerMenu = style({
       top: "9vw",
       right: "9vw",
       display: "flex",
+      // display:none のデスクトップではキャプチャ対象外。モバイルだけ手前に固定する
+      viewTransitionName: SITE_HAMBURGER_TRANSITION_NAME,
     },
   },
 });
