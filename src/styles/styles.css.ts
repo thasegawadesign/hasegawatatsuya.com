@@ -1,4 +1,8 @@
-import { WORK_PHOTO_TRANSITION_NAME } from "@/lib/workTitleTransition";
+import {
+  SITE_HAMBURGER_TRANSITION_NAME,
+  SITE_NAV_TRANSITION_NAME,
+  WORK_PHOTO_TRANSITION_NAME,
+} from "@/lib/workTitleTransition";
 import { createGlobalTheme, globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
@@ -35,6 +39,7 @@ const workPhotoFadeIn = keyframes({
   to: { opacity: 1 },
 });
 globalStyle(`::view-transition-group(${WORK_PHOTO_TRANSITION_NAME})`, {
+  zIndex: 1,
   animation: "none",
 });
 globalStyle(`::view-transition-old(${WORK_PHOTO_TRANSITION_NAME})`, {
@@ -49,6 +54,20 @@ globalStyle(`::view-transition-new(${WORK_PHOTO_TRANSITION_NAME})`, {
   animationTimingFunction: "ease-out",
   animationFillMode: "both",
 });
+// ナビ／ハンバーガーは作品写真・ページ本体より手前に固定し、位置は動かさない
+globalStyle(
+  `::view-transition-group(${SITE_NAV_TRANSITION_NAME}), ::view-transition-group(${SITE_HAMBURGER_TRANSITION_NAME})`,
+  {
+    zIndex: 100,
+    animation: "none",
+  },
+);
+globalStyle(
+  `::view-transition-old(${SITE_NAV_TRANSITION_NAME}), ::view-transition-new(${SITE_NAV_TRANSITION_NAME}), ::view-transition-old(${SITE_HAMBURGER_TRANSITION_NAME}), ::view-transition-new(${SITE_HAMBURGER_TRANSITION_NAME})`,
+  {
+    animation: "none",
+  },
+);
 globalStyle("::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*)", {
   "@media": {
     "(prefers-reduced-motion: reduce)": {
