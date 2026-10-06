@@ -299,6 +299,7 @@ export const occupation = style({
   position: "relative",
   zIndex: 20,
   marginBottom: "clamp(60px, 5vw, 80px)",
+  padding: "0 4vw",
   textAlign: "center",
   lineHeight: 1.2,
   letterSpacing: "-0.08em",
@@ -307,7 +308,7 @@ export const occupation = style({
   fontWeight: 600,
   "@media": {
     [breakpoints["sm"]]: {
-      marginLeft: "8vw",
+      padding: "0 8vw",
       textAlign: "left",
     },
   },
