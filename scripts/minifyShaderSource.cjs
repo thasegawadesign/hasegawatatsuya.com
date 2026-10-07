@@ -71,7 +71,7 @@ function collapseLine(line) {
 }
 
 /**
- * 行を結合して 1 本に近づける。`#` プリプロセッサ行の直後だけ改行を残す。
+ * `#` プリプロセッサ行の直後だけ改行を残す（それ以外は空白を詰める）。
  * @param {string} source
  * @returns {string}
  */
