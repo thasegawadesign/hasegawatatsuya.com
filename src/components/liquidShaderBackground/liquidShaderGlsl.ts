@@ -1,7 +1,7 @@
 import { minifyShader } from "@/lib/minifyShader";
 
 /**
- * 液体背景の GLSL。boot スクリプトと RawShaderMaterial が同じフラグメントを共有する。
+ * boot スクリプトと RawShaderMaterial が同じフラグメントを共有する。
  * brandPlum = #8F2C71 / brandF70 = #f70
  */
 

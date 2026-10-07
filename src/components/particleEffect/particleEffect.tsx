@@ -30,7 +30,6 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
     const mount = mountRef.current;
     if (!isEnabled || !mount) return;
 
-    // シーンの初期化
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -49,11 +48,10 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setPixelRatio(getCanvasPixelRatio());
-    renderer.setClearColor(0x000000, 0); // 透明背景
+    renderer.setClearColor(0x000000, 0);
 
     mount.appendChild(renderer.domElement);
 
-    // オーブ状の粒子を作成
     const particleCount = 32;
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
@@ -147,7 +145,6 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
     camera.position.z = 8;
 
-    // 参照を保存
     sceneRef.current = scene;
     rendererRef.current = renderer;
     particlesRef.current = {
@@ -158,7 +155,6 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
       material,
     };
 
-    // マウスイベント
     interface MouseEventWithClient extends MouseEvent {
       clientX: number;
       clientY: number;
@@ -171,7 +167,6 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // リサイズ処理
     const handleResize = () => {
       if (!mount) return;
 
@@ -207,17 +202,14 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
           for (let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
 
-            // 粒子の移動
             positions[i3] += velocities[i3];
             positions[i3 + 1] += velocities[i3 + 1];
             positions[i3 + 2] += velocities[i3 + 2];
 
-            // マウスの影響を追加
             const mouseInfluence = 0.001;
             positions[i3] += mouseRef.current.x * mouseInfluence;
             positions[i3 + 1] += mouseRef.current.y * mouseInfluence;
 
-            // 境界での反射
             if (Math.abs(positions[i3]) > 8) velocities[i3] *= -1;
             if (Math.abs(positions[i3 + 1]) > 8) velocities[i3 + 1] *= -1;
             if (Math.abs(positions[i3 + 2]) > 8) velocities[i3 + 2] *= -1;
@@ -226,7 +218,6 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
           geometry.attributes.position.needsUpdate = true;
         }
 
-        // カメラを少し回転
         camera.position.x = Math.sin(timestamp * 0.0001) * 0.5;
         camera.position.y = Math.cos(timestamp * 0.0001) * 0.5;
         camera.lookAt(0, 0, 0);
@@ -243,7 +234,6 @@ export default function ParticleEffect({ isEnabled = true }: ParticleEffectProps
     document.addEventListener("visibilitychange", onVisibility);
     startLoop();
 
-    // クリーンアップ
     return () => {
       document.removeEventListener("visibilitychange", onVisibility);
       stopLoop();

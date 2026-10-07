@@ -1,6 +1,5 @@
 import confetti from "canvas-confetti";
 
-/** クリック位置を中心に、canvas-confetti の花火バーストを再生する */
 export function playFireworksAt(clientX: number, clientY: number) {
   if (typeof window === "undefined") return;
 
