@@ -43,7 +43,7 @@
     "esbuild": "^0.28.2",
     "lefthook": "^2.1.17",
     "lint-staged": "^17.6.0",
-    "oxfmt": "^0.57.0",
+    "oxfmt": "^0.72.0",
     "oxlint": "^1.87.0",
     "stylelint": "^17.16.0",
     "stylelint-config-recommended": "^18.0.0",
