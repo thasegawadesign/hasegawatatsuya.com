@@ -98,12 +98,13 @@ vec2 vortexTwist(vec2 p, vec2 center, float t, float strength) {
 vec2 shockwave(vec2 p, vec2 center, float age, float strength) {
   vec2 d = p - center;
   float r = length(d) + 1e-4;
-  float front = r - 3.0 * (1.0 - exp(-age * 2.6));
-  float band = exp(-front * front * 9.0);
-  float ripple = sin(front * 16.0) * band;
+  float front = r - 3.2 * (1.0 - exp(-age * 7.0));
+  float band = exp(-front * front * 14.0);
+  float ripple = sin(front * 18.0) * band;
+  float punch = exp(-r * r * 2.2);
   vec2 dir = d / r;
   vec2 tangent = vec2(-dir.y, dir.x);
-  return p + (dir * ripple * 0.32 + tangent * band * 0.12) * strength;
+  return p + (dir * (ripple * 0.42 - punch * 0.55) + tangent * band * 0.14) * strength;
 }
 
 float heightAt(vec2 p) {

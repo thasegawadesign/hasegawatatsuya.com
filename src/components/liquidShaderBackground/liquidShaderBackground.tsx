@@ -23,7 +23,8 @@ import * as THREE from "three";
 
 const CLEAR = 0x0613d1;
 const MAX_FRAME_DELTA = 1 / 30;
-const SHOCK_DURATION = 2.4;
+const SHOCK_DURATION = 1.2;
+const SHOCK_DECAY = 4.5;
 
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
@@ -82,8 +83,8 @@ function advanceShockwave(
 ) {
   if (uShockStrength.value <= 0) return;
   uShockAge.value += delta;
-  const progress = uShockAge.value / SHOCK_DURATION;
-  uShockStrength.value = progress >= 1 ? 0 : (1 - progress) * (1 - progress);
+  uShockStrength.value =
+    uShockAge.value >= SHOCK_DURATION ? 0 : Math.exp(-uShockAge.value * SHOCK_DECAY);
 }
 
 function smoothPointerToward(current: THREE.Vector2, target: THREE.Vector2, delta: number) {
