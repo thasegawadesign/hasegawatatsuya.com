@@ -48,6 +48,7 @@ import Tooltip from "@/components/tooltip/tooltip";
 import WorksList from "@/components/worksList/worksList";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
+import { triggerLiquidShockwave } from "@/lib/liquidShockwave";
 import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
@@ -80,6 +81,10 @@ export default function Main() {
   const handleEmailClick = async (ev: MouseEvent<HTMLButtonElement>) => {
     if (emailCopyLockRef.current) return;
     emailCopyLockRef.current = true;
+    triggerLiquidShockwave(ev.clientX, ev.clientY);
+    playFireworksAt(ev.clientX, ev.clientY);
+    playSfxSuccess();
+    haptic();
     await copy(EMAIL);
     setEmailCopied(true);
 
@@ -91,10 +96,6 @@ export default function Main() {
       emailCopyLockRef.current = false;
       emailCopiedResetTimeoutRef.current = null;
     }, 2000);
-
-    playSfxSuccess();
-    haptic();
-    playFireworksAt(ev.clientX, ev.clientY);
   };
 
   const handleEmailHover = async () => {

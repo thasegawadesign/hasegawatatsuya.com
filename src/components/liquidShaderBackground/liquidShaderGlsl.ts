@@ -24,6 +24,9 @@ uniform vec2 uResolution;
 uniform float uMotion;
 uniform vec2 uPointer;
 uniform float uPointerStrength;
+uniform vec2 uShockCenter;
+uniform float uShockAge;
+uniform float uShockStrength;
 
 varying vec2 vUv;
 
@@ -92,6 +95,17 @@ vec2 vortexTwist(vec2 p, vec2 center, float t, float strength) {
   return center + vec2(cos(a), sin(a)) * r;
 }
 
+vec2 shockwave(vec2 p, vec2 center, float age, float strength) {
+  vec2 d = p - center;
+  float r = length(d) + 1e-4;
+  float front = r - 3.0 * (1.0 - exp(-age * 2.6));
+  float band = exp(-front * front * 9.0);
+  float ripple = sin(front * 16.0) * band;
+  vec2 dir = d / r;
+  vec2 tangent = vec2(-dir.y, dir.x);
+  return p + (dir * ripple * 0.32 + tangent * band * 0.12) * strength;
+}
+
 float heightAt(vec2 p) {
   return fbm(p) * 0.55 + fbmRidged(p * 1.4) * 0.45;
 }
@@ -108,6 +122,9 @@ void main() {
 
   vec2 pPointer = (uPointer - 0.5) * vec2(aspect * 2.0, 2.0);
   p = vortexTwist(p, pPointer, t * 0.82, 0.17 * uPointerStrength);
+
+  vec2 pShock = (uShockCenter - 0.5) * vec2(aspect * 2.0, 2.0);
+  p = shockwave(p, pShock, uShockAge, uShockStrength);
 
   vec2 w = domainWarp(p * 0.95 + vec2(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
   w += vec2(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * 0.12;
