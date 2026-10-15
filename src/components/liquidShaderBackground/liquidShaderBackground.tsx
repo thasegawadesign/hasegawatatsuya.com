@@ -15,6 +15,7 @@ import {
 import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
+import { subscribeLiquidShockwave } from "@/lib/liquidShockwave";
 import clsx from "clsx";
 import Image from "next/image";
 import { startTransition, useLayoutEffect, useRef, useState } from "react";
@@ -22,6 +23,7 @@ import * as THREE from "three";
 
 const CLEAR = 0x0613d1;
 const MAX_FRAME_DELTA = 1 / 30;
+const SHOCK_DURATION = 2.4;
 
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
@@ -52,6 +54,36 @@ function bindLiquidPointer(
     window.removeEventListener("pointermove", syncFromEvent);
     window.removeEventListener("pointerdown", syncFromEvent);
   };
+}
+
+function bindLiquidShockwave(
+  mount: HTMLElement,
+  uShockCenter: { value: THREE.Vector2 },
+  uShockAge: { value: number },
+  uShockStrength: { value: number },
+  isReducedMotion: () => boolean,
+) {
+  return subscribeLiquidShockwave((clientX, clientY) => {
+    if (isReducedMotion()) return;
+    const rect = mount.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return;
+    const x = (clientX - rect.left) / rect.width;
+    const y = 1 - (clientY - rect.top) / rect.height;
+    uShockCenter.value.set(THREE.MathUtils.clamp(x, 0, 1), THREE.MathUtils.clamp(y, 0, 1));
+    uShockAge.value = 0;
+    uShockStrength.value = 1;
+  });
+}
+
+function advanceShockwave(
+  uShockAge: { value: number },
+  uShockStrength: { value: number },
+  delta: number,
+) {
+  if (uShockStrength.value <= 0) return;
+  uShockAge.value += delta;
+  const progress = uShockAge.value / SHOCK_DURATION;
+  uShockStrength.value = progress >= 1 ? 0 : (1 - progress) * (1 - progress);
 }
 
 function smoothPointerToward(current: THREE.Vector2, target: THREE.Vector2, delta: number) {
@@ -149,11 +181,23 @@ export default function LiquidShaderBackground() {
     const uPointer = { value: new THREE.Vector2(0.5, 0.5) };
     const pointerTarget = new THREE.Vector2(0.5, 0.5);
     const uPointerStrength = { value: 0 };
+    const uShockCenter = { value: new THREE.Vector2(0.5, 0.5) };
+    const uShockAge = { value: 0 };
+    const uShockStrength = { value: 0 };
 
     const material = new THREE.RawShaderMaterial({
       vertexShader: LIQUID_VERTEX_SHADER,
       fragmentShader: LIQUID_FRAGMENT_SHADER,
-      uniforms: { uTime, uResolution, uMotion, uPointer, uPointerStrength },
+      uniforms: {
+        uTime,
+        uResolution,
+        uMotion,
+        uPointer,
+        uPointerStrength,
+        uShockCenter,
+        uShockAge,
+        uShockStrength,
+      },
       depthTest: false,
       depthWrite: false,
     });
@@ -179,6 +223,13 @@ export default function LiquidShaderBackground() {
     mqReduce.addEventListener("change", syncMotion);
 
     const removePointer = bindLiquidPointer(root, pointerTarget, uPointerStrength);
+    const removeShockwave = bindLiquidShockwave(
+      root,
+      uShockCenter,
+      uShockAge,
+      uShockStrength,
+      () => mqReduce.matches,
+    );
     const timer = new THREE.Timer();
     timer.connect(document);
 
@@ -188,6 +239,7 @@ export default function LiquidShaderBackground() {
       const delta = advanceTimer(timer, uTime, motion, timestamp);
       smoothPointerToward(uPointer.value, pointerTarget, delta);
       decayPointerStrength(uPointerStrength, delta);
+      advanceShockwave(uShockAge, uShockStrength, delta);
       renderer.render(scene, camera);
       return true;
     };
@@ -239,6 +291,7 @@ export default function LiquidShaderBackground() {
         document.removeEventListener("visibilitychange", onVisibility);
         stopLoop();
         removePointer();
+        removeShockwave();
         mqReduce.removeEventListener("change", syncMotion);
         timer.dispose();
         setUseStaticFallback(false);
@@ -261,6 +314,7 @@ export default function LiquidShaderBackground() {
       document.removeEventListener("visibilitychange", onVisibility);
       stopLoop();
       removePointer();
+      removeShockwave();
       mqReduce.removeEventListener("change", syncMotion);
       window.removeEventListener("resize", onResize);
       resizeObserver.disconnect();
