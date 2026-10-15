@@ -14,7 +14,7 @@ function minifyShaderSource(source) {
  */
 function stripShaderComments(source) {
   let out = "";
-  for (let i = 0; i < source.length; ) {
+  for (let i = 0; i < source.length;) {
     const a = source[i];
     const b = source[i + 1];
 
