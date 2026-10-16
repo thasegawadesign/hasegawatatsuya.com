@@ -9,7 +9,6 @@ export const containerStyle = style({
   width: "100vw",
   height: "100vh",
   overflow: "hidden",
-  // 遷移中もページのスナップショットと一緒に消えないよう、独立したグループにする
   viewTransitionName: SITE_PARTICLES_TRANSITION_NAME,
 });
 
