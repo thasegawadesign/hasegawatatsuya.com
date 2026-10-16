@@ -68,7 +68,7 @@ globalStyle(
     animation: "none",
   },
 );
-// 粒子・回転テキスト・マウスストーカーは遷移中もナビより手前に置き、動きを止めないよう新しい状態のライブ表示だけを見せる
+// 古いスナップショットは静止画なので隠し、ライブの new だけを見せないと遷移中に動きが止まって見える
 globalStyle(`::view-transition-group(${SITE_PARTICLES_TRANSITION_NAME})`, {
   zIndex: 101,
   animation: "none",
