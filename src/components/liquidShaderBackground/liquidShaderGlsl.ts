@@ -103,9 +103,9 @@ float beatKick(float age, float at) {
 // 各時刻は sfx/success.mp3 の発音に合わせてある: 0.05s クリック → 0.325・0.45・0.58s の上昇アルペジオ →
 // 0.705s の最終音（最も強く、1.22s まで余韻が続く）。アルペジオ 1 音ごとに吸い込みを一段強め、最終音で封じる。
 // 音源を差し替えたら測り直すこと。
-// 変化が発音より後から始まると遅れて見えるので、各遷移は発音時刻を中心にまたぐ幅で取り、さらに描画の 1〜2 フレーム遅れ分 LEAD で前倒しする
+// 変化が発音より後から始まると遅れて見えるので、各遷移は発音時刻を中心にまたぐ幅で取り、さらに描画遅れと体感に合わせて LEAD で前倒しする
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
-  const float LEAD = 0.04;
+  const float LEAD = 0.06;
   age += LEAD;
   const float CLICK = 0.05;
   const float N1 = 0.325;
