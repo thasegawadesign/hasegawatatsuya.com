@@ -1,4 +1,5 @@
 import {
+  SITE_CURSOR_TRANSITION_NAME,
   SITE_HAMBURGER_TRANSITION_NAME,
   SITE_NAV_TRANSITION_NAME,
   WORK_HEADING_TRANSITION_NAME,
@@ -65,6 +66,17 @@ globalStyle(
     animation: "none",
   },
 );
+// マウスストーカーは遷移中もナビより手前に置き、動きを止めないよう新しい状態のライブ表示だけを見せる
+globalStyle(`::view-transition-group(${SITE_CURSOR_TRANSITION_NAME})`, {
+  zIndex: 101,
+  animation: "none",
+});
+globalStyle(`::view-transition-old(${SITE_CURSOR_TRANSITION_NAME})`, {
+  display: "none",
+});
+globalStyle(`::view-transition-new(${SITE_CURSOR_TRANSITION_NAME})`, {
+  animation: "none",
+});
 globalStyle("::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*)", {
   "@media": {
     "(prefers-reduced-motion: reduce)": {

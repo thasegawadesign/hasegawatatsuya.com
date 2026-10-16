@@ -312,6 +312,14 @@ export function createBubble(
 
   let captureTarget = resolveCaptureTarget();
 
+  function isViewTransitionActive() {
+    try {
+      return document.documentElement.matches(":active-view-transition");
+    } catch {
+      return false;
+    }
+  }
+
   let contentDirty = false;
   let wake = () => {};
 
@@ -322,6 +330,8 @@ export function createBubble(
 
   if (htmlInCanvas) {
     paintable.onpaint = () => {
+      // View Transition 中はページ本体が描画されず空の画像になり、バブルが一瞬消えるため、直前の画像を使い続ける
+      if (isViewTransitionActive()) return;
       try {
         sourceCtx!.reset();
         sourceCtx!.drawElementImage!(captureTarget, 0, 0);
