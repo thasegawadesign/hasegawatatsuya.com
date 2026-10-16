@@ -95,23 +95,35 @@ vec2 vortexTwist(vec2 p, vec2 center, float t, float strength) {
   return center + vec2(cos(a), sin(a)) * r;
 }
 
-// 竜巻状に渦を巻きながら中心へ吸い込み、SEAL で蓋を閉じた反動の波紋を一度だけ出す
+float beatKick(float age, float at) {
+  return step(at, age) * exp(-(age - at) * 14.0);
+}
+
+// 竜巻状に渦を巻きながら中心へ吸い込み、SEAL で蓋を閉じた反動の波紋を一度だけ出す。
+// 各時刻は sfx/success.mp3 の音量包絡に合わせてある（0.04s クリック / 0.32s 本体の立ち上がり /
+// 0.46・0.58・0.70s のアクセント / 0.84s から減衰して 1.2s で無音）。音源を差し替えたら測り直すこと
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
-  const float SEAL = 1.15;
+  const float START = 0.32;
+  const float SEAL = 0.84;
+  const float SEAL_END = 1.12;
   vec2 d = p - center;
   float r = length(d) + 1e-4;
-  float env = smoothstep(0.0, 0.22, age) * (1.0 - smoothstep(SEAL, SEAL + 0.18, age)) * strength;
+  float body = smoothstep(START, START + 0.1, age) * (1.0 - smoothstep(SEAL, SEAL_END, age));
+  float beat = beatKick(age, 0.46) + beatKick(age, 0.58) + beatKick(age, 0.70);
+  float click = beatKick(age, 0.04) * 0.3;
+  float env = (body * (1.0 + beat * 0.3) + click) * strength;
+  float la = max(age - START, 0.0);
   // 画面全体を巻き込むため、半径は画面対角（16:9 で約 4.1）より広く取り、遠方でも 6 割の強さを残す
   float reach = mix(0.6, 1.0, 1.0 - smoothstep(0.0, 4.5, r));
 
-  float accel = 0.5 + age * 2.4;
+  float accel = 0.5 + la * 4.0;
   float swirl = env * reach * (2.4 / (r + 0.28) + 1.6) * accel;
   swirl += env * reach * sin(r * 8.0 - age * 24.0) * 0.55;
   float a = atan(d.y, d.x) + swirl;
-  float rr = r * (1.0 + env * reach * (1.1 + age * 2.2)) + env * reach * 0.14;
+  float rr = r * (1.0 + env * reach * (1.1 + la * 3.0)) + env * reach * 0.14;
   vec2 q = center + vec2(cos(a), sin(a)) * rr;
 
-  float since = age - SEAL - 0.12;
+  float since = age - SEAL_END + 0.08;
   float thud = step(0.0, since) * exp(-since * 4.0) * strength;
   float front = r - since * 4.5;
   float band = exp(-front * front * 14.0);

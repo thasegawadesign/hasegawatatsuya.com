@@ -24,7 +24,7 @@ import * as THREE from "three";
 const CLEAR = 0x0613d1;
 const MAX_FRAME_DELTA = 1 / 30;
 // 吸い込み〜封印の包絡はシェーダー側（suctionVortex）が age から決めるので、ここは終了判定だけ持つ
-const SHOCK_DURATION = 2.0;
+const SHOCK_DURATION = 1.8;
 
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
