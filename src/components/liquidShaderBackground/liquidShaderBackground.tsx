@@ -23,8 +23,8 @@ import * as THREE from "three";
 
 const CLEAR = 0x0613d1;
 const MAX_FRAME_DELTA = 1 / 30;
-const SHOCK_DURATION = 1.2;
-const SHOCK_DECAY = 4.5;
+// 吸い込み〜封印の包絡はシェーダー側（suctionVortex）が age から決めるので、ここは終了判定だけ持つ
+const SHOCK_DURATION = 1.8;
 
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
@@ -83,8 +83,7 @@ function advanceShockwave(
 ) {
   if (uShockStrength.value <= 0) return;
   uShockAge.value += delta;
-  uShockStrength.value =
-    uShockAge.value >= SHOCK_DURATION ? 0 : Math.exp(-uShockAge.value * SHOCK_DECAY);
+  if (uShockAge.value >= SHOCK_DURATION) uShockStrength.value = 0;
 }
 
 function smoothPointerToward(current: THREE.Vector2, target: THREE.Vector2, delta: number) {

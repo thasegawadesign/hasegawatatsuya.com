@@ -95,16 +95,39 @@ vec2 vortexTwist(vec2 p, vec2 center, float t, float strength) {
   return center + vec2(cos(a), sin(a)) * r;
 }
 
-vec2 shockwave(vec2 p, vec2 center, float age, float strength) {
+float beatKick(float age, float at) {
+  return step(at, age) * exp(-(age - at) * 14.0);
+}
+
+// 竜巻状に渦を巻きながら中心へ吸い込み、SEAL で蓋を閉じた反動の波紋を一度だけ出す。
+// 各時刻は sfx/success.mp3 の音量包絡に合わせてある（0.04s クリック / 0.32s 本体の立ち上がり /
+// 0.46・0.58・0.70s のアクセント / 0.84s から減衰して 1.2s で無音）。音源を差し替えたら測り直すこと
+vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
+  const float START = 0.32;
+  const float SEAL = 0.84;
+  const float SEAL_END = 1.12;
   vec2 d = p - center;
   float r = length(d) + 1e-4;
-  float front = r - 3.2 * (1.0 - exp(-age * 7.0));
+  float body = smoothstep(START, START + 0.1, age) * (1.0 - smoothstep(SEAL, SEAL_END, age));
+  float beat = beatKick(age, 0.46) + beatKick(age, 0.58) + beatKick(age, 0.70);
+  float click = beatKick(age, 0.04) * 0.3;
+  float env = (body * (1.0 + beat * 0.3) + click) * strength;
+  float la = max(age - START, 0.0);
+  // 画面全体を巻き込むため、半径は画面対角（16:9 で約 4.1）より広く取り、遠方でも 6 割の強さを残す
+  float reach = mix(0.6, 1.0, 1.0 - smoothstep(0.0, 4.5, r));
+
+  float accel = 0.5 + la * 4.0;
+  float swirl = env * reach * (2.4 / (r + 0.28) + 1.6) * accel;
+  swirl += env * reach * sin(r * 8.0 - age * 24.0) * 0.55;
+  float a = atan(d.y, d.x) + swirl;
+  float rr = r * (1.0 + env * reach * (1.1 + la * 3.0)) + env * reach * 0.14;
+  vec2 q = center + vec2(cos(a), sin(a)) * rr;
+
+  float since = age - SEAL_END + 0.08;
+  float thud = step(0.0, since) * exp(-since * 4.0) * strength;
+  float front = r - since * 4.5;
   float band = exp(-front * front * 14.0);
-  float ripple = sin(front * 18.0) * band;
-  float punch = exp(-r * r * 2.2);
-  vec2 dir = d / r;
-  vec2 tangent = vec2(-dir.y, dir.x);
-  return p + (dir * (ripple * 0.42 - punch * 0.55) + tangent * band * 0.14) * strength;
+  return q + (d / r) * sin(front * 18.0) * band * 0.16 * thud;
 }
 
 float heightAt(vec2 p) {
@@ -125,7 +148,9 @@ void main() {
   p = vortexTwist(p, pPointer, t * 0.82, 0.17 * uPointerStrength);
 
   vec2 pShock = (uShockCenter - 0.5) * vec2(aspect * 2.0, 2.0);
-  p = shockwave(p, pShock, uShockAge, uShockStrength);
+  // 吸い込みは画面外の遠い座標を参照するので、ビネットを歪み後の p で取ると画面全体が暗く落ちる
+  vec2 pVig = p;
+  p = suctionVortex(p, pShock, uShockAge, uShockStrength);
 
   vec2 w = domainWarp(p * 0.95 + vec2(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
   w += vec2(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * 0.12;
@@ -199,7 +224,7 @@ void main() {
   float darkForWine = 1.0 - smoothstep(0.0, 0.48, lumAfter);
   col = mix(col, shadowWine, 0.1 * darkForWine);
 
-  float vig = 1.0 - dot(p * 0.28, p * 0.28);
+  float vig = 1.0 - dot(pVig * 0.28, pVig * 0.28);
   col *= clamp(vig * 0.9 + 0.24, 0.0, 1.0);
 
   gl_FragColor = vec4(col, 1.0);
