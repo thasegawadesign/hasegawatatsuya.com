@@ -1,3 +1,4 @@
+import { SITE_TEXT_CIRCLE_TRANSITION_NAME } from "@/lib/viewTransitionNames";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -18,6 +19,8 @@ export const circle = style({
   animationTimingFunction: "linear",
   animationIterationCount: "infinite",
   fontSize: "12px",
+  // 遷移中も粒子や作品写真より手前に出すため、独立したグループにする
+  viewTransitionName: SITE_TEXT_CIRCLE_TRANSITION_NAME,
   selectors: {
     "&:hover": {
       animationPlayState: "paused",
