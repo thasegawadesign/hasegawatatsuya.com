@@ -99,35 +99,42 @@ float beatKick(float age, float at) {
   return step(at, age) * exp(-(age - at) * 14.0);
 }
 
-// 竜巻状に渦を巻きながら中心へ吸い込み、SEAL で蓋を閉じた反動の波紋を一度だけ出す。
-// 各時刻は sfx/success.mp3 の音量包絡に合わせてある（0.04s クリック / 0.32s 本体の立ち上がり /
-// 0.46・0.58・0.70s のアクセント / 0.84s から減衰して 1.2s で無音）。音源を差し替えたら測り直すこと
+// 竜巻状に渦を巻きながら中心へ吸い込み、最後に蓋を閉じた反動の波紋を一度だけ出す。
+// 各時刻は sfx/success.mp3 の発音に合わせてある: 0.05s クリック → 0.325・0.45・0.58s の上昇アルペジオ →
+// 0.705s の最終音（最も強く、1.22s まで余韻が続く）。アルペジオ 1 音ごとに吸い込みを一段強め、最終音で封じる。
+// 音源を差し替えたら測り直すこと
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
-  const float START = 0.32;
-  const float SEAL = 0.84;
-  const float SEAL_END = 1.12;
+  const float CLICK = 0.05;
+  const float N1 = 0.325;
+  const float N2 = 0.45;
+  const float N3 = 0.58;
+  const float SEAL = 0.705;
   vec2 d = p - center;
   float r = length(d) + 1e-4;
-  float body = smoothstep(START, START + 0.1, age) * (1.0 - smoothstep(SEAL, SEAL_END, age));
-  float beat = beatKick(age, 0.46) + beatKick(age, 0.58) + beatKick(age, 0.70);
-  float click = beatKick(age, 0.04) * 0.3;
-  float env = (body * (1.0 + beat * 0.3) + click) * strength;
-  float la = max(age - START, 0.0);
+  float level =
+    0.5 * smoothstep(N1, N1 + 0.04, age) +
+    0.25 * smoothstep(N2, N2 + 0.04, age) +
+    0.25 * smoothstep(N3, N3 + 0.04, age);
+  float body = level * (1.0 - smoothstep(SEAL, SEAL + 0.09, age));
+  float beat = beatKick(age, N1) + beatKick(age, N2) + beatKick(age, N3);
+  float click = beatKick(age, CLICK) * 0.3;
+  float env = (body * (1.0 + beat * 0.35) + click) * strength;
+  float la = max(age - N1, 0.0);
   // 画面全体を巻き込むため、半径は画面対角（16:9 で約 4.1）より広く取り、遠方でも 6 割の強さを残す
   float reach = mix(0.6, 1.0, 1.0 - smoothstep(0.0, 4.5, r));
 
-  float accel = 0.5 + la * 4.0;
+  float accel = 0.9 + la * 5.0;
   float swirl = env * reach * (2.4 / (r + 0.28) + 1.6) * accel;
   swirl += env * reach * sin(r * 8.0 - age * 24.0) * 0.55;
   float a = atan(d.y, d.x) + swirl;
-  float rr = r * (1.0 + env * reach * (1.1 + la * 3.0)) + env * reach * 0.14;
+  float rr = r * (1.0 + env * reach * (1.1 + la * 4.0)) + env * reach * 0.14;
   vec2 q = center + vec2(cos(a), sin(a)) * rr;
 
-  float since = age - SEAL_END + 0.08;
+  float since = age - SEAL;
   float thud = step(0.0, since) * exp(-since * 4.0) * strength;
-  float front = r - since * 4.5;
+  float front = r - since * 6.0;
   float band = exp(-front * front * 14.0);
-  return q + (d / r) * sin(front * 18.0) * band * 0.16 * thud;
+  return q + (d / r) * sin(front * 18.0) * band * 0.18 * thud;
 }
 
 float heightAt(vec2 p) {
