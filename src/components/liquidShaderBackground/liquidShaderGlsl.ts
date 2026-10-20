@@ -105,7 +105,7 @@ float beatKick(float age, float at) {
 // 音源を差し替えたら測り直すこと。
 // 変化が発音より後から始まると遅れて見えるので、各遷移は発音時刻を中心にまたぐ幅で取り、さらに描画遅れと体感に合わせて LEAD で前倒しする
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
-  const float LEAD = 0.06;
+  const float LEAD = 0.08;
   age += LEAD;
   const float CLICK = 0.05;
   const float N1 = 0.325;
