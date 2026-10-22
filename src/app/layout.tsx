@@ -22,6 +22,7 @@ const TITLE = "長谷川 達也 | ポートフォリオ";
 const DESCRIPTION =
   "Webデザイナー、フロントエンドエンジニア 長谷川 達也のポートフォリオです。実際に触れることのできるWeb制作物をデザイン・実装することに喜びを感じます。書いたコードが画面に反映される感動を学習を始めて以来ずっと持ち続けています。";
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: TITLE,
   description: DESCRIPTION,
   verification: {
