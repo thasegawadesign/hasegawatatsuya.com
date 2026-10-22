@@ -25,6 +25,7 @@ import {
   profileLink,
   profileLinkBox,
   profileLinkIcon,
+  profileLinkIconMail,
   profileMore,
   profileName,
   profileOccupation,
@@ -297,7 +298,7 @@ export default function Main() {
                         void handleEmailClick(ev);
                       }}
                     >
-                      <IoMail className={clsx(profileLinkIcon)} />
+                      <IoMail className={clsx(profileLinkIcon, profileLinkIconMail)} />
                     </button>
                   </Tooltip>
                 </li>
