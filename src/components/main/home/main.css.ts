@@ -327,6 +327,12 @@ export const profileLinkIcon = style({
     },
   },
 });
+// IoMail の描画域は viewBox の縦 69% しかなく、他のアイコンと並べると小さく見える。
+// 拡大すると横幅いっぱいまで広がり左の note に寄って見えるので、その分だけ左に余白を足す
+export const profileLinkIconMail = style({
+  scale: 1.13,
+  marginLeft: 4,
+});
 
 export const profileMore = style({
   position: "relative",
