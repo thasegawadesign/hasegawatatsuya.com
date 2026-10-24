@@ -25,6 +25,11 @@ const CLEAR = 0x0613d1;
 const MAX_FRAME_DELTA = 1 / 30;
 // 吸い込み〜封印の包絡はシェーダー側（suctionVortex）が age から決めるので、ここは終了判定だけ持つ
 const SHOCK_DURATION = 1.5;
+// 起動直後はハイドレーションやチャンク評価で長いタスクが断続的に続く。途中で Three に切り替えると次のタスクで止まって見えるので、
+// rAF が詰まらずに続くまで Worker の boot に描かせる。上限はそれでも落ち着かない環境向け
+const SMOOTH_FRAMES_TO_REVEAL = 20;
+const SMOOTH_FRAME_GAP_MS = 34;
+const MAX_REVEAL_WAIT_MS = 4000;
 
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
@@ -244,13 +249,41 @@ export default function LiquidShaderBackground() {
       return true;
     };
 
+    let revealed = false;
+    let smoothFrames = 0;
+    let lastTick = -1;
+    let firstTick = -1;
+    const reveal = (timestamp: number) => {
+      // boot は壁時計で進み続けているので、引き継ぐ瞬間に時刻を揃え直さないと絵が巻き戻る
+      const bootTime = window.__liquidBoot?.time();
+      if (bootTime !== undefined) uTime.value = bootTime;
+      timer.reset();
+      if (!paint(timestamp)) return;
+      // boot を消す前に Three canvas を見せる（間に body 単色が挟まないように）
+      canvas.classList.add(canvasReady);
+      setThreeReady(true);
+      stopLiquidBoot();
+      notifyLiquidBackgroundReveal();
+      revealed = true;
+    };
+
     const startLoop = () => {
       if (loopStarted || disposed || document.hidden) return;
       loopStarted = true;
       const tick = (timestamp: number) => {
         if (!loopStarted || disposed) return;
         frame = requestAnimationFrame(tick);
-        paint(timestamp);
+        if (revealed) {
+          paint(timestamp);
+          return;
+        }
+        if (firstTick < 0) firstTick = timestamp;
+        const gap = lastTick < 0 ? Infinity : timestamp - lastTick;
+        lastTick = timestamp;
+        smoothFrames = gap < SMOOTH_FRAME_GAP_MS ? smoothFrames + 1 : 0;
+        if (smoothFrames >= SMOOTH_FRAMES_TO_REVEAL || timestamp - firstTick > MAX_REVEAL_WAIT_MS) {
+          reveal(timestamp);
+        }
       };
       frame = requestAnimationFrame(tick);
     };
@@ -267,15 +300,12 @@ export default function LiquidShaderBackground() {
     };
     document.addEventListener("visibilitychange", onVisibility);
 
+    // takeOver はハイドレーションの長いタスクの途中で走るので、ここでは boot を止めず、切り替えは reveal に任せる。
+    // シェーダーのコンパイルは重いので、どうせ塞がっているこのタスク内で済ませ、reveal の瞬間に詰まらないようにする
     const takeOver = () => {
       if (disposed) return false;
-      timer.reset();
-      if (!setSize() || !paint()) return false;
-      // boot を消す前に Three canvas を見せる（間に body 単色が挟まないように）
-      canvas.classList.add(canvasReady);
-      setThreeReady(true);
-      stopLiquidBoot();
-      notifyLiquidBackgroundReveal();
+      if (!setSize()) return false;
+      renderer.compile(scene, camera);
       startLoop();
       return true;
     };
