@@ -214,7 +214,7 @@ export default function Main() {
             <br className={clsx(desktopBr)} />
             実際に触れることのできる
             <br className={mobileBr} />
-            Web制作物を
+            Web空間を
             <br className={mobileBr} />
             デザイン・実装することに
             <br className={mobileBr} />
