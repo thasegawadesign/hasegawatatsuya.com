@@ -210,22 +210,22 @@ export default function Main() {
             ポートフォリオです。
             <br className={mobileBr} />
             <br className={clsx(desktopBr)} />
-            実際に触れることのできる
+            何度でも触れたくなる
             <br className={mobileBr} />
-            Web空間を
+            インターフェイスを
             <br className={mobileBr} />
             デザイン・実装することに
             <br className={mobileBr} />
             喜びを感じます。
             <br className={mobileBr} />
             <br className={clsx(desktopBr)} />
-            書いたコードが現実に反映される
+            書いたコードが手触りに変わる
             <br className={mobileBr} />
-            感動を
+            感動が、
             <br className={mobileBr} />
-            学習を始めて以来
+            学び始めた日からの
             <br className={mobileBr} />
-            ずっと持ち続けています。
+            原動力です。
           </p>
           <section className={profileSection} ref={profileRef}>
             <div className={clsx(profileContent)}>
