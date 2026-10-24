@@ -106,14 +106,16 @@ float beatKick(float age, float at) {
 // 0.28s 最大音量（以降 0.66s まで高い駆動音が続く）→ 0.67s 停止のクランク → 0.84s 最後の低い打撃（最も強く、0.85s で切れて 1.27s まで余韻）。
 // 段ごとに吸い込みを一段強め、最後の打撃で封じる。
 // 変化が発音より後から始まると遅れて見えるので、各遷移は発音時刻を中心にまたぐ幅で取り、さらに描画遅れと体感に合わせて LEAD で前倒しする
+const float SHOCK_LEAD = 0.1;
+const float SHOCK_SEAL = 0.84;
+
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
-  const float LEAD = 0.1;
-  age += LEAD;
+  age += SHOCK_LEAD;
   const float CLICK = 0.10;
   const float N1 = 0.19;
   const float N2 = 0.28;
   const float N3 = 0.67;
-  const float SEAL = 0.84;
+  const float SEAL = SHOCK_SEAL;
   vec2 d = p - center;
   float r = length(d) + 1e-4;
   float level =
@@ -228,6 +230,14 @@ void main() {
   vec2 dFlash = pVig - (uBgmFlash.xy - 0.5) * vec2(aspect * 2.0, 2.0);
   float flashReach = exp(-dot(dFlash, dFlash) * 0.45) + 0.2 + max(uBgmFlash.z - 1.0, 0.0) * 0.7;
   col += mix(electricCyan, sunTint, 0.35 + 0.3 * h1) * (emissive * 0.85 + spec * 1.2 + 0.08) * uBgmFlash.z * flashReach;
+
+  float sinceSeal = uShockAge + SHOCK_LEAD - SHOCK_SEAL;
+  // 吸い込みは SHOCK_DURATION（liquidShaderBackground.tsx）で打ち切られるので、その前に光を引き切っておかないと最後に途切れて見える
+  float seal = step(0.0, sinceSeal) * exp(-sinceSeal * 2.6) * (1.0 - smoothstep(0.45, 0.72, sinceSeal)) * uShockStrength;
+  float rSeal = length(pVig - pShock);
+  float sealFront = rSeal - sinceSeal * 6.0;
+  float sealGlow = seal * (0.3 * exp(-rSeal * rSeal * 0.35) + exp(-sealFront * sealFront * 2.5));
+  col += mix(sunTint, electricCyan, 0.3 + 0.4 * h1) * (emissive * 0.9 + spec * 1.4 + 0.1) * sealGlow;
 
   float edgeChroma = (abs(hx) + abs(hy)) * 3.0 * (1.0 + uBgm.w * 1.2 + uBgm.y * 0.6);
   col.r += edgeChroma * 0.04;
