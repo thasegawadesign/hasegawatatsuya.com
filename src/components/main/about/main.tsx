@@ -252,7 +252,7 @@ export default function Main() {
             モノづくりの達人になることが目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            Webサイト制作の実務においては、
+            Web空間を構築していく過程では、
             <br />
             ユーザのニーズに何度も立ち返ります。
             <br />
