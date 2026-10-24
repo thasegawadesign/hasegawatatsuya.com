@@ -31,6 +31,7 @@ import {
   year,
 } from "@/components/main/about/main.css";
 import Tooltip from "@/components/tooltip/tooltip";
+import TypingName from "@/components/typingName/typingName";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { triggerLiquidShockwave } from "@/lib/liquidShockwave";
@@ -131,8 +132,7 @@ export default function Main() {
       <main className={clsx(main)}>
         <section className={clsx(aboutHero)}>
           <h1 className={nameBox}>
-            <span className={nameJa}>ハセガワ タツヤ</span>
-            <span className={clsx(cormorant.className, nameEn)}>Tatsuya Hasegawa</span>
+            <TypingName jaClassName={nameJa} enClassName={clsx(cormorant.className, nameEn)} />
           </h1>
           <div ref={tiltRef} className={clsx(tilt)}>
             <ViewTransition
