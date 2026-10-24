@@ -254,7 +254,7 @@ export default function Main() {
           <p ref={valueRef} className={clsx(description)}>
             Web空間を構築していく過程では、
             <br />
-            ユーザのニーズに何度も立ち返ります。
+            触れたときの感触に何度も立ち返ります。
             <br />
             情報設計・デザイン・コーディングを
             <br />
