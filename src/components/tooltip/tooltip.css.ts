@@ -77,3 +77,13 @@ export const slideLeftAndFade = keyframes({
     opacity: 1,
   },
 });
+
+export const tooltipLive = style({
+  position: "absolute",
+  width: 1,
+  height: 1,
+  overflow: "hidden",
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  whiteSpace: "nowrap",
+});
