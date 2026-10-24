@@ -9,6 +9,7 @@ import {
 } from "@/components/audio/audioPlayer.css";
 import Tooltip from "@/components/tooltip/tooltip";
 import { useMagnetic } from "@/hooks/useMagnetic";
+import { connectBgmAnalyser, setBgmPlaying } from "@/lib/bgmReactive";
 import { getAudioInstance } from "@/lib/getAudioInstance";
 import { haptic } from "@/lib/haptic";
 import clsx from "clsx";
@@ -110,6 +111,7 @@ export default function AudioButton() {
       } else {
         audio.loop = true;
         audio.volume = 0;
+        connectBgmAnalyser(audio);
         audio.play();
         setIsPlayingAudio(true);
         await fadeIn(audio, 300);
@@ -126,6 +128,10 @@ export default function AudioButton() {
       }
     };
   }, [isPlayingAudio, setIsPlayingAudio, fadeIn, fadeOut]);
+
+  useEffect(() => {
+    setBgmPlaying(isPlayingAudio);
+  }, [isPlayingAudio]);
 
   useEffect(() => {
     const audio = getBgmAudio();

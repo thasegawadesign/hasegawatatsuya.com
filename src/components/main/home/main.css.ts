@@ -196,17 +196,18 @@ export const profileSection = style({
       gap: 48,
       maxWidth: 800,
     },
-    // 写真（row-reverse なので左側）を 1 列目、テキストを 2 列目のアイコンの左端に揃えて左詰めにする
-    // gap = 列の間隔（列幅 + worksBox の gap）- 写真の幅
+    // 写真（row-reverse なので左側）の左端を 1 列目のアイコンの左端に、テキストの右端を 3 列目のアイコンの右端に揃える。
+    // 左端だけ揃えるとテキストの右が丸ごと空いて重心が左に寄り、中央に置くと前後のセクションの左端の線から外れる。
+    // 写真とテキストが離れるので、名前を写真の上端、ソーシャルと More を下端に寄せて右揃えにし、写真と対で見せる
     [breakpoints["lg"]]: {
-      justifyContent: "flex-end",
-      gap: "calc((640px - 2vw) / 3 + 1vw - 180px)",
+      justifyContent: "space-between",
+      placeItems: "stretch",
+      paddingRight: `calc${iconOffset(640)}`,
       paddingLeft: `calc${iconOffset(640)}`,
       maxWidth: 640,
     },
-    // md は列の間隔が狭いので、写真を小さくして lg と同じくらいの gap を保つ
     [breakpoints["md"]]: {
-      gap: "calc((580px - 2vw) / 3 + 1vw - 160px)",
+      paddingRight: `calc${iconOffset(580)}`,
       paddingLeft: `calc${iconOffset(580)}`,
       maxWidth: 580,
     },
@@ -219,14 +220,27 @@ export const profileSection = style({
     },
   },
 });
+const PROFILE_IMAGE_RADIUS = 24;
+const PROFILE_IMAGE_RADIUS_SM = 20;
+// 角丸の写真は四角の端より見た目の端が内側にあるので、写真の上下に揃えるテキストは角の 45° の位置まで寄せる
+const cornerInset = (radius: number) => Math.round(radius * (1 - Math.SQRT1_2));
+
 export const profileContent = style({
   paddingBottom: 44,
   "@media": {
     [breakpoints["xl"]]: {
       paddingBottom: 36,
     },
+    [breakpoints["lg"]]: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-end",
+      paddingTop: cornerInset(PROFILE_IMAGE_RADIUS),
+      paddingBottom: cornerInset(PROFILE_IMAGE_RADIUS),
+    },
     [breakpoints["sm"]]: {
-      paddingBottom: 6,
+      paddingTop: cornerInset(PROFILE_IMAGE_RADIUS_SM),
+      paddingBottom: cornerInset(PROFILE_IMAGE_RADIUS_SM),
     },
   },
 });
@@ -236,6 +250,9 @@ export const profileTextBox = style({
   gap: 10,
   marginBottom: 20,
   "@media": {
+    [breakpoints["lg"]]: {
+      alignItems: "flex-end",
+    },
     [breakpoints["sm"]]: {
       gap: 8,
       marginBottom: 12,
@@ -287,16 +304,16 @@ export const profileOccupation = style({
 export const profileLinkBox = style({
   display: "flex",
   gap: 16,
+  // デスクトップは写真が高いので、ここを詰めるとテキストのまとまりが写真に対して潰れて見える
   marginBottom: 56,
   "@media": {
-    // md は写真が低くなるので、テキストが写真の上端に寄らないようにアイコンと More の間を詰める
-    [breakpoints["md"]]: {
-      marginBottom: 40,
+    [breakpoints["lg"]]: {
+      marginTop: "auto",
+      marginBottom: 32,
     },
     [breakpoints["sm"]]: {
-      justifyContent: "flex-end",
       gap: 12,
-      marginBottom: 74,
+      marginBottom: 20,
     },
   },
 });
@@ -392,10 +409,12 @@ export const profileImageWrapper = style({
     },
     [breakpoints["lg"]]: {
       marginLeft: 0,
+      width: 170,
+      height: 255,
     },
     [breakpoints["md"]]: {
-      width: 160,
-      height: 240,
+      width: 150,
+      height: 225,
     },
     [breakpoints["sm"]]: {
       width: 120,
@@ -406,13 +425,13 @@ export const profileImageWrapper = style({
 export const profileImageContainer = style({
   aspectRatio: 3 / 2,
   position: "relative",
-  borderRadius: 24,
+  borderRadius: PROFILE_IMAGE_RADIUS,
   width: "100%",
   height: "100%",
   overflow: "hidden",
   "@media": {
     [breakpoints["sm"]]: {
-      borderRadius: 20,
+      borderRadius: PROFILE_IMAGE_RADIUS_SM,
     },
   },
 });
