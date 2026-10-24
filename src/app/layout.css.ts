@@ -1,4 +1,4 @@
-import { LIQUID_BACKGROUND_FALLBACK_COLOR } from "@/constants/constants";
+import { SITE_BASE_COLOR } from "@/constants/constants";
 import { globalStyle, style } from "@vanilla-extract/css";
 
 globalStyle("::selection", {
@@ -32,7 +32,7 @@ export const smoothScroll = style({
 export const body = style({
   fontFamily: "var(--font-yakuhan-jp), var(--font-noto-sans-jp), sans-serif",
   fontWeight: 200,
-  backgroundColor: LIQUID_BACKGROUND_FALLBACK_COLOR,
+  backgroundColor: SITE_BASE_COLOR,
   "::selection": {
     backgroundColor: "#faf1e8",
     color: "#130059",

@@ -2,6 +2,8 @@
 
 import { roboto } from "@/app/fonts";
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
+import { hamburgerSlot } from "@/components/hamburgerMenu/hamburgerMenu.css";
+import { HAMBURGER_BREAKPOINT } from "@/styles/siteEdge";
 import {
   mobileNav,
   mobileNavCross,
@@ -44,9 +46,9 @@ export default function MobileNav() {
 
   useEffect(() => {
     if (!isOpenHamburgerMenu) return;
-    const mq = window.matchMedia("(min-width: 640px)");
+    const mq = window.matchMedia(HAMBURGER_BREAKPOINT);
     const closeOnDesktop = () => {
-      if (mq.matches) setIsOpenHamburgerMenu(false);
+      if (!mq.matches) setIsOpenHamburgerMenu(false);
     };
     closeOnDesktop();
     mq.addEventListener("change", closeOnDesktop);
@@ -85,7 +87,7 @@ export default function MobileNav() {
         <ul className={clsx(mobileNavCrossBox)}>
           <li>
             <button
-              className={mobileNavCross}
+              className={clsx(hamburgerSlot, mobileNavCross)}
               aria-label="メニューを閉じる"
               onClick={closeMenu}
             ></button>

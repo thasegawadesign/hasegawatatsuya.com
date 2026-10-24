@@ -1,10 +1,25 @@
 import { SITE_HAMBURGER_TRANSITION_NAME } from "@/lib/viewTransitionNames";
-import { breakpoints, vars } from "@/styles/styles.css";
+import {
+  edgeMedia,
+  HAMBURGER_BREAKPOINT,
+  HAMBURGER_EDGE_KEYS,
+  hamburgerSlotInset,
+} from "@/styles/siteEdge";
+import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
-export const hamburgerMenu = style({
+const HAMBURGER_SLOT_WIDTH = 36;
+
+// 開くボタンとモバイルナビの閉じるボタンは必ず同じ位置・同じ大きさに重ねる。位置は siteEdge の hamburgerSlotInset で決める
+export const hamburgerSlot = style({
   position: "fixed",
   zIndex: 100,
+  width: HAMBURGER_SLOT_WIDTH,
+  height: 32,
+  "@media": edgeMedia(HAMBURGER_EDGE_KEYS, hamburgerSlotInset),
+});
+
+export const hamburgerMenu = style({
   display: "none",
   flexDirection: "column",
   gap: 1,
@@ -14,11 +29,9 @@ export const hamburgerMenu = style({
     cursor: "pointer",
   },
   "@media": {
-    [breakpoints["sm"]]: {
-      top: "9vw",
-      right: "9vw",
+    [HAMBURGER_BREAKPOINT]: {
       display: "flex",
-      // display:none のデスクトップではキャプチャ対象外。モバイルだけ手前に固定する
+      // display:none のデスクトップではキャプチャ対象外。ハンバーガーを出す幅だけ手前に固定する
       viewTransitionName: SITE_HAMBURGER_TRANSITION_NAME,
     },
   },

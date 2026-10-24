@@ -1,5 +1,9 @@
 import { isOpenHamburgerMenuAtom } from "@/atoms/isOpenHamburgerMenuAtom";
-import { hamburgerMenu, hamburgerMenuLine } from "@/components/hamburgerMenu/hamburgerMenu.css";
+import {
+  hamburgerMenu,
+  hamburgerMenuLine,
+  hamburgerSlot,
+} from "@/components/hamburgerMenu/hamburgerMenu.css";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
 import clsx from "clsx";
@@ -10,7 +14,7 @@ export default function HamburgerMenu() {
 
   return (
     <button
-      className={clsx(hamburgerMenu)}
+      className={clsx(hamburgerSlot, hamburgerMenu)}
       aria-label="メニューを開く"
       onClick={() => {
         setIsOpenHamburgerMenu(true);

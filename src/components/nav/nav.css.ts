@@ -1,34 +1,20 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { SITE_NAV_TRANSITION_NAME } from "@/lib/viewTransitionNames";
-import { breakpoints, vars } from "@/styles/styles.css";
+import { edgeMedia, HAMBURGER_BREAKPOINT, SITE_EDGE } from "@/styles/siteEdge";
+import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const nav = style({
   position: "fixed",
   zIndex: 100,
-  top: "6.6vw",
-  // Glass 左端から 36px（幅は glass.css と同期）
-  left: "calc(max(6vw, (100vw - 1400px) / 2) + 36px)",
+  top: SITE_EDGE.base.top,
+  left: SITE_EDGE.base.side,
   display: "flex",
   flexDirection: "column",
   gap: 12,
   // 遷移中も作品写真より手前に保つ（fixed の実体に名前を付ける）
   viewTransitionName: SITE_NAV_TRANSITION_NAME,
-  "@media": {
-    [breakpoints["2xl"]]: {
-      left: "calc(7vw + 36px)",
-    },
-    [breakpoints["xl"]]: {
-      left: "calc(4vw + 36px)",
-    },
-    [breakpoints["md"]]: {
-      left: "calc(2vw + 36px)",
-    },
-    [breakpoints["sm"]]: {
-      top: "6vw",
-      left: "9vw",
-    },
-  },
+  "@media": edgeMedia(["2xl", "xl", "md", "sm"], (edge) => ({ top: edge.top, left: edge.side })),
 });
 export const navLogoBox = style({
   listStyleType: "none",
@@ -39,7 +25,7 @@ export const navLinkBox = style({
   gap: 16,
   listStyleType: "none",
   "@media": {
-    [breakpoints["sm"]]: {
+    [HAMBURGER_BREAKPOINT]: {
       display: "none",
     },
   },
