@@ -288,8 +288,6 @@ export default function Main() {
             <br />
             手入れを続けます。
             <br />
-            将来的には
-            <br />
             空間コンピューティングや
             <br />
             没入型体験など、
