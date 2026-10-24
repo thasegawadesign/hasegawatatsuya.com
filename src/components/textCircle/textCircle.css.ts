@@ -1,4 +1,5 @@
 import { SITE_TEXT_CIRCLE_TRANSITION_NAME } from "@/lib/viewTransitionNames";
+import { LAYER } from "@/styles/layers";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -8,7 +9,7 @@ export const rotate = keyframes({
 });
 export const circle = style({
   position: "absolute",
-  zIndex: 100,
+  zIndex: LAYER.chrome,
   // Glass 右上の外側（幅・余白は glass.css と同期）
   top: "calc(5vw - 48px)",
   right: "calc((100% - min(88vw, 1400px)) / 2 - 48px)",

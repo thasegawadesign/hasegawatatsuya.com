@@ -1,4 +1,5 @@
 import { CUBIC_BEZIER, DURATION_M, SITE_BASE_COLOR } from "@/constants/constants";
+import { LAYER } from "@/styles/layers";
 import {
   edgeMedia,
   HAMBURGER_EDGE_KEYS,
@@ -21,7 +22,7 @@ const menuPadding = (edge: SiteEdge) => {
 
 export const mobileNav = style({
   position: "fixed",
-  zIndex: 100,
+  zIndex: LAYER.chrome,
   // 幅を 100vw で取るとスクロールバーの分だけ右にずれ、fixed の hamburgerSlot と揃わなくなるので inset で張る
   inset: -BLEED,
   backgroundColor: SITE_BASE_COLOR,

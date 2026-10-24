@@ -1,4 +1,5 @@
 import { SITE_BASE_COLOR } from "@/constants/constants";
+import { LAYER } from "@/styles/layers";
 import { globalStyle, style } from "@vanilla-extract/css";
 
 globalStyle("::selection", {
@@ -41,9 +42,9 @@ export const body = style({
 
 export const liquidBootCanvas = style({
   position: "fixed",
-  // オブジェクト（object*.css、z-index: -150）より手前に置くと、Three に切り替わって boot が消えるまでオブジェクトが隠れる。
+  // オブジェクト（LAYER.orb）より手前に置くと、Three に切り替わって boot が消えるまでオブジェクトが隠れる。
   // Three の背景（liquidShaderBackground.css）と同じ高さに置き、DOM 順で Three が上に来るようにする
-  zIndex: -200,
+  zIndex: LAYER.background,
   inset: 0,
   display: "block",
   width: "100vw",

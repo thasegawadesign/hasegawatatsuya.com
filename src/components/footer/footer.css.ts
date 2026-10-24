@@ -1,9 +1,10 @@
+import { LAYER } from "@/styles/layers";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const footer = style({
   position: "relative",
-  zIndex: 50,
+  zIndex: LAYER.content,
   paddingBottom: 24,
   textAlign: "center",
   "@media": {

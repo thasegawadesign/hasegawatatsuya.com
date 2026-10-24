@@ -1,7 +1,8 @@
+import { LAYER } from "@/styles/layers";
 import { keyframes, style } from "@vanilla-extract/css";
 
 export const tooltipContent = style({
-  zIndex: 9999,
+  zIndex: LAYER.tooltip,
   willChange: "transform, opacity",
   borderRadius: 4,
   backgroundColor: "#faf1e8",

@@ -1,3 +1,4 @@
+import { LAYER } from "@/styles/layers";
 import { breakpoints } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -7,7 +8,7 @@ export const animateObject1 = keyframes({
 });
 export const object1 = style({
   position: "fixed",
-  zIndex: -150,
+  zIndex: LAYER.orb,
   top: "3%",
   left: "42%",
   isolation: "isolate",
