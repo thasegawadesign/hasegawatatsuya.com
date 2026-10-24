@@ -9,7 +9,7 @@ import {
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
-// 画面端を覆うために上下左右へはみ出しているので、余白にその分を足してリンクの右端を hamburgerSlot の右端に揃える
+// 画面端を覆うために上下左右へはみ出しているので、余白にその分を足して hamburgerSlot と同じ基準に揃える
 const BLEED = 5;
 const menuPadding = (edge: SiteEdge) => {
   const inset = hamburgerSlotInset(edge);
@@ -65,9 +65,8 @@ export const mobileNavLinkBox = style({
   flexDirection: "column",
   alignItems: "flex-end",
   gap: 28,
-  // ×印は 40px の線を 45° 傾けたもので、見た目の幅は約 28px。幅 36px の hamburgerSlot の右端より約 4px 内側で終わるので、
-  // リンクの右端もそこまで下げる（字間の 0.02em で文字の右端がすでに約 1px 内側にある分を差し引く）
-  paddingRight: 3,
+  // ×印に揃えると大きなリンクが内側に寄って見えるので、開閉ボタンの位置は変えずにリンクだけ外へ出す
+  marginRight: -12,
   listStyleType: "none",
   "@media": {
     [breakpoints["sm"]]: {
