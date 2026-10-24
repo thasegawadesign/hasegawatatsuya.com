@@ -349,8 +349,8 @@ export default function Main() {
           <h2 className={clsx(roboto.className, sectionHeading)}>Tools</h2>
           <ToolsList />
         </section>
-        <section id="playgrounds" className={clsx(worksSection)}>
-          <h2 className={clsx(roboto.className, sectionHeading)}>Playgrounds</h2>
+        <section id="play" className={clsx(worksSection)}>
+          <h2 className={clsx(roboto.className, sectionHeading)}>Play</h2>
           <PlaygroundsList />
         </section>
         <section id="contact" className={clsx(contactSection)}>
