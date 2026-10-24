@@ -212,7 +212,11 @@ export default function Main() {
             </Link>
           </li>
           <li>
-            <Tooltip content="Copy Email" side="bottom">
+            <Tooltip
+              content="Copy Email"
+              side="bottom"
+              announcement={emailCopied ? "Email Copied!" : ""}
+            >
               <button
                 aria-label="Copy Email"
                 className={clsx(profileLink)}
