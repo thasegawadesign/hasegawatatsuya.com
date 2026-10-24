@@ -6,8 +6,9 @@ import {
   PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
 import { LAYER } from "@/styles/layers";
+import { SITE_EDGE } from "@/styles/siteEdge";
 import { breakpoints, vars } from "@/styles/styles.css";
-import { globalStyle, keyframes, style } from "@vanilla-extract/css";
+import { createVar, globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 export const main = style({
   position: "relative",
@@ -60,12 +61,31 @@ export const animateLine = keyframes({
 });
 // lg 以下は見出し・本文・縦線の左端を、作品アイコン（3 列グリッドの 1 列目）の左端に揃える
 // worksBox の左端からアイコンの左端まで = worksItem の padding + アイコンを中央に置いたときの余白
-const iconOffset = (boxWidth: number) => `(2vw + ((${boxWidth}px - 2vw) / 3 - 4vw - 120px) / 2)`;
+const iconOffset = (boxWidth: string) => `(2vw + ((${boxWidth} - 2vw) / 3 - 4vw - 120px) / 2)`;
 // 左端 = 中央寄せされた worksBox の左余白 + アイコンまでの余白
-const iconLeft = (boxWidth: number) => `calc((100% - ${boxWidth}px) / 2 + ${iconOffset(boxWidth)})`;
+const iconLeft = (boxWidth: string) => `calc((100% - ${boxWidth}) / 2 + ${iconOffset(boxWidth)})`;
+// lg を 640px 固定にすると幅の広い側で画面の 3 分の 2 ほどしか使えず細く見え、
+// 720px 固定にすると 768px 付近（ガラスのカードが約 707px）ではみ出す。
+// min() を calc() の入れ子に直接書くと lightningcss が式の整理で再帰しすぎて dev サーバーごと落ちる
+const boxWidthLg = createVar();
+// xl を 800px 固定にすると、狭い側で左上の TH ロゴが箱の端にかかる
+const boxWidthXl = createVar();
+// TH ロゴの幅（約 50px）と、その右に残す余白（約 32px）
+const LOGO_CLEARANCE = "82px";
+globalStyle(":root", {
+  vars: {
+    [boxWidthLg]: "min(720px, 82vw)",
+    [boxWidthXl]: `min(800px, 100vw - 2 * (${SITE_EDGE.xl.side} + ${LOGO_CLEARANCE}))`,
+  },
+});
+const BOX_WIDTH = {
+  xl: boxWidthXl,
+  lg: boxWidthLg,
+  md: "580px",
+};
 const CONTENT_LEFT = {
-  lg: iconLeft(640),
-  md: iconLeft(580),
+  lg: iconLeft(BOX_WIDTH.lg),
+  md: iconLeft(BOX_WIDTH.md),
   sm: "8vw",
 };
 
@@ -195,7 +215,7 @@ export const profileSection = style({
     },
     [breakpoints["xl"]]: {
       gap: 48,
-      maxWidth: 800,
+      maxWidth: BOX_WIDTH.xl,
     },
     // 写真（row-reverse なので左側）の左端を 1 列目のアイコンの左端に、テキストの右端を 3 列目のアイコンの右端に揃える。
     // 左端だけ揃えるとテキストの右が丸ごと空いて重心が左に寄り、中央に置くと前後のセクションの左端の線から外れる。
@@ -203,14 +223,14 @@ export const profileSection = style({
     [breakpoints["lg"]]: {
       justifyContent: "space-between",
       placeItems: "stretch",
-      paddingRight: `calc${iconOffset(640)}`,
-      paddingLeft: `calc${iconOffset(640)}`,
-      maxWidth: 640,
+      paddingRight: `calc${iconOffset(BOX_WIDTH.lg)}`,
+      paddingLeft: `calc${iconOffset(BOX_WIDTH.lg)}`,
+      maxWidth: BOX_WIDTH.lg,
     },
     [breakpoints["md"]]: {
-      paddingRight: `calc${iconOffset(580)}`,
-      paddingLeft: `calc${iconOffset(580)}`,
-      maxWidth: 580,
+      paddingRight: `calc${iconOffset(BOX_WIDTH.md)}`,
+      paddingLeft: `calc${iconOffset(BOX_WIDTH.md)}`,
+      maxWidth: BOX_WIDTH.md,
     },
     [breakpoints["sm"]]: {
       justifyContent: "space-between",
@@ -475,13 +495,13 @@ export const worksBox = style({
       maxWidth: 880,
     },
     [breakpoints["xl"]]: {
-      maxWidth: 800,
+      maxWidth: BOX_WIDTH.xl,
     },
     [breakpoints["lg"]]: {
-      maxWidth: 640,
+      maxWidth: BOX_WIDTH.lg,
     },
     [breakpoints["md"]]: {
-      maxWidth: 580,
+      maxWidth: BOX_WIDTH.md,
     },
     [breakpoints["sm"]]: {
       gap: 0,
@@ -648,13 +668,13 @@ export const address = style({
       maxWidth: 880,
     },
     [breakpoints["xl"]]: {
-      maxWidth: 800,
+      maxWidth: BOX_WIDTH.xl,
     },
     [breakpoints["lg"]]: {
-      maxWidth: 640,
+      maxWidth: BOX_WIDTH.lg,
     },
     [breakpoints["md"]]: {
-      maxWidth: 580,
+      maxWidth: BOX_WIDTH.md,
     },
     [breakpoints["sm"]]: {
       margin: "0 2vw",
