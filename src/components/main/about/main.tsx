@@ -34,7 +34,6 @@ import Tooltip from "@/components/tooltip/tooltip";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { triggerLiquidShockwave } from "@/lib/liquidShockwave";
-import { playFireworksAt } from "@/lib/fireworksConfetti";
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick, playSfxSuccess } from "@/lib/playSfx";
@@ -76,7 +75,6 @@ export default function Main() {
     if (emailCopyLockRef.current || emailCopied) return;
     emailCopyLockRef.current = true;
     triggerLiquidShockwave(ev.clientX, ev.clientY);
-    playFireworksAt(ev.clientX, ev.clientY);
     playSfxSuccess();
     haptic();
     await copy(EMAIL);
