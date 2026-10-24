@@ -252,9 +252,9 @@ export default function Main() {
             モノづくりの達人になることが目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            Webサイト制作の実務においては、
+            Web空間を構築していく過程では、
             <br />
-            ユーザのニーズに何度も立ち返ります。
+            触れたときの感触に何度も立ち返ります。
             <br />
             情報設計・デザイン・コーディングを
             <br />
@@ -287,8 +287,6 @@ export default function Main() {
             環境の変化に応答しながら
             <br />
             手入れを続けます。
-            <br />
-            将来的には
             <br />
             空間コンピューティングや
             <br />
