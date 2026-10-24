@@ -331,7 +331,7 @@ export default function Main() {
                       alt="長谷川達也"
                       className={clsx(profileImage)}
                       fill
-                      sizes="(max-width: 640px) 120px, (max-width: 1280px) 180px, 200px"
+                      sizes="(max-width: 639px) 120px, (max-width: 767px) 150px, (max-width: 1023px) 170px, (max-width: 1279px) 180px, 200px"
                     />
                   </div>
                 </div>
