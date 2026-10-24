@@ -1,3 +1,4 @@
+import { LAYER } from "@/styles/layers";
 import { breakpoints } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
 
@@ -10,7 +11,7 @@ const pulse = keyframes({
 export const circleBox = style({
   contain: "layout style paint",
   position: "fixed",
-  zIndex: -100,
+  zIndex: LAYER.spiral,
   top: 0,
   left: 0,
   pointerEvents: "none",

@@ -7,6 +7,7 @@ import {
   WORK_HEADING_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
+import { LAYER } from "@/styles/layers";
 import { createGlobalTheme, globalStyle, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
@@ -58,7 +59,7 @@ globalStyle(
 globalStyle(
   `::view-transition-group(${SITE_NAV_TRANSITION_NAME}), ::view-transition-group(${SITE_HAMBURGER_TRANSITION_NAME})`,
   {
-    zIndex: 100,
+    zIndex: LAYER.chrome,
     animation: "none",
   },
 );
@@ -70,15 +71,15 @@ globalStyle(
 );
 // 古いスナップショットは静止画なので隠し、ライブの new だけを見せないと遷移中に動きが止まって見える
 globalStyle(`::view-transition-group(${SITE_PARTICLES_TRANSITION_NAME})`, {
-  zIndex: 101,
+  zIndex: LAYER.chrome + 1,
   animation: "none",
 });
 globalStyle(`::view-transition-group(${SITE_TEXT_CIRCLE_TRANSITION_NAME})`, {
-  zIndex: 102,
+  zIndex: LAYER.chrome + 2,
   animation: "none",
 });
 globalStyle(`::view-transition-group(${SITE_CURSOR_TRANSITION_NAME})`, {
-  zIndex: 103,
+  zIndex: LAYER.chrome + 3,
   animation: "none",
 });
 globalStyle(

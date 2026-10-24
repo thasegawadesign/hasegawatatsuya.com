@@ -4,6 +4,7 @@ import {
   PROFILE_IMAGE_BRIGHTNESS,
   PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
+import { LAYER } from "@/styles/layers";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
@@ -20,7 +21,7 @@ const photoMagicSpin = keyframes({
 
 export const main = style({
   position: "relative",
-  zIndex: 50,
+  zIndex: LAYER.content,
   // inview の回転でテキストが画面幅をはみ出すと、モバイルで表示領域が広がって View Transition が中断されるため切る
   overflowX: "clip",
 });

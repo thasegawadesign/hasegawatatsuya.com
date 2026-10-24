@@ -5,12 +5,13 @@ import {
   PROFILE_IMAGE_BRIGHTNESS,
   PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
+import { LAYER } from "@/styles/layers";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 export const main = style({
   position: "relative",
-  zIndex: 50,
+  zIndex: LAYER.content,
   display: "flow-root",
 });
 

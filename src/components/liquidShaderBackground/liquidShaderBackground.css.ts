@@ -1,8 +1,9 @@
+import { LAYER } from "@/styles/layers";
 import { style } from "@vanilla-extract/css";
 
 export const backgroundRoot = style({
   position: "fixed",
-  zIndex: -200,
+  zIndex: LAYER.background,
   inset: 0,
   pointerEvents: "none",
   width: "100vw",

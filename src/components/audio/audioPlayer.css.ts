@@ -1,3 +1,4 @@
+import { LAYER } from "@/styles/layers";
 import { edgeMedia, HAMBURGER_EDGE_KEYS, type SiteEdge } from "@/styles/siteEdge";
 import { vars } from "@/styles/styles.css";
 import { keyframes, style } from "@vanilla-extract/css";
@@ -19,7 +20,7 @@ export const audioInteract = keyframes({
 });
 export const audioButtonBox = style({
   position: "fixed",
-  zIndex: 100,
+  zIndex: LAYER.chrome,
   right: "2vw",
   bottom: "2vw",
   "@media": edgeMedia(HAMBURGER_EDGE_KEYS, atEdge),

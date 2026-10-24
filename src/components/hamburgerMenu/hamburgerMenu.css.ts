@@ -1,4 +1,5 @@
 import { SITE_HAMBURGER_TRANSITION_NAME } from "@/lib/viewTransitionNames";
+import { LAYER } from "@/styles/layers";
 import {
   edgeMedia,
   HAMBURGER_BREAKPOINT,
@@ -13,7 +14,7 @@ const HAMBURGER_SLOT_WIDTH = 36;
 // 開くボタンとモバイルナビの閉じるボタンは必ず同じ位置・同じ大きさに重ねる。位置は siteEdge の hamburgerSlotInset で決める
 export const hamburgerSlot = style({
   position: "fixed",
-  zIndex: 100,
+  zIndex: LAYER.chrome,
   width: HAMBURGER_SLOT_WIDTH,
   height: 32,
   "@media": edgeMedia(HAMBURGER_EDGE_KEYS, hamburgerSlotInset),

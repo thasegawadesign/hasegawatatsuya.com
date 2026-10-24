@@ -1,12 +1,13 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { SITE_NAV_TRANSITION_NAME } from "@/lib/viewTransitionNames";
+import { LAYER } from "@/styles/layers";
 import { edgeMedia, HAMBURGER_BREAKPOINT, SITE_EDGE } from "@/styles/siteEdge";
 import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const nav = style({
   position: "fixed",
-  zIndex: 100,
+  zIndex: LAYER.chrome,
   top: SITE_EDGE.base.top,
   left: SITE_EDGE.base.side,
   display: "flex",

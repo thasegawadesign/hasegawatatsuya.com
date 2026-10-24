@@ -1,27 +1,15 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
-import { breakpoints, vars } from "@/styles/styles.css";
+import { edgeMedia, SITE_EDGE } from "@/styles/siteEdge";
+import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
 export const backToIndexBox = style({
   position: "absolute",
   zIndex: 2,
   bottom: 120,
-  // nav 左端と同期（nav.css の left と同じ）
-  left: "calc(max(6vw, (100vw - 1400px) / 2) + 36px)",
-  "@media": {
-    [breakpoints["2xl"]]: {
-      left: "calc(7vw + 36px)",
-    },
-    [breakpoints["xl"]]: {
-      left: "calc(4vw + 36px)",
-    },
-    [breakpoints["md"]]: {
-      left: "calc(2vw + 36px)",
-    },
-    [breakpoints["sm"]]: {
-      left: "9vw",
-    },
-  },
+  // nav のロゴと左端を揃える
+  left: SITE_EDGE.base.side,
+  "@media": edgeMedia(["2xl", "xl", "md", "sm"], (edge) => ({ left: edge.side })),
 });
 export const backToIndex = style({
   position: "relative",
