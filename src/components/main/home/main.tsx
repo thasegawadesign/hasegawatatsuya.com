@@ -221,7 +221,7 @@ export default function Main() {
             喜びを感じます。
             <br className={mobileBr} />
             <br className={clsx(desktopBr)} />
-            書いたコードが画面に反映される
+            書いたコードが現実に反映される
             <br className={mobileBr} />
             感動を
             <br className={mobileBr} />
