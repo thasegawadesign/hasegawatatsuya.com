@@ -27,6 +27,8 @@ uniform float uPointerStrength;
 uniform vec2 uShockCenter;
 uniform float uShockAge;
 uniform float uShockStrength;
+uniform vec4 uBgm;
+uniform vec3 uBgmFlash;
 
 varying vec2 vUv;
 
@@ -100,10 +102,9 @@ float beatKick(float age, float at) {
 }
 
 // 竜巻状に渦を巻きながら中心へ吸い込み、最後に蓋を閉じた反動の波紋を一度だけ出す。
-// 各時刻は sfx/success（Blob の servo.mp3）の発音に合わせてある: 0.10s 立ち上がり → 0.19s アタック →
+// 各時刻は sfx/success の発音に合わせてある: 0.10s 立ち上がり → 0.19s アタック →
 // 0.28s 最大音量（以降 0.66s まで高い駆動音が続く）→ 0.67s 停止のクランク → 0.84s 最後の低い打撃（最も強く、0.85s で切れて 1.27s まで余韻）。
 // 段ごとに吸い込みを一段強め、最後の打撃で封じる。
-// 音源を差し替えたら測り直すこと。
 // 変化が発音より後から始まると遅れて見えるので、各遷移は発音時刻を中心にまたぐ幅で取り、さらに描画遅れと体感に合わせて LEAD で前倒しする
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
   const float LEAD = 0.1;
@@ -164,8 +165,13 @@ void main() {
   vec2 pVig = p;
   p = suctionVortex(p, pShock, uShockAge, uShockStrength);
 
-  vec2 w = domainWarp(p * 0.95 + vec2(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
-  w += vec2(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * 0.12;
+  float rb = length(p) + 1e-4;
+  float sway = uBgm.z * 0.32 * (1.0 - smoothstep(0.0, 3.2, rb));
+  p = vec2(cos(sway) * p.x - sin(sway) * p.y, sin(sway) * p.x + cos(sway) * p.y);
+  p += (p / rb) * sin(rb * 7.0 - uTime * 4.0) * 0.06 * uBgm.w;
+
+  vec2 w = domainWarp(p * (0.95 - uBgm.x * 0.08) + vec2(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
+  w += vec2(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * (0.12 + uBgm.x * 0.1);
 
   float e = 0.0045 * (0.6 + 0.4 * sin(t * 0.1));
   float h0 = heightAt(w + vec2(t * 0.04, -t * 0.035));
@@ -181,7 +187,7 @@ void main() {
   vec3 viewDir = normalize(vec3(0.0, 0.0, 1.0));
   vec3 H = normalize(lightDir + viewDir);
   float ndl = max(0.0, dot(N, lightDir));
-  float spec = pow(max(0.0, dot(N, H)), 64.0);
+  float spec = pow(max(0.0, dot(N, H)), 64.0) * (1.0 + uBgm.y * 0.8 + uBgm.w * 0.4);
   float fres = pow(1.0 - max(0.0, dot(N, viewDir)), 3.5);
 
   vec3 baseBlue = vec3(0.023529, 0.074510, 0.819608);
@@ -218,7 +224,12 @@ void main() {
   col = mix(col, mix(col, brandF70, 0.5), f70Mask * 0.4);
   col += brandF70 * spec * 0.4;
 
-  float edgeChroma = (abs(hx) + abs(hy)) * 3.0;
+  float emissive = smoothstep(0.45, 0.95, h0 + ridge * 0.35);
+  vec2 dFlash = pVig - (uBgmFlash.xy - 0.5) * vec2(aspect * 2.0, 2.0);
+  float flashReach = exp(-dot(dFlash, dFlash) * 0.45) + 0.2 + max(uBgmFlash.z - 1.0, 0.0) * 0.7;
+  col += mix(electricCyan, sunTint, 0.35 + 0.3 * h1) * (emissive * 0.85 + spec * 1.2 + 0.08) * uBgmFlash.z * flashReach;
+
+  float edgeChroma = (abs(hx) + abs(hy)) * 3.0 * (1.0 + uBgm.w * 1.2 + uBgm.y * 0.6);
   col.r += edgeChroma * 0.04;
   col.b -= edgeChroma * 0.03;
 

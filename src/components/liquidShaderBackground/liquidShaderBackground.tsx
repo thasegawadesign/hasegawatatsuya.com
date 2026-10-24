@@ -12,6 +12,7 @@ import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
+import { sampleBgmLevels } from "@/lib/bgmReactive";
 import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
@@ -189,6 +190,9 @@ export default function LiquidShaderBackground() {
     const uShockCenter = { value: new THREE.Vector2(0.5, 0.5) };
     const uShockAge = { value: 0 };
     const uShockStrength = { value: 0 };
+    // BGM 停止中は全成分 0 で、シェーダーは BGM 反応を入れる前と同じ絵になる
+    const uBgm = { value: new THREE.Vector4() };
+    const uBgmFlash = { value: new THREE.Vector3(0.5, 0.5, 0) };
 
     const material = new THREE.RawShaderMaterial({
       vertexShader: LIQUID_VERTEX_SHADER,
@@ -202,6 +206,8 @@ export default function LiquidShaderBackground() {
         uShockCenter,
         uShockAge,
         uShockStrength,
+        uBgm,
+        uBgmFlash,
       },
       depthTest: false,
       depthWrite: false,
@@ -245,6 +251,8 @@ export default function LiquidShaderBackground() {
       smoothPointerToward(uPointer.value, pointerTarget, delta);
       decayPointerStrength(uPointerStrength, delta);
       advanceShockwave(uShockAge, uShockStrength, delta);
+      sampleBgmLevels(uBgm.value, uBgmFlash.value, delta, motion > 0);
+      uTime.value += delta * motion * uBgm.value.x * 0.9;
       renderer.render(scene, camera);
       return true;
     };
