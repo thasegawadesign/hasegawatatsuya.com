@@ -100,18 +100,19 @@ float beatKick(float age, float at) {
 }
 
 // 竜巻状に渦を巻きながら中心へ吸い込み、最後に蓋を閉じた反動の波紋を一度だけ出す。
-// 各時刻は sfx/success.mp3 の発音に合わせてある: 0.05s クリック → 0.325・0.45・0.58s の上昇アルペジオ →
-// 0.705s の最終音（最も強く、1.22s まで余韻が続く）。アルペジオ 1 音ごとに吸い込みを一段強め、最終音で封じる。
+// 各時刻は sfx/success（Blob の servo.mp3）の発音に合わせてある: 0.10s 立ち上がり → 0.19s アタック →
+// 0.28s 最大音量（以降 0.66s まで高い駆動音が続く）→ 0.67s 停止のクランク → 0.84s 最後の低い打撃（最も強く、0.85s で切れて 1.27s まで余韻）。
+// 段ごとに吸い込みを一段強め、最後の打撃で封じる。
 // 音源を差し替えたら測り直すこと。
 // 変化が発音より後から始まると遅れて見えるので、各遷移は発音時刻を中心にまたぐ幅で取り、さらに描画遅れと体感に合わせて LEAD で前倒しする
 vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
   const float LEAD = 0.1;
   age += LEAD;
-  const float CLICK = 0.05;
-  const float N1 = 0.325;
-  const float N2 = 0.45;
-  const float N3 = 0.58;
-  const float SEAL = 0.705;
+  const float CLICK = 0.10;
+  const float N1 = 0.19;
+  const float N2 = 0.28;
+  const float N3 = 0.67;
+  const float SEAL = 0.84;
   vec2 d = p - center;
   float r = length(d) + 1e-4;
   float level =
@@ -122,15 +123,16 @@ vec2 suctionVortex(vec2 p, vec2 center, float age, float strength) {
   float beat = beatKick(age, N1) + beatKick(age, N2) + beatKick(age, N3);
   float click = beatKick(age, CLICK) * 0.3;
   float env = (body * (1.0 + beat * 0.35) + click) * strength;
-  float la = max(age - N1, 0.0);
+  // 吸い込み区間の長さが音源で変わっても封じる直前の加速量が変わらないよう、N1→SEAL を 0..1 に正規化する
+  float la = clamp((age - N1) / (SEAL - N1), 0.0, 1.0);
   // 画面全体を巻き込むため、半径は画面対角（16:9 で約 4.1）より広く取り、遠方でも 6 割の強さを残す
   float reach = mix(0.6, 1.0, 1.0 - smoothstep(0.0, 4.5, r));
 
-  float accel = 0.9 + la * 5.0;
+  float accel = 0.9 + la * 1.9;
   float swirl = env * reach * (2.4 / (r + 0.28) + 1.6) * accel;
   swirl += env * reach * sin(r * 8.0 - age * 24.0) * 0.55;
   float a = atan(d.y, d.x) + swirl;
-  float rr = r * (1.0 + env * reach * (1.1 + la * 4.0)) + env * reach * 0.14;
+  float rr = r * (1.0 + env * reach * (1.1 + la * 1.52)) + env * reach * 0.14;
   vec2 q = center + vec2(cos(a), sin(a)) * rr;
 
   float since = age - SEAL;

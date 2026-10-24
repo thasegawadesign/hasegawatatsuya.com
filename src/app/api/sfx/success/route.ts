@@ -2,7 +2,7 @@ import { get } from "@vercel/blob";
 
 export async function GET() {
   try {
-    const result = await get("success.mp3", {
+    const result = await get("servo.mp3", {
       access: "private",
     });
 
@@ -14,7 +14,7 @@ export async function GET() {
       headers: {
         "Content-Type": result.blob.contentType || "audio/mp3",
         "Cache-Control": "public, max-age=86400",
-        "Content-Disposition": result.blob.contentDisposition || 'inline; filename="success.mp3"',
+        "Content-Disposition": result.blob.contentDisposition || 'inline; filename="servo.mp3"',
         "X-Content-Type-Options": "nosniff",
       },
     });
