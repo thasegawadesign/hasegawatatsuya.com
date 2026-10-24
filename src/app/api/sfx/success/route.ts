@@ -1,25 +1,5 @@
-import { get } from "@vercel/blob";
+import { blobAudioResponse } from "@/lib/blobAudioResponse";
 
-export async function GET() {
-  try {
-    const result = await get("servo.mp3", {
-      access: "private",
-    });
-
-    if (!result || result.statusCode !== 200 || !result.stream) {
-      return new Response("Not found", { status: 404 });
-    }
-
-    return new Response(result.stream, {
-      headers: {
-        "Content-Type": result.blob.contentType || "audio/mp3",
-        "Cache-Control": "public, max-age=86400",
-        "Content-Disposition": result.blob.contentDisposition || 'inline; filename="servo.mp3"',
-        "X-Content-Type-Options": "nosniff",
-      },
-    });
-  } catch (error) {
-    console.error(error);
-    return new Response("Internal Server Error", { status: 500 });
-  }
+export function GET(request: Request) {
+  return blobAudioResponse(request, "servo.mp3");
 }
