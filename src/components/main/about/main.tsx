@@ -254,7 +254,7 @@ export default function Main() {
           <p ref={valueRef} className={clsx(description)}>
             Webサイト制作の実務においては、
             <br />
-            ユーザのニーズを軸に考えます。
+            ユーザのニーズに何度も立ち返ります。
             <br />
             情報設計・デザイン・コーディングを
             <br />
@@ -268,9 +268,7 @@ export default function Main() {
             <br />
             Webに求められる性質を
             <br />
-            認知・構造・表現・技術などの観点から
-            <br />
-            注意を払い
+            認知・構造・表現・技術などの観点から捉えて
             <br />
             設計・実装しています。
             <br />
