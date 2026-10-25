@@ -40,12 +40,20 @@ export const aboutHero = style({
     },
   },
 });
+// 遷移中の名前は、写し取ったときの箱の大きさに切り抜かれて描かれる。名前の高さしかないと
+// 上下から飛んでくる文字がほとんど見えず、完成形が現れるだけになるので、余白で箱を画面の縦いっぱいまで広げる
+// （横は main の overflow-x: clip で直接開いたときも同じ幅に切られるので広げない）
+const NAME_STAGE_TOP = "100vh";
+const NAME_STAGE_BOTTOM = "50vh";
+
 export const nameBox = style({
   position: "absolute",
   zIndex: 50,
-  top: 260,
+  top: `calc(260px - ${NAME_STAGE_TOP})`,
   right: 0,
   left: 0,
+  paddingTop: NAME_STAGE_TOP,
+  paddingBottom: NAME_STAGE_BOTTOM,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
