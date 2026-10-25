@@ -1,4 +1,4 @@
-import { Cormorant, Noto_Sans_JP, Noto_Serif_JP, Roboto } from "next/font/google";
+import { Cormorant, Noto_Sans_JP, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 
 export const yakuHanJP = localFont({
@@ -50,9 +50,12 @@ export const roboto = Roboto({
   variable: "--font-roboto",
 });
 
-export const notoSerifJP = Noto_Serif_JP({
-  subsets: ["latin"],
-  weight: ["700"],
+// About の名前にしか使わないので、その字だけに絞って全ページで preload する。
+// Google Fonts の分割ファイルだとカナが latin の preload に入らず、直接開いたときに名前の表示が遅れる
+export const notoSerifJP = localFont({
+  src: "../fonts/notoserifjp/NotoSerifJP-Bold-name.woff2",
+  weight: "700",
+  style: "normal",
   display: "block",
   preload: true,
   adjustFontFallback: false,
