@@ -27,8 +27,6 @@ export default function Works() {
               how={
                 <>
                   マウスやポインタの動きをそのまま計測・集計し、トレイル・速度波形・ヒートマップの各ビューへリアルタイムに反映する構成にしました。操作に直接連動して表示が変わる体験を通じて、操作そのものがデータになる仕組みを実装しています。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={<>Frontend Development</>}

@@ -33,8 +33,6 @@ export default function Works() {
                   任意のURLにサーバからアクセスする特性上、SSRF（Server-Side Request
                   Forgery）への対策にも配慮しました。http/https
                   のみを許可し、localhost・プライベートIP・内部向けホスト名をブロック。取得前にはDNS解決結果も検証し、リダイレクト先でも同様のチェックを行うことで、内部ネットワークへの不正アクセスを防いでいます。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={

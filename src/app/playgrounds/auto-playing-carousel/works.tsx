@@ -27,8 +27,6 @@ export default function Works() {
               how={
                 <>
                   ヒーロー画像を自動再生するカルーセルを実装し、再生・停止状態と現在のスライドがスクリーンリーダーでも把握できるようARIA属性を付与しました。視覚訴求とアクセシビリティの両立を設計の起点としています。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={

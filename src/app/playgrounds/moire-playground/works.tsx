@@ -27,8 +27,6 @@ export default function Works() {
               how={
                 <>
                   チェッカーボード模様のテクスチャを繰り返し配置し、Three.jsのテクスチャマッピングで幾何学模様を描画しました。OrbitControlsで視点を動かすことで、位相差から生じるモアレ効果の揺らぎをリアルタイムに観察できる構成にしています。
-                  <br />
-                  技術面では Vite / TypeScript / Three.js を採用しています。
                 </>
               }
               role={<>Frontend Development</>}

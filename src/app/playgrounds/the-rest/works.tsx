@@ -31,8 +31,6 @@ export default function Works() {
                   <br />
                   実装の多くは、コーディングエージェントとの往復で進めています。事前学習として、基礎的事項をThree.js
                   Journeyで押さえた上で、具体的に形にしていく作業はAIをフル活用してスピード違反で進めました。
-                  <br />
-                  技術面では Vite / TypeScript / Three.js を採用しています。
                 </>
               }
               role={

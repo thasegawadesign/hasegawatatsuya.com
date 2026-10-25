@@ -26,8 +26,6 @@ export default function Works() {
               how={
                 <>
                   入力した言葉が川の流れに乗って消えていく様子を、シンプルなアニメーションで表現しました。余計な機能を排し、言葉を書いて流すという一つの行為に集中できる画面設計にしています。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={

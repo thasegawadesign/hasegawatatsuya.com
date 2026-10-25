@@ -26,9 +26,6 @@ export default function Works() {
               how={
                 <>
                   統計データの「固定されたグラフ」と「時間の流れ」を重ねるため、D3.jsの折れ線グラフで社会の輪郭を描き、Three.jsのシェーダーでその背後の気配や温度を表現する二層構造にしました。都道府県や年の切り替えに連動して、両方のレイヤーが同期して更新されます。
-                  <br />
-                  技術面では Next.js / TypeScript / D3.js / Three.js / Tailwind CSS
-                  を採用しています。
                 </>
               }
               role={

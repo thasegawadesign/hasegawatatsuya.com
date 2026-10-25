@@ -33,8 +33,6 @@ export default function Works() {
               how={
                 <>
                   CSSのscroll-snap-typeを用い、全画面画像がスクロールに連動して切り替わる構成にしました。JavaScriptに頼らず、ネイティブのスクロール挙動でスナップさせることで、軽量かつ滑らかな切り替えを実現しています。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={<>Frontend Development</>}
