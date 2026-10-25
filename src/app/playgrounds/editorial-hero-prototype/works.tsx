@@ -33,8 +33,6 @@ export default function Works() {
               how={
                 <>
                   大小2枚の非対称レイアウトに、時間差で幕が上がるように画像が次々と現れる演出を実装しました。設備や空間紹介のファーストビュー向けに、参考サイトの体験を再構成しています。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={

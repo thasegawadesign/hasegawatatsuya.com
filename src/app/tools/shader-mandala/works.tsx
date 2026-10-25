@@ -26,8 +26,6 @@ export default function Works() {
               how={
                 <>
                   金剛界曼荼羅の九会をWebGPU上に再構築し、WGSLシェーダーで金線の幾何と粘性のある光の表現を実装しました。目標の言葉を置くたびに宝珠の光が宿り、曼荼羅全体がぬるりと呼吸するよう、入力と描画をリアルタイムで連動させています。
-                  <br />
-                  技術面では Next.js / TypeScript / WebGPU / WGSL を採用しています。
                 </>
               }
               role={

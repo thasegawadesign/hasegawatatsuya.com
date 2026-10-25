@@ -33,8 +33,6 @@ export default function Works() {
               how={
                 <>
                   Splideカルーセルをベースに、スクリーンリーダーとキーボード操作でもスライドを切り替えられるようARIA属性とフォーカス管理を実装しました。視覚的なカルーセル体験を損なわず、アクセシビリティを担保する設計を目指しています。
-                  <br />
-                  技術面では Next.js / TypeScript / Tailwind CSS を採用しています。
                 </>
               }
               role={
