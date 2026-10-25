@@ -192,8 +192,8 @@ export default function AudioButton() {
           ref={audioButtonRef}
           aria-label={isPlayingAudio ? "Sound OFF" : "Sound ON"}
           className={clsx(audioButton, isPlayingAudio ? animationRunning : animationPaused)}
-          onMouseMove={magnetic.onMouseMove}
-          onMouseLeave={magnetic.onMouseLeave}
+          onPointerMove={magnetic.onPointerMove}
+          onPointerLeave={magnetic.onPointerLeave}
         ></button>
       </Tooltip>
     </div>

@@ -1,5 +1,5 @@
 import { createSpring, type Spring, type SpringConfig } from "@/lib/spring";
-import { useCallback, useEffect, useRef, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, type PointerEvent } from "react";
 
 interface MagneticOptions {
   readonly strength?: number;
@@ -33,8 +33,10 @@ export const useMagnetic = <T extends HTMLElement>({
     };
   }, [tension, friction, mass, precision]);
 
-  const onMouseMove = useCallback(
-    (e: MouseEvent) => {
+  // タップでは leave が来ず拡大したまま残るので、吸い付きはマウス操作だけに反応させる
+  const onPointerMove = useCallback(
+    (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
       const el = ref.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
@@ -45,9 +47,9 @@ export const useMagnetic = <T extends HTMLElement>({
     [strength, scale],
   );
 
-  const onMouseLeave = useCallback(() => {
+  const onPointerLeave = useCallback(() => {
     springRef.current?.start({ x: 0, y: 0, scale: 1 });
   }, []);
 
-  return { ref, onMouseMove, onMouseLeave };
+  return { ref, onPointerMove, onPointerLeave };
 };

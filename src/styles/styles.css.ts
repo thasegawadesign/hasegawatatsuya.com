@@ -18,6 +18,9 @@ export const breakpoints = {
   sm: "screen and (max-width: 639px)",
 } as const;
 
+// タッチ端末ではタップ後も :hover が残り続けるので、ホバー演出はマウス等の環境に限る
+export const hoverable = "(hover: hover)";
+
 export const vars = createGlobalTheme(":root", {
   color: {
     text: "#faf1e8",

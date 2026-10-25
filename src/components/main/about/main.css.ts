@@ -5,7 +5,7 @@ import {
   PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
 import { LAYER } from "@/styles/layers";
-import { breakpoints, vars } from "@/styles/styles.css";
+import { breakpoints, hoverable, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 globalStyle("@property --photo-rotate", {
@@ -241,8 +241,12 @@ export const profileLink = style({
   ":focus-visible": {
     scale: 1.28,
   },
-  ":hover": {
-    scale: 1.28,
+  "@media": {
+    [hoverable]: {
+      ":hover": {
+        scale: 1.28,
+      },
+    },
   },
 });
 export const profileLinkIcon = style({
