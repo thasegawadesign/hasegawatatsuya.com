@@ -7,7 +7,7 @@ import {
 } from "@/constants/constants";
 import { LAYER } from "@/styles/layers";
 import { SITE_EDGE } from "@/styles/siteEdge";
-import { breakpoints, vars } from "@/styles/styles.css";
+import { breakpoints, hoverable, vars } from "@/styles/styles.css";
 import { createVar, globalStyle, keyframes, style } from "@vanilla-extract/css";
 
 export const main = style({
@@ -345,11 +345,15 @@ export const profileLink = style({
   backgroundColor: "transparent",
   cursor: "pointer",
   lineHeight: "100%",
-  ":hover": {
-    scale: 1.28,
-  },
   ":focus-visible": {
     scale: 1.28,
+  },
+  "@media": {
+    [hoverable]: {
+      ":hover": {
+        scale: 1.28,
+      },
+    },
   },
 });
 export const profileLinkIcon = style({
