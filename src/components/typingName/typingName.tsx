@@ -23,6 +23,10 @@ const SYLLABLES: [number, number[]][] = [
 // 一定の間隔だと機械的に見えるので、人が打つような揺らぎを持たせる
 const syllableInterval = () => gsap.utils.random(0.05, 0.09);
 const LETTER_INTERVAL = 0.018;
+// 最初の集合は何が起きたか掴めるかどうかの速さで済ませ、ゆっくり見せるのは入れ替えに任せる
+const assembleSyllableInterval = () => gsap.utils.random(0.008, 0.016);
+const ASSEMBLE_LETTER_INTERVAL = 0.004;
+const ASSEMBLE = 0.22;
 
 interface TypingNameProps {
   jaClassName: string;
@@ -49,7 +53,7 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
 
     // filter や text-shadow は大きな文字だと毎フレームの描き直しが重くカクつくので、
     // GPU で合成できる opacity と transform だけで動かす
-    const arrive = (el: Element, distance: number, immediateRender = true) => {
+    const arrive = (el: Element, distance: number, immediateRender = true, duration = ARRIVE) => {
       const angle = gsap.utils.random(0, Math.PI * 2);
       const [xEase, yEase] = pickEases("expo.out", "power1.inOut");
       return gsap
@@ -61,7 +65,7 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
             opacity: 1,
             rotation: 0,
             scale: 1,
-            duration: ARRIVE,
+            duration,
             ease: "expo.out",
             immediateRender,
           },
@@ -70,13 +74,13 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
         .fromTo(
           el,
           { x: Math.cos(angle) * distance },
-          { x: 0, duration: ARRIVE, ease: xEase, immediateRender },
+          { x: 0, duration, ease: xEase, immediateRender },
           0,
         )
         .fromTo(
           el,
           { y: Math.sin(angle) * distance },
-          { y: 0, duration: ARRIVE, ease: yEase, immediateRender },
+          { y: 0, duration, ease: yEase, immediateRender },
           0,
         )
         .set(el, { clearProps: "transform" });
@@ -109,9 +113,12 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
     let at = 0;
     for (const syllable of SYLLABLES) {
       syllableChars(syllable).forEach((el, n) => {
-        tl.add(arrive(el, reach * gsap.utils.random(0.7, 1)), at + n * LETTER_INTERVAL);
+        tl.add(
+          arrive(el, reach * gsap.utils.random(0.7, 1), true, ASSEMBLE),
+          at + n * ASSEMBLE_LETTER_INTERVAL,
+        );
       });
-      at += syllableInterval();
+      at += assembleSyllableInterval();
     }
 
     // 集まった後も音節を一つずつ散らしては別の方向から戻し、部品を入れ替えながら形を保ち続ける（動的平衡）
