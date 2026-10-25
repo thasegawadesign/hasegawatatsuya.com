@@ -3,7 +3,7 @@
 import { char, enChar, enLine, visuallyHidden } from "@/components/typingName/typingName.css";
 import clsx from "clsx";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 const JA = "ハセガワ タツヤ";
 const EN = "Tatsuya Hasegawa";
@@ -20,13 +20,21 @@ const SYLLABLES: [number, number[]][] = [
   [7, [5, 6]],
 ];
 
-// 一定の間隔だと機械的に見えるので、人が打つような揺らぎを持たせる
-const syllableInterval = () => gsap.utils.random(0.05, 0.09);
 const LETTER_INTERVAL = 0.018;
-// 最初の集合は何が起きたか掴めるかどうかの速さで済ませ、ゆっくり見せるのは入れ替えに任せる
+// 最初の集合は何が起きたか掴めるかどうかの速さで済ませ、ゆっくり見せるのは入れ替えに任せる。
+// 一定の間隔だと機械的に見えるので、人が打つような揺らぎを持たせる
 const assembleSyllableInterval = () => gsap.utils.random(0.008, 0.016);
 const ASSEMBLE_LETTER_INTERVAL = 0.004;
 const ASSEMBLE = 0.22;
+
+// __reactViewTransition は React の内部プロパティなので、activeViewTransition が使えないブラウザの代わりにだけ頼る
+const getActiveViewTransition = () => {
+  const doc = document as Document & {
+    activeViewTransition?: ViewTransition | null;
+    __reactViewTransition?: ViewTransition | null;
+  };
+  return doc.activeViewTransition ?? doc.__reactViewTransition ?? null;
+};
 
 interface TypingNameProps {
   jaClassName: string;
@@ -37,10 +45,15 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
   const jaRef = useRef<HTMLSpanElement>(null);
   const enRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
+  // View Transition 中の React は useEffect を遷移の終わりまで遅らせ、写真より後に名前が集まってしまうため useLayoutEffect にする
+  useLayoutEffect(() => {
     const jaChars = Array.from(jaRef.current?.children ?? []);
     const enChars = Array.from(enRef.current?.children ?? []);
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Safari では遷移中の DOM 更新の時点で文字を隠す CSS がまだ効いておらず、完成形のまま写し取られる。
+    // 位置まで散らすと写しがはみ出した文字の分だけ巨大になるので、ここでは透明にするだけにとどめる
+    gsap.set([...jaChars, ...enChars], { opacity: 0 });
 
     const reach = Math.hypot(window.innerWidth, window.innerHeight) * 0.6;
     const ARRIVE = 0.7;
@@ -107,18 +120,34 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
     const syllableChars = ([ja, en]: [number, number[]]) =>
       [jaChars[ja], ...en.map((i) => enChars[i])].filter((el): el is Element => !!el);
 
-    // 遷移中でも新しいページ側（::view-transition-new）はそのまま描かれ続けるので、遷移の終わりを待たずに始める
     // 画面の外周あたりのランダムな方向から、それぞれの位置へ集まってくる
-    const tl = gsap.timeline({ onComplete: () => scheduleExchange() });
-    let at = 0;
-    for (const syllable of SYLLABLES) {
-      syllableChars(syllable).forEach((el, n) => {
-        tl.add(
-          arrive(el, reach * gsap.utils.random(0.7, 1), true, ASSEMBLE),
-          at + n * ASSEMBLE_LETTER_INTERVAL,
-        );
-      });
-      at += assembleSyllableInterval();
+    let tl: gsap.core.Timeline | undefined;
+    let cancelled = false;
+    const build = () => {
+      if (cancelled) return;
+      tl = gsap.timeline({ onComplete: () => scheduleExchange() });
+      let at = 0;
+      for (const syllable of SYLLABLES) {
+        syllableChars(syllable).forEach((el, n) => {
+          tl?.add(
+            arrive(el, reach * gsap.utils.random(0.7, 1), true, ASSEMBLE),
+            at + n * ASSEMBLE_LETTER_INTERVAL,
+          );
+        });
+        at += assembleSyllableInterval();
+      }
+    };
+    // useSmoothScroll が lagSmoothing(0) にしているので、遷移の準備で描画が止まっていた間の時間が GSAP の時計に一度に足される。
+    // 止まっている間に作ると開始が過去になって一瞬で終わるので、次の tick で時計が今に追いついてから作る
+    const assemble = () => gsap.ticker.add(build, true);
+
+    // 遷移中も新しいページ側（::view-transition-new）は描かれ続けるので、写真の到着を待たずに集める。
+    // 散らすのは、写しが巨大にならないよう写し取りが済んで遷移が動き出して（ready）から
+    const transition = getActiveViewTransition();
+    if (transition) {
+      transition.ready.then(assemble, assemble);
+    } else {
+      assemble();
     }
 
     // 集まった後も音節を一つずつ散らしては別の方向から戻し、部品を入れ替えながら形を保ち続ける（動的平衡）
@@ -150,7 +179,9 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
     if (jaRef.current) observer.observe(jaRef.current);
 
     return () => {
-      tl.kill();
+      cancelled = true;
+      gsap.ticker.remove(build);
+      tl?.kill();
       exchangeCall?.kill();
       exchangeTl?.kill();
       gsap.killTweensOf([...jaChars, ...enChars]);

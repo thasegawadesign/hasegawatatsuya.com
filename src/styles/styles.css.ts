@@ -34,6 +34,10 @@ globalStyle("::view-transition-old(about-name)", {
   animationDuration: "0.4s",
   animationTimingFunction: "ease-out",
 });
+// 名前は文字が集まる動きそのもので現れるので、新しい側に既定のフェードインを重ねない
+globalStyle("::view-transition-new(about-name)", {
+  animation: "none",
+});
 
 // 作品写真と作品名はブラウザ標準のフェード（-ua-view-transition-fade-in / fade-out）を使い、長さだけ変える。
 // 自作の @keyframes は iPhone の Safari で効かず、写真と作品名がフェードせずに残ってから消えていたため
