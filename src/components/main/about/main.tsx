@@ -254,7 +254,9 @@ export default function Main() {
             モノづくりの達人になることが目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            Web空間を構築していく過程では、
+            インタラクティブなWeb空間を
+            <br />
+            構築していく過程では、
             <br />
             触れたときの感触に何度も立ち返ります。
             <br />
