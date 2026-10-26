@@ -152,9 +152,12 @@ export function getLiquidBootScript(): string {
     return timeOffset+(performance.timeOrigin+performance.now()-epoch)/1000;
   }
 
+  // Three は 100vw×100vh の要素サイズで描く。innerHeight はモバイルでアドレスバー分短く、縦横比が変わって引き継ぎで絵がずれるので、同じ要素サイズを使う
   function pixelSize(){
     var dpr=Math.min(window.devicePixelRatio||1,${MAX_CANVAS_PIXEL_RATIO});
-    return {w:Math.floor((window.innerWidth|0)*dpr),h:Math.floor((window.innerHeight|0)*dpr)};
+    var cw=canvas.clientWidth||window.innerWidth|0;
+    var ch=canvas.clientHeight||window.innerHeight|0;
+    return {w:Math.floor(cw*dpr),h:Math.floor(ch*dpr)};
   }
 
   function frame(){
