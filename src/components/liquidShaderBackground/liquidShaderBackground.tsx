@@ -28,12 +28,13 @@ const MAX_FRAME_DELTA = 1 / 30;
 const SHOCK_DURATION = 1.5;
 // 起動直後はハイドレーションやチャンク評価で長いタスクが断続的に続く。途中で Three に切り替えると次のタスクで止まって見えるので、
 // rAF が詰まらずに続くまで Worker の boot に描かせる。上限はそれでも落ち着かない環境向け。
-// 引き継ぎの拍動はリロード直後に打たないと間延びして見えるので、待ちは止まって見えない最小限に留める
+// 引き継ぎの瞬間に拍動を打つ。読み込み直後すぎると慌ただしく、遅すぎると間延びするので、ページを開いてから一呼吸おいた所で引き継ぐ
 const SMOOTH_FRAMES_TO_REVEAL = 4;
 const SMOOTH_FRAME_GAP_MS = 34;
+const MIN_REVEAL_AT_MS = 800;
 const MAX_REVEAL_WAIT_MS = 1000;
 // boot と Three は同じ絵を描いても、ドライバや精度の差で引き継ぎの瞬間にわずかに揺れる。消し切れない揺れを隠すより、
-// 心臓が打ち始めたように二拍（ドクン、ドクン）打たせて意図した動きにする。二拍目の間と強さは毎回少し揺らし、機械的に見せない
+// 心臓が打ち始めたように二拍打たせて意図した動きにする。二拍目の間と強さは毎回少し揺らし、機械的に見せない
 const HEARTBEAT_DURATION = 1.2;
 const HEARTBEAT_ATTACK = 0.035;
 const HEARTBEAT_DECAY = 7;
@@ -265,7 +266,7 @@ export default function LiquidShaderBackground() {
     timer.connect(document);
 
     const heartbeat = createHeartbeat();
-    let heartbeatAge = -1;
+    let heartbeatAge: number | null = null;
 
     const paint = (timestamp?: number) => {
       if (!hasDrawableSize(root)) return false;
@@ -277,9 +278,9 @@ export default function LiquidShaderBackground() {
       sampleBgmLevels(uBgm.value, uBgmFlash.value, delta, motion > 0);
       uTime.value += delta * motion * uBgm.value.x * 0.9;
       // groove を時間の進みに足した後で重ねる（拍動で流れまで速めると、打つというより早送りに見える）
-      if (heartbeatAge >= 0) {
+      if (heartbeatAge !== null) {
         heartbeatAge += delta;
-        if (heartbeatAge >= HEARTBEAT_DURATION || motion === 0) heartbeatAge = -1;
+        if (heartbeatAge >= HEARTBEAT_DURATION || motion === 0) heartbeatAge = null;
         else {
           const beat = heartbeat(heartbeatAge);
           uBgm.value.x = Math.min(1, uBgm.value.x + beat * 0.85);
@@ -325,7 +326,12 @@ export default function LiquidShaderBackground() {
         const gap = lastTick < 0 ? Infinity : timestamp - lastTick;
         lastTick = timestamp;
         smoothFrames = gap < SMOOTH_FRAME_GAP_MS ? smoothFrames + 1 : 0;
-        if (smoothFrames >= SMOOTH_FRAMES_TO_REVEAL || timestamp - firstTick > MAX_REVEAL_WAIT_MS) {
+        // rAF の timestamp はページを開いた時刻（timeOrigin）起点
+        const smooth = smoothFrames >= SMOOTH_FRAMES_TO_REVEAL;
+        if (
+          timestamp >= MIN_REVEAL_AT_MS &&
+          (smooth || timestamp - firstTick > MAX_REVEAL_WAIT_MS)
+        ) {
           reveal(timestamp);
         }
       };
