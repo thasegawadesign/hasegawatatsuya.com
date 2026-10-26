@@ -27,10 +27,29 @@ const MAX_FRAME_DELTA = 1 / 30;
 // 吸い込み〜封印の包絡はシェーダー側（suctionVortex）が age から決めるので、ここは終了判定だけ持つ
 const SHOCK_DURATION = 1.5;
 // 起動直後はハイドレーションやチャンク評価で長いタスクが断続的に続く。途中で Three に切り替えると次のタスクで止まって見えるので、
-// rAF が詰まらずに続くまで Worker の boot に描かせる。上限はそれでも落ち着かない環境向け
-const SMOOTH_FRAMES_TO_REVEAL = 20;
+// rAF が詰まらずに続くまで Worker の boot に描かせる。上限はそれでも落ち着かない環境向け。
+// 引き継ぎの拍動はリロード直後に打たないと間延びして見えるので、待ちは止まって見えない最小限に留める
+const SMOOTH_FRAMES_TO_REVEAL = 4;
 const SMOOTH_FRAME_GAP_MS = 34;
-const MAX_REVEAL_WAIT_MS = 4000;
+const MAX_REVEAL_WAIT_MS = 1000;
+// boot と Three は同じ絵を描いても、ドライバや精度の差で引き継ぎの瞬間にわずかに揺れる。消し切れない揺れを隠すより、
+// 心臓が打ち始めたように二拍（ドクン、ドクン）打たせて意図した動きにする。二拍目の間と強さは毎回少し揺らし、機械的に見せない
+const HEARTBEAT_DURATION = 1.2;
+const HEARTBEAT_ATTACK = 0.035;
+const HEARTBEAT_DECAY = 7;
+
+function heartbeatKick(age: number, at: number) {
+  if (age < at) return 0;
+  const s = age - at;
+  // 引き継ぎの 1 枚目は boot と同じ絵にしたいので、0 から立ち上げる
+  return (1 - Math.exp(-s / HEARTBEAT_ATTACK)) * Math.exp(-s * HEARTBEAT_DECAY);
+}
+
+function createHeartbeat() {
+  const dubAt = 0.24 + Math.random() * 0.06;
+  const dubStrength = 0.55 + Math.random() * 0.15;
+  return (age: number) => heartbeatKick(age, 0) + heartbeatKick(age, dubAt) * dubStrength;
+}
 
 function stopLiquidBoot() {
   window.__liquidBoot?.stop();
@@ -220,7 +239,8 @@ export default function LiquidShaderBackground() {
       const w = root.clientWidth;
       const h = root.clientHeight;
       const pr = getCanvasPixelRatio();
-      uResolution.value.set(w * pr, h * pr);
+      // 描画バッファは floor される。boot も floor した値で縦横比を出しているので揃える
+      uResolution.value.set(Math.floor(w * pr), Math.floor(h * pr));
       renderer.setPixelRatio(pr);
       renderer.setSize(w, h, false);
       return true;
@@ -244,6 +264,9 @@ export default function LiquidShaderBackground() {
     const timer = new THREE.Timer();
     timer.connect(document);
 
+    const heartbeat = createHeartbeat();
+    let heartbeatAge = -1;
+
     const paint = (timestamp?: number) => {
       if (!hasDrawableSize(root)) return false;
       const motion = mqReduce.matches ? 0 : 1;
@@ -253,6 +276,17 @@ export default function LiquidShaderBackground() {
       advanceShockwave(uShockAge, uShockStrength, delta);
       sampleBgmLevels(uBgm.value, uBgmFlash.value, delta, motion > 0);
       uTime.value += delta * motion * uBgm.value.x * 0.9;
+      // groove を時間の進みに足した後で重ねる（拍動で流れまで速めると、打つというより早送りに見える）
+      if (heartbeatAge >= 0) {
+        heartbeatAge += delta;
+        if (heartbeatAge >= HEARTBEAT_DURATION || motion === 0) heartbeatAge = -1;
+        else {
+          const beat = heartbeat(heartbeatAge);
+          uBgm.value.x = Math.min(1, uBgm.value.x + beat * 0.85);
+          uBgm.value.w = Math.min(1, uBgm.value.w + beat * 0.9);
+          uBgm.value.y = Math.min(1, uBgm.value.y + beat * 0.35);
+        }
+      }
       renderer.render(scene, camera);
       return true;
     };
@@ -265,7 +299,9 @@ export default function LiquidShaderBackground() {
       // boot は壁時計で進み続けているので、引き継ぐ瞬間に時刻を揃え直さないと絵が巻き戻る
       const bootTime = window.__liquidBoot?.time();
       if (bootTime !== undefined) uTime.value = bootTime;
-      timer.reset();
+      // reset() は performance.now() 基準なので、直後に rAF の timestamp で update すると delta が負になり一瞬巻き戻る
+      timer.update(timestamp);
+      heartbeatAge = 0;
       if (!paint(timestamp)) return;
       // boot を消す前に Three canvas を見せる（間に body 単色が挟まないように）
       canvas.classList.add(canvasReady);
