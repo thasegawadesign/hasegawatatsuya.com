@@ -45,7 +45,7 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
 
   const { cornerRadius, bezelWidth, refractionPx, aberration } = liquidGlassOptions;
 
-  // React は View Transition 中の useEffect を遷移の終わりまで遅らせるので、遷移先のページで屈折が出遅れないよう layout effect で寸法を測ってフィルターへ直接書き込む
+  // React は View Transition 中の useEffect を遷移の終わりまで遅らせ、遷移先のページで屈折が出遅れるので layout effect にする
   useLayoutEffect(() => {
     const element = cardRef.current;
     const filter = filterRef.current;
@@ -73,7 +73,7 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
       }
       mapImage.setAttribute("href", url);
       // Chrome は参照中のフィルターの属性を書き換えても backdrop-filter を組み直さず、古い範囲の外の縁が素通しのまま残る。
-      // 遷移直後はスクロールバーなどで幅が少し変わるので、書き換えるたびに id を変えて別のフィルターとして参照させる
+      // 読み込みや遷移の直後は寸法が測り直しで変わるので、書き換えるたびに id を変えて別のフィルターとして参照させる
       version += 1;
       filter.id = `${filterId}-${version}`;
       element.style.setProperty("--glass-refraction", `url(#${filter.id})`);
@@ -115,8 +115,8 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
     [containerRef],
   );
 
-  // ページを移るとカードが作り直され、縁の光がマウスを動かすまで既定の淡い光に戻って縁が消えたように見えるので、
-  // 最後のカーソル位置からすぐに描く。遷移中は useEffect が遷移の終わりまで遅れるので layout effect で始める
+  // ページを移るとカードが作り直され、マウスを動かすまで縁の光が既定の淡さに戻って縁が消えたように見えるので、
+  // 最後のカーソル位置を引き継ぐ。useEffect だと遷移の終わりまで遅れるので layout effect にする
   useLayoutEffect(() => {
     const container = containerRef?.current ?? cardRef.current;
     if (!container) {

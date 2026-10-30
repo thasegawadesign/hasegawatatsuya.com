@@ -29,7 +29,6 @@ export function LiquidGlassFilter({
   return (
     <svg className={glassFilter} aria-hidden="true">
       <defs>
-        {/* 寸法とマップは遷移中の再描画を待たずに LiquidGlassCard が直接書き込む */}
         <filter
           ref={filterRef}
           id={id}

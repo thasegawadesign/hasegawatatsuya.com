@@ -65,8 +65,7 @@ function createBezelMap(width: number, height: number, cornerRadius: number, bez
         normalY = 1;
       }
 
-      // 1 - smoothstep で縁と内側の両端の傾きを 0 にし、変位の勾配が最大でも 1.5 / bezel に収まるようにする。
-      // 勾配が 1 / refraction を超えると絵が折り返して鏡像になる
+      // 変位の勾配が 1 / refraction を超えると絵が折り返して鏡像になる。1 - smoothstep なら勾配の最大は 1.5 / bezel に収まる
       const t = Math.min(1, Math.max(0, distance / bezel));
       const strength = 1 - t * t * (3 - 2 * t);
 
