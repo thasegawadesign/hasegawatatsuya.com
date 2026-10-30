@@ -75,8 +75,9 @@ export const glassRim = style({
   zIndex: 0,
   inset: 0,
   display: "block",
+  // mix-blend-mode: screen にすると View Transition の後に描き直されず、カードのスタイルが次に変わるまで輪が消える。
+  // 白の光は screen でも通常の重ね方でも同じ色になり、黒い外側の影は mask で切り落とされるので、合成モードは使わない
   opacity: 0.5,
-  mixBlendMode: "screen",
   borderRadius: "inherit",
   padding: "1.5px",
   pointerEvents: "none",

@@ -1,10 +1,10 @@
 import { glassFilter } from "@/components/glass/glass.css";
+import type { RefObject } from "react";
 
 type LiquidGlassFilterProps = {
   id: string;
-  width: number;
-  height: number;
-  mapUrl: string;
+  filterRef: RefObject<SVGFilterElement | null>;
+  mapImageRef: RefObject<SVGFEImageElement | null>;
   refractionPx: number;
   aberration: number;
 };
@@ -17,9 +17,8 @@ const CHANNELS = [
 
 export function LiquidGlassFilter({
   id,
-  width,
-  height,
-  mapUrl,
+  filterRef,
+  mapImageRef,
   refractionPx,
   aberration,
 }: LiquidGlassFilterProps) {
@@ -30,24 +29,16 @@ export function LiquidGlassFilter({
   return (
     <svg className={glassFilter} aria-hidden="true">
       <defs>
+        {/* 寸法とマップは遷移中の再描画を待たずに LiquidGlassCard が直接書き込む */}
         <filter
+          ref={filterRef}
           id={id}
           x="0"
           y="0"
-          width={width}
-          height={height}
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
-          <feImage
-            x="0"
-            y="0"
-            width={width}
-            height={height}
-            href={mapUrl}
-            preserveAspectRatio="none"
-            result="MAP"
-          />
+          <feImage ref={mapImageRef} x="0" y="0" preserveAspectRatio="none" result="MAP" />
           {CHANNELS.map(({ name, spread, matrix }) => [
             <feDisplacementMap
               key={`${name}-displaced`}

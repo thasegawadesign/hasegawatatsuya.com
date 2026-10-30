@@ -1,7 +1,26 @@
 // ページ全体を包むカードは縦に数千 px になるので、マップは縮めて作り feImage で引き伸ばす
 const MAX_MAP_SIDE = 2048;
+// ページを移るたびにカードが作り直されるので、行き来しても同じ寸法なら生成の待ちを挟まない
+const MAX_CACHED_MAPS = 6;
+const cache = new Map<string, string>();
 
-export function createBezelMap(width: number, height: number, cornerRadius: number, bezel: number) {
+export function getBezelMap(width: number, height: number, cornerRadius: number, bezel: number) {
+  const key = `${width}x${height}x${cornerRadius}x${bezel}`;
+  const cached = cache.get(key);
+  if (cached) {
+    return cached;
+  }
+  const url = createBezelMap(width, height, cornerRadius, bezel);
+  if (url) {
+    cache.set(key, url);
+    if (cache.size > MAX_CACHED_MAPS) {
+      cache.delete(cache.keys().next().value!);
+    }
+  }
+  return url;
+}
+
+function createBezelMap(width: number, height: number, cornerRadius: number, bezel: number) {
   // 距離場の角丸が bezel より小さいと、内側の矩形距離で法線が切り替わる対角線が変位の帯に入り、折り目が出る。
   // 角だけ実際の縁より最大 (radius - cornerRadius)(√2 - 1) 内側から測ることになるが、その外は最大変位で埋まるので目立たない
   const radius = Math.max(cornerRadius, bezel);
