@@ -1,24 +1,30 @@
 "use client";
 
+import { getBezelMap } from "@/components/glass/bezelMap";
 import { liquidGlassOptions } from "@/components/glass/glass.constants";
 import { glassBackdrop, glassCard, glassContent, glassRim } from "@/components/glass/glass.css";
 import { LiquidGlassFilter } from "@/components/glass/liquidGlassFilter";
 import clsx from "clsx";
-import {
-  useCallback,
-  useEffect,
-  useId,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type RefObject,
-} from "react";
+import { useCallback, useId, useLayoutEffect, useRef, type RefObject } from "react";
 
 type LiquidGlassCardProps = {
   children: React.ReactNode;
   className?: string;
   containerRef?: RefObject<HTMLElement | null>;
 };
+
+// 読み込み中は画像やフォントで高さが何度も変わるので、落ち着いてからマップを作り直す
+const MAP_REBUILD_DELAY_MS = 160;
+
+// backdrop-filter に SVG フィルターを渡せるのは Chromium だけ。Safari と Firefox は url() を含む宣言ごと捨ててぼかしまで消える
+function supportsBackdropUrlFilter() {
+  const { userAgentData } = navigator as Navigator & {
+    userAgentData?: { brands: { brand: string }[] };
+  };
+  return userAgentData?.brands.some(({ brand }) => brand === "Chromium") ?? false;
+}
+
+let lastPointer: { clientX: number; clientY: number } | null = null;
 
 function rimGradient(x: number, y: number) {
   return `linear-gradient(
@@ -34,53 +40,66 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
   const cardRef = useRef<HTMLDivElement>(null);
   const rawFilterId = useId();
   const filterId = `liquid-glass-${rawFilterId.replace(/:/g, "")}`;
-  const [filterReady, setFilterReady] = useState(false);
+  const filterRef = useRef<SVGFilterElement>(null);
+  const mapImageRef = useRef<SVGFEImageElement>(null);
 
-  const { displacementScale, aberrationIntensity, mode } = liquidGlassOptions;
+  const { cornerRadius, bezelWidth, refractionPx, aberration } = liquidGlassOptions;
 
-  const isFirefox =
-    typeof navigator !== "undefined" && navigator.userAgent.toLowerCase().includes("firefox");
-
-  const updateSize = useCallback(() => {
-    const element = cardRef.current;
-    if (!element) {
-      return;
-    }
-
-    const rect = element.getBoundingClientRect();
-    setFilterReady(rect.width > 0 && rect.height > 0);
-  }, []);
-
+  // React は View Transition 中の useEffect を遷移の終わりまで遅らせ、遷移先のページで屈折が出遅れるので layout effect にする
   useLayoutEffect(() => {
-    updateSize();
-  }, [updateSize]);
-
-  useEffect(() => {
     const element = cardRef.current;
-    if (!element) {
+    const filter = filterRef.current;
+    const mapImage = mapImageRef.current;
+    if (!element || !filter || !mapImage || !supportsBackdropUrlFilter()) {
       return;
     }
 
-    const observer = new ResizeObserver(updateSize);
+    let timer: number | undefined;
+    let builtSize = "";
+    let version = 0;
+    const apply = (width: number, height: number) => {
+      const size = `${width}x${height}`;
+      if (width === 0 || height === 0 || size === builtSize) {
+        return;
+      }
+      const url = getBezelMap(width, height, cornerRadius, bezelWidth);
+      if (!url) {
+        return;
+      }
+      builtSize = size;
+      for (const target of [filter, mapImage]) {
+        target.setAttribute("width", `${width}`);
+        target.setAttribute("height", `${height}`);
+      }
+      mapImage.setAttribute("href", url);
+      // Chrome は参照中のフィルターの属性を書き換えても backdrop-filter を組み直さず、古い範囲の外の縁が素通しのまま残る。
+      // 読み込みや遷移の直後は寸法が測り直しで変わるので、書き換えるたびに id を変えて別のフィルターとして参照させる
+      version += 1;
+      filter.id = `${filterId}-${version}`;
+      element.style.setProperty("--glass-refraction", `url(#${filter.id})`);
+    };
+
+    // offsetWidth は整数に丸められ、88vw などの端数の幅だとフィルター範囲の外に 1px 未満の列が残って縁が素通しになる。
+    // getBoundingClientRect は View Transition 中の transform を含むので、端数を保つレイアウト寸法を使う
+    const computed = getComputedStyle(element);
+    apply(parseFloat(computed.width), parseFloat(computed.height));
+
+    const observer = new ResizeObserver(([entry]) => {
+      const [box] = entry.borderBoxSize;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => apply(box.inlineSize, box.blockSize), MAP_REBUILD_DELAY_MS);
+    });
     observer.observe(element);
 
-    return () => observer.disconnect();
-  }, [updateSize]);
+    return () => {
+      window.clearTimeout(timer);
+      observer.disconnect();
+      element.style.removeProperty("--glass-refraction");
+    };
+  }, [cornerRadius, bezelWidth, filterId]);
 
-  useLayoutEffect(() => {
-    const element = cardRef.current;
-    if (!element) {
-      return;
-    }
-
-    element.style.setProperty(
-      "--glass-displacement-filter",
-      !isFirefox && filterReady ? `url(#${filterId})` : "none",
-    );
-  }, [filterId, filterReady, isFirefox]);
-
-  const handleMouseMove = useCallback(
-    (event: MouseEvent) => {
+  const updateRim = useCallback(
+    (clientX: number, clientY: number) => {
       const container = containerRef?.current ?? cardRef.current;
       const card = cardRef.current;
       if (!container || !card) {
@@ -88,35 +107,44 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
       }
 
       const rect = container.getBoundingClientRect();
-      const x = ((event.clientX - (rect.left + rect.width / 2)) / rect.width) * 100;
-      const y = ((event.clientY - (rect.top + rect.height / 2)) / rect.height) * 100;
+      const x = ((clientX - (rect.left + rect.width / 2)) / rect.width) * 100;
+      const y = ((clientY - (rect.top + rect.height / 2)) / rect.height) * 100;
 
       card.style.setProperty("--glass-rim-background", rimGradient(x, y));
     },
     [containerRef],
   );
 
-  useEffect(() => {
+  // ページを移るとカードが作り直され、マウスを動かすまで縁の光が既定の淡さに戻って縁が消えたように見えるので、
+  // 最後のカーソル位置を引き継ぐ。useEffect だと遷移の終わりまで遅れるので layout effect にする
+  useLayoutEffect(() => {
     const container = containerRef?.current ?? cardRef.current;
     if (!container) {
       return;
     }
 
+    if (lastPointer) {
+      updateRim(lastPointer.clientX, lastPointer.clientY);
+    }
+
+    const handleMouseMove = (event: MouseEvent) => {
+      lastPointer = { clientX: event.clientX, clientY: event.clientY };
+      updateRim(event.clientX, event.clientY);
+    };
     container.addEventListener("mousemove", handleMouseMove);
 
     return () => container.removeEventListener("mousemove", handleMouseMove);
-  }, [containerRef, handleMouseMove]);
+  }, [containerRef, updateRim]);
 
   return (
     <div ref={cardRef} className={clsx(glassCard, className)}>
-      {filterReady ? (
-        <LiquidGlassFilter
-          id={filterId}
-          displacementScale={displacementScale}
-          aberrationIntensity={aberrationIntensity}
-          mode={mode}
-        />
-      ) : null}
+      <LiquidGlassFilter
+        id={filterId}
+        filterRef={filterRef}
+        mapImageRef={mapImageRef}
+        refractionPx={refractionPx}
+        aberration={aberration}
+      />
       <span className={glassBackdrop} />
       <span className={glassRim} />
       <div className={glassContent}>{children}</div>

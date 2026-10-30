@@ -1,11 +1,9 @@
-export const GLASS_DISPLACEMENT_MAP_SRC = "/images/glass-displacement.jpg";
-
 export const liquidGlassOptions = {
   cornerRadius: 40,
-  displacementScale: 56,
-  backdropBlurPx: 64,
-  backdropBlurPxSm: 40,
+  bezelWidth: 60,
+  refractionPx: 26,
+  aberration: 0.08,
+  backdropBlurPx: 48,
+  backdropBlurPxSm: 30,
   saturation: 120,
-  aberrationIntensity: 2,
-  mode: "standard" as const,
 };
