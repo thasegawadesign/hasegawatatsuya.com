@@ -2,7 +2,11 @@ import { breakpoints } from "@/styles/styles.css";
 import { liquidGlassOptions } from "@/components/glass/glass.constants";
 import { style } from "@vanilla-extract/css";
 
-const { backdropBlurPx, backdropBlurPxSm, saturation } = liquidGlassOptions;
+const { cornerRadius, backdropBlurPx, backdropBlurPxSm, saturation } = liquidGlassOptions;
+
+// --glass-refraction は Chromium だけ url() に差し替わる。既定は何もしない関数にして宣言全体を有効に保つ
+const backdrop = (blurPx: number) =>
+  `blur(${blurPx}px) saturate(${saturation}%) var(--glass-refraction)`;
 
 export const glassShell = style({
   position: "relative",
@@ -34,10 +38,10 @@ export const glassShell = style({
 export const glassCard = style({
   position: "relative",
   width: "100%",
-  borderRadius: 40,
+  borderRadius: cornerRadius,
   boxShadow: "0px 12px 40px rgba(0, 0, 0, 0.25)",
   vars: {
-    "--glass-displacement-filter": "none",
+    "--glass-refraction": "brightness(1)",
     "--glass-rim-background":
       "linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 33%, rgba(255, 255, 255, 0.4) 66%, rgba(255, 255, 255, 0) 100%)",
   },
@@ -57,12 +61,11 @@ export const glassBackdrop = style({
   inset: 0,
   display: "block",
   borderRadius: "inherit",
-  backdropFilter: `blur(${backdropBlurPx}px) saturate(${saturation}%)`,
-  filter: "var(--glass-displacement-filter)",
+  backdropFilter: backdrop(backdropBlurPx),
   pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
-      backdropFilter: `blur(${backdropBlurPxSm}px) saturate(${saturation}%)`,
+      backdropFilter: backdrop(backdropBlurPxSm),
     },
   },
 });
@@ -72,7 +75,7 @@ export const glassRim = style({
   zIndex: 0,
   inset: 0,
   display: "block",
-  opacity: 0.2,
+  opacity: 0.5,
   mixBlendMode: "screen",
   borderRadius: "inherit",
   padding: "1.5px",
