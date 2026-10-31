@@ -1,5 +1,6 @@
 import { SITE_BASE_COLOR } from "@/constants/constants";
 import { LAYER } from "@/styles/layers";
+import { belowLogo, edgeMedia, HAMBURGER_EDGE_KEYS } from "@/styles/siteEdge";
 import { globalStyle, style } from "@vanilla-extract/css";
 
 globalStyle("::selection", {
@@ -18,6 +19,7 @@ globalStyle("::-moz-selection", {
 export const html = style({
   overflowX: "hidden",
   scrollPaddingTop: 40,
+  "@media": edgeMedia(HAMBURGER_EDGE_KEYS, (edge) => ({ scrollPaddingTop: belowLogo(edge) })),
 });
 
 export const smoothScroll = style({

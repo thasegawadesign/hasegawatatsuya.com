@@ -1,7 +1,13 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { SITE_NAV_TRANSITION_NAME } from "@/lib/viewTransitionNames";
 import { LAYER } from "@/styles/layers";
-import { edgeMedia, HAMBURGER_BREAKPOINT, logoTop, SITE_EDGE } from "@/styles/siteEdge";
+import {
+  edgeMedia,
+  HAMBURGER_BREAKPOINT,
+  LOGO_FONT_SIZE,
+  logoTop,
+  SITE_EDGE,
+} from "@/styles/siteEdge";
 import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -72,6 +78,6 @@ export const navLink = style({
 export const logo = style({
   textDecoration: "none",
   color: vars.color.text,
-  fontSize: "3.6rem",
+  fontSize: LOGO_FONT_SIZE,
   fontWeight: 400,
 });
