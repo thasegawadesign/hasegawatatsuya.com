@@ -27,6 +27,12 @@ export const HAMBURGER_EDGE_KEYS = ["xl", "md", "sm"] as const satisfies readonl
 export const logoTop = (edge: SiteEdge) =>
   edge.logoLift ? `calc(${edge.top} - ${edge.logoLift})` : edge.top;
 
+export const LOGO_FONT_SIZE = "3.6rem";
+// body の line-height 1.5 と一致させる
+const LOGO_LINE_HEIGHT = `calc(${LOGO_FONT_SIZE} * 1.5)`;
+
+export const belowLogo = (edge: SiteEdge) => `calc(${logoTop(edge)} + ${LOGO_LINE_HEIGHT})`;
+
 // ロゴの文字の箱はハンバーガーより背が高いので、上端を揃えると高く見える。少し下げて左上のロゴと並びを合わせる
 const HAMBURGER_TOP_OFFSET = "14px";
 // 開くボタンとモバイルナビの閉じるボタンは必ずこの位置に重ねる（.css.ts は関数を export できないのでここに置く）
