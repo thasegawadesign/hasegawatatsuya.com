@@ -2,7 +2,6 @@
 export const LAYER = {
   background: -30,
   orb: -20,
-  spiral: -10,
   content: 10,
   chrome: 20,
   tooltip: 30,

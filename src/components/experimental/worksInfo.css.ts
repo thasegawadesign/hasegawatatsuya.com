@@ -3,11 +3,15 @@ import {
   WORK_HEADING_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
+import { linkUnderlineTop } from "@/lib/urlLinkStyle.css";
 import { breakpoints, vars } from "@/styles/styles.css";
-import { style } from "@vanilla-extract/css";
+import { createVar, fallbackVar, style } from "@vanilla-extract/css";
+
+export const containerAspectRatio = createVar();
 
 export const container = style({
-  aspectRatio: "auto",
+  // video/image の高さが確定するようアスペクト比を先に固定する
+  aspectRatio: containerAspectRatio,
   position: "relative",
   borderRadius: "36px 36px 0 0",
   overflow: "hidden",
@@ -27,6 +31,10 @@ export const worksImage = style({
       borderRadius: "20px 20px 0 0",
     },
   },
+});
+
+export const parallaxBox = style({
+  height: "100%",
 });
 
 export const worksVideo = style({
@@ -74,6 +82,11 @@ export const worksDl = style({
   marginTop: "clamp(40px, 9.6vw, 120px)",
   marginBottom: "clamp(200px, 15.6vw, 260px)",
   padding: "0 4.8vw",
+});
+export const worksLinkGroup = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "clamp(48px, 6.0vw, 72px)",
 });
 export const worksDlItem = style({
   display: "flex",
@@ -151,7 +164,7 @@ export const worksLink = style({
   selectors: {
     "&::before": {
       position: "absolute",
-      top: "var(--link-underline-top, clamp(1.6rem, 1.36vw, 3rem))",
+      top: fallbackVar(linkUnderlineTop, "clamp(1.6rem, 1.36vw, 3rem)"),
       display: "block",
       transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
       borderRadius: "0 0 8px 8px",
