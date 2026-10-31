@@ -1,7 +1,7 @@
 import { CUBIC_BEZIER, DURATION_M } from "@/constants/constants";
 import { SITE_NAV_TRANSITION_NAME } from "@/lib/viewTransitionNames";
 import { LAYER } from "@/styles/layers";
-import { edgeMedia, HAMBURGER_BREAKPOINT, SITE_EDGE } from "@/styles/siteEdge";
+import { edgeMedia, HAMBURGER_BREAKPOINT, logoTop, SITE_EDGE } from "@/styles/siteEdge";
 import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -15,7 +15,10 @@ export const nav = style({
   gap: 12,
   // 遷移中も作品写真より手前に保つ（fixed の実体に名前を付ける）
   viewTransitionName: SITE_NAV_TRANSITION_NAME,
-  "@media": edgeMedia(["2xl", "xl", "md", "sm"], (edge) => ({ top: edge.top, left: edge.side })),
+  "@media": edgeMedia(["2xl", "xl", "md", "sm"], (edge) => ({
+    top: logoTop(edge),
+    left: edge.side,
+  })),
 });
 export const navLogoBox = style({
   listStyleType: "none",
