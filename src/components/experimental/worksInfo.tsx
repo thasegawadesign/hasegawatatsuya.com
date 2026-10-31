@@ -3,15 +3,18 @@
 import { cormorant, roboto } from "@/app/fonts";
 import {
   container,
+  containerAspectRatio,
   hgroupHeading,
   hgroupHeadingEn,
   hgroupHeadingJa,
+  parallaxBox,
   worksDd,
   worksDl,
   worksDlItem,
   worksDt,
   worksImage,
   worksLink,
+  worksLinkGroup,
   worksRole,
   worksVideo,
 } from "@/components/experimental/worksInfo.css";
@@ -19,7 +22,8 @@ import WorkTransitionMarker from "@/components/workTransitionMarker/workTransiti
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
-import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
+import { inlineVars } from "@/lib/inlineVars";
+import { getUrlLinkClassName } from "@/lib/urlLinkStyle";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -98,10 +102,9 @@ export default function WorksInfo(props: Props) {
       <div
         ref={containerRef}
         className={clsx(container)}
-        // video/image の高さが確定するようアスペクト比を先に固定する
-        style={{ aspectRatio: `${imageWidth}/${imageHeight}` }}
+        style={inlineVars({ [containerAspectRatio]: `${imageWidth}/${imageHeight}` })}
       >
-        <div ref={parallaxRef} style={{ height: "100%" }}>
+        <div ref={parallaxRef} className={clsx(parallaxBox)}>
           {videoSrc ? (
             <video
               src={videoSrc}
@@ -154,13 +157,7 @@ export default function WorksInfo(props: Props) {
           <dt className={clsx(roboto.className, worksDt)}>Date :</dt>
           <dd className={clsx(roboto.className, worksDd)}>{date}</dd>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "clamp(48px, 6.0vw, 72px)",
-          }}
-        >
+        <div className={clsx(worksLinkGroup)}>
           {DemoURL && (
             <div ref={worksDemoURLRef} className={clsx(worksDlItem)}>
               <dt
@@ -169,8 +166,7 @@ export default function WorksInfo(props: Props) {
               <dd className={clsx(worksDd)}>
                 <Link
                   href={DemoURL}
-                  className={clsx(roboto.className, worksLink)}
-                  style={getUrlLinkStyle(DemoURL)}
+                  className={clsx(roboto.className, worksLink, getUrlLinkClassName(DemoURL))}
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={() => {
@@ -189,8 +185,7 @@ export default function WorksInfo(props: Props) {
               <dd className={clsx(worksDd)}>
                 <Link
                   href={StoreURL}
-                  className={clsx(roboto.className, worksLink)}
-                  style={getUrlLinkStyle(StoreURL)}
+                  className={clsx(roboto.className, worksLink, getUrlLinkClassName(StoreURL))}
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={() => {

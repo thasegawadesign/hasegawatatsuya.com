@@ -18,7 +18,7 @@ import WorkTransitionMarker from "@/components/workTransitionMarker/workTransiti
 import { gsapAnimation } from "@/lib/gsap";
 import { haptic } from "@/lib/haptic";
 import { playSfxClick } from "@/lib/playSfx";
-import { getUrlLinkStyle } from "@/lib/urlLinkStyle";
+import { getUrlLinkClassName } from "@/lib/urlLinkStyle";
 import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -135,8 +135,7 @@ export default function WorksInfo(props: Props) {
               <dd className={clsx(worksDd)}>
                 <Link
                   href={URL}
-                  className={clsx(roboto.className, worksLink)}
-                  style={getUrlLinkStyle(URL)}
+                  className={clsx(roboto.className, worksLink, getUrlLinkClassName(URL))}
                   rel="noopener noreferrer"
                   target="_blank"
                   onClick={() => {
