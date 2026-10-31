@@ -2,15 +2,20 @@
 
 import { getBezelMap } from "@/components/glass/bezelMap";
 import { liquidGlassOptions } from "@/components/glass/glass.constants";
-import { glassBackdrop, glassCard, glassContent, glassRim } from "@/components/glass/glass.css";
+import {
+  glassBackdrop,
+  glassCard,
+  glassContent,
+  glassRim,
+  rimBase,
+} from "@/components/glass/glass.css";
 import { LiquidGlassFilter } from "@/components/glass/liquidGlassFilter";
 import clsx from "clsx";
-import { useCallback, useId, useLayoutEffect, useRef, type RefObject } from "react";
+import { useId, useLayoutEffect, useRef } from "react";
 
 type LiquidGlassCardProps = {
   children: React.ReactNode;
   className?: string;
-  containerRef?: RefObject<HTMLElement | null>;
 };
 
 // 読み込み中は画像やフォントで高さが何度も変わるので、落ち着いてからマップを作り直す
@@ -24,19 +29,32 @@ function supportsBackdropUrlFilter() {
   return userAgentData?.brands.some(({ brand }) => brand === "Chromium") ?? false;
 }
 
+const RIM_REACH_PX = 260;
+const RIM_EASE = 0.16;
+
 let lastPointer: { clientX: number; clientY: number } | null = null;
 
-function rimGradient(x: number, y: number) {
-  return `linear-gradient(
-    ${135 + x * 1.2}deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, ${0.12 + Math.abs(x) * 0.008}) ${Math.max(10, 33 + y * 0.3)}%,
-    rgba(255, 255, 255, ${0.4 + Math.abs(x) * 0.012}) ${Math.min(90, 66 + y * 0.4)}%,
-    rgba(255, 255, 255, 0) 100%
-  )`;
+function rimGradient(x: number, y: number, strength: number) {
+  const a = (alpha: number) => (alpha * strength).toFixed(3);
+  return `radial-gradient(
+    circle 380px at ${x.toFixed(1)}px ${y.toFixed(1)}px,
+    rgba(255, 255, 255, ${a(0.6)}) 0%,
+    rgba(255, 255, 255, ${a(0.22)}) 32%,
+    rgba(255, 255, 255, 0) 72%
+  ), ${rimBase}`;
 }
 
-export function LiquidGlassCard({ children, className, containerRef }: LiquidGlassCardProps) {
+// カードの外では外周までの距離、内側では最寄りの辺までの距離。どちらの辺に寄っても同じ強さで縁が光る
+function distanceToEdge(x: number, y: number, width: number, height: number) {
+  const outsideX = Math.max(-x, 0, x - width);
+  const outsideY = Math.max(-y, 0, y - height);
+  if (outsideX > 0 || outsideY > 0) {
+    return Math.hypot(outsideX, outsideY);
+  }
+  return Math.min(x, width - x, y, height - y);
+}
+
+export function LiquidGlassCard({ children, className }: LiquidGlassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const rawFilterId = useId();
   const filterId = `liquid-glass-${rawFilterId.replace(/:/g, "")}`;
@@ -98,43 +116,83 @@ export function LiquidGlassCard({ children, className, containerRef }: LiquidGla
     };
   }, [cornerRadius, bezelWidth, filterId]);
 
-  const updateRim = useCallback(
-    (clientX: number, clientY: number) => {
-      const container = containerRef?.current ?? cardRef.current;
-      const card = cardRef.current;
-      if (!container || !card) {
-        return;
-      }
-
-      const rect = container.getBoundingClientRect();
-      const x = ((clientX - (rect.left + rect.width / 2)) / rect.width) * 100;
-      const y = ((clientY - (rect.top + rect.height / 2)) / rect.height) * 100;
-
-      card.style.setProperty("--glass-rim-background", rimGradient(x, y));
-    },
-    [containerRef],
-  );
-
   // ページを移るとカードが作り直され、マウスを動かすまで縁の光が既定の淡さに戻って縁が消えたように見えるので、
   // 最後のカーソル位置を引き継ぐ。useEffect だと遷移の終わりまで遅れるので layout effect にする
   useLayoutEffect(() => {
-    const container = containerRef?.current ?? cardRef.current;
-    if (!container) {
+    const card = cardRef.current;
+    if (!card) {
       return;
     }
 
-    if (lastPointer) {
-      updateRim(lastPointer.clientX, lastPointer.clientY);
-    }
+    let frame = 0;
+    let current: { x: number; y: number; strength: number } | null = null;
 
+    const target = () => {
+      if (!lastPointer) {
+        return null;
+      }
+      const rect = card.getBoundingClientRect();
+      const x = lastPointer.clientX - rect.left;
+      const y = lastPointer.clientY - rect.top;
+      const distance = distanceToEdge(x, y, rect.width, rect.height);
+      const strength = Math.max(0, 1 - distance / RIM_REACH_PX) ** 1.5;
+      return { x, y, strength };
+    };
+
+    const render = () => {
+      if (current) {
+        card.style.setProperty(
+          "--glass-rim-background",
+          rimGradient(current.x, current.y, current.strength),
+        );
+      }
+    };
+
+    const tick = () => {
+      frame = 0;
+      const next = target();
+      if (!next) {
+        return;
+      }
+      if (!current) {
+        current = next;
+        render();
+        return;
+      }
+      current.x += (next.x - current.x) * RIM_EASE;
+      current.y += (next.y - current.y) * RIM_EASE;
+      current.strength += (next.strength - current.strength) * RIM_EASE;
+      render();
+      const settled =
+        Math.abs(next.x - current.x) < 0.5 &&
+        Math.abs(next.y - current.y) < 0.5 &&
+        Math.abs(next.strength - current.strength) < 0.002;
+      if (!settled) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
+
+    current = target();
+    render();
+
+    const schedule = () => {
+      if (!frame) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
     const handleMouseMove = (event: MouseEvent) => {
       lastPointer = { clientX: event.clientX, clientY: event.clientY };
-      updateRim(event.clientX, event.clientY);
+      schedule();
     };
-    container.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("scroll", schedule, { passive: true });
 
-    return () => container.removeEventListener("mousemove", handleMouseMove);
-  }, [containerRef, updateRim]);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", schedule);
+    };
+  }, []);
 
   return (
     <div ref={cardRef} className={clsx(glassCard, className)}>

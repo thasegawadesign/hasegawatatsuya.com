@@ -8,6 +8,9 @@ const { cornerRadius, backdropBlurPx, backdropBlurPxSm, saturation } = liquidGla
 const backdrop = (blurPx: number) =>
   `blur(${blurPx}px) saturate(${saturation}%) var(--glass-refraction)`;
 
+export const rimBase =
+  "linear-gradient(135deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.05) 28%, rgba(255, 255, 255, 0.02) 62%, rgba(255, 255, 255, 0.12) 100%)";
+
 export const glassShell = style({
   position: "relative",
   margin: "5vw auto",
@@ -42,8 +45,7 @@ export const glassCard = style({
   boxShadow: "0px 12px 40px rgba(0, 0, 0, 0.25)",
   vars: {
     "--glass-refraction": "brightness(1)",
-    "--glass-rim-background":
-      "linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 33%, rgba(255, 255, 255, 0.4) 66%, rgba(255, 255, 255, 0) 100%)",
+    "--glass-rim-background": rimBase,
   },
 });
 
@@ -75,17 +77,14 @@ export const glassRim = style({
   zIndex: 0,
   inset: 0,
   display: "block",
-  opacity: 0.5,
   mixBlendMode: "screen",
   borderRadius: "inherit",
-  padding: "1.5px",
+  padding: "1px",
   pointerEvents: "none",
   background: "var(--glass-rim-background)",
   WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
   WebkitMaskComposite: "xor",
   maskComposite: "exclude",
-  boxShadow:
-    "0 0 0 0.5px rgba(255, 255, 255, 0.5) inset, 0 1px 3px rgba(255, 255, 255, 0.25) inset, 0 1px 4px rgba(0, 0, 0, 0.35)",
 });
 
 export const glassContent = style({
