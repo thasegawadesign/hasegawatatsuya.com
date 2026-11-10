@@ -14,7 +14,7 @@ import { style } from "@vanilla-extract/css";
 export const nav = style({
   position: "fixed",
   zIndex: LAYER.chrome,
-  top: SITE_EDGE.base.top,
+  top: logoTop(SITE_EDGE.base),
   left: SITE_EDGE.base.side,
   display: "flex",
   flexDirection: "column",
