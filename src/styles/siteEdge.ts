@@ -5,21 +5,21 @@ const INSET = "28px";
 
 export type SiteEdge = { top: string; side: string; logoLift?: string };
 
-// ロゴ「TH」の字面の上端は文字の箱の上端より約 13px 下にあり、そのままだと上の余白が左より広く見える。
-// 字面の分だけ上げて上下左右を数値で揃えると窮屈に見えるので、一部だけ上げて上を少し広く残す（目で見て合わせた値。字面の上はガラスの縁から約 36px）
+// 字面の上端は文字の箱より約 13px 下にあるが、その分すべて上げると窮屈に見えるので一部だけ上げる
 const LOGO_LIFT = "5px";
-// 縦並びのナビがある幅では、左の余白を上の余白に近づけるため少し広げる。字面の左の空きと合わせてガラスの縁から約 30px
-const NAV_SIDE_INSET = "29px";
+const NAV_SIDE_INSET = "31px";
 
+// base と 2xl の side は 100vw で測るとスクロールバーの幅の半分だけガラスより内側にずれる。
+// % にしているので、使う側の包含ブロックはスクロールバーを除いた全幅であること（fixed か全幅の親）
 export const SITE_EDGE = {
   base: {
     top: `calc(5vw + ${INSET})`,
-    side: `calc(max(6vw, (100vw - 1400px) / 2) + ${NAV_SIDE_INSET})`,
+    side: `calc((100% - min(88vw, 1400px)) / 2 + ${NAV_SIDE_INSET})`,
     logoLift: LOGO_LIFT,
   },
   "2xl": {
     top: `calc(5vw + ${INSET})`,
-    side: `calc(7vw + ${NAV_SIDE_INSET})`,
+    side: `calc((100% - 86vw) / 2 + ${NAV_SIDE_INSET})`,
     logoLift: LOGO_LIFT,
   },
   // xl の logoLift はハンバーガーとの並びを目で見て合わせた値
