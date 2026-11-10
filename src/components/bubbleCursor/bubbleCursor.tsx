@@ -38,10 +38,10 @@ export default function BubbleCursor() {
       frost={0.02}
       shine={0.54}
       rim={0.4}
-      iridescence={1.4}
+      iridescence={1.65}
       intensity={1}
       tint={[0.6, 0.78, 1]}
-      tintStrength={0.5}
+      tintStrength={0.7}
       fallbackOpacity={1}
       fallbackFill={1}
       colorA={[0.48, 0.67, 0.92]}
