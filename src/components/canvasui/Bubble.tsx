@@ -253,14 +253,36 @@ void main () {
     color += glints * uIridescence;
     color += vec3(spec * uShine * 0.9);
   } else {
-    float edge = pow(1.0 - clamp(n.z, 0.0, 1.0), 1.5);
+    float nz = clamp(n.z, 0.0, 1.0);
+    float fres = pow(1.0 - nz, 3.0);
     vec3 filmTint = mix(vec3(0.9), uTint, clamp(uTintStrength, 0.0, 1.0));
     float fade = cov * clamp(uFallbackAlpha, 0.0, 1.0);
     float fill = clamp(uFallbackFill, 0.0, 1.0);
-    vec3 light = glints * uIridescence * (0.65 + fill * 0.35) +
-      vec3(spec * uShine * (1.5 + fill * 0.8)) +
-      filmTint * (0.55 * max(uRim, 0.4) * edge + 0.03 + fill * 0.14 * (1.0 - edge));
-    float a = fade * clamp(mix(0.08, 0.24, fill) + 0.45 * edge, 0.0, 1.0);
+
+    vec3 r = reflect(rayDir, n);
+    float sky = smoothstep(-0.6, 0.9, r.y);
+    vec3 env = mix(uColorB * 0.3, mix(vec3(1.0), uTint, clamp(uTintStrength, 0.0, 1.0)), sky);
+
+    float nh = max(dot(n, normalize(L + vec3(0.0, 0.0, 1.0))), 0.0);
+    float hot = pow(nh, 220.0);
+    float sheen = pow(nh, 22.0);
+    vec3 L2 = normalize(vec3(0.55, -0.45, 0.7));
+    float kick = pow(max(dot(n, normalize(L2 + vec3(0.0, 0.0, 1.0))), 0.0), 90.0);
+
+    float caustic = smoothstep(0.1, 0.9, dot(normalize(n.xy + 1e-5), -L.xy)) *
+      pow(1.0 - nz, 1.4) * smoothstep(0.0, 0.4, nz);
+
+    float film = (1.0 - nz) * 2.6 + uTime * 0.12 + dot(n.xy, vec2(0.7, -0.4));
+    vec3 iri = 0.5 + 0.5 * cos(6.28318 * (film + vec3(0.0, 0.33, 0.67)));
+
+    vec3 light = env * fres * (0.8 + 0.6 * uRim) +
+      iri * fres * 0.45 * uIridescence +
+      glints * uIridescence * 0.6 +
+      vec3(hot * 0.8 + sheen * 0.3) * uShine * 2.0 +
+      vec3(kick * 0.7) * uShine +
+      mix(vec3(1.0), uColorA, 0.5) * caustic * 0.5 +
+      filmTint * (0.02 + fill * 0.08 * (1.0 - fres));
+    float a = fade * clamp(mix(0.05, 0.16, fill) + 0.8 * fres + hot + sheen * 0.15 + caustic * 0.3, 0.0, 1.0);
     outColor = vec4(light * fade, a);
     return;
   }
@@ -321,10 +343,14 @@ export function createBubble(
   }
 
   let contentDirty = false;
+  // 初期テクスチャは透明な黒なので、未キャプチャのまま屈折させると泡が黒く塗りつぶされる。
+  // 現行 Chrome では canvas の子孫でない要素（body）の drawElementImage は例外になる
+  let captured = false;
+  let captureFailed = false;
   let wake = () => {};
 
   function requestContentPaint() {
-    if (!htmlInCanvas) return;
+    if (!htmlInCanvas || captureFailed) return;
     paintable.requestPaint!();
   }
 
@@ -335,9 +361,12 @@ export function createBubble(
       try {
         sourceCtx!.reset();
         sourceCtx!.drawElementImage!(captureTarget, 0, 0);
+        captured = true;
         contentDirty = true;
-        wake();
-      } catch {}
+      } catch {
+        if (!captured) captureFailed = true;
+      }
+      wake();
     };
   }
 
@@ -496,7 +525,7 @@ export function createBubble(
     gl!.uniform1f(uniforms.uMaxX, contentMaxX);
     gl!.uniform1f(uniforms.uDpr, dpr);
     gl!.uniform1f(uniforms.uTime, time);
-    gl!.uniform1f(uniforms.uHasContent, htmlInCanvas ? 1 : 0);
+    gl!.uniform1f(uniforms.uHasContent, htmlInCanvas && captured ? 1 : 0);
     gl!.uniform1i(uniforms.uCount, count);
     gl!.uniform2fv(uniforms["uTrail[0]"], trailData);
     gl!.uniform1f(uniforms.uBaseRadius, baseRadius);
