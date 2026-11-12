@@ -7,6 +7,33 @@ type GsapRef = MutableRefObject<HTMLElement | null>;
 
 const INVIEW_RISE_PX = 40;
 const INVIEW_STAGGER_S = 0.12;
+// GSAP は受け取った vars を書き換える
+const INVIEW_FROM = { opacity: 0, rotation: -2, y: INVIEW_RISE_PX };
+const INVIEW_TO = { opacity: 1, rotation: 0, y: 0, duration: 1.5, ease: "power2.out" };
+
+function layoutTop(el: HTMLElement) {
+  let top = 0;
+  for (let node: HTMLElement | null = el; node; node = node.offsetParent as HTMLElement | null) {
+    top += node.offsetTop;
+  }
+  return top;
+}
+
+function staggerIn(items: NodeListOf<HTMLElement>) {
+  gsap.set(items, { ...INVIEW_FROM });
+  ScrollTrigger.batch(items, {
+    // 枠の回転が乗ると、同じ行でも getBoundingClientRect の top が左右でずれる
+    start: (self) => layoutTop(self.trigger as HTMLElement) - window.innerHeight * 0.8,
+    once: true,
+    onEnter: (batch) => {
+      // ScrollTrigger はスクロール位置が戻った更新で、トリガーを逆順に処理する
+      const ordered = [...batch].sort((a, b) =>
+        a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1,
+      );
+      gsap.to(ordered, { ...INVIEW_TO, stagger: INVIEW_STAGGER_S });
+    },
+  });
+}
 
 export const gsapAnimation = {
   scale(ref: GsapRef) {
@@ -28,14 +55,10 @@ export const gsapAnimation = {
   inview(ref: GsapRef, { clearTransform = false }: { clearTransform?: boolean } = {}) {
     gsap.fromTo(
       ref.current,
-      { opacity: 0, rotation: -2, y: INVIEW_RISE_PX },
+      { ...INVIEW_FROM },
       {
-        opacity: 1,
-        rotation: 0,
-        y: 0,
+        ...INVIEW_TO,
         ...(clearTransform && { clearProps: "transform" }),
-        duration: 1.5,
-        ease: "power2.out",
         scrollTrigger: {
           trigger: ref.current,
           // ScrollTrigger は transform 後の位置で start を測る
@@ -55,22 +78,7 @@ export const gsapAnimation = {
     });
     mm.add("all", () => {
       const items = boxRef.current?.querySelectorAll<HTMLElement>(":scope > section");
-      if (!items?.length) return;
-      gsap.set(items, { opacity: 0, rotation: -2, y: INVIEW_RISE_PX });
-      ScrollTrigger.batch(items, {
-        start: `top-=${INVIEW_RISE_PX} 80%`,
-        once: true,
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            opacity: 1,
-            rotation: 0,
-            y: 0,
-            duration: 1.5,
-            ease: "power2.out",
-            stagger: INVIEW_STAGGER_S,
-          });
-        },
-      });
+      if (items?.length) staggerIn(items);
     });
     return mm;
   },
