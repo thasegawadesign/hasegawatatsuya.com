@@ -30,6 +30,7 @@ import {
   tilt,
   year,
 } from "@/components/main/about/main.css";
+import PlayfulText from "@/components/playfulText/playfulText";
 import Tooltip from "@/components/tooltip/tooltip";
 import TypingName from "@/components/typingName/typingName";
 import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
@@ -232,14 +233,14 @@ export default function Main() {
         <div className={clsx(line)}></div>
         <section>
           <h2 ref={occupationRef} className={clsx(cormorant.className, occupation)}>
-            Web Design,
+            <PlayfulText text="Web Design," variant="track" autoPlayDelay={350} />
             <br />
-            Frontend Development
+            <PlayfulText text="Frontend Development" variant="type" autoPlayDelay={800} />
           </h2>
           <p ref={descriptionRef} className={clsx(description)}>
             2001年生まれ、放送大学在学中。
             <br />
-            趣味は散歩。
+            <PlayfulText text="趣味は散歩。" variant="walk" />
             <br />
             無為自然でありながら、有用で美しく、
             <br />
@@ -284,7 +285,7 @@ export default function Main() {
             <br />
             触れる面は心地よく。
             <br />
-            失敗に気づけば、何度でも壊します。
+            <PlayfulText text="失敗に気づけば、何度でも壊します。" variant="break" />
             <br />
             ホームページの公開・運用開始後も
             <br />

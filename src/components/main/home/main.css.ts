@@ -190,7 +190,8 @@ export const description = style({
     },
     [breakpoints["sm"]]: {
       paddingLeft: CONTENT_LEFT.sm,
-      marginBottom: 28,
+      // 最終行の前の間（本文 1 行分）より広く保つ
+      marginBottom: 52,
       lineHeight: 1.6,
     },
   },
