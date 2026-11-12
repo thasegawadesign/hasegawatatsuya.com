@@ -17,6 +17,7 @@ import {
   nameEn,
   nameJa,
   occupation,
+  occupationContainer,
   photo,
   photoBox,
   photoMagic,
@@ -27,6 +28,8 @@ import {
   profileLinkIconMail,
   section,
   sectionHeading,
+  smBr,
+  wideBr,
   tilt,
   year,
 } from "@/components/main/about/main.css";
@@ -231,7 +234,7 @@ export default function Main() {
           </li>
         </ul>
         <div className={clsx(line)}></div>
-        <section>
+        <section className={clsx(occupationContainer)}>
           <h2 ref={occupationRef} className={clsx(cormorant.className, occupation)}>
             <PlayfulText text="Web Design," variant="track" autoPlayDelay={350} />
             <br />
@@ -242,7 +245,9 @@ export default function Main() {
             <br />
             <PlayfulText text="趣味は散歩。" variant="walk" />
             <br />
-            無為自然でありながら、有用で美しく、
+            無為自然でありながら、
+            <br className={smBr} />
+            有用で美しく、
             <br />
             生命力あふれるものを
             <br />
@@ -252,20 +257,28 @@ export default function Main() {
             <br />
             クリエイティブワーク、
             <br />
-            モノづくりの達人になることが目標です。
+            モノづくりの達人になることが
+            <br className={smBr} />
+            目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
             インタラクティブなWeb空間を
             <br />
             構築していく過程では、
             <br />
-            触れたときの感触に何度も立ち返ります。
+            触れたときの感触に
+            <br className={smBr} />
+            何度も立ち返ります。
             <br />
-            情報設計・デザイン・コーディングを
+            情報設計・デザイン・
+            <br className={smBr} />
+            コーディングを
             <br />
             一体で進めながら、
             <br />
-            アクセシビリティ・ユーザビリティ・審美性・
+            アクセシビリティ・
+            <br className={smBr} />
+            ユーザビリティ・審美性・
             <br />
             セキュリティ・パフォーマンス・
             <br />
@@ -273,21 +286,27 @@ export default function Main() {
             <br />
             Webに求められる性質を
             <br />
-            認知・構造・表現・技術などの観点から捉えて
+            認知・構造・表現・技術などの
+            <br className={smBr} />
+            観点から捉えて
             <br />
             設計・実装しています。
             <br />
             Webサイトは、
             <br />
-            社会と情報空間のインターフェイスです。
+            社会と情報空間の
+            <br className={smBr} />
+            インターフェイスです。
             <br />
             その内部構造は堅牢に、
             <br />
             触れる面は心地よく。
             <br />
-            <PlayfulText text="失敗に気づけば、何度でも壊します。" variant="break" />
+            <PlayfulText text={"失敗に気づけば、\u200b何度でも壊します。"} variant="break" />
             <br />
-            ホームページの公開・運用開始後も
+            ホームページの公開・
+            <br className={smBr} />
+            運用開始後も
             <br />
             環境の変化に応答しながら
             <br />
@@ -296,8 +315,10 @@ export default function Main() {
             空間コンピューティングや
             <br />
             没入型体験など、
-            <br />
-            新しいヒューマンインターフェイスへの
+            <br className={wideBr} />
+            新しい
+            <br className={smBr} />
+            ヒューマンインターフェイスへの
             <br />
             応用も視野に入れています。
           </p>
