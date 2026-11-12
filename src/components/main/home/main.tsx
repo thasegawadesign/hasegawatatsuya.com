@@ -86,7 +86,10 @@ export default function Main() {
     triggerLiquidShockwave(ev.clientX, ev.clientY);
     playSfxSuccess();
     haptic();
-    await copy(EMAIL);
+    if (!(await copy(EMAIL))) {
+      emailCopyLockRef.current = false;
+      return;
+    }
     setEmailCopied(true);
 
     if (emailCopiedResetTimeoutRef.current) {
