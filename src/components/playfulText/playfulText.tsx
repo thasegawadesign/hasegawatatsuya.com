@@ -189,7 +189,9 @@ const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const ASCII_WORD = /^[\x21-\x7e]+$/;
+const AUTOPLAY_START_MARGIN = "12%";
 const AUTOPLAY_GAP_MS = 500;
+const AUTOPLAY_RUSH_LINE = 0.5;
 const WORD_BREAK = /[ \u200b]/;
 
 interface QueuedAutoPlay {
@@ -202,8 +204,33 @@ interface QueuedAutoPlay {
 }
 
 let autoPlayQueue: QueuedAutoPlay[] = [];
+let autoPlayWaiting: QueuedAutoPlay[] = [];
 let autoPlayFlush: ReturnType<typeof setTimeout> | undefined;
+let autoPlayRushFrame = 0;
 let autoPlaySlot = 0;
+
+const leaveAutoPlayQueue = (entry: QueuedAutoPlay) => {
+  clearTimeout(entry.timer);
+  autoPlayWaiting = autoPlayWaiting.filter((waiting) => waiting !== entry);
+  if (autoPlayWaiting.length === 0) window.removeEventListener("scroll", requestAutoPlayRush);
+};
+
+const startAutoPlay = (entry: QueuedAutoPlay) => {
+  leaveAutoPlayQueue(entry);
+  if (!entry.cancelled) entry.run();
+};
+
+const rushAutoPlay = () => {
+  autoPlayRushFrame = 0;
+  const line = window.innerHeight * AUTOPLAY_RUSH_LINE;
+  for (const entry of autoPlayWaiting) {
+    if (entry.el.getBoundingClientRect().top < line) startAutoPlay(entry);
+  }
+};
+
+const requestAutoPlayRush = () => {
+  autoPlayRushFrame ||= requestAnimationFrame(rushAutoPlay);
+};
 
 const queueAutoPlay = (el: Element, delay: number, hold: number, run: () => void) => {
   const queued: QueuedAutoPlay = { el, delay, hold, run, cancelled: false };
@@ -219,12 +246,16 @@ const queueAutoPlay = (el: Element, delay: number, hold: number, run: () => void
       if (entry.cancelled) continue;
       const at = Math.max(now + entry.delay, autoPlaySlot);
       autoPlaySlot = at + entry.hold;
-      entry.timer = setTimeout(entry.run, at - now);
+      entry.timer = setTimeout(() => startAutoPlay(entry), at - now);
+      autoPlayWaiting.push(entry);
+    }
+    if (autoPlayWaiting.length > 0) {
+      window.addEventListener("scroll", requestAutoPlayRush, { passive: true });
     }
   }, 0);
   return () => {
     queued.cancelled = true;
-    clearTimeout(queued.timer);
+    leaveAutoPlayQueue(queued);
   };
 };
 
@@ -1233,14 +1264,13 @@ export default function PlayfulText({
     if (autoPlayDelay === undefined || !rootEl) return;
     const hold = variant === "facets" ? facetCount * FACET_GAP_MS + FACET_REST_MS : AUTOPLAY_GAP_MS;
     let cancel: (() => void) | undefined;
-    // gsapAnimation.inview の start（top 80%）と揃えておく
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
         cancel = queueAutoPlay(rootEl, autoPlayDelay, hold, () => autoPlayRef.current());
       },
-      { rootMargin: "0px 0px -20% 0px" },
+      { rootMargin: `0px 0px -${AUTOPLAY_START_MARGIN} 0px` },
     );
     observer.observe(rootEl);
     return () => {
