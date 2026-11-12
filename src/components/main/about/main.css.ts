@@ -329,8 +329,16 @@ export const occupation = style({
     [breakpoints["sm"]]: {
       padding: "0 8vw",
       textAlign: "left",
+      // 7.654 は 2 行目の幅（7.582em）＋末尾の字が箱の右へはみ出す分（0.072em）。
+      // 文言・書体・字間を変えたら測り直す。
+      // 100vw 基準はスクロールバーの幅だけ広くなり、2 行目が折り返すので使わない
+      fontSize: "calc((100cqi - 16vw) / 7.654)",
     },
   },
+});
+
+export const occupationContainer = style({
+  containerType: "inline-size",
 });
 
 export const description = style({
@@ -349,6 +357,23 @@ export const description = style({
       padding: "0 8vw",
       textAlign: "left",
       lineHeight: 1.6,
+    },
+  },
+});
+
+export const smBr = style({
+  display: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "block",
+    },
+  },
+});
+
+export const wideBr = style({
+  "@media": {
+    [breakpoints["sm"]]: {
+      display: "none",
     },
   },
 });

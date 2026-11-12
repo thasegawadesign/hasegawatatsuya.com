@@ -4,7 +4,6 @@ import {
   caret,
   char,
   glyph,
-  nowrap,
   root,
   untyped,
   visuallyHidden,
@@ -54,13 +53,20 @@ const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "!<>-_\\/[]{}=+*^?#";
 const ASCII_WORD = /^[\x21-\x7e]+$/;
+const WORD_BREAK = /[ \u200b]/;
 
 export default function PlayfulText({ text, variant, className, autoPlayDelay }: Props) {
   const words = useMemo(() => {
     let start = 0;
-    return text.split(" ").map((w) => {
+    return text.split(WORD_BREAK).map((w, wi, all) => {
       const wordChars = Array.from(w);
-      const entry = { chars: wordChars, start, nowrap: ASCII_WORD.test(w) };
+      const offset = all.slice(0, wi).join("").length + wi;
+      const entry = {
+        chars: wordChars,
+        start,
+        latin: ASCII_WORD.test(w),
+        spaced: wi > 0 && text[offset - 1] === " ",
+      };
       start += wordChars.length;
       return entry;
     });
@@ -108,7 +114,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
       const width = (t: string) => ctx.measureText(t).width;
       for (const w of words) {
-        if (!w.nowrap) continue;
+        if (!w.latin) continue;
         for (let j = 1; j < w.chars.length; j++) {
           const el = charRefs.current[w.start + j];
           if (!el) continue;
@@ -451,12 +457,12 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       onPointerLeave={onPointerLeave}
       onClick={onClick}
     >
-      <span className={visuallyHidden}>{text}</span>
+      <span className={visuallyHidden}>{text.replaceAll("\u200b", "")}</span>
       {variant === "type" && <span ref={caretRef} aria-hidden="true" className={caret} />}
       {words.map((w, wi) => (
         <Fragment key={wi}>
-          {wi > 0 && " "}
-          <span aria-hidden="true" className={clsx(word, w.nowrap && nowrap)}>
+          {wi > 0 && (w.spaced ? " " : <wbr />)}
+          <span aria-hidden="true" className={word}>
             {w.chars.map((c, j) => (
               <span
                 key={j}

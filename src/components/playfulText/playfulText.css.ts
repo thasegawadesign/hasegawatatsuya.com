@@ -23,10 +23,7 @@ export const punchline = style({
 export const word = style({
   display: "inline-block",
   position: "relative",
-});
-
-// 文字ごとの inline-block は欧文の単語の途中でも折り返せてしまう
-export const nowrap = style({
+  // 文字ごとの inline-block は語の途中でも折り返せてしまう
   whiteSpace: "nowrap",
 });
 
