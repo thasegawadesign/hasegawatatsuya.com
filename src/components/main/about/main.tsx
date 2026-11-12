@@ -260,21 +260,27 @@ export default function Main() {
           <p ref={descriptionRef} className={clsx(description)}>
             2001年生まれ、放送大学在学中。
             <br />
-            <PlayfulText text="趣味は散歩。" variant="walk" />
+            <PlayfulText text="趣味は散歩。" variant="walk" autoPlayDelay={800} />
             <br />
-            無為自然でありながら、
+            <PlayfulText text="無為自然" variant="drift" autoPlayDelay={350} />
+            でありながら、
             <br className={smBr} />
             有用で美しく、
             <br />
-            生命力あふれるものを
+            <PlayfulText text="生命力あふれるものを" variant="breathe" />
             <br />
-            「自在」に創れる状態を目指して、
+            「<PlayfulText text="自在" variant="free" autoPlayDelay={350} />
+            」に創れる状態を目指して、
             <br />
-            Webについて探求しています。
+            Webについて
+            <PlayfulText text="探求" variant="magnify" autoPlayDelay={350} />
+            しています。
             <br />
             クリエイティブワーク、
             <br />
-            モノづくりの達人になることが
+            モノづくりの
+            <PlayfulText text="達人" variant="strike" autoPlayDelay={350} />
+            になることが
             <br className={smBr} />
             目標です。
           </p>
@@ -283,13 +289,19 @@ export default function Main() {
             <br />
             構築していく過程では、
             <br />
-            触れたときの感触に
-            <br className={smBr} />
-            何度も立ち返ります。
+            <PlayfulText
+              text={"触れたときの感触に\u200b何度も立ち返ります。"}
+              variant="press"
+              autoPlayDelay={350}
+              autoPlayAt="感触"
+            />
             <br />
-            情報設計・デザイン・
-            <br className={smBr} />
-            コーディングを
+            <PlayfulText
+              text={"情報設計・デザイン・\u200bコーディング"}
+              variant="unite"
+              autoPlayDelay={350}
+            />
+            を
             <br />
             一体で進めながら、
             <br />
@@ -303,7 +315,8 @@ export default function Main() {
             <br />
             Webに求められる性質を
             <br />
-            認知・構造・表現・技術などの
+            <PlayfulText text="認知・構造・表現・技術" variant="facets" autoPlayDelay={350} />
+            などの
             <br className={smBr} />
             観点から捉えて
             <br />
@@ -313,21 +326,26 @@ export default function Main() {
             <br />
             社会と情報空間の
             <br className={smBr} />
-            インターフェイスです。
+            <PlayfulText text="インターフェイス" variant="join" autoPlayDelay={350} />
+            です。
             <br />
             その内部構造は堅牢に、
             <br />
             触れる面は心地よく。
             <br />
-            <PlayfulText text={"失敗に気づけば、\u200b何度でも壊します。"} variant="break" />
+            <PlayfulText
+              text={"失敗に気づけば、\u200b何度でも壊します。"}
+              variant="break"
+              autoPlayDelay={350}
+            />
             <br />
             ホームページの公開・
             <br className={smBr} />
             運用開始後も
             <br />
-            環境の変化に応答しながら
+            <PlayfulText text="環境の変化に応答しながら" variant="sway" autoPlayDelay={350} />
             <br />
-            手入れを続けます。
+            <PlayfulText text="手入れを続けます。" variant="tend" autoPlayDelay={350} />
             <br />
             空間コンピューティングや
             <br />
