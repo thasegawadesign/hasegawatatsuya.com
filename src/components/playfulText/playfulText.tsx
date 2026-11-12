@@ -51,7 +51,7 @@ const TYPE_GLYPH_MS = 60;
 const TYPE_GLYPH_STEPS = 3;
 const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
-const TYPE_GLYPHS = "!<>-_\\/[]{}=+*^?#";
+const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const ASCII_WORD = /^[\x21-\x7e]+$/;
 const WORD_BREAK = /[ \u200b]/;
 
