@@ -9,6 +9,25 @@ export const root = style({
   userSelect: "none",
 });
 
+export const pressable = style({
+  // 既定の touch-action では、横になぞった時点で pointercancel が来る
+  touchAction: "pan-y",
+});
+
+export const grabbable = style({
+  cursor: "grab",
+  touchAction: "none",
+  selectors: {
+    "&:active": {
+      cursor: "grabbing",
+    },
+  },
+});
+
+export const swaying = style({});
+
+export const faceted = style({});
+
 export const punchline = style({
   display: "block",
   marginInline: "auto",
@@ -47,6 +66,23 @@ export const char = style({
   display: "inline-block",
   position: "relative",
   willChange: "transform",
+  selectors: {
+    [`${swaying} &`]: {
+      transformOrigin: "50% 100%",
+    },
+    [`${faceted} &`]: {
+      transition: "filter 0.5s ease-out",
+    },
+  },
+});
+
+export const blurred = style({
+  filter: "blur(0.28em)",
+  selectors: {
+    [`${faceted} &`]: {
+      transitionDuration: "0.12s",
+    },
+  },
 });
 
 // 記号を文字として流し込むと、書体の違いで字幅とベースラインが変わり行がずれる

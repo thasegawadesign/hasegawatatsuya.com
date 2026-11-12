@@ -1,10 +1,15 @@
 "use client";
 
 import {
+  blurred,
   caret,
   char,
+  faceted,
   glyph,
+  grabbable,
+  pressable,
   root,
+  swaying,
   untyped,
   visuallyHidden,
   word,
@@ -13,15 +18,32 @@ import { haptic } from "@/lib/haptic";
 import { triggerLiquidShockwave } from "@/lib/liquidShockwave";
 import { createSpring, type Spring } from "@/lib/spring";
 import clsx from "clsx";
+import gsap from "gsap";
 import { Fragment, useEffect, useMemo, useRef, type MouseEvent, type PointerEvent } from "react";
 
-type Variant = "lift" | "break" | "walk" | "track" | "type";
+type Variant =
+  | "lift"
+  | "break"
+  | "press"
+  | "sway"
+  | "breathe"
+  | "facets"
+  | "drift"
+  | "free"
+  | "magnify"
+  | "strike"
+  | "join"
+  | "unite"
+  | "walk"
+  | "track"
+  | "type";
 
 interface Props {
   readonly text: string;
   readonly variant: Variant;
   readonly className?: string;
   readonly autoPlayDelay?: number;
+  readonly autoPlayAt?: string;
 }
 
 type Pose = { x: number; y: number; rotation: number; scale: number };
@@ -29,6 +51,7 @@ type CharSpring = Spring<keyof Pose>;
 
 const REST: Pose = { x: 0, y: 0, rotation: 0, scale: 1 };
 const SPRING = { tension: 260, friction: 14 };
+const PRESS_SPRING = { tension: 260, friction: 6 };
 
 const WAVE_STAGGER_MS = 38;
 const WAVE_HOLD_MS = 130;
@@ -38,6 +61,83 @@ const BREAK_KICK = 0.012;
 const BREAK_HOLD_MS = 900;
 const BREAK_EDGE_PX = 12;
 const BREAK_RETURN_STAGGER_MS = 34;
+const PRESS_RADIUS_EM = 1.6;
+const PRESS_SINK_EM = 0.26;
+const PRESS_SHRINK = 0.3;
+const PRESS_PULL_EM = 0.14;
+const PRESS_TILT_DEG = 20;
+const PRESS_HOVER_DEPTH = 0.5;
+const PRESS_HOLD_MS = 150;
+const PRESS_REBOUND_MS_PER_EM = 14;
+const SWAY_FULL_SPEED = 0.9;
+const SWAY_TILT_DEG = 36;
+const SWAY_DRAG_EM = 0.24;
+const SWAY_SETTLE_MS = 120;
+const SWAY_RISE_STAGGER_MS = 35;
+const SWAY_GUST_STAGGER_MS = 40;
+const SWAY_GUST_MS = 260;
+const BREATHE_PERIOD_MS = 2600;
+const BREATHE_PHASE_STEP = 0.7;
+const BREATHE_SWELL = 0.11;
+const BREATHE_RISE_EM = 0.07;
+const BREATHE_SWAY_DEG = 4;
+const BREATHE_FLINCH = 0.3;
+const BREATHE_FLINCH_RADIUS_EM = 1.4;
+const BREATHE_STARTLE_SCALE = 0.7;
+const BREATHE_STARTLE_MS = 520;
+const FACET_GAP_MS = 620;
+const FOCUS_SCALE = 1.25;
+const FOCUS_HOLD_MS = 380;
+const FOCUS_CLEAR_MS = 500;
+const STACK_DROP_EM = 1;
+const STACK_WAIT_S = 0.12;
+const STACK_STAGGER_S = 0.16;
+const STACK_FALL_S = 0.18;
+const FLOURISH_SPRING = { tension: 200, friction: 8 };
+const FLOURISH_RISE_EM = 0.55;
+const FLOURISH_TILT_DEG = 16;
+const FLOURISH_SCALE = 1.7;
+const FLOURISH_STAGGER_MS = 60;
+const FLOURISH_HOLD_MS = 200;
+const FLOURISH_SETTLE_MS = 700;
+const GEAR_TEETH = 8;
+const GEAR_TOOTH_S = 0.1;
+const GEAR_PAUSE_S = 0.03;
+const DRIFT_SPRING = { tension: 12, friction: 12 };
+const DRIFT_RADIUS_EM = 1.4;
+const DRIFT_MAX_SPEED = 2;
+const DRIFT_PUSH = 0.12;
+const DRIFT_SPIN = 0.15;
+const DRIFT_GAP_MS = 100;
+const DRIFT_BREEZE = 0.16;
+const DRIFT_BREEZE_STAGGER_MS = 70;
+const FREE_FOLLOW = 0.5;
+const FREE_REACH_EM = 0.5;
+const FREE_DRAG_SLOP_PX = 4;
+const FREE_ORBIT_EM = 0.6;
+const FREE_ORBIT_STEPS = 16;
+const FREE_ORBIT_STEP_MS = 40;
+const MAGNIFY_SPRING = { tension: 300, friction: 24 };
+const MAGNIFY_RADIUS_EM = 1.1;
+const MAGNIFY_SCALE = 0.9;
+const MAGNIFY_RISE_EM = 0.12;
+const MAGNIFY_SPREAD_EM = 0.5;
+const MAGNIFY_SWEEP_STEPS = 24;
+const MAGNIFY_SWEEP_STEP_MS = 30;
+const STRIKE_TURN_S = 0.42;
+const STRIKE_STAGGER_S = 0.06;
+const JOIN_SPRING = { tension: 320, friction: 22 };
+const JOIN_GAP_EM = 0.7;
+const JOIN_HOLD_MS = 420;
+const JOIN_CONTACT_MS = 150;
+const JOIN_RIPPLE_EM = 0.14;
+const JOIN_RIPPLE_STAGGER_MS = 35;
+const JOIN_RIPPLE_HOLD_MS = 90;
+const UNITE_SPRING = { tension: 260, friction: 20 };
+const UNITE_FUSE_MS = 450;
+const UNITE_STEP_EM = 0.18;
+const UNITE_STEP_HOLD_MS = 140;
+const UNITE_HOLD_MS = 1100;
 const WALK_STEPS = 4;
 const WALK_STRIDE_EM = 0.38;
 const WALK_STEP_MS = 270;
@@ -55,9 +155,69 @@ const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const ASCII_WORD = /^[\x21-\x7e]+$/;
+const AUTOPLAY_GAP_MS = 500;
 const WORD_BREAK = /[ \u200b]/;
 
-export default function PlayfulText({ text, variant, className, autoPlayDelay }: Props) {
+interface QueuedAutoPlay {
+  readonly el: Element;
+  readonly delay: number;
+  readonly run: () => void;
+  timer?: ReturnType<typeof setTimeout>;
+  cancelled: boolean;
+}
+
+let autoPlayQueue: QueuedAutoPlay[] = [];
+let autoPlayFlush: ReturnType<typeof setTimeout> | undefined;
+let autoPlaySlot = 0;
+
+const queueAutoPlay = (el: Element, delay: number, run: () => void) => {
+  const queued: QueuedAutoPlay = { el, delay, run, cancelled: false };
+  autoPlayQueue.push(queued);
+  autoPlayFlush ??= setTimeout(() => {
+    autoPlayFlush = undefined;
+    const batch = autoPlayQueue.sort((a, b) =>
+      a.el.compareDocumentPosition(b.el) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1,
+    );
+    autoPlayQueue = [];
+    const now = performance.now();
+    for (const entry of batch) {
+      if (entry.cancelled) continue;
+      const at = Math.max(now + entry.delay, autoPlaySlot);
+      autoPlaySlot = at + AUTOPLAY_GAP_MS;
+      entry.timer = setTimeout(entry.run, at - now);
+    }
+  }, 0);
+  return () => {
+    queued.cancelled = true;
+    clearTimeout(queued.timer);
+  };
+};
+
+const springConfig = (variant: Variant, tilt: number, facet: number) => {
+  if (variant === "press") return PRESS_SPRING;
+  if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
+  if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 4.5 };
+  if (variant === "drift") return DRIFT_SPRING;
+  if (variant === "magnify") return MAGNIFY_SPRING;
+  if (variant === "join") return JOIN_SPRING;
+  if (variant === "unite") return UNITE_SPRING;
+  if (variant === "free") return { tension: 700 + 200 * tilt, friction: 50 };
+  return SPRING;
+};
+
+const leanPose = (amount: number, tilt: number, fontSize: number): Partial<Pose> => ({
+  x: amount * tilt * fontSize * 0.06,
+  y: amount * fontSize * SWAY_DRAG_EM,
+  rotation: amount * SWAY_TILT_DEG * (0.7 + 0.3 * tilt),
+});
+
+export default function PlayfulText({
+  text,
+  variant,
+  className,
+  autoPlayDelay,
+  autoPlayAt,
+}: Props) {
   const words = useMemo(() => {
     let start = 0;
     return text.split(WORD_BREAK).map((w, wi, all) => {
@@ -79,18 +239,46 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     [chars],
   );
 
+  const facets = useMemo(() => {
+    const groups: number[][] = [[]];
+    chars.forEach((c, i) => {
+      if (c === "・") groups.push([]);
+      else groups[groups.length - 1].push(i);
+    });
+    return groups.filter((group) => group.length > 0);
+  }, [chars]);
+
   const rootRef = useRef<HTMLSpanElement>(null);
   const charRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const springsRef = useRef<CharSpring[]>([]);
   const hoverPosesRef = useRef<Pose[]>([]);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const busyRef = useRef(false);
+  const pressingRef = useRef(false);
+  const reboundAtRef = useRef(0);
+  const flinchRef = useRef<number[]>([]);
+  const startledUntilRef = useRef(0);
+  const lastPointerRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const grabRef = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+  const draggedRef = useRef(false);
+  const strikeRef = useRef<gsap.core.Timeline | null>(null);
+  const facetBusyRef = useRef<boolean[]>([]);
+  const hoveredFacetRef = useRef(-1);
+  const facetTweensRef = useRef<(gsap.core.Timeline | undefined)[]>([]);
   const caretRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const springs = charRefs.current
-      .slice(0, chars.length)
-      .map((el) => createSpring(el!, REST, SPRING));
+    const springs = charRefs.current.slice(0, chars.length).map((el, i) =>
+      createSpring(
+        el!,
+        REST,
+        springConfig(
+          variant,
+          tilts[i],
+          facets.findIndex((group) => group.includes(i)),
+        ),
+      ),
+    );
     springsRef.current = springs;
     hoverPosesRef.current = chars.map(() => REST);
     const timeouts = timeoutsRef.current;
@@ -100,8 +288,87 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       timeouts.length = 0;
       springsRef.current = [];
       busyRef.current = false;
+      facetBusyRef.current = [];
+      for (const tween of facetTweensRef.current) tween?.kill();
+      facetTweensRef.current = [];
+      strikeRef.current?.kill();
     };
-  }, [chars]);
+  }, [chars, facets, tilts, variant]);
+
+  useEffect(() => {
+    const rootEl = rootRef.current;
+    if (variant !== "sway" || !rootEl) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let lastY = window.scrollY;
+    let lastTime = performance.now();
+    let fontSize = 0;
+    let held = 0;
+    let settle: ReturnType<typeof setTimeout> | undefined;
+    let rises: ReturnType<typeof setTimeout>[] = [];
+    const onScroll = () => {
+      const now = performance.now();
+      const elapsed = now - lastTime;
+      const moved = window.scrollY - lastY;
+      lastY = window.scrollY;
+      lastTime = now;
+      if (!fontSize || elapsed <= 0 || busyRef.current) return;
+      const amount = Math.max(-1, Math.min(1, moved / elapsed / SWAY_FULL_SPEED));
+      if (Math.abs(amount) > Math.abs(held)) held = amount;
+      for (const rise of rises) clearTimeout(rise);
+      for (const t of timeoutsRef.current) clearTimeout(t);
+      timeoutsRef.current.length = 0;
+      springsRef.current.forEach((spring, i) => spring.start(leanPose(held, tilts[i], fontSize)));
+      clearTimeout(settle);
+      settle = setTimeout(() => {
+        held = 0;
+        rises = springsRef.current.map((spring, i) =>
+          setTimeout(() => spring.start(REST), i * SWAY_RISE_STAGGER_MS),
+        );
+      }, SWAY_SETTLE_MS);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      fontSize = entry?.isIntersecting ? parseFloat(getComputedStyle(rootEl).fontSize) : 0;
+    });
+    observer.observe(rootEl);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(settle);
+      for (const rise of rises) clearTimeout(rise);
+    };
+  }, [variant, tilts]);
+
+  useEffect(() => {
+    const rootEl = rootRef.current;
+    if (variant !== "breathe" || !rootEl) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let fontSize = 0;
+    const tick = (time: number) => {
+      if (performance.now() < startledUntilRef.current) return;
+      const turn = ((time * 1000) / BREATHE_PERIOD_MS) * Math.PI * 2;
+      springsRef.current.forEach((spring, i) => {
+        const breath = Math.sin(turn - i * BREATHE_PHASE_STEP - tilts[i] * 0.6);
+        const flinch = flinchRef.current[i] ?? 0;
+        spring.start({
+          y: -breath * fontSize * BREATHE_RISE_EM,
+          rotation: tilts[i] * breath * BREATHE_SWAY_DEG,
+          scale: 1 + breath * BREATHE_SWELL - flinch * BREATHE_FLINCH,
+        });
+      });
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      gsap.ticker.remove(tick);
+      if (!entry?.isIntersecting) return;
+      fontSize = parseFloat(getComputedStyle(rootEl).fontSize);
+      gsap.ticker.add(tick);
+    });
+    observer.observe(rootEl);
+    return () => {
+      observer.disconnect();
+      gsap.ticker.remove(tick);
+    };
+  }, [variant, tilts]);
 
   // 一文字ずつ inline-block に分けるとフォントのペアカーニングが効かない。
   // px で持つと文字サイズが変わるたびに測り直しが要るので em にしている
@@ -147,16 +414,21 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const measure = () => {
     const rootEl = rootRef.current;
     if (!rootEl) return null;
-    return {
-      fontSize: parseFloat(getComputedStyle(rootEl).fontSize),
-      centers: charRefs.current.slice(0, chars.length).map((el) => {
-        const wordEl = el?.parentElement;
-        if (!el || !wordEl) return 0;
-        const rect = wordEl.getBoundingClientRect();
-        const scale = wordEl.offsetWidth ? rect.width / wordEl.offsetWidth : 1;
-        return rect.left + (el.offsetLeft + el.offsetWidth / 2) * scale;
-      }),
-    };
+    const centers: number[] = [];
+    const middles: number[] = [];
+    charRefs.current.slice(0, chars.length).forEach((el, i) => {
+      const wordEl = el?.parentElement;
+      if (!el || !wordEl) {
+        centers[i] = 0;
+        middles[i] = 0;
+        return;
+      }
+      const rect = wordEl.getBoundingClientRect();
+      const scale = wordEl.offsetWidth ? rect.width / wordEl.offsetWidth : 1;
+      centers[i] = rect.left + (el.offsetLeft + el.offsetWidth / 2) * scale;
+      middles[i] = rect.top + rect.height / 2;
+    });
+    return { fontSize: parseFloat(getComputedStyle(rootEl).fontSize), centers, middles };
   };
 
   const nearestIndex = (centers: number[], clientX: number) => {
@@ -232,6 +504,294 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     later(() => {
       busyRef.current = false;
     }, longest);
+  };
+
+  const dent = (clientX: number, clientY: number, depth: number) => {
+    const measured = measure();
+    if (!measured) return;
+    const { fontSize, centers, middles } = measured;
+    const radius = fontSize * PRESS_RADIUS_EM;
+    clearTimers();
+    centers.forEach((cx, i) => {
+      const dx = (clientX - cx) / radius;
+      const dy = (clientY - middles[i]) / radius;
+      const influence = Math.exp(-(dx * dx + dy * dy)) * depth;
+      springsRef.current[i]?.start({
+        x: dx * influence * fontSize * PRESS_PULL_EM,
+        y: influence * fontSize * PRESS_SINK_EM,
+        rotation: dx * influence * PRESS_TILT_DEG,
+        scale: 1 - influence * PRESS_SHRINK,
+      });
+    });
+  };
+
+  const rebound = (clientX: number, clientY: number) => {
+    const measured = measure();
+    if (!measured) return;
+    const { fontSize, centers, middles } = measured;
+    clearTimers();
+    centers.forEach((cx, i) => {
+      const distance = Math.hypot(clientX - cx, clientY - middles[i]) / fontSize;
+      later(() => springsRef.current[i]?.start(REST), distance * PRESS_REBOUND_MS_PER_EM);
+    });
+  };
+
+  const press = (clientX: number, clientY: number) => {
+    dent(clientX, clientY, 1);
+    later(() => rebound(clientX, clientY), PRESS_HOLD_MS);
+  };
+
+  const letGo = ({ clientX, clientY }: PointerEvent, hovering: boolean) => {
+    pressingRef.current = false;
+    clearTimers();
+    later(
+      () => {
+        if (hovering) dent(clientX, clientY, PRESS_HOVER_DEPTH);
+        else rebound(clientX, clientY);
+      },
+      Math.max(0, reboundAtRef.current - performance.now()),
+    );
+  };
+
+  const gust = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    clearTimers();
+    springsRef.current.forEach((spring, i) => {
+      later(() => spring.start(leanPose(1, tilts[i], measured.fontSize)), i * SWAY_GUST_STAGGER_MS);
+      later(() => spring.start(REST), i * SWAY_GUST_STAGGER_MS + SWAY_GUST_MS);
+    });
+  };
+
+  const startle = () => {
+    startledUntilRef.current = performance.now() + BREATHE_STARTLE_MS;
+    springsRef.current.forEach((spring, i) => {
+      spring.start({ y: 0, rotation: tilts[i] * 14, scale: BREATHE_STARTLE_SCALE });
+    });
+  };
+
+  const playFacet = (k: number) => {
+    const indices = facets[k];
+    const measured = measure();
+    if (!indices || !measured || facetBusyRef.current[k]) return;
+    const { fontSize } = measured;
+    const els = indices.map((i) => charRefs.current[i]);
+    const kind = k % 4;
+    let duration = 0;
+    facetBusyRef.current[k] = true;
+    facetTweensRef.current[k]?.progress(1).kill();
+    if (kind === 0) {
+      indices.forEach((i, j) => {
+        els[j]?.classList.add(blurred);
+        springsRef.current[i]?.start({ scale: FOCUS_SCALE });
+      });
+      later(() => {
+        indices.forEach((i, j) => {
+          els[j]?.classList.remove(blurred);
+          springsRef.current[i]?.start(REST);
+        });
+      }, FOCUS_HOLD_MS);
+      duration = FOCUS_HOLD_MS + FOCUS_CLEAR_MS;
+    } else if (kind === 1) {
+      const timeline = gsap.timeline();
+      els.forEach((el, j) => {
+        if (!el) return;
+        timeline.fromTo(
+          el,
+          { y: -fontSize * STACK_DROP_EM, opacity: 0 },
+          { y: 0, opacity: 1, duration: STACK_FALL_S, ease: "power3.in" },
+          STACK_WAIT_S + j * STACK_STAGGER_S,
+        );
+      });
+      facetTweensRef.current[k] = timeline;
+      duration = (STACK_WAIT_S + els.length * STACK_STAGGER_S + STACK_FALL_S) * 1000;
+    } else if (kind === 2) {
+      indices.forEach((i, j) => {
+        later(() => {
+          springsRef.current[i]?.start({
+            y: -fontSize * FLOURISH_RISE_EM,
+            rotation: (j % 2 ? 1 : -1) * FLOURISH_TILT_DEG,
+            scale: FLOURISH_SCALE,
+          });
+        }, j * FLOURISH_STAGGER_MS);
+        later(() => springsRef.current[i]?.start(REST), j * FLOURISH_STAGGER_MS + FLOURISH_HOLD_MS);
+      });
+      duration = indices.length * FLOURISH_STAGGER_MS + FLOURISH_HOLD_MS + FLOURISH_SETTLE_MS;
+    } else {
+      const timeline = gsap.timeline();
+      const step = GEAR_TOOTH_S + GEAR_PAUSE_S;
+      els.forEach((el, j) => {
+        if (!el) return;
+        const turn = ((j % 2 ? -1 : 1) * 360) / GEAR_TEETH;
+        for (let tooth = 0; tooth < GEAR_TEETH; tooth++) {
+          timeline.to(
+            el,
+            { rotation: turn * (tooth + 1), duration: GEAR_TOOTH_S, ease: "power2.inOut" },
+            tooth * step,
+          );
+        }
+        timeline.set(el, { rotation: 0 }, GEAR_TEETH * step);
+      });
+      facetTweensRef.current[k] = timeline;
+      duration = GEAR_TEETH * step * 1000;
+    }
+    later(() => {
+      facetBusyRef.current[k] = false;
+    }, duration);
+  };
+
+  const playFacets = () => {
+    facets.forEach((_, k) => later(() => playFacet(k), k * FACET_GAP_MS));
+  };
+
+  const facetAt = (clientX: number) => {
+    const measured = measure();
+    if (!measured) return -1;
+    const nearest = nearestIndex(measured.centers, clientX);
+    return facets.findIndex((group) => group.includes(nearest));
+  };
+
+  const breeze = () => {
+    clearTimers();
+    springsRef.current.forEach((spring, i) => {
+      later(() => {
+        spring.impulse({
+          x: DRIFT_BREEZE,
+          y: -DRIFT_BREEZE * 0.3,
+          rotation: tilts[i] * DRIFT_BREEZE * 0.6,
+        });
+      }, i * DRIFT_BREEZE_STAGGER_MS);
+    });
+  };
+
+  const orbit = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const radius = measured.fontSize * FREE_ORBIT_EM;
+    for (let step = 1; step <= FREE_ORBIT_STEPS; step++) {
+      later(() => {
+        springsRef.current.forEach((spring, i) => {
+          const phase = i * Math.PI;
+          const angle = (step / FREE_ORBIT_STEPS) * Math.PI * 2 + phase;
+          spring.start({
+            x: radius * (Math.cos(angle) - Math.cos(phase)),
+            y: radius * (Math.sin(angle) - Math.sin(phase)),
+          });
+        });
+      }, step * FREE_ORBIT_STEP_MS);
+    }
+    later(
+      () => {
+        for (const spring of springsRef.current) spring.start(REST);
+        busyRef.current = false;
+      },
+      (FREE_ORBIT_STEPS + 1) * FREE_ORBIT_STEP_MS,
+    );
+  };
+
+  const lens = (clientX: number) => {
+    const measured = measure();
+    if (!measured) return;
+    const { fontSize, centers } = measured;
+    const radius = fontSize * MAGNIFY_RADIUS_EM;
+    centers.forEach((cx, i) => {
+      const dx = (clientX - cx) / radius;
+      const influence = Math.exp(-dx * dx);
+      springsRef.current[i]?.start({
+        x: -dx * influence * fontSize * MAGNIFY_SPREAD_EM,
+        y: -influence * fontSize * MAGNIFY_RISE_EM,
+        scale: 1 + influence * MAGNIFY_SCALE,
+      });
+    });
+  };
+
+  const sweep = () => {
+    const rootEl = rootRef.current;
+    const measured = measure();
+    if (busyRef.current || !rootEl || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const rect = rootEl.getBoundingClientRect();
+    const margin = measured.fontSize * MAGNIFY_RADIUS_EM;
+    const from = rect.left - margin;
+    const span = rect.width + margin * 2;
+    for (let step = 0; step <= MAGNIFY_SWEEP_STEPS; step++) {
+      later(() => lens(from + (span * step) / MAGNIFY_SWEEP_STEPS), step * MAGNIFY_SWEEP_STEP_MS);
+    }
+    later(
+      () => {
+        for (const spring of springsRef.current) spring.start(REST);
+        busyRef.current = false;
+      },
+      (MAGNIFY_SWEEP_STEPS + 1) * MAGNIFY_SWEEP_STEP_MS,
+    );
+  };
+
+  const strike = () => {
+    if (strikeRef.current?.isActive()) return;
+    const els = charRefs.current.slice(0, chars.length).filter((el) => el !== null);
+    strikeRef.current = gsap
+      .timeline()
+      .to(els, {
+        rotation: 360,
+        duration: STRIKE_TURN_S,
+        ease: "power4.out",
+        stagger: STRIKE_STAGGER_S,
+      })
+      .set(els, { rotation: 0 });
+  };
+
+  const join = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const { fontSize } = measured;
+    const seam = Math.ceil(chars.length / 2);
+    const gap = fontSize * JOIN_GAP_EM;
+    springsRef.current.forEach((spring, i) => spring.start({ x: i < seam ? -gap : gap }));
+    later(() => {
+      for (const spring of springsRef.current) spring.start({ x: 0 });
+    }, JOIN_HOLD_MS);
+    let longest = 0;
+    springsRef.current.forEach((spring, i) => {
+      const distance = i < seam ? seam - 1 - i : i - seam;
+      const at = JOIN_HOLD_MS + JOIN_CONTACT_MS + distance * JOIN_RIPPLE_STAGGER_MS;
+      longest = Math.max(longest, at + JOIN_RIPPLE_HOLD_MS);
+      later(() => spring.start({ y: -fontSize * JOIN_RIPPLE_EM }), at);
+      later(() => spring.start(REST), at + JOIN_RIPPLE_HOLD_MS);
+    });
+    later(() => {
+      busyRef.current = false;
+    }, longest);
+  };
+
+  const unite = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const { fontSize } = measured;
+    const dots = chars.flatMap((c, i) => (c === "・" ? [i] : []));
+    const dotWidth = charRefs.current[dots[0]]?.offsetWidth ?? 0;
+    chars.forEach((_, i) => {
+      const before = dots.filter((dot) => dot < i).length;
+      springsRef.current[i]?.start(
+        dots.includes(i) ? { scale: 0 } : { x: (dots.length / 2 - before) * dotWidth },
+      );
+    });
+    later(() => {
+      for (const spring of springsRef.current) spring.start({ y: -fontSize * UNITE_STEP_EM });
+    }, UNITE_FUSE_MS);
+    later(() => {
+      for (const spring of springsRef.current) spring.start({ y: 0 });
+    }, UNITE_FUSE_MS + UNITE_STEP_HOLD_MS);
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, UNITE_HOLD_MS);
   };
 
   const stroll = () => {
@@ -362,41 +922,70 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     if (variant === "walk") stroll();
     else if (variant === "track") track();
     else if (variant === "type") type();
+    else if (variant === "sway") gust();
+    else if (variant === "breathe") startle();
+    else if (variant === "facets") playFacets();
+    else if (variant === "drift") breeze();
+    else if (variant === "free") orbit();
+    else if (variant === "magnify") sweep();
+    else if (variant === "strike") strike();
+    else if (variant === "join") join();
+    else if (variant === "unite") unite();
   };
 
-  const followsPointer = variant === "lift" || variant === "break";
+  const followsPointer =
+    variant === "lift" ||
+    variant === "break" ||
+    variant === "press" ||
+    variant === "breathe" ||
+    variant === "facets" ||
+    variant === "drift" ||
+    variant === "free" ||
+    variant === "magnify";
 
   const autoPlayRef = useRef<() => void>(() => {});
   useEffect(() => {
     autoPlayRef.current = () => {
       const rootEl = rootRef.current;
       if (!rootEl || reducedMotion()) return;
-      if (variant === "lift") {
-        const rect = rootEl.getBoundingClientRect();
-        wave(rect.left + rect.width / 2);
-      } else {
-        play();
-      }
+      const rect = rootEl.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      if (variant === "lift") wave(centerX);
+      else if (variant === "break") shatter(centerX);
+      else if (variant === "press") {
+        const target = Array.from(autoPlayAt ?? "");
+        const first = chars.findIndex((_, i) => target.every((c, j) => chars[i + j] === c));
+        const measured = measure();
+        if (!target.length || first < 0 || !measured) {
+          press(centerX, rect.top + rect.height / 2);
+          return;
+        }
+        const last = first + target.length - 1;
+        press(
+          (measured.centers[first] + measured.centers[last]) / 2,
+          (measured.middles[first] + measured.middles[last]) / 2,
+        );
+      } else play();
     };
   });
 
   useEffect(() => {
     const rootEl = rootRef.current;
     if (autoPlayDelay === undefined || !rootEl) return;
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    let cancel: (() => void) | undefined;
     // gsapAnimation.inview の start（top 80%）と揃えておく
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
-        timer = setTimeout(() => autoPlayRef.current(), autoPlayDelay);
+        cancel = queueAutoPlay(rootEl, autoPlayDelay, () => autoPlayRef.current());
       },
       { rootMargin: "0px 0px -20% 0px" },
     );
     observer.observe(rootEl);
     return () => {
       observer.disconnect();
-      clearTimeout(timer);
+      cancel?.();
     };
   }, [autoPlayDelay]);
 
@@ -405,7 +994,119 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     play();
   };
 
+  const release = () => {
+    const grab = grabRef.current;
+    if (!grab) return;
+    draggedRef.current = grab.moved;
+    grabRef.current = null;
+    for (const spring of springsRef.current) spring.start(REST);
+  };
+
+  const onPointerDown = (e: PointerEvent) => {
+    if (variant === "free") {
+      if (reducedMotion()) return;
+      clearTimers();
+      busyRef.current = false;
+      draggedRef.current = false;
+      grabRef.current = { x: e.clientX, y: e.clientY, moved: false };
+      e.currentTarget.setPointerCapture(e.pointerId);
+      return;
+    }
+    if (variant !== "press" || reducedMotion()) return;
+    pressingRef.current = true;
+    reboundAtRef.current = performance.now() + PRESS_HOLD_MS;
+    dent(e.clientX, e.clientY, 1);
+  };
+
+  const onPointerUp = (e: PointerEvent) => {
+    if (variant === "free") release();
+    if (variant !== "press" || !pressingRef.current) return;
+    letGo(e, e.pointerType === "mouse");
+  };
+
+  const onPointerCancel = (e: PointerEvent) => {
+    if (variant === "free") release();
+    if (variant === "press") letGo(e, false);
+  };
+
   const onPointerMove = (e: PointerEvent) => {
+    if (variant === "press") {
+      if (reducedMotion()) return;
+      if (pressingRef.current) dent(e.clientX, e.clientY, 1);
+      else if (e.pointerType === "mouse") dent(e.clientX, e.clientY, PRESS_HOVER_DEPTH);
+      return;
+    }
+    if (variant === "magnify") {
+      if (e.pointerType !== "mouse" || busyRef.current || reducedMotion()) return;
+      lens(e.clientX);
+      return;
+    }
+    if (variant === "drift") {
+      if (e.pointerType !== "mouse" || reducedMotion()) return;
+      const now = performance.now();
+      const last = lastPointerRef.current;
+      lastPointerRef.current = { x: e.clientX, y: e.clientY, time: now };
+      const measured = measure();
+      if (!last || !measured) return;
+      const elapsed = now - last.time;
+      if (elapsed <= 0 || elapsed > DRIFT_GAP_MS) return;
+      const speed = (moved: number) =>
+        Math.max(-DRIFT_MAX_SPEED, Math.min(DRIFT_MAX_SPEED, moved / elapsed));
+      const vx = speed(e.clientX - last.x);
+      const vy = speed(e.clientY - last.y);
+      const radius = measured.fontSize * DRIFT_RADIUS_EM;
+      measured.centers.forEach((cx, i) => {
+        const dx = (e.clientX - cx) / radius;
+        const dy = (e.clientY - measured.middles[i]) / radius;
+        const influence = Math.exp(-(dx * dx + dy * dy));
+        springsRef.current[i]?.impulse({
+          x: vx * influence * DRIFT_PUSH,
+          y: vy * influence * DRIFT_PUSH,
+          rotation: vx * influence * tilts[i] * DRIFT_SPIN,
+        });
+      });
+      return;
+    }
+    if (variant === "free") {
+      if (reducedMotion()) return;
+      const grab = grabRef.current;
+      if (grab) {
+        const x = e.clientX - grab.x;
+        const y = e.clientY - grab.y;
+        if (Math.hypot(x, y) > FREE_DRAG_SLOP_PX) grab.moved = true;
+        for (const spring of springsRef.current) spring.start({ x, y });
+        return;
+      }
+      const measured = measure();
+      if (e.pointerType !== "mouse" || busyRef.current || !measured) return;
+      const reach = measured.fontSize * FREE_REACH_EM;
+      const toward = (offset: number) => Math.max(-reach, Math.min(reach, offset * FREE_FOLLOW));
+      measured.centers.forEach((cx, i) => {
+        springsRef.current[i]?.start({
+          x: toward(e.clientX - cx),
+          y: toward(e.clientY - measured.middles[i]),
+        });
+      });
+      return;
+    }
+    if (variant === "facets") {
+      if (e.pointerType !== "mouse" || reducedMotion()) return;
+      const k = facetAt(e.clientX);
+      if (k === hoveredFacetRef.current) return;
+      hoveredFacetRef.current = k;
+      playFacet(k);
+      return;
+    }
+    if (variant === "breathe") {
+      if (e.pointerType !== "mouse" || reducedMotion()) return;
+      const measured = measure();
+      if (!measured) return;
+      const radius = measured.fontSize * BREATHE_FLINCH_RADIUS_EM;
+      flinchRef.current = measured.centers.map((cx) =>
+        Math.exp(-(((e.clientX - cx) / radius) ** 2)),
+      );
+      return;
+    }
     // タップでは pointerleave が来ず、変形したまま残る
     if (!followsPointer || e.pointerType !== "mouse" || busyRef.current || reducedMotion()) {
       return;
@@ -436,7 +1137,18 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     });
   };
 
-  const onPointerLeave = () => {
+  const onPointerLeave = (e: PointerEvent) => {
+    if (variant === "press") {
+      letGo(e, false);
+      return;
+    }
+    flinchRef.current = [];
+    lastPointerRef.current = null;
+    if (variant === "drift" || (variant === "free" && grabRef.current)) return;
+    if (variant === "facets") {
+      hoveredFacetRef.current = -1;
+      return;
+    }
     hoverPosesRef.current = chars.map(() => REST);
     if (busyRef.current) return;
     for (const s of springsRef.current) s.start(REST);
@@ -448,15 +1160,27 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     if (reducedMotion()) return;
     if (variant === "lift") wave(e.clientX);
     else if (variant === "break") shatter(e.clientX);
-    else play();
+    else if (variant === "facets") playFacet(facetAt(e.clientX));
+    else if (!draggedRef.current) play();
+    draggedRef.current = false;
   };
 
   return (
     <span
       ref={rootRef}
-      className={clsx(root, className)}
+      className={clsx(
+        root,
+        variant === "press" && pressable,
+        variant === "sway" && swaying,
+        variant === "facets" && faceted,
+        variant === "free" && grabbable,
+        className,
+      )}
       onPointerEnter={onPointerEnter}
+      onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
       onPointerLeave={onPointerLeave}
       onClick={onClick}
     >
