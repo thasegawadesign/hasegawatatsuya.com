@@ -285,7 +285,8 @@ export default function Main() {
             目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            インタラクティブなWeb空間を
+            <PlayfulText text="インタラクティブなWeb空間" variant="web" autoPlayDelay={350} />
+            を
             <br />
             構築していく過程では、
             <br />
@@ -329,9 +330,12 @@ export default function Main() {
             <PlayfulText text="インターフェイス" variant="join" autoPlayDelay={350} />
             です。
             <br />
-            その内部構造は堅牢に、
+            その内部構造は
+            <PlayfulText text="堅牢" variant="firm" autoPlayDelay={350} />
+            に、
             <br />
-            触れる面は心地よく。
+            触れる面は
+            <PlayfulText text="心地よく" variant="cushion" autoPlayDelay={350} />。
             <br />
             <PlayfulText
               text={"失敗に気づけば、\u200b何度でも壊します。"}
@@ -353,7 +357,8 @@ export default function Main() {
             <br className={wideBr} />
             新しい
             <br className={smBr} />
-            ヒューマンインターフェイスへの
+            <PlayfulText text="ヒューマンインターフェイス" variant="attend" />
+            への
             <br />
             応用も視野に入れています。
           </p>

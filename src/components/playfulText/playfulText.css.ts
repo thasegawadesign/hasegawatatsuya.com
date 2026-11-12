@@ -24,6 +24,16 @@ export const grabbable = style({
   },
 });
 
+export const tuggable = style({
+  cursor: "grab",
+  touchAction: "pan-y",
+  selectors: {
+    "&:active": {
+      cursor: "grabbing",
+    },
+  },
+});
+
 export const swaying = style({});
 
 export const faceted = style({});
