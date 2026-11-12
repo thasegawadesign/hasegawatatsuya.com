@@ -12,7 +12,12 @@ export default function TextCircle() {
   return (
     <div className={clsx(circle)}>
       <div className={clsx(circleRotor)}>
-        <svg viewBox="0 0 100 100" className={clsx(circleSvg)}>
+        <svg
+          viewBox="0 0 100 100"
+          className={clsx(circleSvg)}
+          role="img"
+          aria-label="Thank you for visiting."
+        >
           <path d="M 0,50 a 50,50 0 1,1 0,1 z" id="circle" className={clsx(circlePath)} />
           <text className={clsx(roboto.className, circleText)}>
             <textPath xlinkHref="#circle">Thank you for visiting.Thank you for visiting.</textPath>
