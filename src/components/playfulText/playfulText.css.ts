@@ -81,7 +81,7 @@ export const char = style({
       transformOrigin: "50% 100%",
     },
     [`${faceted} &`]: {
-      transition: "filter 0.5s ease-out",
+      transition: "filter 0.4s ease-out",
     },
   },
 });
