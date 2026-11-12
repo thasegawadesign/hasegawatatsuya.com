@@ -154,7 +154,7 @@ export default function Main() {
       gsapAnimation.inview(descriptionRef);
       gsapAnimation.inview(profileRef);
       // ボタンに回転が残ると、中の立体テキストが潰れる
-      gsapAnimation.inview(contactRef, { rotate: false });
+      gsapAnimation.inview(contactRef, { clearTransform: true });
     });
 
     const refresh = () => ScrollTrigger.refresh();
