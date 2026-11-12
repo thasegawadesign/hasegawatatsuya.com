@@ -150,25 +150,8 @@ export default function Main() {
     const ctx = gsap.context(() => {
       gsapAnimation.inview(descriptionRef);
       gsapAnimation.inview(profileRef);
-      if (contactRef.current) {
-        const contact = contactRef.current;
-        // 回転を残すとボタン内の立体テキストが潰れるので、透明度だけ動かす
-        gsap.fromTo(
-          contact,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 1.5,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: contact,
-              start: "top 80%",
-              end: "top 50%",
-              once: true,
-            },
-          },
-        );
-      }
+      // ボタンに回転が残ると、中の立体テキストが潰れる
+      gsapAnimation.inview(contactRef, { rotate: false });
     });
 
     const refresh = () => ScrollTrigger.refresh();

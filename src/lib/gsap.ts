@@ -4,6 +4,8 @@ import { MutableRefObject } from "react";
 
 type GsapRef = MutableRefObject<HTMLElement | null>;
 
+const INVIEW_RISE_PX = 40;
+
 export const gsapAnimation = {
   scale(ref: GsapRef) {
     gsap.fromTo(
@@ -21,18 +23,20 @@ export const gsapAnimation = {
       },
     );
   },
-  inview(ref: GsapRef) {
+  inview(ref: GsapRef, { rotate = true }: { rotate?: boolean } = {}) {
     gsap.fromTo(
       ref.current,
-      { opacity: 0, rotation: -2 },
+      { opacity: 0, y: INVIEW_RISE_PX, ...(rotate && { rotation: -2 }) },
       {
         opacity: 1,
-        rotation: 0,
+        y: 0,
+        ...(rotate ? { rotation: 0 } : { clearProps: "transform" }),
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
           trigger: ref.current,
-          start: "top 80%",
+          // ScrollTrigger は transform 後の位置で start を測る
+          start: `top-=${INVIEW_RISE_PX} 80%`,
           end: "top 50%",
           scrub: false,
           once: true,

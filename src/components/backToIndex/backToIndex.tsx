@@ -22,9 +22,8 @@ export default function BackToIndex() {
 
   return (
     <>
-      <div className={clsx(backToIndexBox)}>
+      <div ref={backToIndexRef} className={clsx(backToIndexBox)}>
         <Link
-          ref={backToIndexRef}
           href={"/"}
           className={clsx(roboto.className, backToIndex)}
           onClick={() => {
