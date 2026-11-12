@@ -10,6 +10,7 @@ const INVIEW_STAGGER_S = 0.12;
 // GSAP は受け取った vars を書き換える
 const INVIEW_FROM = { opacity: 0, rotation: -2, y: INVIEW_RISE_PX };
 const INVIEW_TO = { opacity: 1, rotation: 0, y: 0, duration: 1.5, ease: "power2.out" };
+const ENTER_DELAY_S = 0.4;
 
 function layoutTop(el: HTMLElement) {
   let top = 0;
@@ -81,6 +82,22 @@ export const gsapAnimation = {
       if (items?.length) staggerIn(items);
     });
     return mm;
+  },
+  enterEach(boxRef: GsapRef, selector: string) {
+    return gsap.context(() => {
+      const items = boxRef.current?.querySelectorAll<HTMLElement>(selector);
+      if (!items?.length) return;
+      gsap.fromTo(
+        items,
+        { ...INVIEW_FROM },
+        {
+          ...INVIEW_TO,
+          clearProps: "transform",
+          delay: ENTER_DELAY_S,
+          stagger: INVIEW_STAGGER_S,
+        },
+      );
+    });
   },
   parallaxLight(ref: GsapRef) {
     gsap.to(ref.current, {
