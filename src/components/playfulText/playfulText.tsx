@@ -91,25 +91,25 @@ const BREATHE_FLINCH = 0.3;
 const BREATHE_FLINCH_RADIUS_EM = 1.4;
 const BREATHE_STARTLE_SCALE = 0.7;
 const BREATHE_STARTLE_MS = 520;
-const FACET_GAP_MS = 620;
-const FACET_REST_MS = 900;
+const FACET_GAP_MS = 380;
+const FACET_REST_MS = 600;
 const FOCUS_SCALE = 1.25;
-const FOCUS_HOLD_MS = 380;
-const FOCUS_CLEAR_MS = 500;
+const FOCUS_HOLD_MS = 260;
+const FOCUS_CLEAR_MS = 400;
 const STACK_DROP_EM = 1;
-const STACK_WAIT_S = 0.12;
-const STACK_STAGGER_S = 0.16;
-const STACK_FALL_S = 0.18;
+const STACK_WAIT_S = 0.08;
+const STACK_STAGGER_S = 0.12;
+const STACK_FALL_S = 0.16;
 const FLOURISH_SPRING = { tension: 200, friction: 8 };
 const FLOURISH_RISE_EM = 0.55;
 const FLOURISH_TILT_DEG = 16;
 const FLOURISH_SCALE = 1.7;
 const FLOURISH_STAGGER_MS = 60;
-const FLOURISH_HOLD_MS = 200;
+const FLOURISH_HOLD_MS = 150;
 const FLOURISH_SETTLE_MS = 700;
-const GEAR_TEETH = 8;
-const GEAR_TOOTH_S = 0.1;
-const GEAR_PAUSE_S = 0.03;
+const GEAR_TEETH = 6;
+const GEAR_TOOTH_S = 0.07;
+const GEAR_PAUSE_S = 0.02;
 const DRIFT_SPRING = { tension: 12, friction: 12 };
 const DRIFT_RADIUS_EM = 1.4;
 const DRIFT_MAX_SPEED = 2;
@@ -321,6 +321,7 @@ export default function PlayfulText({
   const hoverPosesRef = useRef<Pose[]>([]);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const busyRef = useRef(false);
+  const armedRef = useRef(false);
   const pressingRef = useRef(false);
   const reboundAtRef = useRef(0);
   const flinchRef = useRef<number[]>([]);
@@ -379,7 +380,7 @@ export default function PlayfulText({
       const moved = window.scrollY - lastY;
       lastY = window.scrollY;
       lastTime = now;
-      if (!fontSize || elapsed <= 0 || busyRef.current) return;
+      if (!armedRef.current || !fontSize || elapsed <= 0 || busyRef.current) return;
       const amount = Math.max(-1, Math.min(1, moved / elapsed / SWAY_FULL_SPEED));
       if (Math.abs(amount) > Math.abs(held)) held = amount;
       for (const rise of rises) clearTimeout(rise);
@@ -1204,6 +1205,7 @@ export default function PlayfulText({
     autoPlayRef.current = () => {
       const rootEl = rootRef.current;
       if (!rootEl || reducedMotion()) return;
+      armedRef.current = true;
       const rect = rootEl.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       if (variant === "lift") wave(centerX);
@@ -1227,6 +1229,7 @@ export default function PlayfulText({
 
   useEffect(() => {
     const rootEl = rootRef.current;
+    armedRef.current = autoPlayDelay === undefined;
     if (autoPlayDelay === undefined || !rootEl) return;
     const hold = variant === "facets" ? facetCount * FACET_GAP_MS + FACET_REST_MS : AUTOPLAY_GAP_MS;
     let cancel: (() => void) | undefined;
