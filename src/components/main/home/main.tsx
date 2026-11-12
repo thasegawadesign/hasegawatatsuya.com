@@ -365,6 +365,7 @@ export default function Main() {
             >
               <div className={clsx(emailTextBox)}>
                 <span
+                  aria-hidden="true"
                   className={clsx(roboto.className, emailTextRotateTop, {
                     [emailButtonHover]: emailCopied || emailHovered || emailFocused,
                   })}
