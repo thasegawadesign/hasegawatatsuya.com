@@ -269,24 +269,27 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   };
 
   const track = () => {
-    if (busyRef.current) return;
+    const rootEl = rootRef.current;
+    if (busyRef.current || !rootEl) return;
     const measured = measure();
     if (!measured) return;
     const { fontSize } = measured;
     busyRef.current = true;
-    const mid = (chars.length - 1) / 2;
+    const align = getComputedStyle(rootEl).textAlign;
+    const last = chars.length - 1;
+    const anchor = align === "left" || align === "start" ? 0 : last / 2;
     chars.forEach((_, i) => {
-      springsRef.current[i]?.start({ x: (i - mid) * fontSize * 0.07 });
+      springsRef.current[i]?.start({ x: (i - anchor) * fontSize * 0.07 });
       later(
         () => springsRef.current[i]?.start(REST),
-        TRACK_HOLD_MS + Math.abs(i - mid) * TRACK_RETURN_STAGGER_MS,
+        TRACK_HOLD_MS + Math.abs(i - anchor) * TRACK_RETURN_STAGGER_MS,
       );
     });
     later(
       () => {
         busyRef.current = false;
       },
-      TRACK_HOLD_MS + mid * TRACK_RETURN_STAGGER_MS,
+      TRACK_HOLD_MS + Math.max(anchor, last - anchor) * TRACK_RETURN_STAGGER_MS,
     );
   };
 
