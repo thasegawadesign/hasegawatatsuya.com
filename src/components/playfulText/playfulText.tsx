@@ -189,6 +189,7 @@ const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const ASCII_WORD = /^[\x21-\x7e]+$/;
+const AUTOPLAY_START_MARGIN = "12%";
 const AUTOPLAY_GAP_MS = 500;
 const AUTOPLAY_RUSH_LINE = 0.5;
 const WORD_BREAK = /[ \u200b]/;
@@ -1263,14 +1264,13 @@ export default function PlayfulText({
     if (autoPlayDelay === undefined || !rootEl) return;
     const hold = variant === "facets" ? facetCount * FACET_GAP_MS + FACET_REST_MS : AUTOPLAY_GAP_MS;
     let cancel: (() => void) | undefined;
-    // gsapAnimation.inview の start（top 80%）と揃えておく
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
         cancel = queueAutoPlay(rootEl, autoPlayDelay, hold, () => autoPlayRef.current());
       },
-      { rootMargin: "0px 0px -20% 0px" },
+      { rootMargin: `0px 0px -${AUTOPLAY_START_MARGIN} 0px` },
     );
     observer.observe(rootEl);
     return () => {
