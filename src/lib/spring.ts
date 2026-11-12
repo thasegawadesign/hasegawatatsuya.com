@@ -9,6 +9,8 @@ export interface SpringConfig {
 
 export interface Spring<K extends string> {
   start(to: Partial<Record<K, number>>): void;
+  // 速度の単位は 1ms あたりの変化量
+  impulse(velocity: Partial<Record<K, number>>): void;
   stop(): void;
 }
 
@@ -74,16 +76,26 @@ export function createSpring<K extends string>(
     gsap.ticker.remove(tick);
   };
 
+  const run = () => {
+    if (running) return;
+    running = true;
+    gsap.ticker.add(tick);
+  };
+
   return {
     start(to: Partial<Record<K, number>>) {
       for (const key of keys) {
         const value = to[key];
         if (value !== undefined) axes[key].target = value;
       }
-      if (!running) {
-        running = true;
-        gsap.ticker.add(tick);
+      run();
+    },
+    impulse(velocity: Partial<Record<K, number>>) {
+      for (const key of keys) {
+        const value = velocity[key];
+        if (value !== undefined) axes[key].velocity += value;
       }
+      run();
     },
     stop,
   };

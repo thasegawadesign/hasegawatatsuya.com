@@ -32,8 +32,10 @@ const SPRING = { tension: 260, friction: 14 };
 
 const WAVE_STAGGER_MS = 38;
 const WAVE_HOLD_MS = 130;
-const BREAK_FALL_MS = 200;
-const BREAK_HOLD_MS = 1050;
+const BREAK_WINDUP_MS = 55;
+const BREAK_DENT_REACH = 3;
+const BREAK_KICK = 0.012;
+const BREAK_HOLD_MS = 900;
 const BREAK_EDGE_PX = 12;
 const BREAK_RETURN_STAGGER_MS = 34;
 const WALK_STEPS = 4;
@@ -201,30 +203,31 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     const maxX = window.innerWidth - BREAK_EDGE_PX;
     let longest = 0;
     centers.forEach((cx, i) => {
+      const spring = springsRef.current[i];
+      const distance = Math.abs(i - origin);
+      const near = 1 / (1 + distance * 0.18);
+      if (distance <= BREAK_DENT_REACH) {
+        const dent = 1 - distance / (BREAK_DENT_REACH + 1);
+        spring?.start({ scale: 1 - 0.34 * dent });
+        spring?.impulse({ scale: -0.012 * dent });
+      }
       const side = cx === clientX ? (Math.random() < 0.5 ? -1 : 1) : Math.sign(cx - clientX);
-      const near = 1 / (1 + Math.abs(i - origin) * 0.18);
-      const reach = side * fontSize * (1.2 + Math.random() * 3.2) * (0.5 + near);
-      const clampX = (x: number) => Math.min(maxX, Math.max(minX, cx + x)) - cx;
-      const spin = (Math.random() - 0.5) * 520;
-      springsRef.current[i]?.start({
-        x: clampX(reach),
-        y: -fontSize * (0.6 + Math.random() * 2.6) * (0.5 + near),
-        rotation: spin,
-        scale: 0.6 + Math.random() * 0.9,
-      });
-      later(
-        () => {
-          springsRef.current[i]?.start({
-            x: clampX(reach * 1.25),
-            y: fontSize * (2.2 + Math.random() * 3.8),
-            rotation: spin * 1.8,
-          });
-        },
-        BREAK_FALL_MS + Math.random() * 120,
-      );
-      const back = BREAK_HOLD_MS + Math.abs(i - origin) * BREAK_RETURN_STAGGER_MS;
+      const elevation = (Math.random() - 0.5) * 2 * (0.5 + 0.9 * near);
+      const reach = fontSize * (1.5 + Math.random() * 3.5) * (0.45 + near);
+      const x = Math.min(maxX, Math.max(minX, cx + side * reach * Math.cos(elevation))) - cx;
+      const y = reach * Math.sin(elevation);
+      const spin = (Math.random() - 0.5) * 540;
+      later(() => {
+        spring?.start({ x, y, rotation: spin, scale: 0.6 + Math.random() * 0.9 });
+        spring?.impulse({
+          x: x * BREAK_KICK,
+          y: y * BREAK_KICK,
+          rotation: spin * BREAK_KICK,
+        });
+      }, BREAK_WINDUP_MS);
+      const back = BREAK_HOLD_MS + distance * BREAK_RETURN_STAGGER_MS;
       longest = Math.max(longest, back);
-      later(() => springsRef.current[i]?.start(REST), back);
+      later(() => spring?.start(REST), back);
     });
     later(() => {
       busyRef.current = false;
