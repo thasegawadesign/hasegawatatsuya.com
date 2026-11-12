@@ -1,10 +1,12 @@
 import { PARALLAX_ENABLE_MIN_WIDTH } from "@/constants/constants";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MutableRefObject } from "react";
 
 type GsapRef = MutableRefObject<HTMLElement | null>;
 
 const INVIEW_RISE_PX = 40;
+const INVIEW_STAGGER_S = 0.12;
 
 export const gsapAnimation = {
   scale(ref: GsapRef) {
@@ -23,14 +25,15 @@ export const gsapAnimation = {
       },
     );
   },
-  inview(ref: GsapRef, { rotate = true }: { rotate?: boolean } = {}) {
+  inview(ref: GsapRef, { clearTransform = false }: { clearTransform?: boolean } = {}) {
     gsap.fromTo(
       ref.current,
-      { opacity: 0, y: INVIEW_RISE_PX, ...(rotate && { rotation: -2 }) },
+      { opacity: 0, rotation: -2, y: INVIEW_RISE_PX },
       {
         opacity: 1,
+        rotation: 0,
         y: 0,
-        ...(rotate ? { rotation: 0 } : { clearProps: "transform" }),
+        ...(clearTransform && { clearProps: "transform" }),
         duration: 1.5,
         ease: "power2.out",
         scrollTrigger: {
@@ -43,6 +46,33 @@ export const gsapAnimation = {
         },
       },
     );
+  },
+  inviewList(boxRef: GsapRef) {
+    const mm = gsap.matchMedia();
+    // styles の breakpoints.sm と同じ幅
+    mm.add("(max-width: 639px)", () => {
+      gsapAnimation.inview(boxRef);
+    });
+    mm.add("all", () => {
+      const items = boxRef.current?.querySelectorAll<HTMLElement>(":scope > section");
+      if (!items?.length) return;
+      gsap.set(items, { opacity: 0, rotation: -2, y: INVIEW_RISE_PX });
+      ScrollTrigger.batch(items, {
+        start: `top-=${INVIEW_RISE_PX} 80%`,
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            rotation: 0,
+            y: 0,
+            duration: 1.5,
+            ease: "power2.out",
+            stagger: INVIEW_STAGGER_S,
+          });
+        },
+      });
+    });
+    return mm;
   },
   parallaxLight(ref: GsapRef) {
     gsap.to(ref.current, {

@@ -86,7 +86,10 @@ export default function Main() {
     triggerLiquidShockwave(ev.clientX, ev.clientY);
     playSfxSuccess();
     haptic();
-    await copy(EMAIL);
+    if (!(await copy(EMAIL))) {
+      emailCopyLockRef.current = false;
+      return;
+    }
     setEmailCopied(true);
 
     if (emailCopiedResetTimeoutRef.current) {
@@ -151,7 +154,7 @@ export default function Main() {
       gsapAnimation.inview(descriptionRef);
       gsapAnimation.inview(profileRef);
       // ボタンに回転が残ると、中の立体テキストが潰れる
-      gsapAnimation.inview(contactRef, { rotate: false });
+      gsapAnimation.inview(contactRef, { clearTransform: true });
     });
 
     const refresh = () => ScrollTrigger.refresh();

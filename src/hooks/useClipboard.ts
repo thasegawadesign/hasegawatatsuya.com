@@ -12,8 +12,10 @@ export const useClipboard = (resetDelay: number = 2000) => {
         setTimeout(() => {
           setCopied(false);
         }, resetDelay);
+        return true;
       } catch (error) {
         console.error("Failed to copy:", error);
+        return false;
       }
     },
     [resetDelay],

@@ -26,9 +26,8 @@ export default function WorksList() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    boxRef.current?.querySelectorAll(":scope > section").forEach((el) => {
-      gsapAnimation.inview({ current: el as HTMLElement });
-    });
+    const mm = gsapAnimation.inviewList(boxRef);
+    return () => mm.revert();
   }, []);
 
   return (

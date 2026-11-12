@@ -484,6 +484,8 @@ export const worksSection = style({
   paddingBottom: 120,
   "@media": {
     [breakpoints["sm"]]: {
+      // inview の回転で枠の角が画面幅をはみ出す
+      overflowX: "clip",
       paddingBottom: 60,
     },
   },
@@ -662,6 +664,12 @@ export const worksIcon = style({
 
 export const contactSection = style({
   paddingBottom: "clamp(60px, 8vw, 160px)",
+  "@media": {
+    [breakpoints["sm"]]: {
+      // inview の回転でボタンの角が画面幅をはみ出す
+      overflowX: "clip",
+    },
+  },
 });
 
 export const address = style({
