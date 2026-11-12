@@ -345,7 +345,7 @@ export default function Main() {
             <br />
             <PlayfulText text="環境の変化に応答しながら" variant="sway" autoPlayDelay={350} />
             <br />
-            手入れを続けます。
+            <PlayfulText text="手入れを続けます。" variant="tend" autoPlayDelay={350} />
             <br />
             空間コンピューティングや
             <br />

@@ -34,6 +34,7 @@ type Variant =
   | "strike"
   | "join"
   | "unite"
+  | "tend"
   | "walk"
   | "track"
   | "type";
@@ -86,6 +87,7 @@ const BREATHE_FLINCH_RADIUS_EM = 1.4;
 const BREATHE_STARTLE_SCALE = 0.7;
 const BREATHE_STARTLE_MS = 520;
 const FACET_GAP_MS = 620;
+const FACET_REST_MS = 900;
 const FOCUS_SCALE = 1.25;
 const FOCUS_HOLD_MS = 380;
 const FOCUS_CLEAR_MS = 500;
@@ -138,6 +140,12 @@ const UNITE_FUSE_MS = 450;
 const UNITE_STEP_EM = 0.18;
 const UNITE_STEP_HOLD_MS = 140;
 const UNITE_HOLD_MS = 1100;
+const TEND_SPRING = { tension: 200, friction: 18 };
+const TEND_MIN_MS = 2200;
+const TEND_JITTER_MS = 1400;
+const TEND_FIX_MS = 700;
+const TEND_TIDY_WAIT_MS = 250;
+const TEND_TIDY_STAGGER_MS = 70;
 const WALK_STEPS = 4;
 const WALK_STRIDE_EM = 0.38;
 const WALK_STEP_MS = 270;
@@ -161,6 +169,7 @@ const WORD_BREAK = /[ \u200b]/;
 interface QueuedAutoPlay {
   readonly el: Element;
   readonly delay: number;
+  readonly hold: number;
   readonly run: () => void;
   timer?: ReturnType<typeof setTimeout>;
   cancelled: boolean;
@@ -170,8 +179,8 @@ let autoPlayQueue: QueuedAutoPlay[] = [];
 let autoPlayFlush: ReturnType<typeof setTimeout> | undefined;
 let autoPlaySlot = 0;
 
-const queueAutoPlay = (el: Element, delay: number, run: () => void) => {
-  const queued: QueuedAutoPlay = { el, delay, run, cancelled: false };
+const queueAutoPlay = (el: Element, delay: number, hold: number, run: () => void) => {
+  const queued: QueuedAutoPlay = { el, delay, hold, run, cancelled: false };
   autoPlayQueue.push(queued);
   autoPlayFlush ??= setTimeout(() => {
     autoPlayFlush = undefined;
@@ -183,7 +192,7 @@ const queueAutoPlay = (el: Element, delay: number, run: () => void) => {
     for (const entry of batch) {
       if (entry.cancelled) continue;
       const at = Math.max(now + entry.delay, autoPlaySlot);
-      autoPlaySlot = at + AUTOPLAY_GAP_MS;
+      autoPlaySlot = at + entry.hold;
       entry.timer = setTimeout(entry.run, at - now);
     }
   }, 0);
@@ -201,9 +210,16 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "magnify") return MAGNIFY_SPRING;
   if (variant === "join") return JOIN_SPRING;
   if (variant === "unite") return UNITE_SPRING;
+  if (variant === "tend") return TEND_SPRING;
   if (variant === "free") return { tension: 700 + 200 * tilt, friction: 50 };
   return SPRING;
 };
+
+const askewPose = (fontSize: number): Partial<Pose> => ({
+  x: (Math.random() - 0.5) * fontSize * 0.12,
+  y: (Math.random() - 0.5) * fontSize * 0.2,
+  rotation: (Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 8),
+});
 
 const leanPose = (amount: number, tilt: number, fontSize: number): Partial<Pose> => ({
   x: amount * tilt * fontSize * 0.06,
@@ -247,6 +263,8 @@ export default function PlayfulText({
     });
     return groups.filter((group) => group.length > 0);
   }, [chars]);
+
+  const facetCount = facets.length;
 
   const rootRef = useRef<HTMLSpanElement>(null);
   const charRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -369,6 +387,43 @@ export default function PlayfulText({
       gsap.ticker.remove(tick);
     };
   }, [variant, tilts]);
+
+  useEffect(() => {
+    const rootEl = rootRef.current;
+    if (variant !== "tend" || !rootEl) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let next: ReturnType<typeof setTimeout> | undefined;
+    let fix: ReturnType<typeof setTimeout> | undefined;
+    let last = -1;
+    const loop = () => {
+      next = setTimeout(
+        () => {
+          const springs = springsRef.current;
+          if (!busyRef.current && springs.length > 0) {
+            let i = Math.floor(Math.random() * springs.length);
+            if (i === last) i = (i + 1) % springs.length;
+            last = i;
+            springs[i].start(askewPose(parseFloat(getComputedStyle(rootEl).fontSize)));
+            fix = setTimeout(() => {
+              if (!busyRef.current) springs[i].start(REST);
+            }, TEND_FIX_MS);
+          }
+          loop();
+        },
+        TEND_MIN_MS + Math.random() * TEND_JITTER_MS,
+      );
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      clearTimeout(next);
+      if (entry?.isIntersecting) loop();
+    });
+    observer.observe(rootEl);
+    return () => {
+      observer.disconnect();
+      clearTimeout(next);
+      clearTimeout(fix);
+    };
+  }, [variant]);
 
   // 一文字ずつ inline-block に分けるとフォントのペアカーニングが効かない。
   // px で持つと文字サイズが変わるたびに測り直しが要るので em にしている
@@ -794,6 +849,23 @@ export default function PlayfulText({
     }, UNITE_HOLD_MS);
   };
 
+  const tidy = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    springsRef.current.forEach((spring, i) => {
+      spring.start(askewPose(measured.fontSize));
+      later(() => spring.start(REST), TEND_TIDY_WAIT_MS + i * TEND_TIDY_STAGGER_MS);
+    });
+    later(
+      () => {
+        busyRef.current = false;
+      },
+      TEND_TIDY_WAIT_MS + chars.length * TEND_TIDY_STAGGER_MS,
+    );
+  };
+
   const stroll = () => {
     if (busyRef.current) return;
     const measured = measure();
@@ -931,6 +1003,7 @@ export default function PlayfulText({
     else if (variant === "strike") strike();
     else if (variant === "join") join();
     else if (variant === "unite") unite();
+    else if (variant === "tend") tidy();
   };
 
   const followsPointer =
@@ -972,13 +1045,14 @@ export default function PlayfulText({
   useEffect(() => {
     const rootEl = rootRef.current;
     if (autoPlayDelay === undefined || !rootEl) return;
+    const hold = variant === "facets" ? facetCount * FACET_GAP_MS + FACET_REST_MS : AUTOPLAY_GAP_MS;
     let cancel: (() => void) | undefined;
     // gsapAnimation.inview の start（top 80%）と揃えておく
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting) return;
         observer.disconnect();
-        cancel = queueAutoPlay(rootEl, autoPlayDelay, () => autoPlayRef.current());
+        cancel = queueAutoPlay(rootEl, autoPlayDelay, hold, () => autoPlayRef.current());
       },
       { rootMargin: "0px 0px -20% 0px" },
     );
@@ -987,7 +1061,7 @@ export default function PlayfulText({
       observer.disconnect();
       cancel?.();
     };
-  }, [autoPlayDelay]);
+  }, [autoPlayDelay, facetCount, variant]);
 
   const onPointerEnter = (e: PointerEvent) => {
     if (followsPointer || e.pointerType !== "mouse" || reducedMotion()) return;
