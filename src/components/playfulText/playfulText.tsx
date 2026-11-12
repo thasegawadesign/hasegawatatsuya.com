@@ -170,6 +170,8 @@ const WEB_STRETCH_EM = 3;
 const WEB_TILT_DEG = 14;
 const WEB_SNAP_STAGGER_MS = 25;
 const WEB_DEMO_HOLD_MS = 260;
+const WEB_PRESS_EM = 0.22;
+const WEB_PLUCK = 0.14;
 const WALK_STEPS = 4;
 const WALK_STRIDE_EM = 0.38;
 const WALK_STEP_MS = 270;
@@ -1255,6 +1257,11 @@ export default function PlayfulText({
       draggedRef.current = tugged.moved;
       tugRef.current = null;
       snap(tugged.index);
+      if (!tugged.moved) {
+        springsRef.current.forEach((spring, i) => {
+          spring.impulse({ y: -WEB_PLUCK * Math.exp(-Math.abs(i - tugged.index) * WEB_FALLOFF) });
+        });
+      }
     }
     const grab = grabRef.current;
     if (!grab) return;
@@ -1276,6 +1283,7 @@ export default function PlayfulText({
         index: nearestIndex(measured.centers, e.clientX),
         moved: false,
       };
+      pull(tugRef.current.index, 0, measured.fontSize * WEB_PRESS_EM, measured.fontSize);
       e.currentTarget.setPointerCapture(e.pointerId);
       return;
     }
@@ -1322,6 +1330,7 @@ export default function PlayfulText({
       const x = e.clientX - tugged.x;
       const y = e.clientY - tugged.y;
       if (Math.hypot(x, y) > FREE_DRAG_SLOP_PX) tugged.moved = true;
+      if (!tugged.moved) return;
       pull(tugged.index, stretch(x), stretch(y), measured.fontSize);
       return;
     }
@@ -1456,7 +1465,7 @@ export default function PlayfulText({
     if (variant === "lift") wave(e.clientX);
     else if (variant === "break") shatter(e.clientX);
     else if (variant === "facets") playFacet(facetAt(e.clientX));
-    else if (!draggedRef.current) play();
+    else if (variant !== "web" && !draggedRef.current) play();
     draggedRef.current = false;
   };
 
