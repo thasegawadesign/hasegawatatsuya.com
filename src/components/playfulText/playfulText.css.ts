@@ -11,16 +11,11 @@ export const root = style({
 
 export const punchline = style({
   display: "block",
-  // 置き先の本文の lineHeight（sm では 1.6）と同じ値に保つ
-  marginTop: "1.7em",
   marginInline: "auto",
   width: "fit-content",
   "@media": {
     [breakpoints["lg"]]: {
       marginInline: 0,
-    },
-    [breakpoints["sm"]]: {
-      marginTop: "1.6em",
     },
   },
 });
