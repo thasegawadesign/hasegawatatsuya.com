@@ -43,6 +43,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 
 import { cormorant, roboto } from "@/app/fonts";
+import PlayfulText from "@/components/playfulText/playfulText";
+import { punchline } from "@/components/playfulText/playfulText.css";
 import PlaygroundsList from "@/components/playgroundsList/playgroundsList";
 import ToolsList from "@/components/toolsList/toolsList";
 import Tooltip from "@/components/tooltip/tooltip";
@@ -226,6 +228,12 @@ export default function Main() {
             学び始めた日からの
             <br className={mobileBr} />
             原動力です。
+            <PlayfulText
+              text="インタラクション大好き。"
+              variant="lift"
+              className={punchline}
+              autoPlayDelay={350}
+            />
           </p>
           <section className={profileSection} ref={profileRef}>
             <div className={clsx(profileContent)}>
