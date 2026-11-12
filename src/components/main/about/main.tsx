@@ -55,7 +55,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, ViewTransition, type MouseEvent } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  ViewTransition,
+  type MouseEvent,
+} from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
@@ -65,6 +72,7 @@ const TILT_MAX_ANGLE = 6;
 export default function Main() {
   const [emailCopied, setEmailCopied] = useState(false);
   const tiltRef = useRef<HTMLDivElement>(null);
+  const profileLinkBoxRef = useRef<HTMLUListElement>(null);
   const occupationRef = useRef(null);
   const descriptionRef = useRef(null);
   const valueRef = useRef(null);
@@ -123,6 +131,12 @@ export default function Main() {
     return () => mm.revert();
   }, []);
 
+  // View Transition 中の React は useEffect を遷移の終わりまで遅らせる
+  useLayoutEffect(() => {
+    const ctx = gsapAnimation.enterEach(profileLinkBoxRef, ":scope > li");
+    return () => ctx.revert();
+  }, []);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -166,7 +180,7 @@ export default function Main() {
             </ViewTransition>
           </div>
         </section>
-        <ul className={clsx(profileLinkBox)}>
+        <ul ref={profileLinkBoxRef} className={clsx(profileLinkBox)}>
           <li>
             <Link
               href={GITHUB}
