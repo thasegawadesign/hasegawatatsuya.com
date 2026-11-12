@@ -10,6 +10,7 @@ import {
   pressable,
   root,
   swaying,
+  tuggable,
   untyped,
   visuallyHidden,
   word,
@@ -35,6 +36,10 @@ type Variant =
   | "join"
   | "unite"
   | "tend"
+  | "firm"
+  | "cushion"
+  | "attend"
+  | "web"
   | "walk"
   | "track"
   | "type";
@@ -146,6 +151,25 @@ const TEND_JITTER_MS = 1400;
 const TEND_FIX_MS = 700;
 const TEND_TIDY_WAIT_MS = 250;
 const TEND_TIDY_STAGGER_MS = 70;
+const FIRM_SPRING = { tension: 1200, friction: 40 };
+const FIRM_JOLT_EM = 0.09;
+const FIRM_JOLTS = 6;
+const FIRM_JOLT_MS = 30;
+const CUSHION_SPRING = { tension: 60, friction: 22 };
+const CUSHION_RADIUS_EM = 2.2;
+const CUSHION_SINK_EM = 0.3;
+const CUSHION_SHRINK = 0.22;
+const CUSHION_HOLD_MS = 500;
+const ATTEND_RANGE_EM = 14;
+const ATTEND_REACH_EM = 0.14;
+const ATTEND_TURN_EM = 5;
+const ATTEND_TILT_DEG = 18;
+const WEB_SPRING = { tension: 170, friction: 9 };
+const WEB_FALLOFF = 0.45;
+const WEB_STRETCH_EM = 3;
+const WEB_TILT_DEG = 14;
+const WEB_SNAP_STAGGER_MS = 25;
+const WEB_DEMO_HOLD_MS = 260;
 const WALK_STEPS = 4;
 const WALK_STRIDE_EM = 0.38;
 const WALK_STEP_MS = 270;
@@ -211,8 +235,31 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "join") return JOIN_SPRING;
   if (variant === "unite") return UNITE_SPRING;
   if (variant === "tend") return TEND_SPRING;
+  if (variant === "firm") return FIRM_SPRING;
+  if (variant === "cushion") return CUSHION_SPRING;
+  if (variant === "web") return WEB_SPRING;
+  if (variant === "attend") return { tension: 90 + 50 * (0.5 + 0.5 * tilt), friction: 16 };
   if (variant === "free") return { tension: 700 + 200 * tilt, friction: 50 };
   return SPRING;
+};
+
+// 変形中の文字の getBoundingClientRect は位置がぶれる
+const charPoints = (els: (HTMLElement | null)[]) => {
+  const centers: number[] = [];
+  const middles: number[] = [];
+  els.forEach((el, i) => {
+    const wordEl = el?.parentElement;
+    if (!el || !wordEl) {
+      centers[i] = 0;
+      middles[i] = 0;
+      return;
+    }
+    const rect = wordEl.getBoundingClientRect();
+    const scale = wordEl.offsetWidth ? rect.width / wordEl.offsetWidth : 1;
+    centers[i] = rect.left + (el.offsetLeft + el.offsetWidth / 2) * scale;
+    middles[i] = rect.top + rect.height / 2;
+  });
+  return { centers, middles };
 };
 
 const askewPose = (fontSize: number): Partial<Pose> => ({
@@ -279,6 +326,7 @@ export default function PlayfulText({
   const lastPointerRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const grabRef = useRef<{ x: number; y: number; moved: boolean } | null>(null);
   const draggedRef = useRef(false);
+  const tugRef = useRef<{ x: number; y: number; index: number; moved: boolean } | null>(null);
   const strikeRef = useRef<gsap.core.Timeline | null>(null);
   const facetBusyRef = useRef<boolean[]>([]);
   const hoveredFacetRef = useRef(-1);
@@ -425,6 +473,67 @@ export default function PlayfulText({
     };
   }, [variant]);
 
+  useEffect(() => {
+    const rootEl = rootRef.current;
+    if (variant !== "attend" || !rootEl) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let pointer: { x: number; y: number } | null = null;
+    let visible = false;
+    let frame = 0;
+    const turn = () => {
+      frame = 0;
+      if (!visible) return;
+      const fontSize = parseFloat(getComputedStyle(rootEl).fontSize);
+      const { centers, middles } = charPoints(charRefs.current.slice(0, chars.length));
+      springsRef.current.forEach((spring, i) => {
+        if (!pointer) {
+          spring.start(REST);
+          return;
+        }
+        const dx = pointer.x - centers[i];
+        const dy = pointer.y - middles[i];
+        const distance = Math.hypot(dx, dy) || 1;
+        const near = 1 / (1 + distance / (fontSize * ATTEND_RANGE_EM));
+        const reach = fontSize * ATTEND_REACH_EM * near;
+        spring.start({
+          x: (dx / distance) * reach,
+          y: (dy / distance) * reach,
+          rotation:
+            Math.tanh(dx / (fontSize * ATTEND_TURN_EM)) * ATTEND_TILT_DEG * (0.4 + 0.6 * near),
+        });
+      });
+    };
+    const request = () => {
+      frame ||= requestAnimationFrame(turn);
+    };
+    const onPointer = (e: globalThis.PointerEvent) => {
+      pointer = { x: e.clientX, y: e.clientY };
+      request();
+    };
+    const onLeave = () => {
+      pointer = null;
+      request();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry?.isIntersecting ?? false;
+      if (visible) request();
+      else for (const spring of springsRef.current) spring.start(REST);
+    });
+    observer.observe(rootEl);
+    window.addEventListener("pointermove", onPointer, { passive: true });
+    window.addEventListener("pointerdown", onPointer, { passive: true });
+    window.addEventListener("scroll", request, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onLeave);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", onPointer);
+      window.removeEventListener("pointerdown", onPointer);
+      window.removeEventListener("scroll", request);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
+    };
+  }, [chars, variant]);
+
   // 一文字ずつ inline-block に分けるとフォントのペアカーニングが効かない。
   // px で持つと文字サイズが変わるたびに測り直しが要るので em にしている
   useEffect(() => {
@@ -465,25 +574,13 @@ export default function PlayfulText({
     timeoutsRef.current.length = 0;
   };
 
-  // 変形中の文字の getBoundingClientRect は位置がぶれるので使わない
   const measure = () => {
     const rootEl = rootRef.current;
     if (!rootEl) return null;
-    const centers: number[] = [];
-    const middles: number[] = [];
-    charRefs.current.slice(0, chars.length).forEach((el, i) => {
-      const wordEl = el?.parentElement;
-      if (!el || !wordEl) {
-        centers[i] = 0;
-        middles[i] = 0;
-        return;
-      }
-      const rect = wordEl.getBoundingClientRect();
-      const scale = wordEl.offsetWidth ? rect.width / wordEl.offsetWidth : 1;
-      centers[i] = rect.left + (el.offsetLeft + el.offsetWidth / 2) * scale;
-      middles[i] = rect.top + rect.height / 2;
-    });
-    return { fontSize: parseFloat(getComputedStyle(rootEl).fontSize), centers, middles };
+    return {
+      fontSize: parseFloat(getComputedStyle(rootEl).fontSize),
+      ...charPoints(charRefs.current.slice(0, chars.length)),
+    };
   };
 
   const nearestIndex = (centers: number[], clientX: number) => {
@@ -866,6 +963,84 @@ export default function PlayfulText({
     );
   };
 
+  const shudder = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const reach = measured.fontSize * FIRM_JOLT_EM;
+    for (let jolt = 0; jolt < FIRM_JOLTS; jolt++) {
+      const x = (jolt % 2 ? -1 : 1) * reach * (1 - jolt / FIRM_JOLTS);
+      later(() => {
+        for (const spring of springsRef.current) spring.start({ x });
+      }, jolt * FIRM_JOLT_MS);
+    }
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, FIRM_JOLTS * FIRM_JOLT_MS);
+  };
+
+  const sinkAt = (clientX: number) => {
+    const measured = measure();
+    if (!measured) return;
+    const { fontSize, centers } = measured;
+    const radius = fontSize * CUSHION_RADIUS_EM;
+    centers.forEach((cx, i) => {
+      const dx = (clientX - cx) / radius;
+      const influence = Math.exp(-dx * dx);
+      springsRef.current[i]?.start({
+        y: influence * fontSize * CUSHION_SINK_EM,
+        scale: 1 - influence * CUSHION_SHRINK,
+      });
+    });
+  };
+
+  const cushion = () => {
+    const rootEl = rootRef.current;
+    if (busyRef.current || !rootEl) return;
+    busyRef.current = true;
+    clearTimers();
+    const rect = rootEl.getBoundingClientRect();
+    sinkAt(rect.left + rect.width / 2);
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, CUSHION_HOLD_MS);
+  };
+
+  const pull = (index: number, x: number, y: number, fontSize: number) => {
+    springsRef.current.forEach((spring, i) => {
+      const hold = Math.exp(-Math.abs(i - index) * WEB_FALLOFF);
+      spring.start({
+        x: x * hold,
+        y: y * hold,
+        rotation: Math.sign(index - i) * (y / fontSize) * hold * WEB_TILT_DEG,
+      });
+    });
+  };
+
+  const snap = (index: number) => {
+    clearTimers();
+    springsRef.current.forEach((spring, i) => {
+      later(() => spring.start(REST), Math.abs(i - index) * WEB_SNAP_STAGGER_MS);
+    });
+  };
+
+  const tug = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    const index = Math.floor(chars.length / 2);
+    pull(index, measured.fontSize * 0.4, -measured.fontSize * 1.1, measured.fontSize);
+    later(() => {
+      snap(index);
+      later(() => {
+        busyRef.current = false;
+      }, chars.length * WEB_SNAP_STAGGER_MS);
+    }, WEB_DEMO_HOLD_MS);
+  };
+
   const stroll = () => {
     if (busyRef.current) return;
     const measured = measure();
@@ -1004,6 +1179,9 @@ export default function PlayfulText({
     else if (variant === "join") join();
     else if (variant === "unite") unite();
     else if (variant === "tend") tidy();
+    else if (variant === "firm") shudder();
+    else if (variant === "cushion") cushion();
+    else if (variant === "web") tug();
   };
 
   const followsPointer =
@@ -1014,7 +1192,10 @@ export default function PlayfulText({
     variant === "facets" ||
     variant === "drift" ||
     variant === "free" ||
-    variant === "magnify";
+    variant === "magnify" ||
+    variant === "cushion" ||
+    variant === "attend" ||
+    variant === "web";
 
   const autoPlayRef = useRef<() => void>(() => {});
   useEffect(() => {
@@ -1069,6 +1250,12 @@ export default function PlayfulText({
   };
 
   const release = () => {
+    const tugged = tugRef.current;
+    if (tugged) {
+      draggedRef.current = tugged.moved;
+      tugRef.current = null;
+      snap(tugged.index);
+    }
     const grab = grabRef.current;
     if (!grab) return;
     draggedRef.current = grab.moved;
@@ -1077,6 +1264,21 @@ export default function PlayfulText({
   };
 
   const onPointerDown = (e: PointerEvent) => {
+    if (variant === "web") {
+      const measured = measure();
+      if (!measured || reducedMotion()) return;
+      clearTimers();
+      busyRef.current = false;
+      draggedRef.current = false;
+      tugRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+        index: nearestIndex(measured.centers, e.clientX),
+        moved: false,
+      };
+      e.currentTarget.setPointerCapture(e.pointerId);
+      return;
+    }
     if (variant === "free") {
       if (reducedMotion()) return;
       clearTimers();
@@ -1086,6 +1288,7 @@ export default function PlayfulText({
       e.currentTarget.setPointerCapture(e.pointerId);
       return;
     }
+    if (variant === "cushion" && !busyRef.current && !reducedMotion()) sinkAt(e.clientX);
     if (variant !== "press" || reducedMotion()) return;
     pressingRef.current = true;
     reboundAtRef.current = performance.now() + PRESS_HOLD_MS;
@@ -1093,13 +1296,13 @@ export default function PlayfulText({
   };
 
   const onPointerUp = (e: PointerEvent) => {
-    if (variant === "free") release();
+    if (variant === "free" || variant === "web") release();
     if (variant !== "press" || !pressingRef.current) return;
     letGo(e, e.pointerType === "mouse");
   };
 
   const onPointerCancel = (e: PointerEvent) => {
-    if (variant === "free") release();
+    if (variant === "free" || variant === "web") release();
     if (variant === "press") letGo(e, false);
   };
 
@@ -1110,9 +1313,26 @@ export default function PlayfulText({
       else if (e.pointerType === "mouse") dent(e.clientX, e.clientY, PRESS_HOVER_DEPTH);
       return;
     }
+    if (variant === "web") {
+      const tugged = tugRef.current;
+      const measured = measure();
+      if (!tugged || !measured) return;
+      const limit = measured.fontSize * WEB_STRETCH_EM;
+      const stretch = (moved: number) => limit * Math.tanh(moved / limit);
+      const x = e.clientX - tugged.x;
+      const y = e.clientY - tugged.y;
+      if (Math.hypot(x, y) > FREE_DRAG_SLOP_PX) tugged.moved = true;
+      pull(tugged.index, stretch(x), stretch(y), measured.fontSize);
+      return;
+    }
     if (variant === "magnify") {
       if (e.pointerType !== "mouse" || busyRef.current || reducedMotion()) return;
       lens(e.clientX);
+      return;
+    }
+    if (variant === "cushion") {
+      if (e.pointerType !== "mouse" || busyRef.current || reducedMotion()) return;
+      sinkAt(e.clientX);
       return;
     }
     if (variant === "drift") {
@@ -1218,7 +1438,8 @@ export default function PlayfulText({
     }
     flinchRef.current = [];
     lastPointerRef.current = null;
-    if (variant === "drift" || (variant === "free" && grabRef.current)) return;
+    if (variant === "drift" || variant === "attend" || variant === "web") return;
+    if (variant === "free" && grabRef.current) return;
     if (variant === "facets") {
       hoveredFacetRef.current = -1;
       return;
@@ -1248,6 +1469,7 @@ export default function PlayfulText({
         variant === "sway" && swaying,
         variant === "facets" && faceted,
         variant === "free" && grabbable,
+        variant === "web" && tuggable,
         className,
       )}
       onPointerEnter={onPointerEnter}
