@@ -12,7 +12,6 @@ import {
 } from "@/components/playfulText/playfulText.css";
 import { haptic } from "@/lib/haptic";
 import { triggerLiquidShockwave } from "@/lib/liquidShockwave";
-import { playSfxClick } from "@/lib/playSfx";
 import { createSpring, type Spring } from "@/lib/spring";
 import clsx from "clsx";
 import { Fragment, useEffect, useMemo, useRef, type MouseEvent, type PointerEvent } from "react";
@@ -435,7 +434,6 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   };
 
   const onClick = (e: MouseEvent) => {
-    playSfxClick();
     haptic();
     triggerLiquidShockwave(e.clientX, e.clientY);
     if (reducedMotion()) return;
