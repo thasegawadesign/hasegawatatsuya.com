@@ -9,7 +9,6 @@ export interface SpringConfig {
 
 export interface Spring<K extends string> {
   start(to: Partial<Record<K, number>>): void;
-  // 速度の単位は 1ms あたりの変化量
   impulse(velocity: Partial<Record<K, number>>): void;
   stop(): void;
 }
