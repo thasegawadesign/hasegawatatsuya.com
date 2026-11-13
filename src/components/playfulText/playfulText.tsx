@@ -38,7 +38,7 @@ type Variant =
   | "tend"
   | "firm"
   | "cushion"
-  | "attend"
+  | "respond"
   | "web"
   | "walk"
   | "track"
@@ -160,10 +160,16 @@ const CUSHION_RADIUS_EM = 2.2;
 const CUSHION_SINK_EM = 0.3;
 const CUSHION_SHRINK = 0.22;
 const CUSHION_HOLD_MS = 500;
-const ATTEND_RANGE_EM = 14;
-const ATTEND_REACH_EM = 0.14;
-const ATTEND_TURN_EM = 5;
-const ATTEND_TILT_DEG = 18;
+const RESPOND_SPRING = { tension: 260, friction: 18 };
+const RESPOND_RANGE_EM = 4;
+const RESPOND_WINDOW_MS = 260;
+const RESPOND_TRAVEL_EM = 1.6;
+const RESPOND_BIAS = 1.5;
+const NOD_DIP_EM = 0.22;
+const NOD_BEAT_MS = 150;
+const SHAKE_REACH_EM = 0.18;
+const SHAKE_TILT_DEG = 5;
+const SHAKE_BEAT_MS = 110;
 const WEB_SPRING = { tension: 170, friction: 9 };
 const WEB_FALLOFF = 0.45;
 const WEB_STRETCH_EM = 3;
@@ -271,7 +277,7 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "firm") return FIRM_SPRING;
   if (variant === "cushion") return CUSHION_SPRING;
   if (variant === "web") return WEB_SPRING;
-  if (variant === "attend") return { tension: 90 + 50 * (0.5 + 0.5 * tilt), friction: 16 };
+  if (variant === "respond") return RESPOND_SPRING;
   if (variant === "free") return { tension: 700 + 200 * tilt, friction: 50 };
   return SPRING;
 };
@@ -368,7 +374,8 @@ export default function PlayfulText({
   const caretRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const springs = charRefs.current.slice(0, chars.length).map((el, i) =>
+    const els = charRefs.current.slice(0, chars.length);
+    const springs = els.map((el, i) =>
       createSpring(
         el!,
         REST,
@@ -384,6 +391,10 @@ export default function PlayfulText({
     const timeouts = timeoutsRef.current;
     return () => {
       for (const s of springs) s.stop();
+      gsap.set(
+        els.filter((el) => el !== null),
+        { clearProps: "transform" },
+      );
       for (const t of timeouts) clearTimeout(t);
       timeouts.length = 0;
       springsRef.current = [];
@@ -507,66 +518,55 @@ export default function PlayfulText({
     };
   }, [variant]);
 
+  const respondRef = useRef<(vertical: boolean) => void>(() => {});
   useEffect(() => {
     const rootEl = rootRef.current;
-    if (variant !== "attend" || !rootEl) return;
+    if (variant !== "respond" || !rootEl) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let pointer: { x: number; y: number } | null = null;
+    let trail: { x: number; y: number; time: number }[] = [];
     let visible = false;
-    let frame = 0;
-    const turn = () => {
-      frame = 0;
-      if (!visible) return;
-      const fontSize = parseFloat(getComputedStyle(rootEl).fontSize);
-      const { centers, middles } = charPoints(charRefs.current.slice(0, chars.length));
-      springsRef.current.forEach((spring, i) => {
-        if (!pointer) {
-          spring.start(REST);
-          return;
-        }
-        const dx = pointer.x - centers[i];
-        const dy = pointer.y - middles[i];
-        const distance = Math.hypot(dx, dy) || 1;
-        const near = 1 / (1 + distance / (fontSize * ATTEND_RANGE_EM));
-        const reach = fontSize * ATTEND_REACH_EM * near;
-        spring.start({
-          x: (dx / distance) * reach,
-          y: (dy / distance) * reach,
-          rotation:
-            Math.tanh(dx / (fontSize * ATTEND_TURN_EM)) * ATTEND_TILT_DEG * (0.4 + 0.6 * near),
-        });
-      });
-    };
-    const request = () => {
-      frame ||= requestAnimationFrame(turn);
-    };
     const onPointer = (e: globalThis.PointerEvent) => {
-      pointer = { x: e.clientX, y: e.clientY };
-      request();
-    };
-    const onLeave = () => {
-      pointer = null;
-      request();
+      if (!visible) return;
+      const now = performance.now();
+      trail = trail.filter((point) => now - point.time < RESPOND_WINDOW_MS);
+      trail.push({ x: e.clientX, y: e.clientY, time: now });
+      const fontSize = parseFloat(getComputedStyle(rootEl).fontSize);
+      const range = fontSize * RESPOND_RANGE_EM;
+      const rect = rootEl.getBoundingClientRect();
+      if (
+        e.clientX < rect.left - range ||
+        e.clientX > rect.right + range ||
+        e.clientY < rect.top - range ||
+        e.clientY > rect.bottom + range
+      ) {
+        trail = [];
+        return;
+      }
+      let across = 0;
+      let down = 0;
+      for (let i = 1; i < trail.length; i++) {
+        across += Math.abs(trail[i].x - trail[i - 1].x);
+        down += Math.abs(trail[i].y - trail[i - 1].y);
+      }
+      const travel = fontSize * RESPOND_TRAVEL_EM;
+      if (down > travel && down > across * RESPOND_BIAS) {
+        trail = [];
+        respondRef.current(true);
+      } else if (across > travel && across > down * RESPOND_BIAS) {
+        trail = [];
+        respondRef.current(false);
+      }
     };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry?.isIntersecting ?? false;
-      if (visible) request();
-      else for (const spring of springsRef.current) spring.start(REST);
     });
     observer.observe(rootEl);
     window.addEventListener("pointermove", onPointer, { passive: true });
-    window.addEventListener("pointerdown", onPointer, { passive: true });
-    window.addEventListener("scroll", request, { passive: true });
-    document.documentElement.addEventListener("pointerleave", onLeave);
     return () => {
       observer.disconnect();
-      cancelAnimationFrame(frame);
       window.removeEventListener("pointermove", onPointer);
-      window.removeEventListener("pointerdown", onPointer);
-      window.removeEventListener("scroll", request);
-      document.documentElement.removeEventListener("pointerleave", onLeave);
     };
-  }, [chars, variant]);
+  }, [variant]);
 
   // 一文字ずつ inline-block に分けるとフォントのペアカーニングが効かない。
   // px で持つと文字サイズが変わるたびに測り直しが要るので em にしている
@@ -1075,6 +1075,42 @@ export default function PlayfulText({
     }, WEB_DEMO_HOLD_MS);
   };
 
+  const nod = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const dip = measured.fontSize * NOD_DIP_EM;
+    [dip, 0, dip * 0.7, 0].forEach((y, beat) => {
+      later(() => {
+        for (const spring of springsRef.current) spring.start({ y });
+      }, beat * NOD_BEAT_MS);
+    });
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, 4 * NOD_BEAT_MS);
+  };
+
+  const shake = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const reach = measured.fontSize * SHAKE_REACH_EM;
+    [-1, 1, -0.6, 0.6, 0].forEach((side, beat) => {
+      later(() => {
+        for (const spring of springsRef.current) {
+          spring.start({ x: side * reach, rotation: side * SHAKE_TILT_DEG });
+        }
+      }, beat * SHAKE_BEAT_MS);
+    });
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, 5 * SHAKE_BEAT_MS);
+  };
+
   const stroll = () => {
     if (busyRef.current) return;
     const measured = measure();
@@ -1216,6 +1252,7 @@ export default function PlayfulText({
     else if (variant === "firm") shudder();
     else if (variant === "cushion") cushion();
     else if (variant === "web") tug();
+    else if (variant === "respond") nod();
   };
 
   const followsPointer =
@@ -1228,11 +1265,15 @@ export default function PlayfulText({
     variant === "free" ||
     variant === "magnify" ||
     variant === "cushion" ||
-    variant === "attend" ||
+    variant === "respond" ||
     variant === "web";
 
   const autoPlayRef = useRef<() => void>(() => {});
   useEffect(() => {
+    respondRef.current = (vertical) => {
+      if (vertical) nod();
+      else shake();
+    };
     autoPlayRef.current = () => {
       const rootEl = rootRef.current;
       if (!rootEl || reducedMotion()) return;
@@ -1480,7 +1521,7 @@ export default function PlayfulText({
     }
     flinchRef.current = [];
     lastPointerRef.current = null;
-    if (variant === "drift" || variant === "attend" || variant === "web") return;
+    if (variant === "drift" || variant === "respond" || variant === "web") return;
     if (variant === "free" && grabRef.current) return;
     if (variant === "facets") {
       hoveredFacetRef.current = -1;

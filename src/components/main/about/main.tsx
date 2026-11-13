@@ -357,7 +357,7 @@ export default function Main() {
             <br className={wideBr} />
             新しい
             <br className={smBr} />
-            <PlayfulText text="ヒューマンインターフェイス" variant="attend" />
+            <PlayfulText text="ヒューマンインターフェイス" variant="respond" autoPlayDelay={350} />
             への
             <br />
             応用も視野に入れています。
