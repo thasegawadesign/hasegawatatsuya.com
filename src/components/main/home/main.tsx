@@ -14,6 +14,7 @@ import {
   main,
   motionDiv,
   name,
+  nameHead,
   nameTight,
   nameTighter,
   nameTightLeft,
@@ -176,7 +177,7 @@ export default function Main() {
     <>
       <main className={clsx(main)}>
         <h1 className={clsx(cormorant.className, name)}>
-          Ta
+          <span className={clsx(nameHead)}>Ta</span>
           <span className={clsx(nameWide)}>t</span>
           <span className={clsx(nameTighter)}>s</span>
           <span className={clsx(nameWide)}>u</span>
