@@ -33,10 +33,10 @@ let breakTime = 0;
 // 光が音より先に来ても気にならないが、遅れると目立つので、解析上の音の頭より少し前（0.1〜0.25s、目で見て合わせた値）に置く
 // decay は余韻の引きの速さ（大きいほど短い）。1 つ目の声は短く切れるので、長いと光だけ残って見える
 const GLOW_CUES = [
-  { at: 54.6, strength: 1.8, decay: 2 },
+  { at: 54.6, strength: 1.5, decay: 2 },
   { at: 73.65, strength: 1.4, decay: 1.3 },
   { at: 95.85, strength: 1.4, decay: 1.3 },
-  { at: 113.65, strength: 1.8, decay: 0.7 },
+  { at: 113.65, strength: 1.5, decay: 0.7 },
 ];
 
 // iOS Safari は suspended の AudioContext に繋いだ要素が無音になるので、必ずユーザー操作の中から呼ぶ
