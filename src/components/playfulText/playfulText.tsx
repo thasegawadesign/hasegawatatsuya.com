@@ -53,7 +53,6 @@ type Variant =
 type ScoreVariant =
   | "spark"
   | "build"
-  | "aim"
   | "open"
   | "key"
   | "proportion"
@@ -301,7 +300,6 @@ type Cue = readonly [at: number, index: number, pose: Partial<Pose>];
 type Score = (em: number, tilts: readonly number[]) => Cue[];
 
 const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number }>> = {
-  aim: { tension: 300, friction: 16 },
   open: { tension: 140, friction: 18 },
   key: { tension: 600, friction: 30 },
   proportion: { tension: 80, friction: 18 },
@@ -330,14 +328,6 @@ const SCORES: Record<ScoreVariant, Score> = {
       [240 + i * 110, i, { y: 0.07 * em, rotation: 0, scale: 1 }],
       [320 + i * 110, i, REST],
     ]),
-  aim: (em, tilts) => {
-    const center = (tilts.length - 1) / 2;
-    return tilts.flatMap((_, i): Cue[] => [
-      [0, i, { x: (center - i) * 0.22 * em, scale: 0.78 }],
-      [380, i, { x: 0, scale: 1.24 }],
-      [500, i, REST],
-    ]);
-  },
   open: (em, tilts) => {
     const center = (tilts.length - 1) / 2;
     return tilts.flatMap((_, i): Cue[] => [
