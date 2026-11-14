@@ -10,6 +10,8 @@ import {
   grabbable,
   pressable,
   root,
+  sheenBandEm,
+  sheening,
   swaying,
   tuggable,
   untyped,
@@ -45,11 +47,10 @@ type Variant =
   | "track"
   | "type"
   | "draft"
-  | "spare"
+  | "sheen"
   | ScoreVariant;
 
 type ScoreVariant =
-  | "grace"
   | "spark"
   | "build"
   | "aim"
@@ -214,11 +215,11 @@ const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const SCORE_REST_MS = 160;
 const SCORE_FRAME_CAP_MS = 34;
+const SHEEN_S = 1.1;
+const SHEEN_GLOW = 0.75;
+const SHEEN_GLOW_EM = 0.28;
 const KEY_GAP_MS = 20;
 const KEY_HOLD_MS = 55;
-const SPARE_SPRING = { tension: 600, friction: 49 };
-const SPARE_DIP_EM = 0.1;
-const SPARE_DIP_MS = 80;
 const PROPORTION = 0.618;
 const DRAFT_HOLD_MS = 520;
 const DRAFT_STAGGER_MS = 90;
@@ -300,7 +301,6 @@ type Cue = readonly [at: number, index: number, pose: Partial<Pose>];
 type Score = (em: number, tilts: readonly number[]) => Cue[];
 
 const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number }>> = {
-  grace: { tension: 120, friction: 16 },
   aim: { tension: 300, friction: 16 },
   open: { tension: 140, friction: 18 },
   key: { tension: 600, friction: 30 },
@@ -312,12 +312,6 @@ const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number
 };
 
 const SCORES: Record<ScoreVariant, Score> = {
-  grace: (em, tilts) =>
-    tilts.flatMap((_, i): Cue[] => [
-      [i * 70, i, { y: -0.28 * em, rotation: -8, scale: 1.08 }],
-      [i * 70 + 220, i, { y: 0.04 * em, rotation: 6, scale: 1 }],
-      [i * 70 + 420, i, REST],
-    ]),
   spark: (em, tilts) =>
     tilts
       .map((_, i) => i)
@@ -408,7 +402,6 @@ const isScored = (variant: Variant): variant is ScoreVariant => variant in SCORE
 
 const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "press") return PRESS_SPRING;
-  if (variant === "spare") return SPARE_SPRING;
   if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
   if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 8 };
   if (variant === "drift") return DRIFT_SPRING;
@@ -506,7 +499,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const strikeRef = useRef<gsap.core.Timeline | null>(null);
   const facetBusyRef = useRef<boolean[]>([]);
   const hoveredFacetRef = useRef(-1);
-  const hoveredCharRef = useRef(-1);
+  const sheenRef = useRef<gsap.core.Tween | null>(null);
   const scoreTickRef = useRef<gsap.TickerCallback | null>(null);
   const facetTweensRef = useRef<(gsap.core.Timeline | undefined)[]>([]);
   const caretRef = useRef<HTMLSpanElement>(null);
@@ -527,6 +520,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     springsRef.current = springs;
     hoverPosesRef.current = chars.map(() => REST);
     const timeouts = timeoutsRef.current;
+    const rootEl = rootRef.current;
     return () => {
       for (const s of springs) s.stop();
       gsap.set(
@@ -542,6 +536,9 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       for (const tween of facetTweensRef.current) tween?.kill();
       facetTweensRef.current = [];
       strikeRef.current?.kill();
+      sheenRef.current?.kill();
+      rootEl?.classList.remove(sheening);
+      for (const el of els) el?.style.removeProperty("filter");
       if (scoreTickRef.current) gsap.ticker.remove(scoreTickRef.current);
       scoreTickRef.current = null;
     };
@@ -1404,13 +1401,38 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     gsap.ticker.add(tick);
   };
 
-  const dipAt = (clientX: number) => {
+  const sheen = () => {
+    const rootEl = rootRef.current;
     const measured = measure();
-    if (!measured) return -1;
-    const i = nearestIndex(measured.centers, clientX);
-    springsRef.current[i]?.start({ y: measured.fontSize * SPARE_DIP_EM });
-    later(() => springsRef.current[i]?.start(REST), SPARE_DIP_MS);
-    return i;
+    if (busyRef.current || !rootEl || !measured) return;
+    busyRef.current = true;
+    const els = charRefs.current.slice(0, chars.length);
+    const lefts = els.map((el) => (el?.parentElement?.offsetLeft ?? 0) + (el?.offsetLeft ?? 0));
+    els.forEach((el, i) => el?.style.setProperty("--left", `${lefts[i]}px`));
+    const band = measured.fontSize * sheenBandEm;
+    const light = { x: -band };
+    const shine = () => {
+      rootEl.style.setProperty("--sheen", `${light.x}px`);
+      els.forEach((el, i) => {
+        if (!el) return;
+        const distance = (light.x - lefts[i] - el.offsetWidth / 2) / band;
+        const glow = SHEEN_GLOW * Math.exp(-distance * distance);
+        el.style.filter = `drop-shadow(0 0 ${SHEEN_GLOW_EM}em rgba(255, 255, 255, ${glow.toFixed(3)}))`;
+      });
+    };
+    shine();
+    rootEl.classList.add(sheening);
+    sheenRef.current = gsap.to(light, {
+      x: rootEl.offsetWidth + band,
+      duration: SHEEN_S,
+      ease: "sine.inOut",
+      onUpdate: shine,
+      onComplete: () => {
+        rootEl.classList.remove(sheening);
+        for (const el of els) el?.style.removeProperty("filter");
+        busyRef.current = false;
+      },
+    });
   };
 
   const draft = () => {
@@ -1438,6 +1460,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const play = () => {
     if (isScored(variant)) perform(SCORES[variant]);
     else if (variant === "draft") draft();
+    else if (variant === "sheen") sheen();
     else if (variant === "walk") stroll();
     else if (variant === "track") track();
     else if (variant === "type") type();
@@ -1468,7 +1491,6 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     variant === "magnify" ||
     variant === "cushion" ||
     variant === "respond" ||
-    variant === "spare" ||
     variant === "web";
 
   const autoPlayRef = useRef<() => void>(() => {});
@@ -1666,14 +1688,6 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       playFacet(k);
       return;
     }
-    if (variant === "spare") {
-      if (e.pointerType !== "mouse" || reducedMotion()) return;
-      const measured = measure();
-      if (!measured) return;
-      const i = nearestIndex(measured.centers, e.clientX);
-      if (i !== hoveredCharRef.current) hoveredCharRef.current = dipAt(e.clientX);
-      return;
-    }
     if (variant === "breathe") {
       if (e.pointerType !== "mouse" || reducedMotion()) return;
       const measured = measure();
@@ -1721,10 +1735,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     }
     flinchRef.current = [];
     lastPointerRef.current = null;
-    hoveredCharRef.current = -1;
-    if (variant === "drift" || variant === "respond" || variant === "web" || variant === "spare") {
-      return;
-    }
+    if (variant === "drift" || variant === "respond" || variant === "web") return;
     if (variant === "free" && grabRef.current) return;
     if (variant === "facets") {
       hoveredFacetRef.current = -1;
@@ -1742,7 +1753,6 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     if (variant === "lift") wave(e.clientX);
     else if (variant === "break") shatter(e.clientX);
     else if (variant === "facets") playFacet(facetAt(e.clientX));
-    else if (variant === "spare") dipAt(e.clientX);
     else if (variant !== "web" && !draggedRef.current) play();
     draggedRef.current = false;
   };
