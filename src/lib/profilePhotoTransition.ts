@@ -29,19 +29,15 @@ export const morphProfilePhotoWithTransform = () => {
     return;
   }
 
-  const toTransform = to.transform === "none" ? "" : to.transform;
   // 縦横で倍率が違うと写真が歪むので高さ基準の等倍率にし、横のずれは中央寄せで吸収する
   const scale = fromHeight / toHeight;
   const offsetX = (fromWidth - toWidth * scale) / 2;
+  const timing = { duration: DURATION, fill: "both", pseudoElement: GROUP } as const;
 
+  root.animate({ transformOrigin: ["0 0", "0 0"] }, timing);
+  // 終点を keyframe に書くと、遷移中にスクロールしても写真が開始時の位置へ向かう
   root.animate(
-    [
-      {
-        transformOrigin: "0 0",
-        transform: `${fromTransform} translateX(${offsetX}px) scale(${scale})`,
-      },
-      { transformOrigin: "0 0", transform: `${toTransform} translateX(0px) scale(1)` },
-    ],
-    { duration: DURATION, easing: EASING, fill: "both", pseudoElement: GROUP },
+    [{ offset: 0, transform: `${fromTransform} translateX(${offsetX}px) scale(${scale})` }],
+    { ...timing, easing: EASING },
   );
 };

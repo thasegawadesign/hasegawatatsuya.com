@@ -196,6 +196,7 @@ const TYPE_GLYPH_STEPS = 3;
 const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
+const OPTICAL_KERN_EM: Record<string, number> = { We: -0.03 };
 const ASCII_WORD = /^[\x21-\x7e]+$/;
 const AUTOPLAY_START_MARGIN = "12%";
 const AUTOPLAY_GAP_MS = 500;
@@ -591,7 +592,7 @@ export default function PlayfulText({
           if (!el) continue;
           const [prev, cur] = [w.chars[j - 1], w.chars[j]];
           const kern = width(prev + cur) - width(prev) - width(cur);
-          el.style.marginLeft = `${kern / fontSize}em`;
+          el.style.marginLeft = `${kern / fontSize + (OPTICAL_KERN_EM[prev + cur] ?? 0)}em`;
         }
       }
     };
