@@ -177,8 +177,7 @@ export default function Main() {
     <>
       <main className={clsx(main)}>
         <h1 className={clsx(cormorant.className, name)}>
-          <span className={clsx(nameHead)}>Ta</span>
-          <span className={clsx(nameWide)}>t</span>
+          <span className={clsx(nameHead)}>T</span>a<span className={clsx(nameWide)}>t</span>
           <span className={clsx(nameTighter)}>s</span>
           <span className={clsx(nameWide)}>u</span>
           ya
