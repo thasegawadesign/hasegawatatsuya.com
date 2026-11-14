@@ -302,7 +302,7 @@ export default function Main() {
             <PlayfulText text="アクセシビリティ" variant="open" />・
             <br className={smBr} />
             <PlayfulText text="ユーザビリティ" variant="key" />・
-            <PlayfulText text="審美性" variant="proportion" />・
+            <PlayfulText text="審美性" variant="discern" />・
             <br />
             <PlayfulText text="セキュリティ" variant="lock" />・
             <PlayfulText text="パフォーマンス" variant="dash" />・

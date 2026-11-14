@@ -50,9 +50,10 @@ type Variant =
   | "draft"
   | "sheen"
   | "carve"
+  | "discern"
   | ScoreVariant;
 
-type ScoreVariant = "untangle" | "open" | "key" | "proportion" | "lock" | "dash" | "float" | "dive";
+type ScoreVariant = "untangle" | "open" | "key" | "lock" | "dash" | "float" | "dive";
 
 interface Props {
   readonly text: string;
@@ -227,7 +228,10 @@ const SHEEN_GLOW = 0.75;
 const SHEEN_GLOW_EM = 0.28;
 const KEY_GAP_MS = 20;
 const KEY_HOLD_MS = 55;
-const PROPORTION = 0.618;
+const DISCERN_SPRING = { tension: 180, friction: 26 };
+const DISCERN_TILT_DEG = 5;
+const DISCERN_SINK_EM = 0.03;
+const DISCERN_RETURN_MS = 5000;
 const DRAFT_HOLD_MS = 520;
 const DRAFT_STAGGER_MS = 90;
 const DRAFT_POP = 1.16;
@@ -311,7 +315,6 @@ const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number
   untangle: { tension: 90, friction: 14 },
   open: { tension: 140, friction: 18 },
   key: { tension: 600, friction: 30 },
-  proportion: { tension: 80, friction: 18 },
   lock: { tension: 700, friction: 34 },
   dash: { tension: 520, friction: 22 },
   float: { tension: 40, friction: 10 },
@@ -351,14 +354,6 @@ const SCORES: Record<ScoreVariant, Score> = {
       [i * KEY_GAP_MS, i, { y: 0.13 * em, scale: 0.88 }],
       [i * KEY_GAP_MS + KEY_HOLD_MS, i, REST],
     ]),
-  proportion: (em, tilts) => {
-    const center = (tilts.length - 1) / 2;
-    return tilts.flatMap((tilt, i): Cue[] => [
-      [0, i, { x: tilt * 0.14 * em, y: tilt * 0.06 * em, scale: 1 + tilt * 0.16 }],
-      [520, i, { x: (i - center) * PROPORTION * 0.5 * em, y: 0, scale: 1 }],
-      [1500, i, REST],
-    ]);
-  },
   lock: (em, tilts) => {
     const center = (tilts.length - 1) / 2;
     const closed = (i: number) => (center - i) * 0.1 * em;
@@ -403,6 +398,7 @@ const isScored = (variant: Variant): variant is ScoreVariant => variant in SCORE
 
 const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "press") return PRESS_SPRING;
+  if (variant === "discern") return DISCERN_SPRING;
   if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
   if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 8 };
   if (variant === "drift") return DRIFT_SPRING;
@@ -501,6 +497,8 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const facetBusyRef = useRef<boolean[]>([]);
   const hoveredFacetRef = useRef(-1);
   const sheenRef = useRef<gsap.core.Tween | null>(null);
+  const heldOpenRef = useRef(false);
+  const flawRef = useRef(-1);
   const scoreTickRef = useRef<gsap.TickerCallback | null>(null);
   const facetTweensRef = useRef<(gsap.core.Timeline | undefined)[]>([]);
   const caretRef = useRef<HTMLSpanElement>(null);
@@ -1436,6 +1434,34 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     });
   };
 
+  const mar = () => {
+    const rootEl = rootRef.current;
+    const springs = springsRef.current;
+    if (!rootEl || springs.length === 0) return;
+    let i = Math.floor(Math.random() * springs.length);
+    if (i === flawRef.current) i = (i + 1) % springs.length;
+    flawRef.current = i;
+    springs[i].start({
+      y: parseFloat(getComputedStyle(rootEl).fontSize) * DISCERN_SINK_EM,
+      rotation: (Math.random() < 0.5 ? -1 : 1) * DISCERN_TILT_DEG,
+    });
+  };
+
+  const straighten = () => {
+    clearTimers();
+    for (const spring of springsRef.current) spring.start(REST);
+    later(mar, DISCERN_RETURN_MS);
+  };
+
+  const marRef = useRef(mar);
+  useEffect(() => {
+    marRef.current = mar;
+  });
+  useEffect(() => {
+    if (variant !== "discern" || reducedMotion()) return;
+    marRef.current();
+  }, [chars, facets, tilts, variant]);
+
   const carve = () => {
     if (busyRef.current) return;
     busyRef.current = true;
@@ -1508,6 +1534,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     else if (variant === "draft") draft();
     else if (variant === "sheen") sheen();
     else if (variant === "carve") carve();
+    else if (variant === "discern") straighten();
     else if (variant === "walk") stroll();
     else if (variant === "track") track();
     else if (variant === "type") type();
@@ -1583,7 +1610,15 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const onPointerEnter = (e: PointerEvent) => {
     armedRef.current = true;
     if (followsPointer || e.pointerType !== "mouse" || reducedMotion()) return;
-    play();
+    const measured = measure();
+    if (variant !== "open" || !measured) {
+      play();
+      return;
+    }
+    heldOpenRef.current = true;
+    for (const [at, i, pose] of SCORES.open(measured.fontSize, tilts)) {
+      if (at === 0) springsRef.current[i]?.start(pose);
+    }
   };
 
   const release = () => {
@@ -1776,6 +1811,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   };
 
   const onPointerLeave = (e: PointerEvent) => {
+    heldOpenRef.current = false;
     if (variant === "press") {
       letGo(e, false);
       return;
@@ -1800,7 +1836,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     if (variant === "lift") wave(e.clientX);
     else if (variant === "break") shatter(e.clientX);
     else if (variant === "facets") playFacet(facetAt(e.clientX));
-    else if (variant !== "web" && !draggedRef.current) play();
+    else if (variant !== "web" && !draggedRef.current && !heldOpenRef.current) play();
     draggedRef.current = false;
   };
 
