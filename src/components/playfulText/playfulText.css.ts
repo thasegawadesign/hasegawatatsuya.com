@@ -95,6 +95,11 @@ export const blurred = style({
   },
 });
 
+export const outlined = style({
+  WebkitTextFillColor: "transparent",
+  WebkitTextStroke: "0.025em currentColor",
+});
+
 // 記号を文字として流し込むと、書体の違いで字幅とベースラインが変わり行がずれる
 export const glyph = style({
   WebkitTextFillColor: "transparent",

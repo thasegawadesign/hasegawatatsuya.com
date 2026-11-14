@@ -260,104 +260,100 @@ export default function Main() {
           <p ref={descriptionRef} className={clsx(description)}>
             2001年生まれ、放送大学在学中。
             <br />
-            <PlayfulText text="趣味は散歩。" variant="walk" autoPlayDelay={800} />
+            <PlayfulText text="趣味は散歩。" variant="walk" />
             <br />
-            <PlayfulText text="無為自然" variant="drift" autoPlayDelay={350} />
+            <PlayfulText text="無為自然" variant="drift" />
             でありながら、
             <br className={smBr} />
-            有用で美しく、
+            <PlayfulText text="有用" variant="spare" />
+            で
+            <PlayfulText text="美しく" variant="grace" />、
             <br />
             <PlayfulText text="生命力あふれるものを" variant="breathe" />
             <br />
-            「<PlayfulText text="自在" variant="free" autoPlayDelay={350} />
+            「<PlayfulText text="自在" variant="free" />
             」に創れる状態を目指して、
             <br />
             Webについて
-            <PlayfulText text="探求" variant="magnify" autoPlayDelay={350} />
+            <PlayfulText text="探求" variant="magnify" />
             しています。
             <br />
-            クリエイティブワーク、
+            <PlayfulText text="クリエイティブワーク" variant="spark" />、
             <br />
-            モノづくりの
-            <PlayfulText text="達人" variant="strike" autoPlayDelay={350} />
+            <PlayfulText text="モノづくり" variant="build" />
+            の
+            <PlayfulText text="達人" variant="strike" />
             になることが
             <br className={smBr} />
-            目標です。
+            <PlayfulText text="目標" variant="aim" />
+            です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
-            <PlayfulText text="インタラクティブなWeb空間" variant="web" autoPlayDelay={350} />
+            <PlayfulText text="インタラクティブなWeb空間" variant="web" />
             を
             <br />
             構築していく過程では、
             <br />
-            <PlayfulText
-              text={"触れたときの感触に\u200b何度も立ち返ります。"}
-              variant="press"
-              autoPlayDelay={350}
-              autoPlayAt="感触"
-            />
+            <PlayfulText text={"触れたときの感触に\u200b何度も立ち返ります。"} variant="press" />
             <br />
-            <PlayfulText
-              text={"情報設計・デザイン・\u200bコーディング"}
-              variant="unite"
-              autoPlayDelay={350}
-            />
+            <PlayfulText text={"情報設計・デザイン・\u200bコーディング"} variant="unite" />
             を
             <br />
             一体で進めながら、
             <br />
-            アクセシビリティ・
+            <PlayfulText text="アクセシビリティ" variant="open" />・
             <br className={smBr} />
-            ユーザビリティ・審美性・
+            <PlayfulText text="ユーザビリティ" variant="key" />・
+            <PlayfulText text="審美性" variant="proportion" />・
             <br />
-            セキュリティ・パフォーマンス・
+            <PlayfulText text="セキュリティ" variant="lock" />・
+            <PlayfulText text="パフォーマンス" variant="dash" />・
             <br />
-            堅牢性・保守性など
+            <PlayfulText text="堅牢性" variant="firm" />・ 保守性など
             <br />
             Webに求められる性質を
             <br />
-            <PlayfulText text="認知・構造・表現・技術" variant="facets" autoPlayDelay={350} />
+            <PlayfulText text="認知・構造・表現・技術" variant="facets" />
             などの
             <br className={smBr} />
             観点から捉えて
             <br />
-            設計・実装しています。
+            <PlayfulText text="設計・実装" variant="draft" />
+            しています。
             <br />
             Webサイトは、
             <br />
             社会と情報空間の
             <br className={smBr} />
-            <PlayfulText text="インターフェイス" variant="join" autoPlayDelay={350} />
+            <PlayfulText text="インターフェイス" variant="join" />
             です。
             <br />
             その内部構造は
-            <PlayfulText text="堅牢" variant="firm" autoPlayDelay={350} />
+            <PlayfulText text="堅牢" variant="firm" />
             に、
             <br />
             触れる面は
-            <PlayfulText text="心地よく" variant="cushion" autoPlayDelay={350} />。
+            <PlayfulText text="心地よく" variant="cushion" />。
             <br />
-            <PlayfulText
-              text={"失敗に気づけば、\u200b何度でも壊します。"}
-              variant="break"
-              autoPlayDelay={350}
-            />
+            <PlayfulText text={"失敗に気づけば、\u200b何度でも壊します。"} variant="break" />
             <br />
             ホームページの公開・
             <br className={smBr} />
             運用開始後も
             <br />
-            <PlayfulText text="環境の変化に応答しながら" variant="sway" autoPlayDelay={350} />
+            <PlayfulText text="環境の変化に応答しながら" variant="sway" />
             <br />
-            <PlayfulText text="手入れを続けます。" variant="tend" autoPlayDelay={350} />
+            <PlayfulText text="手入れを続けます。" variant="tend" />
             <br />
-            空間コンピューティングや
+            <PlayfulText text="空間コンピューティング" variant="float" />
+            や
             <br />
-            没入型体験など、
+            <PlayfulText text="没入型体験" variant="dive" />
+            など、
             <br className={wideBr} />
             新しい
             <br className={smBr} />
-            <PlayfulText text="ヒューマンインターフェイス" variant="respond" autoPlayDelay={350} />
+            <PlayfulText text="ヒューマンインターフェイス" variant="respond" />
             への
             <br />
             応用も視野に入れています。
