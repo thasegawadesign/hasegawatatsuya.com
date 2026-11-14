@@ -29,10 +29,11 @@ export const enLine = style({
 });
 // 字間を詰めているので文字の端が箱からはみ出し、background-clip: text だとそこが描かれない。
 // 余白で箱を広げ、同じ量の負のマージンで字送りを元に戻す
+export const enCharBleed = "0.2em";
 export const enChar = style({
   backgroundImage: "inherit",
-  margin: "0 -0.2em",
-  padding: "0 0.2em",
+  margin: `0 -${enCharBleed}`,
+  padding: `0 ${enCharBleed}`,
   height: "1.2em",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",

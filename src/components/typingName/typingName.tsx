@@ -1,12 +1,20 @@
 "use client";
 
-import { char, enChar, enLine, visuallyHidden } from "@/components/typingName/typingName.css";
+import {
+  char,
+  enChar,
+  enCharBleed,
+  enLine,
+  visuallyHidden,
+} from "@/components/typingName/typingName.css";
 import clsx from "clsx";
 import gsap from "gsap";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 
 const JA = "ハセガワ タツヤ";
 const EN = "Tatsuya Hasegawa";
+const EN_OPTICAL_KERN_EM: Record<string, number> = { Ta: -0.06 };
+const JA_GAP_BEFORE: Record<number, string> = { 1: "0.04em", 6: "-0.02em" };
 
 // カナ1文字ごとに、同じ音の英字（EN の位置）を同時に出す。英語は名・姓の順なので Hasegawa から灯る
 const SYLLABLES: [number, number[]][] = [
@@ -189,6 +197,31 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
     };
   }, []);
 
+  // 一文字ずつ inline-block に分けるとフォントのペアカーニングが効かない
+  useEffect(() => {
+    let cancelled = false;
+    void document.fonts.ready.then(() => {
+      const line = enRef.current;
+      const ctx = document.createElement("canvas").getContext("2d");
+      if (cancelled || !line || !ctx) return;
+      const cs = getComputedStyle(line);
+      const fontSize = parseFloat(cs.fontSize);
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const width = (t: string) => ctx.measureText(t).width;
+      const letters = Array.from(EN);
+      Array.from(line.children).forEach((el, i) => {
+        const [prev, cur] = [letters[i - 1], letters[i]];
+        if (!prev || prev === " " || cur === " ") return;
+        const kern = width(prev + cur) - width(prev) - width(cur);
+        const em = kern / fontSize + (EN_OPTICAL_KERN_EM[prev + cur] ?? 0);
+        (el as HTMLElement).style.marginLeft = `calc(${em}em - ${enCharBleed})`;
+      });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <>
       <span className={visuallyHidden}>
@@ -196,7 +229,7 @@ export default function TypingName({ jaClassName, enClassName }: TypingNameProps
       </span>
       <span ref={jaRef} aria-hidden="true" className={jaClassName}>
         {Array.from(JA).map((c, i) => (
-          <span key={i} className={char}>
+          <span key={i} className={char} style={{ marginLeft: JA_GAP_BEFORE[i] }}>
             {c}
           </span>
         ))}
