@@ -213,6 +213,9 @@ const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const SCORE_REST_MS = 160;
+const SCORE_FRAME_CAP_MS = 34;
+const KEY_GAP_MS = 20;
+const KEY_HOLD_MS = 55;
 const SPARE_SPRING = { tension: 600, friction: 49 };
 const SPARE_DIP_EM = 0.1;
 const SPARE_DIP_MS = 80;
@@ -350,8 +353,8 @@ const SCORES: Record<ScoreVariant, Score> = {
   },
   key: (em, tilts) =>
     tilts.flatMap((_, i): Cue[] => [
-      [i * 55, i, { y: 0.13 * em, scale: 0.88 }],
-      [i * 55 + 75, i, REST],
+      [i * KEY_GAP_MS, i, { y: 0.13 * em, scale: 0.88 }],
+      [i * KEY_GAP_MS + KEY_HOLD_MS, i, REST],
     ]),
   proportion: (em, tilts) => {
     const center = (tilts.length - 1) / 2;
@@ -504,6 +507,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const facetBusyRef = useRef<boolean[]>([]);
   const hoveredFacetRef = useRef(-1);
   const hoveredCharRef = useRef(-1);
+  const scoreTickRef = useRef<gsap.TickerCallback | null>(null);
   const facetTweensRef = useRef<(gsap.core.Timeline | undefined)[]>([]);
   const caretRef = useRef<HTMLSpanElement>(null);
 
@@ -538,6 +542,8 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       for (const tween of facetTweensRef.current) tween?.kill();
       facetTweensRef.current = [];
       strikeRef.current?.kill();
+      if (scoreTickRef.current) gsap.ticker.remove(scoreTickRef.current);
+      scoreTickRef.current = null;
     };
   }, [chars, facets, tilts, variant]);
 
@@ -1376,16 +1382,26 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     const measured = measure();
     if (busyRef.current || !measured) return;
     busyRef.current = true;
-    clearTimers();
-    let end = 0;
-    for (const [at, i, pose] of score(measured.fontSize, tilts)) {
-      end = Math.max(end, at);
-      later(() => springsRef.current[i]?.start(pose), at);
-    }
-    later(() => {
-      for (const spring of springsRef.current) spring.start(REST);
-      busyRef.current = false;
-    }, end + SCORE_REST_MS);
+    const cues = score(measured.fontSize, tilts).sort((first, second) => first[0] - second[0]);
+    const end = (cues[cues.length - 1]?.[0] ?? 0) + SCORE_REST_MS;
+    let elapsed = 0;
+    let next = 0;
+    const tick = (_time: number, deltaTime: number) => {
+      for (; next < cues.length && cues[next][0] <= elapsed; next++) {
+        springsRef.current[cues[next][1]]?.start(cues[next][2]);
+      }
+      if (elapsed >= end) {
+        gsap.ticker.remove(tick);
+        scoreTickRef.current = null;
+        for (const spring of springsRef.current) spring.start(REST);
+        busyRef.current = false;
+        return;
+      }
+      // 重いフレームの経過時間をそのまま進めると、同じ文字の合図がまとめて流れ、その文字は動かずに終わる
+      elapsed += Math.min(deltaTime, SCORE_FRAME_CAP_MS);
+    };
+    scoreTickRef.current = tick;
+    gsap.ticker.add(tick);
   };
 
   const dipAt = (clientX: number) => {
