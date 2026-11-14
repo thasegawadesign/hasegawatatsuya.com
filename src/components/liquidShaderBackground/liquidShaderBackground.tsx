@@ -12,7 +12,7 @@ import {
   LIQUID_FRAGMENT_SHADER,
   LIQUID_VERTEX_SHADER,
 } from "@/components/liquidShaderBackground/liquidShaderGlsl";
-import { sampleBgmLevels } from "@/lib/bgmReactive";
+import { bgmTempo, sampleBgmLevels } from "@/lib/bgmReactive";
 import { getCanvasPixelRatio } from "@/lib/canvasPixelRatio";
 import { notifyLiquidBackgroundReveal } from "@/lib/liquidBackgroundReveal";
 import { LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootCanvasId";
@@ -276,7 +276,7 @@ export default function LiquidShaderBackground() {
       decayPointerStrength(uPointerStrength, delta);
       advanceShockwave(uShockAge, uShockStrength, delta);
       sampleBgmLevels(uBgm.value, uBgmFlash.value, delta, motion > 0);
-      uTime.value += delta * motion * uBgm.value.x * 0.9;
+      uTime.value += delta * motion * bgmTempo();
       // groove を時間の進みに足した後で重ねる（拍動で流れまで速めると、打つというより早送りに見える）
       if (heartbeatAge !== null) {
         heartbeatAge += delta;

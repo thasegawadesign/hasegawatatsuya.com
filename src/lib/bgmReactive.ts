@@ -17,6 +17,8 @@ let beatSide = 1;
 let midSlow = 0;
 let swayTarget = 0;
 let pulseTarget = 0;
+let hush = 0;
+let tempo = 0;
 let sinceFlash = 0;
 let flashTarget = 0;
 let flashStrength = 0;
@@ -62,6 +64,10 @@ export function connectBgmAnalyser(audio: HTMLAudioElement): void {
   }
 }
 
+export function bgmTempo(): number {
+  return tempo;
+}
+
 export function setBgmPlaying(value: boolean): void {
   playing = value;
   if (value && context?.state === "suspended") void context.resume();
@@ -104,6 +110,8 @@ export function sampleBgmLevels(
   let glow = 0;
   let pulseHit = false;
   let flashHit = false;
+  let beatLevel = 1;
+  let quiet = false;
 
   if (enabled && playing && analyser && bins && delta > 0) {
     analyser.getByteFrequencyData(bins);
@@ -121,6 +129,8 @@ export function sampleBgmLevels(
       1,
       Math.max(0, (energySlow - energyFloor) / Math.max(energyCeil - energyFloor, 0.04)),
     );
+    // 抑揚に比例させるだけだと、常に中くらいで動き続けて見える
+    groove = groove * groove * (3 - 2 * groove);
 
     const mid = bandAverage(300, 3000);
     midSlow = ease(midSlow, mid, delta, 1.2);
@@ -157,15 +167,22 @@ export function sampleBgmLevels(
     // 発光は「曲の決まった所では必ず光る」規則を軸にし、ときどきだけ裏をかく。
     // 全部を乱数にすると音と無関係に見え、全部を規則にすると機械的に見えるため
     energyLong = ease(energyLong, energy, delta, 0.5);
-    if (energy < energyLong * 0.55) breakTime += delta;
-    else if (energy > energyLong * 0.85) {
-      if (breakTime > 0.25 && !flashHit && sinceFlash > 0.6) {
-        flashHit = true;
-        flashStrength = 0.9;
-        flashX = 0.2 + 0.6 * Math.random();
-        flashY = 0.2 + 0.6 * Math.random();
-        sinceFlash = 0;
-        echoArmed = Math.random() < 0.3;
+    if (energy < energyLong * 0.55) {
+      breakTime += delta;
+      quiet = true;
+    } else if (energy > energyLong * 0.85) {
+      if (breakTime > 0.25) {
+        pulseHit = true;
+        sinceBeat = 0;
+        beatSide = -beatSide;
+        if (!flashHit && sinceFlash > 0.6) {
+          flashHit = true;
+          flashStrength = 0.9;
+          flashX = 0.2 + 0.6 * Math.random();
+          flashY = 0.2 + 0.6 * Math.random();
+          sinceFlash = 0;
+          echoArmed = Math.random() < 0.3;
+        }
       }
       breakTime = 0;
     }
@@ -175,7 +192,11 @@ export function sampleBgmLevels(
       sinceBeat = 0;
       beatSide = -beatSide;
       pulseHit = true;
-      const strong = diff > Math.sqrt(fluxVar) * 2.2;
+      const sigma = Math.sqrt(fluxVar);
+      // 全部の拍を同じ大きさで打つと、動きっぱなしに見える
+      const accent = Math.min(1, Math.max(0, (diff / sigma - 1.5) / 1.2));
+      beatLevel = (0.4 + 0.6 * accent) * (0.5 + 0.5 * groove) * (1 - 0.8 * hush);
+      const strong = diff > sigma * 2.2;
       if (flashHit) {
         echoArmed = false;
       } else if (echoArmed) {
@@ -211,10 +232,12 @@ export function sampleBgmLevels(
 
   // 減衰は BGM のフェードアウト（300ms）より長く取り、止めたあと水面が静まっていくように見せる
   out.x = ease(out.x, groove, delta, groove > out.x ? 3 : 1.5);
+  hush = ease(hush, quiet ? 1 : 0, delta, quiet ? 5 : 12);
+  tempo = out.x * 1.3 - hush * 0.5;
   out.y = ease(out.y, glow, delta, glow > out.y ? 10 : 2.5);
   if (pulseHit) {
-    pulseTarget = 1;
-    swayTarget = beatSide;
+    pulseTarget = beatLevel;
+    swayTarget = beatSide * beatLevel;
   }
   if (flashHit) {
     flashTarget = flashStrength;
