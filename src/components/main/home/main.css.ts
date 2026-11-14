@@ -42,8 +42,7 @@ export const name = style({
 export const nameTightLeft = style({
   marginLeft: "-0.024em",
 });
-// T だけを span に分けると、T と a の間でフォントのカーニングが効かなくなり、かえって開く。
-// 2 字をまとめて詰め、a の後ろに付いた分は margin で戻す
+// T だけを span に分けると、T と a の間でフォントのカーニングが効かなくなり、かえって開く
 export const nameHead = style({
   marginRight: "0.024em",
   letterSpacing: "-0.064em",

@@ -174,7 +174,7 @@ export function sampleBgmLevels(
       quiet = true;
     } else if (energy > energyLong * 0.85) {
       if (breakTime > 0.25) {
-        // ここで打つと音量の戻りに合い、拍の頭からずれる。次に検出した拍へ持ち越す
+        // ここで打つと音量の戻りに合い、拍の頭からずれる
         releaseArmed = true;
         if (!flashHit && sinceFlash > 0.6) {
           flashHit = true;
