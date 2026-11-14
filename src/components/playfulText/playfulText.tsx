@@ -51,9 +51,10 @@ type Variant =
   | "sheen"
   | "carve"
   | "discern"
+  | "place"
   | ScoreVariant;
 
-type ScoreVariant = "untangle" | "open" | "key" | "lock" | "dash" | "float" | "dive";
+type ScoreVariant = "untangle" | "open" | "key" | "lock" | "dash" | "dive";
 
 interface Props {
   readonly text: string;
@@ -228,6 +229,10 @@ const SHEEN_GLOW = 0.75;
 const SHEEN_GLOW_EM = 0.28;
 const KEY_GAP_MS = 20;
 const KEY_HOLD_MS = 55;
+const PLACE_SPRING = { tension: 600, friction: 44 };
+const PLACE_LIFT = 1.05;
+const PLACE_HINT_MS = 140;
+const PLAYFUL_BOUNDS_ATTRIBUTE = "data-playful-bounds";
 const DISCERN_SPRING = { tension: 180, friction: 26 };
 const DISCERN_TILT_DEG = 5;
 const DISCERN_SINK_EM = 0.03;
@@ -317,7 +322,6 @@ const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number
   key: { tension: 600, friction: 30 },
   lock: { tension: 700, friction: 34 },
   dash: { tension: 900, friction: 40 },
-  float: { tension: 40, friction: 10 },
   dive: { tension: 70, friction: 13 },
 };
 
@@ -372,20 +376,6 @@ const SCORES: Record<ScoreVariant, Score> = {
       [0, i, { x: 0.3 * em, rotation: 12 }],
       [70, i, REST],
     ]),
-  float: (em, tilts) =>
-    tilts.flatMap((tilt, i): Cue[] => [
-      [
-        i * 40,
-        i,
-        {
-          x: tilt * 0.1 * em,
-          y: -(0.3 + tilt * 0.22) * em,
-          rotation: tilt * 14,
-          scale: 1 + tilt * 0.14,
-        },
-      ],
-      [1000 + i * 40, i, REST],
-    ]),
   dive: (em, tilts) =>
     tilts.flatMap((tilt, i): Cue[] => [
       [i * 60, i, { y: 0.5 * em, rotation: tilt * 12, scale: 0.7 }],
@@ -399,6 +389,7 @@ const isScored = (variant: Variant): variant is ScoreVariant => variant in SCORE
 const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "press") return PRESS_SPRING;
   if (variant === "discern") return DISCERN_SPRING;
+  if (variant === "place") return PLACE_SPRING;
   if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
   if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 8 };
   if (variant === "drift") return DRIFT_SPRING;
@@ -499,6 +490,13 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const sheenRef = useRef<gsap.core.Tween | null>(null);
   const heldOpenRef = useRef(false);
   const flawRef = useRef(-1);
+  const placedRef = useRef<{ x: number; y: number } | null>(null);
+  const heldRef = useRef<{
+    x: number;
+    y: number;
+    moved: boolean;
+    at?: { x: number; y: number };
+  } | null>(null);
   const scoreTickRef = useRef<gsap.TickerCallback | null>(null);
   const facetTweensRef = useRef<(gsap.core.Timeline | undefined)[]>([]);
   const caretRef = useRef<HTMLSpanElement>(null);
@@ -530,6 +528,8 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       for (const t of timeouts) clearTimeout(t);
       timeouts.length = 0;
       springsRef.current = [];
+      placedRef.current = null;
+      heldRef.current = null;
       busyRef.current = false;
       facetBusyRef.current = [];
       for (const tween of facetTweensRef.current) tween?.kill();
@@ -1462,6 +1462,19 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     marRef.current();
   }, [chars, facets, tilts, variant]);
 
+  const arrange = () => {
+    if (placedRef.current) {
+      placedRef.current = null;
+      for (const spring of springsRef.current) spring.start(REST);
+      return;
+    }
+    clearTimers();
+    for (const spring of springsRef.current) spring.start({ scale: PLACE_LIFT });
+    later(() => {
+      for (const spring of springsRef.current) spring.start({ scale: 1 });
+    }, PLACE_HINT_MS);
+  };
+
   const carve = () => {
     if (busyRef.current) return;
     busyRef.current = true;
@@ -1535,6 +1548,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     else if (variant === "sheen") sheen();
     else if (variant === "carve") carve();
     else if (variant === "discern") straighten();
+    else if (variant === "place") arrange();
     else if (variant === "walk") stroll();
     else if (variant === "track") track();
     else if (variant === "type") type();
@@ -1565,6 +1579,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     variant === "magnify" ||
     variant === "cushion" ||
     variant === "respond" ||
+    variant === "place" ||
     variant === "web";
 
   const autoPlayRef = useRef<() => void>(() => {});
@@ -1633,6 +1648,13 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
         });
       }
     }
+    const held = heldRef.current;
+    if (held) {
+      draggedRef.current = held.moved;
+      heldRef.current = null;
+      if (held.at) placedRef.current = held.at;
+      for (const spring of springsRef.current) spring.start({ scale: 1 });
+    }
     const grab = grabRef.current;
     if (!grab) return;
     draggedRef.current = grab.moved;
@@ -1657,6 +1679,15 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       e.currentTarget.setPointerCapture(e.pointerId);
       return;
     }
+    if (variant === "place") {
+      if (reducedMotion()) return;
+      clearTimers();
+      draggedRef.current = false;
+      heldRef.current = { x: e.clientX, y: e.clientY, moved: false };
+      for (const spring of springsRef.current) spring.start({ scale: PLACE_LIFT });
+      e.currentTarget.setPointerCapture(e.pointerId);
+      return;
+    }
     if (variant === "free") {
       if (reducedMotion()) return;
       clearTimers();
@@ -1674,13 +1705,13 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   };
 
   const onPointerUp = (e: PointerEvent) => {
-    if (variant === "free" || variant === "web") release();
+    if (variant === "free" || variant === "web" || variant === "place") release();
     if (variant !== "press" || !pressingRef.current) return;
     letGo(e, e.pointerType === "mouse");
   };
 
   const onPointerCancel = (e: PointerEvent) => {
-    if (variant === "free" || variant === "web") release();
+    if (variant === "free" || variant === "web" || variant === "place") release();
     if (variant === "press") letGo(e, false);
   };
 
@@ -1738,6 +1769,41 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
           rotation: vx * influence * tilts[i] * DRIFT_SPIN,
         });
       });
+      return;
+    }
+    if (variant === "place") {
+      const held = heldRef.current;
+      const measured = measure();
+      const rootEl = rootRef.current;
+      if (!held || !measured || !rootEl) return;
+      const x = e.clientX - held.x;
+      const y = e.clientY - held.y;
+      if (Math.hypot(x, y) > FREE_DRAG_SLOP_PX) held.moved = true;
+      if (!held.moved) return;
+      const from = placedRef.current ?? { x: 0, y: 0 };
+      const rect = rootEl.getBoundingClientRect();
+      // transform ではみ出した分もスクロール範囲に入る
+      const bounds = rootEl.closest(`[${PLAYFUL_BOUNDS_ATTRIBUTE}]`)?.getBoundingClientRect() ?? {
+        top: -window.scrollY,
+        right: window.innerWidth,
+        bottom: document.documentElement.scrollHeight - window.scrollY,
+        left: 0,
+      };
+      const within = (moved: number, min: number, max: number) =>
+        Math.max(Math.min(min, 0), Math.min(Math.max(max, 0), moved));
+      held.at = {
+        x: within(
+          from.x + x,
+          bounds.left + BREAK_EDGE_PX - rect.left,
+          bounds.right - BREAK_EDGE_PX - rect.right,
+        ),
+        y: within(
+          from.y + y,
+          bounds.top + BREAK_EDGE_PX - rect.top,
+          bounds.bottom - BREAK_EDGE_PX - rect.bottom,
+        ),
+      };
+      for (const spring of springsRef.current) spring.start({ ...held.at });
       return;
     }
     if (variant === "free") {
@@ -1818,7 +1884,9 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     }
     flinchRef.current = [];
     lastPointerRef.current = null;
-    if (variant === "drift" || variant === "respond" || variant === "web") return;
+    if (variant === "drift" || variant === "respond" || variant === "web" || variant === "place") {
+      return;
+    }
     if (variant === "free" && grabRef.current) return;
     if (variant === "facets") {
       hoveredFacetRef.current = -1;
@@ -1848,7 +1916,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
         variant === "press" && pressable,
         variant === "sway" && swaying,
         variant === "facets" && faceted,
-        variant === "free" && grabbable,
+        (variant === "free" || variant === "place") && grabbable,
         variant === "web" && tuggable,
         className,
       )}
