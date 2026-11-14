@@ -43,9 +43,12 @@ export const nameTightLeft = style({
   marginLeft: "-0.024em",
 });
 // T と a のカーニング（-0.07em）は span の境界で切れる（Chrome で確認）
-export const nameHead = style({
+export const nameInitialT = style({
   letterSpacing: "-0.134em",
   fontKerning: "none",
+});
+export const nameInitialH = style({
+  letterSpacing: "-0.047em",
 });
 export const nameTight = style({
   letterSpacing: "-0.044em",
