@@ -168,9 +168,9 @@ void main() {
   p = suctionVortex(p, pShock, uShockAge, uShockStrength);
 
   float rb = length(p) + 1e-4;
-  float sway = uBgm.z * 0.32 * (1.0 - smoothstep(0.0, 3.2, rb));
+  float sway = uBgm.z * 0.4 * (1.0 - smoothstep(0.0, 3.2, rb));
   p = vec2(cos(sway) * p.x - sin(sway) * p.y, sin(sway) * p.x + cos(sway) * p.y);
-  p += (p / rb) * sin(rb * 7.0 - uTime * 4.0) * 0.06 * uBgm.w;
+  p += (p / rb) * sin(rb * 7.0 - uTime * 4.0) * 0.075 * uBgm.w;
 
   vec2 w = domainWarp(p * (0.95 - uBgm.x * 0.08) + vec2(sin(t * 0.15), cos(t * 0.12)) * 0.08, t);
   w += vec2(sin(t * 0.22 + p.y * 3.0), cos(t * 0.19 + p.x * 3.0)) * (0.12 + uBgm.x * 0.1);
