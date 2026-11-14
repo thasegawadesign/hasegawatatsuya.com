@@ -265,9 +265,8 @@ export default function Main() {
             <PlayfulText text="無為自然" variant="drift" />
             でありながら、
             <br className={smBr} />
-            <PlayfulText text="有用" variant="spare" />
-            で
-            <PlayfulText text="美しく" variant="grace" />、
+            有用で
+            <PlayfulText text="美しく" variant="sheen" />、
             <br />
             <PlayfulText text="生命力あふれるものを" variant="breathe" />
             <br />

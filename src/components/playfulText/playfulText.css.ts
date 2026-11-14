@@ -38,6 +38,11 @@ export const swaying = style({});
 
 export const faceted = style({});
 
+export const sheening = style({});
+
+export const sheenBandEm = 0.8;
+const sheenAt = "calc(var(--sheen) - var(--left))";
+
 export const punchline = style({
   display: "block",
   marginInline: "auto",
@@ -82,6 +87,12 @@ export const char = style({
     },
     [`${faceted} &`]: {
       transition: "filter 0.4s ease-out",
+    },
+    [`${sheening} &`]: {
+      backgroundImage: `linear-gradient(90deg, currentColor calc(${sheenAt} - ${sheenBandEm}em), #fff ${sheenAt}, currentColor calc(${sheenAt} + ${sheenBandEm}em))`,
+      backgroundClip: "text",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
     },
   },
 });
