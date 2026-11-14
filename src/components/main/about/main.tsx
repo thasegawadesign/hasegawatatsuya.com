@@ -343,7 +343,7 @@ export default function Main() {
             <br />
             <PlayfulText text="手入れを続けます。" variant="tend" />
             <br />
-            <PlayfulText text="空間コンピューティング" variant="float" />
+            <PlayfulText text="空間コンピューティング" variant="place" />
             や
             <br />
             <PlayfulText text="没入型体験" variant="dive" />

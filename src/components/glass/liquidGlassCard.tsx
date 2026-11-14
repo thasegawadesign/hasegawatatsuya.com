@@ -195,7 +195,7 @@ export function LiquidGlassCard({ children, className }: LiquidGlassCardProps) {
   }, []);
 
   return (
-    <div ref={cardRef} className={clsx(glassCard, className)}>
+    <div ref={cardRef} className={clsx(glassCard, className)} data-playful-bounds>
       <LiquidGlassFilter
         id={filterId}
         filterRef={filterRef}
