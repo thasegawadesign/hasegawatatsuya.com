@@ -316,7 +316,7 @@ const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number
   open: { tension: 140, friction: 18 },
   key: { tension: 600, friction: 30 },
   lock: { tension: 700, friction: 34 },
-  dash: { tension: 520, friction: 22 },
+  dash: { tension: 900, friction: 40 },
   float: { tension: 40, friction: 10 },
   dive: { tension: 70, friction: 13 },
 };
@@ -369,8 +369,8 @@ const SCORES: Record<ScoreVariant, Score> = {
   },
   dash: (em, tilts) =>
     tilts.flatMap((_, i): Cue[] => [
-      [0, i, { x: 0.8 * em, rotation: 12 }],
-      [170 + i * 14, i, REST],
+      [0, i, { x: 0.3 * em, rotation: 12 }],
+      [70, i, REST],
     ]),
   float: (em, tilts) =>
     tilts.flatMap((tilt, i): Cue[] => [
