@@ -106,6 +106,24 @@ export const blurred = style({
   },
 });
 
+export const carving = style({
+  selectors: {
+    "&::before": {
+      position: "absolute",
+      top: "calc(50% - 0.56em)",
+      right: 0,
+      left: 0,
+      transform: "scaleX(var(--flip))",
+      opacity: "var(--block)",
+      transition: "opacity 0.18s ease-out",
+      background: "currentColor",
+      height: "1.12em",
+      clipPath: "var(--cut)",
+      content: '""',
+    },
+  },
+});
+
 export const outlined = style({
   WebkitTextFillColor: "transparent",
   WebkitTextStroke: "0.025em currentColor",
