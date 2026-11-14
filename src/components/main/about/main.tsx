@@ -284,8 +284,7 @@ export default function Main() {
             <PlayfulText text="達人" variant="strike" />
             になることが
             <br className={smBr} />
-            <PlayfulText text="目標" variant="aim" />
-            です。
+            目標です。
           </p>
           <p ref={valueRef} className={clsx(description)}>
             <PlayfulText text="インタラクティブなWeb空間" variant="web" />
