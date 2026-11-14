@@ -6,6 +6,7 @@ import {
   char,
   faceted,
   glyph,
+  outlined,
   grabbable,
   pressable,
   root,
@@ -42,14 +43,29 @@ type Variant =
   | "web"
   | "walk"
   | "track"
-  | "type";
+  | "type"
+  | "draft"
+  | "spare"
+  | ScoreVariant;
+
+type ScoreVariant =
+  | "grace"
+  | "spark"
+  | "build"
+  | "aim"
+  | "open"
+  | "key"
+  | "proportion"
+  | "lock"
+  | "dash"
+  | "float"
+  | "dive";
 
 interface Props {
   readonly text: string;
   readonly variant: Variant;
   readonly className?: string;
   readonly autoPlayDelay?: number;
-  readonly autoPlayAt?: string;
 }
 
 type Pose = { x: number; y: number; rotation: number; scale: number };
@@ -196,6 +212,15 @@ const TYPE_GLYPH_STEPS = 3;
 const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
+const SCORE_REST_MS = 160;
+const SPARE_SPRING = { tension: 600, friction: 49 };
+const SPARE_DIP_EM = 0.1;
+const SPARE_DIP_MS = 80;
+const PROPORTION = 0.618;
+const DRAFT_HOLD_MS = 520;
+const DRAFT_STAGGER_MS = 90;
+const DRAFT_POP = 1.16;
+const DRAFT_POP_MS = 110;
 const OPTICAL_KERN_EM: Record<string, number> = { We: -0.03 };
 const ASCII_WORD = /^[\x21-\x7e]+$/;
 const AUTOPLAY_START_MARGIN = "12%";
@@ -268,8 +293,119 @@ const queueAutoPlay = (el: Element, delay: number, hold: number, run: () => void
   };
 };
 
+type Cue = readonly [at: number, index: number, pose: Partial<Pose>];
+type Score = (em: number, tilts: readonly number[]) => Cue[];
+
+const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number }>> = {
+  grace: { tension: 120, friction: 16 },
+  aim: { tension: 300, friction: 16 },
+  open: { tension: 140, friction: 18 },
+  key: { tension: 600, friction: 30 },
+  proportion: { tension: 80, friction: 18 },
+  lock: { tension: 700, friction: 34 },
+  dash: { tension: 520, friction: 22 },
+  float: { tension: 40, friction: 10 },
+  dive: { tension: 70, friction: 13 },
+};
+
+const SCORES: Record<ScoreVariant, Score> = {
+  grace: (em, tilts) =>
+    tilts.flatMap((_, i): Cue[] => [
+      [i * 70, i, { y: -0.28 * em, rotation: -8, scale: 1.08 }],
+      [i * 70 + 220, i, { y: 0.04 * em, rotation: 6, scale: 1 }],
+      [i * 70 + 420, i, REST],
+    ]),
+  spark: (em, tilts) =>
+    tilts
+      .map((_, i) => i)
+      .sort(() => Math.random() - 0.5)
+      .flatMap((i, turn): Cue[] => [
+        [
+          turn * 45,
+          i,
+          { y: -(0.3 + Math.random() * 0.35) * em, rotation: tilts[i] * 40, scale: 1.32 },
+        ],
+        [turn * 45 + 170, i, REST],
+      ]),
+  build: (em, tilts) =>
+    tilts.flatMap((tilt, i): Cue[] => [
+      [0, i, { y: -0.9 * em, rotation: tilt * 22, scale: 0.6 }],
+      [240 + i * 110, i, { y: 0.07 * em, rotation: 0, scale: 1 }],
+      [320 + i * 110, i, REST],
+    ]),
+  aim: (em, tilts) => {
+    const center = (tilts.length - 1) / 2;
+    return tilts.flatMap((_, i): Cue[] => [
+      [0, i, { x: (center - i) * 0.22 * em, scale: 0.78 }],
+      [380, i, { x: 0, scale: 1.24 }],
+      [500, i, REST],
+    ]);
+  },
+  open: (em, tilts) => {
+    const center = (tilts.length - 1) / 2;
+    return tilts.flatMap((_, i): Cue[] => [
+      [0, i, { x: (i - center) * 0.16 * em, scale: 1.18 }],
+      [760, i, REST],
+    ]);
+  },
+  key: (em, tilts) =>
+    tilts.flatMap((_, i): Cue[] => [
+      [i * 55, i, { y: 0.13 * em, scale: 0.88 }],
+      [i * 55 + 75, i, REST],
+    ]),
+  proportion: (em, tilts) => {
+    const center = (tilts.length - 1) / 2;
+    return tilts.flatMap((tilt, i): Cue[] => [
+      [0, i, { x: tilt * 0.14 * em, y: tilt * 0.06 * em, scale: 1 + tilt * 0.16 }],
+      [520, i, { x: (i - center) * PROPORTION * 0.5 * em, y: 0, scale: 1 }],
+      [1500, i, REST],
+    ]);
+  },
+  lock: (em, tilts) => {
+    const center = (tilts.length - 1) / 2;
+    const closed = (i: number) => (center - i) * 0.1 * em;
+    return tilts.flatMap((_, i): Cue[] => [
+      [0, i, { x: closed(i), scale: 0.94 }],
+      ...[-1, 1, -0.6, 0.6, 0].map((side, beat): Cue => [
+        260 + beat * 70,
+        i,
+        { x: closed(i) + side * 0.1 * em },
+      ]),
+      [820, i, REST],
+    ]);
+  },
+  dash: (em, tilts) =>
+    tilts.flatMap((_, i): Cue[] => [
+      [0, i, { x: 0.8 * em, rotation: 12 }],
+      [170 + i * 14, i, REST],
+    ]),
+  float: (em, tilts) =>
+    tilts.flatMap((tilt, i): Cue[] => [
+      [
+        i * 40,
+        i,
+        {
+          x: tilt * 0.1 * em,
+          y: -(0.3 + tilt * 0.22) * em,
+          rotation: tilt * 14,
+          scale: 1 + tilt * 0.14,
+        },
+      ],
+      [1000 + i * 40, i, REST],
+    ]),
+  dive: (em, tilts) =>
+    tilts.flatMap((tilt, i): Cue[] => [
+      [i * 60, i, { y: 0.5 * em, rotation: tilt * 12, scale: 0.7 }],
+      [720 + i * 60, i, { y: -0.1 * em, rotation: 0, scale: 1.05 }],
+      [900 + i * 60, i, REST],
+    ]),
+};
+
+const isScored = (variant: Variant): variant is ScoreVariant => variant in SCORES;
+
 const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "press") return PRESS_SPRING;
+  if (variant === "spare") return SPARE_SPRING;
   if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
   if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 8 };
   if (variant === "drift") return DRIFT_SPRING;
@@ -282,7 +418,7 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "web") return WEB_SPRING;
   if (variant === "respond") return RESPOND_SPRING;
   if (variant === "free") return { tension: 700 + 200 * tilt, friction: 50 };
-  return SPRING;
+  return SCORE_SPRINGS[variant] ?? SPRING;
 };
 
 // 変形中の文字の getBoundingClientRect は位置がぶれる
@@ -316,13 +452,7 @@ const leanPose = (amount: number, tilt: number, fontSize: number): Partial<Pose>
   rotation: amount * SWAY_TILT_DEG * (0.7 + 0.3 * tilt),
 });
 
-export default function PlayfulText({
-  text,
-  variant,
-  className,
-  autoPlayDelay,
-  autoPlayAt,
-}: Props) {
+export default function PlayfulText({ text, variant, className, autoPlayDelay }: Props) {
   const words = useMemo(() => {
     let start = 0;
     return text.split(WORD_BREAK).map((w, wi, all) => {
@@ -373,6 +503,7 @@ export default function PlayfulText({
   const strikeRef = useRef<gsap.core.Timeline | null>(null);
   const facetBusyRef = useRef<boolean[]>([]);
   const hoveredFacetRef = useRef(-1);
+  const hoveredCharRef = useRef(-1);
   const facetTweensRef = useRef<(gsap.core.Timeline | undefined)[]>([]);
   const caretRef = useRef<HTMLSpanElement>(null);
 
@@ -398,6 +529,7 @@ export default function PlayfulText({
         els.filter((el) => el !== null),
         { clearProps: "transform" },
       );
+      for (const el of els) el?.classList.remove(outlined);
       for (const t of timeouts) clearTimeout(t);
       timeouts.length = 0;
       springsRef.current = [];
@@ -461,7 +593,7 @@ export default function PlayfulText({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let fontSize = 0;
     const tick = (time: number) => {
-      if (performance.now() < startledUntilRef.current) return;
+      if (!armedRef.current || performance.now() < startledUntilRef.current) return;
       const turn = ((time * 1000) / BREATHE_PERIOD_MS) * Math.PI * 2;
       springsRef.current.forEach((spring, i) => {
         const breath = Math.sin(turn - i * BREATHE_PHASE_STEP - tilts[i] * 0.6);
@@ -497,7 +629,7 @@ export default function PlayfulText({
       next = setTimeout(
         () => {
           const springs = springsRef.current;
-          if (!busyRef.current && springs.length > 0) {
+          if (armedRef.current && !busyRef.current && springs.length > 0) {
             let i = Math.floor(Math.random() * springs.length);
             if (i === last) i = (i + 1) % springs.length;
             last = i;
@@ -1240,8 +1372,57 @@ export default function PlayfulText({
     );
   };
 
+  const perform = (score: Score) => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    let end = 0;
+    for (const [at, i, pose] of score(measured.fontSize, tilts)) {
+      end = Math.max(end, at);
+      later(() => springsRef.current[i]?.start(pose), at);
+    }
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, end + SCORE_REST_MS);
+  };
+
+  const dipAt = (clientX: number) => {
+    const measured = measure();
+    if (!measured) return -1;
+    const i = nearestIndex(measured.centers, clientX);
+    springsRef.current[i]?.start({ y: measured.fontSize * SPARE_DIP_EM });
+    later(() => springsRef.current[i]?.start(REST), SPARE_DIP_MS);
+    return i;
+  };
+
+  const draft = () => {
+    if (busyRef.current) return;
+    busyRef.current = true;
+    clearTimers();
+    const els = charRefs.current.slice(0, chars.length);
+    for (const el of els) el?.classList.add(outlined);
+    els.forEach((el, i) => {
+      const at = DRAFT_HOLD_MS + i * DRAFT_STAGGER_MS;
+      later(() => {
+        el?.classList.remove(outlined);
+        springsRef.current[i]?.start({ scale: DRAFT_POP });
+      }, at);
+      later(() => springsRef.current[i]?.start(REST), at + DRAFT_POP_MS);
+    });
+    later(
+      () => {
+        busyRef.current = false;
+      },
+      DRAFT_HOLD_MS + chars.length * DRAFT_STAGGER_MS + DRAFT_POP_MS,
+    );
+  };
+
   const play = () => {
-    if (variant === "walk") stroll();
+    if (isScored(variant)) perform(SCORES[variant]);
+    else if (variant === "draft") draft();
+    else if (variant === "walk") stroll();
     else if (variant === "track") track();
     else if (variant === "type") type();
     else if (variant === "sway") gust();
@@ -1271,6 +1452,7 @@ export default function PlayfulText({
     variant === "magnify" ||
     variant === "cushion" ||
     variant === "respond" ||
+    variant === "spare" ||
     variant === "web";
 
   const autoPlayRef = useRef<() => void>(() => {});
@@ -1288,25 +1470,13 @@ export default function PlayfulText({
       if (variant === "lift") wave(centerX);
       else if (variant === "break") shatter(centerX);
       else if (variant === "press") {
-        const target = Array.from(autoPlayAt ?? "");
-        const first = chars.findIndex((_, i) => target.every((c, j) => chars[i + j] === c));
-        const measured = measure();
-        if (!target.length || first < 0 || !measured) {
-          press(centerX, rect.top + rect.height / 2);
-          return;
-        }
-        const last = first + target.length - 1;
-        press(
-          (measured.centers[first] + measured.centers[last]) / 2,
-          (measured.middles[first] + measured.middles[last]) / 2,
-        );
+        press(centerX, rect.top + rect.height / 2);
       } else play();
     };
   });
 
   useEffect(() => {
     const rootEl = rootRef.current;
-    armedRef.current = autoPlayDelay === undefined;
     if (autoPlayDelay === undefined || !rootEl) return;
     const hold = variant === "facets" ? facetCount * FACET_GAP_MS + FACET_REST_MS : AUTOPLAY_GAP_MS;
     let cancel: (() => void) | undefined;
@@ -1326,6 +1496,7 @@ export default function PlayfulText({
   }, [autoPlayDelay, facetCount, variant]);
 
   const onPointerEnter = (e: PointerEvent) => {
+    armedRef.current = true;
     if (followsPointer || e.pointerType !== "mouse" || reducedMotion()) return;
     play();
   };
@@ -1479,6 +1650,14 @@ export default function PlayfulText({
       playFacet(k);
       return;
     }
+    if (variant === "spare") {
+      if (e.pointerType !== "mouse" || reducedMotion()) return;
+      const measured = measure();
+      if (!measured) return;
+      const i = nearestIndex(measured.centers, e.clientX);
+      if (i !== hoveredCharRef.current) hoveredCharRef.current = dipAt(e.clientX);
+      return;
+    }
     if (variant === "breathe") {
       if (e.pointerType !== "mouse" || reducedMotion()) return;
       const measured = measure();
@@ -1526,7 +1705,10 @@ export default function PlayfulText({
     }
     flinchRef.current = [];
     lastPointerRef.current = null;
-    if (variant === "drift" || variant === "respond" || variant === "web") return;
+    hoveredCharRef.current = -1;
+    if (variant === "drift" || variant === "respond" || variant === "web" || variant === "spare") {
+      return;
+    }
     if (variant === "free" && grabRef.current) return;
     if (variant === "facets") {
       hoveredFacetRef.current = -1;
@@ -1544,6 +1726,7 @@ export default function PlayfulText({
     if (variant === "lift") wave(e.clientX);
     else if (variant === "break") shatter(e.clientX);
     else if (variant === "facets") playFacet(facetAt(e.clientX));
+    else if (variant === "spare") dipAt(e.clientX);
     else if (variant !== "web" && !draggedRef.current) play();
     draggedRef.current = false;
   };
