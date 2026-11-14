@@ -277,9 +277,9 @@ export default function Main() {
             <PlayfulText text="探求" variant="magnify" />
             しています。
             <br />
-            <PlayfulText text="クリエイティブワーク" variant="spark" />、
+            <PlayfulText text="クリエイティブワーク" variant="untangle" />、
             <br />
-            <PlayfulText text="モノづくり" variant="build" />
+            <PlayfulText text="モノづくり" variant="carve" />
             の
             <PlayfulText text="達人" variant="strike" />
             になることが

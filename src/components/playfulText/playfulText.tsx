@@ -3,6 +3,7 @@
 import {
   blurred,
   caret,
+  carving,
   char,
   faceted,
   glyph,
@@ -48,18 +49,10 @@ type Variant =
   | "type"
   | "draft"
   | "sheen"
+  | "carve"
   | ScoreVariant;
 
-type ScoreVariant =
-  | "spark"
-  | "build"
-  | "open"
-  | "key"
-  | "proportion"
-  | "lock"
-  | "dash"
-  | "float"
-  | "dive";
+type ScoreVariant = "untangle" | "open" | "key" | "proportion" | "lock" | "dash" | "float" | "dive";
 
 interface Props {
   readonly text: string;
@@ -213,7 +206,22 @@ const TYPE_GLYPH_SCALE = 0.62;
 const TYPE_CARET_LINGER_MS = 260;
 const TYPE_GLYPHS = "<>/{}()[];:=.$&|!#";
 const SCORE_REST_MS = 160;
+const UNTANGLE_HOLD_MS = 520;
+const UNTANGLE_STAGGER_MS = 110;
+const UNTANGLE_SLACK_MS = 260;
 const SCORE_FRAME_CAP_MS = 34;
+const CARVE_CUTS = [
+  "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+  "polygon(0 0, 64% 0, 100% 34%, 100% 100%, 0 100%)",
+  "polygon(0 22%, 30% 0, 64% 0, 100% 34%, 100% 100%, 36% 100%, 0 62%)",
+  "polygon(14% 30%, 38% 8%, 62% 10%, 86% 40%, 80% 84%, 44% 92%, 12% 64%)",
+];
+const CARVE_WAIT_MS = 320;
+const CARVE_STAGGER_MS = 230;
+const CARVE_STRIKE_MS = 110;
+const CARVE_FADE_MS = 200;
+const CARVE_KICK = 0.09;
+const CARVE_TWIST = 0.05;
 const SHEEN_S = 1.1;
 const SHEEN_GLOW = 0.75;
 const SHEEN_GLOW_EM = 0.28;
@@ -300,6 +308,7 @@ type Cue = readonly [at: number, index: number, pose: Partial<Pose>];
 type Score = (em: number, tilts: readonly number[]) => Cue[];
 
 const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number }>> = {
+  untangle: { tension: 90, friction: 14 },
   open: { tension: 140, friction: 18 },
   key: { tension: 600, friction: 30 },
   proportion: { tension: 80, friction: 18 },
@@ -310,24 +319,26 @@ const SCORE_SPRINGS: Partial<Record<Variant, { tension: number; friction: number
 };
 
 const SCORES: Record<ScoreVariant, Score> = {
-  spark: (em, tilts) =>
-    tilts
-      .map((_, i) => i)
-      .sort(() => Math.random() - 0.5)
-      .flatMap((i, turn): Cue[] => [
+  untangle: (em, tilts) => {
+    const center = (tilts.length - 1) / 2;
+    const wander = () => Math.random() * 2 - 1;
+    return tilts.flatMap((_, i): Cue[] => {
+      const freed = UNTANGLE_HOLD_MS + i * UNTANGLE_STAGGER_MS;
+      return [
         [
-          turn * 45,
+          0,
           i,
-          { y: -(0.3 + Math.random() * 0.35) * em, rotation: tilts[i] * 40, scale: 1.32 },
+          {
+            x: (center - i) * 0.55 * em + wander() * 0.5 * em,
+            y: wander() * 0.38 * em,
+            rotation: wander() * 70,
+          },
         ],
-        [turn * 45 + 170, i, REST],
-      ]),
-  build: (em, tilts) =>
-    tilts.flatMap((tilt, i): Cue[] => [
-      [0, i, { y: -0.9 * em, rotation: tilt * 22, scale: 0.6 }],
-      [240 + i * 110, i, { y: 0.07 * em, rotation: 0, scale: 1 }],
-      [320 + i * 110, i, REST],
-    ]),
+        [freed, i, { x: 0, y: (i % 2 ? 1 : -1) * 0.12 * em, rotation: (i % 2 ? -1 : 1) * 9 }],
+        [freed + UNTANGLE_SLACK_MS, i, REST],
+      ];
+    });
+  },
   open: (em, tilts) => {
     const center = (tilts.length - 1) / 2;
     return tilts.flatMap((_, i): Cue[] => [
@@ -517,7 +528,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
         els.filter((el) => el !== null),
         { clearProps: "transform" },
       );
-      for (const el of els) el?.classList.remove(outlined);
+      for (const el of els) el?.classList.remove(outlined, carving);
       for (const t of timeouts) clearTimeout(t);
       timeouts.length = 0;
       springsRef.current = [];
@@ -1425,6 +1436,51 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     });
   };
 
+  const carve = () => {
+    if (busyRef.current) return;
+    busyRef.current = true;
+    clearTimers();
+    const els = charRefs.current.slice(0, chars.length);
+    const strike = (i: number) => {
+      springsRef.current[i]?.impulse({ y: CARVE_KICK, rotation: tilts[i] * CARVE_TWIST });
+    };
+    els.forEach((el, i) => {
+      if (!el) return;
+      el.style.setProperty("--cut", CARVE_CUTS[0]);
+      el.style.setProperty("--block", "1");
+      el.style.setProperty("--flip", i % 2 ? "-1" : "1");
+      el.classList.add(carving);
+      const start = CARVE_WAIT_MS + i * CARVE_STAGGER_MS;
+      CARVE_CUTS.forEach((cut, k) => {
+        if (k === 0) return;
+        later(
+          () => {
+            el.style.setProperty("--cut", cut);
+            strike(i);
+          },
+          start + (k - 1) * CARVE_STRIKE_MS,
+        );
+      });
+      later(
+        () => {
+          el.style.setProperty("--block", "0");
+          strike(i);
+        },
+        start + (CARVE_CUTS.length - 1) * CARVE_STRIKE_MS,
+      );
+    });
+    later(
+      () => {
+        for (const el of els) el?.classList.remove(carving);
+        busyRef.current = false;
+      },
+      CARVE_WAIT_MS +
+        (chars.length - 1) * CARVE_STAGGER_MS +
+        (CARVE_CUTS.length - 1) * CARVE_STRIKE_MS +
+        CARVE_FADE_MS,
+    );
+  };
+
   const draft = () => {
     if (busyRef.current) return;
     busyRef.current = true;
@@ -1451,6 +1507,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     if (isScored(variant)) perform(SCORES[variant]);
     else if (variant === "draft") draft();
     else if (variant === "sheen") sheen();
+    else if (variant === "carve") carve();
     else if (variant === "walk") stroll();
     else if (variant === "track") track();
     else if (variant === "type") type();
