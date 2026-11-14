@@ -36,7 +36,7 @@ const GLOW_CUES = [
   { at: 54.6, strength: 1.5, decay: 2 },
   { at: 73.65, strength: 1.4, decay: 1.3 },
   { at: 95.85, strength: 1.4, decay: 1.3 },
-  { at: 113.65, strength: 1.5, decay: 0.7 },
+  { at: 113.65, strength: 1.1, decay: 0.7 },
 ];
 
 // iOS Safari は suspended の AudioContext に繋いだ要素が無音になるので、必ずユーザー操作の中から呼ぶ
