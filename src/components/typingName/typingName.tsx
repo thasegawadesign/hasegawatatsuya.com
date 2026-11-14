@@ -14,7 +14,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 const JA = "ハセガワ タツヤ";
 const EN = "Tatsuya Hasegawa";
 const EN_OPTICAL_KERN_EM: Record<string, number> = { Ta: -0.06 };
-const JA_GAP_BEFORE: Record<number, string> = { 1: "0.04em", 6: "-0.02em" };
+const JA_GAP_BEFORE: Record<number, string> = { 1: "0.04em", 6: "-0.02em", 7: "0.01em" };
 
 // カナ1文字ごとに、同じ音の英字（EN の位置）を同時に出す。英語は名・姓の順なので Hasegawa から灯る
 const SYLLABLES: [number, number[]][] = [
