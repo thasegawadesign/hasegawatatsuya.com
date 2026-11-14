@@ -18,6 +18,8 @@ let midSlow = 0;
 let swayTarget = 0;
 let pulseTarget = 0;
 let hush = 0;
+let releaseArmed = false;
+let attack = 0;
 let tempo = 0;
 let sinceFlash = 0;
 let flashTarget = 0;
@@ -172,9 +174,8 @@ export function sampleBgmLevels(
       quiet = true;
     } else if (energy > energyLong * 0.85) {
       if (breakTime > 0.25) {
-        pulseHit = true;
-        sinceBeat = 0;
-        beatSide = -beatSide;
+        // ここで打つと音量の戻りに合い、拍の頭からずれる。次に検出した拍へ持ち越す
+        releaseArmed = true;
         if (!flashHit && sinceFlash > 0.6) {
           flashHit = true;
           flashStrength = 0.9;
@@ -195,7 +196,13 @@ export function sampleBgmLevels(
       const sigma = Math.sqrt(fluxVar);
       // 全部の拍を同じ大きさで打つと、動きっぱなしに見える
       const accent = Math.min(1, Math.max(0, (diff / sigma - 1.5) / 1.2));
-      beatLevel = (0.4 + 0.6 * accent) * (0.5 + 0.5 * groove) * (1 - 0.8 * hush);
+      const floor = 0.4 + 0.3 * groove;
+      beatLevel = releaseArmed
+        ? 1
+        : (floor + (1 - floor) * accent) *
+          (0.5 + 0.5 * Math.max(groove, accent)) *
+          (1 - 0.8 * hush);
+      releaseArmed = false;
       const strong = diff > sigma * 2.2;
       if (flashHit) {
         echoArmed = false;
@@ -223,6 +230,7 @@ export function sampleBgmLevels(
   } else {
     sinceBeat = 1;
     sinceFlash = 0;
+    releaseArmed = false;
     echoArmed = false;
     lastPosition = -1;
     breakTime = 0;
@@ -231,13 +239,14 @@ export function sampleBgmLevels(
   }
 
   // 減衰は BGM のフェードアウト（300ms）より長く取り、止めたあと水面が静まっていくように見せる
-  out.x = ease(out.x, groove, delta, groove > out.x ? 3 : 1.5);
+  out.x = ease(out.x, groove, delta, groove > out.x ? 5 : 1.5);
   hush = ease(hush, quiet ? 1 : 0, delta, quiet ? 5 : 12);
-  tempo = out.x * 1.3 - hush * 0.5;
+  tempo = out.x * (1.1 + 0.9 * out.x) - hush * 0.5;
   out.y = ease(out.y, glow, delta, glow > out.y ? 10 : 2.5);
   if (pulseHit) {
     pulseTarget = beatLevel;
     swayTarget = beatSide * beatLevel;
+    attack = beatLevel;
   }
   if (flashHit) {
     flashTarget = flashStrength;
@@ -247,8 +256,9 @@ export function sampleBgmLevels(
   flashTarget *= Math.exp(-delta * flashDecay);
   swayTarget *= Math.exp(-delta * 1.6);
   // 目標値は拍で跳ねるが、そのまま使うと絵が 1 フレームで飛ぶので追従させる
-  out.w = ease(out.w, pulseTarget, delta, 22);
-  out.z = ease(out.z, swayTarget, delta, 7);
+  out.w = ease(out.w, pulseTarget, delta, 22 + 38 * attack);
+  out.z = ease(out.z, swayTarget, delta, 7 + 23 * attack);
+  attack *= Math.exp(-delta * 6);
   // 生き物の発光に見せるため、瞬間的に点けず少しかけて灯す
   if (flashSnap) {
     flash.z = flashTarget;
