@@ -76,6 +76,8 @@ const PRESS_HOVER_DEPTH = 0.5;
 const PRESS_HOLD_MS = 150;
 const PRESS_REBOUND_MS_PER_EM = 14;
 const SWAY_FULL_SPEED = 0.9;
+const SWAY_QUIET = 0.3;
+const SWAY_SCROLL_GAIN = 0.35;
 const SWAY_TILT_DEG = 36;
 const SWAY_DRAG_EM = 0.24;
 const SWAY_SETTLE_MS = 120;
@@ -268,7 +270,7 @@ const queueAutoPlay = (el: Element, delay: number, hold: number, run: () => void
 const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "press") return PRESS_SPRING;
   if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
-  if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 4.5 };
+  if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 8 };
   if (variant === "drift") return DRIFT_SPRING;
   if (variant === "magnify") return MAGNIFY_SPRING;
   if (variant === "join") return JOIN_SPRING;
@@ -423,7 +425,9 @@ export default function PlayfulText({
       lastY = window.scrollY;
       lastTime = now;
       if (!armedRef.current || !fontSize || elapsed <= 0 || busyRef.current) return;
-      const amount = Math.max(-1, Math.min(1, moved / elapsed / SWAY_FULL_SPEED));
+      const pace = Math.max(-1, Math.min(1, moved / elapsed / SWAY_FULL_SPEED));
+      if (Math.abs(pace) < SWAY_QUIET) return;
+      const amount = pace * SWAY_SCROLL_GAIN;
       if (Math.abs(amount) > Math.abs(held)) held = amount;
       for (const rise of rises) clearTimeout(rise);
       for (const t of timeoutsRef.current) clearTimeout(t);
