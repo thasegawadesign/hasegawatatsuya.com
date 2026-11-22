@@ -85,6 +85,8 @@ export const worksDl = style({
   "@media": {
     [breakpoints["sm"]]: {
       marginBottom: 240,
+      // ガラスの外側 1vw と合わせて、ロゴとハンバーガーの端（calc(1vw + 28px)）に揃える
+      padding: "0 28px",
     },
   },
 });
@@ -97,6 +99,12 @@ export const worksDlItem = style({
   display: "flex",
   justifyContent: "center",
   gap: "2.4vw",
+  "@media": {
+    [breakpoints["sm"]]: {
+      flexDirection: "column",
+      gap: 4,
+    },
+  },
 });
 export const worksDt = style({
   marginTop: "clamp(0.48rem, 0.5vw, 1.2rem)",
@@ -114,6 +122,9 @@ export const worksDt = style({
       fontSize: "1.3rem",
     },
     [breakpoints["sm"]]: {
+      marginTop: 0,
+      width: "auto",
+      textAlign: "left",
       fontSize: "1.2rem",
     },
   },
@@ -133,7 +144,7 @@ export const worksDd = style({
       width: "60vw",
     },
     [breakpoints["sm"]]: {
-      width: "76vw",
+      width: "auto",
       lineHeight: 1.6,
     },
   },
@@ -153,7 +164,7 @@ export const worksRole = style({
       width: "60vw",
     },
     [breakpoints["sm"]]: {
-      width: "76vw",
+      width: "auto",
       lineHeight: 1.12,
     },
   },
