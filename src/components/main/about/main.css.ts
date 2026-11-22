@@ -163,10 +163,11 @@ export const photoMagic = style({
   },
   "@media": {
     [breakpoints["sm"]]: {
+      borderRadius: 14,
       selectors: {
         "&::before": {
           inset: "-2px",
-          borderRadius: 22,
+          borderRadius: 16,
         },
       },
     },
@@ -198,6 +199,11 @@ export const photoMagicInner = style({
   height: "100%",
   overflow: "hidden",
   WebkitBackfaceVisibility: "hidden",
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: 14,
+    },
+  },
 });
 
 export const photo = style({
@@ -212,6 +218,11 @@ export const photo = style({
   width: "100%",
   height: "100%",
   userSelect: "none",
+  "@media": {
+    [breakpoints["sm"]]: {
+      borderRadius: 14,
+    },
+  },
 });
 
 export const profileLinkBox = style({
@@ -220,15 +231,15 @@ export const profileLinkBox = style({
   display: "flex",
   justifyContent: "center",
   gap: 16,
-  marginTop: 160,
+  marginTop: 140,
   marginRight: "auto",
-  marginBottom: "clamp(60px, 5vw, 80px)",
+  marginBottom: "clamp(40px, 4vw, 58px)",
   marginLeft: "auto",
   width: "fit-content",
   "@media": {
     [breakpoints["sm"]]: {
       gap: 12,
-      marginTop: 100,
+      marginTop: 80,
     },
   },
 });
