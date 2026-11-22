@@ -243,10 +243,18 @@ const PLACE_SPRING = { tension: 600, friction: 44 };
 const PLACE_LIFT = 1.05;
 const PLACE_HINT_MS = 140;
 const PLAYFUL_BOUNDS_ATTRIBUTE = "data-playful-bounds";
-const DISCERN_SPRING = { tension: 180, friction: 26 };
-const DISCERN_TILT_DEG = 5;
-const DISCERN_SINK_EM = 0.03;
-const DISCERN_RETURN_MS = 5000;
+const DISCERN_ROUGH_SPRING = { tension: 160, friction: 16 };
+const DISCERN_EDGE_SPRING = { tension: 900, friction: 38 };
+const DISCERN_SPREAD_EM = 0.2;
+const DISCERN_JITTER_EM = 0.08;
+const DISCERN_TILT_DEG = 9;
+const DISCERN_SWELL = 0.08;
+const DISCERN_BLUR_EM = 0.14;
+const DISCERN_ROUGH_MS = 260;
+const DISCERN_HONE_EM = 0.05;
+const DISCERN_HONE_SCALE = 0.96;
+const DISCERN_HONE_MS = 380;
+const DISCERN_SETTLE_MS = 300;
 const DRAFT_HOLD_MS = 520;
 const DRAFT_STAGGER_MS = 90;
 const DRAFT_POP = 1.16;
@@ -398,7 +406,7 @@ const isScored = (variant: Variant): variant is ScoreVariant => variant in SCORE
 
 const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "press") return PRESS_SPRING;
-  if (variant === "discern") return DISCERN_SPRING;
+  if (variant === "discern") return DISCERN_ROUGH_SPRING;
   if (variant === "place") return PLACE_SPRING;
   if (variant === "facets" && facet % 4 === 2) return FLOURISH_SPRING;
   if (variant === "sway") return { tension: 50 + 30 * (0.5 + 0.5 * tilt), friction: 8 };
@@ -500,7 +508,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const hoveredFacetRef = useRef(-1);
   const sheenRef = useRef<gsap.core.Tween | null>(null);
   const heldOpenRef = useRef(false);
-  const flawRef = useRef(-1);
+  const honeRef = useRef<gsap.core.Tween | null>(null);
   const placedRef = useRef<{ x: number; y: number } | null>(null);
   const heldRef = useRef<{
     x: number;
@@ -547,6 +555,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
       facetTweensRef.current = [];
       strikeRef.current?.kill();
       sheenRef.current?.kill();
+      honeRef.current?.kill();
       rootEl?.classList.remove(sheening);
       for (const el of els) el?.style.removeProperty("filter");
       if (scoreTickRef.current) gsap.ticker.remove(scoreTickRef.current);
@@ -1480,33 +1489,65 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     });
   };
 
-  const mar = () => {
-    const rootEl = rootRef.current;
-    const springs = springsRef.current;
-    if (!rootEl || springs.length === 0) return;
-    let i = Math.floor(Math.random() * springs.length);
-    if (i === flawRef.current) i = (i + 1) % springs.length;
-    flawRef.current = i;
-    springs[i].start({
-      y: parseFloat(getComputedStyle(rootEl).fontSize) * DISCERN_SINK_EM,
-      rotation: (Math.random() < 0.5 ? -1 : 1) * DISCERN_TILT_DEG,
-    });
-  };
-
-  const straighten = () => {
+  // 柔らかいばね1本のままだと、締めて収める瞬間がもったりして輪郭が立たない
+  const hone = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
     clearTimers();
-    for (const spring of springsRef.current) spring.start(REST);
-    later(mar, DISCERN_RETURN_MS);
+    const { fontSize } = measured;
+    const els = charRefs.current.slice(0, chars.length).filter((el) => el !== null);
+    const center = (chars.length - 1) / 2;
+    springsRef.current.forEach((spring, i) => {
+      spring.config(DISCERN_ROUGH_SPRING);
+      spring.start({
+        x: ((i - center) * DISCERN_SPREAD_EM + tilts[i] * DISCERN_JITTER_EM) * fontSize,
+        y: tilts[(i + 1) % tilts.length] * DISCERN_JITTER_EM * fontSize,
+        rotation: tilts[i] * DISCERN_TILT_DEG,
+        scale: 1 + tilts[i] * DISCERN_SWELL,
+      });
+    });
+    honeRef.current?.kill();
+    honeRef.current = gsap.fromTo(
+      els,
+      { filter: "blur(0px)" },
+      {
+        filter: `blur(${fontSize * DISCERN_BLUR_EM}px)`,
+        duration: DISCERN_ROUGH_MS / 1000,
+        ease: "power1.out",
+      },
+    );
+    later(() => {
+      springsRef.current.forEach((spring, i) => {
+        spring.config(DISCERN_EDGE_SPRING);
+        spring.start({
+          x: -(i - center) * DISCERN_HONE_EM * fontSize,
+          y: 0,
+          rotation: 0,
+          scale: DISCERN_HONE_SCALE,
+        });
+      });
+      honeRef.current?.kill();
+      honeRef.current = gsap.to(els, {
+        filter: "blur(0px)",
+        duration: DISCERN_HONE_MS / 1000,
+        ease: "power3.in",
+        onComplete: () => {
+          for (const el of els) el.style.removeProperty("filter");
+        },
+      });
+    }, DISCERN_ROUGH_MS);
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+    }, DISCERN_ROUGH_MS + DISCERN_HONE_MS);
+    later(
+      () => {
+        for (const spring of springsRef.current) spring.config(DISCERN_ROUGH_SPRING);
+        busyRef.current = false;
+      },
+      DISCERN_ROUGH_MS + DISCERN_HONE_MS + DISCERN_SETTLE_MS,
+    );
   };
-
-  const marRef = useRef(mar);
-  useEffect(() => {
-    marRef.current = mar;
-  });
-  useEffect(() => {
-    if (variant !== "discern" || reducedMotion()) return;
-    marRef.current();
-  }, [chars, facets, tilts, variant]);
 
   const arrange = () => {
     if (placedRef.current) {
@@ -1593,7 +1634,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     else if (variant === "draft") draft();
     else if (variant === "sheen") sheen();
     else if (variant === "carve") carve();
-    else if (variant === "discern") straighten();
+    else if (variant === "discern") hone();
     else if (variant === "place") arrange();
     else if (variant === "walk") stroll();
     else if (variant === "track") track();

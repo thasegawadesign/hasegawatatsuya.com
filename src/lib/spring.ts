@@ -10,6 +10,7 @@ export interface SpringConfig {
 export interface Spring<K extends string> {
   start(to: Partial<Record<K, number>>): void;
   impulse(velocity: Partial<Record<K, number>>): void;
+  config(next: Pick<SpringConfig, "tension" | "friction">): void;
   stop(): void;
 }
 
@@ -23,13 +24,15 @@ interface SpringAxis {
 export function createSpring<K extends string>(
   element: HTMLElement,
   initial: Record<K, number>,
-  { tension, friction, mass = 1, precision = 0.001 }: SpringConfig,
+  { tension: initialTension, friction: initialFriction, mass = 1, precision = 0.001 }: SpringConfig,
 ): Spring<K> {
   const keys = Object.keys(initial) as K[];
   const axes = {} as Record<K, SpringAxis>;
   for (const key of keys) {
     axes[key] = { position: initial[key], velocity: 0, target: initial[key] };
   }
+  let tension = initialTension;
+  let friction = initialFriction;
   const restVelocity = precision / 10;
   let running = false;
 
@@ -95,6 +98,10 @@ export function createSpring<K extends string>(
         if (value !== undefined) axes[key].velocity += value;
       }
       run();
+    },
+    config(next: Pick<SpringConfig, "tension" | "friction">) {
+      tension = next.tension;
+      friction = next.friction;
     },
     stop,
   };
