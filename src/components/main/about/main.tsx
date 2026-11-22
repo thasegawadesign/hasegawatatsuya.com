@@ -372,7 +372,7 @@ export default function Main() {
                 <dd className={clsx(event)}>ECCコンピュータ専門学校（中退）</dd>
               </div>
               <div>
-                <dt className={clsx(year)}>2022–現在</dt>
+                <dt className={clsx(year)}>2022–2026</dt>
                 <dd className={clsx(event)}>株式会社Univearth（業務委託）</dd>
               </div>
               <div>
