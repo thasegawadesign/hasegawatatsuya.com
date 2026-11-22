@@ -186,17 +186,17 @@ export const worksLink = style({
       borderRadius: "0 0 8px 8px",
       backgroundColor: vars.color.text,
       width: "100%",
-      height: 40,
+      height: "1.7em",
       content: "",
     },
     "&:focus-visible": {
-      paddingBottom: 40,
+      paddingBottom: "1.7em",
     },
     "&:focus-visible::before": {
       height: 1,
     },
     "&:hover": {
-      paddingBottom: 40,
+      paddingBottom: "1.7em",
     },
     "&:hover::before": {
       height: 1,
