@@ -41,7 +41,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 
 import { cormorant, roboto } from "@/app/fonts";
@@ -51,7 +51,7 @@ import PlaygroundsList from "@/components/playgroundsList/playgroundsList";
 import ToolsList from "@/components/toolsList/toolsList";
 import Tooltip from "@/components/tooltip/tooltip";
 import WorksList from "@/components/worksList/worksList";
-import { EMAIL, GITHUB, NOTE, X } from "@/constants/constants";
+import { EMAIL, FACEBOOK, GITHUB, NOTE, X } from "@/constants/constants";
 import { useClipboard } from "@/hooks/useClipboard";
 import { triggerLiquidShockwave } from "@/lib/liquidShockwave";
 import { gsapAnimation } from "@/lib/gsap";
@@ -261,6 +261,21 @@ export default function Main() {
                     }}
                   >
                     <FaXTwitter className={clsx(profileLinkIcon)} />
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={FACEBOOK}
+                    className={clsx(profileLink)}
+                    aria-label="Facebook"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    onClick={() => {
+                      playSfxClick();
+                      haptic();
+                    }}
+                  >
+                    <FaFacebook className={clsx(profileLinkIcon)} />
                   </Link>
                 </li>
                 <li>

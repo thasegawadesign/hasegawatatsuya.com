@@ -2,6 +2,7 @@ export const SITE_URL = "https://www.hasegawatatsuya.com";
 
 export const GITHUB = "https://github.com/thasegawadesign";
 export const X = "https://x.com/thasegawa_";
+export const FACEBOOK = "https://www.facebook.com/profile.php?id=61575952373138";
 export const NOTE = "https://note.com/hasegawatatsuya";
 export const EMAIL = "hello@hasegawatatsuya.com";
 

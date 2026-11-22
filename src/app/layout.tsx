@@ -9,7 +9,7 @@ import Object3 from "@/components/object/object3";
 import ParticleEffect from "@/components/particleEffect/particleEffect";
 import Providers from "@/components/providers";
 import TextCircle from "@/components/textCircle/textCircle";
-import { EMAIL, GITHUB, SITE_URL, X } from "@/constants/constants";
+import { EMAIL, FACEBOOK, GITHUB, SITE_URL, X } from "@/constants/constants";
 import { getLiquidBootScript, LIQUID_BOOT_CANVAS_ID } from "@/lib/liquidBootScript";
 import "@/styles/reset.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -65,7 +65,7 @@ export default async function RootLayout({
     ],
     description: DESCRIPTION,
     url: SITE_URL,
-    sameAs: [GITHUB, X],
+    sameAs: [GITHUB, X, FACEBOOK],
     email: EMAIL,
   };
 
