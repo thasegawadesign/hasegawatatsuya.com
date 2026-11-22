@@ -41,6 +41,7 @@ type Variant =
   | "unite"
   | "tend"
   | "firm"
+  | "steady"
   | "cushion"
   | "respond"
   | "web"
@@ -168,6 +169,15 @@ const FIRM_SPRING = { tension: 1200, friction: 40 };
 const FIRM_JOLT_EM = 0.09;
 const FIRM_JOLTS = 6;
 const FIRM_JOLT_MS = 30;
+const STEADY_SPRING = { tension: 340, friction: 15 };
+const STEADY_SWINGS = 7;
+const STEADY_SWING_MS = 130;
+const STEADY_STAGGER_MS = 16;
+const STEADY_TILT_DEG = 13;
+const STEADY_REACH_EM = 0.1;
+const STEADY_LIFT_EM = 0.08;
+const STEADY_SETTLE_EM = 0.04;
+const STEADY_SETTLE_MS = 140;
 const CUSHION_SPRING = { tension: 60, friction: 22 };
 const CUSHION_RADIUS_EM = 2.2;
 const CUSHION_SINK_EM = 0.3;
@@ -398,6 +408,7 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "unite") return UNITE_SPRING;
   if (variant === "tend") return TEND_SPRING;
   if (variant === "firm") return FIRM_SPRING;
+  if (variant === "steady") return STEADY_SPRING;
   if (variant === "cushion") return CUSHION_SPRING;
   if (variant === "web") return WEB_SPRING;
   if (variant === "respond") return RESPOND_SPRING;
@@ -1154,6 +1165,41 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     }, FIRM_JOLTS * FIRM_JOLT_MS);
   };
 
+  // 揺れ幅を等比でなく二乗で絞ると、終盤の小さな揺れが長く残って「落ち着いていく」間が出る
+  const steady = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const { fontSize } = measured;
+    for (let swing = 0; swing < STEADY_SWINGS; swing++) {
+      const left = 1 - swing / STEADY_SWINGS;
+      const amp = left * left;
+      const side = swing % 2 ? -1 : 1;
+      springsRef.current.forEach((spring, i) => {
+        const grain = 0.75 + 0.25 * Math.abs(tilts[i]);
+        later(
+          () =>
+            spring.start({
+              x: side * fontSize * STEADY_REACH_EM * amp,
+              y: -Math.abs(tilts[i]) * fontSize * STEADY_LIFT_EM * amp,
+              rotation: side * STEADY_TILT_DEG * amp * grain,
+            }),
+          swing * STEADY_SWING_MS + i * STEADY_STAGGER_MS,
+        );
+      });
+    }
+    const end = STEADY_SWINGS * STEADY_SWING_MS + chars.length * STEADY_STAGGER_MS;
+    later(() => {
+      for (const spring of springsRef.current)
+        spring.start({ ...REST, y: fontSize * STEADY_SETTLE_EM });
+    }, end);
+    later(() => {
+      for (const spring of springsRef.current) spring.start(REST);
+      busyRef.current = false;
+    }, end + STEADY_SETTLE_MS);
+  };
+
   const sinkAt = (clientX: number) => {
     const measured = measure();
     if (!measured) return;
@@ -1563,6 +1609,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     else if (variant === "unite") unite();
     else if (variant === "tend") tidy();
     else if (variant === "firm") shudder();
+    else if (variant === "steady") steady();
     else if (variant === "cushion") cushion();
     else if (variant === "web") tug();
     else if (variant === "respond") nod();
