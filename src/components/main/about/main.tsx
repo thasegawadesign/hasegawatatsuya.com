@@ -319,6 +319,12 @@ export default function Main() {
             <PlayfulText text="設計・実装" variant="draft" />
             しています。
             <br />
+            <PlayfulText text="一つひとつのピースを、" variant="piece" />
+            <br />
+            自分の手で繋ぎたいと
+            <br className={smBr} />
+            思っています。
+            <br />
             Webサイトは、
             <br />
             社会と情報空間の
@@ -343,6 +349,8 @@ export default function Main() {
             <br />
             <PlayfulText text={"揺すりながら\u200b安定させていきます。"} variant="steady" />
             <br />
+            その先に、
+            <br className={smBr} />
             <PlayfulText text="空間コンピューティング" variant="place" />
             や
             <br />

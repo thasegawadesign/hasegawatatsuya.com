@@ -42,6 +42,7 @@ type Variant =
   | "tend"
   | "firm"
   | "steady"
+  | "piece"
   | "cushion"
   | "respond"
   | "web"
@@ -178,6 +179,22 @@ const STEADY_REACH_EM = 0.1;
 const STEADY_LIFT_EM = 0.08;
 const STEADY_SETTLE_EM = 0.04;
 const STEADY_SETTLE_MS = 140;
+const PIECE_SPRING = { tension: 420, friction: 26 };
+const PIECE_GAP_EM = 0.3;
+const PIECE_DRIFT_EM = 0.16;
+const PIECE_REST_EM = 0.1;
+const PIECE_TILT_DEG = 18;
+const PIECE_LYING = 0.9;
+const PIECE_SCATTER_MS = 380;
+const PIECE_STEP_MS = 190;
+const PIECE_LIFT_EM = 0.3;
+const PIECE_LIFT = 1.12;
+const PIECE_CARRY_MS = 70;
+const PIECE_PRESS_MS = 150;
+const PIECE_PRESS_EM = 0.05;
+const PIECE_PRESS = 0.95;
+const PIECE_RELEASE_MS = 210;
+const PIECE_NUDGE_EM = 0.04;
 const CUSHION_SPRING = { tension: 60, friction: 22 };
 const CUSHION_RADIUS_EM = 2.2;
 const CUSHION_SINK_EM = 0.3;
@@ -417,6 +434,7 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "tend") return TEND_SPRING;
   if (variant === "firm") return FIRM_SPRING;
   if (variant === "steady") return STEADY_SPRING;
+  if (variant === "piece") return PIECE_SPRING;
   if (variant === "cushion") return CUSHION_SPRING;
   if (variant === "web") return WEB_SPRING;
   if (variant === "respond") return RESPOND_SPRING;
@@ -1209,6 +1227,52 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     }, end + STEADY_SETTLE_MS);
   };
 
+  const assemble = () => {
+    const measured = measure();
+    if (busyRef.current || !measured) return;
+    busyRef.current = true;
+    clearTimers();
+    const { fontSize } = measured;
+    const springs = springsRef.current;
+    const center = (springs.length - 1) / 2;
+    springs.forEach((spring, i) => {
+      spring.start({
+        x:
+          ((i - center) * PIECE_GAP_EM + tilts[(i + 3) % tilts.length] * PIECE_DRIFT_EM) * fontSize,
+        y: (PIECE_REST_EM + tilts[(i + 2) % tilts.length] * PIECE_DRIFT_EM) * fontSize,
+        rotation: tilts[i] * PIECE_TILT_DEG,
+        scale: PIECE_LYING,
+      });
+    });
+    springs.forEach((spring, i) => {
+      const at = PIECE_SCATTER_MS + i * PIECE_STEP_MS;
+      later(
+        () =>
+          spring.start({
+            y: -PIECE_LIFT_EM * fontSize,
+            rotation: tilts[i] * PIECE_TILT_DEG * 0.4,
+            scale: PIECE_LIFT,
+          }),
+        at,
+      );
+      later(() => spring.start({ x: 0, rotation: 0 }), at + PIECE_CARRY_MS);
+      later(() => {
+        spring.start({ y: PIECE_PRESS_EM * fontSize, scale: PIECE_PRESS });
+        springs[i - 1]?.start({ x: -PIECE_NUDGE_EM * fontSize });
+      }, at + PIECE_PRESS_MS);
+      later(() => {
+        spring.start(REST);
+        springs[i - 1]?.start(REST);
+      }, at + PIECE_RELEASE_MS);
+    });
+    later(
+      () => {
+        busyRef.current = false;
+      },
+      PIECE_SCATTER_MS + (springs.length - 1) * PIECE_STEP_MS + PIECE_RELEASE_MS * 2,
+    );
+  };
+
   const sinkAt = (clientX: number) => {
     const measured = measure();
     if (!measured) return;
@@ -1651,6 +1715,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     else if (variant === "tend") tidy();
     else if (variant === "firm") shudder();
     else if (variant === "steady") steady();
+    else if (variant === "piece") assemble();
     else if (variant === "cushion") cushion();
     else if (variant === "web") tug();
     else if (variant === "respond") nod();
