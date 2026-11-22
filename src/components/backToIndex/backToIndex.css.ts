@@ -11,6 +11,11 @@ export const backToIndexBox = style({
   left: SITE_EDGE.base.side,
   "@media": edgeMedia(["2xl", "xl", "md", "sm"], (edge) => ({ left: edge.side })),
 });
+// モバイルナビはガラスの中身（z-index 1）の重なりに閉じ込められていて、その外にあるこのリンクの上に出られない。
+// ナビを body へ portal すると音声ボタンやカーソルまで覆うので、開いている間はこちらを隠す
+export const backToIndexBoxHidden = style({
+  visibility: "hidden",
+});
 export const backToIndex = style({
   position: "relative",
   textDecoration: "none",
