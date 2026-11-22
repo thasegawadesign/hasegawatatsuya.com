@@ -1174,7 +1174,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     }, FIRM_JOLTS * FIRM_JOLT_MS);
   };
 
-  // 揺れ幅を等比でなく二乗で絞ると、終盤の小さな揺れが長く残って「落ち着いていく」間が出る
+  // 揺れ幅を線形に絞ると終盤がすぐ止まり、落ち着いていく間が出ない
   const steady = () => {
     const measured = measure();
     if (busyRef.current || !measured) return;
