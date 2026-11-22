@@ -349,6 +349,8 @@ export default function Main() {
             <br />
             <PlayfulText text={"揺すりながら\u200b安定させていきます。"} variant="steady" />
             <br />
+            その先に、
+            <br className={smBr} />
             <PlayfulText text="空間コンピューティング" variant="place" />
             や
             <br />
