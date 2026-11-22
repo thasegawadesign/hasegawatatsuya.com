@@ -456,7 +456,7 @@ export const certifications = style({
 });
 
 export const contributionsSection = style({
-  marginBottom: "clamp(200px, 15.6vw, 260px)",
+  marginBottom: "clamp(200px, 13.9vw, 220px)",
 });
 export const contributions = style({
   position: "relative",

@@ -56,8 +56,13 @@ export const worksDl = style({
   flexDirection: "column",
   gap: "3.6vw",
   marginTop: "clamp(40px, 9.6vw, 120px)",
-  marginBottom: "clamp(200px, 15.6vw, 260px)",
+  marginBottom: "clamp(200px, 13.9vw, 220px)",
   padding: "0 4.8vw",
+  "@media": {
+    [breakpoints["sm"]]: {
+      marginBottom: 240,
+    },
+  },
 });
 export const worksDlItem = style({
   display: "flex",
