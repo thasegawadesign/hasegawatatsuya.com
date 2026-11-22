@@ -335,13 +335,13 @@ export default function Main() {
             <br />
             <PlayfulText text={"失敗に気づけば、\u200b何度でも壊します。"} variant="break" />
             <br />
-            ホームページの公開・
-            <br className={smBr} />
-            運用開始後も
+            公開後も、
             <br />
             <PlayfulText text="環境の変化に応答しながら" variant="sway" />
             <br />
-            <PlayfulText text="手入れを続けます。" variant="tend" />
+            <PlayfulText text="手入れを続け" variant="tend" />、
+            <br />
+            <PlayfulText text={"揺すりながら\u200b安定させていきます。"} variant="steady" />
             <br />
             <PlayfulText text="空間コンピューティング" variant="place" />
             や
