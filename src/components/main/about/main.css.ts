@@ -5,6 +5,7 @@ import {
   PROFILE_IMAGE_SATURATION,
 } from "@/constants/constants";
 import { LAYER } from "@/styles/layers";
+import { squircleCorners } from "@/styles/squircle";
 import { breakpoints, hoverable, vars } from "@/styles/styles.css";
 import { globalStyle, keyframes, style } from "@vanilla-extract/css";
 
@@ -103,20 +104,27 @@ export const tilt = style({
     },
   },
 });
+const PHOTO_WIDTH = { base: 320, xl: 280, sm: 240 } as const;
+const photoSize = (width: number) => ({ width, height: width * 1.5 });
+const PHOTO_PADDING = 2;
+const PHOTO_RADIUS = { base: 20, sm: 14 } as const;
+const PHOTO_RING = { base: { spread: 4, radius: 24 }, sm: { spread: 2, radius: 16 } } as const;
+const photoSquircle = (width: number, offset: number, radius: number) =>
+  squircleCorners(width + offset * 2, width * 1.5 + offset * 2, radius);
+const photoInnerCorners = (width: number, radius: number) =>
+  photoSquircle(width, -PHOTO_PADDING, radius);
+const photoRingCorners = (width: number, ring: { spread: number; radius: number }) => ({
+  inset: -ring.spread,
+  ...photoSquircle(width, ring.spread, ring.radius),
+});
+
 export const photoBox = style({
   position: "relative",
   margin: "0 auto",
-  width: 320,
-  height: 480,
+  ...photoSize(PHOTO_WIDTH.base),
   "@media": {
-    [breakpoints["xl"]]: {
-      width: 280,
-      height: 420,
-    },
-    [breakpoints["sm"]]: {
-      width: 240,
-      height: 360,
-    },
+    [breakpoints["xl"]]: photoSize(PHOTO_WIDTH.xl),
+    [breakpoints["sm"]]: photoSize(PHOTO_WIDTH.sm),
   },
 });
 export const photoMagic = style({
@@ -124,8 +132,8 @@ export const photoMagic = style({
   position: "relative",
   isolation: "isolate",
   backfaceVisibility: "hidden",
-  borderRadius: 20,
-  padding: 2,
+  borderRadius: PHOTO_RADIUS.base,
+  padding: PHOTO_PADDING,
   width: "100%",
   height: "100%",
   overflow: "visible",
@@ -134,9 +142,8 @@ export const photoMagic = style({
     "&::before": {
       position: "absolute",
       zIndex: 1,
-      inset: "-4px",
       transform: "translateZ(0)",
-      borderRadius: 24,
+      ...photoRingCorners(PHOTO_WIDTH.base, PHOTO_RING.base),
       background:
         "linear-gradient(var(--photo-rotate, 132deg), #6dd5ed, #5b6cf0 36%, #1747d6 92%, #cb2ed6 100%)",
       animation: `${photoMagicSpin} 12s linear infinite`,
@@ -162,13 +169,15 @@ export const photoMagic = style({
     },
   },
   "@media": {
-    [breakpoints["sm"]]: {
-      borderRadius: 14,
+    [breakpoints["xl"]]: {
       selectors: {
-        "&::before": {
-          inset: "-2px",
-          borderRadius: 16,
-        },
+        "&::before": photoRingCorners(PHOTO_WIDTH.xl, PHOTO_RING.base),
+      },
+    },
+    [breakpoints["sm"]]: {
+      borderRadius: PHOTO_RADIUS.sm,
+      selectors: {
+        "&::before": photoRingCorners(PHOTO_WIDTH.sm, PHOTO_RING.sm),
       },
     },
     "(min-resolution: 2dppx)": {
@@ -193,16 +202,15 @@ export const photoMagicInner = style({
   position: "relative",
   zIndex: 2,
   backfaceVisibility: "hidden",
-  borderRadius: 20,
   backgroundColor: "#93c5ff",
   width: "100%",
   height: "100%",
   overflow: "hidden",
   WebkitBackfaceVisibility: "hidden",
+  ...photoInnerCorners(PHOTO_WIDTH.base, PHOTO_RADIUS.base),
   "@media": {
-    [breakpoints["sm"]]: {
-      borderRadius: 14,
-    },
+    [breakpoints["xl"]]: photoInnerCorners(PHOTO_WIDTH.xl, PHOTO_RADIUS.base),
+    [breakpoints["sm"]]: photoInnerCorners(PHOTO_WIDTH.sm, PHOTO_RADIUS.sm),
   },
 });
 
@@ -211,7 +219,7 @@ export const photo = style({
   zIndex: 0,
   display: "block",
   filter: `saturate(${PROFILE_IMAGE_SATURATION}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
-  borderRadius: 20,
+  borderRadius: PHOTO_RADIUS.base,
   boxShadow: "8px 8px 16px 4px rgba(53, 53, 147, 0.26)",
   objectFit: "cover",
   pointerEvents: "none",
@@ -220,7 +228,7 @@ export const photo = style({
   userSelect: "none",
   "@media": {
     [breakpoints["sm"]]: {
-      borderRadius: 14,
+      borderRadius: PHOTO_RADIUS.sm,
     },
   },
 });
