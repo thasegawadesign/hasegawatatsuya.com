@@ -64,11 +64,16 @@ export const squircleCorners = (width: number, height: number, radius: number) =
 
 export const squircleReach = (radius: number) => (1 + IOS_SMOOTHING) * radius;
 
+const svgUrl = (width: number, height: number, body: string) =>
+  `url("data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">${body}</svg>`,
+  )}")`;
+
 // 中央を 0 幅にすると塗りの元がなくなり中が透けるので、2px 残す
 const maskBoxImage = (inset: number, path: (size: number) => string, outset = 0) => {
   const size = inset * 2 + 2;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><path fill-rule="evenodd" d="${path(size)}"/></svg>`;
-  return `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${inset} / ${inset}px / ${outset}px stretch`;
+  const image = svgUrl(size, size, `<path fill-rule="evenodd" d="${path(size)}"/>`);
+  return `${image} ${inset} / ${inset}px / ${outset}px stretch`;
 };
 
 export const squircleMaskBoxImage = (radius: number) =>
@@ -90,3 +95,19 @@ export const squircleOutsideMaskBoxImage = (radius: number, margin: number) =>
       squirclePath(size - margin * 2, size - margin * 2, radius, IOS_SMOOTHING, margin),
     margin,
   );
+
+export const squircleBottomMaskBoxImage = (radius: number) => {
+  const inset = Math.ceil(squircleReach(radius));
+  const size = inset * 2 + 2;
+  const image = svgUrl(
+    size,
+    inset + 2,
+    `<path transform="translate(0 ${-inset})" d="${squirclePath(size, size, radius)}"/>`,
+  );
+  return `${image} 0 ${inset} ${inset} / 0 ${inset}px ${inset}px stretch`;
+};
+
+export const squircleBottomCorners = (radius: number) => ({
+  borderRadius: `0 0 ${radius}px ${radius}px`,
+  WebkitMaskBoxImage: squircleBottomMaskBoxImage(radius),
+});

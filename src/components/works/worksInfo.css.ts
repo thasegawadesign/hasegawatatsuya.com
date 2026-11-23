@@ -3,6 +3,7 @@ import {
   WORK_HEADING_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
+import { squircleBottomCorners } from "@/styles/squircle";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -153,7 +154,7 @@ export const worksLink = style({
       top: "clamp(1.6rem, 1.36vw, 3rem)",
       display: "block",
       transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
-      borderRadius: "0 0 8px 8px",
+      ...squircleBottomCorners(8),
       backgroundColor: vars.color.text,
       width: "100%",
       height: "1.7em",
