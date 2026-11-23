@@ -8,6 +8,7 @@ import {
   logoTop,
   SITE_EDGE,
 } from "@/styles/siteEdge";
+import { squircleBottomCorners } from "@/styles/squircle";
 import { vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -54,7 +55,7 @@ export const navLink = style({
       top: 20,
       display: "block",
       transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
-      borderRadius: "0 0 8px 8px",
+      ...squircleBottomCorners(8),
       backgroundColor: vars.color.text,
       width: "100%",
       height: 20,

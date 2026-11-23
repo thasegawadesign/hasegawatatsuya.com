@@ -6,6 +6,7 @@ import {
   hamburgerSlotInset,
   type SiteEdge,
 } from "@/styles/siteEdge";
+import { squircleBottomCorners } from "@/styles/squircle";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { style } from "@vanilla-extract/css";
 
@@ -93,7 +94,7 @@ export const mobileNavLink = style({
       top: "1em",
       display: "block",
       transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
-      borderRadius: "0 0 12px 12px",
+      ...squircleBottomCorners(12),
       backgroundColor: vars.color.text,
       width: "100%",
       height: 40,

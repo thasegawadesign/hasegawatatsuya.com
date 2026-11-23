@@ -4,6 +4,7 @@ import {
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
 import { linkUnderlineTop } from "@/lib/urlLinkStyle.css";
+import { squircleBottomCorners } from "@/styles/squircle";
 import { breakpoints, vars } from "@/styles/styles.css";
 import { createVar, fallbackVar, style } from "@vanilla-extract/css";
 
@@ -183,7 +184,7 @@ export const worksLink = style({
       top: fallbackVar(linkUnderlineTop, "clamp(1.6rem, 1.36vw, 3rem)"),
       display: "block",
       transition: `height ${DURATION_M}s ${CUBIC_BEZIER}`,
-      borderRadius: "0 0 8px 8px",
+      ...squircleBottomCorners(8),
       backgroundColor: vars.color.text,
       width: "100%",
       height: "1.7em",
