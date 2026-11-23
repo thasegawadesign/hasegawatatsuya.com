@@ -7,7 +7,7 @@ import {
   WORK_HEADING_TRANSITION_NAME,
   WORK_PHOTO_TRANSITION_NAME,
 } from "@/lib/viewTransitionNames";
-import { LAYER } from "@/styles/layers";
+import { TRANSITION_LAYER } from "@/styles/layers";
 import { createGlobalTheme, globalStyle, style } from "@vanilla-extract/css";
 
 export const breakpoints = {
@@ -31,7 +31,11 @@ globalStyle("::view-transition-group(*)", {
   animationDuration: "0.8s",
 });
 globalStyle("::view-transition-group(profile-photo)", {
+  zIndex: TRANSITION_LAYER.photo,
   animationTimingFunction: "cubic-bezier(0.76, 0, 0.24, 1)",
+});
+globalStyle("::view-transition-group(about-name)", {
+  zIndex: TRANSITION_LAYER.heading,
 });
 globalStyle("::view-transition-old(about-name)", {
   animationDuration: "0.4s",
@@ -45,12 +49,12 @@ globalStyle("::view-transition-new(about-name)", {
 // 作品写真と作品名はブラウザ標準のフェード（-ua-view-transition-fade-in / fade-out）を使い、長さだけ変える。
 // 自作の @keyframes は iPhone の Safari で効かず、写真と作品名がフェードせずに残ってから消えていたため
 globalStyle(`::view-transition-group(${WORK_PHOTO_TRANSITION_NAME})`, {
-  zIndex: 1,
+  zIndex: TRANSITION_LAYER.photo,
   animation: "none",
 });
 // 作品名は写真に重なるデザインなので、遷移中も写真より手前に置く
 globalStyle(`::view-transition-group(${WORK_HEADING_TRANSITION_NAME})`, {
-  zIndex: 2,
+  zIndex: TRANSITION_LAYER.heading,
   animation: "none",
 });
 globalStyle(
@@ -66,7 +70,7 @@ globalStyle(
 globalStyle(
   `::view-transition-group(${SITE_NAV_TRANSITION_NAME}), ::view-transition-group(${SITE_HAMBURGER_TRANSITION_NAME})`,
   {
-    zIndex: LAYER.chrome,
+    zIndex: TRANSITION_LAYER.chrome,
     animation: "none",
   },
 );
@@ -78,15 +82,15 @@ globalStyle(
 );
 // 古いスナップショットは静止画なので隠し、ライブの new だけを見せないと遷移中に動きが止まって見える
 globalStyle(`::view-transition-group(${SITE_PARTICLES_TRANSITION_NAME})`, {
-  zIndex: LAYER.chrome + 1,
+  zIndex: TRANSITION_LAYER.particles,
   animation: "none",
 });
 globalStyle(`::view-transition-group(${SITE_TEXT_CIRCLE_TRANSITION_NAME})`, {
-  zIndex: LAYER.chrome + 2,
+  zIndex: TRANSITION_LAYER.textCircle,
   animation: "none",
 });
 globalStyle(`::view-transition-group(${SITE_CURSOR_TRANSITION_NAME})`, {
-  zIndex: LAYER.chrome + 3,
+  zIndex: TRANSITION_LAYER.cursor,
   animation: "none",
 });
 globalStyle(
