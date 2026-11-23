@@ -1,5 +1,11 @@
 import { breakpoints } from "@/styles/styles.css";
 import { liquidGlassOptions } from "@/components/glass/glass.constants";
+import {
+  squircleMaskBoxImage,
+  squircleOutsideMaskBoxImage,
+  squircleReach,
+  squircleRingMaskBoxImage,
+} from "@/styles/squircle";
 import { style } from "@vanilla-extract/css";
 
 const { cornerRadius, backdropBlurPx, backdropBlurPxSm, saturation } = liquidGlassOptions;
@@ -38,14 +44,48 @@ export const glassShell = style({
   },
 });
 
+const CARD_SHADOW = "0px 12px 40px rgba(0, 0, 0, 0.25)";
+const SHADOW_MARGIN = 64;
+const SUPPORTS_MASK_BOX = "(-webkit-mask-box-image: none)";
+
 export const glassCard = style({
   position: "relative",
   width: "100%",
   borderRadius: cornerRadius,
-  boxShadow: "0px 12px 40px rgba(0, 0, 0, 0.25)",
+  boxShadow: CARD_SHADOW,
   vars: {
     "--glass-refraction": "brightness(1)",
     "--glass-rim-background": rimBase,
+  },
+  "@supports": {
+    [SUPPORTS_MASK_BOX]: {
+      boxShadow: "none",
+    },
+  },
+});
+
+// box-shadow は border-radius の円の角でしか抜けず、スーパー楕円との間に影のない隙間ができる。
+// 層の箱を広げるとページに横スクロールが出るので、箱はカードと同じにしてマスクだけ outset で外へ広げる
+export const glassShadow = style({
+  position: "absolute",
+  zIndex: 0,
+  inset: 0,
+  display: "none",
+  pointerEvents: "none",
+  "@supports": {
+    [SUPPORTS_MASK_BOX]: {
+      display: "block",
+      WebkitMaskBoxImage: squircleOutsideMaskBoxImage(cornerRadius, SHADOW_MARGIN),
+    },
+  },
+  selectors: {
+    "&::before": {
+      position: "absolute",
+      inset: 0,
+      borderRadius: squircleReach(cornerRadius),
+      boxShadow: CARD_SHADOW,
+      content: '""',
+    },
   },
 });
 
@@ -64,6 +104,7 @@ export const glassBackdrop = style({
   display: "block",
   borderRadius: "inherit",
   backdropFilter: backdrop(backdropBlurPx),
+  WebkitMaskBoxImage: squircleMaskBoxImage(cornerRadius),
   pointerEvents: "none",
   "@media": {
     [breakpoints["sm"]]: {
@@ -85,6 +126,12 @@ export const glassRim = style({
   WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
   WebkitMaskComposite: "xor",
   maskComposite: "exclude",
+  "@supports": {
+    [SUPPORTS_MASK_BOX]: {
+      WebkitMask: "none",
+      WebkitMaskBoxImage: squircleRingMaskBoxImage(cornerRadius, 1),
+    },
+  },
 });
 
 export const glassContent = style({

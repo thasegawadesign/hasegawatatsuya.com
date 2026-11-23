@@ -7,6 +7,7 @@ import {
   glassCard,
   glassContent,
   glassRim,
+  glassShadow,
   rimBase,
 } from "@/components/glass/glass.css";
 import { LiquidGlassFilter } from "@/components/glass/liquidGlassFilter";
@@ -203,6 +204,7 @@ export function LiquidGlassCard({ children, className }: LiquidGlassCardProps) {
         refractionPx={refractionPx}
         aberration={aberration}
       />
+      <span className={glassShadow} />
       <span className={glassBackdrop} />
       <span className={glassRim} />
       <div className={glassContent}>{children}</div>
