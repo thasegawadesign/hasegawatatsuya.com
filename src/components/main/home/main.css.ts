@@ -7,6 +7,7 @@ import {
 } from "@/constants/constants";
 import { LAYER } from "@/styles/layers";
 import { SITE_EDGE } from "@/styles/siteEdge";
+import { squircleCorners, squircleMaskBoxImage } from "@/styles/squircle";
 import { breakpoints, hoverable, vars } from "@/styles/styles.css";
 import { createVar, globalStyle, keyframes, style } from "@vanilla-extract/css";
 
@@ -204,16 +205,39 @@ export const description = style({
   },
 });
 
+const SECTION_RADIUS = 36;
+const SECTION_SQUIRCLE_MASK = squircleMaskBoxImage(SECTION_RADIUS);
+// マスクは要素の外を全部切り落とすので、要素本体ではなく背景だけの ::before に掛ける。
+// 本体に掛けると、はみ出す写真・回転中の作品・ボタンのフォーカスリングまで消える。
+// border-radius は -webkit-mask-box-image を解さないブラウザ向けに残す
+const squircleSurface = (surface: { backgroundColor: string; backdropFilter?: string }) =>
+  ({
+    position: "relative",
+    isolation: "isolate",
+    borderRadius: SECTION_RADIUS,
+    selectors: {
+      "&::before": {
+        position: "absolute",
+        zIndex: -1,
+        borderRadius: "inherit",
+        ...surface,
+        WebkitMaskBoxImage: SECTION_SQUIRCLE_MASK,
+        pointerEvents: "none",
+        content: '""',
+        inset: 0,
+      },
+    },
+  }) as const;
+const GLASS_SURFACE = { backgroundColor: "rgba(255, 255, 255, .12)", backdropFilter: "blur(8px)" };
+
 export const profileSection = style({
+  ...squircleSurface(GLASS_SURFACE),
   display: "flex",
   flexDirection: "row-reverse",
   justifyContent: "center",
   placeItems: "end",
   gap: 56,
-  backdropFilter: "blur(8px)",
   margin: "0 auto",
-  borderRadius: 36,
-  backgroundColor: "rgba(255, 255, 255, .12)",
   padding: "66px 12vw",
   maxWidth: 920,
   "@media": {
@@ -249,8 +273,12 @@ export const profileSection = style({
     },
   },
 });
-const PROFILE_IMAGE_RADIUS = 24;
-const PROFILE_IMAGE_RADIUS_SM = 20;
+const PROFILE_IMAGE_WIDTH = { base: 200, xl: 180, lg: 170, md: 150, sm: 120 } as const;
+const profileImageRadius = (width: number) => Math.round(width * 0.12);
+const profileImageSize = (width: number) => ({ width, height: width * 1.5 });
+const profileImageCorners = (width: number) => ({ borderRadius: profileImageRadius(width) });
+const profileImageSquircle = (width: number) =>
+  squircleCorners(width, width * 1.5, profileImageRadius(width));
 // 角丸の写真は四角の端より見た目の端が内側にあるので、写真の上下に揃えるテキストは角の 45° の位置まで寄せる
 const cornerInset = (radius: number) => Math.round(radius * (1 - Math.SQRT1_2));
 
@@ -264,12 +292,16 @@ export const profileContent = style({
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-end",
-      paddingTop: cornerInset(PROFILE_IMAGE_RADIUS),
-      paddingBottom: cornerInset(PROFILE_IMAGE_RADIUS),
+      paddingTop: cornerInset(profileImageRadius(PROFILE_IMAGE_WIDTH.lg)),
+      paddingBottom: cornerInset(profileImageRadius(PROFILE_IMAGE_WIDTH.lg)),
+    },
+    [breakpoints["md"]]: {
+      paddingTop: cornerInset(profileImageRadius(PROFILE_IMAGE_WIDTH.md)),
+      paddingBottom: cornerInset(profileImageRadius(PROFILE_IMAGE_WIDTH.md)),
     },
     [breakpoints["sm"]]: {
-      paddingTop: cornerInset(PROFILE_IMAGE_RADIUS_SM),
-      paddingBottom: cornerInset(PROFILE_IMAGE_RADIUS_SM),
+      paddingTop: cornerInset(profileImageRadius(PROFILE_IMAGE_WIDTH.sm)),
+      paddingBottom: cornerInset(profileImageRadius(PROFILE_IMAGE_WIDTH.sm)),
     },
   },
 });
@@ -428,8 +460,7 @@ export const profileImageWrapper = style({
   // About の写真（2:3）と比率をそろえ、View Transition で歪まないように縮ませない
   flexShrink: 0,
   marginLeft: -140,
-  width: 200,
-  height: 300,
+  ...profileImageSize(PROFILE_IMAGE_WIDTH.base),
   overflow: "hidden",
   "@media": {
     [breakpoints["2xl"]]: {
@@ -437,35 +468,28 @@ export const profileImageWrapper = style({
     },
     [breakpoints["xl"]]: {
       marginLeft: -96,
-      width: 180,
-      height: 270,
+      ...profileImageSize(PROFILE_IMAGE_WIDTH.xl),
     },
     [breakpoints["lg"]]: {
       marginLeft: 0,
-      width: 170,
-      height: 255,
+      ...profileImageSize(PROFILE_IMAGE_WIDTH.lg),
     },
-    [breakpoints["md"]]: {
-      width: 150,
-      height: 225,
-    },
-    [breakpoints["sm"]]: {
-      width: 120,
-      height: 180,
-    },
+    [breakpoints["md"]]: profileImageSize(PROFILE_IMAGE_WIDTH.md),
+    [breakpoints["sm"]]: profileImageSize(PROFILE_IMAGE_WIDTH.sm),
   },
 });
 export const profileImageContainer = style({
   aspectRatio: 3 / 2,
   position: "relative",
-  borderRadius: PROFILE_IMAGE_RADIUS,
+  ...profileImageSquircle(PROFILE_IMAGE_WIDTH.base),
   width: "100%",
   height: "100%",
   overflow: "hidden",
   "@media": {
-    [breakpoints["sm"]]: {
-      borderRadius: PROFILE_IMAGE_RADIUS_SM,
-    },
+    [breakpoints["xl"]]: profileImageSquircle(PROFILE_IMAGE_WIDTH.xl),
+    [breakpoints["lg"]]: profileImageSquircle(PROFILE_IMAGE_WIDTH.lg),
+    [breakpoints["md"]]: profileImageSquircle(PROFILE_IMAGE_WIDTH.md),
+    [breakpoints["sm"]]: profileImageSquircle(PROFILE_IMAGE_WIDTH.sm),
   },
 });
 export const motionDiv = style({
@@ -475,16 +499,17 @@ export const motionDiv = style({
 });
 export const profileImage = style({
   filter: `saturate(${PROFILE_IMAGE_SATURATION}) brightness(${PROFILE_IMAGE_BRIGHTNESS})`,
-  borderRadius: 24,
+  ...profileImageCorners(PROFILE_IMAGE_WIDTH.base),
   objectFit: "cover",
   pointerEvents: "none",
   width: "100%",
   height: "auto",
   userSelect: "none",
   "@media": {
-    [breakpoints["sm"]]: {
-      borderRadius: 20,
-    },
+    [breakpoints["xl"]]: profileImageCorners(PROFILE_IMAGE_WIDTH.xl),
+    [breakpoints["lg"]]: profileImageCorners(PROFILE_IMAGE_WIDTH.lg),
+    [breakpoints["md"]]: profileImageCorners(PROFILE_IMAGE_WIDTH.md),
+    [breakpoints["sm"]]: profileImageCorners(PROFILE_IMAGE_WIDTH.sm),
   },
 });
 
@@ -518,11 +543,9 @@ export const worksBox = style({
       maxWidth: BOX_WIDTH.md,
     },
     [breakpoints["sm"]]: {
+      ...squircleSurface(GLASS_SURFACE),
       gap: 0,
-      backdropFilter: "blur(8px)",
       margin: "0 2vw",
-      borderRadius: 36,
-      backgroundColor: "rgba(255, 255, 255, .12)",
       padding: "0 2vw 28px",
     },
   },
@@ -544,6 +567,7 @@ export const worksItem = style({
       borderRadius: "inherit",
       backgroundColor: "rgba(255, 255, 255, 0.12)",
       backdropFilter: "blur(8px)",
+      WebkitMaskBoxImage: SECTION_SQUIRCLE_MASK,
       pointerEvents: "none",
       content: '""',
       inset: 0,
@@ -705,10 +729,10 @@ export const emailButton = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  ...squircleSurface({ backgroundColor: vars.color.text }),
   gap: 22,
   border: "none",
-  borderRadius: 36,
-  backgroundColor: vars.color.text,
+  backgroundColor: "transparent",
   cursor: "pointer",
   padding: "200px 8vw",
   width: "100%",

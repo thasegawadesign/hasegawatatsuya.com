@@ -1,3 +1,5 @@
+import { squircleReach } from "@/styles/squircle";
+
 // ページ全体を包むカードは縦に数千 px になるので、マップは縮めて作り feImage で引き伸ばす
 const MAX_MAP_SIDE = 2048;
 // ページを移るたびにカードが作り直されるので、行き来しても同じ寸法なら生成の待ちを挟まない
@@ -21,9 +23,11 @@ export function getBezelMap(width: number, height: number, cornerRadius: number,
 }
 
 function createBezelMap(width: number, height: number, cornerRadius: number, bezel: number) {
-  // 距離場の角丸が bezel より小さいと、内側の矩形距離で法線が切り替わる対角線が変位の帯に入り、折り目が出る。
-  // 角だけ実際の縁より最大 (radius - cornerRadius)(√2 - 1) 内側から測ることになるが、その外は最大変位で埋まるので目立たない
-  const radius = Math.max(cornerRadius, bezel);
+  // 距離場の角丸が bezel より小さいと、内側の矩形距離で法線が切り替わる対角線が変位の帯に入り、折り目が出る
+  const radius = Math.max(squircleReach(cornerRadius), bezel);
+  // Lp (p > 2) の勾配は 1 以下なので、変位が折り返す条件は円で測るときより厳しくならない
+  const cornerInset = cornerRadius * (1 - Math.SQRT1_2);
+  const exponent = -Math.LN2 / Math.log(1 - Math.min(cornerInset / radius, 1 - Math.SQRT1_2));
   const scale = Math.min(1, MAX_MAP_SIDE / Math.max(width, height));
   const mapWidth = Math.max(1, Math.round(width * scale));
   const mapHeight = Math.max(1, Math.round(height * scale));
@@ -53,10 +57,13 @@ function createBezelMap(width: number, height: number, cornerRadius: number, bez
       let normalX = 0;
       let normalY = 0;
       if (qx > 0 && qy > 0) {
-        const length = Math.hypot(qx, qy);
+        const length = (qx ** exponent + qy ** exponent) ** (1 / exponent);
+        const gradientX = qx ** (exponent - 1);
+        const gradientY = qy ** (exponent - 1);
+        const gradientLength = Math.hypot(gradientX, gradientY);
         distance = radius - length;
-        normalX = qx / length;
-        normalY = qy / length;
+        normalX = gradientX / gradientLength;
+        normalY = gradientY / gradientLength;
       } else if (qx > qy) {
         distance = radius - qx;
         normalX = 1;
