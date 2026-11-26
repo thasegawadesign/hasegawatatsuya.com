@@ -273,13 +273,13 @@ importers:
         version: 1.94.0
       stylelint:
         specifier: ^18.0.0
-        version: 18.0.0
+        version: 18.1.0
       stylelint-config-recommended:
         specifier: ^19.0.0
-        version: 19.0.0(stylelint@18.0.0)
+        version: 19.0.0(stylelint@18.1.0)
       stylelint-order:
         specifier: ^8.1.3
-        version: 8.1.3(stylelint@18.0.0)
+        version: 8.1.3(stylelint@18.1.0)
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -3122,8 +3122,8 @@ packages:
     peerDependencies:
       stylelint: ^16.18.0 || ^17.0.0 || ^18.0.0
 
-  stylelint@18.0.0:
-    resolution: {integrity: sha512-kI10GsHXQvsH/AcklVZdQgwDuxtHi+A+h1Ujzd7h9LDf3e5jQiLQkWFlPtpynX3E6oVWHG1wo9v6dL0Mr+nnSA==}
+  stylelint@18.1.0:
+    resolution: {integrity: sha512-QbF/IY7KY6lZRhYU/vmPU1KYxc71wgkXdgeptqzTh3lbnZps6WHaskfPjpL6Fh4JaCzwkKKitVcMrpfQTSwwPA==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     hasBin: true
 
@@ -5839,17 +5839,17 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.29.13(supports-color@8.1.1)
 
-  stylelint-config-recommended@19.0.0(stylelint@18.0.0):
+  stylelint-config-recommended@19.0.0(stylelint@18.1.0):
     dependencies:
-      stylelint: 18.0.0
+      stylelint: 18.1.0
 
-  stylelint-order@8.1.3(stylelint@18.0.0):
+  stylelint-order@8.1.3(stylelint@18.1.0):
     dependencies:
       postcss: 8.5.33
       postcss-sorting: 10.0.0(postcss@8.5.33)
-      stylelint: 18.0.0
+      stylelint: 18.1.0
 
-  stylelint@18.0.0:
+  stylelint@18.1.0:
     dependencies:
       '@csstools/css-calc': 3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
       '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
