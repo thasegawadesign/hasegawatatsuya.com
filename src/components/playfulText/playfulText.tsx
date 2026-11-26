@@ -54,6 +54,7 @@ type Variant =
   | "carve"
   | "discern"
   | "place"
+  | "deliver"
   | ScoreVariant;
 
 type ScoreVariant = "untangle" | "open" | "key" | "lock" | "dash" | "dive";
@@ -205,6 +206,18 @@ const RESPOND_RANGE_EM = 4;
 const RESPOND_WINDOW_MS = 260;
 const RESPOND_TRAVEL_EM = 1.6;
 const RESPOND_BIAS = 1.5;
+const DELIVER_SPRING = { tension: 320, friction: 16 };
+const DELIVER_STAGGER_MS = 45;
+const DELIVER_TAP_MS = 90;
+const DELIVER_RELEASE_MS = 150;
+const DELIVER_DIP_EM = 0.18;
+const DELIVER_PRESS = 0.86;
+const DELIVER_RISE_EM = 0.18;
+const DELIVER_CARRY_EM = 0.08;
+const DELIVER_TILT_DEG = 8;
+const DELIVER_ARRIVE_RISE = 1.6;
+const DELIVER_ARRIVE_SCALE = 1.3;
+const DELIVER_ARRIVE_MS = 260;
 const NOD_DIP_EM = 0.22;
 const NOD_BEAT_MS = 150;
 const SHAKE_REACH_EM = 0.18;
@@ -438,6 +451,7 @@ const springConfig = (variant: Variant, tilt: number, facet: number) => {
   if (variant === "cushion") return CUSHION_SPRING;
   if (variant === "web") return WEB_SPRING;
   if (variant === "respond") return RESPOND_SPRING;
+  if (variant === "deliver") return DELIVER_SPRING;
   if (variant === "free") return { tension: 700 + 200 * tilt, friction: 50 };
   return SCORE_SPRINGS[variant] ?? SPRING;
 };
@@ -1301,6 +1315,60 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     }, CUSHION_HOLD_MS);
   };
 
+  const deliver = (from: number) => {
+    const measured = measure();
+    if (!measured) return;
+    const { fontSize } = measured;
+    busyRef.current = true;
+    clearTimers();
+    const last = chars.length - 1;
+    for (let i = from; i <= last; i++) {
+      const at = (i - from) * DELIVER_STAGGER_MS;
+      const arrived = i === last;
+      later(() => {
+        springsRef.current[i]?.start({
+          x: 0,
+          y: fontSize * DELIVER_DIP_EM,
+          rotation: 0,
+          scale: DELIVER_PRESS,
+        });
+      }, at);
+      later(() => {
+        springsRef.current[i]?.start(
+          arrived
+            ? {
+                x: 0,
+                y: -fontSize * DELIVER_RISE_EM * DELIVER_ARRIVE_RISE,
+                rotation: tilts[i] * DELIVER_TILT_DEG,
+                scale: DELIVER_ARRIVE_SCALE,
+              }
+            : {
+                x: fontSize * DELIVER_CARRY_EM,
+                y: -fontSize * DELIVER_RISE_EM,
+                rotation: tilts[i] * DELIVER_TILT_DEG,
+                scale: 1,
+              },
+        );
+      }, at + DELIVER_TAP_MS);
+      later(
+        () => springsRef.current[i]?.start(REST),
+        at + DELIVER_TAP_MS + (arrived ? DELIVER_ARRIVE_MS : DELIVER_RELEASE_MS),
+      );
+    }
+    later(
+      () => {
+        busyRef.current = false;
+      },
+      (last - from) * DELIVER_STAGGER_MS + DELIVER_TAP_MS + DELIVER_ARRIVE_MS,
+    );
+  };
+
+  const deliverFrom = (clientX: number) => {
+    const measured = measure();
+    if (!measured) return;
+    deliver(nearestIndex(measured.centers, clientX));
+  };
+
   const pull = (index: number, x: number, y: number, fontSize: number) => {
     springsRef.current.forEach((spring, i) => {
       const hold = Math.exp(-Math.abs(i - index) * WEB_FALLOFF);
@@ -1719,6 +1787,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     else if (variant === "cushion") cushion();
     else if (variant === "web") tug();
     else if (variant === "respond") nod();
+    else if (variant === "deliver") deliver(0);
   };
 
   const followsPointer =
@@ -1778,6 +1847,10 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
   const onPointerEnter = (e: PointerEvent) => {
     armedRef.current = true;
     if (followsPointer || e.pointerType !== "mouse" || reducedMotion()) return;
+    if (variant === "deliver") {
+      if (!busyRef.current) deliverFrom(e.clientX);
+      return;
+    }
     const measured = measure();
     if (variant !== "open" || !measured) {
       play();
@@ -2057,6 +2130,7 @@ export default function PlayfulText({ text, variant, className, autoPlayDelay }:
     if (variant === "lift") wave(e.clientX);
     else if (variant === "break") shatter(e.clientX);
     else if (variant === "facets") playFacet(facetAt(e.clientX));
+    else if (variant === "deliver") deliverFrom(e.clientX);
     else if (variant !== "web" && !draggedRef.current && !heldOpenRef.current) play();
     draggedRef.current = false;
   };
