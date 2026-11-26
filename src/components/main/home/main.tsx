@@ -3,6 +3,7 @@
 import {
   aboutSection,
   address,
+  closing,
   contactSection,
   description,
   emailButton,
@@ -210,19 +211,22 @@ export default function Main() {
             喜びを感じます。
             <br className={mobileBr} />
             <br className={clsx(desktopBr)} />
-            書いたコードが手触りに変わる
+            書いたコードが
             <br className={mobileBr} />
-            感動が、
+            手触りに変わる感動が、
             <br className={mobileBr} />
             学び始めた日からの
             <br className={mobileBr} />
             原動力です。
-            <PlayfulText
-              text="インタラクション大好き。"
-              variant="lift"
-              className={punchline}
-              autoPlayDelay={350}
-            />
+            <span className={clsx(closing)}>
+              <PlayfulText
+                text="インタラクション大好き。"
+                variant="lift"
+                className={punchline}
+                autoPlayDelay={350}
+              />
+              触り心地をお届けします。
+            </span>
           </p>
           <section className={profileSection} ref={profileRef}>
             <div className={clsx(profileContent)}>
