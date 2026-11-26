@@ -83,19 +83,13 @@ export const gsapAnimation = {
     });
     return mm;
   },
-  enterEach(boxRef: GsapRef, selector: string) {
+  enter(ref: GsapRef) {
     return gsap.context(() => {
-      const items = boxRef.current?.querySelectorAll<HTMLElement>(selector);
-      if (!items?.length) return;
+      if (!ref.current) return;
       gsap.fromTo(
-        items,
+        ref.current,
         { ...INVIEW_FROM },
-        {
-          ...INVIEW_TO,
-          clearProps: "transform",
-          delay: ENTER_DELAY_S,
-          stagger: INVIEW_STAGGER_S,
-        },
+        { ...INVIEW_TO, clearProps: "transform", delay: ENTER_DELAY_S },
       );
     });
   },
