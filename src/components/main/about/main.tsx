@@ -133,7 +133,7 @@ export default function Main() {
 
   // View Transition 中の React は useEffect を遷移の終わりまで遅らせる
   useLayoutEffect(() => {
-    const ctx = gsapAnimation.enterEach(profileLinkBoxRef, ":scope > li");
+    const ctx = gsapAnimation.enter(profileLinkBoxRef);
     return () => ctx.revert();
   }, []);
 
