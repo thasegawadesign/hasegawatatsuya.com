@@ -3,7 +3,6 @@
 import {
   aboutSection,
   address,
-  closing,
   contactSection,
   description,
   emailButton,
@@ -218,15 +217,13 @@ export default function Main() {
             学び始めた日からの
             <br className={mobileBr} />
             原動力です。
-            <span className={clsx(closing)}>
-              <PlayfulText
-                text="インタラクション大好き。"
-                variant="lift"
-                className={punchline}
-                autoPlayDelay={350}
-              />
-              触り心地をお届けします。
-            </span>
+            <PlayfulText
+              text="インタラクション大好き。"
+              variant="lift"
+              className={punchline}
+              autoPlayDelay={350}
+            />
+            触り心地をお届けします。
           </p>
           <section className={profileSection} ref={profileRef}>
             <div className={clsx(profileContent)}>
