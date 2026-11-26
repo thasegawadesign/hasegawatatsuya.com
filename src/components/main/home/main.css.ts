@@ -179,6 +179,11 @@ export const aboutSection = style({
   },
 });
 
+export const closing = style({
+  display: "block",
+  marginTop: "0.8em",
+});
+
 export const description = style({
   transformOrigin: "right bottom",
   marginBottom: 60,
