@@ -223,7 +223,7 @@ export default function Main() {
               className={punchline}
               autoPlayDelay={350}
             />
-            <PlayfulText text="触り心地をお届けします。" variant="deliver" />
+            <PlayfulText text="触り心地 届けます。" variant="deliver" />
           </p>
           <section className={profileSection} ref={profileRef}>
             <div className={clsx(profileContent)}>
